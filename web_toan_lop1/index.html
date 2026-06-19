@@ -684,6 +684,7 @@
 
         <div class="actions">
           <button class="btn" id="checkBtn" disabled>✅ Kiểm tra</button>
+          <button class="btn ghost" id="skipBtn">Câu tiếp →</button>
           <button class="btn hidden" id="nextBtn">Câu tiếp →</button>
           <button class="btn ghost hidden" id="similarBtn">Câu khác</button>
         </div>
@@ -1250,6 +1251,7 @@
       $('similarBtn').classList.add('hidden');
       $('checkBtn').classList.remove('hidden');
       $('checkBtn').disabled = true;
+      $('skipBtn').classList.remove('hidden');   // nút "Câu tiếp" (bỏ qua) hiện khi chưa chấm
 
       var choicesEl = $('choices');
       var inputRow = $('inputRow');
@@ -1329,6 +1331,7 @@
       stopSpeak();
       ensureAudio();
       $('checkBtn').classList.add('hidden');
+      $('skipBtn').classList.add('hidden');  // đã chấm → ẩn nút bỏ qua, dùng "Câu tiếp →"
 
       bumpDailyCount();
 
@@ -1608,6 +1611,7 @@
 
     $('checkBtn').addEventListener('click', submitAnswer);
     $('nextBtn').addEventListener('click', nextQuestion);
+    $('skipBtn').addEventListener('click', nextQuestion);  // bỏ qua: sang câu tiếp, không chấm điểm
     $('similarBtn').addEventListener('click', function () {
       $('restNote').classList.remove('show');
       loadQuestion(QuestionEngine.generate(session.topicId));

@@ -639,6 +639,7 @@
 
         <div class="actions">
           <button class="btn" id="checkBtn" disabled>✅ Kiểm tra</button>
+          <button class="btn ghost" id="skipBtn">Câu tiếp →</button>
           <button class="btn hidden" id="nextBtn">Câu tiếp theo →</button>
           <button class="btn ghost hidden" id="similarBtn">Thử câu tương tự</button>
         </div>
@@ -1062,6 +1063,7 @@
       $('similarBtn').classList.add('hidden');
       $('checkBtn').classList.remove('hidden');
       $('checkBtn').disabled = true;
+      $('skipBtn').classList.remove('hidden');   // nút "Câu tiếp" (bỏ qua) hiện khi chưa chấm
 
       var choicesEl = $('choices');
       var inputRow = $('inputRow');
@@ -1140,6 +1142,7 @@
       answered = true;
       ensureAudio(); // mở audio trong cử chỉ người dùng
       $('checkBtn').classList.add('hidden');
+      $('skipBtn').classList.add('hidden');  // đã chấm → ẩn nút bỏ qua, dùng "Câu tiếp theo →"
 
       // đếm tiến độ ngày (đúng/sai đều tính theo DESIGN.md)
       bumpDailyCount();
@@ -1415,6 +1418,7 @@
 
     $('checkBtn').addEventListener('click', submitAnswer);
     $('nextBtn').addEventListener('click', nextQuestion);
+    $('skipBtn').addEventListener('click', nextQuestion);  // bỏ qua: sang câu tiếp, không chấm điểm
     $('similarBtn').addEventListener('click', function () {
       // xin câu mới cùng dạng (cùng chủ đề) trong chế độ luyện tập
       $('restNote').classList.remove('show');
