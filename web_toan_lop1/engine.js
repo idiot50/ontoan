@@ -98,6 +98,17 @@
     return v;
   }
 
+  /*
+   * Chọn TẦNG độ khó theo trọng số lớp 1: ~60% Cơ bản / 30% Nâng vừa / 10% Thử thách.
+   * Trả về 'co-ban' | 'nang-vua' | 'thu-thach'.
+   */
+  function tier() {
+    var r = randInt(1, 100);
+    if (r <= 60) return 'co-ban';
+    if (r <= 90) return 'nang-vua';
+    return 'thu-thach';
+  }
+
   /* ====================== ĐỌC SỐ TIẾNG VIỆT (0..100) ====================== */
   // Lớp 1 chỉ tới 100. Xử lý: mười/mươi, mốt, lăm, tư, tròn chục, một trăm.
 
@@ -161,11 +172,19 @@
    * ========================================================================== */
   function genSo100() {
     var topic = 'so-100';
-    var kind = pick([
-      'cautao', 'cautao-nguoc', 'sosanh', 'lientruoc', 'liensau',
-      'tronchuc', 'maxmin', 'sapxep', 'haichuso',
-      'lietke', 'lietke', 'demkhoang'   // ưu tiên dạng liệt kê; giữ 1 dạng đếm (count<=5)
-    ]);
+    // 3 TẦNG:
+    //   Cơ bản  : đọc cấu tạo, so sánh 2 số, liền trước/liền sau, max/min nhỏ.
+    //   Nâng vừa: tròn chục, sắp xếp 4 số, liệt kê khoảng, số hai chữ số, cấu tạo ngược.
+    //   Thử thách: sắp xếp 5 số, liệt kê 5 số, cấu tạo ngược suy luận, so sánh kép.
+    var t = tier();
+    var kind;
+    if (t === 'co-ban') {
+      kind = pick(['cautao', 'sosanh', 'lientruoc', 'liensau', 'maxmin']);
+    } else if (t === 'nang-vua') {
+      kind = pick(['tronchuc', 'sapxep4', 'lietke', 'haichuso', 'cautao-nguoc', 'demkhoang']);
+    } else {
+      kind = pick(['sapxep5', 'lietke5', 'cautao-suy', 'sosanh-kep']);
+    }
 
     // Cấu tạo: "65 gồm mấy chục mấy đơn vị?" -> nhập "6 3"? Ta cho 2 dạng.
     if (kind === 'cautao') {
@@ -203,6 +222,25 @@
       };
     }
 
+    // Cấu tạo ngược SUY LUẬN (thử thách): "hàng chục là 7, hàng đơn vị bé hơn hàng
+    // chục 2 đơn vị" -> 75. Chỉ 1 bước suy luận, vẫn cực ngắn.
+    if (kind === 'cautao-suy') {
+      var chucS = randInt(3, 9);              // hàng chục đủ lớn để đơn vị không âm
+      var gap = randInt(1, Math.min(chucS, 8)); // đơn vị = chục - gap (>=0)
+      var dvS = chucS - gap;
+      var ansS = chucS * 10 + dvS;
+      return {
+        type: 'input', topic: topic,
+        stem: 'Số có chữ số hàng chục là <b>' + chucS + '</b>, hàng đơn vị bé hơn hàng chục <b>' +
+              gap + '</b> đơn vị. Đó là số nào? (gõ số)',
+        answer: String(ansS),
+        explain: 'Hàng đơn vị = ' + chucS + ' − ' + gap + ' = ' + dvS + '. Số đó là ' + chucS + ' chục ' +
+                 dvS + ' đơn vị = ' + ansS + '.',
+        say: 'số có chữ số hàng chục là ' + readNumberVi(chucS) + ', hàng đơn vị bé hơn hàng chục ' +
+             readNumberVi(gap) + ' đơn vị, đó là số nào?'
+      };
+    }
+
     // So sánh: điền dấu > < =
     if (kind === 'sosanh') {
       var a = randInt(0, 100), b;
@@ -215,6 +253,26 @@
         choices: mc3.choices, answer: mc3.answerIndex,
         explain: a + ' ' + sign + ' ' + b + (sign === '=' ? ' (hai số bằng nhau).' : '.'),
         say: readNumberVi(a) + ' ' + saySign(sign) + ' ' + readNumberVi(b) + ', vậy điền dấu nào?'
+      };
+    }
+
+    // So sánh KÉP (thử thách): "số vừa lớn hơn A vừa bé hơn B" với đúng 1 nghiệm.
+    // Tối đa 2 ràng buộc, vẫn 1 đáp án rõ ràng, không gây rối.
+    if (kind === 'sosanh-kep') {
+      var lo2 = randInt(10, 90);
+      var ansK = lo2 + 1;                 // số duy nhất ở giữa: lớn hơn lo2 và bé hơn lo2+2
+      var hi2 = lo2 + 2;
+      var ddK = [lo2, hi2, ansK + 1].filter(function (v) { return v >= 0 && v <= 100 && v !== ansK; });
+      var mcK = makeMC(ansK, ddK, String, function (c) {
+        var v = c + pick([-2, -1, 1, 2]);
+        return v >= 0 && v <= 100 ? v : c + 3;
+      });
+      return {
+        type: 'mc', topic: topic,
+        stem: 'Số nào vừa <b>lớn hơn ' + lo2 + '</b> vừa <b>bé hơn ' + hi2 + '</b>?',
+        choices: mcK.choices, answer: mcK.answerIndex,
+        explain: 'Số lớn hơn ' + lo2 + ' và bé hơn ' + hi2 + ' chỉ có ' + ansK + '.',
+        say: 'số nào vừa lớn hơn ' + readNumberVi(lo2) + ' vừa bé hơn ' + readNumberVi(hi2) + '?'
       };
     }
 
@@ -263,9 +321,9 @@
       };
     }
 
-    // Lớn nhất / bé nhất trong nhóm 3-4 số.
+    // Lớn nhất / bé nhất trong nhóm 3 số (cơ bản).
     if (kind === 'maxmin') {
-      var cnt = randInt(3, 4);
+      var cnt = 3;
       var nums = [];
       while (nums.length < cnt) {
         var x = randInt(0, 100);
@@ -283,9 +341,9 @@
       };
     }
 
-    // Sắp xếp 3-4 số tăng/giảm -> nhập dãy.
-    if (kind === 'sapxep') {
-      var cnt2 = randInt(3, 4);
+    // Sắp xếp số tăng/giảm -> nhập dãy. Nâng vừa: 4 số; Thử thách: 5 số.
+    if (kind === 'sapxep4' || kind === 'sapxep5') {
+      var cnt2 = (kind === 'sapxep5') ? 5 : 4;
       var arr = [];
       while (arr.length < cnt2) {
         var y = randInt(0, 100);
@@ -317,10 +375,10 @@
       };
     }
 
-    // Dạng SÁCH: liệt kê các số lớn hơn A và bé hơn B (3..5 số) -> nhập dãy.
-    if (kind === 'lietke') {
-      // Chọn cận sao cho khoảng MỞ (a, b) có 3..5 số nguyên: b - a - 1 in [3,5].
-      var k = randInt(3, 5);                 // số phần tử cần liệt kê
+    // Dạng SÁCH: liệt kê các số lớn hơn A và bé hơn B -> nhập dãy.
+    // Nâng vừa: 3..4 số; Thử thách: 5 số.
+    if (kind === 'lietke' || kind === 'lietke5') {
+      var k = (kind === 'lietke5') ? 5 : randInt(3, 4); // số phần tử cần liệt kê
       var aa = randInt(0, 100 - (k + 1));     // cận dưới
       var bb = aa + k + 1;                    // cận trên, chừa đúng k số ở giữa
       var list = [];
@@ -356,18 +414,55 @@
    * ========================================================================== */
   function genCong() {
     var topic = 'cong';
-    // Trộn mức độ: ≤10, ≤20, ≤40, ≤100
-    var level = pick(['le10', 'le20', 'le40', 'le100']);
-    var a, b;
-    if (level === 'le10') { a = randInt(1, 9); b = randInt(0, 10 - a); }
-    else if (level === 'le20') { a = randInt(2, 18); b = randInt(1, 20 - a); }
-    else if (level === 'le40') { a = randInt(2, 38); b = randInt(1, 40 - a); }
-    else { a = randInt(10, 95); b = randInt(1, 100 - a); }
+    // 3 TẦNG:
+    //   Cơ bản  : a + b không nhớ, kết quả <= 20.
+    //   Nâng vừa: a + b CÓ NHỚ (qua chục) <= 100, hoặc cộng số tròn chục.
+    //   Thử thách: cộng 3 số <= 100, mọi bước >= 0.
+    var t = tier();
+
+    // THỬ THÁCH: cộng 3 số (a + b + c <= 100).
+    if (t === 'thu-thach') {
+      var a3 = randInt(11, 40), b3 = randInt(4, 30);
+      var c3 = randInt(3, Math.max(3, 100 - a3 - b3));
+      var ans3 = a3 + b3 + c3;
+      return {
+        type: 'input', topic: topic,
+        stem: 'Tính: <b>' + a3 + ' + ' + b3 + ' + ' + c3 + ' = ?</b>',
+        answer: String(ans3),
+        explain: a3 + ' + ' + b3 + ' = ' + (a3 + b3) + '; ' + (a3 + b3) + ' + ' + c3 + ' = ' + ans3 + '.',
+        say: readNumberVi(a3) + ' cộng ' + readNumberVi(b3) + ' cộng ' + readNumberVi(c3) + ' bằng mấy?'
+      };
+    }
+
+    var a, b, hasCarry;
+    if (t === 'co-ban') {
+      // không nhớ, tổng <= 20: chọn đơn vị sao cho không qua chục.
+      do {
+        a = randInt(1, 18); b = randInt(1, 20 - a);
+      } while ((a % 10) + (b % 10) >= 10);   // tránh nhớ
+      hasCarry = false;
+    } else {
+      // NÂNG VỪA: ưu tiên có nhớ, hoặc cộng tròn chục để luyện nhẩm.
+      if (randInt(0, 1) === 0) {
+        // cộng số tròn chục: a + (chục tròn)
+        var roundTen = randInt(2, 7) * 10;
+        a = randInt(11, 100 - roundTen); b = roundTen;
+      } else {
+        // có nhớ: bảo đảm (a%10)+(b%10) >= 10
+        var guard = 0;
+        do {
+          guard++;
+          a = randInt(6, 89); b = randInt(6, 100 - a);
+        } while ((a % 10) + (b % 10) < 10 && guard < 60);
+      }
+      hasCarry = ((a % 10) + (b % 10) >= 10);
+    }
     var ans = a + b;
 
     // Đa số input; thỉnh thoảng mc với nhiễu "quên nhớ", "lệch chục", "lệch 1".
     if (randInt(0, 3) === 0) {
-      var dd = [ans - 10, ans + 10, ans - 1, ans + 1, ans - 9, ans + 9]
+      // Bẫy lỗi điển hình: quên nhớ (lệch -10), lệch ±1, đảo chục-đơn vị kết quả.
+      var dd = [ans - 10, ans + 10, ans - 1, ans + 1, ans - 9]
         .filter(function (v) { return v >= 0 && v <= 100 && v !== ans; });
       var mc = makeMC(ans, shuffle(dd), String, function (c, ex) {
         var v = c + pick([-2, -1, 1, 2, -10, 10]);
@@ -377,7 +472,7 @@
         type: 'mc', topic: topic,
         stem: 'Tính: <b>' + a + ' + ' + b + '</b>',
         choices: mc.choices, answer: mc.answerIndex,
-        explain: a + ' + ' + b + ' = ' + ans + '.',
+        explain: a + ' + ' + b + ' = ' + ans + (hasCarry ? ' (nhớ 1 sang hàng chục).' : '.'),
         say: readNumberVi(a) + ' cộng ' + readNumberVi(b) + ' bằng mấy?'
       };
     }
@@ -385,7 +480,7 @@
       type: 'input', topic: topic,
       stem: 'Tính: <b>' + a + ' + ' + b + ' = ?</b>',
       answer: String(ans),
-      explain: a + ' + ' + b + ' = ' + ans + '.',
+      explain: a + ' + ' + b + ' = ' + ans + (hasCarry ? ' (nhớ 1 sang hàng chục).' : '.'),
       say: readNumberVi(a) + ' cộng ' + readNumberVi(b) + ' bằng mấy?'
     };
   }
@@ -395,16 +490,57 @@
    * ========================================================================== */
   function genTru() {
     var topic = 'tru';
-    var level = pick(['le10', 'le20', 'le40', 'le100']);
-    var a, b;
-    if (level === 'le10') { a = randInt(1, 10); b = randInt(0, a); }
-    else if (level === 'le20') { a = randInt(2, 20); b = randInt(1, a); }
-    else if (level === 'le40') { a = randInt(5, 40); b = randInt(1, a); }
-    else { a = randInt(20, 100); b = randInt(1, a); }
+    // 3 TẦNG:
+    //   Cơ bản  : a − b không nhớ (không mượn), a <= 20.
+    //   Nâng vừa: a − b CÓ NHỚ (mượn) <= 100, hoặc trừ số tròn chục.
+    //   Thử thách: trừ liên tiếp 3 số, mọi bước >= 0.
+    var t = tier();
+
+    // THỬ THÁCH: trừ liên tiếp 3 số (a − b − c >= 0). Bảo đảm sau bước 1 còn >= 2.
+    if (t === 'thu-thach') {
+      var a3 = randInt(40, 100);
+      var b3 = randInt(3, Math.min(40, a3 - 5));   // chừa lại >= 5 cho bước 2
+      var rem3 = a3 - b3;                           // số còn sau bước 1 (>= 5)
+      var c3 = randInt(2, rem3);                    // c3 <= rem3 -> kết quả >= 0
+      var ans3 = a3 - b3 - c3;
+      return {
+        type: 'input', topic: topic,
+        stem: 'Tính: <b>' + a3 + ' − ' + b3 + ' − ' + c3 + ' = ?</b>',
+        answer: String(ans3),
+        explain: a3 + ' − ' + b3 + ' = ' + (a3 - b3) + '; ' + (a3 - b3) + ' − ' + c3 + ' = ' + ans3 + '.',
+        say: readNumberVi(a3) + ' trừ ' + readNumberVi(b3) + ' trừ ' + readNumberVi(c3) + ' bằng mấy?'
+      };
+    }
+
+    var a, b, hasBorrow;
+    if (t === 'co-ban') {
+      // không mượn, a <= 20: chọn b sao cho đơn vị b <= đơn vị a.
+      do {
+        a = randInt(2, 20); b = randInt(1, a);
+      } while ((b % 10) > (a % 10));   // tránh mượn
+      hasBorrow = false;
+    } else {
+      // NÂNG VỪA: ưu tiên có mượn, hoặc trừ số tròn chục.
+      if (randInt(0, 1) === 0) {
+        // trừ số tròn chục
+        a = randInt(31, 100);
+        var roundTen = randInt(1, Math.floor(a / 10)) * 10;
+        b = roundTen;
+      } else {
+        // có mượn: bảo đảm đơn vị b > đơn vị a
+        var guard = 0;
+        do {
+          guard++;
+          a = randInt(21, 100); b = randInt(2, a - 1);
+        } while ((b % 10) <= (a % 10) && guard < 60);
+      }
+      hasBorrow = ((b % 10) > (a % 10));
+    }
     var ans = a - b;
 
     if (randInt(0, 3) === 0) {
-      var dd = [ans + 10, ans - 10, ans + 1, ans - 1, a + b, ans + 9]
+      // Bẫy lỗi: cộng thay trừ (a+b), quên mượn (lệch +10), lệch ±1.
+      var dd = [ans + 10, ans - 10, ans + 1, ans - 1, a + b]
         .filter(function (v) { return v >= 0 && v <= 100 && v !== ans; });
       var mc = makeMC(ans, shuffle(dd), String, function (c, ex) {
         var v = c + pick([-2, -1, 1, 2, -10, 10]);
@@ -414,7 +550,7 @@
         type: 'mc', topic: topic,
         stem: 'Tính: <b>' + a + ' − ' + b + '</b>',
         choices: mc.choices, answer: mc.answerIndex,
-        explain: a + ' − ' + b + ' = ' + ans + '.',
+        explain: a + ' − ' + b + ' = ' + ans + (hasBorrow ? ' (mượn 1 ở hàng chục).' : '.'),
         say: readNumberVi(a) + ' trừ ' + readNumberVi(b) + ' bằng mấy?'
       };
     }
@@ -422,7 +558,7 @@
       type: 'input', topic: topic,
       stem: 'Tính: <b>' + a + ' − ' + b + ' = ?</b>',
       answer: String(ans),
-      explain: a + ' − ' + b + ' = ' + ans + '.',
+      explain: a + ' − ' + b + ' = ' + ans + (hasBorrow ? ' (mượn 1 ở hàng chục).' : '.'),
       say: readNumberVi(a) + ' trừ ' + readNumberVi(b) + ' bằng mấy?'
     };
   }
@@ -432,8 +568,66 @@
    * ========================================================================== */
   function genTinhDay() {
     var topic = 'tinh-day';
-    // 'sosanh-pheptinh' (so sánh hai vế đều là phép tính) là dạng KHÓ -> tỷ trọng thấp.
-    var kind = pick(['day3', 'day3', 'day3', 'dien', 'dien', 'dien', 'sosanh-pheptinh']);
+    // 3 TẦNG:
+    //   Cơ bản  : dãy 3 số tính lần lượt; điền ô 1 bước số nhỏ (<= 20).
+    //   Nâng vừa: điền ô 1 bước số lớn (tới 100); so sánh hai vế đều là phép tính.
+    //   Thử thách: điền số CÒN THIẾU giữa một dãy cách đều.
+    var t = tier();
+    var kind;
+    if (t === 'co-ban') {
+      kind = pick(['day3', 'dien-nho']);
+    } else if (t === 'nang-vua') {
+      kind = pick(['dien', 'dien', 'sosanh-pheptinh']);
+    } else {
+      kind = 'day-otrong';
+    }
+
+    // ĐIỀN SỐ GIỮA DÃY (thử thách): "5; 8; ?; 14; 17" (đều +k). Một ô trống ở giữa.
+    if (kind === 'day-otrong') {
+      var dStep = randInt(2, 6);
+      var maxStart = 100 - 4 * dStep;
+      var startD = randInt(0, Math.max(0, maxStart));
+      var full = [startD, startD + dStep, startD + 2 * dStep, startD + 3 * dStep, startD + 4 * dStep];
+      var pos = randInt(1, 3);             // ô trống ở vị trí 1..3 (giữa dãy)
+      var ansD = full[pos];
+      var shown = full.slice();
+      shown[pos] = '?';
+      return {
+        type: 'input', topic: topic,
+        stem: 'Điền số còn thiếu: <b>' + shown.join('; ') + '</b> (gõ số)',
+        answer: String(ansD),
+        explain: 'Dãy hơn nhau ' + dStep + ' đơn vị. Số còn thiếu là ' +
+                 full[pos - 1] + ' + ' + dStep + ' = ' + ansD + '.',
+        say: 'điền số còn thiếu trong dãy ' +
+             shown.map(function (x) { return x === '?' ? 'mấy' : readNumberVi(x); }).join(', ') + '.'
+      };
+    }
+
+    // ĐIỀN Ô 1 BƯỚC SỐ NHỎ (cơ bản): "? + 3 = 10" với số <= 20.
+    if (kind === 'dien-nho') {
+      var tn = pick(['?+a=s', 'a+?=s', 'a-?=d']);
+      var an, sn, dn, ansN, stemN, saysN;
+      if (tn === '?+a=s') {
+        ansN = randInt(0, 18); an = randInt(0, 20 - ansN); sn = ansN + an;
+        stemN = '? + ' + an + ' = ' + sn;
+        saysN = 'mấy cộng ' + readNumberVi(an) + ' bằng ' + readNumberVi(sn) + '?';
+      } else if (tn === 'a+?=s') {
+        an = randInt(0, 18); ansN = randInt(0, 20 - an); sn = an + ansN;
+        stemN = an + ' + ? = ' + sn;
+        saysN = readNumberVi(an) + ' cộng mấy bằng ' + readNumberVi(sn) + '?';
+      } else {
+        an = randInt(2, 20); dn = randInt(0, an); ansN = an - dn;
+        stemN = an + ' − ? = ' + dn;
+        saysN = readNumberVi(an) + ' trừ mấy bằng ' + readNumberVi(dn) + '?';
+      }
+      return {
+        type: 'input', topic: topic,
+        stem: 'Điền số thích hợp vào ô trống: <b>' + stemN + '</b> (gõ số)',
+        answer: String(ansN),
+        explain: 'Số cần điền là ' + ansN + ' (thay vào: ' + stemN.replace('?', ansN) + ', đúng).',
+        say: saysN
+      };
+    }
 
     // Dãy 3 số: a+b+c, a+b-c, a-b-c ; kết quả 0..100, các bước >= 0.
     if (kind === 'day3') {
@@ -506,9 +700,9 @@
     // So sánh hai phép tính bằng > < = : "40 + 8 ___ 48"
     var ka = randInt(0, 60), kb = randInt(0, 100 - ka);
     var left = ka + kb;
-    // Vế phải: ưu tiên là MỘT SỐ (so phép tính với số) cho dễ; hai phép tính (plus/minus)
-    // hiếm hơn vì đó là dạng khó nhất.
-    var rForm = pick(['num', 'num', 'num', 'plus', 'minus']);
+    // Vế phải: nâng vừa nên tăng tỉ trọng HAI VẾ ĐỀU LÀ PHÉP TÍNH (plus/minus);
+    // vẫn giữ một ít dạng so với số cho đỡ nản.
+    var rForm = pick(['num', 'plus', 'plus', 'minus', 'minus']);
     var rc, rd, right, rightStem, rightSay;
     if (rForm === 'plus') {
       rc = randInt(0, 60); rd = randInt(0, 100 - rc); right = rc + rd;
@@ -536,7 +730,71 @@
    * ========================================================================== */
   function genDoDai() {
     var topic = 'do-dai';
-    var kind = pick(['sosanh', 'cong', 'tru', 'catday']);
+    // 3 TẦNG:
+    //   Cơ bản  : so sánh/cộng/trừ một phép.
+    //   Nâng vừa: nối 3 đoạn; suy luận ngược 1 bước (biết tổng & 1 đoạn, tìm đoạn kia).
+    //   Thử thách: cắt 2 lần (80 − 25 − 17).
+    var t = tier();
+    var kind;
+    if (t === 'co-ban') {
+      kind = pick(['sosanh', 'cong', 'tru', 'catday']);
+    } else if (t === 'nang-vua') {
+      kind = pick(['noi3', 'nguoc']);
+    } else {
+      kind = 'cat2';
+    }
+
+    // NỐI 3 ĐOẠN (nâng vừa): cộng 3 đoạn, tổng <= 100 cm.
+    if (kind === 'noi3') {
+      var p1 = randInt(5, 40), p2 = randInt(5, 40);
+      var p3 = randInt(5, Math.max(5, 100 - p1 - p2));
+      var ansN = p1 + p2 + p3;
+      return {
+        type: 'input', topic: topic,
+        stem: 'Nối ba đoạn dây dài <b>' + p1 + ' cm</b>, <b>' + p2 + ' cm</b> và <b>' + p3 +
+              ' cm</b>. Sợi dây mới dài bao nhiêu cm? (gõ số)',
+        answer: String(ansN),
+        explain: p1 + ' + ' + p2 + ' + ' + p3 + ' = ' + ansN + ' (cm).',
+        say: 'nối ba đoạn dây dài ' + readNumberVi(p1) + ' xăng ti mét, ' + readNumberVi(p2) +
+             ' xăng ti mét và ' + readNumberVi(p3) + ' xăng ti mét, sợi dây mới dài bao nhiêu xăng ti mét?'
+      };
+    }
+
+    // SUY LUẬN NGƯỢC 1 BƯỚC (nâng vừa): AB + BC = tổng; biết AB, tìm BC.
+    if (kind === 'nguoc') {
+      var ab = randInt(10, 60);
+      var bc = randInt(5, 100 - ab);
+      var totalLen = ab + bc;
+      return {
+        type: 'input', topic: topic,
+        stem: 'Đoạn AB dài <b>' + ab + ' cm</b>, nối thêm đoạn BC thì cả hai dài <b>' + totalLen +
+              ' cm</b>. Đoạn BC dài bao nhiêu cm? (gõ số)',
+        answer: String(bc),
+        explain: 'Lấy cả hai trừ đoạn AB: ' + totalLen + ' − ' + ab + ' = ' + bc + ' (cm). ' +
+                 'Thử lại: ' + ab + ' + ' + bc + ' = ' + totalLen + '.',
+        say: 'đoạn a bê dài ' + readNumberVi(ab) + ' xăng ti mét, nối thêm đoạn bê xê thì cả hai dài ' +
+             readNumberVi(totalLen) + ' xăng ti mét, đoạn bê xê dài bao nhiêu xăng ti mét?'
+      };
+    }
+
+    // CẮT 2 LẦN (thử thách): dây N cắt M1 rồi cắt M2, còn lại?
+    if (kind === 'cat2') {
+      var len2 = randInt(50, 100);
+      var cut1 = randInt(10, Math.min(40, len2 - 12));
+      var cut2 = randInt(5, Math.max(5, len2 - cut1 - 2));
+      var ansC = len2 - cut1 - cut2;
+      return {
+        type: 'input', topic: topic,
+        stem: 'Sợi dây dài <b>' + len2 + ' cm</b>, cắt đi <b>' + cut1 + ' cm</b> rồi cắt tiếp <b>' +
+              cut2 + ' cm</b>. Đoạn dây còn lại dài bao nhiêu cm? (gõ số)',
+        answer: String(ansC),
+        explain: len2 + ' − ' + cut1 + ' = ' + (len2 - cut1) + '; ' + (len2 - cut1) + ' − ' + cut2 +
+                 ' = ' + ansC + ' (cm).',
+        say: 'sợi dây dài ' + readNumberVi(len2) + ' xăng ti mét, cắt đi ' + readNumberVi(cut1) +
+             ' xăng ti mét rồi cắt tiếp ' + readNumberVi(cut2) +
+             ' xăng ti mét, đoạn dây còn lại dài bao nhiêu xăng ti mét?'
+      };
+    }
 
     // So sánh hai đoạn thẳng: hơn/kém mấy cm.
     if (kind === 'sosanh') {
@@ -606,17 +864,19 @@
    * ========================================================================== */
   function genGioTuan() {
     var topic = 'gio-tuan';
-    // Tỷ trọng: ưu tiên các dạng LÕI (đọc đồng hồ, thứ trong tuần).
-    // Dạng đổi giờ 24h (buoi-doi) để THẤP và chỉ dùng mốc quen + có gợi ý.
-    var kind = pick([
-      'kim-ngan', 'kim-ngan', 'kim-ngan',          // đọc kim ngắn (lõi)
-      'kim-dai', 'kim-dai', 'kim-dai',             // đọc kim dài (lõi)
-      'thu-mai', 'thu-mai', 'thu-mai',             // thứ ngày mai (lõi)
-      'nhan-buoi', 'nhan-buoi',                    // NHẬN BIẾT buổi từ giờ 24h
-      'thu-sau',                                   // mấy ngày sau (1..3)
-      'khoang-gio',                                // khoảng thời gian (dur<=4)
-      'buoi-doi'                                   // đổi số 24h (chỉ mốc quen, có gợi ý)
-    ]);
+    // 3 TẦNG (giữ mọi mốc giờ KẾT THÚC <= 12, tránh nhập nhằng 24h cho bé):
+    //   Cơ bản  : đọc kim ngắn / kim dài, thứ ngày mai, nhận biết buổi.
+    //   Nâng vừa: khoảng thời gian (dur<=4), đếm ngày 1..3, ghép buổi+giờ, đổi mốc quen.
+    //   Thử thách: đếm ngày 4..6.
+    var t = tier();
+    var kind;
+    if (t === 'co-ban') {
+      kind = pick(['kim-ngan', 'kim-dai', 'thu-mai', 'nhan-buoi']);
+    } else if (t === 'nang-vua') {
+      kind = pick(['khoang-gio', 'thu-sau', 'ghep-buoi', 'buoi-doi']);
+    } else {
+      kind = 'thu-sau-xa';
+    }
 
     // Đồng hồ chỉ N giờ đúng thì kim ngắn (kim giờ) chỉ số mấy?
     if (kind === 'kim-ngan') {
@@ -707,10 +967,11 @@
       };
     }
 
-    // Thứ: N ngày sau thứ X là thứ mấy? (N nhỏ 1..3 cho vừa sức bé)
-    if (kind === 'thu-sau') {
+    // Thứ: N ngày sau thứ X là thứ mấy?
+    //   thu-sau (nâng vừa): N = 1..3.   thu-sau-xa (thử thách): N = 4..6.
+    if (kind === 'thu-sau' || kind === 'thu-sau-xa') {
       var idx2 = randInt(0, 6);
-      var add = randInt(1, 3);
+      var add = (kind === 'thu-sau-xa') ? randInt(4, 6) : randInt(1, 3);
       var ansIdx2 = (idx2 + add) % 7;
       var dd6 = [WEEKDAYS[(ansIdx2 + 1) % 7], WEEKDAYS[(ansIdx2 + 6) % 7], WEEKDAYS[idx2]];
       var mc6 = makeMC(WEEKDAYS[ansIdx2], dd6, function (x) { return x; }, function () {
@@ -722,6 +983,43 @@
         choices: mc6.choices, answer: mc6.answerIndex,
         explain: 'Đếm tiếp ' + add + ' ngày từ ' + WEEKDAYS[idx2] + ' được ' + WEEKDAYS[ansIdx2] + '.',
         say: readNumberVi(add) + ' ngày sau ' + WEEKDAYS_SAY[idx2] + ' là thứ mấy?'
+      };
+    }
+
+    // GHÉP BUỔI + GIỜ (nâng vừa): cộng giờ trong một buổi, kết thúc <= 12.
+    // Ví dụ: "ngủ trưa lúc 12 giờ, dậy sau 2 giờ" hay "ngủ lúc 8 giờ tối, ngủ 3 giờ".
+    if (kind === 'ghep-buoi') {
+      // Chọn kịch bản giữ mốc kết thúc <= 12 và tránh nhập nhằng 24h.
+      var scenes = [
+        { s: 12, lo: 1, hi: 4, txt: 'Bé ngủ trưa lúc <b>12 giờ</b>, ngủ <b>{d} giờ</b> thì dậy. Lúc đó là mấy giờ?',
+          say: 'bé ngủ trưa lúc mười hai giờ, ngủ {ds} giờ thì dậy, lúc đó là mấy giờ?',
+          base: 12, wrap: true },
+        { s: 8, lo: 1, hi: 4, txt: 'Bé đi ngủ lúc <b>8 giờ tối</b>, ngủ <b>{d} giờ</b> rồi tỉnh dậy. Lúc đó là mấy giờ?',
+          say: 'bé đi ngủ lúc tám giờ tối, ngủ {ds} giờ rồi tỉnh dậy, lúc đó là mấy giờ?',
+          base: 8, wrap: false },
+        { s: 9, lo: 1, hi: 3, txt: 'Bé đi ngủ lúc <b>9 giờ tối</b>, ngủ <b>{d} giờ</b> rồi tỉnh dậy. Lúc đó là mấy giờ?',
+          say: 'bé đi ngủ lúc chín giờ tối, ngủ {ds} giờ rồi tỉnh dậy, lúc đó là mấy giờ?',
+          base: 9, wrap: false }
+      ];
+      var sc = pick(scenes);
+      var durG = randInt(sc.lo, sc.hi);
+      // Tính giờ kết thúc theo đồng hồ 12 (12 + 1 = 1 giờ); giữ <= 12.
+      var raw = sc.base + durG;
+      var endG = sc.wrap ? ((sc.base + durG - 1) % 12 + 1) : raw;  // 12+1->1, 12+2->2...
+      if (!sc.wrap && endG > 12) endG = (raw - 1) % 12 + 1;
+      var ddG = [endG + 1, endG - 1, durG].filter(function (v) { return v >= 1 && v <= 12 && v !== endG; });
+      var mcG = makeMC(endG, ddG, String, function () { return randInt(1, 12); });
+      var stemG = sc.txt.replace('{d}', durG);
+      var sayG = sc.say.replace('{ds}', readNumberVi(durG));
+      var explG = sc.wrap
+        ? ('Sau 12 giờ trưa thêm ' + durG + ' giờ là ' + endG + ' giờ.')
+        : (sc.base + ' + ' + durG + ' = ' + raw + (raw > 12 ? ' (tức ' + endG + ' giờ).' : '. Lúc đó là ' + endG + ' giờ.'));
+      return {
+        type: 'mc', topic: topic,
+        stem: stemG,
+        choices: mcG.choices, answer: mcG.answerIndex,
+        explain: explG,
+        say: sayG
       };
     }
 
@@ -750,10 +1048,109 @@
    * ========================================================================== */
   function genLoiVan() {
     var topic = 'loi-van';
-    var kind = pick(['them', 'bot', 'nhieuhon', 'ithon', 'gop', 'tach']);
+    // 3 TẦNG:
+    //   Cơ bản  : một bước (thêm/bớt/nhiều hơn/ít hơn/gộp/tách).
+    //   Nâng vừa: suy luận ngược 1 bước; so sánh hai bạn rồi hỏi TỔNG.
+    //   Thử thách: bài 2 bước (thêm rồi bớt / bớt rồi thêm).
+    var t = tier();
+    var kind;
+    if (t === 'co-ban') {
+      kind = pick(['them', 'bot', 'nhieuhon', 'ithon', 'gop', 'tach']);
+    } else if (t === 'nang-vua') {
+      kind = pick(['nguoc-them', 'nguoc-bot', 'sosanh-tong']);
+    } else {
+      kind = pick(['hai-buoc-tb', 'hai-buoc-bt']);
+    }
     var name = pick(PROPER_NAMES);
     var name2 = pick(PROPER_NAMES.filter(function (x) { return x !== name; }));
     var obj = pick(OBJS);
+
+    // SUY LUẬN NGƯỢC 1 BƯỚC — được thêm: "Sau khi được tặng b, còn T. Lúc đầu?"
+    if (kind === 'nguoc-them') {
+      var addN = randInt(2, 40), nowN = randInt(addN + 1, 100);
+      var startN = nowN - addN;
+      return {
+        type: 'input', topic: topic,
+        stem: 'Sau khi được tặng thêm <b>' + addN + ' ' + obj.d + '</b>, ' + name + ' có <b>' + nowN +
+              ' ' + obj.d + '</b>. Hỏi lúc đầu ' + name + ' có bao nhiêu ' + obj.d + '? (gõ số)',
+        answer: String(startN),
+        explain: 'Bớt phần được tặng đi: ' + nowN + ' − ' + addN + ' = ' + startN + ' ' + obj.dv +
+                 '. Thử lại: ' + startN + ' + ' + addN + ' = ' + nowN + '.',
+        say: 'sau khi được tặng thêm ' + readNumberVi(addN) + ' ' + obj.d + ', ' + name + ' có ' +
+             readNumberVi(nowN) + ' ' + obj.d + ', hỏi lúc đầu ' + name + ' có bao nhiêu ' + obj.d + '?'
+      };
+    }
+
+    // SUY LUẬN NGƯỢC 1 BƯỚC — cho bớt: "Sau khi cho b, còn T. Lúc đầu?"
+    if (kind === 'nguoc-bot') {
+      var giveN = randInt(2, 40), leftN = randInt(2, 100 - giveN);
+      var startB = leftN + giveN;
+      return {
+        type: 'input', topic: topic,
+        stem: 'Sau khi cho bạn <b>' + giveN + ' ' + obj.d + '</b>, ' + name + ' còn lại <b>' + leftN +
+              ' ' + obj.d + '</b>. Hỏi lúc đầu ' + name + ' có bao nhiêu ' + obj.d + '? (gõ số)',
+        answer: String(startB),
+        explain: 'Thêm phần đã cho lại: ' + leftN + ' + ' + giveN + ' = ' + startB + ' ' + obj.dv +
+                 '. Thử lại: ' + startB + ' − ' + giveN + ' = ' + leftN + '.',
+        say: 'sau khi cho bạn ' + readNumberVi(giveN) + ' ' + obj.d + ', ' + name + ' còn lại ' +
+             readNumberVi(leftN) + ' ' + obj.d + ', hỏi lúc đầu ' + name + ' có bao nhiêu ' + obj.d + '?'
+      };
+    }
+
+    // SO SÁNH RỒI HỎI TỔNG (2 bước cộng): "A có a, B nhiều hơn A là m, cả hai có mấy?"
+    if (kind === 'sosanh-tong') {
+      var aS = randInt(5, 40), mS = randInt(1, Math.min(20, 100 - aS - aS));
+      var bS = aS + mS;             // số của bạn kia
+      var tongS = aS + bS;          // tổng <= 100 nhờ ràng buộc mS
+      return {
+        type: 'input', topic: topic,
+        stem: name + ' có <b>' + aS + ' ' + obj.d + '</b>. ' + name2 + ' có nhiều hơn ' + name + ' <b>' +
+              mS + ' ' + obj.d + '</b>. Hỏi cả hai bạn có tất cả bao nhiêu ' + obj.d + '? (gõ số)',
+        answer: String(tongS),
+        explain: name2 + ' có ' + aS + ' + ' + mS + ' = ' + bS + ' ' + obj.dv + '; cả hai có ' +
+                 aS + ' + ' + bS + ' = ' + tongS + ' ' + obj.dv + '.',
+        say: name + ' có ' + readNumberVi(aS) + ' ' + obj.d + ', ' + name2 + ' có nhiều hơn ' + name +
+             ' ' + readNumberVi(mS) + ' ' + obj.d + ', hỏi cả hai bạn có tất cả bao nhiêu ' + obj.d + '?'
+      };
+    }
+
+    // HAI BƯỚC — thêm rồi bớt: "có a, được tặng b, rồi cho c, còn mấy?"
+    if (kind === 'hai-buoc-tb') {
+      var a0 = randInt(10, 50), add0 = randInt(2, 100 - a0);
+      var mid0 = a0 + add0;
+      var give0 = randInt(2, mid0);
+      var ans0 = mid0 - give0;
+      return {
+        type: 'input', topic: topic,
+        stem: name + ' có <b>' + a0 + ' ' + obj.d + '</b>, được tặng thêm <b>' + add0 + ' ' + obj.d +
+              '</b>, rồi cho bạn <b>' + give0 + ' ' + obj.d + '</b>. Hỏi ' + name + ' còn lại bao nhiêu ' +
+              obj.d + '? (gõ số)',
+        answer: String(ans0),
+        explain: a0 + ' + ' + add0 + ' = ' + mid0 + '; ' + mid0 + ' − ' + give0 + ' = ' + ans0 + ' ' + obj.dv + '.',
+        say: name + ' có ' + readNumberVi(a0) + ' ' + obj.d + ', được tặng thêm ' + readNumberVi(add0) +
+             ' ' + obj.d + ', rồi cho bạn ' + readNumberVi(give0) + ' ' + obj.d + ', hỏi ' + name +
+             ' còn lại bao nhiêu ' + obj.d + '?'
+      };
+    }
+
+    // HAI BƯỚC — bớt rồi thêm: "có a, cho b, rồi được tặng c, còn mấy?"
+    if (kind === 'hai-buoc-bt') {
+      var a1 = randInt(20, 60), give1 = randInt(2, a1 - 1);
+      var mid1 = a1 - give1;
+      var add1 = randInt(2, 100 - mid1);
+      var ans1 = mid1 + add1;
+      return {
+        type: 'input', topic: topic,
+        stem: name + ' có <b>' + a1 + ' ' + obj.d + '</b>, cho bạn <b>' + give1 + ' ' + obj.d +
+              '</b>, rồi được tặng thêm <b>' + add1 + ' ' + obj.d + '</b>. Hỏi ' + name +
+              ' còn lại bao nhiêu ' + obj.d + '? (gõ số)',
+        answer: String(ans1),
+        explain: a1 + ' − ' + give1 + ' = ' + mid1 + '; ' + mid1 + ' + ' + add1 + ' = ' + ans1 + ' ' + obj.dv + '.',
+        say: name + ' có ' + readNumberVi(a1) + ' ' + obj.d + ', cho bạn ' + readNumberVi(give1) +
+             ' ' + obj.d + ', rồi được tặng thêm ' + readNumberVi(add1) + ' ' + obj.d + ', hỏi ' + name +
+             ' còn lại bao nhiêu ' + obj.d + '?'
+      };
+    }
 
     // Thêm: có a, được cho/mua thêm b.
     if (kind === 'them') {
@@ -849,7 +1246,63 @@
    * ========================================================================== */
   function genTuDuy() {
     var topic = 'tu-duy';
-    var kind = pick(['dayso-cong', 'dayso-tru', 'lapso-max', 'lapso-min', 'timso']);
+    // 3 TẦNG:
+    //   Cơ bản  : dãy cộng/trừ đều bước nhỏ; lập số từ 2 thẻ.
+    //   Nâng vừa: tìm số suy luận ngược (số lớn); dãy có ô trống; lập số 3 thẻ.
+    //   Thử thách: câu đố tuổi / logic cực ngắn (vẫn chỉ + −).
+    var t = tier();
+    var kind;
+    if (t === 'co-ban') {
+      kind = pick(['dayso-cong', 'dayso-tru', 'lapso2-max', 'lapso2-min']);
+    } else if (t === 'nang-vua') {
+      kind = pick(['timso', 'day-otrong', 'lapso3-max', 'lapso3-min']);
+    } else {
+      kind = 'do-tuoi';
+    }
+
+    // CÂU ĐỐ TUỔI / LOGIC (thử thách): chỉ một phép + −, đặt dạng "đố" để bé suy nghĩ.
+    // Chênh lệch tuổi chọn HỢP LÝ theo quan hệ để câu tự nhiên với bé.
+    if (kind === 'do-tuoi') {
+      var name = pick(PROPER_NAMES);
+      var rels = [
+        { q: 'anh', lo: 2, hi: 8 }, { q: 'chị', lo: 2, hi: 8 },
+        { q: 'bố', lo: 25, hi: 38 }, { q: 'mẹ', lo: 24, hi: 36 }
+      ];
+      var rel = pick(rels);
+      var ageL = randInt(5, 10);
+      var older = randInt(rel.lo, Math.min(rel.hi, 100 - ageL));
+      var ansT = ageL + older;
+      return {
+        type: 'input', topic: topic,
+        stem: name + ' <b>' + ageL + ' tuổi</b>. ' + cap(rel.q) + ' của ' + name + ' hơn ' + name +
+              ' <b>' + older + ' tuổi</b>. Hỏi ' + rel.q + ' của ' + name + ' bao nhiêu tuổi? (gõ số)',
+        answer: String(ansT),
+        explain: 'Hơn tuổi thì lấy cộng: ' + ageL + ' + ' + older + ' = ' + ansT + ' tuổi.',
+        say: name + ' ' + readNumberVi(ageL) + ' tuổi, ' + rel.q + ' của ' + name + ' hơn ' + name +
+             ' ' + readNumberVi(older) + ' tuổi, hỏi ' + rel.q + ' của ' + name + ' bao nhiêu tuổi?'
+      };
+    }
+
+    // DÃY CÓ Ô TRỐNG (nâng vừa): "2; 5; 8; 11; ?" cộng đều, ô trống ở CUỐI hoặc giữa.
+    if (kind === 'day-otrong') {
+      var step = randInt(2, 7);
+      var maxS = 100 - 4 * step;
+      var st = randInt(0, Math.max(0, maxS));
+      var fullD = [st, st + step, st + 2 * step, st + 3 * step, st + 4 * step];
+      var posD = randInt(1, 4);             // ô trống ở vị trí 1..4
+      var ansD = fullD[posD];
+      var shownD = fullD.slice();
+      shownD[posD] = '?';
+      return {
+        type: 'input', topic: topic,
+        stem: 'Tìm số còn thiếu trong dãy: <b>' + shownD.join('; ') + '</b> (gõ số)',
+        answer: String(ansD),
+        explain: 'Mỗi số hơn số trước ' + step + ' đơn vị. Số còn thiếu là ' +
+                 fullD[posD - 1] + ' + ' + step + ' = ' + ansD + '.',
+        say: 'tìm số còn thiếu trong dãy ' +
+             shownD.map(function (x) { return x === '?' ? 'mấy' : readNumberVi(x); }).join(', ') + '.'
+      };
+    }
 
     // Dãy số cộng đều.
     if (kind === 'dayso-cong') {
@@ -894,10 +1347,12 @@
     }
 
     // Lập số có hai chữ số lớn nhất / bé nhất từ các thẻ chữ số.
-    if (kind === 'lapso-max' || kind === 'lapso-min') {
-      var wantMax = (kind === 'lapso-max');
-      // chọn 2 hoặc 3 thẻ chữ số khác nhau; có thể chứa 0 (0 không đứng đầu).
-      var cnt = randInt(2, 3);
+    // Cơ bản: 2 thẻ (lapso2-*); Nâng vừa: 3 thẻ (lapso3-*).
+    if (kind === 'lapso2-max' || kind === 'lapso2-min' ||
+        kind === 'lapso3-max' || kind === 'lapso3-min') {
+      var wantMax = (kind === 'lapso2-max' || kind === 'lapso3-max');
+      // số thẻ theo tầng (2 hoặc 3); thẻ chữ số khác nhau; có thể chứa 0 (0 không đứng đầu).
+      var cnt = (kind === 'lapso3-max' || kind === 'lapso3-min') ? 3 : 2;
       var digits = [];
       while (digits.length < cnt) {
         var dg = randInt(0, 9);
@@ -944,10 +1399,10 @@
       };
     }
 
-    // Tìm số: "số nào cộng 20 được 50?" / "số nào trừ 10 được 8?"
-    var t = pick(['cong', 'tru']);
+    // Tìm số suy luận ngược (nâng vừa, số lớn hơn): "số nào cộng 18 được 42?" / "số nào trừ 10 được 8?"
+    var op = pick(['cong', 'tru']);
     var x, a, res, stem, says;
-    if (t === 'cong') {
+    if (op === 'cong') {
       a = randInt(5, 60); x = randInt(0, 100 - a); res = x + a;
       stem = 'Số nào cộng với ' + a + ' thì được ' + res + '?';
       says = 'số nào cộng với ' + readNumberVi(a) + ' thì được ' + readNumberVi(res) + '?';
@@ -960,7 +1415,7 @@
       type: 'input', topic: topic,
       stem: '<b>' + stem + '</b> (gõ số)',
       answer: String(x),
-      explain: t === 'cong'
+      explain: op === 'cong'
         ? 'Lấy ' + res + ' − ' + a + ' = ' + x + '. Thử lại: ' + x + ' + ' + a + ' = ' + res + '.'
         : 'Lấy ' + res + ' + ' + a + ' = ' + x + '. Thử lại: ' + x + ' − ' + a + ' = ' + res + '.',
       say: says

@@ -2,10 +2,15 @@
 // Kiểm: answer đúng (tính lại độc lập từ stem), mc index hợp lệ & choices không trùng,
 // trường `say` bắt buộc & không rỗng, check() chấp nhận đúng / từ chối sai, số <= 100,
 // không lỗi runtime. Sinh nhiều câu mỗi chủ đề để soi ca biên.
-// Ràng buộc ĐỘ KHÓ (sau thẩm định GV lớp 1):
+// Ràng buộc ĐỘ KHÓ (3 TẦNG: ~60% cơ bản / 30% nâng vừa / 10% thử thách):
+//   - Chỉ +, − ; số <= 100 (giờ <= 24); KHÔNG ×/÷, KHÔNG "gấp/giảm ... lần", KHÔNG "chẵn/lẻ".
+//   - cong/tru: tầng thử thách là chuỗi 3 số (mọi bước >= 0, kết quả 0..100).
 //   - gio-tuan: đổi giờ 24h chỉ dùng mốc quen 13/14/18 & phải có gợi ý "12 giờ trưa";
-//     nhận biết buổi theo mốc quen; thu-sau số ngày <= 3; khoang-gio thời lượng <= 4.
-//   - so-100: dạng liệt kê 1..5 số; dạng đếm khoảng count <= 5.
+//     nhận biết buổi theo mốc quen; thu-sau số ngày <= 6; khoang-gio thời lượng <= 4;
+//     ghép buổi+giờ giờ KẾT THÚC <= 12 (tránh nhập nhằng 24h).
+//   - so-100: liệt kê 1..5 số; đếm khoảng count <= 5; so sánh kép đúng 1 nghiệm.
+//   - tinh-day & tu-duy: dạng điền số GIỮA dãy cách đều (1 ô '?').
+//   - loi-van: tối đa 2 bước; suy luận ngược tối đa 1 bước.
 //   - tu-duy: lapso-max chứa 0 thì số lớn nhất phải khác số bé nhất (không trùng).
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
@@ -49,6 +54,19 @@ function validateCommon(q) {
   // SAY bắt buộc cho mọi câu, không rỗng, không chứa thẻ HTML.
   if (!q.say || String(q.say).trim() === '') return fail(q.topic, 'thiếu say', q);
   if (/<[^>]+>/.test(q.say)) return fail(q.topic, 'say chứa thẻ HTML', q);
+  // TẦM LỚP 1: KHÔNG nhân/chia (× ÷ * /) trong đề/đáp án/say; KHÔNG "chẵn/lẻ".
+  const allText = plain(q.stem) + ' | ' + plain(q.explain) + ' | ' + String(q.say) +
+    (q.type === 'mc' ? ' | ' + q.choices.map(plain).join(' ') : ' | ' + String(q.answer));
+  if (/[×÷]/.test(allText)) return fail(q.topic, 'có ký hiệu nhân/chia × ÷', q);
+  // dấu * và / trong văn bản hiển thị (không tính dấu / trong "và/hoặc" tiếng Việt? ta cấm tuyệt đối * và phép /)
+  if (/\d\s*[*]\s*\d/.test(allText)) return fail(q.topic, 'có phép nhân *', q);
+  if (/\d\s*[/]\s*\d/.test(allText)) return fail(q.topic, 'có phép chia /', q);
+  if (/chẵn|lẻ/i.test(allText)) return fail(q.topic, 'dùng thuật ngữ chẵn/lẻ', q);
+  // KHÔNG dùng "gấp ... lần" / "giảm ... lần" (nhân/chia trá hình).
+  // Chỉ bắt cụm "gấp/giảm <số hoặc chữ số> lần"; KHÔNG bắt "lần lượt" trong lời giải.
+  if (/(gấp|giảm)\s+(\d+|hai|ba|bốn|năm|sáu|bảy|tám|chín|mười)\s+lần/i.test(allText) ||
+      /(\d+|hai|ba|bốn|năm|sáu|bảy|tám|chín|mười)\s+lần\b(?!\s*lượt)/i.test(allText))
+    return fail(q.topic, 'dùng gấp/giảm ... lần (nhân-chia trá hình)', q);
   if (q.type === 'mc') {
     if (!Array.isArray(q.choices) || q.choices.length < 2) return fail(q.topic, 'choices không hợp lệ', q);
     if (typeof q.answer !== 'number' || q.answer < 0 || q.answer >= q.choices.length)
@@ -91,15 +109,17 @@ function checkMath(q) {
   const s = plain(q.stem);
   switch (q.topic) {
     case 'cong': case 'tru': {
-      // stem dạng "Tính: a + b" hoặc "a − b = ?"
-      const m = s.match(/(\d+)\s*([+−])\s*(\d+)/);
-      if (!m) return fail(q.topic, 'không parse được phép tính', q);
-      const a = +m[1], op = m[2], b = +m[3];
-      const v = op === '+' ? a + b : a - b;
+      // stem dạng "Tính: a + b" hoặc "a − b − c = ?" (2 hoặc 3 số) — tính bằng evalExpr.
+      const expr = s.replace(/.*Tính:\s*/, '').replace(/=.*/, '');
+      const v = evalExpr(expr);
+      if (v === null) return fail(q.topic, 'không parse được phép tính: ' + expr, q);
       const got = ansNum(q);
-      if (v !== got) fail(q.topic, `sai: ${a}${op}${b}=${v} ≠ ${got}`, q);
+      if (v !== got) fail(q.topic, `sai: ${expr.trim()}=${v} ≠ ${got}`, q);
+      // cong chỉ có dấu +, tru chỉ có dấu − (không lẫn lộn).
+      if (q.topic === 'cong' && /−/.test(expr)) fail(q.topic, 'cong có dấu trừ', q);
+      if (q.topic === 'tru' && /\+/.test(expr)) fail(q.topic, 'tru có dấu cộng', q);
       if (q.topic === 'tru' && v < 0) fail(q.topic, 'trừ ra âm', q);
-      if (v > 100) fail(q.topic, 'kết quả > 100', q);
+      if (v < 0 || v > 100) fail(q.topic, `kết quả ngoài [0,100]: ${v}`, q);
       break;
     }
     case 'so-100': {
@@ -155,11 +175,36 @@ function checkMath(q) {
         const c = Math.max(0, hi - lo - 1); // số nguyên trong khoảng mở (lo, hi)
         if (+q.answer !== c) fail(q.topic, `đếm khoảng sai: ${q.answer} nên ${c}`, q);
         if (c > 5) fail(q.topic, `đếm khoảng: count ${c} > 5`, q);
+      } else if (/hàng đơn vị bé hơn hàng chục/.test(s)) {
+        // Cấu tạo ngược suy luận: chục = I[0], đơn vị = chục - gap (gap = I[1]).
+        const chuc = I[0], gap = I[1];
+        const want = chuc * 10 + (chuc - gap);
+        if (+q.answer !== want) fail(q.topic, `cấu tạo suy luận sai: ${q.answer} nên ${want}`, q);
+        if (chuc - gap < 0) fail(q.topic, `đơn vị âm: ${chuc}-${gap}`, q);
+      } else if (/vừa.*lớn hơn.*vừa.*bé hơn/.test(s)) {
+        // So sánh kép: số duy nhất giữa lo và hi (lo = I[0], hi = I[1]).
+        const lo = I[0], hi = I[1];
+        const got = ansNum(q);
+        if (!(got > lo && got < hi)) fail(q.topic, `so sánh kép sai: ${got} không thuộc (${lo},${hi})`, q);
+        // phải là nghiệm duy nhất
+        let cnt = 0; for (let v = lo + 1; v < hi; v++) cnt++;
+        if (cnt !== 1) fail(q.topic, `so sánh kép không đúng 1 nghiệm: ${cnt}`, q);
       }
       break;
     }
     case 'tinh-day': {
-      if (/Tính:/.test(s) && q.type === 'input') {
+      if (/Điền số còn thiếu/.test(s)) {
+        // Dãy cách đều có 1 ô '?': kiểm các số đã hiện cách đều & answer khớp.
+        const seq = ints(s);   // các số hiện (không gồm ô trống)
+        const got = +q.answer;
+        // dựng lại dãy đầy đủ với answer rồi kiểm cách đều
+        const m = plain(s).match(/Điền số còn thiếu:\s*([^\(]+)/);
+        const tokens = m[1].trim().split(/;\s*/).map(x => x.trim() === '?' ? got : +x.trim());
+        const d = tokens[1] - tokens[0];
+        const ok = tokens.every((v, i) => i === 0 || v - tokens[i - 1] === d);
+        if (!ok) fail(q.topic, `điền giữa dãy: dãy không đều ${tokens}`, q);
+        if (got < 0 || got > 100) fail(q.topic, `điền giữa dãy ngoài [0,100]: ${got}`, q);
+      } else if (/Tính:/.test(s) && q.type === 'input') {
         const expr = s.replace(/.*Tính:\s*/, '').replace(/=.*/, '');
         const v = evalExpr(expr);
         if (v !== null && v !== +q.answer) fail(q.topic, `dãy sai: ${expr}=${v} ≠ ${q.answer}`, q);
@@ -189,10 +234,18 @@ function checkMath(q) {
       if (/hơn kém nhau mấy cm/.test(s)) {
         const want = Math.abs(I[0] - I[1]);
         if (got !== want) fail(q.topic, `hiệu độ dài sai: ${got} nên ${want}`, q);
+      } else if (/Nối ba đoạn/.test(s)) {
+        if (got !== I[0] + I[1] + I[2]) fail(q.topic, `nối 3 đoạn sai: ${got} nên ${I[0] + I[1] + I[2]}`, q);
       } else if (/Nối hai đoạn/.test(s)) {
         if (got !== I[0] + I[1]) fail(q.topic, `nối dây sai: ${got} nên ${I[0] + I[1]}`, q);
+      } else if (/nối thêm đoạn/.test(s)) {
+        // Suy luận ngược: AB = I[0], cả hai = I[1], BC = I[1] - I[0].
+        if (got !== I[1] - I[0]) fail(q.topic, `suy luận ngược độ dài sai: ${got} nên ${I[1] - I[0]}`, q);
       } else if (/dài hơn đoạn thứ hai/.test(s)) {
         if (got !== I[0] - I[1]) fail(q.topic, `trừ độ dài sai`, q);
+      } else if (/cắt đi.*rồi cắt tiếp/.test(s)) {
+        // Cắt 2 lần: len - cut1 - cut2.
+        if (got !== I[0] - I[1] - I[2]) fail(q.topic, `cắt 2 lần sai: ${got} nên ${I[0] - I[1] - I[2]}`, q);
       } else if (/cắt đi/.test(s)) {
         if (got !== I[0] - I[1]) fail(q.topic, `cắt dây sai: ${got} nên ${I[0] - I[1]}`, q);
       }
@@ -228,10 +281,18 @@ function checkMath(q) {
       } else if (/học xong lúc mấy giờ/.test(s)) {
         if (got !== I[0] + I[1]) fail(q.topic, `khoảng giờ sai: ${got} nên ${I[0] + I[1]}`, q);
         if (I[1] > 4) fail(q.topic, `khoảng giờ: thời lượng > 4 (${I[1]})`, q);
+        if (got > 12) fail(q.topic, `khoảng giờ: kết thúc > 12 (${got})`, q);
+      } else if (/Lúc đó là mấy giờ/.test(s)) {
+        // GHÉP BUỔI + GIỜ: bắt đầu I[0] giờ, ngủ I[1] giờ. Kết thúc theo đồng hồ 12 (<= 12).
+        const base = I[0], dur = I[1];
+        const wantEnd = (base + dur - 1) % 12 + 1;
+        if (got !== wantEnd) fail(q.topic, `ghép buổi sai: ${base}+${dur} -> ${got} nên ${wantEnd}`, q);
+        if (got > 12 || got < 1) fail(q.topic, `ghép buổi: giờ kết thúc ngoài 1..12 (${got})`, q);
+        if (dur > 4) fail(q.topic, `ghép buổi: thời lượng > 4 (${dur})`, q);
       } else if (/ngày mai là thứ mấy/.test(s)) {
         verifyWeekday(q, s, 1);
       } else if (/ngày sau/.test(s)) {
-        if (I[0] > 3) fail(q.topic, `thu-sau: số ngày > 3 (${I[0]})`, q);
+        if (I[0] > 6) fail(q.topic, `thu-sau: số ngày > 6 (${I[0]})`, q);
         verifyWeekday(q, s, I[0]);
       }
       break;
@@ -240,8 +301,24 @@ function checkMath(q) {
       const got = Number(q.answer);
       const expNums = ints(q.explain);
       if (!expNums.includes(got)) fail(q.topic, `lời văn: answer ${got} không có trong explain`, q);
-      // tái tính theo loại
-      if (/tặng thêm/.test(s)) { if (got !== I[0] + I[1]) fail(q.topic, 'thêm sai', q); }
+      // tái tính theo loại — ƯU TIÊN các dạng NHIỀU BƯỚC / SUY LUẬN NGƯỢC trước.
+      if (/Sau khi được tặng thêm/.test(s)) {
+        // ngược-thêm: I[0]=được tặng, I[1]=hiện có; lúc đầu = I[1] - I[0].
+        if (got !== I[1] - I[0]) fail(q.topic, `ngược-thêm sai: ${got} nên ${I[1] - I[0]}`, q);
+      } else if (/Sau khi cho bạn/.test(s)) {
+        // ngược-bớt: I[0]=đã cho, I[1]=còn lại; lúc đầu = I[1] + I[0].
+        if (got !== I[1] + I[0]) fail(q.topic, `ngược-bớt sai: ${got} nên ${I[1] + I[0]}`, q);
+      } else if (/được tặng thêm.*rồi cho bạn/.test(s)) {
+        // 2 bước thêm rồi bớt: I[0]+I[1]-I[2].
+        if (got !== I[0] + I[1] - I[2]) fail(q.topic, `2 bước (thêm-bớt) sai: ${got} nên ${I[0] + I[1] - I[2]}`, q);
+      } else if (/cho bạn.*rồi được tặng thêm/.test(s)) {
+        // 2 bước bớt rồi thêm: I[0]-I[1]+I[2].
+        if (got !== I[0] - I[1] + I[2]) fail(q.topic, `2 bước (bớt-thêm) sai: ${got} nên ${I[0] - I[1] + I[2]}`, q);
+      } else if (/nhiều hơn.*cả hai bạn có tất cả/.test(s)) {
+        // so sánh rồi tổng: A=I[0], B=I[0]+I[1], tổng = A + B.
+        const want = I[0] + (I[0] + I[1]);
+        if (got !== want) fail(q.topic, `so sánh-tổng sai: ${got} nên ${want}`, q);
+      } else if (/tặng thêm/.test(s)) { if (got !== I[0] + I[1]) fail(q.topic, 'thêm sai', q); }
       else if (/cho bạn/.test(s)) { if (got !== I[0] - I[1]) fail(q.topic, 'bớt sai', q); }
       else if (/nhiều hơn/.test(s)) { if (got !== I[0] + I[1]) fail(q.topic, 'nhiều hơn sai', q); }
       else if (/ít hơn/.test(s)) { if (got !== I[0] - I[1]) fail(q.topic, 'ít hơn sai', q); }
@@ -251,7 +328,20 @@ function checkMath(q) {
       break;
     }
     case 'tu-duy': {
-      if (/dãy/.test(s)) {
+      if (/tuổi/.test(s)) {
+        // Câu đố tuổi (do-tuoi): I[0]=tuổi bé, I[1]=hơn; đáp án = I[0]+I[1].
+        if (+q.answer !== I[0] + I[1]) fail(q.topic, `đố tuổi sai: ${q.answer} nên ${I[0] + I[1]}`, q);
+        if (+q.answer < 0 || +q.answer > 100) fail(q.topic, 'đố tuổi ngoài [0,100]', q);
+      } else if (/còn thiếu trong dãy/.test(s)) {
+        // day-otrong: dựng lại dãy với answer, kiểm cách đều.
+        const got = +q.answer;
+        const m = plain(s).match(/dãy:\s*([^\(]+)/);
+        const tokens = m[1].trim().split(/;\s*/).map(x => x.trim() === '?' ? got : +x.trim());
+        const d = tokens[1] - tokens[0];
+        const ok = tokens.every((v, i) => i === 0 || v - tokens[i - 1] === d);
+        if (!ok) fail(q.topic, `tu-duy điền giữa dãy không đều: ${tokens}`, q);
+        if (got < 0 || got > 100) fail(q.topic, `tu-duy điền giữa dãy ngoài [0,100]: ${got}`, q);
+      } else if (/dãy/.test(s)) {
         const seq = ints(s);
         const d = seq[1] - seq[0];
         const isArith = seq.every((v, i) => i === 0 || v - seq[i - 1] === d);
