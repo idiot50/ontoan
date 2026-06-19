@@ -281,6 +281,101 @@ const DRIVER = `
       A('mixed_resnum_done_10', numsMix.done === 10);
       A('mixed_resnum_sum', numsMix.correct + numsMix.wrong === 10);
 
+      // về trang chủ trước khi sang các CA tự-chấm
+      fireClick($('resHomeBtn')); await sleep(30);
+
+      /* =========================================================
+       * CA 7: TỰ CHẤM IM LẶNG khi KẾT THÚC (đã chọn, CHƯA Kiểm tra)
+       *   - chọn/nhập đáp án ĐÚNG nhưng KHÔNG bấm Kiểm tra
+       *   - bấm 🏁 Kết thúc -> câu đó phải được tính (review +1, done +1)
+       *   - KHÔNG hiện feedback tại chỗ trước khi mở màn tổng hợp
+       * ========================================================= */
+      var tb7 = $('topicGrid').querySelectorAll('.topic');
+      fireClick(tb7[0]); await sleep(40);
+      var q7 = window.__lastQ;
+      // chọn/nhập đáp án ĐÚNG, KHÔNG bấm checkBtn
+      if (q7.type === 'mc') {
+        var btns7 = $('choices').querySelectorAll('.choice');
+        fireClick(btns7[q7.answer]); await sleep(15);
+      } else {
+        setInput($('answerBox'), answerDisplayOf(q7)); await sleep(15);
+      }
+      A('ca7_feedback_hidden_before_finish', !$('feedback').classList.contains('show'));
+      fireClick($('finishBtn')); await sleep(40);
+      A('ca7_result_shown', !hidden('screen-result'));
+      var items7 = reviewItems();
+      A('ca7_review_has_pending', items7.length === 1);     // câu đang làm được tính
+      var nums7 = resNums();
+      note('resNums_ca7', nums7);
+      A('ca7_done_1', nums7.done === 1);
+      A('ca7_correct_1', nums7.correct === 1);              // đã chọn đúng -> tính đúng
+      fireClick($('resHomeBtn')); await sleep(30);
+
+      /* =========================================================
+       * CA 8: TỰ CHẤM IM LẶNG khi "Câu tiếp →" (đã chọn, CHƯA Kiểm tra)
+       *   - câu A: chọn SAI -> bấm "Câu tiếp →" (skip) -> phải ghi record (sai)
+       *   - câu B: chọn ĐÚNG -> bấm 🏁 Kết thúc -> tổng hợp 2 câu (1 sai + 1 đúng)
+       *   - KHÔNG hiện feedback khi bấm "Câu tiếp →"
+       * ========================================================= */
+      var tb8 = $('topicGrid').querySelectorAll('.topic');
+      fireClick(tb8[0]); await sleep(40);
+      var qA = window.__lastQ;
+      var wantTextA = answerDisplayOf(qA);   // đáp án đúng của câu A (để đối chiếu review)
+      if (qA.type === 'mc') {
+        var btnsA = $('choices').querySelectorAll('.choice');
+        var idxA = (qA.answer === 0) ? 1 : 0;   // chọn SAI
+        fireClick(btnsA[idxA]); await sleep(15);
+      } else {
+        setInput($('answerBox'), wrongInputFor(qA)); await sleep(15);
+      }
+      // bấm "Câu tiếp →" (skip) khi CHƯA Kiểm tra nhưng ĐÃ có đáp án
+      A('ca8_feedback_hidden_before_skip', !$('feedback').classList.contains('show'));
+      fireClick($('skipBtn')); await sleep(40);
+      A('ca8_advanced_no_feedback', !$('feedback').classList.contains('show'));  // sang câu mới, không feedback
+      // câu B: chọn ĐÚNG, rồi Kết thúc
+      var qB = window.__lastQ;
+      if (qB.type === 'mc') {
+        var btnsB = $('choices').querySelectorAll('.choice');
+        fireClick(btnsB[qB.answer]); await sleep(15);
+      } else {
+        setInput($('answerBox'), answerDisplayOf(qB)); await sleep(15);
+      }
+      fireClick($('finishBtn')); await sleep(40);
+      A('ca8_result_shown', !hidden('screen-result'));
+      var items8 = reviewItems();
+      note('ca8_items', items8.length);
+      A('ca8_two_recorded', items8.length === 2);           // cả câu skip-có-đáp-án + câu cuối
+      var nums8 = resNums();
+      note('resNums_ca8', nums8);
+      A('ca8_done_2', nums8.done === 2);
+      A('ca8_correct_1', nums8.correct === 1);
+      A('ca8_wrong_1', nums8.wrong === 1);
+      // câu A (skip, chọn sai) phải nằm ĐẦU danh sách và có .ri-correct khớp đáp án đúng
+      var firstItem = items8[0];
+      A('ca8_first_is_bad', firstItem.classList.contains('bad'));
+      var ric8 = firstItem.querySelector('.ri-correct');
+      A('ca8_first_has_correct', !!ric8 &&
+         ric8.textContent.replace(/\\s+/g,' ').indexOf(wantTextA) >= 0);
+      fireClick($('resHomeBtn')); await sleep(30);
+
+      /* =========================================================
+       * CA 9: "Câu tiếp →" KHÔNG đáp án = bỏ qua thật (không ghi)
+       *   - vào chủ đề, KHÔNG chọn gì, bấm "Câu tiếp →" 2 lần
+       *   - rồi chấm 1 câu đúng -> tổng hợp chỉ 1 câu
+       * ========================================================= */
+      var tb9 = $('topicGrid').querySelectorAll('.topic');
+      fireClick(tb9[0]); await sleep(40);
+      fireClick($('skipBtn')); await sleep(30);   // chưa chọn -> bỏ qua thật
+      fireClick($('skipBtn')); await sleep(30);   // chưa chọn -> bỏ qua thật
+      await answerCurrent('correct'); await sleep(20);
+      fireClick($('finishBtn')); await sleep(40);
+      var items9 = reviewItems();
+      note('ca9_items', items9.length);
+      A('ca9_only_graded_one', items9.length === 1);   // 2 skip rỗng KHÔNG ghi
+      var nums9 = resNums();
+      A('ca9_done_1', nums9.done === 1);
+      fireClick($('resHomeBtn')); await sleep(30);
+
     } catch (e) {
       res.ok = false;
       res.errors.push('EXCEPTION: ' + (e && e.message ? e.message : String(e)) + ' @ ' + (e && e.stack ? e.stack.split('\\n')[1] : ''));
@@ -391,7 +486,16 @@ export function run() {
     'mixed_quiz_visible', 'finish_hidden_mixed_before', 'finish_hidden_mixed_after',
     // CA6 — mixed vẫn có review
     'result_after_mixed10', 'mixed_score_x_of_10', 'mixed_review_10_items',
-    'mixed_resReview_shown', 'mixed_resnum_done_10', 'mixed_resnum_sum'
+    'mixed_resReview_shown', 'mixed_resnum_done_10', 'mixed_resnum_sum',
+    // CA7 — tự chấm im lặng khi KẾT THÚC (đã chọn, chưa Kiểm tra)
+    'ca7_feedback_hidden_before_finish', 'ca7_result_shown', 'ca7_review_has_pending',
+    'ca7_done_1', 'ca7_correct_1',
+    // CA8 — tự chấm im lặng khi "Câu tiếp →" (đã chọn, chưa Kiểm tra)
+    'ca8_feedback_hidden_before_skip', 'ca8_advanced_no_feedback', 'ca8_result_shown',
+    'ca8_two_recorded', 'ca8_done_2', 'ca8_correct_1', 'ca8_wrong_1',
+    'ca8_first_is_bad', 'ca8_first_has_correct',
+    // CA9 — skip không đáp án = bỏ qua thật
+    'ca9_only_graded_one', 'ca9_done_1'
   ];
   expected.forEach(name => {
     R.ok(data.asserts && data.asserts[name] === true, 'UI: ' + name, JSON.stringify(data.log));

@@ -1380,28 +1380,41 @@
     }
 
     /* ----------------------------- CHẤM CÂU ---------------------------- */
-    function submitAnswer() {
-      if (answered || !currentQ) return;
+    /* submitAnswer({silent}) — chấm câu hiện tại.
+     *   silent=false (mặc định): chấm "thường" — hiện phản hồi, đổi nút, confetti/âm thanh,
+     *     đọc to (TTS), focus nút đi tiếp (luồng bấm "✅ Kiểm tra").
+     *   silent=true: chấm "im lặng" — DÙNG LẠI logic điểm/thưởng/ghi record (sao, chuỗi 🔥,
+     *     bumpDailyCount, mixed correctCount/wrongByTopic, huy hiệu) NHƯNG KHÔNG hiện feedback,
+     *     KHÔNG đổi nút, KHÔNG confetti/âm thanh/TTS, KHÔNG focus. Dùng khi bé bấm "Câu tiếp →"/
+     *     "🏁 Kết thúc" mà đã có đáp án nhưng chưa Kiểm tra.
+     * Trả về true nếu vừa chấm, false nếu không có gì để chấm.
+     */
+    function submitAnswer(opts) {
+      var silent = !!(opts && opts.silent);
+      if (answered || !currentQ) return false;
 
       var ok;
       if (currentQ.type === 'mc') {
-        if (selectedIndex < 0) return;
+        if (selectedIndex < 0) return false;
         // GIAO KÈO: truyền INDEX (số nguyên), không truyền text.
         ok = QuestionEngine.check(currentQ, selectedIndex);
       } else {
         var val = $('answerBox').value;
-        if (!val.trim()) return;
+        if (!val.trim()) return false;
         ok = QuestionEngine.check(currentQ, val);  // input: truyền chuỗi bé nhập
       }
 
-      answered = true;
-      stopSpeak();
-      ensureAudio();
-      $('checkBtn').classList.add('hidden');
-      $('skipBtn').classList.add('hidden');  // đã chấm → ẩn nút bỏ qua, dùng "Câu tiếp →"
-      $('finishBtn').classList.toggle('hidden', session.mode !== 'practice'); // giữ "Kết thúc" sau khi chấm (practice)
+      answered = true;  // đặt sớm: tránh chấm lại / ghi trùng record
 
-      // GHI LỊCH SỬ: 1 bản ghi mỗi câu ĐÃ CHẤM (câu bỏ qua không vào đây)
+      if (!silent) {
+        stopSpeak();
+        ensureAudio();
+        $('checkBtn').classList.add('hidden');
+        $('skipBtn').classList.add('hidden');  // đã chấm → ẩn nút bỏ qua, dùng "Câu tiếp →"
+        $('finishBtn').classList.toggle('hidden', session.mode !== 'practice'); // giữ "Kết thúc" sau khi chấm (practice)
+      }
+
+      // GHI LỊCH SỬ: 1 bản ghi mỗi câu ĐÃ CHẤM (câu bỏ qua không vào đây) — cả 2 đường chấm
       // L1: thêm `say` để đọc lại câu sai bằng giọng chuẩn.
       var tp = topicById(currentQ.topic);
       session.records.push({
@@ -1418,31 +1431,35 @@
 
       bumpDailyCount();
 
-      if (ok) onCorrect(); else onWrong();
+      if (ok) onCorrect(silent); else onWrong(silent);
 
       if (session.mode === 'mixed') {
         if (ok) session.correctCount++;
         else session.wrongByTopic[currentQ.topic] = (session.wrongByTopic[currentQ.topic] || 0) + 1;
       }
 
-      var nextBtn = $('nextBtn');
-      nextBtn.classList.remove('hidden');
-      if (session.mode === 'mixed' && session.index >= session.total - 1) {
-        nextBtn.textContent = '🎉 Xem kết quả →';
-      } else {
-        nextBtn.textContent = 'Câu tiếp →';
-      }
-      nextBtn.focus();
+      if (!silent) {
+        var nextBtn = $('nextBtn');
+        nextBtn.classList.remove('hidden');
+        if (session.mode === 'mixed' && session.index >= session.total - 1) {
+          nextBtn.textContent = '🎉 Xem kết quả →';
+        } else {
+          nextBtn.textContent = 'Câu tiếp →';
+        }
+        nextBtn.focus();
 
-      if (session.mode === 'practice' && !ok) {
-        $('similarBtn').classList.remove('hidden');
+        if (session.mode === 'practice' && !ok) {
+          $('similarBtn').classList.remove('hidden');
+        }
       }
 
       saveState();
       refreshHeader();
+      return true;
     }
 
-    function onCorrect() {
+    // onCorrect(silent): cập nhật điểm/chuỗi/huy hiệu. Khi silent=true bỏ qua hiển thị/âm thanh/TTS.
+    function onCorrect(silent) {
       // sao: +1 mỗi câu đúng (DESIGN §3.1, đơn giản hoá)
       state.stars += 1;
 
@@ -1455,6 +1472,9 @@
 
       if (session.mode === 'mixed' && session.streak > session.bestStreakThisSet)
         session.bestStreakThisSet = session.streak;
+
+      // chấm im lặng: chỉ cập nhật điểm/huy hiệu, KHÔNG hiển thị/âm thanh/confetti/TTS
+      if (silent) { checkBadges(); return; }
 
       if (currentQ.type === 'mc') markChoices(true);
 
@@ -1489,8 +1509,11 @@
       announceBadges(checkBadges());
     }
 
-    function onWrong() {
+    // onWrong(silent): reset chuỗi & ghi nhận sai. Khi silent=true bỏ qua hiển thị/âm thanh.
+    function onWrong(silent) {
       session.streak = 0;
+
+      if (silent) return;  // chấm im lặng: không tô nút/feedback/âm thanh/TTS
 
       if (currentQ.type === 'mc') markChoices(false);
 
@@ -1739,7 +1762,23 @@
     }
 
     // Handler nút "🏁 Kết thúc" (chỉ ở practice).
+    // Bé đã CÓ đáp án cho câu hiện tại chưa? (mc: đã chọn 1 phương án; input: ô khác rỗng)
+    function hasAnswer() {
+      if (!currentQ) return false;
+      if (currentQ.type === 'mc') return selectedIndex >= 0;
+      return String($('answerBox').value).trim() !== '';
+    }
+
+    // Nếu câu hiện tại CHƯA chấm nhưng bé ĐÃ CÓ đáp án → tự chấm "im lặng" (ghi record,
+    // tính điểm/tổng hợp) mà KHÔNG hiện phản hồi/confetti/âm thanh/TTS. Dùng trước khi
+    // chuyển tiếp/kết thúc để không bỏ sót câu bé đã làm nhưng quên bấm Kiểm tra.
+    function gradeIfPending() {
+      if (!answered && hasAnswer()) submitAnswer({ silent: true });
+    }
+
     function finishPractice() {
+      // Nếu câu đang làm đã có đáp án nhưng chưa Kiểm tra → tự chấm im lặng để tính vào tổng hợp.
+      gradeIfPending();
       if (session.records.length === 0) {
         // chưa làm câu nào: không mở màn trống, mời nhẹ tại chỗ + đọc (nếu có giọng)
         var fb = $('feedback');
@@ -1857,9 +1896,11 @@
     setAgainButton('mixed');
     $('badgesBtn').addEventListener('click', function () { buildBadgeGrid(); show('screen-badges'); });
 
-    $('checkBtn').addEventListener('click', submitAnswer);
+    $('checkBtn').addEventListener('click', function () { submitAnswer(); });
     $('nextBtn').addEventListener('click', nextQuestion);
-    $('skipBtn').addEventListener('click', nextQuestion);  // bỏ qua: sang câu tiếp, không chấm điểm
+    // "Câu tiếp →": nếu đã CÓ đáp án mà chưa Kiểm tra → tự chấm im lặng (ghi record) rồi sang câu sau;
+    // nếu chưa có đáp án → bỏ qua thật (không ghi record).
+    $('skipBtn').addEventListener('click', function () { gradeIfPending(); nextQuestion(); });
     $('finishBtn').addEventListener('click', finishPractice);
     $('similarBtn').addEventListener('click', function () {
       $('restNote').classList.remove('show');

@@ -265,6 +265,78 @@ const DRIVER = `
       A('mixed_review_sum_10', okN + badN === 10);
       // CA7 ở mixed: vẫn không có nút Nghe câu sai khi không có giọng
       A('mixed_no_ri_listen', $('resReviewList').querySelectorAll('.ri-listen').length === 0);
+      fireClick($('resHomeBtn')); await sleep(35);
+
+      /* ===== CA10: TỰ CHẤM IM LẶNG khi KẾT THÚC (đã chọn, CHƯA Kiểm tra) ===== */
+      var tb10 = $('topicGrid').querySelectorAll('.topic');
+      fireClick(tb10[0]); await sleep(45);
+      var q10 = window.__lastQ;
+      if (q10.type === 'mc') {
+        var btns10 = $('choices').querySelectorAll('.choice');
+        fireClick(btns10[q10.answer]); await sleep(18);   // chọn ĐÚNG, KHÔNG bấm Kiểm tra
+      } else {
+        setInput($('answerBox'), answerDisplayOf(q10)); await sleep(18);
+      }
+      A('ca10_feedback_hidden_before_finish', !$('feedback').classList.contains('show'));
+      fireClick($('finishBtn')); await sleep(45);
+      A('ca10_result_shown', !hidden('screen-result'));
+      var items10 = reviewItems();
+      note('ca10_items', items10.length);
+      A('ca10_review_has_pending', items10.length === 1);   // câu đang làm được tính
+      var frac10 = parseFrac(resScoreBoxes()[0]);
+      note('ca10_frac', frac10);
+      A('ca10_done_1', frac10.done === 1);
+      A('ca10_correct_1', frac10.correct === 1);            // chọn đúng -> tính đúng
+      fireClick($('resHomeBtn')); await sleep(35);
+
+      /* ===== CA11: TỰ CHẤM IM LẶNG khi "Câu tiếp →" (đã chọn, CHƯA Kiểm tra) ===== */
+      var tb11 = $('topicGrid').querySelectorAll('.topic');
+      fireClick(tb11[0]); await sleep(45);
+      var qA = window.__lastQ;
+      var wantTextA = answerDisplayOf(qA);
+      if (qA.type === 'mc') {
+        var btnsA = $('choices').querySelectorAll('.choice');
+        fireClick(btnsA[qA.answer === 0 ? 1 : 0]); await sleep(18);   // chọn SAI
+      } else {
+        setInput($('answerBox'), wrongInputFor(qA)); await sleep(18);
+      }
+      A('ca11_feedback_hidden_before_skip', !$('feedback').classList.contains('show'));
+      fireClick($('skipBtn')); await sleep(45);
+      A('ca11_advanced_no_feedback', !$('feedback').classList.contains('show'));
+      var qB = window.__lastQ;
+      if (qB.type === 'mc') {
+        var btnsB = $('choices').querySelectorAll('.choice');
+        fireClick(btnsB[qB.answer]); await sleep(18);   // chọn ĐÚNG
+      } else {
+        setInput($('answerBox'), answerDisplayOf(qB)); await sleep(18);
+      }
+      fireClick($('finishBtn')); await sleep(45);
+      A('ca11_result_shown', !hidden('screen-result'));
+      var items11 = reviewItems();
+      note('ca11_items', items11.length);
+      A('ca11_two_recorded', items11.length === 2);
+      var ok11 = $('resReviewList').querySelectorAll('.review-item.ok').length;
+      var bad11 = $('resReviewList').querySelectorAll('.review-item.bad').length;
+      A('ca11_one_ok_one_bad', ok11 === 1 && bad11 === 1);
+      A('ca11_first_is_bad', items11[0].classList.contains('bad'));
+      var ric11 = items11[0].querySelector('.ri-correct');
+      A('ca11_first_has_correct', !!ric11 &&
+         ric11.textContent.replace(/\\s+/g,' ').indexOf(wantTextA) >= 0);
+      fireClick($('resHomeBtn')); await sleep(35);
+
+      /* ===== CA12: "Câu tiếp →" KHÔNG đáp án = bỏ qua thật (không ghi) ===== */
+      var tb12 = $('topicGrid').querySelectorAll('.topic');
+      fireClick(tb12[0]); await sleep(45);
+      fireClick($('skipBtn')); await sleep(35);   // chưa chọn -> bỏ qua thật
+      fireClick($('skipBtn')); await sleep(35);   // chưa chọn -> bỏ qua thật
+      await answerCurrent('correct'); await sleep(20);
+      fireClick($('finishBtn')); await sleep(45);
+      var items12 = reviewItems();
+      note('ca12_items', items12.length);
+      A('ca12_only_graded_one', items12.length === 1);
+      var frac12 = parseFrac(resScoreBoxes()[0]);
+      A('ca12_done_1', frac12.done === 1);
+      fireClick($('resHomeBtn')); await sleep(35);
 
     } catch (e) {
       res.ok = false;
@@ -377,7 +449,15 @@ export function run() {
     'mixed_quiz_visible', 'finish_hidden_mixed_before', 'finish_hidden_mixed_after',
     // CA6
     'result_after_mixed10', 'mixed_score_x_of_10', 'mixed_review_10_items',
-    'mixed_resReview_shown', 'mixed_review_sum_10', 'mixed_no_ri_listen'
+    'mixed_resReview_shown', 'mixed_review_sum_10', 'mixed_no_ri_listen',
+    // CA10 — tự chấm im lặng khi KẾT THÚC (đã chọn, chưa Kiểm tra)
+    'ca10_feedback_hidden_before_finish', 'ca10_result_shown', 'ca10_review_has_pending',
+    'ca10_done_1', 'ca10_correct_1',
+    // CA11 — tự chấm im lặng khi "Câu tiếp →" (đã chọn, chưa Kiểm tra)
+    'ca11_feedback_hidden_before_skip', 'ca11_advanced_no_feedback', 'ca11_result_shown',
+    'ca11_two_recorded', 'ca11_one_ok_one_bad', 'ca11_first_is_bad', 'ca11_first_has_correct',
+    // CA12 — skip không đáp án = bỏ qua thật
+    'ca12_only_graded_one', 'ca12_done_1'
   ];
   expected.forEach(name => {
     R.ok(data.asserts && data.asserts[name] === true, 'UI: ' + name, JSON.stringify(data.log));

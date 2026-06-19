@@ -1,6 +1,9 @@
 # === Sách giáo khoa scan (bản quyền) — KHÔNG đưa lên repo ===
 Huong_Dan_Hoc_Toan_*.pdf
 
+# === Sách tiếng Anh (bản quyền) — KHÔNG đưa lên repo ===
+en/
+
 # === Phụ thuộc ===
 **/node_modules/
 
