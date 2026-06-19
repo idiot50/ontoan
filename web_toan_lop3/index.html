@@ -485,6 +485,61 @@
   .badge-new { background: var(--star-bg); border-color: var(--star-border); color: var(--star-ink); font-weight:800; }
   .suggest { background: var(--brand-soft); border-color:#D8DBFB; color: var(--brand-ink); }
 
+  /* ----- ô SỐ TO màn tổng hợp (Đã làm / Đúng / Sai) ----- */
+  .resnums { display:flex; gap: 14px; justify-content:center; flex-wrap:wrap; margin: 16px 0 6px; }
+  .resnum {
+    min-width: 110px;
+    border-radius: var(--r-lg);
+    padding: 14px 18px;
+    box-shadow: var(--sh-sm);
+    border: 1.5px solid var(--line);
+    background: var(--card-soft); color: var(--ink-2);
+  }
+  .resnum.ok  { border-color: var(--ok-border);   background: var(--ok-bg);   color: var(--ok-ink); }
+  .resnum.bad { border-color: var(--warn-border); background: var(--warn-bg); color: var(--warn-ink); }
+  .resnum .big { font-size: 40px; font-weight: 800; line-height: 1.1; }
+  .resnum .cap { font-size: var(--fs-sm); font-weight: 700; }
+
+  /* ----- DANH SÁCH CHI TIẾT (cuộn được) màn tổng hợp ----- */
+  .review { margin: 18px 0 6px; text-align: left; }
+  .review h3 { font-size: var(--fs-lg); font-weight: 800; margin: 0 0 6px; }
+  .review .summline { font-size: var(--fs-sm); color: var(--warn-ink); font-weight: 700; margin: 0 0 10px; }
+  .reviewlist {
+    max-height: 46vh; overflow-y: auto;
+    display: flex; flex-direction: column; gap: 12px;
+    padding: 6px; border: 1px solid var(--line); border-radius: var(--r-lg);
+    background: var(--card-soft);
+  }
+  .review-item {
+    background: #fff; border: 1px solid var(--line);
+    border-left: 6px solid var(--line-2);
+    border-radius: var(--r); padding: 14px 16px; box-shadow: var(--sh-sm);
+  }
+  .review-item.ok  { border-left-color: var(--ok); }
+  .review-item.bad { border-left-color: var(--warn); }
+  .review-item .ri-head { display:flex; align-items:center; gap:10px; font-weight:800; margin-bottom:8px; }
+  .review-item .ri-mark {
+    flex:0 0 auto; width:30px; height:30px; border-radius:999px; color:#fff;
+    display:inline-flex; align-items:center; justify-content:center; font-size:18px; font-weight:900;
+  }
+  .review-item.ok  .ri-mark { background: var(--ok); }
+  .review-item.bad .ri-mark { background: var(--warn); }
+  .review-item .ri-topic { font-size: var(--fs-sm); color: var(--muted); font-weight: 700; }
+  .review-item .ri-stem { font-size: var(--fs-body); line-height:1.45; }
+  .review-item .ri-your { margin-top:8px; font-weight:700; color: var(--ink-2); }
+  .review-item.bad .ri-your { color: var(--warn-ink); }
+  .review-item .ri-correct {
+    margin-top:8px; font-weight:800;
+    display:inline-flex; align-items:center; gap:6px;
+    background:#fff; border:1.5px solid var(--ok); color: var(--ok-ink);
+    border-radius: var(--r-pill); padding: 4px 14px;
+  }
+  .review-item .ri-explain {
+    margin-top:10px; font-size: var(--fs-sm); line-height:1.55;
+    background: var(--card-soft); border:1px solid var(--line); border-radius: var(--r-sm); padding: 12px 14px;
+  }
+  .review-item .ri-explain b { color: var(--ink); }
+
   /* ============================= MÀN HUY HIỆU ============================= */
   .badgegrid { display:grid; grid-template-columns: repeat(2,1fr); gap:14px; }
   @media (max-width: 520px) { .badgegrid { grid-template-columns: 1fr; } }
@@ -642,6 +697,7 @@
           <button class="btn ghost" id="skipBtn">Câu tiếp →</button>
           <button class="btn hidden" id="nextBtn">Câu tiếp theo →</button>
           <button class="btn ghost hidden" id="similarBtn">Thử câu tương tự</button>
+          <button class="btn ghost hidden" id="finishBtn">🏁 Kết thúc</button>
         </div>
 
         <div class="feedback" id="feedback" aria-live="polite"></div>
@@ -658,9 +714,19 @@
         <div class="emoji" id="resEmoji" aria-hidden="true">🎉</div>
         <div class="msg" id="resMsg"></div>
         <div class="score" id="resScore"></div>
+        <div class="resnums hidden" id="resNums"></div>
         <div class="rewards" id="resRewards"></div>
         <div id="resBadges"></div>
         <div class="suggest hidden" id="resSuggest"></div>
+
+        <!-- DANH SÁCH CHI TIẾT các câu đã làm (ẩn mặc định; dựng bởi renderSummary) -->
+        <div class="review hidden" id="resReview" role="region"
+             tabindex="0" aria-label="Danh sách các câu con đã làm">
+          <h3 id="resReviewTitle">Các câu con đã làm</h3>
+          <div class="summline hidden" id="resReviewSumm"></div>
+          <div class="reviewlist" id="resReviewList"></div>
+        </div>
+
         <div class="actions" style="justify-content:center;">
           <button class="btn" id="againBtn">🔁 Làm bộ mới</button>
           <button class="btn ghost" id="resHomeBtn">🏠 Về trang chủ</button>
@@ -974,7 +1040,10 @@
       total: 0,
       correctCount: 0,
       wrongByTopic: {},
-      bestStreakThisSet: 0
+      bestStreakThisSet: 0,
+      // LỊCH SỬ PHIÊN: mỗi câu ĐÃ CHẤM 1 bản ghi (chỉ ở RAM, không localStorage)
+      records: [],
+      _finishTopic: null   // chủ đề lưu lại để "➕ Làm tiếp" sau khi reset
     };
 
     var currentQ = null;     // câu hỏi hiện tại
@@ -988,6 +1057,7 @@
       session.queue = [];
       session.index = 0;
       session.total = 0;
+      session.records = [];   // reset lịch sử phiên luyện tập
       show('screen-quiz');
       $('setbar').classList.add('hidden');
       $('qnumPill').classList.add('hidden');
@@ -1006,6 +1076,7 @@
       session.correctCount = 0;
       session.wrongByTopic = {};
       session.bestStreakThisSet = 0;
+      session.records = [];   // reset lịch sử phiên ôn tập
       show('screen-quiz');
       $('setbar').classList.remove('hidden');
       $('qnumPill').classList.remove('hidden');
@@ -1064,6 +1135,8 @@
       $('checkBtn').classList.remove('hidden');
       $('checkBtn').disabled = true;
       $('skipBtn').classList.remove('hidden');   // nút "Câu tiếp" (bỏ qua) hiện khi chưa chấm
+      // "🏁 Kết thúc" chỉ hiện ở Luyện tập (practice), ẩn ở Ôn tập (mixed)
+      $('finishBtn').classList.toggle('hidden', session.mode !== 'practice');
 
       var choicesEl = $('choices');
       var inputRow = $('inputRow');
@@ -1143,6 +1216,20 @@
       ensureAudio(); // mở audio trong cử chỉ người dùng
       $('checkBtn').classList.add('hidden');
       $('skipBtn').classList.add('hidden');  // đã chấm → ẩn nút bỏ qua, dùng "Câu tiếp theo →"
+      $('finishBtn').classList.toggle('hidden', session.mode !== 'practice'); // giữ "Kết thúc" sau khi chấm (practice)
+
+      // GHI LỊCH SỬ: 1 bản ghi mỗi câu ĐÃ CHẤM (câu bỏ qua không vào đây)
+      var tp = topicById(currentQ.topic);
+      session.records.push({
+        stem: currentQ.stem,
+        type: currentQ.type,
+        userText: (currentQ.type === 'mc') ? currentQ.choices[selectedIndex] : String($('answerBox').value).trim(),
+        correctText: answerDisplay(currentQ),
+        isCorrect: ok,
+        explain: currentQ.explain,
+        topicName: tp.name,
+        topicEmoji: tp.emoji
+      });
 
       // đếm tiến độ ngày (đúng/sai đều tính theo DESIGN.md)
       bumpDailyCount();
@@ -1330,6 +1417,151 @@
       }
     }
 
+    /* ----------------------- MÀN TỔNG HỢP (dùng chung) --------------------- */
+    // Escape an toàn cho chuỗi do bé GÕ (input) khi nhúng vào innerHTML.
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // Tiêu đề + emoji theo tỷ lệ đúng/đã làm (BẢNG COPY §7.1).
+    function summaryHead(done, correct) {
+      var r = done > 0 ? correct / done : 0;
+      if (done === 1 && correct === 1) return { emoji: '🌟', msg: 'Đúng rồi! Khởi đầu tốt lắm!' };
+      if (r >= 1)    return { emoji: '🏆', msg: 'Tuyệt vời! Con làm đúng tất cả!' };
+      if (r >= 0.8)  return { emoji: '🎉', msg: 'Giỏi lắm! Con làm rất tốt!' };
+      if (r >= 0.6)  return { emoji: '😊', msg: 'Khá lắm! Con đang tiến bộ rồi đó!' };
+      if (r >= 0.4)  return { emoji: '💪', msg: 'Cố lên nhé! Xem lại vài câu là con giỏi hơn!' };
+      return { emoji: '🌱', msg: 'Không sao đâu! Mình cùng xem lại từ từ, con làm được mà!' };
+    }
+
+    // Dựng 3 ô SỐ TO (Đã làm / Đúng / Sai) từ records.
+    function renderResNums(done, correct, wrong) {
+      $('resNums').innerHTML =
+        '<div class="resnum"><div class="big">' + done + '</div><div class="cap">Đã làm</div></div>' +
+        '<div class="resnum ok"><div class="big">' + correct + '</div><div class="cap">Đúng</div></div>' +
+        '<div class="resnum bad"><div class="big">' + wrong + '</div><div class="cap">Sai</div></div>';
+      $('resNums').classList.remove('hidden');
+    }
+
+    // Dựng danh sách chi tiết (theo thứ tự làm) vào #resReviewList.
+    function renderReviewList() {
+      var list = $('resReviewList');
+      list.innerHTML = '';
+      session.records.forEach(function (rec, i) {
+        var item = document.createElement('div');
+        item.className = 'review-item ' + (rec.isCorrect ? 'ok' : 'bad');
+        var topicBit = rec.topicName
+          ? '<span class="ri-topic">' + (rec.topicEmoji || '') + ' ' + rec.topicName + '</span>' : '';
+        var html =
+          '<div class="ri-head">' +
+            '<span class="ri-mark" aria-hidden="true">' + (rec.isCorrect ? '✓' : '✗') + '</span>' +
+            '<span>Câu ' + (i + 1) + (rec.isCorrect ? ' · Đúng' : ' · Sai') + '</span>' +
+            topicBit +
+          '</div>' +
+          '<div class="ri-stem">' + rec.stem + '</div>';
+        if (rec.isCorrect) {
+          // câu đúng: gọn — chỉ cần đề + dấu ✓ (đã có ở head)
+        } else {
+          // câu sai: đầy đủ — câu bé trả lời + đáp án đúng + cách làm
+          html += '<div class="ri-your">Con trả lời: ' +
+                  (rec.type === 'mc' ? rec.userText : escapeHtml(rec.userText)) + '</div>';
+          html += '<div class="ri-correct"><span aria-hidden="true">✓</span> Đáp án đúng: ' +
+                  rec.correctText + '</div>';
+          html += '<div class="ri-explain"><b>Cách làm:</b> ' + rec.explain + '</div>';
+        }
+        item.innerHTML = html;
+        list.appendChild(item);
+      });
+    }
+
+    // Đặt nhãn + handler nút "tiếp tục" theo chế độ.
+    var againHandler = null;   // handler hiện gắn cho #againBtn (gỡ trước khi gắn mới)
+    function setAgainButton(mode) {
+      var btn = $('againBtn');
+      if (againHandler) btn.removeEventListener('click', againHandler);
+      if (mode === 'practice') {
+        btn.textContent = '➕ Làm tiếp';
+        againHandler = function () { startPractice(session._finishTopic); };
+      } else {
+        btn.textContent = '🔁 Làm bộ mới';
+        againHandler = function () { startMixed(); };
+      }
+      btn.addEventListener('click', againHandler);
+    }
+
+    // Hàm dùng chung dựng MÀN TỔNG HỢP (cả "Kết thúc sớm" practice lẫn hết bộ mixed).
+    function renderSummary(opts) {
+      opts = opts || {};
+      var mode = opts.mode || session.mode;
+      var done = session.records.length;
+      var correct = 0;
+      session.records.forEach(function (r) { if (r.isCorrect) correct++; });
+      var wrong = done - correct;
+
+      // practice "Kết thúc sớm": tự đặt emoji/tiêu đề/điểm theo tỷ lệ (mixed do showResult lo)
+      if (mode === 'practice') {
+        var h = summaryHead(done, correct);
+        $('resEmoji').textContent = h.emoji;
+        $('resMsg').textContent = h.msg;
+        $('resScore').textContent = 'Con đúng ' + correct + '/' + done + ' câu';
+        $('resScore').classList.remove('hidden');
+        // KHÔNG thưởng "hoàn thành bộ", KHÔNG đụng bestQuizScore.
+        $('resRewards').textContent = '⭐ Sao đã cộng khi con làm đúng từng câu rồi nhé!';
+        $('resSuggest').classList.add('hidden');
+        // vẫn cấp huy hiệu mới nếu vừa đạt (an toàn)
+        var earned = checkBadges();
+        var bWrap = $('resBadges');
+        bWrap.innerHTML = '';
+        earned.forEach(function (b) {
+          var el = document.createElement('div');
+          el.className = 'badge-new';
+          el.textContent = '🏅 Huy hiệu mới: ' + b.emoji + ' ' + b.name + '!';
+          bWrap.appendChild(el);
+        });
+      }
+
+      // 3 ô số + danh sách (chung cả 2 chế độ)
+      renderResNums(done, correct, wrong);
+      renderReviewList();
+
+      // tóm tắt câu sai
+      var summ = $('resReviewSumm');
+      if (wrong > 0) {
+        summ.textContent = 'Con sai ' + wrong + ' câu — xem lại nhé!';
+        summ.classList.remove('hidden');
+      } else {
+        summ.classList.add('hidden');
+      }
+      $('resReview').classList.remove('hidden');
+
+      // nút tiếp tục theo chế độ
+      setAgainButton(mode);
+
+      if (mode === 'practice') {
+        saveState();
+        show('screen-result');
+        refreshHeader();
+        if (done > 0 && correct / done >= 0.7 && !reduceMotion) confetti(120);
+        if (done >= 2 && correct === done) soundFanfare();
+      }
+    }
+
+    // Handler nút "🏁 Kết thúc" (chỉ ở practice).
+    function finishPractice() {
+      if (session.records.length === 0) {
+        // chưa làm câu nào: không mở màn trống, mời nhẹ tại chỗ
+        var fb = $('feedback');
+        fb.className = 'feedback ok show';
+        fb.innerHTML = '<div class="head">Con chưa làm câu nào cả 😊</div>' +
+                       '<div class="reset">Thử bấm ✅ Kiểm tra một câu trước nhé, rồi bấm 🏁 Kết thúc để xem lại!</div>';
+        return;
+      }
+      session._finishTopic = session.topicId;
+      renderSummary({ mode: 'practice', fromFinish: true });
+    }
+
     /* ----------------------------- ĐI TIẾP / KẾT THÚC ---------------------- */
     function nextQuestion() {
       if (session.mode === 'mixed') {
@@ -1362,6 +1594,7 @@
       $('resEmoji').textContent = emoji;
       $('resMsg').textContent = msg;
       $('resScore').textContent = 'Con đúng ' + correct + '/' + total + ' câu';
+      $('resScore').classList.remove('hidden');
       $('resRewards').textContent = '⭐ +' + (correct * 2) + ' (và thưởng bộ) · 🔥 Chuỗi dài nhất bộ này: ' +
                                     session.bestStreakThisSet;
 
@@ -1391,6 +1624,9 @@
         sug.classList.add('hidden');
       }
 
+      // append khối DANH SÁCH CHI TIẾT + 3 ô số (mixed giữ nguyên thưởng ở trên)
+      renderSummary({ mode: 'mixed' });
+
       saveState();
       show('screen-result');
       refreshHeader();
@@ -1413,12 +1649,14 @@
     $('badgesHomeBtn').addEventListener('click', goHome);
 
     $('mixedBtn').addEventListener('click', startMixed);
-    $('againBtn').addEventListener('click', startMixed);
+    // #againBtn: nhãn + handler đặt động theo chế độ trong setAgainButton().
+    setAgainButton('mixed');
     $('badgesBtn').addEventListener('click', function () { buildBadgeGrid(); show('screen-badges'); });
 
     $('checkBtn').addEventListener('click', submitAnswer);
     $('nextBtn').addEventListener('click', nextQuestion);
     $('skipBtn').addEventListener('click', nextQuestion);  // bỏ qua: sang câu tiếp, không chấm điểm
+    $('finishBtn').addEventListener('click', finishPractice);
     $('similarBtn').addEventListener('click', function () {
       // xin câu mới cùng dạng (cùng chủ đề) trong chế độ luyện tập
       $('restNote').classList.remove('show');

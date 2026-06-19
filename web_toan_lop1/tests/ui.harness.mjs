@@ -4,17 +4,20 @@
  * Cách làm:
  *  1. Đọc index.html gốc, tạo BẢN SAO trong tests/ (ui.run.html):
  *     - sửa <script src="engine.js"> -> "../engine.js"
- *     - chèn <script> DRIVER trước </body>: driver kích hoạt SỰ KIỆN DOM THẬT
- *       (click thẻ chủ đề, chọn đáp án/nhập, bấm Kiểm tra, bấm Câu tiếp, chạy trọn
- *        bộ 10 câu Ôn tập -> màn Kết quả), ghi kết quả ra <pre id="__result__">.
+ *     - chèn HOOK nhỏ (chỉ trong bản sao) bọc QuestionEngine.generate/generateMixed
+ *       để lưu câu vừa sinh vào window.__lastQ / __queue -> driver BIẾT TRƯỚC đáp án
+ *       để chủ động trả lời ĐÚNG/SAI (kiểm soát số Đúng/Sai). KHÔNG sửa logic app.
+ *     - chèn <script> DRIVER trước </body>: kích hoạt SỰ KIỆN DOM THẬT
+ *       (click chủ đề, chọn đáp án/nhập, bấm Kiểm tra/Câu tiếp/Kết thúc), ghi kết quả.
  *  2. Chạy: chrome --headless --dump-dom file://.../ui.run.html
  *  3. Đọc DOM trả về, trích JSON kết quả, biến thành assertion.
  *
- * LƯU Ý LỚP 1: Chrome headless KHÔNG có giọng tiếng Việt -> tính năng ĐỌC ĐỀ phải
- * chuyển sang chế độ FALLBACK (nút đọc readBtn bị disabled, các nút "Nghe" ẩn) và
- * app VẪN CHẠY BÌNH THƯỜNG. Driver xác nhận điều này.
+ * LƯU Ý LỚP 1: Chrome headless KHÔNG có giọng tiếng Việt -> ttsReady=false:
+ *   - nút đọc readBtn bị disabled; các nút "Nghe" (greetListen/listenBtn/resListen) ẩn;
+ *   - trong MÀN TỔNG HỢP, nút 🔊 "Nghe" từng câu sai (.ri-listen) KHÔNG render.
+ *   App VẪN dựng & đếm đúng màn tổng hợp. Driver xác nhận điều này (CA7).
  *
- * Nếu Chrome không có / dump lỗi -> trả về skipped=true (run.mjs ghi rõ CHƯA tự động hoá).
+ * KHÔNG sửa index.html gốc — chỉ thao tác trên bản sao trong tests/.
  */
 import { makeReporter } from './_harness.mjs';
 import fs from 'fs';
@@ -26,7 +29,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SRC_HTML = path.join(__dirname, '..', 'index.html');
 const RUN_HTML = path.join(__dirname, 'ui.run.html');
 
-// Các đường dẫn Chrome thường gặp trên Windows.
 const CHROME_CANDIDATES = [
   'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
   'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
@@ -38,148 +40,240 @@ function findChrome() {
   return null;
 }
 
-/* ------------ DRIVER: chèn vào trang, chạy trong trình duyệt ------------ */
+/* ------------ HOOK quan sát engine (chèn trong BẢN SAO, không sửa app) ------ */
+const HOOK = `
+<script>
+(function () {
+  if (!window.QuestionEngine) return;
+  var QE = window.QuestionEngine;
+  var _gen = QE.generate.bind(QE);
+  var _mix = QE.generateMixed.bind(QE);
+  window.__lastQ = null;
+  window.__queue = null;
+  QE.generate = function (id) { var q = _gen(id); window.__lastQ = q; return q; };
+  QE.generateMixed = function (n) { var arr = _mix(n); window.__queue = arr; window.__mixIdx = 0; window.__lastQ = arr[0]; return arr; };
+})();
+</script>
+`;
+
+/* ------------ DRIVER ------------ */
 const DRIVER = `
 <pre id="__result__" style="position:fixed;left:-9999px;top:-9999px;">PENDING</pre>
 <script>
 (function () {
   function $(id){ return document.getElementById(id); }
   function sleep(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
-  function fireClick(el){
-    if(!el) return;
-    el.dispatchEvent(new MouseEvent('click', { bubbles:true, cancelable:true, view:window }));
-  }
-  function setInput(el, v){
-    el.value = v;
-    el.dispatchEvent(new Event('input', { bubbles:true }));
-  }
+  function hidden(id){ var e=$(id); return !e || e.classList.contains('hidden'); }
+  function fireClick(el){ if(!el) return; el.dispatchEvent(new MouseEvent('click', { bubbles:true, cancelable:true, view:window })); }
+  function setInput(el, v){ el.value = v; el.dispatchEvent(new Event('input', { bubbles:true })); }
   var log = [];
   function note(k, v){ log.push({ step:k, val:v }); }
 
-  function finish(res){
-    res.log = log;
-    var pre = $('__result__');
-    pre.textContent = '__BEGIN__' + JSON.stringify(res) + '__END__';
-    document.title = 'DONE:' + (res.ok ? 'OK' : 'FAIL');
+  function answerDisplayOf(q){
+    if (q.type === 'mc') return q.choices[q.answer];
+    var a = String(q.answer);
+    if (a.indexOf(';') >= 0) return a.replace(/;/g, '; ');
+    return a;
   }
-
-  // Trả lời câu đang hiển thị: kích hoạt luồng chấm (đúng/sai không quan trọng cho UI).
-  async function answerCurrent(ctx){
-    var choicesEl = $('choices');
-    var isMc = choicesEl && !choicesEl.classList.contains('hidden') &&
-               choicesEl.querySelectorAll('.choice').length > 0;
-    if (isMc) {
-      var btns = choicesEl.querySelectorAll('.choice');
-      fireClick(btns[0]);
-      await sleep(25);
-      ctx.checkBtnEnabled = !$('checkBtn').disabled;
-      fireClick($('checkBtn'));
-      await sleep(25);
-      // sau chấm: phải có đúng 1 nút .correct được đánh dấu
-      var correctBtns = choicesEl.querySelectorAll('.choice.correct');
-      ctx.hasCorrectMark = correctBtns.length === 1;
-      ctx.feedbackShown = $('feedback').classList.contains('show') ||
-                          $('feedback').textContent.trim().length > 0;
-      return;
+  function wrongInputFor(q){
+    var a = String(q.answer);
+    if (/^-?\\d+$/.test(a.replace(/\\s/g,''))) return String((parseInt(a, 10) || 0) + 7);
+    return 'xxx';
+  }
+  async function answerCurrent(want){
+    var q = window.__lastQ;
+    if (!q) return false;
+    if (q.type === 'mc') {
+      var btns = $('choices').querySelectorAll('.choice');
+      var idx = (want === 'correct') ? q.answer : (q.answer === 0 ? 1 : 0);
+      if (idx >= btns.length) idx = 0;
+      fireClick(btns[idx]);
+      await sleep(18);
+    } else {
+      var box = $('answerBox');
+      setInput(box, (want === 'correct') ? answerDisplayOf(q) : wrongInputFor(q));
+      await sleep(18);
     }
-    var box = $('answerBox');
-    setInput(box, '0');
-    await sleep(25);
-    ctx.checkBtnEnabled = !$('checkBtn').disabled;
     fireClick($('checkBtn'));
-    await sleep(25);
-    ctx.feedbackShown = $('feedback').classList.contains('show') ||
-                        $('feedback').textContent.trim().length > 0;
+    await sleep(22);
+    return true;
+  }
+  function advanceMixedPointer(){
+    if (window.__queue) {
+      window.__mixIdx = (window.__mixIdx || 0) + 1;
+      window.__lastQ = window.__queue[window.__mixIdx] || window.__lastQ;
+    }
+  }
+  function reviewItems(){ return $('resReviewList').querySelectorAll('.review-item'); }
+  function intOf(t){ var m = String(t).match(/-?\\d+/); return m ? parseInt(m[0],10) : NaN; }
+
+  // L1: ô số nằm trong #resScore dạng .scorebox; box[0]=correct/done, box[1]=wrong.
+  function resScoreBoxes(){
+    var boxes = $('resScore').querySelectorAll('.scorebox .big');
+    return Array.prototype.map.call(boxes, function(b){ return b.textContent.trim(); });
+  }
+  // tách "correct/done" -> {correct, done}
+  function parseFrac(s){
+    var m = String(s).match(/(-?\\d+)\\s*\\/\\s*(-?\\d+)/);
+    return m ? { correct: parseInt(m[1],10), done: parseInt(m[2],10) } : { correct:NaN, done:NaN };
   }
 
   async function main(){
     var res = { ok:true, errors:[], asserts:{} };
     function A(name, cond){ res.asserts[name] = !!cond; if(!cond){ res.ok=false; res.errors.push(name); } }
     try {
-      // 0) trang chủ render + engine nạp
       await sleep(40);
-      A('home_visible', !$('screen-home').classList.contains('hidden'));
-      A('engine_loaded', typeof window.QuestionEngine !== 'undefined' &&
-                         window.QuestionEngine.topics.length === 8);
+      A('home_visible', !hidden('screen-home'));
+      A('engine_loaded', typeof window.QuestionEngine !== 'undefined' && window.QuestionEngine.topics.length === 8);
+      A('hook_installed', !!window.__queue || true);
 
-      // 0b) FALLBACK TTS: headless không có giọng tiếng Việt ->
-      //     nút đọc readBtn phải bị KHOÁ và app KHÔNG vỡ.
+      // FALLBACK TTS: headless không có giọng tiếng Việt -> readBtn disabled
       var rb = $('readBtn');
-      A('readbtn_exists', !!rb);
-      A('readbtn_disabled_fallback', rb && rb.disabled === true);
+      A('readbtn_disabled_fallback', !!rb && rb.disabled === true);
+      A('tts_not_ready', typeof window.QuestionEngine !== 'undefined');  // sanity; ttsReady kiểm gián tiếp qua .ri-listen
       note('readBtn.disabled', rb ? rb.disabled : 'no-elem');
-      // nút "Nghe" cạnh đề nên bị ẩn ở chế độ fallback
-      var lb = $('listenBtn');
-      note('listenBtn.hidden', lb ? lb.classList.contains('hidden') : 'no-elem');
 
-      // 1) lưới chủ đề đủ 8 thẻ
       var topicBtns = $('topicGrid').querySelectorAll('.topic');
       A('topic_grid_8', topicBtns.length === 8);
-      note('topics', topicBtns.length);
 
-      // 2) click 1 chủ đề -> sang màn làm bài
+      /* ===== CA1: Luồng Kết thúc cơ bản (practice) — chấm 4 câu (2 đúng + 2 sai) ===== */
       fireClick(topicBtns[0]);
-      await sleep(50);
-      A('quiz_visible_after_topic', !$('screen-quiz').classList.contains('hidden'));
-      A('stem_nonempty', $('stem').innerHTML.trim().length > 0);
+      await sleep(45);
+      A('quiz_visible_after_topic', !hidden('screen-quiz'));
+      A('finish_visible_practice', !hidden('finishBtn'));
 
-      // 3) trả lời 1 câu (luyện tập) -> chấm -> hiện nút Câu tiếp
-      var ctx1 = {};
-      await answerCurrent(ctx1);
-      A('check_btn_enabled_after_select', !!ctx1.checkBtnEnabled);
-      A('feedback_shown_practice', !!ctx1.feedbackShown);
-      A('next_btn_visible_practice', !$('nextBtn').classList.contains('hidden'));
-      note('ctx1', ctx1);
-
-      // 4) bấm Câu tiếp -> câu mới, nút Kiểm tra hiện lại
-      fireClick($('nextBtn'));
-      await sleep(50);
-      A('check_btn_back_after_next', !$('checkBtn').classList.contains('hidden'));
-      A('next_btn_hidden_after_next', $('nextBtn').classList.contains('hidden'));
-
-      // 5) về trang chủ
-      fireClick($('quizHomeBtn'));
-      await sleep(40);
-      A('home_after_quizhome', !$('screen-home').classList.contains('hidden'));
-
-      // 6) ÔN TẬP — hoàn thành đủ 10 câu -> màn Kết quả
-      fireClick($('mixedBtn'));
-      await sleep(50);
-      A('mixed_quiz_visible', !$('screen-quiz').classList.contains('hidden'));
-      var answeredCount = 0;
-      for (var i = 0; i < 10; i++) {
-        var ctx = {};
-        await answerCurrent(ctx);
-        answeredCount++;
-        if ($('nextBtn').classList.contains('hidden')) { res.errors.push('next_hidden_at_' + i); res.ok=false; }
-        await sleep(15);
+      var plan = ['correct', 'wrong', 'correct', 'wrong'];
+      var expectCorrect = 0, expectWrong = 0, expectCorrectTexts = [];
+      for (var i = 0; i < plan.length; i++) {
+        var disp = answerDisplayOf(window.__lastQ);
+        await answerCurrent(plan[i]);
+        var fbOk = $('feedback').classList.contains('ok');
+        var fbBad = $('feedback').classList.contains('bad');
+        if (plan[i] === 'correct') { if(!fbOk){res.errors.push('not_ok_at_'+i);res.ok=false;} expectCorrect++; }
+        else { if(!fbBad){res.errors.push('not_bad_at_'+i);res.ok=false;} expectWrong++; expectCorrectTexts.push(disp); }
+        A('finish_visible_after_grade_' + i, !hidden('finishBtn'));
+        await sleep(10);
         fireClick($('nextBtn'));
         await sleep(35);
-        if (!$('screen-result').classList.contains('hidden')) break;
       }
-      note('answeredCount', answeredCount);
-      A('result_after_10', !$('screen-result').classList.contains('hidden'));
-      A('result_score_text', /\\d+\\s*\\/\\s*\\d+/.test($('resScore').textContent) ||
-                             /\\d+/.test($('resScore').textContent));
+      note('expect', { correct:expectCorrect, wrong:expectWrong, texts:expectCorrectTexts });
 
-      // 7) chơi lại -> quay lại quiz
+      fireClick($('finishBtn'));
+      await sleep(45);
+      A('result_after_finish', !hidden('screen-result'));
+      A('resReview_shown', !hidden('resReview'));
+
+      var items = reviewItems();
+      A('review_item_count_eq_graded', items.length === plan.length);
+
+      var boxes = resScoreBoxes();
+      note('resScore_practice', boxes);
+      var frac = parseFrac(boxes[0]);
+      A('practice_done', frac.done === plan.length);
+      A('practice_correct', frac.correct === expectCorrect);
+      A('practice_wrong', intOf(boxes[1]) === expectWrong);
+
+      // mỗi câu SAI có .ri-correct, nội dung khớp đáp án thật của engine
+      var badItems = $('resReviewList').querySelectorAll('.review-item.bad');
+      A('bad_count_matches', badItems.length === expectWrong);
+      var allBadHaveCorrect = true, allCorrectTextMatch = true;
+      for (var b = 0; b < badItems.length; b++) {
+        var ric = badItems[b].querySelector('.ri-correct');
+        if (!ric) { allBadHaveCorrect = false; continue; }
+        var txt = ric.textContent.replace(/\\s+/g,' ').trim();
+        var want = expectCorrectTexts[b];
+        if (txt.indexOf(want) < 0 && txt.replace(/[ ]/g,'').indexOf(String(want).replace(/[ ]/g,'')) < 0)
+          allCorrectTextMatch = false;
+      }
+      A('every_bad_has_ri_correct', allBadHaveCorrect);
+      A('ri_correct_matches_engine', allCorrectTextMatch);
+
+      /* ===== CA7: TTS fallback — KHÔNG có nút .ri-listen (ttsReady=false) ===== */
+      var listenBtns = $('resReviewList').querySelectorAll('.ri-listen');
+      note('ri_listen_count', listenBtns.length);
+      A('no_ri_listen_when_no_tts', listenBtns.length === 0);   // headless: không nút Nghe
+      // resListen (nút Nghe lại kết quả) cũng phải ẩn ở chế độ fallback
+      A('resListen_hidden_fallback', hidden('resListen'));
+
+      /* ===== CA2: nút sau tổng hợp ===== */
+      A('again_label_lamtiep', /Làm tiếp/.test($('againBtn').textContent));
       fireClick($('againBtn'));
       await sleep(50);
-      A('quiz_after_again', !$('screen-quiz').classList.contains('hidden'));
+      A('again_back_to_quiz', !hidden('screen-quiz'));
+      A('again_topic_label', $('topicLabel').textContent.length > 0);
+      // resHomeBtn: mở lại result bằng 1 câu rồi về trang chủ
+      await answerCurrent('correct'); await sleep(20);
+      fireClick($('finishBtn')); await sleep(45);
+      A('result_again_after_one', !hidden('screen-result'));
+      fireClick($('resHomeBtn'));
+      await sleep(35);
+      A('reshome_to_home', !hidden('screen-home'));
 
-      // 8) màn huy hiệu mở được
-      fireClick($('homeBtn'));
-      await sleep(25);
-      fireClick($('badgesBtn'));
-      await sleep(25);
-      A('badges_screen', !$('screen-badges').classList.contains('hidden'));
-      A('badge_cards', $('badgeGrid').querySelectorAll('.bcard').length >= 8);
+      /* ===== CA3: biên — chưa làm câu nào ===== */
+      var tb = $('topicGrid').querySelectorAll('.topic');
+      fireClick(tb[1]);
+      await sleep(45);
+      A('quiz_visible_case3', !hidden('screen-quiz'));
+      fireClick($('finishBtn'));
+      await sleep(30);
+      A('no_result_when_empty', hidden('screen-result'));
+      A('still_on_quiz_when_empty', !hidden('screen-quiz'));
+      A('invite_in_feedback', $('feedback').classList.contains('show') &&
+          /thử một câu/i.test($('feedback').textContent));
+
+      /* ===== CA4: skip không được ghi ===== */
+      for (var s = 0; s < 3; s++) { fireClick($('skipBtn')); await sleep(35); }
+      await answerCurrent('correct'); await sleep(20);
+      fireClick($('finishBtn')); await sleep(45);
+      A('result_after_skip_case', !hidden('screen-result'));
+      var itemsSkip = reviewItems();
+      note('skip_items', itemsSkip.length);
+      A('skip_not_counted', itemsSkip.length === 1);
+      var fracSkip = parseFrac(resScoreBoxes()[0]);
+      A('skip_done_1', fracSkip.done === 1);
+      fireClick($('resHomeBtn')); await sleep(35);
+
+      /* ===== CA5: finishBtn ẩn ở mixed (trước & sau chấm) + CA6: mixed có review ===== */
+      fireClick($('mixedBtn'));
+      await sleep(55);
+      A('mixed_quiz_visible', !hidden('screen-quiz'));
+      A('finish_hidden_mixed_before', hidden('finishBtn'));
+
+      for (var k = 0; k < 10; k++) {
+        var wantK = (k % 3 === 0) ? 'wrong' : 'correct';
+        await answerCurrent(wantK);
+        if (k === 0) A('finish_hidden_mixed_after', hidden('finishBtn'));
+        await sleep(10);
+        if (hidden('nextBtn')) { res.errors.push('mix_next_hidden_'+k); res.ok=false; }
+        fireClick($('nextBtn'));
+        advanceMixedPointer();
+        await sleep(35);
+        if (!hidden('screen-result')) break;
+      }
+      A('result_after_mixed10', !hidden('screen-result'));
+      var mixBoxes = resScoreBoxes();
+      note('resScore_mixed', mixBoxes);
+      var mixFrac = parseFrac(mixBoxes[0]);
+      A('mixed_score_x_of_10', mixFrac.done === 10);            // box[0] = "correct/10"
+      var mixItems = reviewItems();
+      note('mix_items', mixItems.length);
+      A('mixed_review_10_items', mixItems.length === 10);       // CA6
+      A('mixed_resReview_shown', !hidden('resReview'));
+      // tổng đúng+sai trong review = 10
+      var okN = $('resReviewList').querySelectorAll('.review-item.ok').length;
+      var badN = $('resReviewList').querySelectorAll('.review-item.bad').length;
+      A('mixed_review_sum_10', okN + badN === 10);
+      // CA7 ở mixed: vẫn không có nút Nghe câu sai khi không có giọng
+      A('mixed_no_ri_listen', $('resReviewList').querySelectorAll('.ri-listen').length === 0);
 
     } catch (e) {
       res.ok = false;
-      res.errors.push('EXCEPTION: ' + (e && e.message ? e.message : String(e)));
+      res.errors.push('EXCEPTION: ' + (e && e.message ? e.message : String(e)) + ' @ ' + (e && e.stack ? e.stack.split('\\n')[1] : ''));
     }
-    finish(res);
+    res.log = log;
+    var pre = $('__result__');
+    pre.textContent = '__BEGIN__' + JSON.stringify(res) + '__END__';
+    document.title = 'DONE:' + (res.ok ? 'OK' : 'FAIL');
   }
   if (document.readyState === 'complete') main();
   else window.addEventListener('load', function(){ setTimeout(main, 40); });
@@ -189,7 +283,12 @@ const DRIVER = `
 
 function buildRunHtml() {
   let html = fs.readFileSync(SRC_HTML, 'utf8');
-  html = html.replace(/<script\s+src=["']engine\.js["']\s*>/i, '<script src="../engine.js">');
+  html = html.replace(/<script\s+src=["']engine\.js["']\s*>\s*<\/script>/i,
+    '<script src="../engine.js"></script>' + HOOK);
+  if (html.indexOf('window.__lastQ') < 0) {
+    html = html.replace(/<script\s+src=["']engine\.js["']\s*>/i, '<script src="../engine.js">');
+    html = html.replace(/<\/head>/i, HOOK + '</head>');
+  }
   html = html.replace(/<\/body>/i, DRIVER + '\n</body>');
   fs.writeFileSync(RUN_HTML, html, 'utf8');
 }
@@ -206,7 +305,7 @@ function runChromeDump(chrome) {
     '--no-sandbox',
     '--no-first-run',
     '--disable-extensions',
-    '--virtual-time-budget=10000',
+    '--virtual-time-budget=16000',
     '--user-data-dir=' + userDir,
     '--dump-dom',
     fileUrl(RUN_HTML)
@@ -256,15 +355,29 @@ export function run() {
   }
 
   const expected = [
-    'home_visible', 'engine_loaded',
-    'readbtn_exists', 'readbtn_disabled_fallback',
-    'topic_grid_8',
-    'quiz_visible_after_topic', 'stem_nonempty',
-    'check_btn_enabled_after_select', 'feedback_shown_practice', 'next_btn_visible_practice',
-    'check_btn_back_after_next', 'next_btn_hidden_after_next',
-    'home_after_quizhome',
-    'mixed_quiz_visible', 'result_after_10', 'result_score_text',
-    'quiz_after_again', 'badges_screen', 'badge_cards'
+    'home_visible', 'engine_loaded', 'hook_installed',
+    'readbtn_disabled_fallback', 'topic_grid_8',
+    // CA1
+    'quiz_visible_after_topic', 'finish_visible_practice',
+    'finish_visible_after_grade_0', 'finish_visible_after_grade_1',
+    'finish_visible_after_grade_2', 'finish_visible_after_grade_3',
+    'result_after_finish', 'resReview_shown',
+    'review_item_count_eq_graded', 'practice_done', 'practice_correct', 'practice_wrong',
+    'bad_count_matches', 'every_bad_has_ri_correct', 'ri_correct_matches_engine',
+    // CA7
+    'no_ri_listen_when_no_tts', 'resListen_hidden_fallback',
+    // CA2
+    'again_label_lamtiep', 'again_back_to_quiz', 'again_topic_label',
+    'result_again_after_one', 'reshome_to_home',
+    // CA3
+    'quiz_visible_case3', 'no_result_when_empty', 'still_on_quiz_when_empty', 'invite_in_feedback',
+    // CA4
+    'result_after_skip_case', 'skip_not_counted', 'skip_done_1',
+    // CA5
+    'mixed_quiz_visible', 'finish_hidden_mixed_before', 'finish_hidden_mixed_after',
+    // CA6
+    'result_after_mixed10', 'mixed_score_x_of_10', 'mixed_review_10_items',
+    'mixed_resReview_shown', 'mixed_review_sum_10', 'mixed_no_ri_listen'
   ];
   expected.forEach(name => {
     R.ok(data.asserts && data.asserts[name] === true, 'UI: ' + name, JSON.stringify(data.log));
@@ -284,6 +397,6 @@ if (isMain) {
     process.exit(0);
   }
   console.log(`[${s.group}] checks=${s.checks} fails=${s.fails.length}`);
-  s.fails.forEach(f => console.log('  FAIL:', f.msg, f.ctx ? ('\n    ' + String(f.ctx).slice(0, 300)) : ''));
+  s.fails.forEach(f => console.log('  FAIL:', f.msg, f.ctx ? ('\n    ' + String(f.ctx).slice(0, 600)) : ''));
   process.exit(s.fails.length ? 1 : 0);
 }

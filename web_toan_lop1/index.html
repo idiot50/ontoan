@@ -521,6 +521,56 @@
   .badge-new { background: var(--star-bg); border-color: var(--star-border); color: var(--star-ink); font-weight:800; }
   .suggest { background: var(--brand-soft); border-color:#D8DBFB; color: var(--brand-ink); }
 
+  /* ----- thêm ô "Sai" (cam) dùng chung .scorebox cho màn tổng hợp ----- */
+  .scorebox.bad { border-color: var(--warn-border); background: var(--warn-bg); color: var(--warn-ink); }
+
+  /* ----- DANH SÁCH CHI TIẾT (cuộn được) — LỚP 1: to hơn ----- */
+  .review { margin: 18px 0 6px; text-align: left; }
+  .review h3 { font-size: var(--fs-lg); font-weight: 800; margin: 0 0 6px; }
+  .review .summline { font-size: var(--fs-sm); color: var(--warn-ink); font-weight: 700; margin: 0 0 10px; }
+  .reviewlist {
+    max-height: 50vh; overflow-y: auto;
+    display: flex; flex-direction: column; gap: 14px;
+    padding: 6px; border: 1px solid var(--line); border-radius: var(--r-lg);
+    background: var(--card-soft);
+  }
+  .review-item {
+    background: #fff; border: 1px solid var(--line);
+    border-left: 7px solid var(--line-2);
+    border-radius: var(--r); padding: 16px 18px; box-shadow: var(--sh-sm);
+  }
+  .review-item.ok  { border-left-color: var(--ok); }
+  .review-item.bad { border-left-color: var(--warn); }
+  .review-item .ri-head { display:flex; align-items:center; gap:12px; font-weight:800; margin-bottom:8px; flex-wrap:wrap; }
+  .review-item .ri-mark {
+    flex:0 0 auto; width:36px; height:36px; border-radius:999px; color:#fff;
+    display:inline-flex; align-items:center; justify-content:center; font-size:22px; font-weight:900;
+  }
+  .review-item.ok  .ri-mark { background: var(--ok); }
+  .review-item.bad .ri-mark { background: var(--warn); }
+  .review-item .ri-topic { font-size: var(--fs-sm); color: var(--muted); font-weight: 700; }
+  .review-item .ri-listen {
+    margin-left:auto; min-height: var(--tap);
+    background:#fff; border:1.5px solid #C9CCF7; color: var(--brand-ink);
+    border-radius: var(--r-pill); padding: 8px 16px; font-weight:800; font-size: var(--fs-sm);
+    cursor:pointer; font-family:inherit; display:inline-flex; align-items:center; gap:6px;
+  }
+  .review-item .ri-listen:hover { background: var(--brand-soft); }
+  .review-item .ri-stem { font-size: var(--fs-body); line-height:1.4; }
+  .review-item .ri-your { margin-top:8px; font-weight:700; color: var(--ink-2); font-size: var(--fs-body); }
+  .review-item.bad .ri-your { color: var(--warn-ink); }
+  .review-item .ri-correct {
+    margin-top:8px; font-weight:800; font-size: var(--fs-body);
+    display:inline-flex; align-items:center; gap:6px;
+    background:#fff; border:2px solid var(--ok); color: var(--ok-ink);
+    border-radius: var(--r-pill); padding: 6px 16px;
+  }
+  .review-item .ri-explain {
+    margin-top:10px; font-size: var(--fs-sm); line-height:1.5;
+    background: var(--card-soft); border:1px solid var(--line); border-radius: var(--r-sm); padding: 12px 14px;
+  }
+  .review-item .ri-explain b { color: var(--ink); }
+
   /* ============================= MÀN HUY HIỆU ============================= */
   .badgegrid { display:grid; grid-template-columns: repeat(2,1fr); gap:16px; }
   @media (max-width: 560px) { .badgegrid { grid-template-columns: 1fr; } }
@@ -687,6 +737,7 @@
           <button class="btn ghost" id="skipBtn">Câu tiếp →</button>
           <button class="btn hidden" id="nextBtn">Câu tiếp →</button>
           <button class="btn ghost hidden" id="similarBtn">Câu khác</button>
+          <button class="btn ghost hidden" id="finishBtn">🏁 Kết thúc</button>
         </div>
 
         <div class="feedback" id="feedback" aria-live="polite"></div>
@@ -710,6 +761,15 @@
         <div class="scoreboxes" id="resScore"></div>
         <div id="resBadges"></div>
         <div class="suggest hidden" id="resSuggest"></div>
+
+        <!-- DANH SÁCH CHI TIẾT các câu bé đã làm (ẩn mặc định; dựng bởi renderSummary) -->
+        <div class="review hidden" id="resReview" role="region"
+             tabindex="0" aria-label="Danh sách các câu bé đã làm">
+          <h3 id="resReviewTitle">Các câu bé đã làm</h3>
+          <div class="summline hidden" id="resReviewSumm"></div>
+          <div class="reviewlist" id="resReviewList"></div>
+        </div>
+
         <div class="actions" style="justify-content:center;">
           <button class="btn" id="againBtn">🔁 Chơi lại</button>
           <button class="btn ghost" id="resHomeBtn">🏠 Trang chủ</button>
@@ -1162,7 +1222,10 @@
       total: 0,
       correctCount: 0,
       wrongByTopic: {},
-      bestStreakThisSet: 0
+      bestStreakThisSet: 0,
+      // LỊCH SỬ PHIÊN: mỗi câu ĐÃ CHẤM 1 bản ghi (chỉ ở RAM, không localStorage)
+      records: [],
+      _finishTopic: null   // chủ đề lưu lại để "➕ Làm tiếp" sau khi reset
     };
 
     var currentQ = null;
@@ -1175,6 +1238,7 @@
       session.queue = [];
       session.index = 0;
       session.total = 0;
+      session.records = [];   // reset lịch sử phiên luyện tập
       show('screen-quiz');
       $('setbar').classList.add('hidden');
       $('qnumPill').classList.add('hidden');
@@ -1194,6 +1258,7 @@
       session.correctCount = 0;
       session.wrongByTopic = {};
       session.bestStreakThisSet = 0;
+      session.records = [];   // reset lịch sử phiên ôn tập
       show('screen-quiz');
       $('setbar').classList.remove('hidden');
       $('qnumPill').classList.remove('hidden');
@@ -1252,6 +1317,8 @@
       $('checkBtn').classList.remove('hidden');
       $('checkBtn').disabled = true;
       $('skipBtn').classList.remove('hidden');   // nút "Câu tiếp" (bỏ qua) hiện khi chưa chấm
+      // "🏁 Kết thúc" chỉ hiện ở Luyện tập (practice), ẩn ở Ôn tập (mixed)
+      $('finishBtn').classList.toggle('hidden', session.mode !== 'practice');
 
       var choicesEl = $('choices');
       var inputRow = $('inputRow');
@@ -1332,6 +1399,22 @@
       ensureAudio();
       $('checkBtn').classList.add('hidden');
       $('skipBtn').classList.add('hidden');  // đã chấm → ẩn nút bỏ qua, dùng "Câu tiếp →"
+      $('finishBtn').classList.toggle('hidden', session.mode !== 'practice'); // giữ "Kết thúc" sau khi chấm (practice)
+
+      // GHI LỊCH SỬ: 1 bản ghi mỗi câu ĐÃ CHẤM (câu bỏ qua không vào đây)
+      // L1: thêm `say` để đọc lại câu sai bằng giọng chuẩn.
+      var tp = topicById(currentQ.topic);
+      session.records.push({
+        stem: currentQ.stem,
+        type: currentQ.type,
+        userText: (currentQ.type === 'mc') ? currentQ.choices[selectedIndex] : String($('answerBox').value).trim(),
+        correctText: answerDisplay(currentQ),
+        isCorrect: ok,
+        explain: currentQ.explain,
+        topicName: tp.name,
+        topicEmoji: tp.emoji,
+        say: currentQ.say || ''
+      });
 
       bumpDailyCount();
 
@@ -1511,6 +1594,166 @@
       }
     }
 
+    /* ----------------------- MÀN TỔNG HỢP (dùng chung) --------------------- */
+    // Escape an toàn cho chuỗi do bé GÕ (input) khi nhúng vào innerHTML.
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // Tiêu đề + emoji theo tỷ lệ đúng/đã làm (BẢNG COPY §7.2 — NGẮN & ẤM).
+    function summaryHead(done, correct) {
+      var r = done > 0 ? correct / done : 0;
+      if (done === 1 && correct === 1) return { emoji: '🌟', msg: 'Đúng rồi! Giỏi quá!' };
+      if (r >= 1)    return { emoji: '🏆', msg: 'Bé làm đúng hết! Giỏi ơi là giỏi!' };
+      if (r >= 0.8)  return { emoji: '🎉', msg: 'Giỏi lắm bé ơi!' };
+      if (r >= 0.6)  return { emoji: '😊', msg: 'Bé làm tốt lắm!' };
+      if (r >= 0.4)  return { emoji: '💪', msg: 'Cố lên nào, bé làm được mà!' };
+      return { emoji: '🌱', msg: 'Không sao đâu! Mình xem lại nhé!' };
+    }
+
+    // Dựng các ô SỐ TO (Đã làm / Đúng / Sai) dùng .scorebox sẵn có.
+    function renderResNums(done, correct, wrong) {
+      $('resScore').innerHTML =
+        '<div class="scorebox"><div class="big">' + correct + '/' + done + '</div><div class="cap">câu đúng</div></div>' +
+        '<div class="scorebox bad"><div class="big">' + wrong + '</div><div class="cap">câu sai</div></div>';
+    }
+
+    // Chuỗi đọc thuần lời cho 1 câu sai: đề (ưu tiên record.say) + đáp án đúng.
+    function recordSayText(rec) {
+      var stemSay = rec.say || questionSayText({ stem: rec.stem });
+      var ans = String(rec.correctText).replace(/<[^>]+>/g, '').replace(/;/g, ', ');
+      return stemSay + '. Đáp án đúng là ' + ans + '.';
+    }
+
+    // Dựng danh sách chi tiết (theo thứ tự làm) vào #resReviewList.
+    function renderReviewList() {
+      var list = $('resReviewList');
+      list.innerHTML = '';
+      session.records.forEach(function (rec, i) {
+        var item = document.createElement('div');
+        item.className = 'review-item ' + (rec.isCorrect ? 'ok' : 'bad');
+        var topicBit = rec.topicName
+          ? '<span class="ri-topic">' + (rec.topicEmoji || '') + ' ' + rec.topicName + '</span>' : '';
+        // nút 🔊 Nghe cho câu SAI, chỉ khi có giọng tiếng Việt
+        var listenBit = (!rec.isCorrect && ttsReady)
+          ? '<button class="ri-listen" data-i="' + i + '"><span aria-hidden="true">🔊</span> Nghe</button>' : '';
+        var html =
+          '<div class="ri-head">' +
+            '<span class="ri-mark" aria-hidden="true">' + (rec.isCorrect ? '✓' : '✗') + '</span>' +
+            '<span>Câu ' + (i + 1) + (rec.isCorrect ? ' · Đúng' : ' · Sai') + '</span>' +
+            topicBit + listenBit +
+          '</div>' +
+          '<div class="ri-stem">' + rec.stem + '</div>';
+        if (!rec.isCorrect) {
+          // câu sai: gọn cho L1 — Bé chọn / Đáp án đúng / Cách làm
+          html += '<div class="ri-your">Bé chọn: ' +
+                  (rec.type === 'mc' ? rec.userText : escapeHtml(rec.userText)) + '</div>';
+          html += '<div class="ri-correct"><span aria-hidden="true">✓</span> Đáp án đúng: ' +
+                  rec.correctText + '</div>';
+          html += '<div class="ri-explain"><b>Cách làm:</b> ' + rec.explain + '</div>';
+        }
+        item.innerHTML = html;
+        list.appendChild(item);
+      });
+      // gắn handler nút Nghe câu sai (nếu có)
+      list.querySelectorAll('.ri-listen').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var rec = session.records[parseInt(b.getAttribute('data-i'), 10)];
+          if (rec && ttsReady) speak(recordSayText(rec), function (on) { b.classList.toggle('speaking', on); });
+        });
+      });
+    }
+
+    // Đặt nhãn + handler nút "tiếp tục" theo chế độ.
+    var againHandler = null;
+    function setAgainButton(mode) {
+      var btn = $('againBtn');
+      if (againHandler) btn.removeEventListener('click', againHandler);
+      if (mode === 'practice') {
+        btn.textContent = '➕ Làm tiếp';
+        againHandler = function () { startPractice(session._finishTopic); };
+      } else {
+        btn.textContent = '🔁 Chơi lại';
+        againHandler = function () { startMixed(); };
+      }
+      btn.addEventListener('click', againHandler);
+    }
+
+    // Hàm dùng chung dựng MÀN TỔNG HỢP (cả "Kết thúc sớm" practice lẫn hết bộ mixed).
+    function renderSummary(opts) {
+      opts = opts || {};
+      var mode = opts.mode || session.mode;
+      var done = session.records.length;
+      var correct = 0;
+      session.records.forEach(function (r) { if (r.isCorrect) correct++; });
+      var wrong = done - correct;
+
+      if (mode === 'practice') {
+        var h = summaryHead(done, correct);
+        $('resEmoji').textContent = h.emoji;
+        $('resMsg').textContent = h.msg;
+        renderResNums(done, correct, wrong);
+        // KHÔNG thưởng "hoàn thành bộ", KHÔNG đụng bestQuizScore.
+        $('resSuggest').classList.add('hidden');
+        var earned = checkBadges();
+        var bWrap = $('resBadges');
+        bWrap.innerHTML = '';
+        earned.forEach(function (b) {
+          var el = document.createElement('div');
+          el.className = 'badge-new';
+          el.textContent = '🏅 Huy hiệu mới: ' + b.emoji + ' ' + b.name + '!';
+          bWrap.appendChild(el);
+        });
+        // câu tóm tắt để đọc to (thuần lời, bỏ emoji)
+        if (wrong === 0) lastResultSay = 'Giỏi lắm! Bé làm đúng hết ' + correct + ' câu!';
+        else lastResultSay = 'Bé làm đúng ' + correct + ' câu, sai ' + wrong + ' câu. Mình cùng xem lại các câu sai nhé.';
+      }
+      // (mixed: ô số do showResult dựng — gồm đúng/sao/sai — không ghi đè ở đây)
+
+      // danh sách chi tiết (chung cả 2 chế độ)
+      renderReviewList();
+      var summ = $('resReviewSumm');
+      if (wrong > 0) {
+        summ.textContent = 'Bé sai ' + wrong + ' câu — xem lại nhé!';
+        summ.classList.remove('hidden');
+      } else {
+        summ.classList.add('hidden');
+      }
+      $('resReview').classList.remove('hidden');
+
+      setAgainButton(mode);
+
+      if (mode === 'practice') {
+        saveState();
+        show('screen-result');
+        refreshHeader();
+        if (done > 0 && correct / done >= 0.7 && !reduceMotion) confetti(120);
+        if (done >= 2 && correct === done) soundFanfare();
+        // tự đọc câu tóm tắt (nếu bật & có giọng)
+        if (ttsReady && autoRead) {
+          setTimeout(function () { speak(lastResultSay, function (on) { setListenSpeaking($('resListen'), on); }); }, 350);
+        }
+      }
+    }
+
+    // Handler nút "🏁 Kết thúc" (chỉ ở practice).
+    function finishPractice() {
+      if (session.records.length === 0) {
+        // chưa làm câu nào: không mở màn trống, mời nhẹ tại chỗ + đọc (nếu có giọng)
+        var fb = $('feedback');
+        fb.className = 'feedback ok show';
+        fb.innerHTML = '<div class="head">Bé làm thử một câu nha! 😊</div>' +
+                       '<div class="reset">Bấm ✅ Kiểm tra một câu rồi bấm 🏁 Kết thúc để xem lại nhé!</div>';
+        if (ttsReady && autoRead) speak('Bé làm thử một câu rồi xem kết quả nha!');
+        return;
+      }
+      session._finishTopic = session.topicId;
+      stopSpeak();
+      renderSummary({ mode: 'practice', fromFinish: true });
+    }
+
     /* ----------------------------- ĐI TIẾP / KẾT THÚC ---------------------- */
     function nextQuestion() {
       if (session.mode === 'mixed') {
@@ -1541,11 +1784,13 @@
       else if (correct >= 3) { emoji = '💪'; msg = 'Cố lên nhé! Ôn thêm chút là giỏi liền!'; }
       else { emoji = '🌱'; msg = 'Không sao đâu! Mình học lại từ từ nhé!'; }
 
+      var wrongCount = total - correct;
       $('resEmoji').textContent = emoji;
       $('resMsg').textContent = msg;
-      // 2 ô SỐ TO (DESIGN §2.3)
+      // ô SỐ TO (DESIGN §2.3): đúng / sai / sao
       $('resScore').innerHTML =
         '<div class="scorebox"><div class="big">' + correct + '/' + total + '</div><div class="cap">câu đúng</div></div>' +
+        '<div class="scorebox bad"><div class="big">' + wrongCount + '</div><div class="cap">câu sai</div></div>' +
         '<div class="scorebox star"><div class="big">+' + (correct + 5) + '</div><div class="cap">⭐ sao</div></div>';
 
       var earned = checkBadges();
@@ -1572,14 +1817,16 @@
         sug.classList.add('hidden');
       }
 
+      // append khối DANH SÁCH CHI TIẾT + đặt lastResultSay theo records (mixed)
+      renderSummary({ mode: 'mixed' });
+
       saveState();
       show('screen-result');
       refreshHeader();
       if (correct >= 5 && !reduceMotion) { confetti(140); }
       if (correct >= 8) soundFanfare();
 
-      // đọc to kết quả (nếu bật) — câu do frontend ghép (DESIGN §2.3/§7.4)
-      lastResultSay = stripEmoji(msg) + ' Bé làm đúng ' + correct + ' trên ' + total + ' câu.';
+      // đọc to câu tóm tắt (nếu bật) — lastResultSay do renderSummary ghép từ records
       if (ttsReady && autoRead) {
         setTimeout(function () { speak(lastResultSay, function (on) { setListenSpeaking($('resListen'), on); }); }, 350);
       }
@@ -1606,12 +1853,14 @@
     $('badgesHomeBtn').addEventListener('click', goHome);
 
     $('mixedBtn').addEventListener('click', startMixed);
-    $('againBtn').addEventListener('click', startMixed);
+    // #againBtn: nhãn + handler đặt động theo chế độ trong setAgainButton().
+    setAgainButton('mixed');
     $('badgesBtn').addEventListener('click', function () { buildBadgeGrid(); show('screen-badges'); });
 
     $('checkBtn').addEventListener('click', submitAnswer);
     $('nextBtn').addEventListener('click', nextQuestion);
     $('skipBtn').addEventListener('click', nextQuestion);  // bỏ qua: sang câu tiếp, không chấm điểm
+    $('finishBtn').addEventListener('click', finishPractice);
     $('similarBtn').addEventListener('click', function () {
       $('restNote').classList.remove('show');
       loadQuestion(QuestionEngine.generate(session.topicId));
