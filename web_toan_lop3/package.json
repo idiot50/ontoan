@@ -1,0 +1,9 @@
+{
+  "name": "web-toan-lop3",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website ôn Toán lớp 3 — engine sinh câu hỏi + giao diện offline. engine.js là classic script (CommonJS khi chạy node), test viết bằng .mjs (ESM).",
+  "scripts": {
+    "test": "node tests/run.mjs"
+  }
+}

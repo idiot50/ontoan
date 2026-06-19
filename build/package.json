@@ -1,0 +1,9 @@
+{
+  "name": "toan-de-on",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "pdf-to-img": "^4.5.0"
+  }
+}

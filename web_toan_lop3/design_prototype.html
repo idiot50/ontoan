@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toán Vui Lớp 3 — Prototype diện mạo mới</title>
+<style>
+  /* ============================ DESIGN TOKENS ============================ */
+  :root {
+    /* NỀN & BỀ MẶT */
+    --bg: #F6F7FC;
+    --bg-grad: radial-gradient(1200px 600px at 50% -8%, #EEF2FF 0%, #F6F7FC 55%, #F4F6FB 100%);
+    --card: #FFFFFF;
+    --card-soft: #FBFCFF;
+    --surface-2: #F1F4FB;
+    /* CHỮ */
+    --ink: #1B2138;
+    --ink-2: #3A4263;
+    --muted: #6A7390;
+    /* THƯƠNG HIỆU / NHẤN */
+    --brand: #4F46E5;
+    --brand-2: #6D5DF6;
+    --brand-dark: #3A33B8;
+    --brand-ink: #2E2A7A;
+    --brand-soft: #EEF0FE;
+    --accent: #EC4899;
+    /* TRẠNG THÁI */
+    --ok: #15935B; --ok-2: #34C77B; --ok-bg: #E6F8EE; --ok-border: #B6E8CC; --ok-ink: #0E6B42;
+    --warn: #D9612B; --warn-2: #F08A4B; --warn-bg: #FDF0E7; --warn-border: #F6CDAE; --warn-ink: #9A3D12;
+    --star: #F4B731; --star-bg: #FFF6DD; --star-border: #F3DDA0; --star-ink: #8A5A00;
+    --fire: #F2602E; --fire-bg: #FDEBE2; --fire-border: #F6C6AE; --fire-ink: #9A3D12;
+    /* VIỀN */
+    --line: #E4E8F2; --line-2: #D5DBEA;
+    /* GRADIENT */
+    --grad-brand: linear-gradient(135deg, #6D5DF6 0%, #4F46E5 100%);
+    --grad-ok:    linear-gradient(135deg, #34C77B 0%, #15935B 100%);
+    --grad-goal:  linear-gradient(90deg, #6D5DF6 0%, #EC4899 100%);
+    --grad-star:  linear-gradient(135deg, #FFD66B 0%, #F4B731 100%);
+    /* BO GÓC */
+    --r-sm: 12px; --r: 16px; --r-lg: 22px; --r-xl: 28px; --r-pill: 999px; --radius: 16px;
+    /* ĐỔ BÓNG */
+    --sh-sm: 0 1px 2px rgba(27,33,56,.06), 0 2px 6px rgba(27,33,56,.05);
+    --sh:    0 2px 6px rgba(27,33,56,.06), 0 10px 24px rgba(27,33,56,.07);
+    --sh-lg: 0 8px 20px rgba(27,33,56,.08), 0 18px 50px rgba(27,33,56,.10);
+    --sh-brand: 0 8px 22px rgba(79,70,229,.28);
+    --sh-ok: 0 8px 22px rgba(21,147,91,.26);
+    /* THANG CHỮ */
+    --fs-display: 34px; --fs-h2: 24px; --fs-stem: 27px; --fs-lg: 22px; --fs-body: 18px; --fs-sm: 16px;
+    /* KHOẢNG CÁCH */
+    --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 20px; --sp-6: 24px; --sp-7: 32px; --sp-8: 40px;
+    /* VÙNG CHẠM */
+    --tap: 48px; --tap-lg: 60px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0; padding: 0;
+    background-color: var(--bg);
+    background: var(--bg-grad);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: "Segoe UI", "Comic Sans MS", Arial, sans-serif;
+    font-size: var(--fs-body);
+    line-height: 1.5;
+  }
+  b, .stem { font-family: "Segoe UI", "Comic Sans MS", Arial, "Times New Roman", sans-serif; }
+
+  .app { max-width: 780px; margin: 0 auto; padding: 0 20px 56px; }
+
+  /* =============================== HEADER =============================== */
+  header.bar {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(246,247,252,.85);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    backdrop-filter: saturate(140%) blur(8px);
+    box-shadow: var(--sh-sm);
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 6px; margin-bottom: 6px; flex-wrap: wrap;
+    border-radius: 0 0 var(--r-lg) var(--r-lg);
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 800; font-size: 22px;
+    background: none; border: none; cursor: pointer;
+    padding: 4px 6px; border-radius: var(--r-sm); font-family: inherit;
+    color: var(--brand-ink);
+  }
+  .logo .word {
+    background: var(--grad-brand);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .logo .mark {
+    width: 40px; height: 40px; border-radius: 12px; flex: 0 0 auto;
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: var(--sh-brand);
+  }
+  .bar .spacer { flex: 1 1 auto; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-weight: 800; font-size: var(--fs-body);
+    padding: 8px 14px; min-height: 40px; border-radius: var(--r-pill);
+    background: var(--star-bg); border: 1.5px solid var(--star-border);
+    color: var(--star-ink); box-shadow: var(--sh-sm); white-space: nowrap;
+  }
+  .pill.fire { background: var(--fire-bg); border-color: var(--fire-border); color: var(--fire-ink); }
+  .pill.count { background: var(--brand-soft); border-color: #D8DBFB; color: var(--brand-ink); }
+  .iconbtn {
+    min-width: 48px; min-height: 48px; border-radius: var(--r-sm);
+    border: 1.5px solid var(--line); background: var(--card);
+    font-size: 22px; cursor: pointer; box-shadow: var(--sh-sm);
+    display: inline-flex; align-items: center; justify-content: center; font-family: inherit;
+  }
+  .iconbtn:hover { background: var(--brand-soft); }
+
+  /* ============================= NÚT CHUNG ============================= */
+  button { font-family: inherit; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: var(--tap-lg); padding: 12px 24px;
+    font-size: var(--fs-lg); font-weight: 800; color: #fff;
+    background: var(--grad-brand); border: none; border-radius: var(--r);
+    cursor: pointer; box-shadow: var(--sh-brand);
+    transition: transform .06s ease, box-shadow .12s ease, filter .12s ease;
+  }
+  .btn:hover { filter: brightness(1.06); }
+  .btn:active { transform: translateY(1px); box-shadow: 0 4px 12px rgba(79,70,229,.22); }
+  .btn:disabled { background: var(--surface-2); color: var(--muted); box-shadow: none; cursor: not-allowed; filter: none; }
+  .btn.ghost {
+    background: #fff; color: var(--brand);
+    border: 1.5px solid #C9CCF7; box-shadow: var(--sh-sm);
+  }
+  .btn.ghost:hover { background: var(--brand-soft); filter: none; }
+  .btn.big { width: 100%; font-size: var(--fs-lg); min-height: 64px; }
+  .btn.ok { background: var(--grad-ok); box-shadow: var(--sh-ok); }
+
+  :focus-visible { outline: 4px solid var(--star); outline-offset: 2px; }
+
+  /* =============================== TRANG CHỦ =============================== */
+  .greet { font-size: var(--fs-display); font-weight: 800; margin: 22px 0 6px; letter-spacing: -.5px; }
+  .greet small { display:block; font-size: var(--fs-body); font-weight:500; color: var(--muted); margin-top:6px; }
+
+  .goal {
+    background: var(--card); border-radius: var(--r-lg);
+    padding: 18px 20px; margin: 18px 0; box-shadow: var(--sh); border: 1px solid var(--line);
+  }
+  .goal .lbl { font-weight: 800; margin-bottom: 12px; display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; font-size: var(--fs-lg); }
+  .goal .lbl .cnt { color: var(--brand-ink); }
+  .progress {
+    height: 14px; background: var(--surface-2); border-radius: var(--r-pill); overflow: hidden;
+  }
+  .progress > i {
+    display: block; height: 100%; background: var(--grad-goal);
+    width: 0%; border-radius: var(--r-pill);
+    box-shadow: inset 0 2px 3px rgba(255,255,255,.45);
+  }
+
+  .section-title { font-size: var(--fs-h2); font-weight: 800; margin: 26px 0 12px; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .topic {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--r-lg);
+    padding: 18px 12px 16px; cursor: pointer; text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    min-height: 138px; box-shadow: var(--sh);
+    transition: transform .08s ease, box-shadow .15s ease, border-color .15s ease;
+    font-family: inherit; color: var(--ink); position: relative;
+  }
+  .topic:hover { transform: translateY(-4px); border-color: #C9CCF7; box-shadow: var(--sh-lg); }
+  .topic .num {
+    position: absolute; top: 10px; left: 10px;
+    width: 24px; height: 24px; border-radius: 999px;
+    background: var(--surface-2); color: var(--muted); font-weight: 800; font-size: 13px;
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  .topic .chip {
+    width: 58px; height: 58px; border-radius: 18px;
+    display:inline-flex; align-items:center; justify-content:center;
+    box-shadow: var(--sh-sm);
+  }
+  .topic .emo { font-size: 32px; line-height: 1; }
+  .topic .nm { font-size: var(--fs-body); font-weight: 800; line-height: 1.25; color: var(--ink-2); }
+  /* màu chip theo chủ đề */
+  .topic.t1 .chip { background:#EEF0FE; } .topic.t2 .chip { background:#E6F8EE; }
+  .topic.t3 .chip { background:#FDECEF; } .topic.t4 .chip { background:#FFF4DC; }
+  .topic.t5 .chip { background:#E9F6FE; } .topic.t6 .chip { background:#EAF7EC; }
+  .topic.t7 .chip { background:#F0ECFE; } .topic.t8 .chip { background:#FFEFE6; }
+  .topic.t9 .chip { background:#FCEFFB; }
+
+  .mixed-wrap { margin: 26px 0 8px; display:flex; flex-direction:column; gap:14px; }
+
+  /* ============================== MÀN LÀM BÀI ============================== */
+  .statusbar { display: flex; align-items: center; gap: 10px; margin: 14px 0 12px; flex-wrap: wrap; }
+  .statusbar .qnum { margin-left:auto; font-weight:800; color: var(--muted); }
+  .setbar { margin: 2px 0 16px; }
+
+  .qcard {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--r-xl);
+    padding: 28px 26px; box-shadow: var(--sh-lg);
+  }
+  .illus { font-size: 30px; text-align:center; margin: 0 0 12px; }
+  .stem { font-size: var(--fs-stem); font-weight: 600; line-height: 1.45; margin-bottom: 22px; }
+  .stem b { color: var(--brand-ink); }
+
+  .choices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  @media (max-width: 520px) { .choices { grid-template-columns: 1fr; } }
+  .choice {
+    display: flex; align-items: center; gap: 14px;
+    min-height: var(--tap-lg); padding: 12px 18px;
+    font-size: var(--fs-lg); font-weight: 800; text-align: left;
+    background: #fff; color: var(--ink); border: 1.5px solid var(--line);
+    border-radius: var(--r); cursor: pointer; box-shadow: var(--sh-sm);
+    font-family: inherit; transition: border-color .1s ease, background .1s ease, box-shadow .1s ease;
+  }
+  .choice:hover { border-color: var(--brand); background: var(--brand-soft); }
+  .choice .key {
+    flex: 0 0 auto; width: 36px; height: 36px; border-radius: 10px;
+    background: var(--brand-soft); color: var(--brand-ink);
+    display: inline-flex; align-items:center; justify-content:center; font-size: 18px; font-weight: 800;
+  }
+  .choice .mark { margin-left:auto; font-size: 24px; font-weight: 900; }
+  .choice.selected { border-color: var(--brand); border-width:2px; background: var(--brand-soft); }
+  .choice.selected .key { background: var(--brand); color:#fff; }
+  .choice.correct { border-color: var(--ok); border-width:2px; background: var(--ok-bg); color: var(--ok-ink); }
+  .choice.correct .key { background: var(--ok); color:#fff; }
+  .choice.correct .mark { color: var(--ok); }
+  .choice.wrong { border-color: var(--warn); border-width:2px; background: var(--warn-bg); color: var(--warn-ink); }
+  .choice.wrong .key { background: var(--warn); color:#fff; }
+  .choice.wrong .mark { color: var(--warn); }
+
+  .answerbox {
+    width: 100%; min-height: var(--tap-lg); font-size: 24px; font-weight: 800;
+    padding: 10px 18px; border: 1.5px solid var(--line); border-radius: var(--r);
+    color: var(--ink); font-family: inherit;
+  }
+  .answerbox:focus { border-color: var(--brand); border-width:2px; box-shadow: 0 0 0 4px var(--brand-soft); outline:none; }
+
+  .actions { margin-top: 22px; display:flex; gap:14px; flex-wrap: wrap; }
+
+  /* vùng phản hồi đúng/sai */
+  .feedback { margin-top: 20px; border-radius: var(--r-lg); padding: 18px 20px; border-left: 6px solid transparent; }
+  .feedback.ok  { background: var(--ok-bg);   border-left-color: var(--ok);   color: var(--ok-ink); }
+  .feedback.bad { background: var(--warn-bg); border-left-color: var(--warn); color: var(--warn-ink); }
+  .feedback .head { font-size: var(--fs-lg); font-weight: 800; display:flex; align-items:center; gap:12px; }
+  .feedback .head .ico {
+    flex:0 0 auto; width: 34px; height: 34px; border-radius: 999px; color:#fff;
+    display:inline-flex; align-items:center; justify-content:center; font-size: 20px; font-weight: 900;
+  }
+  .feedback.ok  .head .ico { background: var(--ok); }
+  .feedback.bad .head .ico { background: var(--warn); }
+  .feedback .reset { font-size: var(--fs-sm); color: var(--muted); margin: 6px 0 0 46px; }
+  .feedback .rightline { margin: 12px 0 0 46px; font-weight: 700; }
+  .rightchip {
+    display:inline-flex; align-items:center; gap:6px;
+    background:#fff; border:1.5px solid var(--ok); color: var(--ok-ink);
+    border-radius: var(--r-pill); padding: 4px 14px; font-weight: 800; margin-left:6px;
+  }
+  .disclose {
+    margin: 12px 0 0 46px; background: #fff; border: 1.5px solid var(--line); color: var(--ink-2);
+    border-radius: var(--r-pill); padding: 10px 18px; font-weight: 800; font-size: var(--fs-sm);
+    cursor: pointer; font-family: inherit; min-height: 44px;
+  }
+  .feedback .explain {
+    margin: 14px 0 0; font-size: var(--fs-body); line-height:1.55;
+    background: var(--card-soft); border:1px solid var(--line); border-radius: var(--r-sm); padding: 14px 16px;
+  }
+  .feedback .explain b { color: var(--ink); }
+
+  .footer-actions { margin-top:18px; }
+
+  .label-tag {
+    display:inline-block; font-size:13px; font-weight:800; letter-spacing:.5px; text-transform:uppercase;
+    color:#fff; background: var(--ink-2); border-radius: 999px; padding: 4px 12px; margin: 40px 0 8px;
+  }
+  .note { color: var(--muted); font-size: var(--fs-sm); margin: 4px 0 0; }
+</style>
+</head>
+<body>
+  <div class="app">
+
+    <!-- ===================== HEADER (chung mọi màn) ===================== -->
+    <header class="bar">
+      <button class="logo" aria-label="Về trang chủ Toán Vui Lớp 3">
+        <span class="mark" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="lg" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6D5DF6"/><stop offset="1" stop-color="#4F46E5"/>
+              </linearGradient>
+            </defs>
+            <rect width="28" height="28" rx="8" fill="url(#lg)"/>
+            <rect x="6" y="6" width="16" height="16" rx="3.5" fill="#fff" fill-opacity="0.18"/>
+            <circle cx="10" cy="10" r="2" fill="#fff"/>
+            <circle cx="18" cy="10" r="2" fill="#FFD66B"/>
+            <circle cx="10" cy="18" r="2" fill="#34C77B"/>
+            <circle cx="18" cy="18" r="2" fill="#EC4899"/>
+          </svg>
+        </span>
+        <span class="word">Toán Vui Lớp 3</span>
+      </button>
+      <span class="spacer"></span>
+      <span class="pill" title="Tổng sao"><span aria-hidden="true">⭐</span> 128</span>
+      <span class="pill fire" title="Chuỗi đúng hiện tại"><span aria-hidden="true">🔥</span> 5</span>
+      <button class="iconbtn" aria-label="Bật hoặc tắt âm thanh">🔈</button>
+    </header>
+
+    <!-- ============================= TRANG CHỦ ============================= -->
+    <span class="label-tag">Màn 1 — Trang chủ</span>
+
+    <div class="greet">
+      Xin chào nhà toán học nhí! 👋
+      <small>Hôm nay con muốn ôn gì nào?</small>
+    </div>
+
+    <div class="goal" aria-label="Mục tiêu hôm nay">
+      <div class="lbl">
+        <span>🎯 Mục tiêu hôm nay</span>
+        <span class="cnt">6/10 câu</span>
+      </div>
+      <div class="progress"><i style="width:60%"></i></div>
+    </div>
+
+    <div class="section-title">Chọn một chủ đề để luyện tập</div>
+    <div class="grid" role="list">
+      <button class="topic t1" role="listitem" aria-label="Luyện tập chủ đề Số đến 100 000">
+        <span class="num">1</span><span class="chip"><span class="emo" aria-hidden="true">🔢</span></span>
+        <span class="nm">Số đến 100 000</span>
+      </button>
+      <button class="topic t2" role="listitem" aria-label="Luyện tập chủ đề Cộng – Trừ">
+        <span class="num">2</span><span class="chip"><span class="emo" aria-hidden="true">➕</span></span>
+        <span class="nm">Cộng – Trừ</span>
+      </button>
+      <button class="topic t3" role="listitem" aria-label="Luyện tập chủ đề Nhân – Chia">
+        <span class="num">3</span><span class="chip"><span class="emo" aria-hidden="true">✖️</span></span>
+        <span class="nm">Nhân – Chia</span>
+      </button>
+      <button class="topic t4" role="listitem" aria-label="Luyện tập chủ đề Biểu thức và Tìm x">
+        <span class="num">4</span><span class="chip"><span class="emo" aria-hidden="true">🧮</span></span>
+        <span class="nm">Biểu thức &amp; Tìm x</span>
+      </button>
+      <button class="topic t5" role="listitem" aria-label="Luyện tập chủ đề Chia có dư">
+        <span class="num">5</span><span class="chip"><span class="emo" aria-hidden="true">➗</span></span>
+        <span class="nm">Chia có dư</span>
+      </button>
+      <button class="topic t6" role="listitem" aria-label="Luyện tập chủ đề Đo lường">
+        <span class="num">6</span><span class="chip"><span class="emo" aria-hidden="true">📏</span></span>
+        <span class="nm">Đo lường</span>
+      </button>
+      <button class="topic t7" role="listitem" aria-label="Luyện tập chủ đề Hình học">
+        <span class="num">7</span><span class="chip"><span class="emo" aria-hidden="true">📐</span></span>
+        <span class="nm">Hình học</span>
+      </button>
+      <button class="topic t8" role="listitem" aria-label="Luyện tập chủ đề Toán có lời văn">
+        <span class="num">8</span><span class="chip"><span class="emo" aria-hidden="true">📖</span></span>
+        <span class="nm">Toán có lời văn</span>
+      </button>
+      <button class="topic t9" role="listitem" aria-label="Luyện tập chủ đề Phát triển tư duy">
+        <span class="num">9</span><span class="chip"><span class="emo" aria-hidden="true">💡</span></span>
+        <span class="nm">Phát triển tư duy</span>
+      </button>
+    </div>
+
+    <div class="mixed-wrap">
+      <button class="btn big">▶ Ôn tập tổng hợp — 10 câu trộn</button>
+      <button class="btn ghost big">🏅 Huy hiệu của con</button>
+    </div>
+
+    <!-- ============== MÀN LÀM BÀI — TRẠNG THÁI ĐÚNG ============== -->
+    <span class="label-tag">Màn 2 — Làm bài · trạng thái ĐÚNG</span>
+
+    <div class="statusbar">
+      <span class="pill count">🌈 Ôn tập tổng hợp</span>
+      <span class="qnum">Câu 4/10</span>
+    </div>
+    <div class="setbar">
+      <div class="progress"><i style="width:30%"></i></div>
+    </div>
+
+    <div class="qcard">
+      <div class="illus" aria-hidden="true">✖️➗</div>
+      <div class="stem">Một hộp bút có <b>6</b> chiếc. Hỏi <b>4</b> hộp như thế có tất cả bao nhiêu chiếc bút?</div>
+
+      <div class="choices">
+        <button class="choice"><span class="key">1</span><span class="txt">18</span><span class="mark" aria-hidden="true"></span></button>
+        <button class="choice correct"><span class="key">2</span><span class="txt">24</span><span class="mark" aria-hidden="true">✓</span></button>
+        <button class="choice"><span class="key">3</span><span class="txt">10</span><span class="mark" aria-hidden="true"></span></button>
+        <button class="choice"><span class="key">4</span><span class="txt">28</span><span class="mark" aria-hidden="true"></span></button>
+      </div>
+
+      <div class="actions">
+        <button class="btn ok">Câu tiếp theo →</button>
+      </div>
+
+      <div class="feedback ok" aria-live="polite">
+        <div class="head"><span class="ico" aria-hidden="true">✓</span> Chính xác! Con giỏi quá! 🎉</div>
+        <div class="explain"><b>Cách làm:</b> Mỗi hộp có 6 chiếc bút, có 4 hộp nên lấy <b>6 × 4 = 24</b> chiếc bút.</div>
+      </div>
+    </div>
+
+    <!-- ============== MÀN LÀM BÀI — TRẠNG THÁI SAI ============== -->
+    <span class="label-tag">Màn 2 — Làm bài · trạng thái SAI (có đáp án + lời giải)</span>
+
+    <div class="statusbar">
+      <span class="pill count">📐 Hình học</span>
+      <span class="qnum">Luyện tập</span>
+    </div>
+
+    <div class="qcard">
+      <div class="illus" aria-hidden="true">📐</div>
+      <div class="stem">Một hình chữ nhật có chiều dài <b>8 cm</b>, chiều rộng <b>5 cm</b>. Diện tích hình chữ nhật đó là bao nhiêu <b>cm²</b>?</div>
+
+      <div class="choices">
+        <button class="choice"><span class="key">1</span><span class="txt">26 cm²</span><span class="mark" aria-hidden="true"></span></button>
+        <button class="choice wrong"><span class="key">2</span><span class="txt">13 cm²</span><span class="mark" aria-hidden="true">✗</span></button>
+        <button class="choice correct"><span class="key">3</span><span class="txt">40 cm²</span><span class="mark" aria-hidden="true">✓</span></button>
+        <button class="choice"><span class="key">4</span><span class="txt">45 cm²</span><span class="mark" aria-hidden="true"></span></button>
+      </div>
+
+      <div class="actions">
+        <button class="btn">Câu tiếp theo →</button>
+        <button class="btn ghost">Thử câu tương tự</button>
+      </div>
+
+      <div class="feedback bad" aria-live="polite">
+        <div class="head"><span class="ico" aria-hidden="true">✗</span> Suýt nữa rồi! Cùng xem cách làm đúng nhé 👇</div>
+        <div class="reset">Chuỗi đặt lại rồi, nhưng không sao đâu — bắt đầu chuỗi mới nào!</div>
+        <div class="rightline">Đáp án đúng: <span class="rightchip" aria-hidden="true">✓ 40 cm²</span></div>
+        <button class="disclose">Ẩn cách làm</button>
+        <div class="explain"><b>Cách làm:</b> Diện tích hình chữ nhật = chiều dài × chiều rộng = <b>8 × 5 = 40 (cm²)</b>. Lưu ý: 8 + 5 = 13 chỉ là nửa chu vi, không phải diện tích nhé!</div>
+      </div>
+    </div>
+
+    <div class="footer-actions">
+      <button class="btn ghost">🏠 Trang chủ</button>
+    </div>
+
+    <p class="note">Prototype tĩnh minh hoạ diện mạo — dùng đúng design tokens trong REDESIGN.md. Không có tài nguyên mạng nào được nạp.</p>
+
+  </div>
+</body>
+</html>

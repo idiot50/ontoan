@@ -1,0 +1,31 @@
+# === Sách giáo khoa scan (bản quyền) — KHÔNG đưa lên repo ===
+Huong_Dan_Hoc_Toan_*.pdf
+
+# === Phụ thuộc ===
+**/node_modules/
+
+# === Ảnh/PDF render tạm khi đọc PDF scan (scratch, có thể ~1GB) ===
+build/tiles/
+build/pages/
+build/crop/
+build/crops/
+build/hires/
+build/frag/
+build/smoke.pdf
+build/log_*.txt
+
+# === Artifact sinh ra khi chạy test ===
+web_toan_lop3/tests/.chrome-profile/
+web_toan_lop3/tests/ui.run.html
+
+# === Ảnh preview tạm (đặt tên _*.png) ===
+**/_*.png
+
+# === Cấu hình Claude Code cục bộ (chỉ giữ lại thư mục agents) ===
+.claude/*
+!.claude/agents/
+
+# === Hệ điều hành ===
+Thumbs.db
+.DS_Store
+desktop.ini

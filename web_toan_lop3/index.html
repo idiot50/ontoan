@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toán Vui Lớp 3</title>
+<style>
+  /* ============================ DESIGN TOKENS (REDESIGN.md §2) ============================ */
+  :root {
+    /* ---------- NỀN & BỀ MẶT ---------- */
+    --bg: #F6F7FC;                 /* nền trang: xám-xanh rất nhạt, dịu mắt */
+    --bg-grad: radial-gradient(1200px 600px at 50% -8%, #EEF2FF 0%, #F6F7FC 55%, #F4F6FB 100%);
+    --card: #FFFFFF;               /* bề mặt thẻ */
+    --card-soft: #FBFCFF;          /* thẻ phụ / vùng nền nhạt bên trong */
+    --surface-2: #F1F4FB;          /* track thanh tiến độ, nền chip nhạt */
+
+    /* ---------- CHỮ ---------- */
+    --ink: #1B2138;                /* chữ chính (đậm, tương phản cao) */
+    --ink-2: #3A4263;              /* chữ phụ đậm vừa */
+    --muted: #6A7390;              /* chữ mờ (>=4.5:1 trên nền sáng) */
+
+    /* ---------- THƯƠNG HIỆU / NHẤN ---------- */
+    --brand: #4F46E5;              /* indigo: nút chính, nhấn mạnh */
+    --brand-2: #6D5DF6;            /* indigo sáng hơn cho gradient */
+    --brand-dark: #3A33B8;         /* cạnh dưới nút / hover (ALIAS giữ tương thích) */
+    --brand-ink: #2E2A7A;          /* chữ thương hiệu trên nền nhạt */
+    --brand-soft: #EEF0FE;         /* nền nhạt thương hiệu (chip, hover) */
+    --accent: #EC4899;             /* hồng nhấn phụ */
+
+    /* ---------- TRẠNG THÁI ---------- */
+    --ok: #15935B; --ok-2: #34C77B; --ok-bg: #E6F8EE; --ok-border: #B6E8CC; --ok-ink: #0E6B42;
+    --ok-dark: #0E6B42;            /* ALIAS giữ tương thích CSS/JS cũ */
+    --warn: #D9612B; --warn-2: #F08A4B; --warn-bg: #FDF0E7; --warn-border: #F6CDAE; --warn-ink: #9A3D12;
+    --star: #F4B731; --star-bg: #FFF6DD; --star-border: #F3DDA0; --star-ink: #8A5A00;
+    --fire: #F2602E; --fire-bg: #FDEBE2; --fire-border: #F6C6AE; --fire-ink: #9A3D12;
+
+    /* ---------- ĐƯỜNG VIỀN ---------- */
+    --line: #E4E8F2;               /* viền mảnh mặc định */
+    --line-2: #D5DBEA;
+
+    /* ---------- GRADIENT DÙNG LẠI ---------- */
+    --grad-brand: linear-gradient(135deg, #6D5DF6 0%, #4F46E5 100%);
+    --grad-ok:    linear-gradient(135deg, #34C77B 0%, #15935B 100%);
+    --grad-goal:  linear-gradient(90deg, #6D5DF6 0%, #EC4899 100%);
+    --grad-star:  linear-gradient(135deg, #FFD66B 0%, #F4B731 100%);
+
+    /* ---------- BO GÓC ---------- */
+    --r-sm: 12px; --r: 16px; --r-lg: 22px; --r-xl: 28px; --r-pill: 999px;
+    --radius: 16px;                /* ALIAS GIỮ TƯƠNG THÍCH với CSS cũ */
+
+    /* ---------- ĐỔ BÓNG (nhiều tầng, nhẹ) ---------- */
+    --sh-sm: 0 1px 2px rgba(27,33,56,.06), 0 2px 6px rgba(27,33,56,.05);
+    --sh:    0 2px 6px rgba(27,33,56,.06), 0 10px 24px rgba(27,33,56,.07);
+    --sh-lg: 0 8px 20px rgba(27,33,56,.08), 0 18px 50px rgba(27,33,56,.10);
+    --sh-brand: 0 8px 22px rgba(79,70,229,.28);
+    --sh-ok:    0 8px 22px rgba(21,147,91,.26);
+
+    /* ---------- THANG CHỮ ---------- */
+    --fs-display: 34px; --fs-h2: 24px; --fs-stem: 27px; --fs-lg: 22px; --fs-body: 18px; --fs-sm: 16px;
+
+    /* ---------- KHOẢNG CÁCH ---------- */
+    --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+    --sp-5: 20px; --sp-6: 24px; --sp-7: 32px; --sp-8: 40px;
+
+    /* ---------- VÙNG CHẠM ---------- */
+    --tap: 48px; --tap-lg: 60px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);          /* fallback đặc nếu trình duyệt không hỗ trợ gradient */
+    background: var(--bg-grad);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: "Segoe UI", "Comic Sans MS", Arial, sans-serif;
+    font-size: var(--fs-body);
+    line-height: 1.5;
+  }
+
+  /* Ký hiệu toán × ÷ ² dùng Times New Roman dự phòng nếu font chính thiếu */
+  b, .stem { font-family: "Segoe UI", "Comic Sans MS", Arial, "Times New Roman", sans-serif; }
+
+  .app {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 20px 56px;
+  }
+
+  /* =============================== HEADER =============================== */
+  header.bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(246,247,252,.85);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    backdrop-filter: saturate(140%) blur(8px);
+    box-shadow: var(--sh-sm);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 6px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+    border-radius: 0 0 var(--r-lg) var(--r-lg);
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--brand-ink);            /* fallback nếu không hỗ trợ background-clip:text */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: var(--r-sm);
+    font-family: inherit;
+  }
+  /* chữ thương hiệu gradient — fallback color đã đặt trên .logo */
+  .logo .word {
+    background: var(--grad-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .logo .mark {
+    width: 40px; height: 40px; border-radius: 12px; flex: 0 0 auto;
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: var(--sh-brand);
+  }
+  .bar .spacer { flex: 1 1 auto; }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 800;
+    font-size: var(--fs-body);
+    padding: 8px 14px;
+    min-height: 40px;
+    border-radius: var(--r-pill);
+    background: var(--star-bg);
+    border: 1.5px solid var(--star-border);
+    color: var(--star-ink);
+    box-shadow: var(--sh-sm);
+    white-space: nowrap;
+  }
+  .pill.fire { background: var(--fire-bg); border-color: var(--fire-border); color: var(--fire-ink); }
+  .pill.count { background: var(--brand-soft); border-color: #D8DBFB; color: var(--brand-ink); }
+
+  /* Nút âm thanh */
+  .iconbtn {
+    min-width: 48px;
+    min-height: 48px;
+    border-radius: var(--r-sm);
+    border: 1.5px solid var(--line);
+    background: var(--card);
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: var(--sh-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+  }
+  .iconbtn:hover { background: var(--brand-soft); }
+
+  /* ============================= NÚT CHUNG ============================= */
+  button { font-family: inherit; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: var(--tap-lg);
+    padding: 12px 24px;
+    font-size: var(--fs-lg);
+    font-weight: 800;
+    color: #fff;
+    background: var(--grad-brand);
+    border: none;
+    border-radius: var(--r);
+    cursor: pointer;
+    box-shadow: var(--sh-brand);
+    transition: transform .06s ease, box-shadow .12s ease, filter .12s ease;
+  }
+  .btn:hover { filter: brightness(1.06); }
+  .btn:active { transform: translateY(1px); box-shadow: 0 4px 12px rgba(79,70,229,.22); }
+  .btn:disabled {
+    background: var(--surface-2);
+    color: var(--muted);
+    box-shadow: none;
+    cursor: not-allowed;
+    filter: none;
+  }
+  .btn.ghost {
+    background: #fff;
+    color: var(--brand);
+    border: 1.5px solid #C9CCF7;
+    box-shadow: var(--sh-sm);
+  }
+  .btn.ghost:hover { background: var(--brand-soft); filter: none; }
+  .btn.big { width: 100%; font-size: var(--fs-lg); min-height: 64px; }
+  .btn.ok { background: var(--grad-ok); box-shadow: var(--sh-ok); }
+
+  /* focus-visible rõ ràng cho điều hướng bàn phím */
+  :focus-visible {
+    outline: 4px solid var(--star);
+    outline-offset: 2px;
+  }
+
+  /* =============================== TRANG CHỦ =============================== */
+  .greet { font-size: var(--fs-display); font-weight: 800; margin: 22px 0 6px; letter-spacing: -.5px; }
+  .greet small { display:block; font-size: var(--fs-body); font-weight:500; color: var(--muted); margin-top:6px; }
+
+  .goal {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 18px 20px;
+    margin: 18px 0;
+    box-shadow: var(--sh);
+  }
+  .goal .lbl { font-weight: 800; margin-bottom: 12px; display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; font-size: var(--fs-lg); }
+  .goal .lbl #goalText { color: var(--brand-ink); }
+  .progress {
+    height: 14px;
+    background: var(--surface-2);
+    border-radius: var(--r-pill);
+    overflow: hidden;
+  }
+  .progress > i {
+    display: block;
+    height: 100%;
+    background: var(--grad-goal);
+    width: 0%;
+    border-radius: var(--r-pill);
+    box-shadow: inset 0 2px 3px rgba(255,255,255,.45);
+    transition: width .4s ease;
+  }
+  .goal-done {
+    margin-top: 12px;
+    background: var(--ok-bg);
+    color: var(--ok-ink);
+    border: 1.5px solid var(--ok-border);
+    border-radius: var(--r-sm);
+    padding: 10px 14px;
+    font-weight: 800;
+  }
+
+  .section-title { font-size: var(--fs-h2); font-weight: 800; margin: 26px 0 12px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 520px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  .topic {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 18px 12px 16px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-height: 138px;
+    box-shadow: var(--sh);
+    transition: transform .08s ease, box-shadow .15s ease, border-color .15s ease;
+    font-family: inherit;
+    color: var(--ink);
+    position: relative;
+  }
+  .topic:hover { transform: translateY(-4px); border-color: #C9CCF7; box-shadow: var(--sh-lg); }
+  .topic .num {
+    position: absolute; top: 10px; left: 10px;
+    width: 24px; height: 24px; border-radius: 999px;
+    background: var(--surface-2); color: var(--muted); font-weight: 800; font-size: 13px;
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  /* icon-chip: emoji trong khối bo tròn nền pastel theo chủ đề */
+  .topic .chip {
+    width: 58px; height: 58px; border-radius: 18px;
+    display:inline-flex; align-items:center; justify-content:center;
+    box-shadow: var(--sh-sm);
+  }
+  .topic .emo { font-size: 32px; line-height: 1; }
+  /* fallback: nếu JS chưa bọc .chip thì emoji vẫn to, có nền gradient brand chung */
+  .topic > .emo {
+    width: 58px; height: 58px; border-radius: 18px;
+    background: var(--brand-soft);
+    display:inline-flex; align-items:center; justify-content:center;
+    box-shadow: var(--sh-sm);
+  }
+  .topic .nm { font-size: var(--fs-body); font-weight: 800; line-height: 1.25; color: var(--ink-2); }
+  /* màu chip pastel theo chủ đề (REDESIGN §3.3) */
+  .topic.t1 .chip { background:#EEF0FE; } .topic.t2 .chip { background:#E6F8EE; }
+  .topic.t3 .chip { background:#FDECEF; } .topic.t4 .chip { background:#FFF4DC; }
+  .topic.t5 .chip { background:#E9F6FE; } .topic.t6 .chip { background:#EAF7EC; }
+  .topic.t7 .chip { background:#F0ECFE; } .topic.t8 .chip { background:#FFEFE6; }
+  .topic.t9 .chip { background:#FCEFFB; }
+
+  .mixed-wrap { margin: 26px 0 8px; display:flex; flex-direction:column; gap:14px; }
+
+  /* ============================== MÀN LÀM BÀI ============================== */
+  .statusbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 14px 0 12px;
+    flex-wrap: wrap;
+  }
+  .statusbar .qnum { margin-left:auto; font-weight:800; color: var(--muted); }
+  .setbar { margin: 2px 0 16px; }
+
+  .qcard {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r-xl);
+    padding: 28px 26px;
+    box-shadow: var(--sh-lg);
+  }
+  .stem { font-size: var(--fs-stem); font-weight: 600; line-height: 1.45; margin-bottom: 22px; }
+  .stem b { color: var(--brand-ink); }
+
+  /* hình minh hoạ nhỏ (vẽ bằng emoji/CSS) */
+  .illus { font-size: 30px; text-align:center; margin: 0 0 12px; }
+
+  .choices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .choices.single { grid-template-columns: 1fr; }
+  @media (max-width: 520px) { .choices { grid-template-columns: 1fr; } }
+
+  .choice {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: var(--tap-lg);
+    padding: 12px 18px;
+    font-size: var(--fs-lg);
+    font-weight: 800;
+    text-align: left;
+    background: #fff;
+    color: var(--ink);
+    border: 1.5px solid var(--line);
+    border-radius: var(--r);
+    cursor: pointer;
+    box-shadow: var(--sh-sm);
+    font-family: inherit;
+    transition: border-color .1s ease, background .1s ease, box-shadow .1s ease;
+  }
+  .choice:hover { border-color: var(--brand); background: var(--brand-soft); }
+  .choice .key {
+    flex: 0 0 auto;
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--brand-soft);
+    color: var(--brand-ink);
+    display: inline-flex; align-items:center; justify-content:center;
+    font-size: 18px; font-weight: 800;
+  }
+  .choice .mark { margin-left:auto; font-size: 24px; font-weight: 900; }
+  .choice.selected { border-color: var(--brand); border-width:2px; background: var(--brand-soft); }
+  .choice.selected .key { background: var(--brand); color:#fff; }
+  .choice.correct { border-color: var(--ok); border-width:2px; background: var(--ok-bg); color: var(--ok-ink); }
+  .choice.correct .key { background: var(--ok); color:#fff; }
+  .choice.correct .mark { color: var(--ok); }
+  .choice.wrong { border-color: var(--warn); border-width:2px; background: var(--warn-bg); color: var(--warn-ink); }
+  .choice.wrong .key { background: var(--warn); color:#fff; }
+  .choice.wrong .mark { color: var(--warn); }
+  .choice:disabled { cursor: default; }
+
+  .inputrow { display:flex; gap: 12px; flex-wrap: wrap; align-items:center; }
+  .answerbox {
+    flex: 1 1 240px;
+    width: 100%;
+    min-height: var(--tap-lg);
+    font-size: 24px;
+    font-weight: 800;
+    padding: 10px 18px;
+    border: 1.5px solid var(--line);
+    border-radius: var(--r);
+    color: var(--ink);
+    font-family: inherit;
+  }
+  .answerbox:focus {
+    border-color: var(--brand);
+    border-width: 2px;
+    background: #fff;
+    box-shadow: 0 0 0 4px var(--brand-soft);
+    outline: none;
+  }
+  .hint { font-size: var(--fs-sm); color: var(--muted); margin-top: 10px; }
+
+  .actions { margin-top: 22px; display:flex; gap:14px; flex-wrap: wrap; }
+
+  /* vùng phản hồi đúng/sai (thanh màu trái 6px để phân biệt kể cả khi bỏ màu) */
+  .feedback {
+    margin-top: 20px;
+    border-radius: var(--r-lg);
+    padding: 18px 20px;
+    border-left: 6px solid transparent;
+    display:none;
+  }
+  .feedback.show { display:block; }
+  .feedback.ok  { background: var(--ok-bg);   border-left-color: var(--ok);   color: var(--ok-ink); }
+  .feedback.bad { background: var(--warn-bg); border-left-color: var(--warn); color: var(--warn-ink); }
+  .feedback .head { font-size: var(--fs-lg); font-weight: 800; display:flex; align-items:center; gap:12px; }
+  /* viên tròn trạng thái ✓ / ✗ trang trí (giữ ký tự JS để aria-live đọc nguyên câu) */
+  .feedback .head::before {
+    content: ''; flex:0 0 auto; width: 34px; height: 34px; border-radius: 999px; color:#fff;
+    display:inline-flex; align-items:center; justify-content:center; font-size: 20px; font-weight: 900;
+  }
+  .feedback.ok  .head::before { content: '✓'; background: var(--ok); }
+  .feedback.bad .head::before { content: '✗'; background: var(--warn); }
+  .feedback .reset { font-size: var(--fs-sm); color: var(--muted); margin: 6px 0 0 46px; }
+  .feedback .rightline { margin: 12px 0 0 46px; font-weight: 700; }
+  .rightchip, .feedback .rightans {
+    display:inline-flex; align-items:center; gap:6px;
+    background:#fff; border:1.5px solid var(--ok); color: var(--ok-ink);
+    border-radius: var(--r-pill); padding: 4px 14px; font-weight: 800; margin-left:6px;
+  }
+  .feedback .explain {
+    margin: 14px 0 0;
+    font-size: var(--fs-body);
+    line-height:1.55;
+    background: var(--card-soft);
+    border:1px solid var(--line);
+    border-radius: var(--r-sm);
+    padding: 14px 16px;
+  }
+  .feedback .explain b { color: var(--ink); }
+  .disclose {
+    margin: 12px 0 0 46px;
+    background: #fff;
+    border: 1.5px solid var(--line);
+    color: var(--ink-2);
+    border-radius: var(--r-pill);
+    padding: 10px 18px;
+    font-weight: 800;
+    font-size: var(--fs-sm);
+    cursor: pointer;
+    font-family: inherit;
+    min-height: 44px;
+  }
+
+  /* ============================== MÀN KẾT QUẢ ============================== */
+  .result { text-align: center; }
+  .result .emoji {
+    font-size: 64px; line-height: 1;
+    width: 110px; height: 110px; margin: 0 auto 8px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 999px;
+    background: radial-gradient(circle at 50% 35%, #EEF0FE 0%, #F6F7FC 70%);
+    box-shadow: var(--sh-sm);
+  }
+  .result .msg { font-size: var(--fs-h2); font-weight: 800; margin: 6px 0; }
+  .result .score {
+    display: inline-flex; align-items:center; justify-content:center; gap:8px;
+    font-size: var(--fs-lg); font-weight: 800; margin: 10px 6px;
+    background: var(--ok-bg); border: 1.5px solid var(--ok-border); color: var(--ok-ink);
+    border-radius: var(--r-pill); padding: 8px 18px;
+  }
+  .result .rewards {
+    display: inline-flex; align-items:center; justify-content:center; gap:8px;
+    font-size: var(--fs-body); font-weight: 700; margin: 10px 6px 16px;
+    background: var(--star-bg); border: 1.5px solid var(--star-border); color: var(--star-ink);
+    border-radius: var(--r-pill); padding: 8px 18px;
+  }
+  .badge-new, .suggest {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 14px 18px;
+    margin: 12px auto;
+    max-width: 540px;
+    font-size: var(--fs-body);
+    box-shadow: var(--sh-sm);
+  }
+  .badge-new { background: var(--star-bg); border-color: var(--star-border); color: var(--star-ink); font-weight:800; }
+  .suggest { background: var(--brand-soft); border-color:#D8DBFB; color: var(--brand-ink); }
+
+  /* ============================= MÀN HUY HIỆU ============================= */
+  .badgegrid { display:grid; grid-template-columns: repeat(2,1fr); gap:14px; }
+  @media (max-width: 520px) { .badgegrid { grid-template-columns: 1fr; } }
+  .bcard {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 16px;
+    display:flex; gap:14px; align-items:flex-start;
+    box-shadow: var(--sh);
+  }
+  .bcard .bemo {
+    flex: 0 0 auto;
+    font-size: 30px; line-height:1;
+    width: 56px; height: 56px; border-radius: 16px;
+    display:inline-flex; align-items:center; justify-content:center;
+    background: var(--grad-star);
+    box-shadow: var(--sh-sm);
+    position: relative;
+  }
+  .bcard.locked { opacity: 1; }
+  .bcard.locked .bemo { background: var(--surface-2); filter: grayscale(1); opacity: .8; }
+  /* ổ khoá nhỏ cho huy hiệu chưa đạt (REDESIGN §6.2-D — chỉ CSS, không sửa JS) */
+  .bcard.locked .bemo::after {
+    content: '🔒';
+    position: absolute; right: -6px; bottom: -6px;
+    font-size: 16px; filter: none;
+    background: #fff; border: 1.5px solid var(--line); border-radius: 999px;
+    width: 24px; height: 24px; display:flex; align-items:center; justify-content:center;
+    box-shadow: var(--sh-sm);
+  }
+  .bcard .bname { font-weight:800; font-size: var(--fs-body); color: var(--ink); }
+  .bcard .bcond { font-size: var(--fs-sm); color: var(--muted); margin-top:4px; }
+  .bcard .got { color: var(--ok-ink); font-weight:800; font-size: var(--fs-sm); margin-top:4px; }
+
+  /* ============================ NHẮC NGHỈ MẮT ============================ */
+  .restnote {
+    margin: 14px 0;
+    background: var(--star-bg);
+    border: 1.5px solid var(--star-border);
+    color: var(--star-ink);
+    border-radius: var(--r-lg);
+    padding: 12px 16px;
+    font-weight: 800;
+    box-shadow: var(--sh-sm);
+    display: none;
+  }
+  .restnote.show { display:block; }
+
+  /* ============================== CONFETTI ============================== */
+  #confetti {
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 50;
+  }
+
+  /* phụ trợ */
+  .hidden { display: none !important; }
+  .visually-hidden {
+    position:absolute; width:1px; height:1px; overflow:hidden;
+    clip: rect(0 0 0 0); white-space:nowrap;
+  }
+
+  /* Tôn trọng prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <div class="app">
+    <!-- ========================= HEADER (luôn hiển thị) ========================= -->
+    <header class="bar">
+      <button class="logo" id="homeBtn" aria-label="Về trang chủ Toán Vui Lớp 3">
+        <span class="mark" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="lgMark" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6D5DF6"/><stop offset="1" stop-color="#4F46E5"/>
+              </linearGradient>
+            </defs>
+            <rect width="28" height="28" rx="8" fill="url(#lgMark)"/>
+            <rect x="6" y="6" width="16" height="16" rx="3.5" fill="#fff" fill-opacity="0.18"/>
+            <circle cx="10" cy="10" r="2" fill="#fff"/>
+            <circle cx="18" cy="10" r="2" fill="#FFD66B"/>
+            <circle cx="10" cy="18" r="2" fill="#34C77B"/>
+            <circle cx="18" cy="18" r="2" fill="#EC4899"/>
+          </svg>
+        </span>
+        <span class="word">Toán Vui Lớp 3</span>
+      </button>
+      <span class="spacer"></span>
+      <span class="pill count hidden" id="qnumPill" aria-live="off"></span>
+      <span class="pill" id="starPill" title="Tổng sao"><span aria-hidden="true">⭐</span> <span id="starTotal">0</span></span>
+      <span class="pill fire" id="firePill" title="Chuỗi đúng hiện tại"><span aria-hidden="true">🔥</span> <span id="streakNow">0</span></span>
+      <button class="iconbtn" id="soundBtn" aria-pressed="true" title="Bật/tắt âm thanh" aria-label="Bật hoặc tắt âm thanh">🔈</button>
+    </header>
+
+    <!-- ============================= TRANG CHỦ ============================= -->
+    <section id="screen-home">
+      <div class="greet">
+        Xin chào nhà toán học nhí! 👋
+        <small>Hôm nay con muốn ôn gì nào?</small>
+      </div>
+
+      <div class="goal" aria-label="Mục tiêu hôm nay">
+        <div class="lbl">
+          <span>🎯 Mục tiêu hôm nay</span>
+          <span id="goalText">0/10 câu</span>
+        </div>
+        <div class="progress"><i id="goalBar" style="width:0%"></i></div>
+        <div class="goal-done hidden" id="goalDone">🌟 Hôm nay con đã đạt mục tiêu! Chơi thêm nếu con thích 😊</div>
+      </div>
+
+      <div class="section-title">Chọn một chủ đề để luyện tập</div>
+      <div class="grid" id="topicGrid" role="list"></div>
+
+      <div class="mixed-wrap">
+        <button class="btn big" id="mixedBtn">▶ Ôn tập tổng hợp — 10 câu trộn</button>
+        <button class="btn ghost big" id="badgesBtn">🏅 Huy hiệu của con</button>
+      </div>
+    </section>
+
+    <!-- ============================= MÀN LÀM BÀI ============================= -->
+    <section id="screen-quiz" class="hidden">
+      <div class="statusbar">
+        <span class="pill count" id="topicLabel"></span>
+        <span class="qnum" id="qProgressText"></span>
+      </div>
+      <div class="setbar hidden" id="setbar">
+        <div class="progress"><i id="setBar" style="width:0%"></i></div>
+      </div>
+
+      <div class="restnote" id="restNote" role="status">
+        👀 Con nghỉ mắt 20 giây nhé, nhìn ra xa cho đỡ mỏi mắt nha!
+      </div>
+
+      <div class="qcard">
+        <div class="illus hidden" id="illus" aria-hidden="true"></div>
+        <div class="stem" id="stem"></div>
+
+        <div class="choices" id="choices"></div>
+
+        <div class="inputrow hidden" id="inputRow">
+          <input class="answerbox" id="answerBox" type="text" inputmode="text"
+                 autocomplete="off" autocorrect="off" spellcheck="false"
+                 aria-label="Nhập câu trả lời của con">
+        </div>
+        <div class="hint hidden" id="inputHint"></div>
+
+        <div class="actions">
+          <button class="btn" id="checkBtn" disabled>✅ Kiểm tra</button>
+          <button class="btn hidden" id="nextBtn">Câu tiếp theo →</button>
+          <button class="btn ghost hidden" id="similarBtn">Thử câu tương tự</button>
+        </div>
+
+        <div class="feedback" id="feedback" aria-live="polite"></div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <button class="btn ghost" id="quizHomeBtn">🏠 Trang chủ</button>
+      </div>
+    </section>
+
+    <!-- ============================= MÀN KẾT QUẢ ============================= -->
+    <section id="screen-result" class="hidden">
+      <div class="qcard result" aria-live="polite">
+        <div class="emoji" id="resEmoji" aria-hidden="true">🎉</div>
+        <div class="msg" id="resMsg"></div>
+        <div class="score" id="resScore"></div>
+        <div class="rewards" id="resRewards"></div>
+        <div id="resBadges"></div>
+        <div class="suggest hidden" id="resSuggest"></div>
+        <div class="actions" style="justify-content:center;">
+          <button class="btn" id="againBtn">🔁 Làm bộ mới</button>
+          <button class="btn ghost" id="resHomeBtn">🏠 Về trang chủ</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= MÀN HUY HIỆU ============================= -->
+    <section id="screen-badges" class="hidden">
+      <div class="section-title">🏅 Huy hiệu của con</div>
+      <p style="color:var(--muted); margin-top:-4px;">Cứ luyện đều mỗi ngày là con sẽ sưu tầm đủ nhé!</p>
+      <div class="badgegrid" id="badgeGrid"></div>
+      <div style="margin-top:18px;">
+        <button class="btn ghost" id="badgesHomeBtn">🏠 Trang chủ</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Engine: classic script, chạy qua file:// -->
+  <script src="engine.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    /* ======================================================================
+     *  TIỆN ÍCH NHỎ
+     * ==================================================================== */
+    var $ = function (id) { return document.getElementById(id); };
+    function pickOne(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+    var reduceMotion = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ======================================================================
+     *  LƯU TRỮ (localStorage chịu lỗi) — nếu hỏng/trống thì dùng mặc định
+     * ==================================================================== */
+    var STORE_KEY = 'toanvui_l3_v1';
+
+    function defaultState() {
+      return {
+        stars: 0,              // tổng sao (chỉ cộng)
+        bestStreak: 0,         // kỷ lục chuỗi dài nhất
+        topicCorrect: {},      // {topicId: số câu đúng cộng dồn}
+        topicSeen: {},         // {topicId: đã từng đúng ít nhất 1 câu}
+        bestRunStreakByTopic: {}, // {topicId: chuỗi đúng dài nhất trong cùng chủ đề}
+        badges: {},            // {badgeId: true}
+        goalDays: 0,           // số ngày đạt mục tiêu (cộng dồn)
+        today: { date: '', count: 0, rewarded: false }, // tiến độ hôm nay
+        bestQuizScore: 0       // điểm cao nhất 1 bộ ôn tập (để xét huy hiệu)
+      };
+    }
+
+    function todayStr() {
+      var d = new Date();
+      return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+    }
+
+    var state;
+    function loadState() {
+      var s = defaultState();
+      try {
+        var raw = localStorage.getItem(STORE_KEY);
+        if (raw) {
+          var parsed = JSON.parse(raw);
+          if (parsed && typeof parsed === 'object') {
+            // Gộp an toàn từng trường, giữ mặc định cho trường thiếu/hỏng.
+            for (var k in s) {
+              if (parsed[k] !== undefined && parsed[k] !== null) s[k] = parsed[k];
+            }
+          }
+        }
+      } catch (e) { /* localStorage hỏng/trống -> dùng mặc định, không vỡ app */ }
+      // Bảo đảm các object con tồn tại.
+      s.topicCorrect = s.topicCorrect || {};
+      s.topicSeen = s.topicSeen || {};
+      s.bestRunStreakByTopic = s.bestRunStreakByTopic || {};
+      s.badges = s.badges || {};
+      if (!s.today || typeof s.today !== 'object') s.today = { date: '', count: 0, rewarded: false };
+      // Reset đếm ngày nếu sang ngày mới.
+      if (s.today.date !== todayStr()) {
+        s.today = { date: todayStr(), count: 0, rewarded: false };
+      }
+      state = s;
+    }
+    function saveState() {
+      try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+      catch (e) { /* bỏ qua nếu không lưu được */ }
+    }
+
+    /* ======================================================================
+     *  HUY HIỆU — định nghĩa theo DESIGN.md, map đúng ID engine
+     * ==================================================================== */
+    var DAILY_GOAL = 10;
+
+    var BADGES = [
+      { id: 'b_so',    emoji: '🔢', name: 'Chúa tể những con số', cond: 'Đúng 15 câu chủ đề Số đến 100 000',
+        test: function (s) { return (s.topicCorrect['so-100000'] || 0) >= 15; } },
+      { id: 'b_ct',    emoji: '➕', name: 'Cao thủ cộng trừ', cond: 'Đúng 8 câu liên tiếp ở Cộng – Trừ',
+        test: function (s) { return (s.bestRunStreakByTopic['cong-tru'] || 0) >= 8; } },
+      { id: 'b_nc',    emoji: '✖️', name: 'Vua bảng nhân', cond: 'Đúng 20 câu chủ đề Nhân – Chia',
+        test: function (s) { return (s.topicCorrect['nhan-chia'] || 0) >= 20; } },
+      { id: 'b_bt',    emoji: '🧩', name: 'Thám tử ẩn số', cond: 'Đúng 12 câu chủ đề Biểu thức & Tìm x',
+        test: function (s) { return (s.topicCorrect['bieu-thuc'] || 0) >= 12; } },
+      { id: 'b_cd',    emoji: '➗', name: 'Bậc thầy chia dư', cond: 'Đúng 10 câu chủ đề Chia có dư',
+        test: function (s) { return (s.topicCorrect['chia-du'] || 0) >= 10; } },
+      { id: 'b_dl',    emoji: '📏', name: 'Thợ đo lường tài ba', cond: 'Đúng 12 câu chủ đề Đo lường',
+        test: function (s) { return (s.topicCorrect['do-luong'] || 0) >= 12; } },
+      { id: 'b_hh',    emoji: '📐', name: 'Kiến trúc sư nhí', cond: 'Đúng 10 câu chủ đề Hình học',
+        test: function (s) { return (s.topicCorrect['hinh-hoc'] || 0) >= 10; } },
+      { id: 'b_lv',    emoji: '📖', name: 'Nhà giải đố lời văn', cond: 'Đúng 10 câu Toán có lời văn',
+        test: function (s) { return (s.topicCorrect['loi-van'] || 0) >= 10; } },
+      { id: 'b_td',    emoji: '💡', name: 'Nhà thông thái', cond: 'Đúng 8 câu Phát triển tư duy',
+        test: function (s) { return (s.topicCorrect['tu-duy'] || 0) >= 8; } },
+      { id: 'b_all',   emoji: '🌈', name: 'Đủ chín mạch', cond: 'Có ít nhất 1 câu đúng ở cả 9 chủ đề',
+        test: function (s) {
+          for (var i = 0; i < QuestionEngine.topics.length; i++) {
+            if (!s.topicSeen[QuestionEngine.topics[i].id]) return false;
+          }
+          return true;
+        } },
+      { id: 'b_habit', emoji: '📅', name: 'Chăm chỉ mỗi ngày', cond: 'Đạt mục tiêu ngày 5 ngày',
+        test: function (s) { return (s.goalDays || 0) >= 5; } },
+      { id: 'b_champ', emoji: '🎯', name: 'Nhà vô địch ôn tập', cond: 'Đúng 9/10 trở lên trong 1 bộ Ôn tập',
+        test: function (s) { return (s.bestQuizScore || 0) >= 9; } }
+    ];
+
+    // Kiểm tra & cấp huy hiệu mới; trả về mảng huy hiệu vừa đạt.
+    function checkBadges() {
+      var earned = [];
+      for (var i = 0; i < BADGES.length; i++) {
+        var b = BADGES[i];
+        if (!state.badges[b.id] && b.test(state)) {
+          state.badges[b.id] = true;
+          earned.push(b);
+        }
+      }
+      return earned;
+    }
+
+    /* ======================================================================
+     *  ÂM THANH (Web Audio, không file ngoài) + nút bật/tắt
+     * ==================================================================== */
+    var soundOn = true;
+    try {
+      var sv = localStorage.getItem('toanvui_sound');
+      if (sv === 'off') soundOn = false;
+    } catch (e) {}
+    var audioCtx = null;
+    function ensureAudio() {
+      if (!audioCtx) {
+        try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+        catch (e) { audioCtx = null; }
+      }
+      return audioCtx;
+    }
+    // Phát một chuỗi nốt nhẹ nhàng.
+    function playTones(seq) {
+      if (!soundOn) return;
+      var ctx = ensureAudio();
+      if (!ctx) return;
+      var t = ctx.currentTime;
+      seq.forEach(function (n) {
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.type = n.type || 'sine';
+        osc.frequency.value = n.f;
+        gain.gain.setValueAtTime(0.0001, t + n.at);
+        gain.gain.exponentialRampToValueAtTime(n.vol || 0.18, t + n.at + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + n.at + (n.dur || 0.15));
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(t + n.at);
+        osc.stop(t + n.at + (n.dur || 0.15) + 0.02);
+      });
+    }
+    function soundCorrect() { playTones([{ f: 784, at: 0, dur: 0.12 }, { f: 1047, at: 0.10, dur: 0.18 }]); }
+    function soundWrong()   { playTones([{ f: 311, at: 0, dur: 0.18, type: 'triangle', vol: 0.14 }]); }
+    function soundFanfare() {
+      playTones([
+        { f: 523, at: 0, dur: 0.12 }, { f: 659, at: 0.12, dur: 0.12 },
+        { f: 784, at: 0.24, dur: 0.12 }, { f: 1047, at: 0.36, dur: 0.26 }
+      ]);
+    }
+    function updateSoundBtn() {
+      var b = $('soundBtn');
+      b.textContent = soundOn ? '🔈' : '🔇';
+      b.setAttribute('aria-pressed', soundOn ? 'true' : 'false');
+      b.title = soundOn ? 'Âm thanh đang BẬT' : 'Âm thanh đang TẮT';
+    }
+    $('soundBtn').addEventListener('click', function () {
+      soundOn = !soundOn;
+      try { localStorage.setItem('toanvui_sound', soundOn ? 'on' : 'off'); } catch (e) {}
+      if (soundOn) { ensureAudio(); soundCorrect(); }
+      updateSoundBtn();
+    });
+
+    /* ======================================================================
+     *  CONFETTI (canvas, ngắn, không che nút) — tôn trọng reduce-motion
+     * ==================================================================== */
+    var cvs = $('confetti');
+    var cctx = cvs.getContext('2d');
+    function sizeCanvas() { cvs.width = window.innerWidth; cvs.height = window.innerHeight; }
+    sizeCanvas();
+    window.addEventListener('resize', sizeCanvas);
+
+    function confetti(amount) {
+      if (reduceMotion) return;          // tắt chuyển động lớn nếu bé/HĐH yêu cầu
+      amount = amount || 60;
+      var colors = ['#2D7DD2', '#2E9E5B', '#F5B82E', '#E8743B', '#9B5DE5', '#F26430'];
+      var parts = [];
+      for (var i = 0; i < amount; i++) {
+        parts.push({
+          x: cvs.width / 2 + (Math.random() - 0.5) * 200,
+          y: cvs.height * 0.28,
+          vx: (Math.random() - 0.5) * 7,
+          vy: Math.random() * -7 - 3,
+          g: 0.22 + Math.random() * 0.1,
+          size: 6 + Math.random() * 7,
+          color: colors[i % colors.length],
+          rot: Math.random() * 6.28,
+          vr: (Math.random() - 0.5) * 0.3,
+          life: 0
+        });
+      }
+      var start = performance.now();
+      function frame(now) {
+        var elapsed = now - start;
+        cctx.clearRect(0, 0, cvs.width, cvs.height);
+        for (var i = 0; i < parts.length; i++) {
+          var p = parts[i];
+          p.vy += p.g; p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+          cctx.save();
+          cctx.translate(p.x, p.y);
+          cctx.rotate(p.rot);
+          cctx.fillStyle = p.color;
+          cctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+          cctx.restore();
+        }
+        if (elapsed < 1400) requestAnimationFrame(frame);
+        else cctx.clearRect(0, 0, cvs.width, cvs.height);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    /* ======================================================================
+     *  ĐIỀU HƯỚNG MÀN HÌNH
+     * ==================================================================== */
+    var SCREENS = ['screen-home', 'screen-quiz', 'screen-result', 'screen-badges'];
+    function show(id) {
+      SCREENS.forEach(function (s) { $(s).classList.toggle('hidden', s !== id); });
+      window.scrollTo(0, 0);
+    }
+
+    /* ======================================================================
+     *  CẬP NHẬT HEADER & TRANG CHỦ
+     * ==================================================================== */
+    function refreshHeader() {
+      $('starTotal').textContent = state.stars;
+      $('streakNow').textContent = session.streak;
+    }
+    function refreshHome() {
+      var c = Math.min(state.today.count, DAILY_GOAL);
+      $('goalText').textContent = state.today.count + '/' + DAILY_GOAL + ' câu';
+      $('goalBar').style.width = (c / DAILY_GOAL * 100) + '%';
+      $('goalDone').classList.toggle('hidden', state.today.count < DAILY_GOAL);
+      refreshHeader();
+    }
+
+    function buildTopicGrid() {
+      var grid = $('topicGrid');
+      grid.innerHTML = '';
+      QuestionEngine.topics.forEach(function (t, i) {
+        var b = document.createElement('button');
+        b.className = 'topic t' + (i + 1);   // t1..t9: màu icon-chip pastel theo chủ đề
+        b.setAttribute('role', 'listitem');
+        b.setAttribute('aria-label', 'Luyện tập chủ đề ' + t.name);
+        b.innerHTML = '<span class="num">' + (i + 1) + '</span>' +
+                      '<span class="chip"><span class="emo" aria-hidden="true">' + t.emoji + '</span></span>' +
+                      '<span class="nm">' + t.name + '</span>';
+        b.addEventListener('click', function () { startPractice(t.id); });
+        grid.appendChild(b);
+      });
+    }
+
+    function buildBadgeGrid() {
+      var grid = $('badgeGrid');
+      grid.innerHTML = '';
+      BADGES.forEach(function (b) {
+        var got = !!state.badges[b.id];
+        var el = document.createElement('div');
+        el.className = 'bcard' + (got ? '' : ' locked');
+        el.innerHTML =
+          '<div class="bemo" aria-hidden="true">' + b.emoji + '</div>' +
+          '<div><div class="bname">' + b.name + '</div>' +
+          (got ? '<div class="got">✓ Đã đạt!</div>'
+               : '<div class="bcond">Làm thế nào: ' + b.cond + '</div>') +
+          '</div>';
+        grid.appendChild(el);
+      });
+    }
+
+    /* ======================================================================
+     *  PHIÊN LÀM BÀI
+     * ==================================================================== */
+    var session = {
+      mode: 'practice',   // 'practice' | 'mixed'
+      topicId: null,
+      streak: 0,          // chuỗi đúng hiện tại (xuyên suốt phiên dùng app)
+      runStreakByTopic: {}, // chuỗi đúng liên tiếp theo chủ đề (cho huy hiệu cộng trừ)
+      // dữ liệu cho chế độ mixed
+      queue: [],
+      index: 0,
+      total: 0,
+      correctCount: 0,
+      wrongByTopic: {},
+      bestStreakThisSet: 0
+    };
+
+    var currentQ = null;     // câu hỏi hiện tại
+    var selectedIndex = -1;  // index lựa chọn mc đang chọn
+    var answered = false;    // đã chấm chưa
+    var usedHint = false;    // có mở "xem cách làm" trước khi đi tiếp không (để xét +1 sao)
+
+    function startPractice(topicId) {
+      session.mode = 'practice';
+      session.topicId = topicId;
+      session.queue = [];
+      session.index = 0;
+      session.total = 0;
+      show('screen-quiz');
+      $('setbar').classList.add('hidden');
+      $('qnumPill').classList.add('hidden');
+      var t = topicById(topicId);
+      $('topicLabel').textContent = t.emoji + ' ' + t.name;
+      sinceRest = 0;
+      loadQuestion(QuestionEngine.generate(topicId));
+    }
+
+    function startMixed() {
+      session.mode = 'mixed';
+      session.topicId = null;
+      session.queue = QuestionEngine.generateMixed(10);
+      session.index = 0;
+      session.total = session.queue.length;
+      session.correctCount = 0;
+      session.wrongByTopic = {};
+      session.bestStreakThisSet = 0;
+      show('screen-quiz');
+      $('setbar').classList.remove('hidden');
+      $('qnumPill').classList.remove('hidden');
+      $('topicLabel').textContent = '🌈 Ôn tập tổng hợp';
+      sinceRest = 0;
+      loadQuestion(session.queue[0]);
+    }
+
+    function topicById(id) {
+      for (var i = 0; i < QuestionEngine.topics.length; i++) {
+        if (QuestionEngine.topics[i].id === id) return QuestionEngine.topics[i];
+      }
+      return { id: id, name: id, emoji: '❓' };
+    }
+
+    /* ----------------- HÌNH MINH HOẠ NHỎ (vẽ bằng emoji theo chủ đề) -------- */
+    function illusFor(q) {
+      var map = {
+        'so-100000': '🔢', 'cong-tru': '➕➖', 'nhan-chia': '✖️➗',
+        'bieu-thuc': '🧮', 'chia-du': '➗', 'do-luong': '📏⚖️🕐',
+        'hinh-hoc': '📐', 'loi-van': '📖✏️', 'tu-duy': '💡'
+      };
+      return map[q.topic] || '';
+    }
+
+    /* ----------------------------- TẢI 1 CÂU HỎI ---------------------------- */
+    function loadQuestion(q) {
+      currentQ = q;
+      selectedIndex = -1;
+      answered = false;
+      usedHint = false;
+
+      // tiến độ
+      if (session.mode === 'mixed') {
+        $('qProgressText').textContent = 'Câu ' + (session.index + 1) + '/' + session.total;
+        $('qnumPill').textContent = 'Câu ' + (session.index + 1) + '/' + session.total;
+        $('setBar').style.width = (session.index / session.total * 100) + '%';
+      } else {
+        $('qProgressText').textContent = '';
+      }
+
+      // hình minh hoạ
+      var ill = illusFor(q);
+      if (ill) { $('illus').textContent = ill; $('illus').classList.remove('hidden'); }
+      else $('illus').classList.add('hidden');
+
+      // ĐỀ BÀI — dùng innerHTML vì stem chứa <b>, ², &lt; &gt; có chủ đích
+      $('stem').innerHTML = q.stem;
+
+      // reset vùng phản hồi & nút
+      var fb = $('feedback');
+      fb.className = 'feedback';
+      fb.innerHTML = '';
+      $('nextBtn').classList.add('hidden');
+      $('similarBtn').classList.add('hidden');
+      $('checkBtn').classList.remove('hidden');
+      $('checkBtn').disabled = true;
+
+      var choicesEl = $('choices');
+      var inputRow = $('inputRow');
+      var inputHint = $('inputHint');
+      choicesEl.innerHTML = '';
+
+      if (q.type === 'mc') {
+        inputRow.classList.add('hidden');
+        inputHint.classList.add('hidden');
+        choicesEl.classList.remove('hidden');
+        choicesEl.classList.toggle('single', q.choices.length <= 3 && q.choices.length === 3 ? false : false);
+        // (giữ 2 cột; với 3 lựa chọn vẫn 2 cột nhìn cân đối)
+        var labels = ['A', 'B', 'C', 'D'];
+        q.choices.forEach(function (ch, idx) {
+          var btn = document.createElement('button');
+          btn.className = 'choice';
+          btn.setAttribute('data-idx', idx);
+          // Phím số 1..n hiển thị để bé biết bấm phím; nội dung dùng innerHTML (có ² , dấu...)
+          btn.innerHTML = '<span class="key" aria-hidden="true">' + (idx + 1) + '</span>' +
+                          '<span class="txt"></span>' +
+                          '<span class="mark" aria-hidden="true"></span>';
+          // dùng innerHTML cho nội dung lựa chọn (choices có thể chứa ², dấu)
+          btn.querySelector('.txt').innerHTML = ch;
+          btn.setAttribute('aria-label', 'Đáp án ' + labels[idx] + ': ' + btn.querySelector('.txt').textContent);
+          btn.addEventListener('click', function () {
+            if (answered) return;
+            selectChoice(idx);
+          });
+          choicesEl.appendChild(btn);
+        });
+        // auto-focus lựa chọn đầu cho bàn phím
+        var first = choicesEl.querySelector('.choice');
+        if (first) first.focus();
+      } else {
+        // input
+        choicesEl.classList.add('hidden');
+        inputRow.classList.remove('hidden');
+        var box = $('answerBox');
+        box.value = '';
+        // gợi ý định dạng cho các dạng đặc biệt
+        var hint = '';
+        if (q.topic === 'chia-du') hint = 'Ví dụ: 7 dư 2';
+        else if (/Sắp xếp/i.test(q.stem) || /;/.test(q.answer)) hint = 'Cách nhau bằng dấu ;  (ví dụ: 12; 34; 56)';
+        else hint = 'Gõ kết quả rồi nhấn Enter hoặc bấm Kiểm tra';
+        inputHint.textContent = '💡 ' + hint;
+        inputHint.classList.remove('hidden');
+        box.focus();
+      }
+
+      refreshHeader();
+    }
+
+    // Chọn 1 phương án mc.
+    function selectChoice(idx) {
+      selectedIndex = idx;
+      var btns = $('choices').querySelectorAll('.choice');
+      btns.forEach(function (b, i) { b.classList.toggle('selected', i === idx); });
+      $('checkBtn').disabled = false;
+    }
+
+    /* ----------------------------- CHẤM CÂU ---------------------------- */
+    function submitAnswer() {
+      if (answered || !currentQ) return;
+
+      var ok;
+      if (currentQ.type === 'mc') {
+        if (selectedIndex < 0) return;
+        // GIAO KÈO: truyền INDEX (số nguyên) cho engine, không truyền nội dung.
+        ok = QuestionEngine.check(currentQ, selectedIndex);
+      } else {
+        var val = $('answerBox').value;
+        if (!val.trim()) return;
+        ok = QuestionEngine.check(currentQ, val);  // input: truyền chuỗi bé nhập
+      }
+
+      answered = true;
+      ensureAudio(); // mở audio trong cử chỉ người dùng
+      $('checkBtn').classList.add('hidden');
+
+      // đếm tiến độ ngày (đúng/sai đều tính theo DESIGN.md)
+      bumpDailyCount();
+
+      if (ok) onCorrect(); else onWrong();
+
+      // ghi câu đã làm cho chế độ mixed
+      if (session.mode === 'mixed') {
+        if (ok) session.correctCount++;
+        else session.wrongByTopic[currentQ.topic] = (session.wrongByTopic[currentQ.topic] || 0) + 1;
+      }
+
+      // hiển thị nút đi tiếp
+      var nextBtn = $('nextBtn');
+      nextBtn.classList.remove('hidden');
+      if (session.mode === 'mixed' && session.index >= session.total - 1) {
+        nextBtn.textContent = '🎉 Xem kết quả →';
+      } else {
+        nextBtn.textContent = 'Câu tiếp theo →';
+      }
+      nextBtn.focus();
+
+      // chế độ luyện tập: cho "thử câu tương tự" khi sai
+      if (session.mode === 'practice' && !ok) {
+        $('similarBtn').classList.remove('hidden');
+      }
+
+      saveState();
+      refreshHeader();
+    }
+
+    function onCorrect() {
+      // sao: +2, thêm +1 nếu đúng ngay (chưa xem gợi ý — ở đây luôn true vì chưa mở explain)
+      var gain = 2 + (usedHint ? 0 : 1);
+      state.stars += gain;
+
+      // chuỗi
+      session.streak++;
+      if (session.streak > state.bestStreak) state.bestStreak = session.streak;
+
+      // thống kê chủ đề
+      var tp = currentQ.topic;
+      state.topicCorrect[tp] = (state.topicCorrect[tp] || 0) + 1;
+      state.topicSeen[tp] = true;
+      // chuỗi liên tiếp theo chủ đề (cho huy hiệu cộng-trừ)
+      session.runStreakByTopic[tp] = (session.runStreakByTopic[tp] || 0) + 1;
+      if (session.runStreakByTopic[tp] > (state.bestRunStreakByTopic[tp] || 0))
+        state.bestRunStreakByTopic[tp] = session.runStreakByTopic[tp];
+
+      if (session.mode === 'mixed' && session.streak > session.bestStreakThisSet)
+        session.bestStreakThisSet = session.streak;
+
+      // tô nút mc
+      if (currentQ.type === 'mc') markChoices(true);
+
+      // dựng phản hồi
+      var fb = $('feedback');
+      fb.className = 'feedback ok show';
+      fb.innerHTML =
+        '<div class="head">' + pickOne(PRAISE) + '</div>' +
+        '<div class="explain"></div>';
+      fb.querySelector('.explain').innerHTML = '<b>Cách làm:</b> ' + currentQ.explain;
+
+      // âm + confetti
+      soundCorrect();
+      confetti(50);
+
+      // mốc streak vui
+      if (session.streak === 3 || session.streak === 5 || session.streak === 10) {
+        confetti(90); soundFanfare();
+      }
+      // phá kỷ lục
+      if (session.streak === state.bestStreak && session.streak >= 4) {
+        var rec = document.createElement('div');
+        rec.className = 'reset';
+        rec.textContent = '🏆 Kỷ lục mới của con: 🔥 ' + session.streak + ' câu liền!';
+        fb.appendChild(rec);
+      }
+
+      // huy hiệu
+      announceBadges(checkBadges());
+    }
+
+    function onWrong() {
+      // sai: không trừ sao; reset chuỗi
+      session.streak = 0;
+      // reset chuỗi liên tiếp theo chủ đề hiện tại
+      if (currentQ) session.runStreakByTopic[currentQ.topic] = 0;
+
+      if (currentQ.type === 'mc') markChoices(false);
+
+      var fb = $('feedback');
+      fb.className = 'feedback bad show';
+      var correctText = answerDisplay(currentQ);
+      fb.innerHTML =
+        '<div class="head">' + pickOne(ENCOURAGE) + '</div>' +
+        '<div class="reset">Chuỗi đặt lại rồi, nhưng không sao đâu — bắt đầu chuỗi mới nào!</div>' +
+        '<div class="rightline">Đáp án đúng: <b class="rightans"><span aria-hidden="true">✓</span> <span class="rightans-txt"></span></b></div>' +
+        '<button class="disclose" id="discloseBtn">Xem cách làm</button>' +
+        '<div class="explain hidden" id="explainBox"></div>';
+      fb.querySelector('.rightans-txt').innerHTML = correctText;
+      fb.querySelector('#discloseBtn').addEventListener('click', function () {
+        var ex = $('explainBox');
+        var open = ex.classList.toggle('hidden');
+        usedHint = true;
+        this.textContent = open ? 'Xem cách làm' : 'Ẩn cách làm';
+        if (!open && !ex.innerHTML) ex.innerHTML = '<b>Cách làm:</b> ' + currentQ.explain;
+      });
+
+      soundWrong();
+    }
+
+    // Tô màu các lựa chọn mc sau khi chấm.
+    function markChoices(isCorrect) {
+      var btns = $('choices').querySelectorAll('.choice');
+      btns.forEach(function (b, i) {
+        b.disabled = true;
+        b.classList.remove('selected');
+        var mark = b.querySelector('.mark');
+        if (i === currentQ.answer) { b.classList.add('correct'); mark.textContent = '✓'; }
+        if (i === selectedIndex && i !== currentQ.answer) { b.classList.add('wrong'); mark.textContent = '✗'; }
+      });
+    }
+
+    // Chuỗi hiển thị đáp án đúng (cho mc lấy nội dung lựa chọn, input lấy answer).
+    function answerDisplay(q) {
+      if (q.type === 'mc') return q.choices[q.answer];
+      // input: answer có thể là "12 dư 3" hoặc "1;2;3" -> hiển thị thân thiện
+      var a = String(q.answer);
+      if (a.indexOf(';') >= 0) return a.replace(/;/g, '; ');
+      return a;
+    }
+
+    // Khen / động viên (lấy từ DESIGN.md)
+    var PRAISE = [
+      'Chính xác! Con giỏi quá! 🎉', 'Tuyệt vời! Đúng rồi đó! ⭐',
+      'Quá đỉnh! Con làm đúng rồi!', 'Hoan hô! Bộ óc toán học của con đây rồi!',
+      'Xuất sắc! Thêm một câu đúng nữa nào!', 'Đúng boong! Con thật thông minh!',
+      'Giỏi lắm! Cứ thế phát huy nhé!', 'Yeah! Con đã làm được! 🌟'
+    ];
+    var ENCOURAGE = [
+      'Suýt nữa rồi! Cùng xem cách làm đúng nhé 👇',
+      'Không sao đâu, sai một chút là chuyện thường. Xem lời giải nào!',
+      'Gần đúng rồi! Mình xem lại cách làm một chút nhé.',
+      'Sai cũng là đang học đó! Đáp án đúng là đây 👇',
+      'Đừng lo nha, ai cũng có lúc nhầm. Cùng xem giải thích nhé!',
+      'Lần này chưa đúng, nhưng con sẽ làm được! Xem cách làm này 👇',
+      'Cố lên! Đọc lời giải xong là con hiểu ngay thôi.',
+      'Chưa đúng, nhưng không sao cả. Mình học cách làm rồi thử lại nhé!'
+    ];
+
+    // Thông báo huy hiệu mới (gắn vào vùng feedback nếu đang ở quiz).
+    function announceBadges(earned) {
+      if (!earned || !earned.length) return;
+      soundFanfare();
+      confetti(110);
+      var fb = $('feedback');
+      earned.forEach(function (b) {
+        var el = document.createElement('div');
+        el.className = 'badge-new';
+        el.style.marginTop = '10px';
+        el.textContent = '🏅 Huy hiệu mới: ' + b.emoji + ' ' + b.name + '!';
+        fb.appendChild(el);
+      });
+    }
+
+    /* ----------------------- ĐẾM MỤC TIÊU NGÀY + NGHỈ MẮT ------------------ */
+    var sinceRest = 0;
+    function bumpDailyCount() {
+      if (state.today.date !== todayStr()) state.today = { date: todayStr(), count: 0, rewarded: false };
+      state.today.count++;
+      // thưởng đạt mục tiêu ngày (1 lần/ngày)
+      if (!state.today.rewarded && state.today.count >= DAILY_GOAL) {
+        state.today.rewarded = true;
+        state.stars += 5;
+        state.goalDays = (state.goalDays || 0) + 1;
+      }
+      // nhắc nghỉ mắt mỗi 10 câu
+      sinceRest++;
+      if (sinceRest >= 10) {
+        sinceRest = 0;
+        var rn = $('restNote');
+        rn.classList.add('show');
+        setTimeout(function () { rn.classList.remove('show'); }, 8000);
+      }
+    }
+
+    /* ----------------------------- ĐI TIẾP / KẾT THÚC ---------------------- */
+    function nextQuestion() {
+      if (session.mode === 'mixed') {
+        session.index++;
+        if (session.index >= session.total) { showResult(); return; }
+        $('restNote').classList.remove('show');
+        loadQuestion(session.queue[session.index]);
+      } else {
+        $('restNote').classList.remove('show');
+        loadQuestion(QuestionEngine.generate(session.topicId));
+      }
+    }
+
+    /* ----------------------------- MÀN KẾT QUẢ ----------------------------- */
+    function showResult() {
+      var correct = session.correctCount;
+      var total = session.total;
+
+      // thưởng hoàn thành bộ
+      state.stars += 5;
+      if (correct > (state.bestQuizScore || 0)) state.bestQuizScore = correct;
+
+      var msg, emoji;
+      if (correct === 10) { emoji = '🏆'; msg = 'Hoàn hảo! Con đúng cả 10 câu! Quá tuyệt vời!'; }
+      else if (correct >= 8) { emoji = '🎉'; msg = 'Giỏi lắm! Con làm rất tốt!'; }
+      else if (correct >= 6) { emoji = '😊'; msg = 'Khá lắm! Con đang tiến bộ rồi đó!'; }
+      else if (correct >= 4) { emoji = '💪'; msg = 'Cố lên nhé! Ôn thêm một chút là con sẽ giỏi hơn!'; }
+      else { emoji = '🌱'; msg = 'Không sao đâu! Mình cùng ôn lại từ từ, con làm được mà!'; }
+
+      $('resEmoji').textContent = emoji;
+      $('resMsg').textContent = msg;
+      $('resScore').textContent = 'Con đúng ' + correct + '/' + total + ' câu';
+      $('resRewards').textContent = '⭐ +' + (correct * 2) + ' (và thưởng bộ) · 🔥 Chuỗi dài nhất bộ này: ' +
+                                    session.bestStreakThisSet;
+
+      // huy hiệu mới (gồm Nhà vô địch ôn tập nếu >=9)
+      var earned = checkBadges();
+      var bWrap = $('resBadges');
+      bWrap.innerHTML = '';
+      earned.forEach(function (b) {
+        var el = document.createElement('div');
+        el.className = 'badge-new';
+        el.textContent = '🏅 Huy hiệu mới: ' + b.emoji + ' ' + b.name + '!';
+        bWrap.appendChild(el);
+      });
+
+      // gợi ý chủ đề nên ôn lại (chủ đề sai nhiều nhất)
+      var sug = $('resSuggest');
+      var worst = null, worstN = 0;
+      for (var tp in session.wrongByTopic) {
+        if (session.wrongByTopic[tp] > worstN) { worstN = session.wrongByTopic[tp]; worst = tp; }
+      }
+      if (worst) {
+        var t = topicById(worst);
+        sug.innerHTML = '📌 Nên ôn thêm: <b>' + t.emoji + ' ' + t.name +
+                        '</b> (con sai ' + worstN + ' câu) nhé!';
+        sug.classList.remove('hidden');
+      } else {
+        sug.classList.add('hidden');
+      }
+
+      saveState();
+      show('screen-result');
+      refreshHeader();
+      if (correct >= 6 && !reduceMotion) { confetti(140); }
+      if (correct >= 8) soundFanfare();
+    }
+
+    /* ======================================================================
+     *  SỰ KIỆN NÚT
+     * ==================================================================== */
+    function goHome() {
+      $('restNote').classList.remove('show');
+      $('qnumPill').classList.add('hidden');
+      refreshHome();
+      show('screen-home');
+    }
+    $('homeBtn').addEventListener('click', goHome);
+    $('quizHomeBtn').addEventListener('click', goHome);
+    $('resHomeBtn').addEventListener('click', goHome);
+    $('badgesHomeBtn').addEventListener('click', goHome);
+
+    $('mixedBtn').addEventListener('click', startMixed);
+    $('againBtn').addEventListener('click', startMixed);
+    $('badgesBtn').addEventListener('click', function () { buildBadgeGrid(); show('screen-badges'); });
+
+    $('checkBtn').addEventListener('click', submitAnswer);
+    $('nextBtn').addEventListener('click', nextQuestion);
+    $('similarBtn').addEventListener('click', function () {
+      // xin câu mới cùng dạng (cùng chủ đề) trong chế độ luyện tập
+      $('restNote').classList.remove('show');
+      loadQuestion(QuestionEngine.generate(session.topicId));
+    });
+
+    // ô nhập: bật/khoá nút Kiểm tra theo nội dung, Enter để nộp
+    $('answerBox').addEventListener('input', function () {
+      $('checkBtn').disabled = this.value.trim() === '';
+    });
+    $('answerBox').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); if (!answered) submitAnswer(); }
+    });
+
+    /* ----------------------- PHÍM TẮT TOÀN CỤC (1–4, Enter) ---------------- */
+    document.addEventListener('keydown', function (e) {
+      // chỉ xử lý khi ở màn quiz
+      if ($('screen-quiz').classList.contains('hidden')) return;
+      // tránh chiếm phím khi đang gõ trong ô input (trừ Enter đã xử lý riêng)
+      var inInput = document.activeElement === $('answerBox');
+
+      // phím số 1..4 chọn đáp án mc
+      if (!answered && currentQ && currentQ.type === 'mc' && !inInput) {
+        if (e.key >= '1' && e.key <= '4') {
+          var idx = parseInt(e.key, 10) - 1;
+          if (idx < currentQ.choices.length) { e.preventDefault(); selectChoice(idx); }
+          return;
+        }
+      }
+      // Enter = Kiểm tra (nếu chưa chấm) hoặc Câu tiếp theo (nếu đã chấm)
+      if (e.key === 'Enter' && !inInput) {
+        if (!answered) {
+          if (!$('checkBtn').disabled) { e.preventDefault(); submitAnswer(); }
+        } else {
+          e.preventDefault(); nextQuestion();
+        }
+      }
+    });
+
+    /* ======================================================================
+     *  KHỞI ĐỘNG
+     * ==================================================================== */
+    function init() {
+      if (typeof QuestionEngine === 'undefined' || !QuestionEngine.topics) {
+        document.body.innerHTML =
+          '<div style="padding:24px;font-size:20px;">Không tải được engine.js. ' +
+          'Hãy đảm bảo file engine.js nằm cùng thư mục với index.html nhé.</div>';
+        return;
+      }
+      loadState();
+      updateSoundBtn();
+      buildTopicGrid();
+      refreshHome();
+      show('screen-home');
+    }
+    init();
+  })();
+  </script>
+</body>
+</html>
