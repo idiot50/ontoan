@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Toán Vui Lớp 3</title>
+<!-- ===== PWA: cài được & dùng offline (tất cả tài nguyên cùng-origin) ===== -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#4f46e5">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Toán Vui Lớp 3">
 <style>
   /* ============================ DESIGN TOKENS (REDESIGN.md §2) ============================ */
   :root {
@@ -607,6 +614,33 @@
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; }
   }
+
+  /* ===== Dải "Lưu về máy" (PWA) — kín đáo, không che nội dung học ===== */
+  .install-bar {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin: 10px 0 0; padding: 10px 14px;
+    background: var(--brand-soft, #EEF0FE);
+    border: 1px solid var(--line, #E6E8F2);
+    border-radius: 14px; font-size: 15px; color: var(--ink-2, #3A4263);
+  }
+  .install-bar .install-msg { flex: 1 1 auto; min-width: 160px; }
+  .install-bar .install-go {
+    flex: 0 0 auto; cursor: pointer; border: none;
+    background: var(--brand, #4F46E5); color: #fff;
+    font-weight: 700; font-size: 15px; padding: 10px 16px;
+    border-radius: 10px; min-height: 44px;
+  }
+  .install-bar .install-go:hover { filter: brightness(1.06); }
+  .install-bar .install-go:focus-visible { outline: 3px solid #FFD66B; outline-offset: 2px; }
+  .install-bar .install-x {
+    flex: 0 0 auto; cursor: pointer; border: none; background: transparent;
+    color: var(--muted, #6A7390); font-size: 18px; line-height: 1;
+    width: 44px; height: 44px; border-radius: 10px;
+  }
+  .install-bar .install-x:hover { background: rgba(0,0,0,.06); }
+  .install-bar .install-x:focus-visible { outline: 3px solid #FFD66B; outline-offset: 2px; }
+  /* Biến thể gợi ý iOS: không có nút "Cài đặt", chỉ chữ hướng dẫn */
+  .install-bar.ios .install-go { display: none; }
 </style>
 </head>
 <body>
@@ -639,6 +673,13 @@
       <span class="pill fire" id="firePill" title="Chuỗi đúng hiện tại"><span aria-hidden="true">🔥</span> <span id="streakNow">0</span></span>
       <button class="iconbtn" id="soundBtn" aria-pressed="true" title="Bật/tắt âm thanh" aria-label="Bật hoặc tắt âm thanh">🔈</button>
     </header>
+
+    <!-- ===== Dải nhỏ "Lưu về máy" (PWA). Ẩn mặc định; JS bật khi cài được. ===== -->
+    <div id="installBar" class="install-bar hidden" role="region" aria-label="Cài đặt ứng dụng vào máy">
+      <span class="install-msg" id="installMsg">📥 Lưu về máy để học cả khi <b>không có mạng</b></span>
+      <button class="install-go" id="installGo" type="button">📥 Cài đặt vào máy</button>
+      <button class="install-x" id="installClose" type="button" aria-label="Đóng lời nhắc cài đặt">✕</button>
+    </div>
 
     <!-- ============================= TRANG CHỦ ============================= -->
     <section id="screen-home">
@@ -1756,6 +1797,71 @@
       show('screen-home');
     }
     init();
+  })();
+
+  /* =====================================================================
+   *  PWA — đăng ký Service Worker + nút "Lưu về máy" (cài đặt)
+   *  - SW chỉ đăng ký khi chạy qua http/https (KHÔNG lỗi khi mở file://).
+   *  - Banner kín đáo dưới header; có thể đóng và nhớ trạng thái (localStorage).
+   * ===================================================================== */
+  (function () {
+    'use strict';
+
+    // 1) Đăng ký Service Worker (guard http để không vỡ khi mở file://).
+    if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('sw.js').catch(function () {});
+      });
+    }
+
+    // 2) Banner "Lưu về máy".
+    var bar = document.getElementById('installBar');
+    var goBtn = document.getElementById('installGo');
+    var closeBtn = document.getElementById('installClose');
+    var msgEl = document.getElementById('installMsg');
+    if (!bar || !goBtn || !closeBtn) return;
+
+    var DISMISS_KEY = 'toanvui_lop3_install_dismissed';
+    function dismissed() {
+      try { return localStorage.getItem(DISMISS_KEY) === '1'; } catch (e) { return false; }
+    }
+    function rememberDismiss() {
+      try { localStorage.setItem(DISMISS_KEY, '1'); } catch (e) {}
+    }
+    function hideBar() { bar.classList.add('hidden'); }
+    function showBar() { if (!dismissed()) bar.classList.remove('hidden'); }
+
+    closeBtn.addEventListener('click', function () { rememberDismiss(); hideBar(); });
+
+    // 2a) Android/Chrome: hứng beforeinstallprompt -> hiện nút "Cài đặt".
+    var deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', function (e) {
+      e.preventDefault();
+      deferredPrompt = e;
+      bar.classList.remove('ios');
+      showBar();
+    });
+    goBtn.addEventListener('click', function () {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.finally(function () {
+        deferredPrompt = null;
+        hideBar();
+      });
+    });
+    window.addEventListener('appinstalled', function () { rememberDismiss(); hideBar(); });
+
+    // 2b) iOS Safari: không có beforeinstallprompt -> hiện gợi ý "Thêm vào Màn hình chính".
+    var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    var isInStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+                         (navigator.standalone === true);
+    if (isIOS && !isInStandalone) {
+      bar.classList.add('ios');
+      if (msgEl) {
+        msgEl.innerHTML = 'Để lưu về máy: bấm <b>Chia sẻ ⬆️</b> → <b>Thêm vào Màn hình chính</b>';
+      }
+      showBar();
+    }
   })();
   </script>
 </body>
