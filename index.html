@@ -3,19 +3,67 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Toán Vui Lớp 3</title>
-<meta http-equiv="refresh" content="0; url=./web_toan_lop3/">
-<link rel="canonical" href="./web_toan_lop3/">
+<title>Toán Vui — Ôn Toán Tiểu học</title>
 <style>
-  body{font-family:"Segoe UI",system-ui,sans-serif;background:#f6f7fc;color:#1b2138;
-       display:flex;min-height:100vh;margin:0;align-items:center;justify-content:center;text-align:center}
-  a{color:#4f46e5;font-weight:700;font-size:1.2rem}
+  :root{
+    --bg:#f6f7fc; --ink:#1b2138; --muted:#5b6478;
+    --brand:#4f46e5; --brand2:#7c6cf0;
+    --card:#ffffff; --line:#e6e8f2;
+    --l1:#f59e0b; --l1soft:#fff7e6; --l3:#4f46e5; --l3soft:#eef0ff;
+    --shadow:0 10px 30px rgba(27,33,56,.12), 0 2px 8px rgba(27,33,56,.06);
+  }
+  *{box-sizing:border-box}
+  body{font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+       background:radial-gradient(1200px 600px at 50% -10%, #ffffff, var(--bg));
+       color:var(--ink); margin:0; min-height:100vh; display:flex; flex-direction:column;
+       align-items:center; justify-content:center; padding:24px; text-align:center}
+  .wrap{width:100%; max-width:860px}
+  .logo{font-size:clamp(28px,6vw,44px); font-weight:800; letter-spacing:-.5px; margin:0 0 6px}
+  .logo .em{font-weight:800}
+  .sub{color:var(--muted); font-size:clamp(15px,2.6vw,19px); margin:0 0 28px}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  @media (max-width:560px){ .grid{grid-template-columns:1fr} }
+  .card{display:flex; flex-direction:column; align-items:center; gap:10px;
+        background:var(--card); border:1px solid var(--line); border-radius:22px;
+        padding:30px 22px; text-decoration:none; color:inherit; box-shadow:var(--shadow);
+        transition:transform .15s ease, box-shadow .15s ease}
+  .card:hover,.card:focus-visible{transform:translateY(-4px);
+        box-shadow:0 16px 40px rgba(27,33,56,.18); outline:none}
+  .card:focus-visible{box-shadow:0 0 0 4px #ffd54a, var(--shadow)}
+  .badge{width:96px; height:96px; border-radius:24px; display:grid; place-items:center;
+         font-size:52px; line-height:1}
+  .c1 .badge{background:var(--l1soft)} .c3 .badge{background:var(--l3soft)}
+  .card h2{margin:6px 0 0; font-size:clamp(22px,4vw,28px)}
+  .c1 h2{color:var(--l1)} .c3 h2{color:var(--l3)}
+  .card p{margin:0; color:var(--muted); font-size:15px}
+  .go{margin-top:8px; font-weight:700; font-size:17px}
+  .c1 .go{color:var(--l1)} .c3 .go{color:var(--l3)}
+  footer{margin-top:30px; color:var(--muted); font-size:13px; line-height:1.6}
 </style>
 </head>
 <body>
-  <div>
-    <p>Đang mở <b>Toán Vui Lớp 3</b>…</p>
-    <p>Nếu không tự chuyển, hãy bấm vào đây: <a href="./web_toan_lop3/">Vào học ngay →</a></p>
-  </div>
+  <main class="wrap">
+    <h1 class="logo">🧮 <span class="em">Toán Vui</span></h1>
+    <p class="sub">Ôn Toán tiểu học — chọn lớp của con nhé!</p>
+
+    <div class="grid">
+      <a class="card c1" href="./lop1/" aria-label="Vào học Toán lớp 1">
+        <div class="badge" aria-hidden="true">🐣</div>
+        <h2>Toán Lớp 1</h2>
+        <p>Số đến 100, cộng trừ, xem giờ… có đọc đề bằng giọng nói</p>
+        <span class="go">Vào học →</span>
+      </a>
+      <a class="card c3" href="./lop3/" aria-label="Vào học Toán lớp 3">
+        <div class="badge" aria-hidden="true">🚀</div>
+        <h2>Toán Lớp 3</h2>
+        <p>Số đến 100 000, nhân chia, hình học, toán đố…</p>
+        <span class="go">Vào học →</span>
+      </a>
+    </div>
+
+    <footer>
+      Học mọi lúc, không cần mạng • Không quảng cáo • An toàn cho trẻ
+    </footer>
+  </main>
 </body>
 </html>

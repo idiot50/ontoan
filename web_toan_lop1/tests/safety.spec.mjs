@@ -1,0 +1,125 @@
+/*
+ * safety.spec.mjs — kiểm TĨNH index.html lớp 1 theo luật an toàn trẻ em.
+ * KHÔNG có: URL ra ngoài, <iframe>, fetch, XMLHttpRequest, ảnh mạng, analytics,
+ *           cookie, geolocation, WebSocket.
+ * CÓ: lang="vi", aria-live, charset UTF-8.
+ * Hợp đồng tích hợp: MC gọi check(...) với index số nguyên (selectedIndex);
+ *                    stem/choices/explain render bằng innerHTML.
+ * ĐỌC ĐỀ (TTS): dùng speechSynthesis + SpeechSynthesisUtterance, lang tiếng Việt,
+ *               CÓ fallback (tìm voice lang bắt đầu "vi"; không có thì ẩn/khoá nút,
+ *               app vẫn chạy). Đây là API trình duyệt CỤC BỘ -> KHÔNG vi phạm offline.
+ * Vi phạm an toàn -> FAIL nặng (đánh dấu 🔴 trong msg).
+ */
+import { makeReporter } from './_harness.mjs';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const HTML_PATH = path.join(__dirname, '..', 'index.html');
+
+export function run() {
+  const R = makeReporter('SAFETY');
+  const html = fs.readFileSync(HTML_PATH, 'utf8');
+  // Bỏ comment HTML để tránh báo nhầm trên chú thích.
+  const code = html.replace(/<!--[\s\S]*?-->/g, '');
+
+  /* --------- CẤM: mạng / nhúng ngoài / theo dõi (vi phạm = 🔴) --------- */
+  const forbidden = [
+    { re: /<iframe[\s>]/i, name: 'thẻ <iframe>' },
+    { re: /\bfetch\s*\(/i, name: 'gọi fetch()' },
+    { re: /XMLHttpRequest/i, name: 'XMLHttpRequest' },
+    { re: /\bWebSocket\b/i, name: 'WebSocket' },
+    { re: /navigator\.sendBeacon/i, name: 'sendBeacon' },
+    { re: /\bEventSource\b/i, name: 'EventSource (SSE)' },
+    { re: /navigator\.geolocation/i, name: 'geolocation' },
+    { re: /document\.cookie/i, name: 'document.cookie' },
+    { re: /\bimportScripts\s*\(/i, name: 'importScripts' },
+    { re: /googletagmanager|google-analytics|gtag\(|analytics\.|mixpanel|hotjar|facebook\.net|fbq\(/i, name: 'analytics/tracking' },
+    { re: /\b(?:src|href)\s*=\s*["']?https?:\/\//i, name: 'tài nguyên http(s) ngoài' },
+    { re: /\b(?:src|href)\s*=\s*["']?\/\//i, name: 'tài nguyên protocol-relative //' },
+    { re: /url\(\s*["']?https?:/i, name: 'CSS url() mạng' },
+    { re: /<img[^>]+src\s*=\s*["']?https?:/i, name: '<img> nguồn mạng' }
+  ];
+  forbidden.forEach(f => {
+    R.ok(!f.re.test(code), '🔴 KHÔNG được có ' + f.name, f.re.source);
+  });
+
+  // <link>/<script src>/<img src> chỉ trỏ tài nguyên cục bộ.
+  const linkSrcs = [];
+  const reSrc = /<(?:script|link|img|source|audio|video)\b[^>]*\b(?:src|href)\s*=\s*["']([^"']+)["']/gi;
+  let mm;
+  while ((mm = reSrc.exec(code)) !== null) linkSrcs.push(mm[1]);
+  linkSrcs.forEach(u => {
+    R.ok(!/^https?:/i.test(u) && !u.startsWith('//'),
+      '🔴 nguồn cục bộ (không mạng): ' + u, u);
+  });
+  // engine.js phải được nhúng cục bộ.
+  R.ok(/<script\s+src=["']engine\.js["']\s*>/i.test(code), 'nhúng engine.js cục bộ', null);
+
+  /* --------------------- BẮT BUỘC: a11y cơ bản --------------------- */
+  R.ok(/<html[^>]*\blang\s*=\s*["']vi["']/i.test(code), 'CÓ <html lang="vi">', null);
+  R.ok(/aria-live\s*=\s*["']polite["']/i.test(code), 'CÓ vùng aria-live="polite"', null);
+  R.ok(/<meta[^>]+charset\s*=\s*["']?utf-8/i.test(code), 'CÓ charset UTF-8', null);
+
+  /* ----------- HỢP ĐỒNG TÍCH HỢP: MC gọi check với INDEX ----------- */
+  R.ok(/QuestionEngine\.check\(\s*currentQ\s*,\s*selectedIndex\s*\)/.test(code),
+    'MC: check(currentQ, selectedIndex) — truyền INDEX số nguyên', null);
+  R.ok(/QuestionEngine\.check\(\s*currentQ\s*,\s*val\s*\)/.test(code),
+    'INPUT: check(currentQ, val) — truyền chuỗi nhập', null);
+  R.ok(/selectChoice\s*\(\s*idx\s*\)/.test(code) || /selectedIndex\s*=\s*idx/.test(code),
+    'selectedIndex gán từ idx (số nguyên)', null);
+
+  /* ------- HỢP ĐỒNG RENDER: stem/choices/explain qua innerHTML ------- */
+  R.ok(/\$\(['"]stem['"]\)\.innerHTML\s*=\s*q\.stem/.test(code),
+    'render stem bằng innerHTML', null);
+  R.ok(/\.innerHTML\s*=\s*ch\b/.test(code) || /querySelector\(['"]\.txt['"]\)\.innerHTML\s*=\s*ch/.test(code),
+    'render choice text bằng innerHTML', null);
+  R.ok(/\.explain['"]\)\.innerHTML|explain['"]?\)?\.innerHTML|innerHTML\s*=\s*['"]<b>Cách làm/.test(code),
+    'render explain bằng innerHTML', null);
+
+  /* --------------- KHÔNG dark pattern --------------- */
+  R.ok(/Trang chủ/.test(code), 'có nút "Trang chủ" (luôn thoát được)', null);
+  R.ok(!/đếm ngược|countdown/i.test(code), 'không có cơ chế đếm ngược tạo áp lực', null);
+
+  /* --------------- localStorage chịu lỗi (try/catch) ---------------- */
+  R.ok(/try\s*\{[\s\S]*localStorage[\s\S]*\}\s*catch/.test(code),
+    'truy cập localStorage có try/catch (không vỡ app khi hỏng)', null);
+
+  /* --------------- prefers-reduced-motion + nút tắt âm -------------- */
+  R.ok(/prefers-reduced-motion/i.test(code), 'tôn trọng prefers-reduced-motion', null);
+  R.ok(/soundBtn/.test(code) && /aria-pressed/.test(code), 'có nút bật/tắt âm (aria-pressed)', null);
+
+  /* =================================================================
+   *  ĐỌC ĐỀ (TTS) — lớp 1 có tính năng đọc to bằng SpeechSynthesis
+   * ================================================================= */
+  // Dùng API trình duyệt cục bộ (KHÔNG mạng).
+  R.ok(/\bspeechSynthesis\b/.test(code), 'TTS: dùng speechSynthesis', null);
+  R.ok(/\bSpeechSynthesisUtterance\b/.test(code), 'TTS: dùng SpeechSynthesisUtterance', null);
+  // lang tiếng Việt cho utterance.
+  R.ok(/\.lang\s*=\s*['"]vi(-VN)?['"]/i.test(code), 'TTS: utterance.lang = "vi-VN"', null);
+  // tìm voice tiếng Việt (lang bắt đầu "vi").
+  R.ok(/getVoices\s*\(/.test(code), 'TTS: liệt kê getVoices() để tìm giọng', null);
+  R.ok(/indexOf\(['"]vi['"]\)\s*===?\s*0|startsWith\(['"]vi['"]\)|\/\^vi\//.test(code),
+    'TTS: lọc voice có lang bắt đầu "vi"', null);
+  // FALLBACK: nếu không có giọng tiếng Việt -> khoá/ẩn nút đọc, app vẫn chạy.
+  R.ok(/ttsReady/.test(code), 'TTS: có cờ ttsReady (khả dụng/không)', null);
+  R.ok(/disabled\s*=\s*true/.test(code), 'TTS fallback: khoá nút đọc khi không có giọng (disabled)', null);
+  R.ok(/toggleListenButtons\s*\(\s*false\s*\)/.test(code) || /classList\.toggle\(\s*['"]hidden['"]/.test(code),
+    'TTS fallback: ẩn các nút "Nghe" khi không có giọng', null);
+  // speak() phải guard ttsReady để không vỡ khi không có giọng.
+  R.ok(/if\s*\(\s*!ttsReady[^)]*\)\s*return/.test(code),
+    'TTS: speak() guard !ttsReady (an toàn khi không có giọng)', null);
+  // engine cung cấp say cho TTS; frontend ưu tiên q.say.
+  R.ok(/q\.say/.test(code), 'TTS: frontend đọc theo trường q.say', null);
+
+  return R.state;
+}
+
+const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+if (isMain) {
+  const s = run();
+  console.log(`[${s.group}] checks=${s.checks} fails=${s.fails.length}`);
+  s.fails.forEach(f => console.log('  FAIL:', f.msg));
+  process.exit(s.fails.length ? 1 : 0);
+}

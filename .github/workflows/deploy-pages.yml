@@ -1,6 +1,7 @@
-name: Deploy web Toán lớp 3 lên GitHub Pages
+name: Deploy web Toán lên GitHub Pages
 
-# Xuất bản thư mục web_toan_lop3/ làm website tĩnh (gốc site).
+# Xuất bản trang chủ chọn lớp + 2 ứng dụng (lớp 1, lớp 3) làm website tĩnh.
+# Cấu trúc site:  /  (hub)  •  /lop1/  •  /lop3/
 # Mỗi lần push lên main sẽ tự động deploy lại.
 on:
   push:
@@ -26,13 +27,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Dựng thư mục site (hub + lớp 1 + lớp 3)
+        run: |
+          mkdir -p _site
+          cp index.html _site/index.html
+          [ -f .nojekyll ] && cp .nojekyll _site/.nojekyll || true
+          cp -r web_toan_lop1 _site/lop1
+          cp -r web_toan_lop3 _site/lop3
+          # Bỏ phần test/dev khỏi bản xuất bản cho gọn
+          rm -rf _site/lop1/tests _site/lop3/tests
+          rm -f  _site/lop1/engine.test.mjs _site/lop3/engine.test.mjs
+          ls -R _site | head -40
+
       - name: Cấu hình Pages
         uses: actions/configure-pages@v5
 
-      - name: Đóng gói thư mục web_toan_lop3 làm artifact
+      - name: Đóng gói _site làm artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: web_toan_lop3
+          path: _site
 
       - name: Triển khai lên GitHub Pages
         id: deployment

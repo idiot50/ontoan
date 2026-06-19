@@ -1,0 +1,4 @@
+# Artifact sinh ra khi chạy test UI headless — không cần version control.
+ui.run.html
+.chrome-profile/
+*.png
