@@ -27,8 +27,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Cấu hình Pages
+      - name: Cấu hình Pages (tự bật Pages nếu chưa có)
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Đóng gói thư mục web_toan_lop3 làm artifact
         uses: actions/upload-pages-artifact@v3
