@@ -1,0 +1,20 @@
+[Unit]
+Description=PayOS backend (Toan Vui) - tao don ung ho + webhook
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/payos-backend
+EnvironmentFile=/opt/payos-backend/.env
+ExecStart=/usr/bin/python3 /opt/payos-backend/server.py
+Restart=always
+RestartSec=3
+# Cách ly bớt (tùy chọn nhưng nên có)
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+User=ubuntu
+
+[Install]
+WantedBy=multi-user.target

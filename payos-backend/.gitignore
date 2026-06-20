@@ -1,0 +1,7 @@
+.env
+orders.json
+orders.json.tmp
+__pycache__/
+*.pyc
+# Runbook chứa chi tiết server prod (IP, đồng cư với bot) -> giữ ở local, không lên repo công khai
+DEPLOY.md
