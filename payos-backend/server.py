@@ -24,6 +24,8 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
 PAYOS_API = "https://api-merchant.payos.vn/v2/payment-requests"
+# Cloudflare của PayOS chặn UA "Python-urllib" (lỗi 1010) -> giả UA trình duyệt.
+UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
 
 def env(k, d=None): return os.environ.get(k, d)
 
@@ -73,14 +75,16 @@ def sign_webhook(data_obj):
 def payos_post(payload):
     req = urllib.request.Request(
         PAYOS_API, data=json.dumps(payload).encode("utf-8"), method="POST",
-        headers={"Content-Type": "application/json", "x-client-id": CLIENT_ID, "x-api-key": API_KEY})
+        headers={"Content-Type": "application/json", "x-client-id": CLIENT_ID, "x-api-key": API_KEY,
+                 "User-Agent": UA, "Accept": "application/json"})
     with urllib.request.urlopen(req, timeout=20) as r:
         return json.loads(r.read().decode("utf-8"))
 
 def payos_get(order_code):
     req = urllib.request.Request(
         "%s/%s" % (PAYOS_API, order_code), method="GET",
-        headers={"x-client-id": CLIENT_ID, "x-api-key": API_KEY})
+        headers={"x-client-id": CLIENT_ID, "x-api-key": API_KEY,
+                 "User-Agent": UA, "Accept": "application/json"})
     with urllib.request.urlopen(req, timeout=20) as r:
         return json.loads(r.read().decode("utf-8"))
 
