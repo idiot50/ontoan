@@ -47,13 +47,18 @@
   .c1 .go{color:var(--l1)} .c3 .go{color:var(--l3)}
   footer{margin-top:30px; color:var(--muted); font-size:13px; line-height:1.6}
 
-  /* ===== Nút "Ủng hộ tác giả" (tự nguyện, KHÔNG chặn tải) ===== */
-  .support-btn{display:inline-block; margin-top:12px; background:#fff7e6; color:#b45309;
-    border:1px solid #f5c97a; font-weight:700; text-decoration:none; font-size:15px;
-    padding:11px 18px; border-radius:999px; min-height:44px; line-height:22px}
-  .support-btn:hover{filter:brightness(.98); box-shadow:var(--shadow)}
-  .support-btn:focus-visible{outline:3px solid #ffd54a; outline-offset:2px}
-  .support-note{margin-top:6px; color:var(--muted); font-size:12px}
+  /* ===== Dải "Ủng hộ tác giả" — luôn hiện, đặt cạnh dải "Lưu về máy" ===== */
+  .support-bar{display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    justify-content:center; margin:12px auto 0; max-width:600px;
+    padding:10px 14px; background:#fff7e6; border:1px solid #f5c97a;
+    border-radius:14px; box-shadow:var(--shadow); font-size:15px; color:#7a4a06}
+  .support-bar .support-msg{flex:1 1 200px; min-width:140px; text-align:left}
+  .support-bar .support-go{flex:0 0 auto; cursor:pointer; text-decoration:none;
+    background:#b45309; color:#fff; font-weight:700; font-size:15px;
+    padding:10px 16px; border-radius:10px; min-height:44px;
+    display:inline-flex; align-items:center; line-height:1}
+  .support-bar .support-go:hover{filter:brightness(1.06)}
+  .support-bar .support-go:focus-visible{outline:3px solid #ffd54a; outline-offset:2px}
   .thanks-toast{position:fixed; left:50%; transform:translateX(-50%); bottom:24px;
     background:#1b2138; color:#fff; padding:12px 18px; border-radius:12px; font-size:15px;
     box-shadow:var(--shadow); z-index:50; max-width:92vw; text-align:center}
@@ -103,6 +108,12 @@
       <button class="install-x" id="installClose" type="button" aria-label="Đóng lời nhắc cài đặt">✕</button>
     </div>
 
+    <div class="support-bar" role="region" aria-label="Ủng hộ tác giả">
+      <span class="support-msg">💛 App miễn phí — bạn có thể <b>ủng hộ tác giả</b> nếu thấy hữu ích</span>
+      <a class="support-go" href="https://3.104.106.255.sslip.io/api/payos/pay"
+         target="_blank" rel="noopener noreferrer">☕ Ủng hộ 10.000đ</a>
+    </div>
+
     <footer>
       Học mọi lúc, không cần mạng • Không quảng cáo • An toàn cho trẻ<br>
       💬 Liên hệ nhà sáng tạo nội dung:
@@ -110,10 +121,6 @@
          style="color:#7c3aed; font-weight:700; text-decoration:none">Zalo ↗</a> ·
       <a href="https://t.me/+G88eLopFXcY4M2M1" target="_blank" rel="noopener noreferrer"
          style="color:#7c3aed; font-weight:700; text-decoration:none">Telegram ↗</a>
-      <br>
-      <a class="support-btn" href="https://3.104.106.255.sslip.io/api/payos/pay"
-         target="_blank" rel="noopener noreferrer">☕ Ủng hộ tác giả 10.000đ</a>
-      <div class="support-note">Tải &amp; dùng vẫn miễn phí — ủng hộ là hoàn toàn tự nguyện 💛</div>
     </footer>
   </main>
 
