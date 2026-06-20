@@ -34,8 +34,7 @@ export function run() {
     { re: /document\.cookie/i, name: 'document.cookie' },
     { re: /\bimportScripts\s*\(/i, name: 'importScripts' },
     { re: /googletagmanager|google-analytics|gtag\(|analytics\.|mixpanel|hotjar|facebook\.net|fbq\(/i, name: 'analytics/tracking' },
-    // thuộc tính nguồn mạng
-    { re: /\b(?:src|href)\s*=\s*["']?https?:\/\//i, name: 'tài nguyên http(s) ngoài' },
+    // thuộc tính nguồn mạng (http(s) ngoài kiểm riêng có whitelist; protocol-relative vẫn cấm)
     { re: /\b(?:src|href)\s*=\s*["']?\/\//i, name: 'tài nguyên protocol-relative //' },
     // ảnh mạng / CDN
     { re: /url\(\s*["']?https?:/i, name: 'CSS url() mạng' },
@@ -44,6 +43,17 @@ export function run() {
   forbidden.forEach(f => {
     R.ok(!f.re.test(code), '🔴 KHÔNG được có ' + f.name, f.re.source);
   });
+
+  /* URL http(s) ngoài: CHỈ cho phép link liên hệ nhà sáng tạo đã whitelist; khác = 🔴 */
+  const ALLOWED_EXTERNAL = ['https://t.me/+G88eLopFXcY4M2M1'];
+  const extUrls = [];
+  const reExt = /(?:src|href)\s*=\s*["']?(https?:\/\/[^"'\s>]+)/gi;
+  let xm;
+  while ((xm = reExt.exec(code)) !== null) extUrls.push(xm[1]);
+  const badExt = extUrls.filter(function (u) { return ALLOWED_EXTERNAL.indexOf(u) === -1; });
+  R.ok(badExt.length === 0,
+    '🔴 KHÔNG được có URL http(s) ngoài (trừ link liên hệ đã whitelist)',
+    badExt.join(', '));
 
   // <link>/<script src=...> chỉ được trỏ tài nguyên cục bộ (không http, không //).
   const linkSrcs = [];
