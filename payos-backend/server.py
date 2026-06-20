@@ -8,7 +8,9 @@ Backend PayOS tối giản cho "Toán Vui" — tạo đơn ủng hộ 10.000đ +
 
 Endpoints:
   GET  /health                      -> {"ok": true}
-  POST /api/payos/create            -> tạo đơn PayOS, trả {checkoutUrl, qrCode, orderCode}
+  GET  /api/payos/pay               -> tạo đơn rồi CHUYỂN HƯỚNG (302) thẳng tới trang thanh toán PayOS
+                                       (client chỉ cần 1 <a href>, KHÔNG fetch/XHR -> giữ an toàn trẻ em)
+  POST /api/payos/create            -> tạo đơn PayOS, trả {checkoutUrl, qrCode, orderCode} (dùng nếu cần JSON)
   POST /api/payos/webhook           -> PayOS gọi khi có biến động; xác minh chữ ký, lưu trạng thái
   GET  /api/payos/status?orderCode= -> {status: PAID|PENDING|...}  (poll từ client, có refresh qua PayOS)
 
@@ -38,6 +40,8 @@ AMOUNT      = int(env("AMOUNT", "10000"))
 DESCRIPTION = (env("DESCRIPTION", "Ung ho Toan Vui"))[:25]
 RETURN_URL  = env("RETURN_URL", "https://idiot50.github.io/ontoan/?ung_ho=ok")
 CANCEL_URL  = env("CANCEL_URL", "https://idiot50.github.io/ontoan/?ung_ho=huy")
+# Khi /api/payos/pay không tạo được đơn (PayOS lỗi/chưa cấu hình) -> đưa người dùng về site kèm cờ lỗi.
+PAY_ERROR_URL = env("PAY_ERROR_URL", "https://idiot50.github.io/ontoan/?ung_ho=loi")
 ORDERS_FILE = env("ORDERS_FILE", os.path.join(os.path.dirname(os.path.abspath(__file__)), "orders.json"))
 
 _lock = threading.Lock()
@@ -88,6 +92,24 @@ def payos_get(order_code):
     with urllib.request.urlopen(req, timeout=20) as r:
         return json.loads(r.read().decode("utf-8"))
 
+def create_payos_order():
+    """Tạo 1 đơn ủng hộ ở PayOS, lưu PENDING, trả dict {checkoutUrl, qrCode, orderCode, amount}.
+    Ném ngoại lệ nếu PayOS lỗi / không trả checkoutUrl."""
+    order_code = int(time.time() * 1000) % 9_000_000_000_000  # duy nhất theo mili-giây
+    sig = sign_create(AMOUNT, CANCEL_URL, DESCRIPTION, order_code, RETURN_URL)
+    payload = {"orderCode": order_code, "amount": AMOUNT, "description": DESCRIPTION,
+               "cancelUrl": CANCEL_URL, "returnUrl": RETURN_URL, "signature": sig}
+    resp = payos_post(payload)
+    data = (resp or {}).get("data") or {}
+    if not data.get("checkoutUrl"):
+        raise RuntimeError("payos_no_checkout: %s" % (resp,))
+    with _lock:
+        orders = load_orders()
+        orders[str(order_code)] = {"status": "PENDING", "amount": AMOUNT, "ts": int(time.time())}
+        save_orders(orders)
+    return {"checkoutUrl": data.get("checkoutUrl"), "qrCode": data.get("qrCode"),
+            "orderCode": order_code, "amount": AMOUNT}
+
 class H(BaseHTTPRequestHandler):
     protocol_version = "HTTP/1.1"
     def _cors(self):
@@ -103,6 +125,13 @@ class H(BaseHTTPRequestHandler):
         self._cors()
         self.end_headers()
         self.wfile.write(body)
+    def _redirect(self, location):
+        self.send_response(302)
+        self.send_header("Location", location)
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("Content-Length", "0")
+        self._cors()
+        self.end_headers()
     def log_message(self, fmt, *args):  # gọn log
         pass
 
@@ -113,6 +142,16 @@ class H(BaseHTTPRequestHandler):
         u = urlparse(self.path)
         if u.path == "/health":
             return self._json(200, {"ok": True, "configured": bool(CLIENT_ID and API_KEY and CHECKSUM)})
+        if u.path == "/api/payos/pay":
+            # Tạo đơn rồi CHUYỂN HƯỚNG (302) thẳng tới trang thanh toán PayOS.
+            # Client chỉ cần 1 thẻ <a href> (KHÔNG fetch/XHR) -> giữ an toàn trẻ em.
+            if not (CLIENT_ID and API_KEY and CHECKSUM):
+                return self._redirect(PAY_ERROR_URL)
+            try:
+                out = create_payos_order()
+            except Exception:
+                return self._redirect(PAY_ERROR_URL)
+            return self._redirect(out["checkoutUrl"])
         if u.path == "/api/payos/status":
             q = parse_qs(u.query); oc = (q.get("orderCode") or [""])[0]
             orders = load_orders(); rec = orders.get(str(oc))
@@ -143,25 +182,13 @@ class H(BaseHTTPRequestHandler):
         if u.path == "/api/payos/create":
             if not (CLIENT_ID and API_KEY and CHECKSUM):
                 return self._json(500, {"error": "server_not_configured"})
-            order_code = int(time.time() * 1000) % 9_000_000_000_000  # duy nhất theo mili-giây
-            sig = sign_create(AMOUNT, CANCEL_URL, DESCRIPTION, order_code, RETURN_URL)
-            payload = {"orderCode": order_code, "amount": AMOUNT, "description": DESCRIPTION,
-                       "cancelUrl": CANCEL_URL, "returnUrl": RETURN_URL, "signature": sig}
             try:
-                resp = payos_post(payload)
+                out = create_payos_order()
             except urllib.error.HTTPError as e:
                 return self._json(502, {"error": "payos_http", "detail": e.read().decode("utf-8", "ignore")})
             except Exception as e:
                 return self._json(502, {"error": "payos_unreachable", "detail": str(e)})
-            data = (resp or {}).get("data") or {}
-            if not data.get("checkoutUrl"):
-                return self._json(502, {"error": "payos_no_checkout", "detail": resp})
-            with _lock:
-                orders = load_orders()
-                orders[str(order_code)] = {"status": "PENDING", "amount": AMOUNT, "ts": int(time.time())}
-                save_orders(orders)
-            return self._json(200, {"checkoutUrl": data.get("checkoutUrl"), "qrCode": data.get("qrCode"),
-                                    "orderCode": order_code, "amount": AMOUNT})
+            return self._json(200, out)
 
         if u.path == "/api/payos/webhook":
             data = (body or {}).get("data") or {}

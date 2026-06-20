@@ -45,7 +45,8 @@ export function run() {
   });
 
   /* URL http(s) ngoài: CHỈ cho phép link liên hệ nhà sáng tạo đã whitelist; khác = 🔴 */
-  const ALLOWED_EXTERNAL = ['https://t.me/+G88eLopFXcY4M2M1', 'https://zalo.me/0373109095'];
+  const ALLOWED_EXTERNAL = ['https://t.me/+G88eLopFXcY4M2M1', 'https://zalo.me/0373109095',
+    'https://3.104.106.255.sslip.io/api/payos/pay'];  // nút ủng hộ: chỉ chuyển hướng tạo đơn (KHÔNG fetch)
   const extUrls = [];
   const reExt = /(?:src|href)\s*=\s*["']?(https?:\/\/[^"'\s>]+)/gi;
   let xm;

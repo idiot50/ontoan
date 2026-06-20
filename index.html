@@ -47,6 +47,17 @@
   .c1 .go{color:var(--l1)} .c3 .go{color:var(--l3)}
   footer{margin-top:30px; color:var(--muted); font-size:13px; line-height:1.6}
 
+  /* ===== Nút "Ủng hộ tác giả" (tự nguyện, KHÔNG chặn tải) ===== */
+  .support-btn{display:inline-block; margin-top:12px; background:#fff7e6; color:#b45309;
+    border:1px solid #f5c97a; font-weight:700; text-decoration:none; font-size:15px;
+    padding:11px 18px; border-radius:999px; min-height:44px; line-height:22px}
+  .support-btn:hover{filter:brightness(.98); box-shadow:var(--shadow)}
+  .support-btn:focus-visible{outline:3px solid #ffd54a; outline-offset:2px}
+  .support-note{margin-top:6px; color:var(--muted); font-size:12px}
+  .thanks-toast{position:fixed; left:50%; transform:translateX(-50%); bottom:24px;
+    background:#1b2138; color:#fff; padding:12px 18px; border-radius:12px; font-size:15px;
+    box-shadow:var(--shadow); z-index:50; max-width:92vw; text-align:center}
+
   /* ===== Dải "Lưu về máy" (PWA) — kín đáo, dưới các thẻ chọn lớp ===== */
   .install-bar{display:flex; align-items:center; gap:10px; flex-wrap:wrap;
     justify-content:center; margin:22px auto 0; max-width:600px;
@@ -99,6 +110,10 @@
          style="color:#7c3aed; font-weight:700; text-decoration:none">Zalo ↗</a> ·
       <a href="https://t.me/+G88eLopFXcY4M2M1" target="_blank" rel="noopener noreferrer"
          style="color:#7c3aed; font-weight:700; text-decoration:none">Telegram ↗</a>
+      <br>
+      <a class="support-btn" href="https://3.104.106.255.sslip.io/api/payos/pay"
+         target="_blank" rel="noopener noreferrer">☕ Ủng hộ tác giả 10.000đ</a>
+      <div class="support-note">Tải &amp; dùng vẫn miễn phí — ủng hộ là hoàn toàn tự nguyện 💛</div>
     </footer>
   </main>
 
@@ -166,6 +181,27 @@
       }
       showBar();
     }
+  })();
+  </script>
+
+  <script>
+  /* Toast cảm ơn khi PayOS đưa người dùng quay lại (?ung_ho=ok|huy|loi). */
+  (function () {
+    'use strict';
+    try {
+      var p = new URLSearchParams(location.search).get('ung_ho');
+      if (!p) return;
+      var msg = p === 'ok'  ? '💛 Cảm ơn bạn đã ủng hộ Toán Vui!'
+              : p === 'huy' ? 'Đã huỷ giao dịch — bạn vẫn dùng app miễn phí nhé!'
+              :               'Tạo mã thanh toán chưa được, bạn thử lại sau nhé.';
+      var t = document.createElement('div');
+      t.className = 'thanks-toast';
+      t.setAttribute('role', 'status');
+      t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(function () { t.remove(); }, 6000);
+      history.replaceState(null, '', location.pathname);  // dọn query, refresh không hiện lại
+    } catch (e) {}
   })();
   </script>
 </body>
