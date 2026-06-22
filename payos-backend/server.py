@@ -27,6 +27,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
 PAYOS_API = "https://api-merchant.payos.vn/v2/payment-requests"
+PAYOS_CONFIRM_API = "https://api-merchant.payos.vn/confirm-webhook"  # đăng ký webhook URL
 # Cloudflare của PayOS chặn UA "Python-urllib" (lỗi 1010) -> giả UA trình duyệt.
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
 
@@ -44,6 +45,7 @@ RETURN_URL  = env("RETURN_URL", "https://idiot50.github.io/ontoan/?ung_ho=ok")
 CANCEL_URL  = env("CANCEL_URL", "https://idiot50.github.io/ontoan/?ung_ho=huy")
 # Khi /api/payos/pay không tạo được đơn (PayOS lỗi/chưa cấu hình) -> đưa người dùng về site kèm cờ lỗi.
 PAY_ERROR_URL = env("PAY_ERROR_URL", "https://idiot50.github.io/ontoan/?ung_ho=loi")
+WEBHOOK_URL = env("WEBHOOK_URL", "https://3.104.106.255.sslip.io/api/payos/webhook")  # khai báo ở PayOS
 ORDERS_FILE = env("ORDERS_FILE", os.path.join(os.path.dirname(os.path.abspath(__file__)), "orders.json"))
 
 _lock = threading.Lock()
@@ -99,6 +101,17 @@ def random_amount():
     lo = max(1, AMOUNT_MIN // 1000)
     hi = max(lo, AMOUNT_MAX // 1000)
     return random.randint(lo, hi) * 1000
+
+def confirm_webhook(webhook_url):
+    """Đăng ký (xác nhận) Webhook URL với PayOS qua API — thay cho thao tác trong Dashboard.
+    PayOS sẽ gửi 1 webhook thử tới URL này; endpoint /api/payos/webhook phải đang chạy & trả 200."""
+    req = urllib.request.Request(
+        PAYOS_CONFIRM_API, data=json.dumps({"webhookUrl": webhook_url}).encode("utf-8"),
+        method="POST",
+        headers={"Content-Type": "application/json", "x-client-id": CLIENT_ID, "x-api-key": API_KEY,
+                 "User-Agent": UA, "Accept": "application/json"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return r.status, json.loads(r.read().decode("utf-8"))
 
 def create_payos_order(amount):
     """Tạo 1 đơn ủng hộ ở PayOS với số tiền `amount`, lưu PENDING,
@@ -230,6 +243,22 @@ if __name__ == "__main__":
     import sys
     if "--selftest" in sys.argv:
         selftest(); raise SystemExit(0)
+    if "--confirm-webhook" in sys.argv:
+        i = sys.argv.index("--confirm-webhook")
+        url = sys.argv[i + 1] if (len(sys.argv) > i + 1 and not sys.argv[i + 1].startswith("-")) else WEBHOOK_URL
+        if not (CLIENT_ID and API_KEY):
+            print("Thiếu PAYOS_CLIENT_ID / PAYOS_API_KEY trong môi trường (source .env trước)."); raise SystemExit(2)
+        print("Đăng ký webhook:", url)
+        try:
+            code, resp = confirm_webhook(url)
+        except urllib.error.HTTPError as e:
+            print("LỖI HTTP:", e.code, e.read().decode("utf-8", "ignore")); raise SystemExit(1)
+        except Exception as e:
+            print("LỖI:", e); raise SystemExit(1)
+        print("Kết quả:", code, json.dumps(resp, ensure_ascii=False))
+        ok = str((resp or {}).get("code")) == "00"
+        print("=> ĐĂNG KÝ WEBHOOK THÀNH CÔNG" if ok else "=> CHƯA THÀNH CÔNG (xem thông báo trên)")
+        raise SystemExit(0 if ok else 1)
     srv = ThreadingHTTPServer(("127.0.0.1", PORT), H)
     print("PayOS backend nghe 127.0.0.1:%d (origin=%s, amount=%d..%dđ ngẫu nhiên, configured=%s)"
           % (PORT, ORIGIN, AMOUNT_MIN, AMOUNT_MAX, bool(CLIENT_ID and API_KEY and CHECKSUM)))
