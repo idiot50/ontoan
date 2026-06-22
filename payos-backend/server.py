@@ -18,10 +18,11 @@ ENV bắt buộc:
   PAYOS_CLIENT_ID, PAYOS_API_KEY, PAYOS_CHECKSUM_KEY
 ENV tùy chọn:
   PORT (mặc định 8787), ALLOWED_ORIGIN (mặc định https://idiot50.github.io),
-  AMOUNT (mặc định 10000), DESCRIPTION (mặc định "Ung ho Toan Vui", <=25 ký tự),
+  AMOUNT_MIN (mặc định 20000), AMOUNT_MAX (mặc định 200000) — số ủng hộ NGẪU NHIÊN mỗi lần,
+  DESCRIPTION (mặc định "Ung ho Toan Vui", <=25 ký tự),
   RETURN_URL, CANCEL_URL, ORDERS_FILE (mặc định ./orders.json)
 """
-import os, json, time, hmac, hashlib, threading, urllib.request, urllib.error
+import os, json, time, hmac, hashlib, threading, random, urllib.request, urllib.error
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
@@ -36,7 +37,8 @@ API_KEY     = env("PAYOS_API_KEY", "")
 CHECKSUM    = env("PAYOS_CHECKSUM_KEY", "")
 PORT        = int(env("PORT", "8787"))
 ORIGIN      = env("ALLOWED_ORIGIN", "https://idiot50.github.io")
-AMOUNT      = int(env("AMOUNT", "10000"))
+AMOUNT_MIN  = int(env("AMOUNT_MIN", "20000"))    # số ủng hộ ngẫu nhiên: cận dưới (VND)
+AMOUNT_MAX  = int(env("AMOUNT_MAX", "200000"))   # số ủng hộ ngẫu nhiên: cận trên (VND)
 DESCRIPTION = (env("DESCRIPTION", "Ung ho Toan Vui"))[:25]
 RETURN_URL  = env("RETURN_URL", "https://idiot50.github.io/ontoan/?ung_ho=ok")
 CANCEL_URL  = env("CANCEL_URL", "https://idiot50.github.io/ontoan/?ung_ho=huy")
@@ -92,12 +94,18 @@ def payos_get(order_code):
     with urllib.request.urlopen(req, timeout=20) as r:
         return json.loads(r.read().decode("utf-8"))
 
-def create_payos_order():
-    """Tạo 1 đơn ủng hộ ở PayOS, lưu PENDING, trả dict {checkoutUrl, qrCode, orderCode, amount}.
-    Ném ngoại lệ nếu PayOS lỗi / không trả checkoutUrl."""
+def random_amount():
+    """Số tiền ủng hộ NGẪU NHIÊN trong [AMOUNT_MIN, AMOUNT_MAX], làm tròn nghìn cho đẹp."""
+    lo = max(1, AMOUNT_MIN // 1000)
+    hi = max(lo, AMOUNT_MAX // 1000)
+    return random.randint(lo, hi) * 1000
+
+def create_payos_order(amount):
+    """Tạo 1 đơn ủng hộ ở PayOS với số tiền `amount`, lưu PENDING,
+    trả dict {checkoutUrl, qrCode, orderCode, amount}. Ném ngoại lệ nếu PayOS lỗi / không trả checkoutUrl."""
     order_code = int(time.time() * 1000) % 9_000_000_000_000  # duy nhất theo mili-giây
-    sig = sign_create(AMOUNT, CANCEL_URL, DESCRIPTION, order_code, RETURN_URL)
-    payload = {"orderCode": order_code, "amount": AMOUNT, "description": DESCRIPTION,
+    sig = sign_create(amount, CANCEL_URL, DESCRIPTION, order_code, RETURN_URL)
+    payload = {"orderCode": order_code, "amount": amount, "description": DESCRIPTION,
                "cancelUrl": CANCEL_URL, "returnUrl": RETURN_URL, "signature": sig}
     resp = payos_post(payload)
     data = (resp or {}).get("data") or {}
@@ -105,10 +113,10 @@ def create_payos_order():
         raise RuntimeError("payos_no_checkout: %s" % (resp,))
     with _lock:
         orders = load_orders()
-        orders[str(order_code)] = {"status": "PENDING", "amount": AMOUNT, "ts": int(time.time())}
+        orders[str(order_code)] = {"status": "PENDING", "amount": amount, "ts": int(time.time())}
         save_orders(orders)
     return {"checkoutUrl": data.get("checkoutUrl"), "qrCode": data.get("qrCode"),
-            "orderCode": order_code, "amount": AMOUNT}
+            "orderCode": order_code, "amount": amount}
 
 class H(BaseHTTPRequestHandler):
     protocol_version = "HTTP/1.1"
@@ -148,7 +156,7 @@ class H(BaseHTTPRequestHandler):
             if not (CLIENT_ID and API_KEY and CHECKSUM):
                 return self._redirect(PAY_ERROR_URL)
             try:
-                out = create_payos_order()
+                out = create_payos_order(random_amount())  # số ủng hộ ngẫu nhiên mỗi lần bấm
             except Exception:
                 return self._redirect(PAY_ERROR_URL)
             return self._redirect(out["checkoutUrl"])
@@ -183,7 +191,7 @@ class H(BaseHTTPRequestHandler):
             if not (CLIENT_ID and API_KEY and CHECKSUM):
                 return self._json(500, {"error": "server_not_configured"})
             try:
-                out = create_payos_order()
+                out = create_payos_order(random_amount())  # số ủng hộ ngẫu nhiên
             except urllib.error.HTTPError as e:
                 return self._json(502, {"error": "payos_http", "detail": e.read().decode("utf-8", "ignore")})
             except Exception as e:
@@ -223,6 +231,6 @@ if __name__ == "__main__":
     if "--selftest" in sys.argv:
         selftest(); raise SystemExit(0)
     srv = ThreadingHTTPServer(("127.0.0.1", PORT), H)
-    print("PayOS backend nghe 127.0.0.1:%d (origin=%s, amount=%d, configured=%s)"
-          % (PORT, ORIGIN, AMOUNT, bool(CLIENT_ID and API_KEY and CHECKSUM)))
+    print("PayOS backend nghe 127.0.0.1:%d (origin=%s, amount=%d..%dđ ngẫu nhiên, configured=%s)"
+          % (PORT, ORIGIN, AMOUNT_MIN, AMOUNT_MAX, bool(CLIENT_ID and API_KEY and CHECKSUM)))
     srv.serve_forever()

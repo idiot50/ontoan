@@ -151,8 +151,19 @@ def main():
         check("/pay OK -> Location = checkoutUrl", hd.get("Location") == FAKE_CHECKOUT, hd.get("Location"))
         with open(os.environ["ORDERS_FILE"], "r", encoding="utf-8") as f:
             saved2 = json.load(f)
-        has_pending = any(v.get("status") == "PENDING" for v in saved2.values())
-        check("/pay tạo order PENDING trong file", has_pending, json.dumps(saved2))
+        pending = [v for v in saved2.values() if v.get("status") == "PENDING"]
+        check("/pay tạo order PENDING trong file", len(pending) >= 1, json.dumps(saved2))
+
+        # 11) số tiền ủng hộ NGẪU NHIÊN nằm trong [20000, 200000] & tròn nghìn
+        amts = [v.get("amount") for v in pending]
+        in_range = all(isinstance(a, int) and 20000 <= a <= 200000 and a % 1000 == 0 for a in amts)
+        check("/pay: số tiền ngẫu nhiên 20k–200k, tròn nghìn", in_range, str(amts))
+
+        # 12) random_amount() lặp nhiều lần luôn trong khoảng + tròn nghìn
+        rs = [server.random_amount() for _ in range(200)]
+        check("random_amount() luôn trong [20000,200000] & tròn nghìn",
+              all(20000 <= r <= 200000 and r % 1000 == 0 for r in rs),
+              "min=%s max=%s" % (min(rs), max(rs)))
 
         server.payos_post = orig_post
     finally:
