@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 3,
+  "topic": "My body",
+  "topic_vi": "Cơ thể của em",
+  "vocab": [
+    { "word": "arm", "vi": "cánh tay", "icon": "💪", "example": "This is my arm.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "leg", "vi": "chân (cẳng chân)", "icon": "🦵", "example": "This is my leg.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "hand", "vi": "bàn tay", "icon": "✋", "example": "This is my hand.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "foot", "vi": "bàn chân", "icon": "🦶", "example": "This is my foot.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "eye", "vi": "mắt", "icon": "👁️", "example": "This is my eye.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "ear", "vi": "tai", "icon": "👂", "example": "This is my ear.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "nose", "vi": "mũi", "icon": "👃", "example": "This is my nose.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "head", "vi": "đầu", "icon": "🧑", "example": "This is my head.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "this-is-these-are",
+      "title_vi": "\"This is my...\" và \"These are my...\"",
+      "explain_vi": "Khi chỉ MỘT bộ phận, em nói \"This is my ...\". Khi chỉ HAI (hay nhiều), em nói \"These are my ...\" và thêm \"-s\" vào sau từ.",
+      "examples": [
+        "This is my nose.",
+        "This is my head.",
+        "These are my arms.",
+        "These are my legs."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "this-is-singular", "text": "This is my {noun}.", "blanks": ["noun"], "context_vi": "Chỉ vào MỘT bộ phận trên cơ thể.", "audioText": "This is my nose." },
+          { "id": "these-are-plural", "text": "These are my {noun_pl}.", "blanks": ["noun_pl"], "context_vi": "Chỉ vào HAI (hoặc nhiều) bộ phận giống nhau.", "audioText": "These are my arms." },
+          { "id": "choose-this-these", "text": "{dem} my {noun_any}.", "blanks": ["dem"], "context_vi": "Chọn \"This is\" hoặc \"These are\" cho đúng với số ít/số nhiều.", "audioText": "These are my eyes." }
+        ],
+        "slots": {
+          "noun": ["nose", "head", "arm", "leg", "hand", "foot", "eye", "ear"],
+          "noun_pl": ["arms", "legs", "hands", "eyes", "ears"],
+          "noun_any": ["nose", "head", "arms", "legs", "hands", "eyes", "ears", "feet"],
+          "dem": ["This is", "These are"]
+        },
+        "answerKey": {
+          "choose-this-these": {
+            "dem": {
+              "nose": "This is",
+              "head": "This is",
+              "arms": "These are",
+              "legs": "These are",
+              "hands": "These are",
+              "eyes": "These are",
+              "ears": "These are",
+              "feet": "These are"
+            }
+          }
+        },
+        "distractors": [
+          "This is my arms.",
+          "These are my arm.",
+          "This are my nose.",
+          "These is my legs.",
+          "This is my foots.",
+          "These are my foots."
+        ],
+        "irregulars": { "foot": "feet" }
+      }
+    },
+    {
+      "id": "plural-s",
+      "title_vi": "Số nhiều thêm \"-s\"",
+      "explain_vi": "Khi có HAI hay nhiều thứ, em thêm \"-s\" vào sau từ: arm → arms, leg → legs. Riêng \"foot\" đổi đặc biệt thành \"feet\".",
+      "examples": [
+        "one arm, two arms",
+        "one leg, two legs",
+        "one foot, two feet"
+      ],
+      "generators": ["fill_blank", "mcq", "order_words"],
+      "safeZone": {
+        "templates": [
+          { "id": "two-plural", "text": "two {noun_pl}", "blanks": ["noun_pl"], "context_vi": "Nói \"hai\" cái gì đó (số nhiều).", "audioText": "two arms" },
+          { "id": "one-singular", "text": "one {noun}", "blanks": ["noun"], "context_vi": "Nói \"một\" cái gì đó (số ít).", "audioText": "one arm" }
+        ],
+        "slots": {
+          "noun": ["arm", "leg", "hand", "eye", "ear", "foot"],
+          "noun_pl": ["arms", "legs", "hands", "eyes", "ears", "feet"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "two arm",
+          "two legs.",
+          "two foots",
+          "two foot",
+          "two eys",
+          "one arms"
+        ],
+        "irregulars": { "foot": "feet" }
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["i", "j", "k", "l"],
+    "soundLabels": {
+      "i": { "ipa": "/ɪ/", "anchor": "ink", "position": "initial", "say_vi": "âm /ɪ/ như đầu từ \"ink\" (không đọc tên chữ \"ai\")" },
+      "j": { "ipa": "/dʒ/", "anchor": "jam", "position": "initial", "say_vi": "âm /dʒ/ như đầu từ \"jam\" (không đọc tên chữ \"giây\")" },
+      "k": { "ipa": "/k/", "anchor": "kite", "position": "initial", "say_vi": "âm /k/ như đầu từ \"kite\" (không đọc tên chữ \"cây\")" },
+      "l": { "ipa": "/l/", "anchor": "lion", "position": "initial", "say_vi": "âm /l/ như đầu từ \"lion\" (không đọc tên chữ \"eo\")" }
+    },
+    "words": [
+      { "word": "ink", "icon": "🖋️", "focusSound": "i", "anchor": "ink", "audio": "" },
+      { "word": "igloo", "icon": "🛖", "focusSound": "i", "anchor": "ink", "audio": "" },
+      { "word": "jam", "icon": "🍓", "focusSound": "j", "anchor": "jam", "audio": "" },
+      { "word": "jug", "icon": "🫙", "focusSound": "j", "anchor": "jam", "audio": "" },
+      { "word": "kite", "icon": "🪁", "focusSound": "k", "anchor": "kite", "audio": "" },
+      { "word": "key", "icon": "🔑", "focusSound": "k", "anchor": "kite", "audio": "" },
+      { "word": "lion", "icon": "🦁", "focusSound": "l", "anchor": "lion", "audio": "" },
+      { "word": "leg", "icon": "🦵", "focusSound": "l", "anchor": "lion", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "look-at-me",
+      "title": "Look at me",
+      "title_vi": "Nhìn em này",
+      "text": "Look at me! This is my head. This is my nose. These are my eyes. These are my ears. These are my two hands. I like my hands!",
+      "questions": [
+        { "id": "q1", "q_vi": "Bạn nhỏ có hai bàn tay, đúng không?", "type": "truefalse", "answer": true, "audioText": "She has two hands." },
+        { "id": "q2", "q_vi": "Câu nào nói về MỘT bộ phận (số ít)?", "type": "mcq", "choices": ["This is my nose.", "These are my eyes.", "These are my ears."], "answer": 0, "audioText": "Which one is about only one part?" },
+        { "id": "q3", "q_vi": "Bộ phận nào ĐƯỢC nhắc tới trong bài?", "type": "mcq", "choices": ["my ears", "my arms", "my legs"], "answer": 0, "audioText": "Which part is in the text?" }
+      ]
+    }
+  ]
+}

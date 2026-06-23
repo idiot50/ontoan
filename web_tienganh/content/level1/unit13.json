@@ -1,0 +1,141 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 13,
+  "topic": "My bedroom",
+  "topic_vi": "Phòng ngủ của em (và số 11–20)",
+  "vocab": [
+    { "word": "bed", "vi": "cái giường", "icon": "🛏️", "example": "It's a bed.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "cupboard", "vi": "cái tủ", "icon": "🚪", "example": "It's a cupboard.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "shelf", "vi": "cái kệ", "icon": "🗄️", "example": "It's a shelf.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "lamp", "vi": "cái đèn", "icon": "💡", "example": "It's a lamp.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "toy box", "vi": "hộp đồ chơi", "icon": "🧰", "example": "It's a toy box.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "eleven", "vi": "mười một (11)", "icon": "1️⃣1️⃣", "example": "There are eleven books.", "partOfSpeech": "number", "audio": "" },
+    { "word": "twelve", "vi": "mười hai (12)", "icon": "1️⃣2️⃣", "example": "There are twelve pens.", "partOfSpeech": "number", "audio": "" },
+    { "word": "fifteen", "vi": "mười lăm (15)", "icon": "1️⃣5️⃣", "example": "There are fifteen toys.", "partOfSpeech": "number", "audio": "" },
+    { "word": "twenty", "vi": "hai mươi (20)", "icon": "2️⃣0️⃣", "example": "There are twenty pens.", "partOfSpeech": "number", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "theres-singular",
+      "title_vi": "\"There's…\" (có một cái…)",
+      "explain_vi": "Khi nói có MỘT đồ vật ở đâu đó, em dùng \"There's a…\" (viết đầy đủ là \"There is a…\"). Sau đó nói tên một đồ vật.",
+      "examples": [
+        "There's a bed.",
+        "There's a lamp.",
+        "There's a toy box."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "theres-a-noun", "text": "There's a {noun}.", "blanks": ["noun"], "context_vi": "Nói trong phòng có MỘT đồ vật.", "audioText": "There's a bed." }
+        ],
+        "slots": {
+          "noun": ["bed", "cupboard", "shelf", "lamp", "toy box"]
+        },
+        "answerKey": {
+          "theres-a-noun": { "noun": "noun" }
+        },
+        "distractors": [
+          "There a bed.",
+          "There's bed.",
+          "There are a bed.",
+          "There's a beds.",
+          "Theres a bed."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "there-are-plural",
+      "title_vi": "\"There are…\" (có nhiều cái…)",
+      "explain_vi": "Khi nói có NHIỀU (từ 2 trở lên), em dùng \"There are…\" rồi nói số đếm và tên đồ vật ở dạng số nhiều (thêm -s).",
+      "examples": [
+        "There are eleven books.",
+        "There are fifteen toys.",
+        "There are twenty pens."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "there-are-num-noun", "text": "There are {num} {nounPlural}.", "blanks": ["nounPlural"], "context_vi": "Nói có NHIỀU đồ vật (kèm số đếm).", "audioText": "There are eleven books." }
+        ],
+        "slots": {
+          "num": ["eleven", "twelve", "fifteen", "twenty"],
+          "nounPlural": ["books", "toys", "pens", "beds", "lamps"]
+        },
+        "answerKey": {
+          "there-are-num-noun": { "nounPlural": "nounPlural" }
+        },
+        "distractors": [
+          "There are eleven book.",
+          "There's eleven books.",
+          "There is eleven books.",
+          "There are eleven toy.",
+          "There are a books."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "theres-vs-there-are",
+      "title_vi": "Chọn \"There's\" hay \"There are\"?",
+      "explain_vi": "Một cái thì dùng \"There's a…\". Nhiều cái (từ 2 trở lên) thì dùng \"There are…\" và đồ vật thêm -s.",
+      "examples": [
+        "There's a lamp.",
+        "There are twenty pens.",
+        "There's a bed."
+      ],
+      "generators": ["fill_blank", "mcq"],
+      "safeZone": {
+        "templates": [
+          { "id": "choose-there-singular", "text": "{there} a {noun}.", "blanks": ["there"], "context_vi": "Chọn từ đúng khi có MỘT đồ vật.", "audioText": "There's a lamp." },
+          { "id": "choose-there-plural", "text": "{there} {num} {nounPlural}.", "blanks": ["there"], "context_vi": "Chọn từ đúng khi có NHIỀU đồ vật.", "audioText": "There are twenty pens." }
+        ],
+        "slots": {
+          "there": ["There's", "There are"],
+          "noun": ["bed", "cupboard", "shelf", "lamp", "toy box"],
+          "num": ["eleven", "twelve", "fifteen", "twenty"],
+          "nounPlural": ["books", "toys", "pens", "beds", "lamps"]
+        },
+        "answerKey": {
+          "choose-there-singular": { "there": "There's" },
+          "choose-there-plural": { "there": "There are" }
+        },
+        "distractors": [
+          "There are a lamp.",
+          "There's twenty pens.",
+          "There is twenty pens."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "medial",
+    "focus": ["u"],
+    "soundLabels": {
+      "u": { "ipa": "/ʌ/", "anchor": "sun", "position": "medial", "say_vi": "âm /ʌ/ ngắn ở GIỮA từ như trong \"sun\" (không đọc tên chữ \"diu\")" }
+    },
+    "words": [
+      { "word": "rug", "icon": "🧶", "focusSound": "u", "anchor": "sun", "audio": "" },
+      { "word": "jug", "icon": "🏺", "focusSound": "u", "anchor": "sun", "audio": "" },
+      { "word": "sun", "icon": "☀️", "focusSound": "u", "anchor": "sun", "audio": "" },
+      { "word": "bus", "icon": "🚌", "focusSound": "u", "anchor": "sun", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "in-my-bedroom",
+      "title": "In my bedroom",
+      "title_vi": "Trong phòng ngủ của em",
+      "text": "This is my bedroom. There's a bed. There's a lamp. There's a toy box. There are fifteen toys in the box. I like my bedroom.",
+      "questions": [
+        { "id": "q1", "q_vi": "Trong phòng có một cái giường, đúng không?", "type": "truefalse", "answer": true, "audioText": "Is there a bed?" },
+        { "id": "q2", "q_vi": "Có bao nhiêu món đồ chơi trong hộp?", "type": "mcq", "choices": ["fifteen", "eleven", "twenty"], "answer": 0, "audioText": "How many toys are there?" },
+        { "id": "q3", "q_vi": "Đồ nào CÓ trong phòng ngủ?", "type": "mcq", "choices": ["a lamp", "a bus", "a pig"], "answer": 0, "audioText": "What is in the bedroom?" }
+      ]
+    }
+  ]
+}

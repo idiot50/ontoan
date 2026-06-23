@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="vi" data-contrast="normal">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xem trước hệ thị giác — Web học tiếng Anh trẻ em (v3)</title>
+<!--
+  TRANG XEM TRƯỚC TỰ CHỨA (review bằng mắt). KHÔNG link ngoài: CSS dưới đây là
+  bản nhúng của css/tokens.css + css/base.css. NGUỒN SỰ THẬT vẫn là 2 file đó —
+  nếu sửa token/component, sửa ở 2 file rồi đồng bộ lại khối <style> này.
+  Mọi tài nguyên offline: emoji + SVG inline + gradient/shape thuần CSS.
+  v3: vá AA (accent/border/sao/chip), nền hoàng-hôn + đốm đom đóm, Pi trau chuốt,
+      khoảnh khắc ăn mừng .celebrate, thẻ chủ đề sticker, flashcard "thẻ sưu tập".
+-->
+<style>
+/* ===================== NHÚNG: tokens.css ===================== */
+:root{
+  --c-primary:#5b3fc4;--c-primary-strong:#46309c;--c-primary-soft:#efeafc;--c-primary-contrast:#ffffff;
+  --c-accent:#e8590c;--c-accent-strong:#bd4708;--c-accent-deeper:#9a3a06;--c-accent-soft:#fdeadd;--c-accent-contrast:#ffffff;
+  --c-mint:#0f9b6c;--c-mint-soft:#e2f7ef;--c-mint-text:#0a6a4a;
+  --c-sky:#1186c0;--c-sky-soft:#e1f3fb;--c-sky-text:#0c6190;
+  --c-grape:#7a4fd1;--c-grape-soft:#efe8fb;--c-grape-text:#4f2f9a;
+  --c-coral:#e0455f;--c-coral-soft:#fde6ea;--c-coral-text:#b21d36;
+  --c-sun:#e08a00;--c-sun-soft:#fdf1d8;--c-sun-text:#8a5400;
+  --c-correct:#15924f;--c-correct-strong:#0e7340;--c-correct-soft:#e3f7ec;--c-correct-text:#0a5e33;
+  --c-try:#c0540f;--c-try-strong:#9c440c;--c-try-soft:#fbe9da;--c-try-text:#7d3406;
+  --c-warn:#b6790a;--c-warn-soft:#fbf1d6;--c-warn-text:#7a5104;
+  --c-info:#2563c4;--c-info-soft:#e6effb;--c-info-text:#18488f;
+  --c-star:#ffc21f;--c-star-edge:#8a5a00;--c-star-deep:#7e5a00;--c-star-empty:#e6e0d2;--c-star-empty-edge:#b8a878;
+  --c-xp:#15924f;--c-xp-track:#e7ecf3;--grad-xp:linear-gradient(90deg,#1fb866 0%,#15924f 70%,#0e8a5e 100%);
+  --c-badge:#f3a01c;--c-badge-soft:#fdf0d6;--c-badge-ring:#d9820a;
+  --c-confetti-1:#ffc21f;--c-confetti-2:#e8590c;--c-confetti-3:#5b3fc4;--c-confetti-4:#1186c0;--c-confetti-5:#0f9b6c;--c-confetti-6:#e0455f;
+  --c-bg:#f6f4fb;--c-bg-2:#fdf7f1;--c-surface:#ffffff;--c-surface-2:#f1eef9;--c-overlay:rgba(36,24,64,.55);
+  --grad-brand:linear-gradient(135deg,#7a4fd1 0%,#5b3fc4 100%);
+  --grad-warm:linear-gradient(135deg,#ffb454 0%,#e8590c 100%);
+  --grad-sky:linear-gradient(160deg,#efeafc 0%,#fdf7f1 100%);
+  --grad-festive:linear-gradient(135deg,#ffc21f 0%,#e8590c 55%,#e0455f 100%);
+  --grad-page:linear-gradient(178deg,#fdeede 0%,#f3e9fb 34%,#efeafc 64%,#fdf7f1 100%);
+  --tex-fireflies:
+    radial-gradient(circle at 16% 22%,rgba(255,194,31,.10) 0 6px,transparent 7px),
+    radial-gradient(circle at 78% 16%,rgba(255,194,31,.08) 0 5px,transparent 6px),
+    radial-gradient(circle at 64% 40%,rgba(255,180,84,.07) 0 7px,transparent 8px),
+    radial-gradient(circle at 30% 58%,rgba(255,194,31,.07) 0 5px,transparent 6px),
+    radial-gradient(circle at 88% 66%,rgba(255,194,31,.09) 0 4px,transparent 5px),
+    radial-gradient(circle at 10% 82%,rgba(255,180,84,.06) 0 6px,transparent 7px),
+    radial-gradient(circle at 50% 88%,rgba(255,194,31,.06) 0 5px,transparent 6px);
+  --c-text:#221a3a;--c-text-soft:#4d4666;--c-text-faint:#6b6385;--c-text-on-color:#ffffff;
+  --c-border:#e2dcf0;--c-border-strong:#7d6fb8;--c-focus-ring:#2563c4;--c-focus-ring-2:#ffffff;
+  --font-base:"Nunito","Quicksand","Segoe UI",system-ui,-apple-system,"Roboto","Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  --font-display:"Baloo 2","Fredoka","Nunito","Segoe UI",system-ui,sans-serif;
+  --font-en:"Verdana","Segoe UI",system-ui,"Trebuchet MS","Noto Sans",sans-serif;
+  --font-num:"Segoe UI",system-ui,"Roboto","Helvetica Neue",Arial,sans-serif;
+  --fs-xs:14px;--fs-sm:16px;--fs-base:18px;--fs-md:20px;--fs-lg:24px;--fs-xl:28px;--fs-2xl:34px;--fs-3xl:44px;--fs-display:56px;
+  --fw-regular:400;--fw-medium:600;--fw-bold:700;--fw-black:800;
+  --lh-tight:1.2;--lh-snug:1.35;--lh-base:1.6;--lh-loose:1.8;
+  --tracking-tight:-0.01em;--tracking-normal:0;--tracking-wide:0.02em;
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:20px;--sp-6:24px;--sp-7:32px;--sp-8:40px;--sp-9:48px;--sp-10:64px;
+  --gap-card:var(--sp-5);--gap-stack:var(--sp-4);--gap-grid:var(--sp-4);
+  --radius-xs:8px;--radius-sm:12px;--radius-md:16px;--radius-lg:22px;--radius-xl:28px;--radius-2xl:36px;--radius-pill:999px;--radius-round:50%;
+  --shadow-sm:0 1px 2px rgba(34,26,58,.08),0 1px 3px rgba(34,26,58,.06);
+  --shadow-md:0 4px 12px rgba(34,26,58,.10),0 2px 4px rgba(34,26,58,.06);
+  --shadow-lg:0 12px 26px rgba(34,26,58,.14),0 4px 8px rgba(34,26,58,.08);
+  --shadow-xl:0 20px 44px rgba(34,26,58,.18);
+  --shadow-btn:0 5px 0 var(--c-primary-strong);--shadow-btn-accent:0 5px 0 var(--c-accent-deeper);
+  --shadow-btn-correct:0 5px 0 var(--c-correct-strong);--shadow-inset:inset 0 2px 5px rgba(34,26,58,.10);
+  --glow-star:0 0 0 4px rgba(255,194,31,.35),0 6px 18px rgba(217,145,0,.35);
+  --glow-correct:0 0 0 4px rgba(21,146,79,.22),0 6px 18px rgba(14,115,64,.28);
+  --glow-firefly:0 0 22px 6px rgba(255,200,60,.55);
+  --glow-celebrate:0 0 0 6px rgba(255,194,31,.30),0 18px 50px rgba(189,71,8,.32);
+  --touch-min:48px;--touch-cozy:56px;--touch-cta:64px;--icon-btn:52px;--icon-sz-sm:20px;--icon-sz-md:28px;--icon-sz-lg:40px;
+  --container-max:640px;--container-wide:920px;--page-pad-x:var(--sp-4);--page-pad-x-lg:var(--sp-7);--header-h:64px;
+  --t-fast:120ms;--t-base:220ms;--t-slow:360ms;--t-celebrate:700ms;
+  --ease-out:cubic-bezier(.22,1,.36,1);--ease-bounce:cubic-bezier(.34,1.56,.64,1);--ease-in-out:cubic-bezier(.65,0,.35,1);
+  --z-base:0;--z-sticky:100;--z-mascot:200;--z-overlay:800;--z-modal:900;--z-confetti:950;--z-toast:1000;
+}
+
+/* ===================== NHÚNG: base.css (rút gọn cho preview) ===================== */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:var(--font-base);font-size:var(--fs-base);line-height:var(--lh-base);color:var(--c-text);background:var(--c-bg);background-image:var(--tex-fireflies),var(--grad-page);background-size:520px 760px,cover;background-attachment:fixed;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p,figure{margin:0}
+img,svg{display:block;max-width:100%}
+button{font:inherit;color:inherit;cursor:pointer}
+ul,ol{margin:0;padding:0;list-style:none}
+:focus-visible{outline:3px solid var(--c-focus-ring);outline-offset:2px;box-shadow:0 0 0 5px var(--c-focus-ring-2);border-radius:var(--radius-xs)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.bg-fireflies{position:relative}
+.bg-fireflies::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:var(--tex-fireflies);background-size:360px 520px;border-radius:inherit}
+.bg-fireflies>*{position:relative;z-index:1}
+.container{width:100%;max-width:var(--container-max);margin-inline:auto;padding-inline:var(--page-pad-x)}
+.stack>*+*{margin-top:var(--gap-stack)}
+.row{display:flex;align-items:center;gap:var(--sp-3)}
+.row-wrap{display:flex;flex-wrap:wrap;gap:var(--sp-3)}
+.between{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-3)}
+.grow{flex:1 1 auto}
+.title{font-family:var(--font-display);font-weight:var(--fw-black);font-size:var(--fs-2xl);line-height:var(--lh-tight)}
+.subtitle{font-size:var(--fs-md);color:var(--c-text-soft);line-height:var(--lh-snug)}
+.prompt{font-size:var(--fs-xl);line-height:var(--lh-snug);font-weight:var(--fw-bold)}
+.en{font-family:var(--font-en)}
+.muted{color:var(--c-text-soft)}
+.num{font-family:var(--font-num);font-variant-numeric:tabular-nums}
+.text-center{text-align:center}
+
+.btn{--_bg:var(--c-primary);--_bg-strong:var(--c-primary-strong);--_fg:var(--c-primary-contrast);display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);min-height:var(--touch-cozy);min-width:var(--touch-min);padding:var(--sp-3) var(--sp-6);font-family:var(--font-display);font-size:var(--fs-md);font-weight:var(--fw-bold);color:var(--_fg);background:var(--_bg);border:none;border-radius:var(--radius-pill);box-shadow:0 5px 0 var(--_bg-strong),var(--shadow-sm);transition:transform var(--t-fast) var(--ease-out),box-shadow var(--t-fast) var(--ease-out),filter var(--t-fast);user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--_bg-strong),var(--shadow-sm)}
+.btn:disabled,.btn[aria-disabled="true"]{opacity:.5;cursor:not-allowed;box-shadow:0 5px 0 var(--_bg-strong);transform:none}
+.btn--cta{min-height:var(--touch-cta);font-size:var(--fs-lg);padding-inline:var(--sp-8)}
+.btn--accent{--_bg:var(--c-accent-strong);--_bg-strong:var(--c-accent-deeper);--_fg:var(--c-accent-contrast)}
+.btn--correct{--_bg:var(--c-correct-strong);--_bg-strong:#0a5a32;--_fg:#fff}
+.btn--try{--_bg:var(--c-try-strong);--_bg-strong:#7d3406;--_fg:#fff}
+.btn--ghost{--_fg:var(--c-primary);background:var(--c-surface);color:var(--_fg);border:2px solid var(--c-border-strong);box-shadow:0 4px 0 var(--c-border),var(--shadow-sm)}
+.btn--ghost:active{box-shadow:0 1px 0 var(--c-border)}
+.btn--block{display:flex;width:100%}
+
+.icon-btn{display:inline-flex;align-items:center;justify-content:center;width:var(--icon-btn);height:var(--icon-btn);font-size:var(--icon-sz-md);color:var(--c-primary);background:var(--c-primary-soft);border:none;border-radius:var(--radius-round);box-shadow:var(--shadow-sm);transition:transform var(--t-fast) var(--ease-out)}
+.icon-btn:active{transform:scale(.92)}
+.icon-btn--accent{color:var(--c-accent-strong);background:var(--c-accent-soft)}
+.icon-btn--lg{width:var(--touch-cta);height:var(--touch-cta);font-size:var(--icon-sz-lg)}
+.icon-btn.is-playing{animation:wiggle 600ms var(--ease-in-out) infinite}
+
+.card{background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius-xl);padding:var(--gap-card);box-shadow:var(--shadow-md)}
+
+.topic-card{--topic:var(--c-grape);--topic-soft:var(--c-grape-soft);--topic-text:var(--c-grape-text);position:relative;display:flex;flex-direction:column;gap:var(--sp-3);width:100%;text-align:left;padding:var(--gap-card);background:var(--c-surface);border:2px solid var(--topic-soft);border-radius:var(--radius-xl);box-shadow:var(--shadow-md);transition:transform var(--t-base) var(--ease-bounce),box-shadow var(--t-base);overflow:hidden}
+.topic-card::before{content:"";position:absolute;inset:0 0 auto 0;height:8px;background:var(--topic)}
+.topic-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.topic-card:hover .topic-card__icon{transform:rotate(-4deg) scale(1.05)}
+.topic-card__icon{width:80px;height:80px;flex:none;display:grid;place-items:center;font-size:50px;line-height:1;background:radial-gradient(circle at 38% 30%,#fff 0%,var(--topic-soft) 62%);border:2px solid var(--topic-soft);border-radius:var(--radius-round);box-shadow:var(--shadow-sm);transition:transform var(--t-base) var(--ease-bounce)}
+.topic-card__num{font:var(--fw-bold) var(--fs-sm)/1 var(--font-num);color:var(--topic-text);letter-spacing:var(--tracking-wide);text-transform:uppercase}
+.topic-card__name{font-family:var(--font-display);font-weight:var(--fw-black);font-size:var(--fs-xl);color:var(--c-text);line-height:var(--lh-snug)}
+.topic-card__en{font-family:var(--font-en);font-size:var(--fs-sm);color:var(--c-text-faint);font-style:italic}
+.topic-grid{display:grid;grid-template-columns:1fr;gap:var(--gap-grid)}
+@media(min-width:560px){.topic-grid{grid-template-columns:1fr 1fr}}
+
+.flashcard{--topic:var(--c-grape);--topic-soft:var(--c-grape-soft);perspective:1200px;width:100%;max-width:300px;margin-inline:auto;aspect-ratio:3/4}
+.flashcard__inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform var(--t-slow) var(--ease-bounce)}
+.flashcard.is-flipped .flashcard__inner{transform:rotateY(180deg)}
+.flashcard__face{position:absolute;inset:0;overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--sp-4);text-align:center;padding:var(--sp-6);background:var(--c-surface);border:3px solid var(--topic-soft);border-radius:var(--radius-2xl);box-shadow:var(--shadow-lg)}
+.flashcard__face--front{background:radial-gradient(circle at 50% 30%,#fff 0%,var(--topic-soft) 130%)}
+.flashcard__face--back{transform:rotateY(180deg);background:radial-gradient(circle at 50% 30%,#fff 0%,var(--c-primary-soft) 130%)}
+.flashcard__face--back::before{content:"★";position:absolute;top:10px;right:16px;font-size:64px;color:var(--c-star);opacity:.16;pointer-events:none}
+.flashcard__icon{font-size:84px;line-height:1;filter:drop-shadow(0 4px 6px rgba(34,26,58,.12))}
+.flashcard__word{font-family:var(--font-en);font-weight:var(--fw-black);font-size:var(--fs-3xl);color:var(--c-text)}
+.flashcard__vi{font-size:var(--fs-xl);font-weight:var(--fw-bold);color:var(--c-primary-strong)}
+.flashcard__example{font-family:var(--font-en);font-size:var(--fs-md);color:var(--c-text-soft);line-height:var(--lh-base)}
+.flashcard__hint{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:var(--sp-1);padding:2px var(--sp-3);border-radius:var(--radius-pill);font-size:var(--fs-sm);font-weight:var(--fw-bold);color:var(--c-primary-strong);background:var(--c-surface);border:1.5px solid var(--topic-soft);box-shadow:var(--shadow-sm)}
+
+.choice-list{display:grid;gap:var(--sp-3);grid-template-columns:1fr}
+.choice{display:flex;align-items:center;gap:var(--sp-3);width:100%;min-height:var(--touch-cta);text-align:left;padding:var(--sp-3) var(--sp-5);font-size:var(--fs-md);font-weight:var(--fw-bold);color:var(--c-text);background:var(--c-surface);border:2.5px solid var(--c-border-strong);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);transition:transform var(--t-fast),border-color var(--t-fast),background-color var(--t-fast)}
+.choice:hover{border-color:var(--c-primary)}
+.choice__key{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:var(--radius-round);font:var(--fw-black) var(--fs-base)/1 var(--font-display);color:var(--c-primary);background:var(--c-primary-soft)}
+.choice__text{flex:1 1 auto}
+.choice__mark{flex:none;font-size:var(--fs-lg);opacity:0}
+.choice.is-correct{border-color:var(--c-correct);background:var(--c-correct-soft);color:var(--c-correct-text);animation:pop 360ms var(--ease-bounce)}
+.choice.is-correct .choice__key{color:#fff;background:var(--c-correct-strong)}
+.choice.is-correct .choice__mark{opacity:1;color:var(--c-correct-strong)}
+.choice.is-wrong{border-color:var(--c-try);background:var(--c-try-soft);color:var(--c-try-text);animation:shake 360ms var(--ease-in-out)}
+.choice.is-wrong .choice__key{color:#fff;background:var(--c-try-strong)}
+.choice.is-wrong .choice__mark{opacity:1;color:var(--c-try-strong)}
+
+.feedback{display:flex;align-items:flex-start;gap:var(--sp-3);padding:var(--sp-4) var(--sp-5);border-radius:var(--radius-lg);border:2px solid transparent;font-size:var(--fs-base);animation:slide-up 300ms var(--ease-out)}
+.feedback__icon{font-size:var(--fs-2xl);line-height:1;flex:none}
+.feedback__title{font-family:var(--font-display);font-weight:var(--fw-black);font-size:var(--fs-lg);margin-bottom:var(--sp-1)}
+.feedback__body{line-height:var(--lh-base)}
+.feedback__answer{font-family:var(--font-en);font-weight:var(--fw-bold)}
+.feedback--correct{background:var(--c-correct-soft);border-color:var(--c-correct);color:var(--c-correct-text)}
+.feedback--correct .feedback__title{color:var(--c-correct-strong)}
+.feedback--try{background:var(--c-try-soft);border-color:var(--c-try);color:var(--c-try-text)}
+.feedback--try .feedback__title{color:var(--c-try-strong)}
+.feedback--warn{background:var(--c-warn-soft);border-color:var(--c-warn);color:var(--c-warn-text)}
+
+.progress{--_pct:0%;position:relative;height:16px;background:var(--c-xp-track);border-radius:var(--radius-pill);overflow:hidden}
+.progress__fill{position:absolute;inset:0 auto 0 0;width:var(--_pct);background:var(--grad-xp);border-radius:var(--radius-pill);transition:width var(--t-slow) var(--ease-out)}
+.progress--lg{height:22px}
+.progress-row{display:flex;align-items:center;gap:var(--sp-3)}
+.progress-row .progress{flex:1 1 auto}
+.progress__pct{font:var(--fw-bold) var(--fs-sm)/1 var(--font-num);color:var(--c-text-soft);min-width:3ch;text-align:right}
+.steps{display:flex;gap:var(--sp-2)}
+.step-dot{width:14px;height:14px;border-radius:var(--radius-round);background:var(--c-xp-track);border:2px solid var(--c-border-strong)}
+.step-dot.is-done{background:var(--c-correct);border-color:var(--c-correct-strong)}
+.step-dot.is-current{background:var(--c-accent);border-color:var(--c-accent-strong);transform:scale(1.2)}
+
+.stars{display:inline-flex;gap:var(--sp-1);align-items:center}
+.star{width:30px;height:30px;flex:none;color:var(--c-star-empty);filter:drop-shadow(0 1px 1px rgba(34,26,58,.15))}
+.star.is-on{color:var(--c-star);filter:drop-shadow(0 2px 3px rgba(217,145,0,.35))}
+.star.is-on svg path{stroke:var(--c-star-edge)}
+.star svg path{stroke:var(--c-star-empty-edge);stroke-width:4}
+.stars--lg .star{width:44px;height:44px}
+.stars--xl .star{width:56px;height:56px}
+
+.badge{display:inline-flex;flex-direction:column;align-items:center;gap:var(--sp-1)}
+.badge__medal{width:72px;height:72px;display:grid;place-items:center;font-size:36px;line-height:1;background:radial-gradient(circle at 35% 30%,#ffe08a,var(--c-badge) 70%);border:3px solid var(--c-badge-ring);border-radius:var(--radius-round);box-shadow:var(--shadow-md)}
+.badge--locked .badge__medal{background:var(--c-surface-2);border-color:var(--c-border-strong);filter:grayscale(1);color:var(--c-text-faint)}
+.badge__label{font-size:var(--fs-sm);font-weight:var(--fw-bold);color:var(--c-text-soft);text-align:center}
+
+.chip{display:inline-flex;align-items:center;gap:var(--sp-1);padding:var(--sp-1) var(--sp-3);min-height:28px;font-size:var(--fs-sm);font-weight:var(--fw-bold);color:var(--c-primary-strong);background:var(--c-primary-soft);border-radius:var(--radius-pill)}
+.chip--star{color:var(--c-star-deep);background:var(--c-badge-soft)}
+.chip--done{color:var(--c-correct-text);background:var(--c-correct-soft)}
+.chip--accent{color:#a8400a;background:var(--c-accent-soft)}
+
+.mascot{width:120px;height:120px;display:inline-block;filter:drop-shadow(0 6px 10px rgba(34,26,58,.18))}
+.mascot--sm{width:72px;height:72px}.mascot--lg{width:168px;height:168px}
+.mascot.is-idle{animation:float 3s var(--ease-in-out) infinite}
+.mascot.is-glowing{filter:drop-shadow(0 6px 10px rgba(34,26,58,.18)) drop-shadow(var(--glow-firefly))}
+.mascot.is-glowing .belly-glow{animation:belly-pulse 2.4s var(--ease-in-out) infinite}
+.speech{position:relative;display:inline-block;max-width:260px;padding:var(--sp-3) var(--sp-4);background:var(--c-surface);border:2px solid var(--c-border);border-radius:var(--radius-lg);font-size:var(--fs-base);font-weight:var(--fw-bold);color:var(--c-text);box-shadow:var(--shadow-sm);animation:speech-pop 360ms var(--ease-bounce);transform-origin:left bottom}
+.speech::after{content:"";position:absolute;left:28px;bottom:-12px;border:7px solid transparent;border-top-color:var(--c-surface)}
+.speech__hi{color:var(--c-accent-strong)}
+.mascot-hero{display:flex;align-items:center;gap:var(--sp-4);padding:var(--sp-5);background:radial-gradient(120% 120% at 80% 0%,#fff3df 0%,var(--c-bg-2) 70%);border:2px solid #f6e6cf;border-radius:var(--radius-2xl);box-shadow:var(--shadow-sm)}
+
+.app-header{position:sticky;top:0;z-index:var(--z-sticky);display:flex;align-items:center;gap:var(--sp-3);height:var(--header-h);padding-inline:var(--page-pad-x);background:linear-gradient(180deg,#f6f1ff 0%,var(--c-surface) 100%);border-bottom:3px solid var(--c-primary-soft);box-shadow:0 2px 0 rgba(91,63,196,.10),var(--shadow-sm)}
+.app-header__title{font-family:var(--font-display);font-weight:var(--fw-black);font-size:var(--fs-lg);color:var(--c-primary-strong);letter-spacing:var(--tracking-wide)}
+.app-header__back{display:inline-flex;align-items:center;justify-content:center;width:var(--icon-btn);height:var(--icon-btn);border:none;border-radius:var(--radius-round);background:var(--c-primary-soft);color:var(--c-primary);font-size:var(--icon-sz-md)}
+.app-header__spacer{flex:1 1 auto}
+.score-pill{display:inline-flex;align-items:center;gap:var(--sp-1);padding:var(--sp-1) var(--sp-3);min-height:36px;background:linear-gradient(180deg,#fff7e2 0%,var(--c-badge-soft) 100%);border:1.5px solid var(--c-badge-ring);border-radius:var(--radius-pill);box-shadow:var(--shadow-sm);font:var(--fw-black) var(--fs-base)/1 var(--font-num);color:var(--c-star-deep)}
+
+.celebrate{position:absolute;inset:0;z-index:var(--z-toast);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--sp-4);text-align:center;pointer-events:none;background:radial-gradient(circle at 50% 38%,rgba(255,243,214,.55),rgba(36,24,64,0) 60%);animation:slide-up 300ms var(--ease-out)}
+.celebrate__star{position:relative;width:110px;height:110px;display:grid;place-items:center;color:var(--c-star);filter:drop-shadow(0 6px 12px rgba(217,145,0,.45));animation:pop-star 700ms var(--ease-bounce)}
+.celebrate__star>svg{width:100%;height:100%}
+.celebrate__star svg path{stroke:var(--c-star-edge);stroke-width:4}
+.celebrate__rays{position:absolute;inset:-28px;border-radius:var(--radius-round);pointer-events:none;background:conic-gradient(from 0deg,rgba(255,194,31,0) 0deg,rgba(255,194,31,.5) 10deg,rgba(255,194,31,0) 20deg,rgba(255,194,31,0) 30deg,rgba(255,194,31,.5) 40deg,rgba(255,194,31,0) 50deg,rgba(255,194,31,0) 60deg,rgba(255,194,31,.5) 70deg,rgba(255,194,31,0) 80deg,rgba(255,194,31,0) 90deg,rgba(255,194,31,.5) 100deg,rgba(255,194,31,0) 110deg,rgba(255,194,31,0) 120deg,rgba(255,194,31,.5) 130deg,rgba(255,194,31,0) 140deg,rgba(255,194,31,0) 150deg,rgba(255,194,31,.5) 160deg,rgba(255,194,31,0) 170deg,rgba(255,194,31,0) 180deg,rgba(255,194,31,.5) 190deg,rgba(255,194,31,0) 200deg,rgba(255,194,31,0) 210deg,rgba(255,194,31,.5) 220deg,rgba(255,194,31,0) 230deg,rgba(255,194,31,0) 240deg,rgba(255,194,31,.5) 250deg,rgba(255,194,31,0) 260deg,rgba(255,194,31,0) 270deg,rgba(255,194,31,.5) 280deg,rgba(255,194,31,0) 290deg,rgba(255,194,31,0) 300deg,rgba(255,194,31,.5) 310deg,rgba(255,194,31,0) 320deg,rgba(255,194,31,0) 330deg,rgba(255,194,31,.5) 340deg,rgba(255,194,31,0) 350deg);-webkit-mask:radial-gradient(circle,transparent 52%,#000 53%);mask:radial-gradient(circle,transparent 52%,#000 53%);animation:rays-spin 1400ms linear,fade-out 1400ms var(--ease-out) forwards}
+.celebrate__title{font-family:var(--font-display);font-weight:var(--fw-black);font-size:var(--fs-2xl);color:var(--c-primary-strong);letter-spacing:var(--tracking-wide);text-shadow:0 2px 0 #fff,0 3px 6px rgba(91,63,196,.18);animation:pop 500ms var(--ease-bounce)}
+
+@keyframes pop{0%{transform:scale(.85)}60%{transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes pop-star{0%{transform:scale(0) rotate(-25deg)}60%{transform:scale(1.25) rotate(8deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes bounce{0%{transform:translateY(0)}30%{transform:translateY(-16px)}55%{transform:translateY(0)}72%{transform:translateY(-7px)}100%{transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-7deg)}75%{transform:rotate(7deg)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+@keyframes slide-up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes belly-pulse{0%,100%{opacity:.35;transform:scale(1);transform-origin:center}50%{opacity:.85;transform:scale(1.12);transform-origin:center}}
+@keyframes speech-pop{0%{opacity:0;transform:scale(.8) translateY(6px)}60%{opacity:1;transform:scale(1.04)}100%{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes rays-spin{to{transform:rotate(180deg)}}
+@keyframes fade-out{0%,70%{opacity:1}100%{opacity:0}}
+@keyframes confetti-fall{0%{opacity:1;transform:translateY(0) translateX(0) rotate(0)}100%{opacity:0;transform:translateY(420px) translateX(var(--x,0)) rotate(540deg)}}
+.confetti-burst{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:var(--z-confetti)}
+.confetti-piece{position:absolute;top:-12px;width:11px;height:15px;border-radius:2px;opacity:0;animation:confetti-fall 1500ms var(--ease-out) forwards}
+.confetti-piece:nth-child(3n){border-radius:50%;width:10px;height:10px}
+.confetti-piece:nth-child(6n+1){background:var(--c-confetti-1)}
+.confetti-piece:nth-child(6n+2){background:var(--c-confetti-2)}
+.confetti-piece:nth-child(6n+3){background:var(--c-confetti-3)}
+.confetti-piece:nth-child(6n+4){background:var(--c-confetti-4)}
+.confetti-piece:nth-child(6n+5){background:var(--c-confetti-5)}
+.confetti-piece:nth-child(6n+6){background:var(--c-confetti-6)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.confetti-burst,.celebrate__rays{display:none!important}}
+
+/* ===================== Riêng trang preview (khung điện thoại + section) ===================== */
+.preview-body{padding:var(--sp-6) 0 var(--sp-10);max-width:760px;margin-inline:auto}
+.phone{position:relative;width:412px;max-width:100%;margin:0 auto var(--sp-7);background:var(--c-bg);background-image:var(--tex-fireflies),var(--grad-page);background-size:300px 440px,cover;border:10px solid #2a2342;border-radius:40px;box-shadow:var(--shadow-xl);overflow:hidden}
+.phone__screen{position:relative;height:auto}
+.sec{margin:var(--sp-6) auto;max-width:760px;padding-inline:var(--sp-4)}
+.sec__h{font-family:var(--font-display);font-weight:var(--fw-black);font-size:var(--fs-xl);color:var(--c-primary-strong);margin-bottom:var(--sp-2)}
+.sec__sub{color:var(--c-text-soft);margin-bottom:var(--sp-4);font-size:var(--fs-sm)}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--sp-3)}
+.sw{border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--c-border);box-shadow:var(--shadow-sm);background:var(--c-surface)}
+.sw__chip{height:64px;display:flex;align-items:flex-end;justify-content:flex-end;padding:6px}
+.sw__chip .ratio{font:var(--fw-bold) 12px var(--font-num);color:#fff;background:rgba(0,0,0,.28);padding:1px 6px;border-radius:6px}
+.sw__meta{padding:8px 10px;font-size:13px}
+.sw__name{font-weight:var(--fw-bold);color:var(--c-text)}
+.sw__hex{color:var(--c-text-soft);font-family:var(--font-num)}
+.type-row{display:flex;align-items:baseline;gap:var(--sp-4);padding:6px 0;border-bottom:1px dashed var(--c-border)}
+.type-row .lbl{font:var(--fw-bold) 13px var(--font-num);color:var(--c-text-soft);min-width:120px}
+.note{font-size:var(--fs-sm);color:var(--c-text-soft);background:var(--c-info-soft);border-left:4px solid var(--c-info);padding:var(--sp-3) var(--sp-4);border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+.scr-pad{padding:var(--sp-5) var(--sp-4)}
+.scr-pad.stack>*+*{margin-top:var(--gap-stack)}
+</style>
+</head>
+<body>
+<div class="preview-body">
+
+  <header class="sec text-center">
+    <div class="title" style="color:var(--c-primary-strong)">Hệ thị giác — Web học tiếng Anh trẻ em <span style="font-size:.6em;vertical-align:middle">v3</span></div>
+    <p class="subtitle">Linh vật <b>Pi</b> (cáo đom đóm) · nền hoàng hôn + đốm đom đóm · vi tương tác thưởng cảm xúc · WCAG AA · 100% offline</p>
+  </header>
+
+  <!-- ====================== 1. BẢNG MÀU ====================== -->
+  <section class="sec">
+    <div class="sec__h">1 · Bảng màu (đã vá AA)</div>
+    <p class="sec__sub">Số trên ô = tỉ lệ tương phản của CHỮ TRẮNG trên màu đó. Trạng thái luôn kèm icon + chữ, không chỉ màu.</p>
+    <div class="swatches">
+      <div class="sw"><div class="sw__chip" style="background:#5b3fc4"><span class="ratio">6.0:1</span></div><div class="sw__meta"><div class="sw__name">Chính (tím)</div><div class="sw__hex">#5b3fc4</div></div></div>
+      <div class="sw"><div class="sw__chip" style="background:#bd4708"><span class="ratio">5.2:1</span></div><div class="sw__meta"><div class="sw__name">Nhấn — NỀN nút (mới)</div><div class="sw__hex">#bd4708</div></div></div>
+      <div class="sw"><div class="sw__chip" style="background:#0e7340"><span class="ratio">5.3:1</span></div><div class="sw__meta"><div class="sw__name">Đúng</div><div class="sw__hex">#0e7340</div></div></div>
+      <div class="sw"><div class="sw__chip" style="background:#9c440c"><span class="ratio">5.5:1</span></div><div class="sw__meta"><div class="sw__name">Chưa đúng (cam nâu)</div><div class="sw__hex">#9c440c</div></div></div>
+      <div class="sw"><div class="sw__chip" style="background:#0f9b6c"><span class="ratio">3.6:1</span></div><div class="sw__meta"><div class="sw__name">Mint (dải/nền)</div><div class="sw__hex">#0f9b6c</div></div></div>
+      <div class="sw"><div class="sw__chip" style="background:#1186c0"><span class="ratio">4.0:1</span></div><div class="sw__meta"><div class="sw__name">Sky (dải/nền)</div><div class="sw__hex">#1186c0</div></div></div>
+      <div class="sw"><div class="sw__chip" style="background:#e0455f"><span class="ratio">4.1:1</span></div><div class="sw__meta"><div class="sw__name">Coral (dải/nền)</div><div class="sw__hex">#e0455f</div></div></div>
+      <div class="sw"><div class="sw__chip" style="background:#7d6fb8"><span class="ratio">3.6:1</span></div><div class="sw__meta"><div class="sw__name">Viền ô (mới)</div><div class="sw__hex">#7d6fb8</div></div></div>
+      <div class="sw"><div class="sw__chip" style="background:#ffc21f"><span class="ratio" style="color:#221a3a;background:rgba(255,255,255,.5)">sao</span></div><div class="sw__meta"><div class="sw__name">Sao (viền #8a5a00)</div><div class="sw__hex">#ffc21f</div></div></div>
+      <div class="sw"><div class="sw__chip" style="background:#221a3a"><span class="ratio">14:1</span></div><div class="sw__meta"><div class="sw__name">Chữ chính</div><div class="sw__hex">#221a3a</div></div></div>
+    </div>
+  </section>
+
+  <!-- ====================== 2. TYPOGRAPHY ====================== -->
+  <section class="sec">
+    <div class="sec__h">2 · Chữ (typography)</div>
+    <p class="sec__sub">Font hệ thống tròn-thân-thiện (display thực tế = system fallback trên Windows). Thân ≥ 18px, đề bài 24–28px. Ký hiệu: × ÷ ² m²</p>
+    <div class="card">
+      <div class="type-row"><span class="lbl">display 56</span><span style="font-family:var(--font-display);font-weight:800;font-size:56px">25</span></div>
+      <div class="type-row"><span class="lbl">3xl 44 (từ EN)</span><span class="en" style="font-weight:800;font-size:44px">apple</span></div>
+      <div class="type-row"><span class="lbl">2xl 34 tiêu đề</span><span style="font-family:var(--font-display);font-weight:800;font-size:34px">Chào bé!</span></div>
+      <div class="type-row"><span class="lbl">xl 28 đề bài</span><span style="font-weight:700;font-size:28px">What is this?</span></div>
+      <div class="type-row"><span class="lbl">lg 24 thẻ</span><span style="font-size:24px">Đồ dùng học tập</span></div>
+      <div class="type-row"><span class="lbl">base 18 thân</span><span style="font-size:18px">Chọn đáp án đúng nhé — diện tích m², phép × và ÷.</span></div>
+      <div class="type-row"><span class="lbl">sm 16 phụ</span><span style="font-size:16px;color:var(--c-text-soft)">chú thích nhỏ (sàn)</span></div>
+    </div>
+  </section>
+
+  <!-- ====================== 3. LINH VẬT Pi ====================== -->
+  <section class="sec">
+    <div class="sec__h">3 · Linh vật "Pi" (cáo đom đóm) — trau chuốt</div>
+    <p class="sec__sub">SVG inline gốc, tô bằng biến màu. Mắt to oval long lanh (2 highlight), tai/đuôi bo tròn, chân mày vui, quầng sáng vàng quanh bụng sao (đom đóm). Có biến thể mặt: vui / reo / nháy mắt.</p>
+    <div class="card row" style="gap:var(--sp-5);flex-wrap:wrap;justify-content:center">
+      <!-- ===== SVG PI (vui + glow): frontend copy markup này ===== -->
+      <span class="mascot is-idle is-glowing" role="img" aria-label="Pi, chú cáo đom đóm">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <!-- đuôi (bo tròn, mượt) -->
+          <path d="M86 80 q26 2 28 -18 q-2 12 -14 12 q8 -6 4 -14 q-2 14 -18 12 q6 6 0 14 z" fill="#e8590c" stroke="#cf4d08" stroke-width="1" stroke-linejoin="round"/>
+          <path d="M96 76 q14 0 16 -10 q-2 8 -10 8 q5 -4 2 -8 q-2 9 -12 6 z" fill="#fff"/>
+          <!-- thân -->
+          <ellipse cx="56" cy="74" rx="30" ry="30" fill="#f57c1f"/>
+          <!-- quầng sáng bụng (đom đóm) — pulse khi is-glowing -->
+          <circle class="belly-glow" cx="56" cy="80" r="22" fill="#ffd44d" opacity=".5"/>
+          <!-- bụng sáng (ngôi sao) -->
+          <ellipse class="belly" cx="56" cy="80" rx="19" ry="20" fill="#ffe9b0"/>
+          <path d="M56 66 l4.2 9.2 10.1 1 -7.6 6.8 2.1 9.9 -8.8 -5.2 -8.8 5.2 2.1 -9.9 -7.6 -6.8 10.1 -1 z" fill="#ffc21f" stroke="#8a5a00" stroke-width="1.5" stroke-linejoin="round"/>
+          <!-- đầu -->
+          <circle cx="56" cy="40" r="26" fill="#f57c1f"/>
+          <!-- tai (mút bo tròn) -->
+          <path d="M34 26 q-8 -16 4 -22 q6 8 14 14 q-10 0 -18 8 z" fill="#f57c1f" stroke="#e06d10" stroke-width="1" stroke-linejoin="round"/>
+          <path d="M78 26 q8 -16 -4 -22 q-6 8 -14 14 q10 0 18 8 z" fill="#f57c1f" stroke="#e06d10" stroke-width="1" stroke-linejoin="round"/>
+          <path d="M37 22 q-3 -8 2 -12 q3 5 7 8 q-6 0 -9 4 z" fill="#ffd9b0"/>
+          <path d="M75 22 q3 -8 -2 -12 q-3 5 -7 8 q6 0 9 4 z" fill="#ffd9b0"/>
+          <!-- má trắng -->
+          <ellipse cx="56" cy="47" rx="18" ry="13.5" fill="#fff"/>
+          <!-- MẶT VUI (mặc định) -->
+          <g class="face-happy">
+            <!-- chân mày cong vui -->
+            <path d="M43 31 q5 -3 9 0" fill="none" stroke="#5a3a12" stroke-width="2" stroke-linecap="round"/>
+            <path d="M60 31 q4 -3 9 0" fill="none" stroke="#5a3a12" stroke-width="2" stroke-linecap="round"/>
+            <!-- mắt to oval long lanh -->
+            <ellipse cx="48" cy="39" rx="5.4" ry="6.4" fill="#221a3a"/>
+            <ellipse cx="64" cy="39" rx="5.4" ry="6.4" fill="#221a3a"/>
+            <circle cx="50" cy="36.5" r="2.1" fill="#fff"/>
+            <circle cx="66" cy="36.5" r="2.1" fill="#fff"/>
+            <circle cx="46.4" cy="41" r="1" fill="#fff" opacity=".85"/>
+            <circle cx="62.4" cy="41" r="1" fill="#fff" opacity=".85"/>
+            <!-- mũi + miệng cười -->
+            <path d="M56 45 q-3.5 -2.5 -7 0 q3.5 3 7 0 q3.5 3 7 0 q-3.5 -2.5 -7 0 z" fill="#3a2410"/>
+            <path d="M50 50 q6 6 12 0" fill="none" stroke="#221a3a" stroke-width="2.2" stroke-linecap="round"/>
+          </g>
+          <!-- MẶT REO "ô!" (is-cheer) -->
+          <g class="face-cheer">
+            <path d="M43 30 q5 -4 9 0" fill="none" stroke="#5a3a12" stroke-width="2" stroke-linecap="round"/>
+            <path d="M60 30 q4 -4 9 0" fill="none" stroke="#5a3a12" stroke-width="2" stroke-linecap="round"/>
+            <path d="M43 41 q5 -7 10 0" fill="none" stroke="#221a3a" stroke-width="3" stroke-linecap="round"/>
+            <path d="M59 41 q5 -7 10 0" fill="none" stroke="#221a3a" stroke-width="3" stroke-linecap="round"/>
+            <ellipse cx="56" cy="51" rx="5" ry="6" fill="#7a2a12"/>
+          </g>
+          <!-- MẶT NHÁY MẮT (is-wink) -->
+          <g class="face-wink">
+            <path d="M43 31 q5 -3 9 0" fill="none" stroke="#5a3a12" stroke-width="2" stroke-linecap="round"/>
+            <path d="M60 31 q4 -3 9 0" fill="none" stroke="#5a3a12" stroke-width="2" stroke-linecap="round"/>
+            <ellipse cx="48" cy="39" rx="5.4" ry="6.4" fill="#221a3a"/>
+            <circle cx="50" cy="36.5" r="2.1" fill="#fff"/>
+            <path d="M59 40 q5 -3 10 0" fill="none" stroke="#221a3a" stroke-width="3" stroke-linecap="round"/>
+            <path d="M50 50 q6 6 12 0" fill="none" stroke="#221a3a" stroke-width="2.2" stroke-linecap="round"/>
+          </g>
+          <!-- má hồng -->
+          <circle cx="41" cy="47" r="3.6" fill="#ffb3a0" opacity=".85"/>
+          <circle cx="71" cy="47" r="3.6" fill="#ffb3a0" opacity=".85"/>
+        </svg>
+      </span>
+      <div class="speech">Chào bé! Hôm nay mình học <b class="speech__hi">từ mới</b> nhé! ✨</div>
+    </div>
+    <div class="row" style="justify-content:center;margin-top:var(--sp-4);gap:var(--sp-6);flex-wrap:wrap">
+      <!-- biến thể mặt reo -->
+      <div class="text-center"><span class="mascot is-cheer is-glowing mascot--sm" aria-hidden="true"><svg viewBox="0 0 120 120"><circle cx="56" cy="40" r="26" fill="#f57c1f"/><path d="M34 26 q-8 -16 4 -22 q6 8 14 14 q-10 0 -18 8 z" fill="#f57c1f"/><path d="M78 26 q8 -16 -4 -22 q-6 8 -14 14 q10 0 18 8 z" fill="#f57c1f"/><ellipse cx="56" cy="47" rx="18" ry="13.5" fill="#fff"/><g class="face-cheer"><path d="M43 41 q5 -7 10 0" fill="none" stroke="#221a3a" stroke-width="3" stroke-linecap="round"/><path d="M59 41 q5 -7 10 0" fill="none" stroke="#221a3a" stroke-width="3" stroke-linecap="round"/><ellipse cx="56" cy="51" rx="5" ry="6" fill="#7a2a12"/></g></svg></span><div class="badge__label">reo (is-cheer)</div></div>
+      <div class="text-center"><span class="badge"><span class="badge__medal">🏅</span><span class="badge__label">Huy hiệu đạt</span></span></div>
+      <div class="text-center"><span class="badge badge--locked"><span class="badge__medal">🔒</span><span class="badge__label">Chưa mở</span></span></div>
+    </div>
+  </section>
+
+  <!-- ====================== 4. NÚT ====================== -->
+  <section class="sec">
+    <div class="sec__h">4 · Nút (mọi trạng thái) — accent dùng nền đậm đạt AA</div>
+    <div class="card row-wrap" style="gap:var(--sp-4)">
+      <button class="btn btn--cta">Bắt đầu học</button>
+      <button class="btn btn--accent">🔊 Nghe</button>
+      <button class="btn btn--ghost">← Quay lại</button>
+      <button class="btn btn--correct">✓ Kiểm tra</button>
+      <button class="btn" disabled>Đã khoá</button>
+    </div>
+    <div class="row" style="margin-top:var(--sp-4);gap:var(--sp-4)">
+      <button class="icon-btn" aria-label="Nghe">🔊</button>
+      <button class="icon-btn is-playing" aria-label="Đang đọc">🔊</button>
+      <button class="icon-btn icon-btn--accent" aria-label="Thu âm">🎤</button>
+      <button class="icon-btn icon-btn--lg" aria-label="Tiếp">→</button>
+    </div>
+  </section>
+
+  <!-- ====================== 5. FLASHCARD ====================== -->
+  <section class="sec">
+    <div class="sec__h">5 · Flashcard "thẻ sưu tập" (mặt trước &amp; mặt sau)</div>
+    <p class="sec__sub">Viền pastel dày theo màu unit + chip "Chạm để lật". Mặt sau có sao mờ trang trí — cảm giác mở quà.</p>
+    <div class="row" style="gap:var(--sp-6);flex-wrap:wrap;justify-content:center">
+      <div class="flashcard" style="--topic:var(--c-coral);--topic-soft:var(--c-coral-soft)">
+        <div class="flashcard__inner">
+          <div class="flashcard__face flashcard__face--front">
+            <span class="flashcard__icon">🍎</span>
+            <span class="flashcard__word en">apple</span>
+            <button class="icon-btn icon-btn--accent" aria-label="Nghe từ apple">🔊</button>
+            <span class="flashcard__hint">Chạm để lật ↻</span>
+          </div>
+        </div>
+      </div>
+      <div class="flashcard is-flipped" style="--topic:var(--c-coral);--topic-soft:var(--c-coral-soft)">
+        <div class="flashcard__inner">
+          <div class="flashcard__face flashcard__face--front"></div>
+          <div class="flashcard__face flashcard__face--back">
+            <span class="flashcard__vi">quả táo</span>
+            <p class="flashcard__example">"It's an apple."</p>
+            <button class="icon-btn" aria-label="Nghe câu ví dụ">🔊</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== 6. TIẾN ĐỘ + SAO + ĂN MỪNG ====================== -->
+  <section class="sec">
+    <div class="sec__h">6 · Tiến độ, sao thưởng &amp; khoảnh khắc ăn mừng</div>
+    <div class="card stack">
+      <div class="progress-row">
+        <div class="progress progress--lg"><div class="progress__fill" style="--_pct:72%"></div></div>
+        <span class="progress__pct">72%</span>
+      </div>
+      <div class="steps">
+        <span class="step-dot is-done"></span><span class="step-dot is-done"></span><span class="step-dot is-done"></span><span class="step-dot is-current"></span><span class="step-dot"></span>
+      </div>
+      <div class="row" style="justify-content:space-between;flex-wrap:wrap">
+        <span class="stars stars--lg">
+          <span class="star is-on"><svg viewBox="0 0 100 100"><path d="M50 6 l13 27 30 3 -22 20 6 30 -27 -15 -27 15 6 -30 -22 -20 30 -3 z" fill="currentColor"/></svg></span>
+          <span class="star is-on"><svg viewBox="0 0 100 100"><path d="M50 6 l13 27 30 3 -22 20 6 30 -27 -15 -27 15 6 -30 -22 -20 30 -3 z" fill="currentColor"/></svg></span>
+          <span class="star"><svg viewBox="0 0 100 100"><path d="M50 6 l13 27 30 3 -22 20 6 30 -27 -15 -27 15 6 -30 -22 -20 30 -3 z" fill="currentColor"/></svg></span>
+        </span>
+        <span class="chip chip--star">⭐ 12 sao</span>
+        <span class="chip chip--done">✓ Đã học</span>
+        <span class="chip chip--accent">Level 1</span>
+      </div>
+    </div>
+    <!-- Khoảnh khắc ăn mừng tổng (.celebrate) trong khung điện thoại nhỏ -->
+    <div class="phone" style="margin-top:var(--sp-5);width:300px">
+      <div class="phone__screen" style="min-height:360px">
+        <div class="confetti-burst" aria-hidden="true">
+          <span class="confetti-piece" style="left:12%;--x:-40px;animation-delay:0ms"></span>
+          <span class="confetti-piece" style="left:22%;--x:30px;animation-delay:60ms"></span>
+          <span class="confetti-piece" style="left:34%;--x:-18px;animation-delay:30ms"></span>
+          <span class="confetti-piece" style="left:44%;--x:44px;animation-delay:90ms"></span>
+          <span class="confetti-piece" style="left:54%;--x:-30px;animation-delay:50ms"></span>
+          <span class="confetti-piece" style="left:64%;--x:22px;animation-delay:120ms"></span>
+          <span class="confetti-piece" style="left:74%;--x:-44px;animation-delay:20ms"></span>
+          <span class="confetti-piece" style="left:84%;--x:18px;animation-delay:100ms"></span>
+          <span class="confetti-piece" style="left:90%;--x:-20px;animation-delay:140ms"></span>
+        </div>
+        <div class="celebrate">
+          <span class="celebrate__star">
+            <span class="celebrate__rays"></span>
+            <svg viewBox="0 0 100 100"><path d="M50 6 l13 27 30 3 -22 20 6 30 -27 -15 -27 15 6 -30 -22 -20 30 -3 z" fill="currentColor"/></svg>
+          </span>
+          <span class="mascot is-cheer is-glowing mascot--sm" aria-hidden="true"><svg viewBox="0 0 120 120"><circle cx="56" cy="40" r="26" fill="#f57c1f"/><path d="M34 26 q-8 -16 4 -22 q6 8 14 14 q-10 0 -18 8 z" fill="#f57c1f"/><path d="M78 26 q8 -16 -4 -22 q-6 8 -14 14 q10 0 18 8 z" fill="#f57c1f"/><ellipse cx="56" cy="47" rx="18" ry="13.5" fill="#fff"/><path d="M43 41 q5 -7 10 0" fill="none" stroke="#221a3a" stroke-width="3" stroke-linecap="round"/><path d="M59 41 q5 -7 10 0" fill="none" stroke="#221a3a" stroke-width="3" stroke-linecap="round"/><ellipse cx="56" cy="51" rx="5" ry="6" fill="#7a2a12"/></svg></span>
+          <div class="celebrate__title">Tuyệt vời!</div>
+          <div class="speech" style="pointer-events:auto">Bé học giỏi quá! <b class="speech__hi">+1 sao</b> 🌟</div>
+        </div>
+      </div>
+    </div>
+    <p class="sec__sub" style="margin-top:var(--sp-3)">Ăn mừng: sao lớn pop + vành tia sáng toả + Pi reo + nhiều confetti bay toả. ≤ 1.5s, không che CTA; tắt chuyển động khi <code>prefers-reduced-motion</code> (sao + lời khen vẫn hiện tĩnh).</p>
+  </section>
+
+  <!-- ====================== MÀN 1: TRANG CHỦ ====================== -->
+  <section class="sec text-center">
+    <div class="sec__h">Màn hình 1 · Trang chủ</div>
+  </section>
+  <div class="phone"><div class="phone__screen">
+    <header class="app-header">
+      <span class="app-header__title">🦊 Tiếng Anh Vui</span>
+      <span class="app-header__spacer"></span>
+      <span class="score-pill">⭐ 12</span>
+    </header>
+    <div class="scr-pad stack">
+      <div class="mascot-hero">
+        <span class="mascot is-idle is-glowing mascot--sm" aria-hidden="true"><svg viewBox="0 0 120 120"><ellipse cx="56" cy="74" rx="30" ry="30" fill="#f57c1f"/><circle class="belly-glow" cx="56" cy="80" r="22" fill="#ffd44d" opacity=".5"/><ellipse class="belly" cx="56" cy="80" rx="19" ry="20" fill="#ffe9b0"/><path d="M56 66 l4.2 9.2 10.1 1 -7.6 6.8 2.1 9.9 -8.8 -5.2 -8.8 5.2 2.1 -9.9 -7.6 -6.8 10.1 -1 z" fill="#ffc21f" stroke="#8a5a00" stroke-width="1.5"/><circle cx="56" cy="40" r="26" fill="#f57c1f"/><path d="M34 26 q-8 -16 4 -22 q6 8 14 14 q-10 0 -18 8 z" fill="#f57c1f"/><path d="M78 26 q8 -16 -4 -22 q-6 8 -14 14 q10 0 18 8 z" fill="#f57c1f"/><ellipse cx="56" cy="47" rx="18" ry="13.5" fill="#fff"/><ellipse cx="48" cy="39" rx="5.4" ry="6.4" fill="#221a3a"/><ellipse cx="64" cy="39" rx="5.4" ry="6.4" fill="#221a3a"/><circle cx="50" cy="36.5" r="2.1" fill="#fff"/><circle cx="66" cy="36.5" r="2.1" fill="#fff"/><path d="M50 50 q6 6 12 0" fill="none" stroke="#221a3a" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+        <div><div style="font-family:var(--font-display);font-weight:800;font-size:var(--fs-lg)">Chào bé Na!</div><div class="muted" style="font-size:var(--fs-sm)">Hôm nay học gì nào?</div></div>
+      </div>
+      <div class="between"><span style="font-family:var(--font-display);font-weight:800;font-size:var(--fs-lg)">Chủ đề</span><span class="chip chip--accent">Level 1</span></div>
+      <div class="topic-grid">
+        <button class="topic-card" style="--topic:var(--c-mint);--topic-soft:var(--c-mint-soft);--topic-text:var(--c-mint-text)">
+          <span class="topic-card__icon">🎒</span>
+          <span class="topic-card__num">Unit 1</span>
+          <span class="topic-card__name">Đồ dùng học tập</span>
+          <span class="topic-card__en en">School things</span>
+          <div class="progress-row"><div class="progress"><div class="progress__fill" style="--_pct:80%"></div></div><span class="progress__pct">80%</span></div>
+        </button>
+        <button class="topic-card" style="--topic:var(--c-sky);--topic-soft:var(--c-sky-soft);--topic-text:var(--c-sky-text)">
+          <span class="topic-card__icon">🐶</span>
+          <span class="topic-card__num">Unit 2</span>
+          <span class="topic-card__name">Con vật</span>
+          <span class="topic-card__en en">Animals</span>
+          <div class="progress-row"><div class="progress"><div class="progress__fill" style="--_pct:35%"></div></div><span class="progress__pct">35%</span></div>
+        </button>
+        <button class="topic-card" style="--topic:var(--c-coral);--topic-soft:var(--c-coral-soft);--topic-text:var(--c-coral-text)">
+          <span class="topic-card__icon">🍎</span>
+          <span class="topic-card__num">Unit 3</span>
+          <span class="topic-card__name">Đồ ăn</span>
+          <span class="topic-card__en en">Food</span>
+          <div class="progress-row"><div class="progress"><div class="progress__fill" style="--_pct:0%"></div></div><span class="progress__pct">0%</span></div>
+        </button>
+        <button class="topic-card" style="--topic:var(--c-sun);--topic-soft:var(--c-sun-soft);--topic-text:var(--c-sun-text)">
+          <span class="topic-card__icon">🎨</span>
+          <span class="topic-card__num">Unit 4</span>
+          <span class="topic-card__name">Màu sắc</span>
+          <span class="topic-card__en en">Colours</span>
+          <div class="progress-row"><div class="progress"><div class="progress__fill" style="--_pct:0%"></div></div><span class="progress__pct">0%</span></div>
+        </button>
+      </div>
+    </div>
+  </div></div>
+
+  <!-- ====================== MÀN 2: LÀM BÀI — ĐÚNG ====================== -->
+  <section class="sec text-center">
+    <div class="sec__h">Màn hình 2 · Làm bài (trạng thái ĐÚNG)</div>
+  </section>
+  <div class="phone"><div class="phone__screen">
+    <div class="confetti-burst" aria-hidden="true">
+      <span class="confetti-piece" style="left:18%;--x:-30px;animation-delay:0ms"></span>
+      <span class="confetti-piece" style="left:30%;--x:20px;animation-delay:60ms"></span>
+      <span class="confetti-piece" style="left:46%;--x:-12px;animation-delay:30ms"></span>
+      <span class="confetti-piece" style="left:58%;--x:34px;animation-delay:90ms"></span>
+      <span class="confetti-piece" style="left:70%;--x:-26px;animation-delay:50ms"></span>
+      <span class="confetti-piece" style="left:82%;--x:14px;animation-delay:120ms"></span>
+    </div>
+    <header class="app-header">
+      <button class="app-header__back" aria-label="Quay lại">←</button>
+      <span class="app-header__title">Làm bài</span>
+      <span class="app-header__spacer"></span>
+      <span class="score-pill">⭐ 14</span>
+    </header>
+    <div class="scr-pad stack">
+      <div class="steps" style="justify-content:center"><span class="step-dot is-done"></span><span class="step-dot is-done"></span><span class="step-dot is-current"></span><span class="step-dot"></span><span class="step-dot"></span></div>
+      <div class="card stack text-center">
+        <p class="prompt">What is this? <button class="icon-btn icon-btn--accent" aria-label="Nghe câu hỏi" style="vertical-align:middle">🔊</button></p>
+        <span style="font-size:72px">🍎</span>
+      </div>
+      <div class="choice-list">
+        <button class="choice"><span class="choice__key">A</span><span class="choice__text en">It's a apple.</span></button>
+        <button class="choice is-correct"><span class="choice__key">B</span><span class="choice__text en">It's an apple.</span><span class="choice__mark">✓</span></button>
+        <button class="choice"><span class="choice__key">C</span><span class="choice__text en">Its an apple.</span></button>
+      </div>
+      <div class="feedback feedback--correct" role="status">
+        <span class="feedback__icon">🎉</span>
+        <div>
+          <div class="feedback__title">Giỏi quá!</div>
+          <div class="feedback__body">Đúng rồi! <span class="feedback__answer en">"It's an apple."</span> — từ bắt đầu bằng nguyên âm dùng <b>an</b>.</div>
+        </div>
+      </div>
+      <button class="btn btn--correct btn--block btn--cta">Tiếp theo →</button>
+    </div>
+  </div></div>
+
+  <!-- ====================== MÀN 3: LÀM BÀI — CHƯA ĐÚNG ====================== -->
+  <section class="sec text-center">
+    <div class="sec__h">Màn hình 3 · Làm bài (trạng thái CHƯA ĐÚNG — động viên)</div>
+  </section>
+  <div class="phone"><div class="phone__screen">
+    <header class="app-header">
+      <button class="app-header__back" aria-label="Quay lại">←</button>
+      <span class="app-header__title">Làm bài</span>
+      <span class="app-header__spacer"></span>
+      <span class="score-pill">⭐ 14</span>
+    </header>
+    <div class="scr-pad stack">
+      <div class="steps" style="justify-content:center"><span class="step-dot is-done"></span><span class="step-dot is-done"></span><span class="step-dot is-current"></span><span class="step-dot"></span><span class="step-dot"></span></div>
+      <div class="card stack text-center">
+        <p class="prompt">Chọn câu đúng cho bức tranh <button class="icon-btn icon-btn--accent" aria-label="Nghe câu hỏi" style="vertical-align:middle">🔊</button></p>
+        <span style="font-size:72px">🍎</span>
+      </div>
+      <div class="choice-list">
+        <button class="choice is-wrong"><span class="choice__key">A</span><span class="choice__text en">It's a apple.</span><span class="choice__mark">✗</span></button>
+        <button class="choice is-correct"><span class="choice__key">B</span><span class="choice__text en">It's an apple.</span><span class="choice__mark">✓</span></button>
+        <button class="choice"><span class="choice__key">C</span><span class="choice__text en">It's an orange.</span></button>
+      </div>
+      <div class="feedback feedback--try" role="status">
+        <span class="feedback__icon">💡</span>
+        <div>
+          <div class="feedback__title">Gần đúng rồi, thử lại nhé!</div>
+          <div class="feedback__body">Đáp án đúng là <span class="feedback__answer en">"It's an apple."</span> — "apple" bắt đầu bằng nguyên âm nên dùng <b>an</b>. <button class="icon-btn" aria-label="Nghe câu đúng" style="vertical-align:middle">🔊</button></div>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn btn--try grow">↺ Thử lại</button>
+        <button class="btn btn--ghost grow">Bỏ qua →</button>
+      </div>
+    </div>
+  </div></div>
+
+  <p class="note sec">Ghi chú accessibility: mọi trạng thái đúng/sai đều kèm <b>icon (✓/✗/🎉/💡)</b> và <b>chữ</b> — không chỉ dựa màu. Vùng chạm ≥ 48px. Cặp màu chữ/nền đạt AA (đã vá: accent nền #bd4708 5.2:1, viền ô #7d6fb8 3.6:1, viền sao #8a5a00, chip-star/accent ≥ 4.5:1). Chuyển động tôn trọng <code>prefers-reduced-motion</code>. Nội dung 100% offline: emoji + SVG inline + gradient/shape CSS.</p>
+
+</div>
+</body>
+</html>

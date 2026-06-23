@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 1,
+  "topic": "School things",
+  "topic_vi": "Đồ dùng học tập",
+  "vocab": [
+    { "word": "pen", "vi": "bút mực", "icon": "🖊️", "example": "It's a pen.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "pencil", "vi": "bút chì", "icon": "✏️", "example": "It's a pencil.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "book", "vi": "quyển sách", "icon": "📕", "example": "It's a book.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "bag", "vi": "cái cặp", "icon": "🎒", "example": "It's a bag.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "ruler", "vi": "cái thước", "icon": "📏", "example": "It's a ruler.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "rubber", "vi": "cục tẩy (gôm)", "icon": "🧽", "example": "It's a rubber.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "apple", "vi": "quả táo", "icon": "🍎", "example": "It's an apple.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "orange", "vi": "quả cam", "icon": "🍊", "example": "It's an orange.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "what-is-this",
+      "title_vi": "Cái này là gì?",
+      "explain_vi": "Muốn hỏi tên một đồ vật ở gần, em nói \"What's this?\". Bạn trả lời bắt đầu bằng \"It's...\" rồi nói tên đồ vật.",
+      "examples": [
+        "What's this? It's a pen.",
+        "What's this? It's a book.",
+        "What's this? It's an apple."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "it-is-noun", "text": "It's {art} {noun}.", "blanks": ["noun"], "context_vi": "Chỉ vào một đồ vật và nói tên nó.", "audioText": "It's a pen." },
+          { "id": "what-is-this-answer", "text": "What's this? It's {art} {noun}.", "blanks": ["noun"], "context_vi": "Hỏi và trả lời tên một đồ vật ở gần.", "audioText": "What's this? It's a pen." }
+        ],
+        "slots": {
+          "art": ["a", "an"],
+          "noun": ["pen", "pencil", "book", "bag", "ruler", "rubber", "apple", "orange"]
+        },
+        "answerKey": {
+          "it-is-noun": {
+            "art": { "pen": "a", "pencil": "a", "book": "a", "bag": "a", "ruler": "a", "rubber": "a", "apple": "an", "orange": "an" }
+          },
+          "what-is-this-answer": {
+            "art": { "pen": "a", "pencil": "a", "book": "a", "bag": "a", "ruler": "a", "rubber": "a", "apple": "an", "orange": "an" }
+          }
+        },
+        "distractors": [
+          "It's a apple.",
+          "It's a orange.",
+          "Is a pen.",
+          "It's pen.",
+          "What this? It's a pen.",
+          "It a book."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "a-or-an",
+      "title_vi": "Dùng \"a\" hay \"an\"?",
+      "explain_vi": "Trước từ bắt đầu bằng nguyên âm (a, e, i, o, u) thì dùng \"an\". Các từ còn lại dùng \"a\".",
+      "examples": [
+        "It's a pencil.",
+        "It's an apple.",
+        "It's an orange."
+      ],
+      "generators": ["fill_blank", "mcq"],
+      "safeZone": {
+        "templates": [
+          { "id": "choose-article", "text": "It's {art} {noun}.", "blanks": ["art"], "context_vi": "Chọn \"a\" hoặc \"an\" cho đúng với từ đứng sau.", "audioText": "It's an apple." }
+        ],
+        "slots": {
+          "art": ["a", "an"],
+          "noun": ["pen", "pencil", "book", "bag", "ruler", "rubber", "apple", "orange"]
+        },
+        "answerKey": {
+          "choose-article": {
+            "art": { "pen": "a", "pencil": "a", "book": "a", "bag": "a", "ruler": "a", "rubber": "a", "apple": "an", "orange": "an" }
+          }
+        },
+        "distractors": [
+          "It's an pen.",
+          "It's an book.",
+          "It's a apple.",
+          "It's a orange."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["a", "b", "c", "d"],
+    "soundLabels": {
+      "a": { "ipa": "/æ/", "anchor": "apple", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"apple\" là /æ/ (không đọc tên chữ \"ây\")" },
+      "b": { "ipa": "/b/", "anchor": "ball", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"ball\" là /b/ (không đọc tên chữ \"bi\")" },
+      "c": { "ipa": "/k/", "anchor": "cat", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"cat\" là /k/ (không đọc tên chữ \"xi\")" },
+      "d": { "ipa": "/d/", "anchor": "dog", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"dog\" là /d/ (không đọc tên chữ \"đi\")" }
+    },
+    "words": [
+      { "word": "apple", "icon": "🍎", "focusSound": "a", "anchor": "apple", "audio": "" },
+      { "word": "ant", "icon": "🐜", "focusSound": "a", "anchor": "apple", "audio": "" },
+      { "word": "bag", "icon": "🎒", "focusSound": "b", "anchor": "ball", "audio": "" },
+      { "word": "ball", "icon": "⚽", "focusSound": "b", "anchor": "ball", "audio": "" },
+      { "word": "cat", "icon": "🐱", "focusSound": "c", "anchor": "cat", "audio": "" },
+      { "word": "cup", "icon": "🥤", "focusSound": "c", "anchor": "cat", "audio": "" },
+      { "word": "dog", "icon": "🐶", "focusSound": "d", "anchor": "dog", "audio": "" },
+      { "word": "duck", "icon": "🦆", "focusSound": "d", "anchor": "dog", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "in-my-bag",
+      "title": "In my bag",
+      "title_vi": "Trong cặp của em",
+      "text": "Look at my bag. It's a pen. It's a pencil. It's a book. It's an apple. I like my bag.",
+      "questions": [
+        { "id": "q1", "q_vi": "Trong cặp có một quyển sách, đúng không?", "type": "truefalse", "answer": true, "audioText": "There is a book in the bag." },
+        { "id": "q2", "q_vi": "Có quả gì ở trong cặp?", "type": "mcq", "choices": ["an apple", "an orange", "a ruler"], "answer": 0, "audioText": "What is in the bag?" },
+        { "id": "q3", "q_vi": "Đồ nào CÓ trong cặp?", "type": "mcq", "choices": ["a pencil", "a ruler", "an orange"], "answer": 0, "audioText": "What is in the bag?" }
+      ]
+    }
+  ]
+}

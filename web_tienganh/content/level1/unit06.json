@@ -1,0 +1,112 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 6,
+  "topic": "My family",
+  "topic_vi": "Gia đình của em",
+  "vocab": [
+    { "word": "mum", "vi": "mẹ", "icon": "👩", "example": "This is my mum.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "dad", "vi": "bố", "icon": "👨", "example": "This is my dad.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "brother", "vi": "anh trai / em trai", "icon": "👦", "example": "This is my brother.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "sister", "vi": "chị gái / em gái", "icon": "👧", "example": "This is my sister.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "grandma", "vi": "bà", "icon": "👵", "example": "This is my grandma.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "grandpa", "vi": "ông", "icon": "👴", "example": "This is my grandpa.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "baby", "vi": "em bé", "icon": "👶", "example": "This is my baby brother.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "this-is-my-family",
+      "title_vi": "Giới thiệu người trong nhà: \"This is my...\"",
+      "explain_vi": "Khi giới thiệu một người trong gia đình, em nói \"This is my...\" rồi nói người đó là ai (mum, dad, brother...). \"my\" nghĩa là \"của em\".",
+      "examples": [
+        "This is my mum.",
+        "This is my dad.",
+        "This is my grandma."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "this-is-my-person", "text": "This is my {person}.", "blanks": ["person"], "context_vi": "Chỉ vào một người trong nhà và giới thiệu họ là ai.", "audioText": "This is my mum." }
+        ],
+        "slots": {
+          "person": ["mum", "dad", "brother", "sister", "grandma", "grandpa", "baby"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "This is me mum.",
+          "This my mum.",
+          "This is a my mum.",
+          "This is mum.",
+          "These is my mum."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "possessive-s",
+      "title_vi": "Sở hữu với 's (của ai đó)",
+      "explain_vi": "Muốn nói một đồ vật là của một người, em thêm 's vào sau tên người rồi mới nói đồ vật. Ví dụ: \"Tom's bag\" nghĩa là \"cái cặp của Tom\".",
+      "examples": [
+        "This is Tom's bag.",
+        "This is Mum's pen.",
+        "This is Dad's car."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words"],
+      "safeZone": {
+        "templates": [
+          { "id": "this-is-owner-thing", "text": "This is {owner}'s {thing}.", "blanks": ["owner"], "context_vi": "Nói một đồ vật là của ai (thêm 's sau tên người).", "audioText": "This is Tom's bag." }
+        ],
+        "slots": {
+          "owner": ["Tom", "Mum", "Dad", "Lan", "Nam"],
+          "thing": ["bag", "pen", "book", "car", "ball"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "This is Tom bag.",
+          "This is bag of Tom.",
+          "This is Toms bag.",
+          "This is Tom's the bag.",
+          "This is the Tom's bag."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["v", "w", "x", "y", "z"],
+    "soundLabels": {
+      "v": { "ipa": "/v/", "anchor": "van", "position": "initial", "say_vi": "âm /v/ như đầu từ \"van\" (môi trên chạm răng dưới, không đọc tên chữ \"vê\")" },
+      "w": { "ipa": "/w/", "anchor": "window", "position": "initial", "say_vi": "âm /w/ như đầu từ \"window\" (chu môi tròn, không đọc tên chữ \"đắp-bồ-diu\")" },
+      "x": { "ipa": "/ks/", "anchor": "box", "position": "final", "say_vi": "âm /ks/ thường ở CUỐI từ như từ \"box\" (không đọc tên chữ \"ích\")" },
+      "y": { "ipa": "/j/", "anchor": "yo-yo", "position": "initial", "say_vi": "âm /j/ như đầu từ \"yo-yo\" (không đọc tên chữ \"oai\")" },
+      "z": { "ipa": "/z/", "anchor": "zebra", "position": "initial", "say_vi": "âm /z/ như đầu từ \"zebra\" (kêu ù ù, không đọc tên chữ \"dét\")" }
+    },
+    "words": [
+      { "word": "van", "icon": "🚐", "focusSound": "v", "anchor": "van", "audio": "" },
+      { "word": "vet", "icon": "🩺", "focusSound": "v", "anchor": "van", "audio": "" },
+      { "word": "window", "icon": "🪟", "focusSound": "w", "anchor": "window", "audio": "" },
+      { "word": "web", "icon": "🕸️", "focusSound": "w", "anchor": "window", "audio": "" },
+      { "word": "box", "icon": "📦", "focusSound": "x", "anchor": "box", "audio": "" },
+      { "word": "six", "icon": "6️⃣", "focusSound": "x", "anchor": "box", "audio": "" },
+      { "word": "yo-yo", "icon": "🪀", "focusSound": "y", "anchor": "yo-yo", "audio": "" },
+      { "word": "yes", "icon": "✅", "focusSound": "y", "anchor": "yo-yo", "audio": "" },
+      { "word": "zebra", "icon": "🦓", "focusSound": "z", "anchor": "zebra", "audio": "" },
+      { "word": "zip", "icon": "🤐", "focusSound": "z", "anchor": "zebra", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "my-family",
+      "title": "My family",
+      "title_vi": "Gia đình của em",
+      "text": "This is my family. This is my mum. This is my dad. This is my brother. This is my baby sister. I like my family.",
+      "questions": [
+        { "id": "q1", "q_vi": "Bạn nhỏ kể về gia đình của mình, đúng không?", "type": "truefalse", "answer": true, "audioText": "This is my family." },
+        { "id": "q2", "q_vi": "Trong bài có nhắc đến ai?", "type": "mcq", "choices": ["my mum", "my grandma", "my grandpa"], "answer": 0, "audioText": "Who is in the family?" },
+        { "id": "q3", "q_vi": "Em bé trong nhà là ai?", "type": "mcq", "choices": ["my baby sister", "my baby brother", "my dad"], "answer": 0, "audioText": "Who is the baby?" }
+      ]
+    }
+  ]
+}

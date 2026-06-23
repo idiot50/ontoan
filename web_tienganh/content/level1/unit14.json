@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 14,
+  "topic": "Abilities",
+  "topic_vi": "Khả năng",
+  "vocab": [
+    { "word": "run", "vi": "chạy", "icon": "🏃", "example": "I can run.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "jump", "vi": "nhảy lên", "icon": "🦘", "example": "I can jump.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "swim", "vi": "bơi", "icon": "🏊", "example": "I can swim.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "fly", "vi": "bay", "icon": "🦅", "example": "The bird can fly.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "climb", "vi": "leo, trèo", "icon": "🧗", "example": "I can climb.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "sing", "vi": "hát", "icon": "🎤", "example": "I can sing.", "partOfSpeech": "verb", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "can-cannot",
+      "title_vi": "\"can\" và \"can't\" (làm được / không làm được)",
+      "explain_vi": "Làm được việc gì thì nói \"can\" trước động từ. Không làm được thì nói \"can't\". Sau \"can\" và \"can't\" luôn giữ nguyên động từ, không thêm gì cả.",
+      "examples": [
+        "He can run.",
+        "She can swim.",
+        "He can't fly.",
+        "I can sing."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "subj-can-verb", "text": "{subj} can {verb}.", "blanks": ["verb"], "context_vi": "Nói ai đó LÀM ĐƯỢC một việc.", "audioText": "He can run." },
+          { "id": "subj-cannot-verb", "text": "{subj} can't {verb}.", "blanks": ["verb"], "context_vi": "Nói ai đó KHÔNG làm được một việc.", "audioText": "He can't swim." },
+          { "id": "choose-can-cant", "text": "{subj} {modal} {verb}.", "blanks": ["modal"], "context_vi": "Chọn \"can\" hoặc \"can't\" cho đúng tình huống.", "audioText": "She can jump." }
+        ],
+        "slots": {
+          "subj": ["He", "She", "I"],
+          "verb": ["run", "jump", "swim", "climb", "sing"],
+          "modal": ["can", "can't"]
+        },
+        "answerKey": {
+          "subj-can-verb": { "verb": "any" },
+          "subj-cannot-verb": { "verb": "any" }
+        },
+        "distractors": [
+          "He can runs.",
+          "She can swims.",
+          "He cans run.",
+          "He can to run.",
+          "He can't to fly.",
+          "He no can swim.",
+          "He don't can sing."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "can-question",
+      "title_vi": "Hỏi \"Can he...?\" và cách trả lời",
+      "explain_vi": "Muốn hỏi ai đó có làm được việc gì không, đưa \"Can\" lên đầu câu: \"Can he swim?\". Nếu được, trả lời \"Yes, he can.\". Nếu không, trả lời \"No, he can't.\".",
+      "examples": [
+        "Can he swim? Yes, he can.",
+        "Can she fly? No, she can't.",
+        "Can he sing? Yes, he can."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "question-can-subj-verb", "text": "Can {subj} {verb}?", "blanks": ["verb"], "context_vi": "Hỏi xem ai đó có làm được việc gì không.", "audioText": "Can he swim?" },
+          { "id": "answer-yes", "text": "Yes, {subj} can.", "blanks": [], "context_vi": "Trả lời khi LÀM ĐƯỢC.", "audioText": "Yes, he can." },
+          { "id": "answer-no", "text": "No, {subj} can't.", "blanks": [], "context_vi": "Trả lời khi KHÔNG làm được.", "audioText": "No, he can't." }
+        ],
+        "slots": {
+          "subj": ["he", "she"],
+          "verb": ["run", "jump", "swim", "climb", "sing"],
+          "answer": ["Yes, he can.", "No, he can't."]
+        },
+        "answerKey": {
+          "question-can-subj-verb": { "verb": "any" },
+          "answer-pairs": { "Yes, he can.": "No, he can't.", "No, he can't.": "Yes, he can." }
+        },
+        "distractors": [
+          "Can he swims?",
+          "He can swim?",
+          "Can he to swim?",
+          "Yes, he can't.",
+          "No, he can.",
+          "Yes, he cans.",
+          "No, he no can."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "medial",
+    "focus": ["o"],
+    "soundLabels": {
+      "o": { "ipa": "/ɒ/", "anchor": "dog", "position": "medial", "say_vi": "âm /ɒ/ ngắn ở GIỮA từ, như trong \"dog\" (miệng mở tròn, đọc nhanh, không kéo dài)" }
+    },
+    "words": [
+      { "word": "dog", "icon": "🐶", "focusSound": "o", "anchor": "dog", "audio": "" },
+      { "word": "log", "icon": "🪵", "focusSound": "o", "anchor": "dog", "audio": "" },
+      { "word": "mop", "icon": "🧹", "focusSound": "o", "anchor": "dog", "audio": "" },
+      { "word": "box", "icon": "📦", "focusSound": "o", "anchor": "dog", "audio": "" },
+      { "word": "fox", "icon": "🦊", "focusSound": "o", "anchor": "dog", "audio": "" },
+      { "word": "pot", "icon": "🍲", "focusSound": "o", "anchor": "dog", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "look-at-me",
+      "title": "Look at me!",
+      "title_vi": "Nhìn em này!",
+      "text": "Hi! I'm Tom. I can run and I can jump. I can swim, too. I can't fly. Look at the bird. It can fly! Now your turn. Can you jump? Stand up and jump! Can you sing? I can sing. Sing with me!",
+      "questions": [
+        { "id": "q1", "q_vi": "Tom bơi được, đúng không?", "type": "truefalse", "answer": true, "audioText": "Tom can swim." },
+        { "id": "q2", "q_vi": "Tom KHÔNG làm được việc gì?", "type": "mcq", "choices": ["fly", "run", "jump"], "answer": 0, "audioText": "What can't Tom do?" },
+        { "id": "q3", "q_vi": "Con vật nào bay được trong bài?", "type": "mcq", "choices": ["the bird", "the dog", "the fox"], "answer": 0, "audioText": "What can fly?" },
+        { "id": "q4", "q_vi": "Bài rủ em đứng dậy và làm gì?", "type": "mcq", "choices": ["jump", "fly", "swim"], "answer": 0, "audioText": "Stand up and jump!" }
+      ]
+    }
+  ]
+}

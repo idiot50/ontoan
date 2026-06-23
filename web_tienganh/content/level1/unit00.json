@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 0,
+  "topic": "Hello!",
+  "topic_vi": "Chào hỏi",
+  "vocab": [
+    { "word": "hello", "vi": "xin chào", "icon": "👋", "example": "Hello! I'm Tom.", "partOfSpeech": "phrase", "audio": "" },
+    { "word": "goodbye", "vi": "tạm biệt", "icon": "🙋", "example": "Goodbye! See you.", "partOfSpeech": "phrase", "audio": "" },
+    { "word": "one", "vi": "số một (1)", "icon": "1️⃣", "example": "I have one pen.", "partOfSpeech": "number", "audio": "" },
+    { "word": "two", "vi": "số hai (2)", "icon": "2️⃣", "example": "I have two pens.", "partOfSpeech": "number", "audio": "" },
+    { "word": "three", "vi": "số ba (3)", "icon": "3️⃣", "example": "I have three books.", "partOfSpeech": "number", "audio": "" },
+    { "word": "red", "vi": "màu đỏ", "icon": "🔴", "example": "It's a red ball.", "partOfSpeech": "adj", "audio": "" },
+    { "word": "blue", "vi": "màu xanh dương", "icon": "🔵", "example": "It's a blue bag.", "partOfSpeech": "adj", "audio": "" },
+    { "word": "green", "vi": "màu xanh lá", "icon": "🟢", "example": "It's a green pen.", "partOfSpeech": "adj", "audio": "" },
+    { "word": "yellow", "vi": "màu vàng", "icon": "🟡", "example": "It's a yellow kite.", "partOfSpeech": "adj", "audio": "" },
+    { "word": "Monday", "vi": "thứ Hai", "icon": "📅", "example": "Today is Monday.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "greetings",
+      "title_vi": "Chào hỏi và tạm biệt",
+      "explain_vi": "Khi gặp nhau, em nói \"Hello!\" (xin chào). Khi chia tay, em nói \"Goodbye!\" (tạm biệt).",
+      "examples": [
+        "Hello! I'm Tom.",
+        "Hello, Mai!",
+        "Goodbye! See you."
+      ],
+      "generators": ["mcq", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "greeting-meet", "text": "Hello!", "blanks": [], "context_vi": "Câu nói khi GẶP nhau.", "audioText": "Hello!" },
+          { "id": "greeting-leave", "text": "Goodbye!", "blanks": [], "context_vi": "Câu nói khi CHIA TAY.", "audioText": "Goodbye!" }
+        ],
+        "slots": {
+          "greeting": ["Hello!", "Goodbye!"]
+        },
+        "answerKey": {
+          "greeting-meet": { "greeting": "Hello!" },
+          "greeting-leave": { "greeting": "Goodbye!" }
+        },
+        "distractors": [
+          "Hallo!",
+          "Goodbay!",
+          "Good bye!",
+          "Helo!"
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "whats-your-name",
+      "title_vi": "Hỏi tên: \"What's your name?\"",
+      "explain_vi": "Hỏi tên bạn: \"What's your name?\". Em trả lời: \"My name's ...\" rồi nói tên của em.",
+      "examples": [
+        "What's your name? My name's Tom.",
+        "What's your name? My name's Mai.",
+        "What's your name? My name's Anna."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "ask-name", "text": "What's your name?", "blanks": [], "context_vi": "Câu HỎI tên người khác.", "audioText": "What's your name?" },
+          { "id": "answer-name", "text": "My name's {name}.", "blanks": ["name"], "context_vi": "Câu TRẢ LỜI, nói tên của em.", "audioText": "My name's Tom." }
+        ],
+        "slots": {
+          "name": ["Tom", "Mai", "Anna", "Ben", "Lan"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "What your name?",
+          "What's you name?",
+          "My name Tom.",
+          "My name's is Tom.",
+          "I name's Tom."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "how-old-are-you",
+      "title_vi": "Hỏi tuổi: \"How old are you?\"",
+      "explain_vi": "Hỏi tuổi bạn: \"How old are you?\". Em trả lời: \"I'm ...\" rồi nói số tuổi, ví dụ \"I'm seven.\".",
+      "examples": [
+        "How old are you? I'm seven.",
+        "How old are you? I'm eight.",
+        "How old are you? I'm nine."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "ask-age", "text": "How old are you?", "blanks": [], "context_vi": "Câu HỎI tuổi.", "audioText": "How old are you?" },
+          { "id": "answer-age", "text": "I'm {age}.", "blanks": ["age"], "context_vi": "Câu TRẢ LỜI, nói số tuổi của em.", "audioText": "I'm seven." }
+        ],
+        "slots": {
+          "age": ["six", "seven", "eight", "nine", "ten"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "How old you are?",
+          "How old are you.",
+          "I'm seven years.",
+          "I seven.",
+          "I'm have seven."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["a", "b"],
+    "soundLabels": {
+      "a": { "ipa": "/æ/", "anchor": "apple", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"apple\" là /æ/ — đây là ÂM, không phải tên chữ \"ây\"" },
+      "b": { "ipa": "/b/", "anchor": "ball", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"ball\" là /b/ — đây là ÂM, không phải tên chữ \"bi\"" }
+    },
+    "words": [
+      { "word": "apple", "icon": "🍎", "focusSound": "a", "anchor": "apple", "audio": "" },
+      { "word": "ant", "icon": "🐜", "focusSound": "a", "anchor": "apple", "audio": "" },
+      { "word": "arm", "icon": "💪", "focusSound": "a", "anchor": "apple", "audio": "" },
+      { "word": "ball", "icon": "⚽", "focusSound": "b", "anchor": "ball", "audio": "" },
+      { "word": "bag", "icon": "🎒", "focusSound": "b", "anchor": "ball", "audio": "" },
+      { "word": "bus", "icon": "🚌", "focusSound": "b", "anchor": "ball", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "hello-im-tom",
+      "title": "Hello, I'm Tom",
+      "title_vi": "Xin chào, mình là Tom",
+      "text": "Hello! My name's Tom. I'm seven. This is my ball. It's red. Goodbye!",
+      "questions": [
+        { "id": "q1", "q_vi": "Bạn nhỏ tên là Tom, đúng không?", "type": "truefalse", "answer": true, "audioText": "His name is Tom." },
+        { "id": "q2", "q_vi": "Tom bao nhiêu tuổi?", "type": "mcq", "choices": ["seven", "eight", "nine"], "answer": 0, "audioText": "How old is Tom?" },
+        { "id": "q3", "q_vi": "Quả bóng màu gì?", "type": "mcq", "choices": ["red", "blue", "green"], "answer": 0, "audioText": "What colour is the ball?" }
+      ]
+    }
+  ]
+}

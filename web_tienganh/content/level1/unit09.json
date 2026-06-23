@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 9,
+  "topic": "My lunch box",
+  "topic_vi": "Hộp cơm trưa của em",
+  "vocab": [
+    { "word": "sandwich", "vi": "bánh mì kẹp", "icon": "🥪", "example": "I've got a sandwich.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "apple", "vi": "quả táo", "icon": "🍎", "example": "I've got an apple.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "banana", "vi": "quả chuối", "icon": "🍌", "example": "I've got a banana.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "drink", "vi": "đồ uống", "icon": "🧃", "example": "I've got a drink.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "egg", "vi": "quả trứng", "icon": "🥚", "example": "I've got an egg.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "pear", "vi": "quả lê", "icon": "🍐", "example": "I've got a pear.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "biscuit", "vi": "bánh quy", "icon": "🍪", "example": "I've got a biscuit.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "ive-got",
+      "title_vi": "\"I've got…\" và \"I haven't got…\"",
+      "explain_vi": "Nói em CÓ một thứ gì: \"I've got…\" (em có…). Nói em KHÔNG có: \"I haven't got…\" (em không có…). \"I've got\" là cách viết gọn của \"I have got\".",
+      "examples": [
+        "I've got a sandwich.",
+        "I've got an apple.",
+        "I haven't got a drink."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-have-got", "text": "I've got {art} {noun}.", "blanks": ["art"], "context_vi": "Nói em CÓ một món trong hộp cơm trưa.", "audioText": "I've got a sandwich." },
+          { "id": "i-havent-got", "text": "I haven't got {art} {noun}.", "blanks": ["art"], "context_vi": "Nói em KHÔNG có một món nào đó.", "audioText": "I haven't got a drink." }
+        ],
+        "slots": {
+          "art": ["a", "an"],
+          "noun": ["sandwich", "apple", "banana", "drink", "egg", "pear", "biscuit"]
+        },
+        "answerKey": {
+          "i-have-got": {
+            "art": { "sandwich": "a", "apple": "an", "banana": "a", "drink": "a", "egg": "an", "pear": "a", "biscuit": "a" }
+          },
+          "i-havent-got": {
+            "art": { "sandwich": "a", "apple": "an", "banana": "a", "drink": "a", "egg": "an", "pear": "a", "biscuit": "a" }
+          }
+        },
+        "distractors": [
+          "I've got a apple.",
+          "I've got a egg.",
+          "I have got an sandwich.",
+          "I haven't got a apple.",
+          "I've not got a drink.",
+          "I got a sandwich.",
+          "I've got sandwich."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "a-or-an-food",
+      "title_vi": "Dùng \"a\" hay \"an\"?",
+      "explain_vi": "Trước từ bắt đầu bằng nguyên âm (a, e, i, o, u) thì dùng \"an\": an apple, an egg. Các từ còn lại dùng \"a\": a banana, a pear.",
+      "examples": [
+        "I've got an apple.",
+        "I've got an egg.",
+        "I've got a banana."
+      ],
+      "generators": ["fill_blank", "mcq"],
+      "safeZone": {
+        "templates": [
+          { "id": "choose-article-food", "text": "I've got {art} {noun}.", "blanks": ["art"], "context_vi": "Chọn \"a\" hoặc \"an\" cho đúng với từ đứng sau.", "audioText": "I've got an apple." }
+        ],
+        "slots": {
+          "art": ["a", "an"],
+          "noun": ["sandwich", "apple", "banana", "drink", "egg", "pear", "biscuit"]
+        },
+        "answerKey": {
+          "choose-article-food": {
+            "art": { "sandwich": "a", "apple": "an", "banana": "a", "drink": "a", "egg": "an", "pear": "a", "biscuit": "a" }
+          }
+        },
+        "distractors": [
+          "I've got an sandwich.",
+          "I've got an banana.",
+          "I've got a apple.",
+          "I've got a egg."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["th"],
+    "soundLabels": {
+      "th": { "ipa": "/θ/", "anchor": "three", "position": "initial", "say_vi": "âm /θ/ — đặt đầu lưỡi giữa hai hàm răng rồi thổi nhẹ, như đầu từ \"three\" (không đọc thành \"t\" hay \"s\")" }
+    },
+    "words": [
+      { "word": "three", "icon": "3️⃣", "focusSound": "th", "anchor": "three", "audio": "" },
+      { "word": "thumb", "icon": "👍", "focusSound": "th", "anchor": "three", "audio": "" },
+      { "word": "thin", "icon": "📏", "focusSound": "th", "anchor": "three", "audio": "" },
+      { "word": "think", "icon": "💭", "focusSound": "th", "anchor": "three", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "in-my-lunch-box",
+      "title": "In my lunch box",
+      "title_vi": "Trong hộp cơm trưa của em",
+      "text": "Look at my lunch box. I've got a sandwich and an egg. I've got an apple and a pear. I've got a drink. I haven't got a biscuit today. I like my lunch.",
+      "questions": [
+        { "id": "q1", "q_vi": "Trong hộp có một quả táo, đúng không?", "type": "truefalse", "answer": true, "audioText": "There is an apple in the lunch box." },
+        { "id": "q2", "q_vi": "Hôm nay bạn nhỏ KHÔNG có món gì?", "type": "mcq", "choices": ["a biscuit", "a sandwich", "an apple"], "answer": 0, "audioText": "What hasn't she got today?" },
+        { "id": "q3", "q_vi": "Đồ uống có trong hộp không?", "type": "truefalse", "answer": true, "audioText": "She has got a drink." }
+      ]
+    }
+  ]
+}

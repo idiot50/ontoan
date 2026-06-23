@@ -1,0 +1,321 @@
+/* ============================================================================
+   tokens.css — DESIGN TOKENS (v2) cho web học tiếng Anh trẻ 7–10 tuổi
+   ----------------------------------------------------------------------------
+   MỤC TIÊU: giao diện VUI, CUỐN HÚT, đáng yêu để bé thích vào học mỗi ngày —
+   màu tươi sáng CÓ CHỦ ĐÍCH, linh vật gốc, vi tương tác thưởng cảm xúc, bo góc
+   mềm, hiệu ứng khi đúng / lên sao. NHƯNG vẫn:
+   - 100% OFFLINE: không @import font ngoài, không ảnh/CDN. Dùng font HỆ THỐNG +
+     emoji + SVG inline + gradient/shape thuần CSS.
+   - WCAG AA: mọi cặp chữ/nền chính dưới đây đã chọn để đạt tương phản ≥ 4.5:1
+     (chữ thường) hoặc ≥ 3:1 (chữ lớn ≥ 24px / icon to). Số đo ghi trong DESIGN.md.
+   - KHÔNG truyền thông tin chỉ bằng màu: trạng thái đúng/sai luôn kèm icon + chữ.
+   - Chỉ định nghĩa BIẾN ở đây; cách dùng (component) nằm trong base.css.
+     Frontend dùng var(--ten-bien) trong app.css để giữ nhất quán & dễ đổi theme.
+
+   LINH VẬT GỐC: "Pi" — chú CÁO ĐOM ĐÓM nhỏ (foxfly), bụng phát sáng như ngôi
+   sao. Bảng màu xoay quanh Pi: cam-hổ-phách ấm (bộ lông) + tím-hoàng-hôn vui +
+   vàng sao (ánh sáng). Xem DESIGN.md mục Linh vật.
+   ========================================================================== */
+
+:root {
+  /* ==========================================================================
+     1. MÀU THƯƠNG HIỆU & NHẤN  (tươi, ấm, mời gọi)
+     - CHÍNH = tím-hoàng-hôn (grape/indigo) → tin cậy + vui, hợp nền tươi.
+     - NHẤN  = cam-hổ-phách (màu lông Pi) → nút "hành động vui" mời gọi.
+     - PHỤ   = mint/sky/coral cho thẻ chủ đề nhiều màu (mỗi unit một sắc).
+     ----------------------------------------------------------------------- */
+  /* Màu CHÍNH (brand) — tím chàm vui tươi */
+  --c-primary:            #5b3fc4; /* nút chính, tiêu đề brand; trên trắng ~6.0:1 */
+  --c-primary-strong:     #46309c; /* hover/nhấn nút chính (đậm hơn) */
+  --c-primary-soft:       #efeafc; /* nền nhạt khu brand (chip, highlight) */
+  --c-primary-contrast:   #ffffff; /* chữ TRÊN nền primary */
+
+  /* Màu NHẤN (accent) — cam hổ phách ấm = bộ lông Pi, mời gọi mà không gắt.
+     QUAN TRỌNG (AA): chữ trắng trên --c-accent #e8590c CHỈ đạt 3.58:1 (TRƯỢT 4.5:1).
+     → Nút/icon có CHỮ hoặc glyph trên nền/quanh accent dùng --c-accent-strong (5.16:1).
+     --c-accent chỉ dùng cho VIỀN/NÉT/DẢI trang trí (đạt 3:1 trên trắng). */
+  --c-accent:             #e8590c; /* viền/nét/dải trang trí; chữ trắng chỉ 3.58:1 → KHÔNG cho chữ thường */
+  --c-accent-strong:      #bd4708; /* nền nút accent + chữ trắng (5.16:1 ✅); icon trên accent-soft (~4.4:1 ✅) */
+  --c-accent-deeper:      #9a3a06; /* gờ 3D / hover đậm của nút accent */
+  --c-accent-soft:        #fdeadd; /* nền nhạt accent */
+  --c-accent-contrast:    #ffffff;
+
+  /* Màu phụ trợ TƯƠI cho thẻ chủ đề / biểu tượng (mỗi sắc 1 unit).
+     Mỗi màu có biến -soft (nền nhạt) + -text (chữ tối đạt AA trên nền soft). */
+  --c-mint:               #0f9b6c; /* xanh lá ngọc; trên trắng ~3.6:1 (chỉ dùng nền/nét lớn) */
+  --c-mint-soft:          #e2f7ef;
+  --c-mint-text:          #0a6a4a; /* chữ trên mint-soft ~5.5:1 */
+  --c-sky:                #1186c0; /* xanh trời; trên trắng ~4.0:1 (nét/nền lớn) */
+  --c-sky-soft:           #e1f3fb;
+  --c-sky-text:           #0c6190; /* chữ trên sky-soft ~5.2:1 */
+  --c-grape:              #7a4fd1; /* tím nho (biến thể nhạt của brand) */
+  --c-grape-soft:         #efe8fb;
+  --c-grape-text:         #4f2f9a; /* chữ trên grape-soft ~6.4:1 */
+  --c-coral:              #e0455f; /* hồng san hô VUI (KHÁC hẳn "đỏ sai"); ~4.1:1 */
+  --c-coral-soft:         #fde6ea;
+  --c-coral-text:         #b21d36; /* chữ trên coral-soft ~5.4:1 */
+  --c-sun:                #e08a00; /* vàng nắng (cam vàng); 2.69:1 trên trắng → CHỈ nền/dải lớn, KHÔNG nét mảnh/glyph */
+  --c-sun-soft:           #fdf1d8;
+  --c-sun-text:           #8a5400; /* chữ/icon trên sun-soft ~5.6:1 — DÙNG cho mọi chữ/nét mảnh sắc nắng */
+
+  /* ==========================================================================
+     2. MÀU TRẠNG THÁI (đúng / chưa-đúng-động-viên / cảnh báo / thông tin)
+     - "Chưa đúng" dùng tông CAM ẤM (KHÔNG đỏ gắt) — động viên, không phán xét.
+     - Mỗi trạng thái: -strong (nét/đậm), -soft (nền vùng), -text (chữ đạt AA).
+     ----------------------------------------------------------------------- */
+  /* ĐÚNG — xanh lá tươi rõ ràng */
+  --c-correct:            #15924f; /* viền/nút "đúng"; trên trắng ~4.0:1 (nét/nền lớn) */
+  --c-correct-strong:     #0e7340; /* nút "đúng" đặc + chữ trắng (~5.3:1) */
+  --c-correct-soft:       #e3f7ec; /* nền vùng phản hồi đúng */
+  --c-correct-text:       #0a5e33; /* chữ trên correct-soft ~6.8:1 */
+
+  /* CHƯA ĐÚNG — CAM ẤM NGẢ NÂU-ĐẤT động viên (KHÔNG đỏ; ngả nâu hơn accent để
+     trẻ KHÔNG nhầm vùng "thử lại" với nút hành động vui cam-cháy). */
+  --c-try:                #c0540f; /* viền/nhấn "thử lại"; trên trắng ~4.0:1 (nét lớn), bớt rực hơn accent */
+  --c-try-strong:         #9c440c; /* nút đặc + chữ trắng (~5.5:1) */
+  --c-try-soft:           #fbe9da; /* nền vùng "thử lại nhé" (hơi ngả nâu) */
+  --c-try-text:           #7d3406; /* chữ trên try-soft ~6.8:1 */
+
+  /* CẢNH BÁO — hổ phách (vd thiếu giọng TTS) */
+  --c-warn:               #b6790a; /* trên trắng ~4.6:1 */
+  --c-warn-soft:          #fbf1d6;
+  --c-warn-text:          #7a5104; /* chữ trên warn-soft ~6.8:1 */
+
+  /* THÔNG TIN / trung tính brand */
+  --c-info:               #2563c4;
+  --c-info-soft:          #e6effb;
+  --c-info-text:          #18488f; /* chữ trên info-soft ~6.4:1 */
+
+  /* ==========================================================================
+     3. MÀU GAMIFICATION (sao / huy hiệu / XP / phần thưởng / confetti)
+     - Thưởng cho NỖ LỰC & hoàn thành (không streak cứng). Vui mắt, không gắt.
+     ----------------------------------------------------------------------- */
+  /* SAO thưởng — vàng sáng lấp lánh. Khi đặt trên nền sáng, KÈM viền tối (xem base.css). */
+  --c-star:               #ffc21f; /* màu fill ngôi sao (giữ vàng tươi) */
+  --c-star-edge:          #8a5a00; /* viền/đậm sao — đậm để đạt ≥3:1 trên trắng (nét rõ) */
+  --c-star-deep:          #7e5a00; /* số/chữ cạnh sao trên nền sáng (badge-soft) AA ~5.0:1 ✅ */
+  --c-star-empty:         #e6e0d2; /* sao chưa đạt (rỗng) — vẫn thấy hình */
+  --c-star-empty-edge:    #b8a878; /* viền sao rỗng (thấy hình kể cả bỏ màu) */
+
+  /* Thanh XP / tiến độ — gradient vui */
+  --c-xp:                 #15924f;       /* phần đã đạt (xanh tươi) */
+  --c-xp-track:           #e7ecf3;       /* rãnh nền chưa đạt */
+  --grad-xp:  linear-gradient(90deg, #1fb866 0%, #15924f 70%, #0e8a5e 100%);
+
+  /* Huy hiệu / badge — vàng-cam ánh kim mềm */
+  --c-badge:              #f3a01c;
+  --c-badge-soft:         #fdf0d6;
+  --c-badge-ring:         #d9820a; /* viền huy hiệu */
+
+  /* Confetti — bảng nhỏ màu vui dùng cho mảnh giấy bay (CSS thuần) */
+  --c-confetti-1:         #ffc21f; /* vàng */
+  --c-confetti-2:         #e8590c; /* cam */
+  --c-confetti-3:         #5b3fc4; /* tím */
+  --c-confetti-4:         #1186c0; /* xanh trời */
+  --c-confetti-5:         #0f9b6c; /* xanh lá */
+  --c-confetti-6:         #e0455f; /* hồng */
+
+  /* ==========================================================================
+     4. NỀN & BỀ MẶT & CHỮ (trung tính, hơi ấm cho dịu mắt)
+     ----------------------------------------------------------------------- */
+  --c-bg:                 #f6f4fb; /* nền trang (tím rất nhạt, ấm) */
+  --c-bg-2:               #fdf7f1; /* nền ấm phụ (vùng hero linh vật) */
+  --c-surface:            #ffffff; /* mặt thẻ/card */
+  --c-surface-2:          #f1eef9; /* mặt phụ (vùng chìm nhẹ, ô input nền) */
+  --c-overlay:            rgba(36, 24, 64, 0.55); /* lớp phủ modal (tím sẫm) */
+
+  /* Gradient nền vui (dùng cho hero / màn chính / nút thưởng) */
+  --grad-brand:  linear-gradient(135deg, #7a4fd1 0%, #5b3fc4 100%);
+  --grad-warm:   linear-gradient(135deg, #ffb454 0%, #e8590c 100%);
+  --grad-sky:    linear-gradient(160deg, #efeafc 0%, #fdf7f1 100%); /* (giữ tương thích) nền trang dịu cũ */
+  --grad-festive:linear-gradient(135deg, #ffc21f 0%, #e8590c 55%, #e0455f 100%); /* thưởng lớn */
+
+  /* NỀN TRANG CÓ CHIỀU SÂU — "hoàng hôn ấm cùng cáo đom đóm".
+     Lớp 1 (trên cùng dùng): màu hoàng hôn ấm hơn ở MÉP TRÊN (hồng-cam rất nhạt)
+     chuyển dần xuống tím-oải-hương rồi kem ấm ở chân màn. Vẫn cực dịu, giữ chữ AA. */
+  --grad-page:
+      linear-gradient(178deg,
+        #fdeede 0%,     /* mép trên: ánh hoàng hôn ấm */
+        #f3e9fb 34%,    /* tím oải hương nhạt */
+        #efeafc 64%,
+        #fdf7f1 100%);  /* chân màn: kem ấm */
+  /* Lớp ĐỐM ĐOM ĐÓM (texture nền, opacity rất thấp) — phủ SAU nội dung,
+     pointer-events:none. Dùng qua utility .bg-fireflies (base.css). */
+  --tex-fireflies:
+      radial-gradient(circle at 16% 22%, rgba(255,194,31,0.10) 0 6px, transparent 7px),
+      radial-gradient(circle at 78% 16%, rgba(255,194,31,0.08) 0 5px, transparent 6px),
+      radial-gradient(circle at 64% 40%, rgba(255,180,84,0.07) 0 7px, transparent 8px),
+      radial-gradient(circle at 30% 58%, rgba(255,194,31,0.07) 0 5px, transparent 6px),
+      radial-gradient(circle at 88% 66%, rgba(255,194,31,0.09) 0 4px, transparent 5px),
+      radial-gradient(circle at 10% 82%, rgba(255,180,84,0.06) 0 6px, transparent 7px),
+      radial-gradient(circle at 50% 88%, rgba(255,194,31,0.06) 0 5px, transparent 6px);
+
+  /* Chữ */
+  --c-text:               #221a3a; /* chữ thân chính; trên trắng ~14:1 (tím-mực ấm) */
+  --c-text-soft:          #4d4666; /* chữ phụ/chú thích; trên trắng ~7.0:1 (AA) */
+  --c-text-faint:         #6b6385; /* chữ rất phụ; trên trắng ~4.7:1 (AA, dùng ≥16px) */
+  --c-text-on-color:      #ffffff; /* chữ trên nền màu đậm */
+
+  /* Viền & đường kẻ */
+  --c-border:             #e2dcf0; /* viền thẻ/ô nhẹ */
+  --c-border-strong:      #7d6fb8; /* viền rõ ô input/choice — ĐẠT ≥3:1 trên trắng (~3.6:1) cho thị lực yếu */
+  --c-focus-ring:         #2563c4; /* vòng focus bàn phím (xanh đậm, AA trên nền sáng) */
+  --c-focus-ring-2:       #ffffff; /* vòng trắng kẹp giữa (focus nổi trên mọi nền) */
+
+  /* ==========================================================================
+     5. TYPOGRAPHY — CHỮ TO, dễ đọc cho trẻ. Font HỆ THỐNG (không tải mạng).
+     ----------------------------------------------------------------------- */
+  /* Ngăn xếp font an toàn: tròn/thân thiện, ưu tiên có sẵn Win/Mac/Android/iOS.
+     "Nunito"/"Quicksand" nếu máy có sẵn sẽ rất tròn-đáng-yêu; nếu không, rơi về
+     Segoe UI / system-ui — vẫn tròn & quen mắt. KHÔNG tải qua mạng. */
+  --font-base:
+      "Nunito", "Quicksand", "Segoe UI", system-ui, -apple-system, "Roboto",
+      "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  /* Font tiêu đề / linh vật / khen thưởng — đậm tròn, vui (rơi về font-base) */
+  --font-display:
+      "Baloo 2", "Fredoka", "Nunito", "Segoe UI", system-ui, sans-serif;
+  /* Font đọc nội dung TIẾNG ANH (chữ cái rõ ràng cho phonics) */
+  --font-en:
+      "Verdana", "Segoe UI", system-ui, "Trebuchet MS", "Noto Sans", sans-serif;
+  /* Font số (tabular cho tiến độ/đếm sao) */
+  --font-num:
+      "Segoe UI", system-ui, "Roboto", "Helvetica Neue", Arial, sans-serif;
+
+  /* Thang cỡ chữ — đáy LỚN cho trẻ: body ≥ 18px, đề bài 24–28px */
+  --fs-xs:     14px;  /* nhãn rất phụ (hạn chế dùng) */
+  --fs-sm:     16px;  /* chú thích, nhãn phụ — SÀN tuyệt đối */
+  --fs-base:   18px;  /* CHỮ THÂN mặc định cho trẻ */
+  --fs-md:     20px;  /* chữ nhấn trong thân */
+  --fs-lg:     24px;  /* đề bài / tiêu đề thẻ */
+  --fs-xl:     28px;  /* đề bài lớn / câu hỏi chính */
+  --fs-2xl:    34px;  /* tiêu đề màn hình */
+  --fs-3xl:    44px;  /* từ vựng trên flashcard (to để nhìn rõ) */
+  --fs-display: 56px; /* số liệu nổi bật / con số lớn */
+
+  /* Trọng lượng */
+  --fw-regular: 400;
+  --fw-medium:  600;
+  --fw-bold:    700;
+  --fw-black:   800;
+
+  /* Chiều cao dòng — thoáng để dễ theo dõi */
+  --lh-tight:   1.2;   /* tiêu đề lớn */
+  --lh-snug:    1.35;  /* đề bài */
+  --lh-base:    1.6;   /* thân văn (thoáng cho trẻ) */
+  --lh-loose:   1.8;   /* đoạn đọc dài */
+
+  /* Giãn chữ */
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:  0.02em;
+
+  /* ==========================================================================
+     6. KHOẢNG CÁCH (spacing scale 4px) — rộng rãi cho ngón tay trẻ
+     ----------------------------------------------------------------------- */
+  --sp-1:   4px;
+  --sp-2:   8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  20px;
+  --sp-6:  24px;
+  --sp-7:  32px;
+  --sp-8:  40px;
+  --sp-9:  48px;
+  --sp-10: 64px;
+
+  --gap-card:   var(--sp-5);  /* đệm trong thẻ */
+  --gap-stack:  var(--sp-4);  /* khoảng cách giữa các khối xếp dọc */
+  --gap-grid:   var(--sp-4);  /* khe lưới thẻ chủ đề */
+
+  /* ==========================================================================
+     7. BO GÓC — tròn mềm, thân thiện (rất bo = đáng yêu)
+     ----------------------------------------------------------------------- */
+  --radius-xs:  8px;
+  --radius-sm: 12px;
+  --radius-md: 16px;  /* ô input, chip nhỏ */
+  --radius-lg: 22px;  /* thẻ, modal */
+  --radius-xl: 28px;  /* thẻ lớn, flashcard, panel nổi bật */
+  --radius-2xl:36px;  /* hero linh vật / thẻ thưởng to */
+  --radius-pill: 999px; /* nút bo tròn, chip, badge */
+  --radius-round: 50%;  /* avatar, nút icon tròn */
+
+  /* ==========================================================================
+     8. ĐỔ BÓNG — mềm, gợi chiều sâu (không nặng nề); bóng nút 3D vui
+     ----------------------------------------------------------------------- */
+  --shadow-sm:  0 1px 2px rgba(34, 26, 58, 0.08),
+                0 1px 3px rgba(34, 26, 58, 0.06);
+  --shadow-md:  0 4px 12px rgba(34, 26, 58, 0.10),
+                0 2px 4px rgba(34, 26, 58, 0.06);
+  --shadow-lg:  0 12px 26px rgba(34, 26, 58, 0.14),
+                0 4px 8px rgba(34, 26, 58, 0.08);
+  --shadow-xl:  0 20px 44px rgba(34, 26, 58, 0.18);
+  /* "Bóng nút bấm 3D" — gờ dưới tạo cảm giác nút lồi, trẻ thích bấm */
+  --shadow-btn:        0 5px 0 var(--c-primary-strong);
+  --shadow-btn-accent: 0 5px 0 var(--c-accent-strong);
+  --shadow-btn-correct:0 5px 0 var(--c-correct-strong);
+  --shadow-inset:      inset 0 2px 5px rgba(34, 26, 58, 0.10);
+  /* Quầng sáng (glow) — dùng khi đúng / lên sao (cảm giác lấp lánh) */
+  --glow-star:    0 0 0 4px rgba(255, 194, 31, 0.35), 0 6px 18px rgba(217, 145, 0, 0.35);
+  --glow-correct: 0 0 0 4px rgba(21, 146, 79, 0.22), 0 6px 18px rgba(14, 115, 64, 0.28);
+  --glow-firefly: 0 0 22px 6px rgba(255, 200, 60, 0.55); /* quầng vàng quanh bụng sao của Pi (đom đóm) */
+  --glow-celebrate: 0 0 0 6px rgba(255, 194, 31, 0.30), 0 18px 50px rgba(189, 71, 8, 0.32); /* sao lớn khi ăn mừng */
+
+  /* ==========================================================================
+     9. VÙNG CHẠM & KÍCH THƯỚC TƯƠNG TÁC — ngón tay trẻ ≥ 48px
+     ----------------------------------------------------------------------- */
+  --touch-min:    48px;  /* SÀN vùng chạm tuyệt đối (WCAG 2.5.5) */
+  --touch-cozy:   56px;  /* nút thường */
+  --touch-cta:    64px;  /* nút hành động chính to */
+  --icon-btn:     52px;  /* nút icon tròn (loa, tiếp…) */
+  --icon-sz-sm:   20px;
+  --icon-sz-md:   28px;
+  --icon-sz-lg:   40px;
+
+  /* ==========================================================================
+     10. BỐ CỤC — mobile-first, một cột giữa; rộng tốt trên tablet
+     ----------------------------------------------------------------------- */
+  --container-max:    640px;  /* bề rộng nội dung học (1 cột giữa) */
+  --container-wide:   920px;  /* lưới thẻ chủ đề / trang phụ huynh trên tablet */
+  --page-pad-x:       var(--sp-4); /* lề ngang trang (mobile) */
+  --page-pad-x-lg:    var(--sp-7); /* lề ngang trang (tablet+) */
+  --header-h:         64px;
+
+  /* ==========================================================================
+     11. CHUYỂN ĐỘNG — vừa phải, có ý nghĩa; tôn trọng reduced-motion (base.css)
+     ----------------------------------------------------------------------- */
+  --t-fast:   120ms;
+  --t-base:   220ms;
+  --t-slow:   360ms;
+  --t-celebrate: 700ms; /* hiệu ứng ăn mừng (confetti/lên sao) — ngắn, không che nút */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);    /* bật ra mềm */
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1); /* nảy nhẹ vui (đúng/thưởng) */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ==========================================================================
+     12. Z-INDEX — tầng lớp
+     ----------------------------------------------------------------------- */
+  --z-base:    0;
+  --z-sticky:  100;  /* header dính */
+  --z-mascot:  200;  /* linh vật nổi (góc màn) */
+  --z-overlay: 800;
+  --z-modal:   900;
+  --z-confetti:950;  /* mảnh confetti bay trên modal nhưng không bắt chạm */
+  --z-toast:   1000; /* khen thưởng/thông báo nổi trên cùng */
+}
+
+/* ----------------------------------------------------------------------------
+   CHỦ ĐỀ TƯƠNG PHẢN CAO (tuỳ chọn) — bật bằng <html data-contrast="high">
+   Hỗ trợ trẻ thị lực yếu / UDL. Chỉ tăng nét & độ đậm, KHÔNG đổi ngữ nghĩa màu.
+   -------------------------------------------------------------------------- */
+[data-contrast="high"] {
+  --c-text:          #140d28;
+  --c-text-soft:     #2f2850;
+  --c-text-faint:    #3d3661;
+  --c-border:        #9a8fc4;
+  --c-border-strong: #5a4e94;  /* viền rõ hơn nữa (~4.6:1 trên trắng) */
+  --c-star-edge:     #6b4600;
+  --shadow-sm: 0 0 0 2px rgba(34,26,58,0.20);
+  --shadow-md: 0 0 0 2px rgba(34,26,58,0.24);
+  /* Nền phẳng hơn ở chế độ tương phản cao (đốm đom đóm có thể gây nhiễu) */
+  --tex-fireflies: none;
+}

@@ -1,0 +1,128 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 4,
+  "topic": "Jobs",
+  "topic_vi": "Nghề nghiệp",
+  "vocab": [
+    { "word": "teacher", "vi": "giáo viên", "icon": "🧑‍🏫", "example": "She's a teacher.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "doctor", "vi": "bác sĩ", "icon": "🧑‍⚕️", "example": "He's a doctor.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "nurse", "vi": "y tá", "icon": "💉", "example": "She's a nurse.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "pilot", "vi": "phi công", "icon": "🧑‍✈️", "example": "He's a pilot.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "farmer", "vi": "nông dân", "icon": "🧑‍🌾", "example": "He's a farmer.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "cook", "vi": "đầu bếp", "icon": "🧑‍🍳", "example": "She's a cook.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "he-she-is-a-job",
+      "title_vi": "\"He's a...\" / \"She's a...\" (Anh ấy / Chị ấy là...)",
+      "explain_vi": "Khi nói về một bạn nam, em dùng \"He's a...\" (Anh ấy là...). Khi nói về một bạn nữ, em dùng \"She's a...\" (Chị ấy là...). Rồi nói tên nghề.",
+      "examples": [
+        "He's a doctor.",
+        "She's a teacher.",
+        "He's a pilot."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "he-is-a-job", "text": "{subj}'s {art} {noun}.", "blanks": ["subj"], "context_vi": "Nói về một bạn NAM (he) làm nghề gì.", "audioText": "He's a doctor." },
+          { "id": "she-is-a-job", "text": "{subj}'s {art} {noun}.", "blanks": ["subj"], "context_vi": "Nói về một bạn NỮ (she) làm nghề gì.", "audioText": "She's a teacher." }
+        ],
+        "slots": {
+          "subj": ["He", "She"],
+          "art": ["a"],
+          "noun": ["teacher", "doctor", "nurse", "pilot", "farmer", "cook"]
+        },
+        "answerKey": {
+          "he-is-a-job": { "subj": "He" },
+          "she-is-a-job": { "subj": "She" }
+        },
+        "distractors": [
+          "He's teacher.",
+          "She a teacher.",
+          "He's an doctor.",
+          "He is a teacher .",
+          "She's the teacher.",
+          "He teacher."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "is-he-she-a-job",
+      "title_vi": "\"Is he/she a...?\" và cách trả lời",
+      "explain_vi": "Hỏi xem một người làm nghề gì đó không: \"Is he a...?\" (cho nam) hoặc \"Is she a...?\" (cho nữ). Nếu đúng, trả lời \"Yes, he is.\" / \"Yes, she is.\". Nếu sai, trả lời \"No, he isn't.\" / \"No, she isn't.\".",
+      "examples": [
+        "Is he a doctor? Yes, he is.",
+        "Is she a teacher? Yes, she is.",
+        "Is he a pilot? No, he isn't."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "question-is-he-a-job", "text": "Is {subj} {art} {noun}?", "blanks": ["subj"], "context_vi": "Hỏi xem một bạn NAM (he) có làm nghề đó không.", "audioText": "Is he a doctor?" },
+          { "id": "question-is-she-a-job", "text": "Is {subj} {art} {noun}?", "blanks": ["subj"], "context_vi": "Hỏi xem một bạn NỮ (she) có làm nghề đó không.", "audioText": "Is she a teacher?" },
+          { "id": "answer-yes-he", "text": "Yes, he is.", "blanks": [], "context_vi": "Trả lời khi ĐÚNG, người đó là bạn nam.", "audioText": "Yes, he is." },
+          { "id": "answer-no-he", "text": "No, he isn't.", "blanks": [], "context_vi": "Trả lời khi SAI, người đó là bạn nam.", "audioText": "No, he isn't." },
+          { "id": "answer-yes-she", "text": "Yes, she is.", "blanks": [], "context_vi": "Trả lời khi ĐÚNG, người đó là bạn nữ.", "audioText": "Yes, she is." },
+          { "id": "answer-no-she", "text": "No, she isn't.", "blanks": [], "context_vi": "Trả lời khi SAI, người đó là bạn nữ.", "audioText": "No, she isn't." }
+        ],
+        "slots": {
+          "subj": ["he", "she"],
+          "art": ["a"],
+          "noun": ["teacher", "doctor", "nurse", "pilot", "farmer", "cook"],
+          "answer": ["Yes, he is.", "No, he isn't.", "Yes, she is.", "No, she isn't."]
+        },
+        "answerKey": {
+          "question-is-he-a-job": { "subj": "he" },
+          "question-is-she-a-job": { "subj": "she" },
+          "answer-pairs-he": { "Yes, he is.": "No, he isn't.", "No, he isn't.": "Yes, he is." },
+          "answer-pairs-she": { "Yes, she is.": "No, she isn't.", "No, she isn't.": "Yes, she is." }
+        },
+        "distractors": [
+          "Yes, he isn't.",
+          "No, he is.",
+          "Yes, he is not.",
+          "No, she not.",
+          "Is he doctor?",
+          "Is he a doctor."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["m", "n", "o", "p"],
+    "soundLabels": {
+      "m": { "ipa": "/m/", "anchor": "mum", "position": "initial", "say_vi": "âm /m/ như đầu từ \"mum\" (không đọc tên chữ \"em-mờ\")" },
+      "n": { "ipa": "/n/", "anchor": "nurse", "position": "initial", "say_vi": "âm /n/ như đầu từ \"nurse\" (không đọc tên chữ \"en-nờ\")" },
+      "o": { "ipa": "/ɒ/", "anchor": "orange", "position": "initial", "say_vi": "âm /ɒ/ như đầu từ \"orange\" (không đọc tên chữ \"âu\")" },
+      "p": { "ipa": "/p/", "anchor": "pen", "position": "initial", "say_vi": "âm /p/ như đầu từ \"pen\" (không đọc tên chữ \"pi\")" }
+    },
+    "words": [
+      { "word": "mum", "icon": "👩", "focusSound": "m", "anchor": "mum", "audio": "" },
+      { "word": "map", "icon": "🗺️", "focusSound": "m", "anchor": "mum", "audio": "" },
+      { "word": "nurse", "icon": "💉", "focusSound": "n", "anchor": "nurse", "audio": "" },
+      { "word": "net", "icon": "🥅", "focusSound": "n", "anchor": "nurse", "audio": "" },
+      { "word": "orange", "icon": "🍊", "focusSound": "o", "anchor": "orange", "audio": "" },
+      { "word": "ox", "icon": "🐂", "focusSound": "o", "anchor": "orange", "audio": "" },
+      { "word": "pen", "icon": "🖊️", "focusSound": "p", "anchor": "pen", "audio": "" },
+      { "word": "pig", "icon": "🐷", "focusSound": "p", "anchor": "pen", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "my-family-jobs",
+      "title": "My family",
+      "title_vi": "Gia đình của em",
+      "text": "Look at my family. This is my mum. She's a nurse. This is my dad. He's a farmer. This is my sister. She's a teacher. I like my family.",
+      "questions": [
+        { "id": "q1", "q_vi": "Mẹ của bạn nhỏ là y tá, đúng không?", "type": "truefalse", "answer": true, "audioText": "His mum is a nurse." },
+        { "id": "q2", "q_vi": "Bố làm nghề gì?", "type": "mcq", "choices": ["a farmer", "a doctor", "a pilot"], "answer": 0, "audioText": "What is his dad?" },
+        { "id": "q3", "q_vi": "Ai là giáo viên?", "type": "mcq", "choices": ["my sister", "my mum", "my dad"], "answer": 0, "audioText": "Who is a teacher?" }
+      ]
+    }
+  ]
+}

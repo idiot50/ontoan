@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 5,
+  "topic": "The park",
+  "topic_vi": "Công viên",
+  "vocab": [
+    { "word": "ball", "vi": "quả bóng", "icon": "⚽", "example": "It's a ball.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "kite", "vi": "con diều", "icon": "🪁", "example": "It's a kite.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "bike", "vi": "xe đạp", "icon": "🚲", "example": "It's a bike.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "slide", "vi": "cầu trượt", "icon": "🛝", "example": "It's a slide.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "swing", "vi": "cái xích đu", "icon": "icon:swing", "example": "It's a swing.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "tree", "vi": "cái cây", "icon": "🌳", "example": "It's a tree.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "where-is-the",
+      "title_vi": "\"Where's the...?\" (... ở đâu?)",
+      "explain_vi": "Khi muốn hỏi một đồ vật ở đâu, em nói \"Where's the...?\" rồi nói tên đồ vật. Bạn trả lời bắt đầu bằng \"It's...\" rồi nói chỗ của nó (in, on, under).",
+      "examples": [
+        "Where's the ball? It's under the tree.",
+        "Where's the kite? It's in the tree.",
+        "Where's the bike? It's on the slide."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "question-where-is", "text": "Where's the {noun}?", "blanks": ["noun"], "context_vi": "Hỏi một đồ vật ở công viên đang ở đâu.", "audioText": "Where's the ball?" }
+        ],
+        "slots": {
+          "noun": ["ball", "kite", "bike", "slide", "swing", "tree"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "Where the ball?",
+          "Where's ball?",
+          "Where's a ball?",
+          "Where the ball is?",
+          "Where's the ball.",
+          "Where is the ball ?"
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "it-is-prep-the",
+      "title_vi": "\"It's in / on / under the...\" (Nó ở trong / trên / dưới...)",
+      "explain_vi": "Để nói chỗ của đồ vật, em dùng: \"in\" là Ở TRONG, \"on\" là Ở TRÊN, \"under\" là Ở DƯỚI. Nói \"It's\" + giới từ + \"the\" + tên đồ vật.",
+      "examples": [
+        "It's in the bag.",
+        "It's on the slide.",
+        "It's under the tree."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "it-is-in-the", "text": "It's {prep} the {noun}.", "blanks": ["prep"], "context_vi": "Đồ vật ở BÊN TRONG (in). Hình cho thấy nó nằm trong.", "audioText": "It's in the bag." },
+          { "id": "it-is-on-the", "text": "It's {prep} the {noun}.", "blanks": ["prep"], "context_vi": "Đồ vật ở BÊN TRÊN (on). Hình cho thấy nó nằm trên mặt.", "audioText": "It's on the slide." },
+          { "id": "it-is-under-the", "text": "It's {prep} the {noun}.", "blanks": ["prep"], "context_vi": "Đồ vật ở BÊN DƯỚI (under). Hình cho thấy nó nằm dưới.", "audioText": "It's under the tree." }
+        ],
+        "slots": {
+          "prep": ["in", "on", "under"],
+          "noun": ["tree", "slide", "swing", "bag", "bike"]
+        },
+        "answerKey": {
+          "it-is-in-the": { "prep": "in" },
+          "it-is-on-the": { "prep": "on" },
+          "it-is-under-the": { "prep": "under" }
+        },
+        "distractors": [
+          "It's in tree.",
+          "It's on a slide.",
+          "It's under tree.",
+          "It in the tree.",
+          "It's at the tree.",
+          "It's the under tree."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["q", "r", "s", "t", "u"],
+    "soundLabels": {
+      "q": { "ipa": "/kw/", "anchor": "queen", "position": "initial", "say_vi": "âm /kw/ như đầu từ \"queen\" (không đọc tên chữ \"kiu\")" },
+      "r": { "ipa": "/r/", "anchor": "rabbit", "position": "initial", "say_vi": "âm /r/ như đầu từ \"rabbit\" (không đọc tên chữ \"a-rờ\")" },
+      "s": { "ipa": "/s/", "anchor": "sofa", "position": "initial", "say_vi": "âm /s/ như đầu từ \"sofa\" (không đọc tên chữ \"ét-sờ\")" },
+      "t": { "ipa": "/t/", "anchor": "teddy", "position": "initial", "say_vi": "âm /t/ như đầu từ \"teddy\" (không đọc tên chữ \"ti\")" },
+      "u": { "ipa": "/ʌ/", "anchor": "umbrella", "position": "initial", "say_vi": "âm /ʌ/ như đầu từ \"umbrella\" (không đọc tên chữ \"diu\")" }
+    },
+    "words": [
+      { "word": "queen", "icon": "👸", "focusSound": "q", "anchor": "queen", "audio": "" },
+      { "word": "quilt", "icon": "🛏️", "focusSound": "q", "anchor": "queen", "audio": "" },
+      { "word": "rabbit", "icon": "🐰", "focusSound": "r", "anchor": "rabbit", "audio": "" },
+      { "word": "red", "icon": "🔴", "focusSound": "r", "anchor": "rabbit", "audio": "" },
+      { "word": "sofa", "icon": "🛋️", "focusSound": "s", "anchor": "sofa", "audio": "" },
+      { "word": "sun", "icon": "☀️", "focusSound": "s", "anchor": "sofa", "audio": "" },
+      { "word": "teddy", "icon": "🧸", "focusSound": "t", "anchor": "teddy", "audio": "" },
+      { "word": "tree", "icon": "🌳", "focusSound": "t", "anchor": "teddy", "audio": "" },
+      { "word": "umbrella", "icon": "☔", "focusSound": "u", "anchor": "umbrella", "audio": "" },
+      { "word": "up", "icon": "⬆️", "focusSound": "u", "anchor": "umbrella", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "at-the-park",
+      "title": "At the park",
+      "title_vi": "Ở công viên",
+      "text": "I'm at the park. Look! The kite is in the tree. My ball is under the slide. The cat is on the swing. I like the park.",
+      "questions": [
+        { "id": "q1", "q_vi": "Con diều ở trên cây, đúng không?", "type": "truefalse", "answer": true, "audioText": "The kite is in the tree." },
+        { "id": "q2", "q_vi": "Quả bóng ở đâu?", "type": "mcq", "choices": ["under the slide", "on the slide", "in the tree"], "answer": 0, "audioText": "Where's the ball?" },
+        { "id": "q3", "q_vi": "Cái gì ở trên xích đu?", "type": "mcq", "choices": ["the cat", "the ball", "the kite"], "answer": 0, "audioText": "What is on the swing?" }
+      ]
+    }
+  ]
+}

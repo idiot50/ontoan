@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 10,
+  "topic": "My friends",
+  "topic_vi": "Bạn bè của em",
+  "vocab": [
+    { "word": "long hair", "vi": "tóc dài", "icon": "👩", "example": "She's got long hair.", "partOfSpeech": "phrase", "audio": "" },
+    { "word": "short hair", "vi": "tóc ngắn", "icon": "👦", "example": "He's got short hair.", "partOfSpeech": "phrase", "audio": "" },
+    { "word": "eyes", "vi": "đôi mắt", "icon": "👀", "example": "She's got big eyes.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "big", "vi": "to, lớn", "icon": "🐘", "example": "He's got big eyes.", "partOfSpeech": "adj", "audio": "" },
+    { "word": "small", "vi": "nhỏ, bé", "icon": "🐜", "example": "She's got small eyes.", "partOfSpeech": "adj", "audio": "" },
+    { "word": "tall", "vi": "cao", "icon": "📏", "example": "My friend is tall.", "partOfSpeech": "adj", "audio": "" },
+    { "word": "friend", "vi": "bạn", "icon": "🧒", "example": "This is my friend.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "hat", "vi": "cái mũ", "icon": "🧢", "example": "He's got a hat.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "he-she-has-got",
+      "title_vi": "\"He's got…\" / \"She's got…\"",
+      "explain_vi": "Để nói bạn ấy CÓ gì (tóc, mắt, đồ vật), em dùng \"He's got…\" cho bạn trai và \"She's got…\" cho bạn gái. \"'s got\" nghĩa là \"has got\" (có).",
+      "examples": [
+        "He's got short hair.",
+        "She's got long hair.",
+        "She's got big eyes.",
+        "He's got a hat."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "subj-has-got-thing", "text": "{subj} got {thing}.", "blanks": ["subj"], "context_vi": "Nói bạn trai (He) hay bạn gái (She) CÓ gì.", "audioText": "She's got long hair." },
+          { "id": "she-has-got", "text": "She's got {thing}.", "blanks": ["thing"], "context_vi": "Tả một bạn gái: bạn ấy có gì.", "audioText": "She's got long hair." },
+          { "id": "he-has-got", "text": "He's got {thing}.", "blanks": ["thing"], "context_vi": "Tả một bạn trai: bạn ấy có gì.", "audioText": "He's got short hair." }
+        ],
+        "slots": {
+          "subj": ["He's", "She's"],
+          "thing": ["long hair", "short hair", "big eyes", "small eyes", "a hat"]
+        },
+        "answerKey": {
+          "subj-has-got-thing": { "subj_by_clue": { "boy": "He's", "girl": "She's" } }
+        },
+        "distractors": [
+          "He's got long hairs.",
+          "She have got long hair.",
+          "He got short hair.",
+          "She's got a eyes.",
+          "He's gots a hat.",
+          "She's long hair."
+        ],
+        "irregulars": { "have": "has", "has got (contraction)": "'s got" }
+      }
+    },
+    {
+      "id": "he-she-hasnt-got",
+      "title_vi": "\"He hasn't got…\" / \"She hasn't got…\"",
+      "explain_vi": "Để nói bạn ấy KHÔNG có gì, em thêm \"hasn't\" (không có): \"He hasn't got…\" / \"She hasn't got…\". Sau \"got\" vẫn nói tên thứ đó như bình thường.",
+      "examples": [
+        "He hasn't got long hair.",
+        "She hasn't got a hat.",
+        "He hasn't got small eyes."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "transform"],
+      "safeZone": {
+        "templates": [
+          { "id": "subj-hasnt-got-thing", "text": "{subj} hasn't got {thing}.", "blanks": ["subj"], "context_vi": "Nói bạn trai (He) hay bạn gái (She) KHÔNG có gì.", "audioText": "He hasn't got long hair." },
+          { "id": "she-hasnt-got", "text": "She hasn't got {thing}.", "blanks": ["thing"], "context_vi": "Tả một bạn gái: bạn ấy KHÔNG có gì.", "audioText": "She hasn't got a hat." },
+          { "id": "he-hasnt-got", "text": "He hasn't got {thing}.", "blanks": ["thing"], "context_vi": "Tả một bạn trai: bạn ấy KHÔNG có gì.", "audioText": "He hasn't got long hair." }
+        ],
+        "slots": {
+          "subj": ["He", "She"],
+          "thing": ["long hair", "short hair", "big eyes", "small eyes", "a hat"]
+        },
+        "answerKey": {
+          "subj-hasnt-got-thing": { "subj_by_clue": { "boy": "He", "girl": "She" } },
+          "answer-pairs": {
+            "He's got long hair.": "He hasn't got long hair.",
+            "She's got a hat.": "She hasn't got a hat.",
+            "He's got big eyes.": "He hasn't got big eyes.",
+            "She's got short hair.": "She hasn't got short hair."
+          }
+        },
+        "distractors": [
+          "He hasn't got long hairs.",
+          "She haven't got a hat.",
+          "He don't got long hair.",
+          "She hasn't a hat.",
+          "He isn't got long hair.",
+          "She not got a hat."
+        ],
+        "irregulars": { "hasn't got": "has not got" }
+      }
+    }
+  ],
+  "phonics": {
+    "position": "medial",
+    "focus": ["a"],
+    "soundLabels": {
+      "a": { "ipa": "/æ/", "anchor": "cat", "position": "medial", "say_vi": "âm /æ/ ngắn ở GIỮA từ như trong \"cat\" (miệng mở rộng, không đọc tên chữ \"ây\")" }
+    },
+    "words": [
+      { "word": "cat", "icon": "🐱", "focusSound": "a", "anchor": "cat", "audio": "" },
+      { "word": "man", "icon": "👨", "focusSound": "a", "anchor": "cat", "audio": "" },
+      { "word": "fan", "icon": "🌀", "focusSound": "a", "anchor": "cat", "audio": "" },
+      { "word": "bag", "icon": "🎒", "focusSound": "a", "anchor": "cat", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "my-friend-sam",
+      "title": "My friend Sam",
+      "title_vi": "Bạn Sam của em",
+      "text": "This is my friend Sam. Sam is a boy. He's got short hair. He's got big eyes. He's got a hat. Sam is tall. He hasn't got long hair. I like my friend Sam.",
+      "questions": [
+        { "id": "q1", "q_vi": "Sam có tóc ngắn, đúng không?", "type": "truefalse", "answer": true, "audioText": "Sam has got short hair." },
+        { "id": "q2", "q_vi": "Mắt của Sam thế nào?", "type": "mcq", "choices": ["big eyes", "small eyes", "long hair"], "answer": 0, "audioText": "What has Sam got?" },
+        { "id": "q3", "q_vi": "Sam KHÔNG có gì?", "type": "mcq", "choices": ["long hair", "a hat", "big eyes"], "answer": 0, "audioText": "What hasn't Sam got?" }
+      ]
+    }
+  ]
+}

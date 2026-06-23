@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 7,
+  "topic": "My clothes",
+  "topic_vi": "Quần áo của em",
+  "vocab": [
+    { "word": "T-shirt", "vi": "áo phông", "icon": "👕", "example": "It's a T-shirt.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "trousers", "vi": "quần dài", "icon": "👖", "example": "These are trousers.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "dress", "vi": "váy liền", "icon": "👗", "example": "It's a dress.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "shoes", "vi": "đôi giày", "icon": "👟", "example": "These are shoes.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "socks", "vi": "đôi tất (vớ)", "icon": "🧦", "example": "These are socks.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "hat", "vi": "cái mũ", "icon": "👒", "example": "It's a hat.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "skirt", "vi": "chân váy", "icon": "👚", "example": "It's a skirt.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "his-her",
+      "title_vi": "\"his\" và \"her\" (của bạn ấy)",
+      "explain_vi": "Đồ của một bạn trai thì nói \"his\" (của cậu ấy). Đồ của một bạn gái thì nói \"her\" (của cô ấy). Đặt \"his\" hay \"her\" trước tên đồ vật.",
+      "examples": [
+        "It's his hat.",
+        "It's her dress.",
+        "These are his shoes."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "boy-owns-singular", "text": "It's {poss} {thing}.", "blanks": ["poss"], "context_vi": "Đồ này (1 cái) là của MỘT BẠN TRAI.", "audioText": "It's his hat." },
+          { "id": "girl-owns-singular", "text": "It's {poss} {thing}.", "blanks": ["poss"], "context_vi": "Đồ này (1 cái) là của MỘT BẠN GÁI.", "audioText": "It's her dress." }
+        ],
+        "slots": {
+          "poss": ["his", "her"],
+          "thing": ["T-shirt", "dress", "hat", "skirt"]
+        },
+        "answerKey": {
+          "boy-owns-singular": { "poss": "his" },
+          "girl-owns-singular": { "poss": "her" }
+        },
+        "distractors": [
+          "It's he hat.",
+          "It's she dress.",
+          "It's him hat.",
+          "It's hers dress.",
+          "It's his the hat."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "are-these",
+      "title_vi": "\"Are these...?\" và cách trả lời",
+      "explain_vi": "Với đồ vật có hai chiếc đi cùng nhau (shoes, socks, trousers) ta dùng \"these\". Hỏi: \"Are these...?\". Nếu đúng, trả lời \"Yes, they are.\". Nếu không, trả lời \"No, they aren't.\".",
+      "examples": [
+        "Are these shoes? Yes, they are.",
+        "Are these socks? No, they aren't.",
+        "Are these trousers? Yes, they are."
+      ],
+      "generators": ["mcq", "order_words", "listen_choose", "transform"],
+      "safeZone": {
+        "templates": [
+          { "id": "question-are-these", "text": "Are these {plural}?", "blanks": [], "context_vi": "Hỏi xem hai chiếc đồ này là gì (đồ luôn đi thành đôi/cặp).", "audioText": "Are these shoes?" },
+          { "id": "answer-yes", "text": "Yes, they are.", "blanks": [], "context_vi": "Trả lời khi ĐÚNG.", "audioText": "Yes, they are." },
+          { "id": "answer-no", "text": "No, they aren't.", "blanks": [], "context_vi": "Trả lời khi KHÔNG đúng.", "audioText": "No, they aren't." }
+        ],
+        "slots": {
+          "plural": ["shoes", "socks", "trousers"],
+          "answer": ["Yes, they are.", "No, they aren't."]
+        },
+        "answerKey": {
+          "answer-pairs": { "Yes, they are.": "No, they aren't.", "No, they aren't.": "Yes, they are." }
+        },
+        "distractors": [
+          "Yes, they aren't.",
+          "No, they are.",
+          "Yes, they is.",
+          "No, they not.",
+          "Are this shoes?",
+          "Is these shoes?"
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["sh"],
+    "soundLabels": {
+      "sh": { "ipa": "/ʃ/", "anchor": "shoe", "position": "initial", "say_vi": "âm /ʃ/ như đầu từ \"shoe\" (giống ra hiệu im lặng \"suỵt\", không phải âm \"s\")" }
+    },
+    "words": [
+      { "word": "shoe", "icon": "👞", "focusSound": "sh", "anchor": "shoe", "audio": "" },
+      { "word": "ship", "icon": "🚢", "focusSound": "sh", "anchor": "shoe", "audio": "" },
+      { "word": "sheep", "icon": "🐑", "focusSound": "sh", "anchor": "shoe", "audio": "" },
+      { "word": "shop", "icon": "🏪", "focusSound": "sh", "anchor": "shoe", "audio": "" },
+      { "word": "shell", "icon": "🐚", "focusSound": "sh", "anchor": "shoe", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "my-clothes",
+      "title": "My clothes",
+      "title_vi": "Quần áo của em",
+      "text": "Look at me. This is my hat. It's a red hat. These are my shoes. They are new shoes. This is her dress. It's a pink dress. I like my clothes.",
+      "questions": [
+        { "id": "q1", "q_vi": "Cái mũ của bạn nhỏ màu đỏ, đúng không?", "type": "truefalse", "answer": true, "audioText": "The hat is red." },
+        { "id": "q2", "q_vi": "Đôi giày thì như thế nào?", "type": "mcq", "choices": ["new", "old", "blue"], "answer": 0, "audioText": "What about the shoes?" },
+        { "id": "q3", "q_vi": "Chiếc váy liền là của ai?", "type": "mcq", "choices": ["her dress", "his dress", "my dress"], "answer": 0, "audioText": "Whose dress is it?" }
+      ]
+    }
+  ]
+}

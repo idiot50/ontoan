@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 15,
+  "topic": "The beach",
+  "topic_vi": "Bãi biển",
+  "vocab": [
+    { "word": "sea", "vi": "biển", "icon": "🌊", "example": "Look at the sea.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "sand", "vi": "cát", "icon": "🏖️", "example": "It's sand.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "shell", "vi": "vỏ sò", "icon": "🐚", "example": "It's a shell.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "boat", "vi": "con thuyền", "icon": "⛵", "example": "It's a boat.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "fish", "vi": "con cá", "icon": "🐟", "example": "It's a fish.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "sun", "vi": "mặt trời", "icon": "☀️", "example": "Look at the sun.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "lets-verb",
+      "title_vi": "\"Let's...\" (mình cùng làm nhé)",
+      "explain_vi": "Muốn rủ ai đó cùng làm việc gì với mình, nói \"Let's\" rồi nói động từ. Sau \"Let's\" giữ nguyên động từ, không thêm gì. Ví dụ: \"Let's swim.\" nghĩa là \"Mình cùng bơi nhé\".",
+      "examples": [
+        "Let's swim.",
+        "Let's play.",
+        "Let's look at the sea.",
+        "Let's run on the sand."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "lets-verb", "text": "Let's {verb}.", "blanks": ["verb"], "context_vi": "Rủ bạn CÙNG làm một việc.", "audioText": "Let's swim." },
+          { "id": "lets-verb-place", "text": "Let's {verb} {place}.", "blanks": ["verb"], "context_vi": "Rủ bạn cùng làm một việc ở một nơi.", "audioText": "Let's run on the sand." }
+        ],
+        "slots": {
+          "verb": ["swim", "play", "run", "jump", "sing"],
+          "place": ["on the sand", "in the sea"]
+        },
+        "answerKey": {
+          "lets-verb": { "verb": "any" },
+          "lets-verb-place": { "verb": "any" }
+        },
+        "distractors": [
+          "Let's swimming.",
+          "Let's to swim.",
+          "Let's swims.",
+          "Lets swim.",
+          "Let we swim.",
+          "Let's we swim."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "imperatives",
+      "title_vi": "Câu ra lệnh / nhắc nhở (Look! Sit down!)",
+      "explain_vi": "Khi bảo ai đó làm một việc, em nói thẳng động từ ở đầu câu, không cần \"you\". Ví dụ: \"Look!\", \"Sit down.\", \"Don't run!\". Thêm \"Don't\" ở đầu để bảo ĐỪNG làm.",
+      "examples": [
+        "Look at the boat!",
+        "Sit down, please.",
+        "Don't swim now.",
+        "Run to the sea!"
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "do-verb", "text": "{verb}, please.", "blanks": ["verb"], "context_vi": "Lịch sự bảo ai đó LÀM một việc.", "audioText": "Sit down, please." },
+          { "id": "dont-verb", "text": "Don't {verb}.", "blanks": ["verb"], "context_vi": "Bảo ai đó ĐỪNG làm một việc.", "audioText": "Don't run." },
+          { "id": "choose-do-dont", "text": "{cmd} {verb}.", "blanks": ["cmd"], "context_vi": "Chọn câu BẢO LÀM hay BẢO ĐỪNG cho đúng tình huống.", "audioText": "Don't swim." }
+        ],
+        "slots": {
+          "verb": ["look", "run", "jump", "swim", "sing"],
+          "cmd": ["Please", "Don't"]
+        },
+        "answerKey": {
+          "do-verb": { "verb": "any" },
+          "dont-verb": { "verb": "any" }
+        },
+        "distractors": [
+          "Don't to run.",
+          "Don't running.",
+          "Doesn't run.",
+          "No run.",
+          "Not run.",
+          "You don't run please."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "medial",
+    "focus": ["a", "e", "i", "o", "u"],
+    "soundLabels": {
+      "a": { "ipa": "/æ/", "anchor": "cat", "position": "medial", "say_vi": "âm /æ/ ngắn ở GIỮA từ, như trong \"cat\"" },
+      "e": { "ipa": "/e/", "anchor": "pen", "position": "medial", "say_vi": "âm /e/ ngắn ở GIỮA từ, như trong \"pen\"" },
+      "i": { "ipa": "/ɪ/", "anchor": "pig", "position": "medial", "say_vi": "âm /ɪ/ ngắn ở GIỮA từ, như trong \"pig\"" },
+      "o": { "ipa": "/ɒ/", "anchor": "dog", "position": "medial", "say_vi": "âm /ɒ/ ngắn ở GIỮA từ, như trong \"dog\"" },
+      "u": { "ipa": "/ʌ/", "anchor": "sun", "position": "medial", "say_vi": "âm /ʌ/ ngắn ở GIỮA từ, như trong \"sun\"" }
+    },
+    "words": [
+      { "word": "cat", "icon": "🐱", "focusSound": "a", "anchor": "cat", "audio": "" },
+      { "word": "bag", "icon": "🎒", "focusSound": "a", "anchor": "cat", "audio": "" },
+      { "word": "pen", "icon": "🖊️", "focusSound": "e", "anchor": "pen", "audio": "" },
+      { "word": "hen", "icon": "🐔", "focusSound": "e", "anchor": "pen", "audio": "" },
+      { "word": "pig", "icon": "🐷", "focusSound": "i", "anchor": "pig", "audio": "" },
+      { "word": "six", "icon": "6️⃣", "focusSound": "i", "anchor": "pig", "audio": "" },
+      { "word": "dog", "icon": "🐶", "focusSound": "o", "anchor": "dog", "audio": "" },
+      { "word": "box", "icon": "📦", "focusSound": "o", "anchor": "dog", "audio": "" },
+      { "word": "sun", "icon": "☀️", "focusSound": "u", "anchor": "sun", "audio": "" },
+      { "word": "cup", "icon": "🥤", "focusSound": "u", "anchor": "sun", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "at-the-beach",
+      "title": "At the beach",
+      "title_vi": "Ở bãi biển",
+      "text": "Look at the sea! It's a sunny day. Let's play on the sand. Look, a shell! It's my shell. Look at the boat. A fish can swim in the sea. Let's swim, too! Don't run in the sea. Sit on the sand, please.",
+      "questions": [
+        { "id": "q1", "q_vi": "Bạn nhỏ tìm thấy một vỏ sò trên cát, đúng không?", "type": "truefalse", "answer": true, "audioText": "There is a shell on the sand." },
+        { "id": "q2", "q_vi": "Con gì bơi được ở biển?", "type": "mcq", "choices": ["a fish", "a boat", "a shell"], "answer": 0, "audioText": "What can swim in the sea?" },
+        { "id": "q3", "q_vi": "Bài nhắc các bạn ĐỪNG làm gì ở biển?", "type": "mcq", "choices": ["don't run in the sea", "don't swim", "don't sit"], "answer": 0, "audioText": "What must you not do?" },
+        { "id": "q4", "q_vi": "Hôm nay trời nắng, đúng không?", "type": "truefalse", "answer": true, "audioText": "It's a sunny day." },
+        { "id": "q5", "q_vi": "Vỏ sò là của ai?", "type": "mcq", "choices": ["my shell", "your shell", "her shell"], "answer": 0, "audioText": "Whose shell is it?" }
+      ]
+    }
+  ]
+}

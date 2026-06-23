@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="vi" data-contrast="normal">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#5b3fc4">
+  <meta name="description" content="Học tiếng Anh cùng Pi — cho trẻ 7–10 tuổi, chơi mà học, chạy offline.">
+  <title>Học tiếng Anh cùng Pi 🦊</title>
+
+  <!-- Thứ tự BẮT BUỘC: tokens → base → app -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/mascot/pi-icon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/mascot/pi-192.png">
+  <link rel="apple-touch-icon" href="assets/mascot/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Pi tiếng Anh">
+
+  <style>
+    /* ====== app.css nội tuyến: layout riêng cho các MÀN (giữ tokens/base làm gốc) ====== */
+    /* Chặn TRÀN NGANG trên màn hẹp (~360–440px): không cho nội dung đẩy rộng quá viewport. */
+    html, body { overflow-x: hidden; max-width: 100%; }
+    .app { min-height: 100vh; display: flex; flex-direction: column; max-width: 100%; }
+    .app__main {
+      flex: 1 1 auto; width: 100%;
+      max-width: var(--container-max); margin-inline: auto;
+      padding: var(--sp-5) var(--page-pad-x) var(--sp-9);
+    }
+    .screen { animation: slide-up 280ms var(--ease-out); }
+    .screen[hidden] { display: none; }
+    .hide { display: none !important; }
+
+    /* Header tuỳ biến nhẹ — vùng chạm ≥ --touch-min (48px, WCAG 2.5.5) */
+    .app-header__avatar {
+      width: var(--touch-min); height: var(--touch-min); border-radius: var(--radius-round);
+      display: grid; place-items: center; font-size: 26px;
+      background: var(--c-primary-soft); border: 2px solid var(--c-border);
+    }
+    .app-header__btn {
+      display: inline-flex; align-items: center; gap: var(--sp-1);
+      min-height: var(--touch-min); min-width: var(--touch-min); padding: 0 var(--sp-3);
+      justify-content: center;
+      border: 2px solid var(--c-border-strong); border-radius: var(--radius-pill);
+      background: var(--c-surface); color: var(--c-primary-strong);
+      font-weight: var(--fw-bold); font-size: var(--fs-sm);
+    }
+
+    /* Lưới avatar (S0/S1/thêm bé) — minmax(0,1fr) để cột CO được; min-width:0 cho ô
+       (mặc định grid-item là min-width:auto = không co dưới kích thước nội dung → tràn). */
+    .avatar-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-3); }
+    .avatar-pick {
+      min-width: 0; aspect-ratio: 1; display: grid; place-items: center; font-size: 40px;
+      background: var(--c-surface); border: 3px solid var(--c-border);
+      border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
+    }
+    /* Màn rất hẹp: emoji nhỏ lại + lùi xuống 4 cột vẫn vừa (tránh tràn ở 320px). */
+    @media (max-width: 360px) { .avatar-pick { font-size: 34px; } }
+    .avatar-pick.is-sel { border-color: var(--c-primary); background: var(--c-primary-soft);
+      animation: pop 360ms var(--ease-bounce); }
+
+    /* Thẻ hồ sơ con (S1) */
+    .profile-card {
+      display: flex; align-items: center; gap: var(--sp-4); width: 100%; text-align: left;
+      padding: var(--gap-card); background: var(--c-surface);
+      border: 2.5px solid var(--c-border-strong); border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-md);
+    }
+    .profile-card:hover { border-color: var(--c-primary); transform: translateY(-2px); }
+    .profile-card__avatar { width: 64px; height: 64px; border-radius: var(--radius-round);
+      display: grid; place-items: center; font-size: 38px; background: var(--c-primary-soft); flex: none; }
+
+    /* Ô input chung */
+    .field { width: 100%; min-height: var(--touch-cozy); padding: var(--sp-3) var(--sp-4);
+      font-size: var(--fs-md); border: 2.5px solid var(--c-border-strong);
+      border-radius: var(--radius-md); background: var(--c-surface); color: var(--c-text); }
+    .field:focus-visible { border-color: var(--c-primary); }
+
+    /* Menu hoạt động (S3) */
+    .act-card {
+      display: flex; align-items: center; gap: var(--sp-4); width: 100%; text-align: left;
+      padding: var(--gap-card); background: var(--c-surface);
+      border: 2.5px solid var(--c-border-strong); border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-md);
+    }
+    .act-card:hover { border-color: var(--c-primary); transform: translateY(-2px); }
+    .act-card__icon { width: 60px; height: 60px; border-radius: var(--radius-lg);
+      display: grid; place-items: center; font-size: 34px; background: var(--c-primary-soft); flex: none; }
+    .act-card__title { font-family: var(--font-display); font-weight: var(--fw-black); font-size: var(--fs-lg); }
+    .act-card__done { color: var(--c-correct-text); font-weight: var(--fw-bold); }
+
+    /* Phonics — màn HỌC âm (S5ph) */
+    .sound-card { padding: var(--gap-card); background: var(--c-surface);
+      border: 2.5px solid var(--c-border-strong); border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-md); max-width: 100%; }
+    .sound-card__head { display: flex; align-items: center; gap: var(--sp-3); min-width: 0; }
+    .sound-card__letter { width: 56px; height: 56px; flex: none; border-radius: var(--radius-lg);
+      display: grid; place-items: center; font-size: 30px; font-family: var(--font-en);
+      font-weight: var(--fw-black); color: var(--c-primary-strong); background: var(--c-primary-soft);
+      text-transform: lowercase; }
+    .sound-card__ipa { font-family: var(--font-en); font-weight: var(--fw-bold);
+      font-size: var(--fs-lg); color: var(--c-text); }
+    /* Lưới từ ví dụ: minmax(0,1fr) để CO được, xuống 1 cột khi rất hẹp */
+    .sound-words { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--sp-2); margin-top: var(--sp-3); }
+    @media (max-width: 340px) { .sound-words { grid-template-columns: 1fr; } }
+    /* Tile dọc: icon trên — từ + loa dưới, để TỪ luôn đọc trên 1 hàng (không vỡ từng chữ). */
+    .sound-word { display: flex; flex-direction: column; align-items: center; gap: var(--sp-1);
+      min-width: 0; padding: var(--sp-3) var(--sp-2); background: var(--c-surface-2);
+      border: 2px solid var(--c-border-strong); border-radius: var(--radius-md); }
+    .sound-word:hover { border-color: var(--c-primary); }
+    .sound-word__icon { font-size: 30px; flex: none; line-height: 1; }
+    .sound-word__row { display: flex; align-items: center; justify-content: center; gap: var(--sp-1);
+      width: 100%; min-width: 0; max-width: 100%; }
+    /* TỪ phonics luôn trên 1 hàng: KHÔNG ngắt giữa từ (tránh 'windo w').
+       Co chữ bằng letter-spacing âm nhẹ ở màn hẹp; nếu vẫn dài thì rút gọn font. */
+    .sound-word__text { font-family: var(--font-en); font-weight: var(--fw-bold);
+      font-size: var(--fs-md); white-space: nowrap; word-break: keep-all; overflow-wrap: normal;
+      min-width: 0; max-width: 100%; overflow: hidden; text-overflow: clip; }
+    .sound-word__spk { flex: none; width: 30px; height: 30px; font-size: 17px; }
+    /* Màn rất hẹp: thu nhỏ chữ + siết khoảng cách chữ để từ dài (window, orange) vừa 1 hàng. */
+    @media (max-width: 400px) {
+      .sound-word__text { font-size: var(--fs-sm); letter-spacing: -0.2px; }
+      .sound-word__spk { width: 26px; height: 26px; font-size: 15px; }
+    }
+
+    /* Flashcard nút lật + điều hướng */
+    .fc-stage { display: flex; flex-direction: column; align-items: center; gap: var(--sp-5); }
+    .fc-counter { font-weight: var(--fw-bold); color: var(--c-text-soft); }
+    .fc-actions { display: flex; gap: var(--sp-3); justify-content: center; flex-wrap: wrap; }
+    .fc-nav { display: flex; gap: var(--sp-3); width: 100%; max-width: 360px; }
+    .fc-nav .btn { flex: 1 1 0; }
+    .flashcard { cursor: pointer; }
+
+    /* Bài tập (S5) */
+    .ex-prompt { font-size: var(--fs-xl); font-weight: var(--fw-bold); line-height: var(--lh-snug); }
+    .ex-pic { font-size: 88px; text-align: center; line-height: 1; }
+    .token-tray, .token-bank { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+    .token-tray { min-height: 60px; padding: var(--sp-3); border: 2.5px dashed var(--c-border-strong);
+      border-radius: var(--radius-lg); background: var(--c-surface-2); }
+    .token {
+      min-height: 48px; max-width: 100%; padding: var(--sp-2) var(--sp-4); font-family: var(--font-en);
+      font-size: var(--fs-md); font-weight: var(--fw-bold); overflow-wrap: anywhere;
+      border: 2.5px solid var(--c-border-strong); border-radius: var(--radius-md);
+      background: var(--c-surface); color: var(--c-text);
+    }
+    .token:hover { border-color: var(--c-primary); }
+    .token.is-used { opacity: .35; pointer-events: none; }
+    /* minmax(0,1fr) để 2 cột CO được khi từ dài; xuống 1 cột ở màn rất hẹp. */
+    .blank-options { display: grid; gap: var(--sp-3); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 340px) { .blank-options { grid-template-columns: 1fr; } }
+
+    /* Nói (S6) */
+    .speak-card { font-size: var(--fs-xl); font-family: var(--font-en); font-weight: var(--fw-bold);
+      text-align: center; padding: var(--sp-6); background: var(--c-surface);
+      border: 3px solid var(--c-primary-soft); border-radius: var(--radius-xl); }
+    .rec-wave { height: 28px; display: flex; align-items: flex-end; justify-content: center; gap: 4px; }
+    .rec-wave span { width: 6px; background: var(--c-accent); border-radius: 3px; height: 8px; }
+    .rec-wave.is-rec span { animation: wavebar .7s var(--ease-in-out) infinite; }
+    .rec-wave span:nth-child(2){animation-delay:.1s} .rec-wave span:nth-child(3){animation-delay:.2s}
+    .rec-wave span:nth-child(4){animation-delay:.3s} .rec-wave span:nth-child(5){animation-delay:.15s}
+    @keyframes wavebar { 0%,100%{height:8px} 50%{height:26px} }
+
+    /* Kết quả (S7) */
+    .result { text-align: center; position: relative; }
+
+    /* Phụ huynh (S8) / cài đặt (S9) — hàng công tắc */
+    .setting-row { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3);
+      padding: var(--sp-3) 0; border-bottom: 1px solid var(--c-border); }
+    .switch { position: relative; width: 56px; height: 32px; flex: none; }
+    .switch input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+    .switch__track { position: absolute; inset: 0; background: var(--c-xp-track);
+      border: 2px solid var(--c-border-strong); border-radius: var(--radius-pill); transition: background .2s; }
+    .switch__track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px;
+      background: #fff; border-radius: 50%; box-shadow: var(--shadow-sm); transition: transform .2s; }
+    .switch input:checked + .switch__track { background: var(--c-correct); border-color: var(--c-correct-strong); }
+    .switch input:checked + .switch__track::after { transform: translateX(24px); }
+    .switch input:focus-visible + .switch__track { outline: 3px solid var(--c-focus-ring); outline-offset: 2px; }
+
+    .mastery-row { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-2) 0; }
+    .mastery-row .name { width: 92px; flex: none; font-weight: var(--fw-bold); font-size: var(--fs-sm); }
+
+    /* Toast huy hiệu / thông báo */
+    .toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+      z-index: var(--z-toast); max-width: 92%;
+      display: flex; align-items: center; gap: var(--sp-3);
+      padding: var(--sp-3) var(--sp-5); background: var(--c-surface);
+      border: 2px solid var(--c-badge-ring); border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-lg); font-weight: var(--fw-bold);
+      animation: slide-up 300ms var(--ease-out); }
+
+    /* Overlay điểm dừng / xác nhận */
+    .overlay { position: fixed; inset: 0; z-index: var(--z-modal);
+      background: var(--c-overlay); display: flex; align-items: center; justify-content: center;
+      padding: var(--sp-5); }
+    .modal { width: 100%; max-width: 420px; background: var(--c-surface); border-radius: var(--radius-2xl);
+      padding: var(--sp-6); box-shadow: var(--shadow-xl); text-align: center; position: relative; }
+
+    /* Dải cảnh báo thiếu giọng TTS */
+    .tts-warn { display: flex; align-items: center; gap: var(--sp-2);
+      padding: var(--sp-3) var(--sp-4); background: var(--c-warn-soft);
+      border: 2px solid var(--c-warn); border-radius: var(--radius-md);
+      color: var(--c-warn-text); font-weight: var(--fw-bold); font-size: var(--fs-sm); }
+
+    .star-empty { color: var(--c-star-empty); }
+    .pi-mini { font-size: 32px; }
+    /* .grow cần min-width:0 để CO được trong flex (nếu không, chữ dài đẩy tràn hàng) */
+    .grow { flex: 1 1 auto; min-width: 0; }
+
+    /* ====== CHỐNG TRÀN NGANG (màn hẹp) ====== */
+    /* Cho mọi hàng flex co lại thay vì đẩy rộng; văn bản dài tự ngắt. */
+    .row { min-width: 0; }
+    .topic-card, .act-card, .profile-card, .card, .feedback, .speak-card, .sound-card { max-width: 100%; overflow-wrap: anywhere; }
+    .topic-card__name, .topic-card__en, .act-card__title, .ex-prompt { overflow-wrap: anywhere; min-width: 0; }
+    .choice__text { overflow-wrap: anywhere; min-width: 0; }
+    .app__main { max-width: 100%; overflow-x: hidden; }
+
+    /* Header app trên màn nhỏ: cho phép thu gọn, không cắt avatar. */
+    .app-header { max-width: 100%; gap: var(--sp-2); }
+    .app-header__title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    @media (max-width: 460px) {
+      /* Ẩn nhãn chữ trong nút phụ huynh, chỉ giữ icon (vẫn có aria) để khỏi tràn. */
+      .app-header__btn { padding-inline: var(--sp-2); }
+      .app-header__btn .lbl { display: none; }
+    }
+
+    /* Nút loa nhỏ cạnh mỗi lựa chọn (nghe TỪ/CÂU của lựa chọn đó) */
+    .choice__spk { flex: none; width: 40px; height: 40px; font-size: 20px; }
+
+    /* Công tắc "Hiệu ứng động" ở S9: tắt animation lặp/lớn (vẫn giữ màu+icon+chữ) */
+    html[data-motion="off"] * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+    html[data-motion="off"] .confetti-burst, html[data-motion="off"] .celebrate__rays, html[data-motion="off"] .sparkle { display: none !important; }
+    html[data-motion="off"] .mascot.is-idle, html[data-motion="off"] .mascot.is-glowing .belly-glow { animation: none !important; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- ===================== HEADER ===================== -->
+    <header class="app-header" id="appHeader" hidden>
+      <button class="app-header__back" id="btnBack" aria-label="Quay lại" type="button">←</button>
+      <span class="app-header__title" id="hdrTitle">Học tiếng Anh</span>
+      <span class="app-header__spacer"></span>
+      <button class="icon-btn" id="btnSpeakScreen" aria-label="Đọc đề màn hình này" type="button">🔊</button>
+      <button class="app-header__avatar" id="btnAvatar" aria-label="Đổi hồ sơ" type="button">🦊</button>
+    </header>
+
+    <main class="app__main" id="main" tabindex="-1">
+      <!-- Các màn được render vào đây bởi app.js.
+           KHÔNG đặt aria-live trên toàn vùng (re-render đọc lại cả màn, dài dòng,
+           đè feedback). Thay vào đó: chuyển focus về màn khi đổi để SR đọc ngữ cảnh;
+           chỉ vùng feedback/toast mang role=status. -->
+    </main>
+  </div>
+
+  <!-- Vùng phủ confetti / toast / overlay (app.js chèn vào) -->
+  <div id="fx"></div>
+
+  <!-- ===== TEMPLATE: SVG Pi (app.js clone khi cần) ===== -->
+  <template id="tpl-pi">
+    <span class="mascot is-idle is-glowing" role="img" aria-label="Pi, chú cáo đom đóm">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <path d="M86 80 q26 2 28 -18 q-2 12 -14 12 q8 -6 4 -14 q-2 14 -18 12 q6 6 0 14 z" fill="#e8590c" stroke="#cf4d08" stroke-width="1" stroke-linejoin="round"/>
+        <path d="M96 76 q14 0 16 -10 q-2 8 -10 8 q5 -4 2 -8 q-2 9 -12 6 z" fill="#fff"/>
+        <ellipse cx="56" cy="74" rx="30" ry="30" fill="#f57c1f"/>
+        <circle class="belly-glow" cx="56" cy="80" r="22" fill="#ffd44d" opacity=".5"/>
+        <ellipse class="belly" cx="56" cy="80" rx="19" ry="20" fill="#ffe9b0"/>
+        <path d="M56 66 l4.2 9.2 10.1 1 -7.6 6.8 2.1 9.9 -8.8 -5.2 -8.8 5.2 2.1 -9.9 -7.6 -6.8 10.1 -1 z" fill="#ffc21f" stroke="#8a5a00" stroke-width="1.5" stroke-linejoin="round"/>
+        <circle cx="56" cy="40" r="26" fill="#f57c1f"/>
+        <path d="M34 26 q-8 -16 4 -22 q6 8 14 14 q-10 0 -18 8 z" fill="#f57c1f" stroke="#e06d10" stroke-width="1" stroke-linejoin="round"/>
+        <path d="M78 26 q8 -16 -4 -22 q-6 8 -14 14 q10 0 18 8 z" fill="#f57c1f" stroke="#e06d10" stroke-width="1" stroke-linejoin="round"/>
+        <path d="M37 22 q-3 -8 2 -12 q3 5 7 8 q-6 0 -9 4 z" fill="#ffd9b0"/>
+        <path d="M75 22 q3 -8 -2 -12 q-3 5 -7 8 q6 0 9 4 z" fill="#ffd9b0"/>
+        <ellipse cx="56" cy="47" rx="18" ry="13.5" fill="#fff"/>
+        <g class="face-happy">
+          <path d="M43 31 q5 -3 9 0" fill="none" stroke="#5a3a12" stroke-width="2" stroke-linecap="round"/>
+          <path d="M60 31 q4 -3 9 0" fill="none" stroke="#5a3a12" stroke-width="2" stroke-linecap="round"/>
+          <ellipse cx="48" cy="39" rx="5.4" ry="6.4" fill="#221a3a"/>
+          <ellipse cx="64" cy="39" rx="5.4" ry="6.4" fill="#221a3a"/>
+          <circle cx="50" cy="36.5" r="2.1" fill="#fff"/>
+          <circle cx="66" cy="36.5" r="2.1" fill="#fff"/>
+          <circle cx="46.4" cy="41" r="1" fill="#fff" opacity=".85"/>
+          <circle cx="62.4" cy="41" r="1" fill="#fff" opacity=".85"/>
+          <path d="M56 45 q-3.5 -2.5 -7 0 q3.5 3 7 0 q3.5 3 7 0 q-3.5 -2.5 -7 0 z" fill="#3a2410"/>
+          <path d="M50 50 q6 6 12 0" fill="none" stroke="#221a3a" stroke-width="2.2" stroke-linecap="round"/>
+        </g>
+        <g class="face-cheer">
+          <path d="M43 30 q5 -4 9 0" fill="none" stroke="#5a3a12" stroke-width="2" stroke-linecap="round"/>
+          <path d="M60 30 q4 -4 9 0" fill="none" stroke="#5a3a12" stroke-width="2" stroke-linecap="round"/>
+          <path d="M43 41 q5 -7 10 0" fill="none" stroke="#221a3a" stroke-width="3" stroke-linecap="round"/>
+          <path d="M59 41 q5 -7 10 0" fill="none" stroke="#221a3a" stroke-width="3" stroke-linecap="round"/>
+          <ellipse cx="56" cy="51" rx="5" ry="6" fill="#7a2a12"/>
+        </g>
+        <g class="face-wink">
+          <path d="M43 31 q5 -3 9 0" fill="none" stroke="#5a3a12" stroke-width="2" stroke-linecap="round"/>
+          <path d="M60 31 q4 -3 9 0" fill="none" stroke="#5a3a12" stroke-width="2" stroke-linecap="round"/>
+          <ellipse cx="48" cy="39" rx="5.4" ry="6.4" fill="#221a3a"/>
+          <circle cx="50" cy="36.5" r="2.1" fill="#fff"/>
+          <path d="M59 40 q5 -3 10 0" fill="none" stroke="#221a3a" stroke-width="3" stroke-linecap="round"/>
+          <path d="M50 50 q6 6 12 0" fill="none" stroke="#221a3a" stroke-width="2.2" stroke-linecap="round"/>
+        </g>
+        <circle cx="41" cy="47" r="3.6" fill="#ffb3a0" opacity=".85"/>
+        <circle cx="71" cy="47" r="3.6" fill="#ffb3a0" opacity=".85"/>
+      </svg>
+    </span>
+  </template>
+
+  <!-- ===== TEMPLATE: ngôi sao SVG (cho .stars) ===== -->
+  <template id="tpl-star">
+    <span class="star"><svg viewBox="0 0 100 100"><path d="M50 6 l13 27 30 3 -22 20 6 30 -27 -15 -27 15 6 -30 -22 -20 30 -3 z" fill="currentColor"/></svg></span>
+  </template>
+
+  <!-- ===== SCRIPTS (classic, theo thứ tự phụ thuộc) ===== -->
+  <script src="js/content-data.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/progress.js"></script>
+  <script src="js/tts.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

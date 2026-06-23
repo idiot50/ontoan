@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "units": [
+    { "unit": 0, "file": "unit00.json", "topic": "Hello!", "topic_vi": "Chào hỏi", "icon": "👋", "order": 0 },
+    { "unit": 1, "file": "unit01.json", "topic": "School things", "topic_vi": "Đồ dùng học tập", "icon": "✏️", "order": 1 },
+    { "unit": 2, "file": "unit02.json", "topic": "My toys", "topic_vi": "Đồ chơi của em", "icon": "🧸", "order": 2 },
+    { "unit": 3, "file": "unit03.json", "topic": "My body", "topic_vi": "Cơ thể của em", "icon": "🧍", "order": 3 },
+    { "unit": 4, "file": "unit04.json", "topic": "Jobs", "topic_vi": "Nghề nghiệp", "icon": "🧑‍🏫", "order": 4 },
+    { "unit": 5, "file": "unit05.json", "topic": "The park", "topic_vi": "Công viên", "icon": "🛝", "order": 5 },
+    { "unit": 6, "file": "unit06.json", "topic": "My family", "topic_vi": "Gia đình của em", "icon": "👨‍👩‍👧", "order": 6 },
+    { "unit": 7, "file": "unit07.json", "topic": "My clothes", "topic_vi": "Quần áo của em", "icon": "👕", "order": 7 },
+    { "unit": 8, "file": "unit08.json", "topic": "My home", "topic_vi": "Ngôi nhà của em", "icon": "🏠", "order": 8 },
+    { "unit": 9, "file": "unit09.json", "topic": "My lunch box", "topic_vi": "Hộp cơm trưa của em", "icon": "🍱", "order": 9 },
+    { "unit": 10, "file": "unit10.json", "topic": "My friends", "topic_vi": "Bạn bè của em", "icon": "🧒", "order": 10 },
+    { "unit": 11, "file": "unit11.json", "topic": "The zoo", "topic_vi": "Sở thú", "icon": "🦁", "order": 11 },
+    { "unit": 12, "file": "unit12.json", "topic": "Food and drinks", "topic_vi": "Đồ ăn thức uống", "icon": "🍎", "order": 12 },
+    { "unit": 13, "file": "unit13.json", "topic": "My bedroom", "topic_vi": "Phòng ngủ của em", "icon": "🛏️", "order": 13 },
+    { "unit": 14, "file": "unit14.json", "topic": "Abilities", "topic_vi": "Khả năng", "icon": "🤸", "order": 14 },
+    { "unit": 15, "file": "unit15.json", "topic": "The beach", "topic_vi": "Bãi biển", "icon": "🏖️", "order": 15 }
+  ]
+}

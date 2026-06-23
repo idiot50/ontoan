@@ -1,0 +1,41 @@
+{
+  "name": "Học tiếng Anh cùng Pi",
+  "short_name": "Pi tiếng Anh",
+  "description": "Ứng dụng học tiếng Anh cho trẻ 7–10 tuổi, chơi mà học cùng chú cáo đom đóm Pi. Chạy offline, không quảng cáo.",
+  "lang": "vi",
+  "dir": "ltr",
+  "id": "./",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#efeafc",
+  "theme_color": "#5b3fc4",
+  "categories": ["education", "kids"],
+  "icons": [
+    {
+      "src": "assets/mascot/pi-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/mascot/pi-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/mascot/pi-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/mascot/pi-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

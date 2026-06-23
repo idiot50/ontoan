@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 2,
+  "topic": "My toys",
+  "topic_vi": "Đồ chơi của em",
+  "vocab": [
+    { "word": "teddy", "vi": "gấu bông", "icon": "🧸", "example": "It's my teddy.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "ball", "vi": "quả bóng", "icon": "⚽", "example": "It's my ball.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "doll", "vi": "búp bê", "icon": "🪆", "example": "It's my doll.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "car", "vi": "ô tô đồ chơi", "icon": "🚗", "example": "It's my car.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "kite", "vi": "con diều", "icon": "🪁", "example": "It's my kite.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "robot", "vi": "rô bốt", "icon": "🤖", "example": "It's my robot.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "train", "vi": "tàu hỏa đồ chơi", "icon": "🚂", "example": "It's my train.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "plane", "vi": "máy bay đồ chơi", "icon": "✈️", "example": "It's my plane.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "my-your",
+      "title_vi": "\"my\" và \"your\"",
+      "explain_vi": "Đồ của em thì nói \"my\" (của em). Đồ của bạn (người em nói chuyện) thì nói \"your\" (của bạn). Đặt \"my\" hay \"your\" trước tên đồ vật.",
+      "examples": [
+        "It's my teddy.",
+        "It's your ball.",
+        "It's my car."
+      ],
+      "generators": ["mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "it-is-poss-noun-mine", "text": "It's {poss} {noun}.", "blanks": ["poss"], "context_vi": "Đồ này là CỦA EM (người nói).", "audioText": "It's my teddy." },
+          { "id": "it-is-poss-noun-yours", "text": "It's {poss} {noun}.", "blanks": ["poss"], "context_vi": "Đồ này là CỦA BẠN (người nghe).", "audioText": "It's your ball." }
+        ],
+        "slots": {
+          "poss": ["my", "your"],
+          "noun": ["teddy", "ball", "doll", "car", "kite", "robot", "train", "plane"]
+        },
+        "answerKey": {
+          "it-is-poss-noun-mine": { "poss": "my" },
+          "it-is-poss-noun-yours": { "poss": "your" }
+        },
+        "distractors": [
+          "It's me teddy.",
+          "It's you ball.",
+          "It's my the car.",
+          "Is my teddy.",
+          "It's mine teddy."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "is-this-your",
+      "title_vi": "\"Is this your...?\" và cách trả lời",
+      "explain_vi": "Hỏi xem một đồ vật có phải của bạn không: \"Is this your...?\". Nếu đúng, trả lời \"Yes, it is.\". Nếu không, trả lời \"No, it isn't.\".",
+      "examples": [
+        "Is this your teddy? Yes, it is.",
+        "Is this your ball? No, it isn't.",
+        "Is this your kite? Yes, it is."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "question-is-this-your", "text": "Is this {poss} {noun}?", "blanks": ["poss"], "context_vi": "Hỏi xem một đồ vật có phải của bạn (người nghe) không.", "audioText": "Is this your teddy?" },
+          { "id": "answer-yes", "text": "Yes, it is.", "blanks": [], "context_vi": "Trả lời khi ĐÚNG là của bạn.", "audioText": "Yes, it is." },
+          { "id": "answer-no", "text": "No, it isn't.", "blanks": [], "context_vi": "Trả lời khi KHÔNG phải của bạn.", "audioText": "No, it isn't." }
+        ],
+        "slots": {
+          "poss": ["your", "my"],
+          "noun": ["teddy", "ball", "doll", "car", "kite", "robot", "train", "plane"],
+          "answer": ["Yes, it is.", "No, it isn't."]
+        },
+        "answerKey": {
+          "question-is-this-your": { "poss": "your" },
+          "answer-pairs": { "Yes, it is.": "No, it isn't.", "No, it isn't.": "Yes, it is." }
+        },
+        "distractors": [
+          "Yes, it isn't.",
+          "No, it is.",
+          "Yes, it is not.",
+          "No, it not.",
+          "Is this you teddy?",
+          "Is this your teddy."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["e", "f", "g", "h"],
+    "soundLabels": {
+      "e": { "ipa": "/e/", "anchor": "egg", "position": "initial", "say_vi": "âm /e/ như đầu từ \"egg\" (không đọc tên chữ \"i\")" },
+      "f": { "ipa": "/f/", "anchor": "fish", "position": "initial", "say_vi": "âm /f/ như đầu từ \"fish\" (không đọc tên chữ \"ép\")" },
+      "g": { "ipa": "/g/", "anchor": "goat", "position": "initial", "say_vi": "âm /g/ cứng như đầu từ \"goat\" (không đọc tên chữ \"giê\")" },
+      "h": { "ipa": "/h/", "anchor": "hat", "position": "initial", "say_vi": "âm /h/ như đầu từ \"hat\" (không đọc tên chữ \"hát\")" }
+    },
+    "words": [
+      { "word": "egg", "icon": "🥚", "focusSound": "e", "anchor": "egg", "audio": "" },
+      { "word": "elephant", "icon": "🐘", "focusSound": "e", "anchor": "egg", "audio": "" },
+      { "word": "fish", "icon": "🐟", "focusSound": "f", "anchor": "fish", "audio": "" },
+      { "word": "fox", "icon": "🦊", "focusSound": "f", "anchor": "fish", "audio": "" },
+      { "word": "goat", "icon": "🐐", "focusSound": "g", "anchor": "goat", "audio": "" },
+      { "word": "girl", "icon": "👧", "focusSound": "g", "anchor": "goat", "audio": "" },
+      { "word": "hat", "icon": "👒", "focusSound": "h", "anchor": "hat", "audio": "" },
+      { "word": "hen", "icon": "🐔", "focusSound": "h", "anchor": "hat", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "my-toy-box",
+      "title": "My toy box",
+      "title_vi": "Hộp đồ chơi của em",
+      "text": "This is my toy box. It's my teddy. It's my car. It's my kite. The doll is not my doll. It's your doll. I like my toys.",
+      "questions": [
+        { "id": "q1", "q_vi": "Con gấu bông là của em (người kể), đúng không?", "type": "truefalse", "answer": true, "audioText": "The teddy is my teddy." },
+        { "id": "q2", "q_vi": "Búp bê là của ai?", "type": "mcq", "choices": ["your doll", "my doll", "my car"], "answer": 0, "audioText": "Whose doll is it?" },
+        { "id": "q3", "q_vi": "Đồ chơi nào CÓ trong hộp?", "type": "mcq", "choices": ["a kite", "a robot", "a train"], "answer": 0, "audioText": "What is in the toy box?" }
+      ]
+    }
+  ]
+}

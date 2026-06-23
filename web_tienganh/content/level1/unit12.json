@@ -1,0 +1,112 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 12,
+  "topic": "Food and drinks",
+  "topic_vi": "Đồ ăn thức uống",
+  "vocab": [
+    { "word": "rice", "vi": "cơm (gạo)", "icon": "🍚", "example": "I like rice.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "meat", "vi": "thịt", "icon": "🍖", "example": "I like meat.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "fish", "vi": "cá", "icon": "🐟", "example": "I like fish.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "bread", "vi": "bánh mì", "icon": "🍞", "example": "I like bread.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "milk", "vi": "sữa", "icon": "🥛", "example": "I like milk.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "juice", "vi": "nước ép", "icon": "🧃", "example": "I like juice.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "carrots", "vi": "(những) củ cà rốt", "icon": "🥕", "example": "I like carrots.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "do-you-like",
+      "title_vi": "\"Do you like…?\" và cách trả lời",
+      "explain_vi": "Hỏi xem bạn có thích một món không: \"Do you like…?\". Nếu thích, trả lời \"Yes, I do.\". Nếu không thích, trả lời \"No, I don't.\".",
+      "examples": [
+        "Do you like rice? Yes, I do.",
+        "Do you like fish? No, I don't.",
+        "Do you like milk? Yes, I do."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "question-do-you-like", "text": "Do you like {food}?", "blanks": ["food"], "context_vi": "Hỏi xem bạn (người nghe) có thích món này không.", "audioText": "Do you like rice?" },
+          { "id": "answer-yes", "text": "Yes, I do.", "blanks": [], "context_vi": "Trả lời khi CÓ thích.", "audioText": "Yes, I do." },
+          { "id": "answer-no", "text": "No, I don't.", "blanks": [], "context_vi": "Trả lời khi KHÔNG thích.", "audioText": "No, I don't." }
+        ],
+        "slots": {
+          "food": ["rice", "meat", "fish", "bread", "milk", "juice", "carrots"],
+          "answer": ["Yes, I do.", "No, I don't."]
+        },
+        "answerKey": {
+          "question-do-you-like": { "food": "food" },
+          "answer-pairs": { "Yes, I do.": "No, I don't.", "No, I don't.": "Yes, I do." }
+        },
+        "distractors": [
+          "Yes, I don't.",
+          "No, I do.",
+          "Yes, I like.",
+          "No, I not.",
+          "Do you likes rice?",
+          "You like rice?"
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "what-do-you-like",
+      "title_vi": "\"What do you like?\"",
+      "explain_vi": "Muốn hỏi bạn thích món gì, em nói \"What do you like?\". Bạn trả lời bắt đầu bằng \"I like…\" rồi nói tên món.",
+      "examples": [
+        "What do you like? I like rice.",
+        "What do you like? I like juice.",
+        "What do you like? I like bread."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-like-food", "text": "I like {food}.", "blanks": ["food"], "context_vi": "Nói tên món em thích.", "audioText": "I like rice." },
+          { "id": "what-do-you-like-answer", "text": "What do you like? I like {food}.", "blanks": ["food"], "context_vi": "Hỏi và trả lời về món mình thích.", "audioText": "What do you like? I like rice." }
+        ],
+        "slots": {
+          "food": ["rice", "meat", "fish", "bread", "milk", "juice", "carrots"]
+        },
+        "answerKey": {
+          "i-like-food": { "food": "food" },
+          "what-do-you-like-answer": { "food": "food" }
+        },
+        "distractors": [
+          "I likes rice.",
+          "I like.",
+          "What you like? I like rice.",
+          "What do you like? I likes rice.",
+          "I am like rice."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "medial",
+    "focus": ["i"],
+    "soundLabels": {
+      "i": { "ipa": "/ɪ/", "anchor": "pig", "position": "medial", "say_vi": "âm /ɪ/ ngắn ở GIỮA từ như trong \"pig\" (không đọc tên chữ \"ai\")" }
+    },
+    "words": [
+      { "word": "bin", "icon": "🗑️", "focusSound": "i", "anchor": "pig", "audio": "" },
+      { "word": "pin", "icon": "📌", "focusSound": "i", "anchor": "pig", "audio": "" },
+      { "word": "tin", "icon": "🥫", "focusSound": "i", "anchor": "pig", "audio": "" },
+      { "word": "pig", "icon": "🐷", "focusSound": "i", "anchor": "pig", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "my-lunch",
+      "title": "My lunch",
+      "title_vi": "Bữa trưa của em",
+      "text": "This is my lunch. I like rice. I like fish. I like carrots. I don't like milk. I like juice. Yum!",
+      "questions": [
+        { "id": "q1", "q_vi": "Bạn nhỏ có thích cá không?", "type": "truefalse", "answer": true, "audioText": "Do you like fish?" },
+        { "id": "q2", "q_vi": "Bạn nhỏ KHÔNG thích món nào?", "type": "mcq", "choices": ["milk", "rice", "fish"], "answer": 0, "audioText": "What don't you like?" },
+        { "id": "q3", "q_vi": "Bạn nhỏ thích uống gì?", "type": "mcq", "choices": ["juice", "milk", "meat"], "answer": 0, "audioText": "What do you like to drink?" }
+      ]
+    }
+  ]
+}

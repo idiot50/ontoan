@@ -1,0 +1,115 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 8,
+  "topic": "My home",
+  "topic_vi": "Ngôi nhà của em",
+  "vocab": [
+    { "word": "bedroom", "vi": "phòng ngủ", "icon": "🛏️", "example": "She's in the bedroom.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "kitchen", "vi": "nhà bếp", "icon": "🍳", "example": "Mum is in the kitchen.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "bathroom", "vi": "phòng tắm", "icon": "🛁", "example": "He's in the bathroom.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "living room", "vi": "phòng khách", "icon": "🛋️", "example": "We are in the living room.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "garden", "vi": "khu vườn", "icon": "🌳", "example": "Dad is in the garden.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "hall", "vi": "sảnh (lối vào nhà)", "icon": "🚪", "example": "The bag is in the hall.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "is-she-in-the",
+      "title_vi": "\"Is she in the…?\" và cách trả lời",
+      "explain_vi": "Hỏi xem một người CÓ ở trong phòng nào không: \"Is she in the kitchen?\". Nếu đúng, trả lời \"Yes, she is.\". Nếu không, trả lời \"No, she isn't.\". Với bạn trai thì đổi \"she\" thành \"he\".",
+      "examples": [
+        "Is she in the kitchen? Yes, she is.",
+        "Is she in the bedroom? No, she isn't.",
+        "Is he in the garden? Yes, he is."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "question-is-she-in", "text": "Is {subj} in the {room}?", "blanks": ["subj"], "context_vi": "Hỏi xem người đó có ở trong phòng này không.", "audioText": "Is she in the kitchen?" },
+          { "id": "answer-yes-she", "text": "Yes, {subj} is.", "blanks": ["subj"], "context_vi": "Trả lời khi người đó CÓ ở trong phòng.", "audioText": "Yes, she is." },
+          { "id": "answer-no-she", "text": "No, {subj} isn't.", "blanks": ["subj"], "context_vi": "Trả lời khi người đó KHÔNG ở trong phòng.", "audioText": "No, she isn't." }
+        ],
+        "slots": {
+          "subj": ["she", "he"],
+          "room": ["bedroom", "kitchen", "bathroom", "living room", "garden", "hall"]
+        },
+        "answerKey": {
+          "answer-pairs": { "Yes, she is.": "No, she isn't.", "No, she isn't.": "Yes, she is.", "Yes, he is.": "No, he isn't.", "No, he isn't.": "Yes, he is." }
+        },
+        "distractors": [
+          "Yes, she isn't.",
+          "No, she is.",
+          "Yes, she not.",
+          "No, she is not in.",
+          "Is she in kitchen?",
+          "Is she in the kitchen.",
+          "Yes, she's."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "where-are-they",
+      "title_vi": "\"Where are…?\" và \"Are they in…?\"",
+      "explain_vi": "Hỏi NHIỀU người (hai người trở lên) đang ở đâu: \"Where are Mum and Dad?\". Trả lời bằng \"They're in the…\". Em cũng có thể hỏi \"Are they in the garden?\" và trả lời \"Yes, they are.\" hoặc \"No, they aren't.\".",
+      "examples": [
+        "Where are Mum and Dad? They're in the kitchen.",
+        "Are they in the garden? Yes, they are.",
+        "Are they in the bedroom? No, they aren't."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "answer-they-are-in", "text": "They're in the {room}.", "blanks": ["room"], "context_vi": "Nói nhiều người đang ở trong phòng nào.", "audioText": "They're in the kitchen." },
+          { "id": "question-are-they-in", "text": "Are they in the {room}?", "blanks": ["room"], "context_vi": "Hỏi xem nhiều người có ở trong phòng này không.", "audioText": "Are they in the garden?" },
+          { "id": "answer-yes-they", "text": "Yes, they are.", "blanks": [], "context_vi": "Trả lời khi họ CÓ ở trong phòng.", "audioText": "Yes, they are." },
+          { "id": "answer-no-they", "text": "No, they aren't.", "blanks": [], "context_vi": "Trả lời khi họ KHÔNG ở trong phòng.", "audioText": "No, they aren't." }
+        ],
+        "slots": {
+          "room": ["bedroom", "kitchen", "bathroom", "living room", "garden", "hall"],
+          "answer": ["Yes, they are.", "No, they aren't."]
+        },
+        "answerKey": {
+          "answer-pairs": { "Yes, they are.": "No, they aren't.", "No, they aren't.": "Yes, they are." }
+        },
+        "distractors": [
+          "Yes, they aren't.",
+          "No, they are.",
+          "They're in kitchen.",
+          "Where is Mum and Dad?",
+          "Are they in the garden.",
+          "Yes, they're.",
+          "No, they not."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["ch"],
+    "soundLabels": {
+      "ch": { "ipa": "/tʃ/", "anchor": "chair", "position": "initial", "say_vi": "âm /tʃ/ (giống \"ch\" trong tiếng Việt) như đầu từ \"chair\" — hai chữ c và h ghép lại thành một âm" }
+    },
+    "words": [
+      { "word": "chair", "icon": "🪑", "focusSound": "ch", "anchor": "chair", "audio": "" },
+      { "word": "cheese", "icon": "🧀", "focusSound": "ch", "anchor": "chair", "audio": "" },
+      { "word": "chick", "icon": "🐤", "focusSound": "ch", "anchor": "chair", "audio": "" },
+      { "word": "chips", "icon": "🍟", "focusSound": "ch", "anchor": "chair", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "where-is-everyone",
+      "title": "Where is everyone?",
+      "title_vi": "Mọi người ở đâu?",
+      "text": "This is my home. Mum is in the kitchen. Dad and Billy are in the garden. My sister is in the bedroom. The cat is in the hall. We are all at home.",
+      "questions": [
+        { "id": "q1", "q_vi": "Mẹ ở trong nhà bếp, đúng không?", "type": "truefalse", "answer": true, "audioText": "Mum is in the kitchen." },
+        { "id": "q2", "q_vi": "Bố và Billy đang ở đâu?", "type": "mcq", "choices": ["in the garden", "in the bedroom", "in the bathroom"], "answer": 0, "audioText": "Where are Dad and Billy?" },
+        { "id": "q3", "q_vi": "Con mèo ở đâu?", "type": "mcq", "choices": ["in the hall", "in the kitchen", "in the garden"], "answer": 0, "audioText": "Where is the cat?" }
+      ]
+    }
+  ]
+}
