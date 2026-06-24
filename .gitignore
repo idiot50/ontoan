@@ -7,6 +7,9 @@ en/
 # === Phụ thuộc ===
 **/node_modules/
 
+# === Công cụ bake audio (Piper binary + voice model, ~85MB) — KHÔNG commit, chỉ dùng lúc build ===
+web_tienganh/build/piper/
+
 # === Ảnh/PDF render tạm khi đọc PDF scan (scratch, có thể ~1GB) ===
 build/tiles/
 build/pages/

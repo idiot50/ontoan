@@ -19,7 +19,7 @@
  */
 'use strict';
 
-var CACHE = 'enkids-v3';
+var CACHE = 'enkids-v4';
 
 // App shell precache lúc install. Đường dẫn tương đối theo scope.
 // (Nội dung cũng nhúng sẵn trong content-data.js để chạy file://; precache JSON
@@ -31,6 +31,7 @@ var SHELL = [
   './css/tokens.css',
   './css/base.css',
   './js/tts.js',
+  './js/audio.js',
   './js/engine.js',
   './js/progress.js',
   './js/content-data.js',
@@ -85,7 +86,8 @@ self.addEventListener('activate', function (event) {
 });
 
 function isContentOrAsset(url) {
-  return /\/(content|assets)\//.test(url.pathname);
+  // content/**, assets/**, audio/** → stale-while-revalidate (mp3 audio lazy-cache theo bài).
+  return /\/(content|assets|audio)\//.test(url.pathname);
 }
 
 self.addEventListener('fetch', function (event) {

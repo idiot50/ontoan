@@ -66,19 +66,25 @@
   /* ===================== TTS (loa) ===================== */
   var ttsWarned = false;
   function showTtsWarn() {
+    // Nếu đang dùng GIỌNG TẢI SẴN (baked) thì đọc được mọi máy → KHÔNG cảnh báo.
+    if (window.AudioPlay && AudioPlay.usingBaked && AudioPlay.usingBaked()) return;
     if (ttsWarned) return; ttsWarned = true;
     var main = $('#main');
     if (!main) return;
     var bar = el('div', { class: 'tts-warn', role: 'status' },
-      ['⚠️ ', 'Máy chưa có giọng tiếng Anh — em vẫn xem chữ và học được nhé.']);
+      ['⚠️ ', 'Máy chưa có giọng tiếng Anh — chọn "Giọng tải sẵn" trong Cài đặt, hoặc em vẫn xem chữ và học được nhé.']);
     main.insertBefore(bar, main.firstChild);
   }
+  // Phát âm: ưu tiên AudioPlay (mp3 baked + fallback TTS), nếu chưa có thì dùng TTS trực tiếp.
+  function audioEngine() { return window.AudioPlay || (window.TTS ? { play: TTS.speak, cancel: TTS.cancel } : null); }
   function speak(text, opts) {
     if (!text) return;
     opts = opts || {};
     var btn = opts.btn;
     if (btn) btn.classList.add('is-playing');
-    TTS.speak(text, {
+    var eng = audioEngine();
+    if (!eng) { if (btn) btn.classList.remove('is-playing'); return; }
+    eng.play(text, {
       slow: opts.slow,
       onend: function () { if (btn) btn.classList.remove('is-playing'); },
       onerror: function () { if (btn) btn.classList.remove('is-playing'); }
@@ -1322,15 +1328,16 @@
         el('h2', { class: 'title' }, 'Cài đặt'),
         toggleRow('Tự đọc đề khi mở bài', s.autoRead, function (on) { s.autoRead = on; apply(); }),
         toggleRow('Âm thanh', s.sound, function (on) { s.sound = on; apply(); }),
+        voiceSourceRow(),
         toggleRow('Hiệu ứng động', s.motion, function (on) { s.motion = on; apply(); }),
         toggleRow('Tương phản cao', s.contrast === 'high', function (on) { s.contrast = on ? 'high' : 'normal'; apply(); }),
         toggleRow('Cỡ chữ lớn', s.fontSize === 'large', function (on) { s.fontSize = on ? 'large' : 'normal'; apply(); }),
         choiceRow('Tốc độ đọc', [['normal', 'Thường'], ['slow', 'Chậm']], s.speed, function (v) { s.speed = v; apply(); }),
-        choiceRow('Giọng tiếng Anh', [['en-GB', 'Anh-Anh'], ['en-US', 'Anh-Mỹ']], s.voice, function (v) { s.voice = v; apply(); })
+        choiceRow('Giọng máy (dự phòng)', [['en-GB', 'Anh-Anh'], ['en-US', 'Anh-Mỹ']], s.voice, function (v) { s.voice = v; apply(); })
       ])
     ]);
-    if (TTS && !TTS.hasEnglishVoice()) {
-      node.appendChild(el('div', { class: 'tts-warn' }, '⚠️ Máy chưa có giọng tiếng Anh. Em vẫn xem chữ và học bình thường nhé.'));
+    if (TTS && !TTS.hasEnglishVoice() && !(window.AudioPlay && AudioPlay.usingBaked && AudioPlay.usingBaked())) {
+      node.appendChild(el('div', { class: 'tts-warn' }, '⚠️ Máy chưa có giọng tiếng Anh. Chọn "Giọng tải sẵn" ở mục Giọng đọc để nghe được nhé.'));
     }
     render(node);
   }
@@ -1343,6 +1350,18 @@
       el('span', null, label),
       el('span', { class: 'switch' }, [input, el('span', { class: 'switch__track' })])
     ]);
+  }
+  // Mục "Giọng đọc" — chọn nguồn phát âm (áp dụng TOÀN site). Chỉ hiện khi có giọng tải sẵn.
+  function voiceSourceRow() {
+    if (!window.AudioPlay) return el('span', { style: 'display:none' });
+    var voices = AudioPlay.availableVoices();
+    if (voices.length < 2) return el('span', { style: 'display:none' }); // chỉ có "giọng máy" → không cần chọn
+    var opts = voices.map(function (v) { return [v.id, v.label]; });
+    return choiceRow('Giọng đọc', opts, AudioPlay.getVoice(), function (v) {
+      AudioPlay.setVoice(v);
+      speak(v === 'device' ? 'Hello!' : "Hello! I'm Pi."); // nghe thử ngay
+      screenSettings(); // vẽ lại để chip cập nhật
+    });
   }
   function choiceRow(label, options, current, onChange) {
     var row = el('div', { class: 'setting-row' });
@@ -1524,7 +1543,7 @@
      ROUTER
      ===================================================================== */
   function go(screen) {
-    TTS && TTS.cancel();
+    var eng = audioEngine(); if (eng && eng.cancel) eng.cancel();
     closeModal();
     switch (screen) {
       case 'S0': screenOnboarding(); break;
@@ -1549,6 +1568,8 @@
   function init() {
     applySettings();
     if (TTS) TTS.setOnMissingVoice(showTtsWarn);
+    // Tải danh mục audio baked (mp3 sinh sẵn) để ưu tiên giọng chuẩn; lỗi/file:// → fallback TTS.
+    if (window.AudioPlay) AudioPlay.loadManifest();
 
     // Đăng ký service worker khi phục vụ qua http/https (không chạy trên file://).
     if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
