@@ -18,5 +18,12 @@
     { "unit": 13, "file": "unit13.json", "topic": "My bedroom", "topic_vi": "Phòng ngủ của em", "icon": "🛏️", "order": 13 },
     { "unit": 14, "file": "unit14.json", "topic": "Abilities", "topic_vi": "Khả năng", "icon": "🤸", "order": 14 },
     { "unit": 15, "file": "unit15.json", "topic": "The beach", "topic_vi": "Bãi biển", "icon": "🏖️", "order": 15 }
+  ],
+  "lessons": [
+    { "lesson": 1, "unit": 101, "file": "lesson01.json", "topic_vi": "Em & lớp học",        "icon": "🎒", "pal": "sun",   "sub": "Chào hỏi · đồ dùng · đồ chơi" },
+    { "lesson": 2, "unit": 102, "file": "lesson02.json", "topic_vi": "Cơ thể & con người",   "icon": "🧒", "pal": "sky",   "sub": "Cơ thể · quần áo · nghề nghiệp" },
+    { "lesson": 3, "unit": 103, "file": "lesson03.json", "topic_vi": "Gia đình & ngôi nhà",  "icon": "🏠", "pal": "mint",  "sub": "Gia đình · nhà · phòng" },
+    { "lesson": 4, "unit": 104, "file": "lesson04.json", "topic_vi": "Bạn bè & vui chơi",    "icon": "🐯", "pal": "coral", "sub": "Bạn bè · công viên · con vật" },
+    { "lesson": 5, "unit": 105, "file": "lesson05.json", "topic_vi": "Ăn uống & khám phá",   "icon": "🍎", "pal": "grape", "sub": "Đồ ăn · hộp cơm · biển" }
   ]
 }

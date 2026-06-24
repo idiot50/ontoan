@@ -33,6 +33,11 @@ for (const lvl of levels) {
     const fp = join(CONTENT, lvl, u.file);
     if (existsSync(fp)) entries.push({ key: `${lvl}/${u.file}`, raw: read(fp) });
   }
+  // BÀI LỚN (lesson0N.json) — gộp từ unit nhỏ.
+  for (const l of (idx.lessons || [])) {
+    const fp = join(CONTENT, lvl, l.file);
+    if (existsSync(fp)) entries.push({ key: `${lvl}/${l.file}`, raw: read(fp) });
+  }
 }
 
 let out = `/*

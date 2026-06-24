@@ -27,6 +27,13 @@
     { "unit": 13, "file": "unit13.json", "topic": "My bedroom", "topic_vi": "Phòng ngủ của em", "icon": "🛏️", "order": 13 },
     { "unit": 14, "file": "unit14.json", "topic": "Abilities", "topic_vi": "Khả năng", "icon": "🤸", "order": 14 },
     { "unit": 15, "file": "unit15.json", "topic": "The beach", "topic_vi": "Bãi biển", "icon": "🏖️", "order": 15 }
+  ],
+  "lessons": [
+    { "lesson": 1, "unit": 101, "file": "lesson01.json", "topic_vi": "Em & lớp học",        "icon": "🎒", "pal": "sun",   "sub": "Chào hỏi · đồ dùng · đồ chơi" },
+    { "lesson": 2, "unit": 102, "file": "lesson02.json", "topic_vi": "Cơ thể & con người",   "icon": "🧒", "pal": "sky",   "sub": "Cơ thể · quần áo · nghề nghiệp" },
+    { "lesson": 3, "unit": 103, "file": "lesson03.json", "topic_vi": "Gia đình & ngôi nhà",  "icon": "🏠", "pal": "mint",  "sub": "Gia đình · nhà · phòng" },
+    { "lesson": 4, "unit": 104, "file": "lesson04.json", "topic_vi": "Bạn bè & vui chơi",    "icon": "🐯", "pal": "coral", "sub": "Bạn bè · công viên · con vật" },
+    { "lesson": 5, "unit": 105, "file": "lesson05.json", "topic_vi": "Ăn uống & khám phá",   "icon": "🍎", "pal": "grape", "sub": "Đồ ăn · hộp cơm · biển" }
   ]
 };
   C["level1/unit00.json"] = {
@@ -1989,6 +1996,877 @@
       ]
     }
   ]
+};
+  C["level1/lesson01.json"] = {
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 101,
+  "lesson": 1,
+  "sourceUnits": ["unit00.json", "unit01.json", "unit02.json"],
+  "topic": "Me and my class",
+  "topic_vi": "Em & lớp học",
+  "vocab": [
+    { "word": "hello", "vi": "xin chào", "icon": "👋", "example": "Hello! I'm Tom.", "partOfSpeech": "phrase", "audio": "" },
+    { "word": "goodbye", "vi": "tạm biệt", "icon": "🙋", "example": "Goodbye! See you.", "partOfSpeech": "phrase", "audio": "" },
+    { "word": "pen", "vi": "bút mực", "icon": "🖊️", "example": "It's a pen.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "pencil", "vi": "bút chì", "icon": "✏️", "example": "It's a pencil.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "book", "vi": "quyển sách", "icon": "📕", "example": "It's a book.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "bag", "vi": "cái cặp", "icon": "🎒", "example": "It's my bag.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "ruler", "vi": "cái thước", "icon": "📏", "example": "It's a ruler.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "apple", "vi": "quả táo", "icon": "🍎", "example": "It's an apple.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "teddy", "vi": "gấu bông", "icon": "🧸", "example": "It's my teddy.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "ball", "vi": "quả bóng", "icon": "⚽", "example": "It's my ball.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "doll", "vi": "búp bê", "icon": "🪆", "example": "It's your doll.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "kite", "vi": "con diều", "icon": "🪁", "example": "It's my kite.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "what-is-this",
+      "title_vi": "Hỏi tên đồ vật: \"What's this?\" và \"a / an\"",
+      "explain_vi": "Hỏi tên một đồ vật ở gần: \"What's this?\". Em trả lời bắt đầu bằng \"It's...\" rồi nói tên đồ vật. Trước từ bắt đầu bằng nguyên âm (a, e, i, o, u) thì dùng \"an\" (ví dụ \"an apple\"); các từ còn lại dùng \"a\".",
+      "examples": [
+        "What's this? It's a pen.",
+        "What's this? It's a book.",
+        "What's this? It's an apple."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "it-is-noun", "text": "It's {art} {noun}.", "blanks": ["noun"], "context_vi": "Chỉ vào một đồ vật và nói tên nó.", "audioText": "It's a pen." },
+          { "id": "what-is-this-answer", "text": "What's this? It's {art} {noun}.", "blanks": ["noun"], "context_vi": "Hỏi và trả lời tên một đồ vật ở gần.", "audioText": "What's this? It's a pen." },
+          { "id": "choose-article", "text": "It's {art} {noun}.", "blanks": ["art"], "context_vi": "Chọn \"a\" hoặc \"an\" cho đúng với từ đứng sau.", "audioText": "It's an apple." }
+        ],
+        "slots": {
+          "art": ["a", "an"],
+          "noun": ["pen", "pencil", "book", "bag", "ruler", "apple", "teddy", "ball", "doll", "kite"]
+        },
+        "answerKey": {
+          "it-is-noun": {
+            "art": { "pen": "a", "pencil": "a", "book": "a", "bag": "a", "ruler": "a", "apple": "an", "teddy": "a", "ball": "a", "doll": "a", "kite": "a" }
+          },
+          "what-is-this-answer": {
+            "art": { "pen": "a", "pencil": "a", "book": "a", "bag": "a", "ruler": "a", "apple": "an", "teddy": "a", "ball": "a", "doll": "a", "kite": "a" }
+          },
+          "choose-article": {
+            "art": { "pen": "a", "pencil": "a", "book": "a", "bag": "a", "ruler": "a", "apple": "an", "teddy": "a", "ball": "a", "doll": "a", "kite": "a" }
+          }
+        },
+        "distractors": [
+          "It's a apple.",
+          "It's an pen.",
+          "It's an book.",
+          "Is a pen.",
+          "It's pen.",
+          "What this? It's a pen."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "my-your",
+      "title_vi": "\"my\" và \"your\" (của em / của bạn)",
+      "explain_vi": "Đồ của em thì nói \"my\" (của em). Đồ của bạn em đang nói chuyện thì nói \"your\" (của bạn). Đặt \"my\" hay \"your\" trước tên đồ vật, ví dụ \"It's my bag.\".",
+      "examples": [
+        "It's my bag.",
+        "It's my teddy.",
+        "It's your doll."
+      ],
+      "generators": ["mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "it-is-poss-noun-mine", "text": "It's {poss} {noun}.", "blanks": ["poss"], "context_vi": "Đồ này là CỦA EM (người nói).", "audioText": "It's my teddy." },
+          { "id": "it-is-poss-noun-yours", "text": "It's {poss} {noun}.", "blanks": ["poss"], "context_vi": "Đồ này là CỦA BẠN (người nghe).", "audioText": "It's your doll." }
+        ],
+        "slots": {
+          "poss": ["my", "your"],
+          "noun": ["bag", "pen", "book", "teddy", "ball", "doll", "kite"]
+        },
+        "answerKey": {
+          "it-is-poss-noun-mine": { "poss": "my" },
+          "it-is-poss-noun-yours": { "poss": "your" }
+        },
+        "distractors": [
+          "It's me teddy.",
+          "It's you doll.",
+          "It's my the bag.",
+          "Is my teddy.",
+          "It's mine teddy."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["a", "b", "c", "e", "f", "k"],
+    "soundLabels": {
+      "a": { "ipa": "/æ/", "anchor": "apple", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"apple\" là /æ/ (không đọc tên chữ \"ây\")" },
+      "b": { "ipa": "/b/", "anchor": "ball", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"ball\" là /b/ (không đọc tên chữ \"bi\")" },
+      "c": { "ipa": "/k/", "anchor": "cat", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"cat\" là /k/ (không đọc tên chữ \"xi\")" },
+      "e": { "ipa": "/e/", "anchor": "egg", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"egg\" là /e/ (không đọc tên chữ \"i\")" },
+      "f": { "ipa": "/f/", "anchor": "fish", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"fish\" là /f/ (không đọc tên chữ \"ép\")" },
+      "k": { "ipa": "/k/", "anchor": "kite", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"kite\" là /k/ (không đọc tên chữ \"kây\")" }
+    },
+    "words": [
+      { "word": "apple", "icon": "🍎", "focusSound": "a", "anchor": "apple", "position": "initial", "audio": "" },
+      { "word": "ant", "icon": "🐜", "focusSound": "a", "anchor": "apple", "position": "initial", "audio": "" },
+      { "word": "ball", "icon": "⚽", "focusSound": "b", "anchor": "ball", "position": "initial", "audio": "" },
+      { "word": "bag", "icon": "🎒", "focusSound": "b", "anchor": "ball", "position": "initial", "audio": "" },
+      { "word": "cat", "icon": "🐱", "focusSound": "c", "anchor": "cat", "position": "initial", "audio": "" },
+      { "word": "cup", "icon": "🥤", "focusSound": "c", "anchor": "cat", "position": "initial", "audio": "" },
+      { "word": "egg", "icon": "🥚", "focusSound": "e", "anchor": "egg", "position": "initial", "audio": "" },
+      { "word": "elephant", "icon": "🐘", "focusSound": "e", "anchor": "egg", "position": "initial", "audio": "" },
+      { "word": "fish", "icon": "🐟", "focusSound": "f", "anchor": "fish", "position": "initial", "audio": "" },
+      { "word": "fox", "icon": "🦊", "focusSound": "f", "anchor": "fish", "position": "initial", "audio": "" },
+      { "word": "kite", "icon": "🪁", "focusSound": "k", "anchor": "kite", "position": "initial", "audio": "" },
+      { "word": "key", "icon": "🔑", "focusSound": "k", "anchor": "kite", "position": "initial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "hello-this-is-my-bag",
+      "title": "Hello! This is my bag",
+      "title_vi": "Xin chào! Đây là cặp của em",
+      "text": "Hello! My name's Mai. This is my bag. It's my pen and my book. This is my teddy, and it's an apple, too. The doll is not my doll. It's your doll.",
+      "teacherNote_vi": "Câu mở đầu \"Hello! My name's Mai.\" là phần ÔN LẠI mẫu chào hỏi từ phần khởi động (unit00). Trọng tâm MỚI của đoạn đọc là \"my / your\" và \"It's a / an...\". Đoạn rút còn 7 câu (theo . ! ?) cho vừa ngưỡng 6-8.",
+      "questions": [
+        { "id": "q1", "q_vi": "Bạn nhỏ tên là Mai, đúng không?", "type": "truefalse", "answer": true, "audioText": "Her name is Mai." },
+        { "id": "q2", "q_vi": "Đồ nào là của Mai?", "type": "mcq", "choices": ["my teddy", "your doll", "my doll"], "answer": 0, "audioText": "What is Mai's?" },
+        { "id": "q3", "q_vi": "Búp bê là của ai?", "type": "mcq", "choices": ["your doll", "my doll", "my teddy"], "answer": 0, "audioText": "Whose doll is it?" },
+        { "id": "q4", "q_vi": "Có quả gì trong cặp của Mai?", "type": "mcq", "choices": ["an apple", "a ball", "a kite"], "answer": 0, "audioText": "What fruit is in the bag?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "say-hello-and-name",
+      "title_vi": "Chào hỏi và giới thiệu tên",
+      "prompt_vi": "Em chào và nói tên mình, rồi chào tạm biệt. Hãy điền tên thật của em vào chỗ trống nhé.",
+      "sentenceFrames": [
+        "Hello! My name's ___.",
+        "Goodbye!"
+      ],
+      "audioModels": [
+        "Hello! My name's Mai.",
+        "Goodbye!"
+      ]
+    },
+    {
+      "id": "what-is-this-my-your",
+      "title_vi": "Hỏi đồ vật và nói của ai",
+      "prompt_vi": "Cầm một đồ vật lên, hỏi và tự trả lời. Sau đó nói đồ đó là của em (my) hay của bạn (your).",
+      "sentenceFrames": [
+        "What's this? It's a ___.",
+        "It's my ___.",
+        "It's your ___."
+      ],
+      "audioModels": [
+        "What's this? It's a pen.",
+        "It's my teddy.",
+        "It's your doll."
+      ]
+    }
+  ],
+  "audioNotes": "Nên thu âm người thật cho: các audioModels phần speaking và audioText câu hỏi reading. Đặc biệt mẫu phonics initial /æ/ (apple, ant), /b/ (ball, bag), /k/ (cat, cup, kite, key), /e/ (egg, elephant), /f/ (fish, fox) — vì TTS dễ đọc thành TÊN CHỮ CÁI (\"ây\", \"bi\", \"xi\", \"kây\", \"i\", \"ép\") thay vì ÂM. Loa chỉ nên đọc TỪ TRỌN VẸN, không đọc rời chữ cái. Lưu ý \"kite\" và \"key\" đều bắt đầu bằng âm /k/ giống \"cat\" — gắn với vocab \"kite\" và phonics \"ball\"/\"bag\" gắn với vocab \"ball\", \"bag\". Hai câu mẫu grammar \"What's this? It's a pen.\" và \"It's my bag.\" cũng nên có audio chuẩn để bé bắt chước ngữ điệu câu hỏi và câu trả lời."
+};
+  C["level1/lesson02.json"] = {
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 102,
+  "lesson": 2,
+  "topic": "Body and people",
+  "topic_vi": "Cơ thể & con người",
+  "sourceUnits": ["unit03.json", "unit07.json", "unit04.json"],
+  "vocab": [
+    { "word": "head", "vi": "đầu", "icon": "🧑", "example": "This is my head.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "hand", "vi": "bàn tay", "icon": "✋", "example": "This is my hand.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "eye", "vi": "mắt", "icon": "👁️", "example": "This is my eye.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "leg", "vi": "chân (cẳng chân)", "icon": "🦵", "example": "This is my leg.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "T-shirt", "vi": "áo phông", "icon": "👕", "example": "It's a T-shirt.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "hat", "vi": "cái mũ", "icon": "👒", "example": "It's a hat.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "dress", "vi": "váy liền", "icon": "👗", "example": "It's a dress.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "shoes", "vi": "đôi giày", "icon": "👟", "example": "These are my shoes.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "teacher", "vi": "giáo viên", "icon": "🧑‍🏫", "example": "She's a teacher.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "doctor", "vi": "bác sĩ", "icon": "🧑‍⚕️", "example": "He's a doctor.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "farmer", "vi": "nông dân", "icon": "🧑‍🌾", "example": "He's a farmer.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "nurse", "vi": "y tá", "icon": "💉", "example": "She's a nurse.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "this-is-these-are",
+      "title_vi": "\"This is my...\" và \"These are my...\"",
+      "explain_vi": "Khi chỉ MỘT thứ (một bộ phận hay một món đồ), em nói \"This is my ...\". Khi có HAI hay nhiều thứ giống nhau, em nói \"These are my ...\" và thêm \"-s\" vào sau từ: hand → hands, eye → eyes. Riêng \"shoes\" (giày) luôn đi thành đôi nên luôn dùng \"These are my shoes.\".",
+      "examples": [
+        "This is my head.",
+        "This is my hat.",
+        "These are my eyes.",
+        "These are my shoes."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "this-is-singular", "text": "This is my {noun}.", "blanks": ["noun"], "context_vi": "Chỉ vào MỘT thứ (một bộ phận hoặc một món đồ).", "audioText": "This is my head." },
+          { "id": "these-are-plural", "text": "These are my {noun_pl}.", "blanks": ["noun_pl"], "context_vi": "Chỉ vào HAI (hoặc nhiều) thứ giống nhau.", "audioText": "These are my shoes." },
+          { "id": "choose-this-these", "text": "{dem} my {noun_any}.", "blanks": ["dem"], "context_vi": "Chọn \"This is\" hoặc \"These are\" cho đúng với số ít/số nhiều.", "audioText": "These are my eyes." }
+        ],
+        "slots": {
+          "noun": ["head", "hand", "leg", "eye", "T-shirt", "hat", "dress"],
+          "noun_pl": ["hands", "legs", "eyes", "shoes"],
+          "noun_any": ["head", "hand", "leg", "eye", "T-shirt", "hat", "dress", "hands", "legs", "eyes", "shoes"],
+          "dem": ["This is", "These are"]
+        },
+        "answerKey": {
+          "choose-this-these": {
+            "dem": {
+              "head": "This is",
+              "hand": "This is",
+              "leg": "This is",
+              "eye": "This is",
+              "T-shirt": "This is",
+              "hat": "This is",
+              "dress": "This is",
+              "hands": "These are",
+              "legs": "These are",
+              "eyes": "These are",
+              "shoes": "These are"
+            }
+          }
+        },
+        "distractors": [
+          "This is my eyes.",
+          "These are my hat.",
+          "This are my head.",
+          "These is my shoes.",
+          "This is my hands.",
+          "These are my leg."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "he-she-is-a-job",
+      "title_vi": "\"He's a...\" / \"She's a...\" (nghề nghiệp)",
+      "explain_vi": "Khi nói về một bạn nam làm nghề gì, em dùng \"He's a...\" (Anh ấy là...). Khi nói về một bạn nữ, em dùng \"She's a...\" (Chị ấy là...). Rồi nói tên nghề. Các tên nghề trong bài đều dùng \"a\" (a teacher, a doctor, a farmer, a nurse) vì không bắt đầu bằng nguyên âm — đây cũng là phần ôn lại \"a/an\" đã học ở bài trước.",
+      "examples": [
+        "He's a doctor.",
+        "She's a teacher.",
+        "He's a farmer.",
+        "She's a nurse."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "he-is-a-job", "text": "{subj}'s {art} {noun}.", "blanks": ["subj"], "context_vi": "Nói về một bạn NAM (he) làm nghề gì.", "audioText": "He's a doctor." },
+          { "id": "she-is-a-job", "text": "{subj}'s {art} {noun}.", "blanks": ["subj"], "context_vi": "Nói về một bạn NỮ (she) làm nghề gì.", "audioText": "She's a teacher." }
+        ],
+        "slots": {
+          "subj": ["He", "She"],
+          "art": ["a"],
+          "noun": ["teacher", "doctor", "farmer", "nurse"]
+        },
+        "answerKey": {
+          "he-is-a-job": { "subj": "He" },
+          "she-is-a-job": { "subj": "She" }
+        },
+        "distractors": [
+          "He's teacher.",
+          "She a teacher.",
+          "He's an doctor.",
+          "She's the teacher.",
+          "He teacher.",
+          "He is a teacher ."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["sh", "h", "d"],
+    "soundLabels": {
+      "sh": { "ipa": "/ʃ/", "anchor": "shoe", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"shoe\" là /ʃ/ (giống ra hiệu im lặng \"suỵt\", không phải âm \"s\") — đây là âm MỚI của bài này" },
+      "h": { "ipa": "/h/", "anchor": "hat", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"hat\" là /h/ (hơi thở nhẹ ra, không đọc tên chữ \"hếch\") — phần ÔN âm phụ âm đầu" },
+      "d": { "ipa": "/d/", "anchor": "doctor", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"doctor\" là /d/ (đầu lưỡi chạm lợi trên rồi bật ra, không đọc tên chữ \"đi\") — ÔN lại /d/ đã học ở Bài 1 (dog)" }
+    },
+    "words": [
+      { "word": "shoe", "icon": "👞", "focusSound": "sh", "position": "initial", "anchor": "shoe", "audio": "" },
+      { "word": "shop", "icon": "🏪", "focusSound": "sh", "position": "initial", "anchor": "shoe", "audio": "" },
+      { "word": "ship", "icon": "🚢", "focusSound": "sh", "position": "initial", "anchor": "shoe", "audio": "" },
+      { "word": "hat", "icon": "👒", "focusSound": "h", "position": "initial", "anchor": "hat", "audio": "" },
+      { "word": "hand", "icon": "✋", "focusSound": "h", "position": "initial", "anchor": "hat", "audio": "" },
+      { "word": "doctor", "icon": "🧑‍⚕️", "focusSound": "d", "position": "initial", "anchor": "doctor", "audio": "" },
+      { "word": "dress", "icon": "👗", "focusSound": "d", "position": "initial", "anchor": "doctor", "audio": "" }
+    ],
+    "audio": null,
+    "reviewNote_vi": "Âm /ʃ/ (chữ \"sh\") là âm MỚI của bài này. Âm /h/ (hat, hand) và /d/ (doctor, dress) là phần ÔN lại các âm phụ âm đầu đã gặp — Bài 1 đã học /d/ với \"dog\". Nhắc bé so sánh /d/ trong \"doctor, dress\" với /d/ trong \"dog\", và phân biệt /ʃ/ \"sh\" với âm \"s\"."
+  },
+  "reading": [
+    {
+      "id": "this-is-me",
+      "title": "This is me",
+      "title_vi": "Đây là em",
+      "text": "Look at me. This is my hat. These are my eyes. These are my shoes. This is my mum. She's a teacher. My dad is a farmer.",
+      "questions": [
+        { "id": "q1", "q_vi": "Bạn nhỏ có một cái mũ, đúng không?", "type": "truefalse", "answer": true, "audioText": "This is my hat." },
+        { "id": "q2", "q_vi": "Mẹ của bạn nhỏ làm nghề gì?", "type": "mcq", "choices": ["a teacher", "a nurse", "a doctor"], "answer": 0, "audioText": "What is the mum?" },
+        { "id": "q3", "q_vi": "Câu nào nói về NHIỀU thứ (số nhiều)?", "type": "mcq", "choices": ["These are my eyes.", "This is my head.", "This is my hat."], "answer": 0, "audioText": "Which one is about more than one?" },
+        { "id": "q4", "q_vi": "Bố của bạn nhỏ là bác sĩ, đúng không?", "type": "truefalse", "answer": false, "audioText": "The dad is a doctor." }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "point-and-say",
+      "title_vi": "Chỉ và nói về cơ thể, đồ của em",
+      "prompt_vi": "Em hãy chỉ vào người mình và nói to. Dùng \"This is my ...\" khi chỉ MỘT thứ, và \"These are my ...\" khi chỉ NHIỀU thứ giống nhau. Nhớ \"shoes\" (giày) luôn đi thành đôi nên luôn dùng \"These are my shoes.\".",
+      "sentenceFrames": [
+        "This is my ___.",
+        "These are my ___."
+      ],
+      "audioModels": [
+        "This is my hat.",
+        "This is my head.",
+        "These are my eyes.",
+        "These are my shoes."
+      ]
+    },
+    {
+      "id": "my-family-job",
+      "title_vi": "Giới thiệu người thân và nghề của họ",
+      "prompt_vi": "Em hãy giới thiệu mẹ hoặc bố của em rồi nói nghề của họ. Nói câu đầu \"This is my mum.\" hoặc \"This is my dad.\", rồi câu sau dùng \"She's a ...\" cho mẹ hoặc \"He's a ...\" cho bố.",
+      "sentenceFrames": [
+        "This is my mum. She's a ___.",
+        "This is my dad. He's a ___."
+      ],
+      "audioModels": [
+        "This is my mum. She's a teacher.",
+        "This is my dad. He's a farmer.",
+        "This is my mum. She's a nurse.",
+        "This is my dad. He's a doctor."
+      ]
+    }
+  ],
+  "audioNotes": "Nên thu âm người thật cho: các câu mẫu phonics initial /ʃ/ là chữ \"sh\" (shoe, shop, ship), /h/ (hat, hand) và /d/ (doctor, dress) vì TTS hay đọc lẫn thành tên chữ cái hoặc nhầm \"sh\" với \"s\"; audioText các câu hỏi reading; các câu mẫu grammar \"This is my...\", \"These are my...\", \"He's a...\", \"She's a...\" và các audioModels phần speaking — đặc biệt cặp câu \"This is my mum. She's a teacher.\" để bé bắt chước ngữ điệu chuẩn. Lưu ý đọc \"shoes\" ở dạng số nhiều (không đọc \"a shoe\") khi nói về đi giày."
+};
+  C["level1/lesson03.json"] = {
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 103,
+  "lesson": 3,
+  "sourceUnits": ["unit06.json", "unit08.json", "unit13.json"],
+  "topic": "My family and home",
+  "topic_vi": "Gia đình & ngôi nhà",
+  "vocab": [
+    { "word": "mum", "vi": "mẹ", "icon": "👩", "example": "This is my mum.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "dad", "vi": "bố", "icon": "👨", "example": "This is my dad.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "brother", "vi": "anh trai / em trai", "icon": "👦", "example": "This is my brother.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "sister", "vi": "chị gái / em gái", "icon": "👧", "example": "This is my sister.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "grandma", "vi": "bà", "icon": "👵", "example": "This is my grandma.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "grandpa", "vi": "ông", "icon": "👴", "example": "This is my grandpa.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "kitchen", "vi": "nhà bếp", "icon": "🍳", "example": "Mum is in the kitchen.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "bathroom", "vi": "phòng tắm", "icon": "🛁", "example": "Dad is in the bathroom.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "garden", "vi": "khu vườn", "icon": "🌳", "example": "We are in the garden.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "bedroom", "vi": "phòng ngủ", "icon": "🛌", "example": "This is my bedroom.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "bed", "vi": "cái giường", "icon": "🛏️", "example": "It's a bed.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "lamp", "vi": "cái đèn", "icon": "💡", "example": "It's a lamp.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "is-he-she-in-the",
+      "title_vi": "\"Is he/she in the…?\" và cách trả lời",
+      "explain_vi": "Đây là mẫu chính của bài. Hỏi xem một người CÓ ở trong phòng nào không: dùng \"Is she in the…?\" cho bạn nữ và \"Is he in the…?\" cho bạn nam. Nếu đúng, trả lời \"Yes, she is.\" / \"Yes, he is.\". Nếu không, trả lời \"No, she isn't.\" / \"No, he isn't.\". Nhìn HÌNH để biết chọn he hay she.",
+      "examples": [
+        "Is she in the kitchen? Yes, she is.",
+        "Is he in the garden? No, he isn't.",
+        "Is she in the bedroom? Yes, she is.",
+        "Is he in the bathroom? Yes, he is."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose", "match"],
+      "safeZone": {
+        "templates": [
+          { "id": "question-is-in", "text": "Is {subj} in the {room}?", "blanks": ["subj"], "context_vi": "Nhìn hình rồi hỏi: bạn NỮ dùng \"she\", bạn NAM dùng \"he\".", "audioText": "Is she in the kitchen?", "clue": { "she": "👧 bạn nữ → she", "he": "👦 bạn nam → he" } },
+          { "id": "answer-yes", "text": "Yes, {subj} is.", "blanks": ["subj"], "context_vi": "Trả lời khi người đó CÓ ở trong phòng.", "audioText": "Yes, she is.", "clue": { "she": "👧 bạn nữ → she", "he": "👦 bạn nam → he" } },
+          { "id": "answer-no", "text": "No, {subj} isn't.", "blanks": ["subj"], "context_vi": "Trả lời khi người đó KHÔNG ở trong phòng.", "audioText": "No, she isn't.", "clue": { "she": "👧 bạn nữ → she", "he": "👦 bạn nam → he" } },
+          { "id": "match-question-answer", "type": "match", "context_vi": "Nối câu HỎI với câu TRẢ LỜI đúng (đúng he/she và đúng yes/no).", "pairs": [
+            { "left": "Is she in the kitchen?", "right": "Yes, she is.", "icon": "👧🍳" },
+            { "left": "Is he in the garden?", "right": "No, he isn't.", "icon": "👦🌳" },
+            { "left": "Is he in the bathroom?", "right": "Yes, he is.", "icon": "👦🛁" },
+            { "left": "Is she in the bedroom?", "right": "No, she isn't.", "icon": "👧🛌" }
+          ], "audioText": "Is she in the kitchen? Yes, she is." }
+        ],
+        "slots": {
+          "subj": ["she", "he"],
+          "room": ["kitchen", "bathroom", "garden", "bedroom"]
+        },
+        "answerKey": {
+          "match-question-answer": {
+            "Is she in the kitchen?": "Yes, she is.",
+            "Is he in the garden?": "No, he isn't.",
+            "Is he in the bathroom?": "Yes, he is.",
+            "Is she in the bedroom?": "No, she isn't."
+          }
+        },
+        "distractors": [
+          "Yes, she isn't.",
+          "No, she is.",
+          "Is she in kitchen?",
+          "Is she in the kitchen.",
+          "Yes, she's.",
+          "Yes, she not.",
+          "Is he in the kitchen? Yes, she is.",
+          "No, he is."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "this-is-my-person",
+      "title_vi": "Ôn lại: giới thiệu người trong nhà \"This is my…\"",
+      "explain_vi": "Mẫu này em đã gặp ở Bài 2 (\"This is my head.\"), ở đây chỉ ÔN nhanh. Khi giới thiệu một người trong gia đình, em nói \"This is my…\" rồi nói người đó là ai (mum, dad, brother…). \"my\" nghĩa là \"của em\". Sau khi giới thiệu, em có thể nói tiếp họ ở phòng nào.",
+      "examples": [
+        "This is my mum. She's in the kitchen.",
+        "This is my dad. He's in the garden.",
+        "This is my grandma."
+      ],
+      "generators": ["fill_blank", "mcq"],
+      "safeZone": {
+        "templates": [
+          { "id": "this-is-my-person", "text": "This is my {person}.", "blanks": ["person"], "context_vi": "Chỉ vào một người trong nhà và giới thiệu họ là ai.", "audioText": "This is my mum." }
+        ],
+        "slots": {
+          "person": ["mum", "dad", "brother", "sister", "grandma", "grandpa"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "This is me mum.",
+          "This my mum.",
+          "This is a my mum.",
+          "This is mum.",
+          "These is my mum."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["g", "s", "k"],
+    "soundLabels": {
+      "g": { "ipa": "/g/", "anchor": "garden", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"garden\" là /g/ (gằn cổ họng, không đọc tên chữ \"gi\")" },
+      "s": { "ipa": "/s/", "anchor": "sister", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"sister\" là /s/ (rít như con rắn ssss, không đọc tên chữ \"ét\")" },
+      "k": { "ipa": "/k/", "anchor": "kitchen", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"kitchen\" là /k/ (bật nhẹ ở cổ họng, không đọc tên chữ \"cây\")" }
+    },
+    "words": [
+      { "word": "garden", "icon": "🌳", "focusSound": "g", "position": "initial", "anchor": "garden", "audio": "" },
+      { "word": "girl", "icon": "👧", "focusSound": "g", "position": "initial", "anchor": "garden", "audio": "" },
+      { "word": "sister", "icon": "👧", "focusSound": "s", "position": "initial", "anchor": "sister", "audio": "" },
+      { "word": "sun", "icon": "☀️", "focusSound": "s", "position": "initial", "anchor": "sister", "audio": "" },
+      { "word": "kitchen", "icon": "🍳", "focusSound": "k", "position": "initial", "anchor": "kitchen", "audio": "" },
+      { "word": "key", "icon": "🔑", "focusSound": "k", "position": "initial", "anchor": "kitchen", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "my-family-at-home",
+      "title": "My family at home",
+      "title_vi": "Gia đình em ở nhà",
+      "text": "This is my family. Mum is in the kitchen. Dad is in the garden. My brother is in the bedroom. Is my sister in the garden? No, she isn't. She's in the bathroom. I like my family and my home.",
+      "questions": [
+        { "id": "q1", "q_vi": "Mẹ ở trong nhà bếp, đúng không?", "type": "truefalse", "answer": true, "audioText": "Is my mum in the kitchen?" },
+        { "id": "q2", "q_vi": "Chị/em gái có ở trong vườn không?", "type": "mcq", "choices": ["No, she isn't.", "Yes, she is.", "No, he isn't."], "answer": 0, "audioText": "Is my sister in the garden?" },
+        { "id": "q3", "q_vi": "Anh/em trai ở trong phòng nào?", "type": "mcq", "choices": ["the bedroom", "the kitchen", "the garden"], "answer": 0, "audioText": "Is my brother in the bedroom?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "introduce-family",
+      "title_vi": "Giới thiệu người trong nhà em",
+      "prompt_vi": "Em chỉ vào một người trong gia đình và nói to. Dùng mẫu ôn lại \"This is my…\" rồi nói tiếp họ ở phòng nào bằng \"She's / He's in the…\".",
+      "sentenceFrames": [
+        "This is my ___.",
+        "She's in the ___.",
+        "He's in the ___."
+      ],
+      "audioModels": [
+        "This is my mum. She's in the kitchen.",
+        "This is my dad. He's in the garden.",
+        "This is my grandma. She's in the bedroom."
+      ]
+    },
+    {
+      "id": "ask-and-answer-room",
+      "title_vi": "Hỏi và trả lời về phòng",
+      "prompt_vi": "Em hỏi xem một người có ở trong phòng nào không, rồi tự trả lời. Dùng mẫu chính \"Is he/she in the…?\" và trả lời \"Yes, … is.\" hoặc \"No, … isn't.\". Nhớ nhìn xem là bạn nam (he) hay bạn nữ (she).",
+      "sentenceFrames": [
+        "Is she in the ___?",
+        "Is he in the ___?",
+        "Yes, she is. / No, she isn't."
+      ],
+      "audioModels": [
+        "Is she in the kitchen? Yes, she is.",
+        "Is he in the garden? No, he isn't.",
+        "Is he in the bathroom? Yes, he is."
+      ]
+    }
+  ],
+  "audioNotes": "Nên thu âm người thật cho: mẫu phonics ĐẦU từ /g/ (garden, girl), /s/ (sister, sun) và /k/ (kitchen, key) — TTS hay đọc nhầm thành tên chữ cái \"gi / ét / cây\" hoặc đọc \"g\" mềm như trong \"giraffe\". Các câu mẫu grammar \"Is she in the kitchen? Yes, she is.\" và \"No, he isn't.\" nên có audio chuẩn để bé bắt chước ngữ điệu câu hỏi/câu trả lời ngắn. Cũng nên thu audioText các câu hỏi đọc hiểu. Ghi chú nội dung: 'bed' và 'lamp' là TỪ MỚI được giới thiệu lần đầu ở Bài 3 này (gốc từ unit13 — phòng ngủ), dạy bằng mẫu đã học \"It's a…\" để KHÔNG vượt i+1 (cấu trúc \"There's a…\" chưa dạy nên đã bỏ khỏi reading/speaking); Bài 4 chỉ TÁI DÙNG 'bed' trong slot giới từ (\"It's on the bed.\"), không dạy lại."
+};
+  C["level1/lesson04.json"] = {
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 104,
+  "lesson": 4,
+  "sourceUnits": ["unit10.json", "unit05.json", "unit11.json"],
+  "topic": "Friends and fun",
+  "topic_vi": "Bạn bè & vui chơi",
+  "vocab": [
+    { "word": "friend", "vi": "bạn", "icon": "🧒", "example": "This is my friend.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "park", "vi": "công viên", "icon": "🏞️", "example": "We are at the park.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "swing", "vi": "cái xích đu", "icon": "🛝", "example": "It's a swing.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "slide", "vi": "cầu trượt", "icon": "🛝", "example": "It's a slide.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "tree", "vi": "cái cây", "icon": "🌳", "example": "It's a tree.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "lion", "vi": "con sư tử", "icon": "🦁", "example": "I like lions.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "monkey", "vi": "con khỉ", "icon": "🐒", "example": "I like monkeys.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "elephant", "vi": "con voi", "icon": "🐘", "example": "Elephants are big.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "giraffe", "vi": "con hươu cao cổ", "icon": "🦒", "example": "Giraffes are tall.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "snake", "vi": "con rắn", "icon": "🐍", "example": "Snakes are long.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "big", "vi": "to, lớn", "icon": "🐘", "example": "The elephant is big.", "partOfSpeech": "adj", "audio": "" },
+    { "word": "tall", "vi": "cao", "icon": "🦒", "example": "The giraffe is tall.", "partOfSpeech": "adj", "audio": "" },
+    { "word": "long", "vi": "dài", "icon": "🐍", "example": "The snake is long.", "partOfSpeech": "adj", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "i-like-i-dont-like",
+      "title_vi": "\"I like…\" / \"I don't like…\"",
+      "explain_vi": "Để nói em THÍCH con vật gì, em dùng \"I like…\". Để nói em KHÔNG thích, em dùng \"I don't like…\" (don't = do not). Khi nói chung chung, tên con vật thêm \"-s\" ở cuối (lions, monkeys, snakes).",
+      "examples": [
+        "I like monkeys.",
+        "I don't like lions.",
+        "I like giraffes.",
+        "I don't like snakes."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-likeneg-animals", "text": "I {verb} {animals}.", "blanks": ["verb"], "context_vi": "Nói em THÍCH (like) hay KHÔNG thích (don't like) con vật nào.", "audioText": "I like monkeys." },
+          { "id": "i-like-animals", "text": "I like {animals}.", "blanks": ["animals"], "context_vi": "Nói tên con vật mà em thích.", "audioText": "I like lions." },
+          { "id": "i-dont-like-animals", "text": "I don't like {animals}.", "blanks": ["animals"], "context_vi": "Nói tên con vật mà em không thích.", "audioText": "I don't like snakes." }
+        ],
+        "slots": {
+          "verb": ["like", "don't like"],
+          "animals": ["lions", "monkeys", "elephants", "giraffes", "snakes"]
+        },
+        "answerKey": {
+          "i-likeneg-animals": { "verb_by_clue": { "smile": "like", "sad": "don't like" } }
+        },
+        "distractors": [
+          "I like monkey.",
+          "I no like lions.",
+          "I don't likes elephants.",
+          "I am like lions.",
+          "I doesn't like lions.",
+          "I don't like a monkeys."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "animals-are-adjective",
+      "title_vi": "\"Elephants are big.\" (Con vật + tính từ)",
+      "explain_vi": "Để tả con vật, em nói tên con vật (số nhiều) + \"are\" + tính từ: big (to), tall (cao), long (dài). Tính từ KHÔNG thêm \"-s\". Em cũng có thể dùng \"They're…\" (They're = They are) để khỏi nhắc lại tên con vật.",
+      "examples": [
+        "Elephants are big.",
+        "Giraffes are tall.",
+        "Snakes are long.",
+        "They're tall."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "animals-are-adj", "text": "{Animals} are {adj}.", "blanks": ["adj"], "context_vi": "Nói con vật đó có tính chất gì (chọn big / tall / long cho đúng hình).", "audioText": "Elephants are big." },
+          { "id": "the-animal-is-adj", "text": "The {animal} is {adj}.", "blanks": ["adj"], "context_vi": "Tả MỘT con vật bằng một tính từ.", "audioText": "The giraffe is tall." },
+          { "id": "theyre-adj", "text": "They're {adj}.", "blanks": ["adj"], "context_vi": "Tả nhiều con vật bằng một tính từ, không nhắc lại tên.", "audioText": "They're big." }
+        ],
+        "slots": {
+          "adj": ["big", "tall", "long"],
+          "Animals": ["Elephants", "Giraffes", "Snakes", "Lions", "Monkeys"],
+          "animal": ["elephant", "giraffe", "snake", "lion", "monkey"]
+        },
+        "answerKey": {
+          "animals-are-adj": {
+            "adj_by_animal": { "Elephants": "big", "Giraffes": "tall", "Snakes": "long", "Lions": "big", "Monkeys": "big" }
+          },
+          "the-animal-is-adj": {
+            "adj_by_animal": { "elephant": "big", "giraffe": "tall", "snake": "long", "lion": "big", "monkey": "big" }
+          }
+        },
+        "distractors": [
+          "Elephants are bigs.",
+          "Elephants is big.",
+          "They're a big.",
+          "They big.",
+          "Giraffes are tall tall.",
+          "The giraffe are tall."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["l", "s", "t"],
+    "soundLabels": {
+      "l": { "ipa": "/l/", "anchor": "lion", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"lion\" là /l/ (lưỡi chạm sau răng trên, không đọc tên chữ \"eo\")" },
+      "s": { "ipa": "/s/", "anchor": "swing", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"swing\" là /s/ (xì hơi như rắn, không đọc tên chữ \"ét-sờ\")" },
+      "t": { "ipa": "/t/", "anchor": "tree", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"tree\" là /t/ (bật đầu lưỡi, không đọc tên chữ \"ti\")" }
+    },
+    "words": [
+      { "word": "lion", "icon": "🦁", "focusSound": "l", "anchor": "lion", "audio": "" },
+      { "word": "leg", "icon": "🦵", "focusSound": "l", "anchor": "lion", "audio": "" },
+      { "word": "swing", "icon": "🛝", "focusSound": "s", "anchor": "swing", "audio": "" },
+      { "word": "slide", "icon": "🛝", "focusSound": "s", "anchor": "swing", "audio": "" },
+      { "word": "tree", "icon": "🌳", "focusSound": "t", "anchor": "tree", "audio": "" },
+      { "word": "tall", "icon": "🦒", "focusSound": "t", "anchor": "tree", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "fun-with-my-friend",
+      "title": "Fun with my friend",
+      "title_vi": "Vui chơi cùng bạn",
+      "text": "This is my friend Tom. We are at the park with a big tree. We like the slide and the swing. Tom likes giraffes. They're tall. I like monkeys. I don't like lions. Lions are big!",
+      "questions": [
+        { "id": "q1", "q_vi": "Tom là bạn của bạn nhỏ, đúng không?", "type": "truefalse", "answer": true, "audioText": "Tom is my friend." },
+        { "id": "q2", "q_vi": "Tom thích con vật nào?", "type": "mcq", "choices": ["giraffes", "lions", "monkeys"], "answer": 0, "audioText": "What does Tom like?" },
+        { "id": "q3", "q_vi": "Hươu cao cổ thế nào?", "type": "mcq", "choices": ["tall", "big", "long"], "answer": 0, "audioText": "They're tall." },
+        { "id": "q4", "q_vi": "Bạn nhỏ KHÔNG thích con vật nào?", "type": "mcq", "choices": ["lions", "monkeys", "giraffes"], "answer": 0, "audioText": "I don't like lions." }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "my-friend-and-animals",
+      "title_vi": "Bạn của em và con vật em thích",
+      "prompt_vi": "Em hãy giới thiệu một người bạn, rồi nói một con vật em THÍCH và một con vật em KHÔNG thích.",
+      "sentenceFrames": [
+        "This is my friend ___.",
+        "I like ___.",
+        "I don't like ___."
+      ],
+      "audioModels": [
+        "This is my friend Tom.",
+        "I like monkeys.",
+        "I don't like lions."
+      ]
+    },
+    {
+      "id": "describe-animals",
+      "title_vi": "Tả con vật",
+      "prompt_vi": "Em hãy chọn vài con vật rồi tả chúng. Em có thể dùng \"They're…\" để khỏi nhắc lại tên con vật.",
+      "sentenceFrames": [
+        "___ are ___.",
+        "The ___ is ___.",
+        "They're ___."
+      ],
+      "audioModels": [
+        "Giraffes are tall.",
+        "The elephant is big.",
+        "They're long."
+      ]
+    }
+  ],
+  "audioNotes": "Nên thu âm người thật cho: các câu mẫu phần speaking (\"This is my friend Tom.\", \"I like monkeys.\", \"I don't like lions.\", \"Giraffes are tall.\", \"The elephant is big.\", \"They're long.\"); audioText các câu hỏi reading (chú ý \"They're tall.\"); và mẫu phonics initial /l/ (lion, leg), /s/ (swing, slide), /t/ (tree, tall) vì TTS hay đọc lẫn tên chữ cái. Các câu mẫu grammar \"I don't like…\" và \"Elephants are big.\" / \"They're tall.\" cũng nên có audio chuẩn để bé bắt chước ngữ điệu (chú ý liền âm \"don't like\", \"They're\" và trọng âm tính từ)."
+};
+  C["level1/lesson05.json"] = {
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 105,
+  "lesson": 5,
+  "sourceUnits": ["unit12.json", "unit09.json", "unit14.json", "unit15.json"],
+  "topic": "Eating and exploring",
+  "topic_vi": "Ăn uống & khám phá",
+  "vocab": [
+    { "word": "rice", "vi": "cơm (gạo)", "icon": "🍚", "example": "I like rice.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "fish", "vi": "cá", "icon": "🐟", "example": "I like fish.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "milk", "vi": "sữa", "icon": "🥛", "example": "I like milk.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "juice", "vi": "nước ép", "icon": "🧃", "example": "I like juice.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "sandwich", "vi": "bánh mì kẹp", "icon": "🥪", "example": "I've got a sandwich.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "apple", "vi": "quả táo", "icon": "🍎", "example": "I've got an apple.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "egg", "vi": "quả trứng", "icon": "🥚", "example": "I've got an egg.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "banana", "vi": "quả chuối", "icon": "🍌", "example": "I've got a banana.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "swim", "vi": "bơi", "icon": "🏊", "example": "I can swim.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "jump", "vi": "nhảy lên", "icon": "🦘", "example": "I can jump.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "sea", "vi": "biển", "icon": "🌊", "example": "Look at the sea.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "shell", "vi": "vỏ sò", "icon": "🐚", "example": "It's a shell.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "like-and-do-you-like",
+      "title_vi": "Ôn \"I like…\" (đã học ở Bài 4) và học hỏi \"Do you like…?\" (MỚI)",
+      "explain_vi": "ÔN: \"I like…\" (nói món em thích) em đã học ở Bài 4, ở đây ta dùng lại với các món ăn. MỚI: hỏi xem bạn có thích món đó không thì nói \"Do you like…?\". Nếu thích, trả lời \"Yes, I do.\"; nếu không thích, trả lời \"No, I don't.\".",
+      "examples": [
+        "I like rice.",
+        "I like fish.",
+        "Do you like milk? Yes, I do.",
+        "Do you like juice? No, I don't."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-like-food", "text": "I like {food}.", "blanks": ["food"], "context_vi": "Nói tên món em thích.", "audioText": "I like rice." },
+          { "id": "question-do-you-like", "text": "Do you like {food}?", "blanks": ["food"], "context_vi": "Hỏi xem bạn có thích món này không.", "audioText": "Do you like milk?" },
+          { "id": "answer-yes", "text": "Yes, I do.", "blanks": [], "context_vi": "Trả lời khi CÓ thích.", "audioText": "Yes, I do." },
+          { "id": "answer-no", "text": "No, I don't.", "blanks": [], "context_vi": "Trả lời khi KHÔNG thích.", "audioText": "No, I don't." }
+        ],
+        "slots": {
+          "food": ["rice", "fish", "milk", "juice", "apple", "egg", "banana"],
+          "answer": ["Yes, I do.", "No, I don't."]
+        },
+        "answerKey": {
+          "i-like-food": { "food": "food" },
+          "question-do-you-like": { "food": "food" },
+          "answer-pairs": { "Yes, I do.": "No, I don't.", "No, I don't.": "Yes, I do." }
+        },
+        "distractors": [
+          "I likes rice.",
+          "I like.",
+          "Yes, I don't.",
+          "No, I do.",
+          "Do you likes fish?",
+          "You like fish?"
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "ive-got-a-an",
+      "title_vi": "Học nói \"I've got…\" (MỚI), mở rộng \"a/an\" (đã học ở Bài 1)",
+      "explain_vi": "MỚI: nói em CÓ một món thì dùng \"I've got…\" rồi nói tên món (\"I've got\" là cách viết gọn của \"I have got\"). ÔN & mở rộng: cách chọn \"a\" hay \"an\" em đã học ở Bài 1 — trước từ bắt đầu bằng nguyên âm (a, e, i, o, u) dùng \"an\" (an apple, an egg); các từ còn lại dùng \"a\" (a sandwich, a banana).",
+      "examples": [
+        "I've got a sandwich.",
+        "I've got an apple.",
+        "I've got an egg.",
+        "I've got a banana."
+      ],
+      "generators": ["fill_blank", "mcq"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-have-got", "text": "I've got {art} {noun}.", "blanks": ["art"], "context_vi": "Nói em CÓ một món, chọn \"a\" hoặc \"an\" cho đúng.", "audioText": "I've got an apple." },
+          { "id": "choose-article-food", "text": "I've got {art} {noun}.", "blanks": ["art"], "context_vi": "Chọn \"a\" hoặc \"an\" cho đúng với từ đứng sau (an apple, an egg, a banana).", "audioText": "I've got an egg." }
+        ],
+        "slots": {
+          "art": ["a", "an"],
+          "noun": ["sandwich", "apple", "egg", "banana"]
+        },
+        "answerKey": {
+          "i-have-got": {
+            "art": { "sandwich": "a", "apple": "an", "egg": "an", "banana": "a" }
+          },
+          "choose-article-food": {
+            "art": { "sandwich": "a", "apple": "an", "egg": "an", "banana": "a" }
+          }
+        },
+        "distractors": [
+          "I've got a apple.",
+          "I've got a egg.",
+          "I've got an sandwich.",
+          "I've got an banana.",
+          "I've got sandwich.",
+          "I got an apple."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "recognition": [
+    {
+      "id": "meet-can-cannot",
+      "title_vi": "Làm quen: can / can't",
+      "explain_vi": "Phần này chỉ để LÀM QUEN (nghe và chọn), em CHƯA cần tự đặt câu. Khi nghe \"can\" nghĩa là LÀM ĐƯỢC; nghe \"can't\" nghĩa là KHÔNG làm được. Em chỉ cần nghe câu mẫu rồi chọn đúng hình hoặc đúng ý.",
+      "examples": [
+        "I can swim.",
+        "I can jump.",
+        "I can't swim."
+      ],
+      "generators": ["listen_choose", "mcq"],
+      "items": [
+        { "id": "rec-can-swim", "audioText": "I can swim.", "meaning_vi": "Bạn nhỏ BƠI ĐƯỢC.", "choices_vi": ["Làm được", "Không làm được"], "answer": 0 },
+        { "id": "rec-can-jump", "audioText": "I can jump.", "meaning_vi": "Bạn nhỏ NHẢY ĐƯỢC.", "choices_vi": ["Làm được", "Không làm được"], "answer": 0 },
+        { "id": "rec-cannot-swim", "audioText": "I can't swim.", "meaning_vi": "Bạn nhỏ KHÔNG bơi được.", "choices_vi": ["Làm được", "Không làm được"], "answer": 1 }
+      ]
+    }
+  ],
+  "phonics": {
+    "position": "mixed",
+    "focus": ["i", "u", "th"],
+    "soundLabels": {
+      "i": { "ipa": "/ɪ/", "anchor": "pig", "position": "medial", "say_vi": "âm /ɪ/ ngắn ở GIỮA từ, như trong \"pig\" (không đọc tên chữ \"ai\")" },
+      "u": { "ipa": "/ʌ/", "anchor": "sun", "position": "medial", "say_vi": "âm /ʌ/ ngắn ở GIỮA từ, như trong \"sun\" (miệng thả lỏng, đọc nhanh)" },
+      "th": { "ipa": "/θ/", "anchor": "three", "position": "initial", "say_vi": "âm /θ/ ở ĐẦU từ — đặt đầu lưỡi giữa hai hàm răng rồi thổi nhẹ, như đầu từ \"three\" (không đọc thành \"t\" hay \"s\")" }
+    },
+    "words": [
+      { "word": "fish", "icon": "🐟", "focusSound": "i", "anchor": "pig", "position": "medial", "audio": "" },
+      { "word": "pig", "icon": "🐷", "focusSound": "i", "anchor": "pig", "position": "medial", "audio": "" },
+      { "word": "sun", "icon": "☀️", "focusSound": "u", "anchor": "sun", "position": "medial", "audio": "" },
+      { "word": "cup", "icon": "🥤", "focusSound": "u", "anchor": "sun", "position": "medial", "audio": "" },
+      { "word": "duck", "icon": "🦆", "focusSound": "u", "anchor": "sun", "position": "medial", "audio": "" },
+      { "word": "three", "icon": "3️⃣", "focusSound": "th", "anchor": "three", "position": "initial", "audio": "" },
+      { "word": "thin", "icon": "📏", "focusSound": "th", "anchor": "three", "position": "initial", "audio": "" },
+      { "word": "think", "icon": "💭", "focusSound": "th", "anchor": "three", "position": "initial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "lunch-at-the-sea",
+      "title": "Lunch at the sea",
+      "title_vi": "Bữa trưa bên biển",
+      "text": "Look at the sea! This is my lunch. I've got a sandwich and an apple. I like fish and rice. I don't like milk, but I like juice. I can swim and I can jump. Look, a shell by the sea!",
+      "questions": [
+        { "id": "q1", "q_vi": "Bạn nhỏ thích cá, đúng không?", "type": "truefalse", "answer": true, "audioText": "Do you like fish?" },
+        { "id": "q2", "q_vi": "Bạn nhỏ KHÔNG thích món nào?", "type": "mcq", "choices": ["milk", "juice", "rice"], "answer": 0, "audioText": "What don't you like?" },
+        { "id": "q3", "q_vi": "Bạn nhỏ làm được việc gì?", "type": "mcq", "choices": ["swim", "fly", "sing"], "answer": 0, "audioText": "What can the child do?" },
+        { "id": "q4", "q_vi": "Bạn nhỏ tìm thấy gì bên biển?", "type": "mcq", "choices": ["a shell", "a fish", "a boat"], "answer": 0, "audioText": "What is by the sea?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "talk-about-food-i-like",
+      "title_vi": "Em nói về món ăn em thích",
+      "prompt_vi": "Nói món em thích và món em KHÔNG thích, rồi hỏi một người bạn xem bạn có thích món đó không.",
+      "sentenceFrames": [
+        "I like ___.",
+        "I don't like ___.",
+        "Do you like ___?"
+      ],
+      "audioModels": [
+        "I like rice.",
+        "I don't like milk.",
+        "Do you like fish?"
+      ]
+    },
+    {
+      "id": "talk-about-what-i-have-got",
+      "title_vi": "Em nói món em có trong hộp cơm",
+      "prompt_vi": "Nói những món em CÓ trong hộp cơm, nhớ chọn \"a\" hay \"an\" cho đúng.",
+      "sentenceFrames": [
+        "I've got a ___.",
+        "I've got an ___."
+      ],
+      "audioModels": [
+        "I've got a sandwich.",
+        "I've got an apple.",
+        "I've got an egg.",
+        "I've got a banana."
+      ]
+    }
+  ],
+  "audioNotes": "Cần thu âm người thật cho: các audioModels phần speaking; audioText câu hỏi reading; audioText các item phần recognition (\"I can swim. / I can jump. / I can't swim.\"); và đặc biệt nhóm phonics /θ/ (three, thin, think) vì TTS hay đọc nhầm \"th\" thành \"t\" hoặc \"s\" — nhớ đặt đầu lưỡi giữa hai hàm răng rồi thổi nhẹ. Hai âm nguyên âm ngắn /ɪ/ (fish, pig) và /ʌ/ (sun, cup, duck) ở GIỮA từ cũng nên có audio chuẩn để bé phân biệt với âm dài. Câu mẫu MỚI \"Do you like…? Yes, I do. / No, I don't.\" và \"I've got a/an…\" nên có audio để bé bắt chước ngữ điệu câu hỏi. Lưu ý can/can't ở bài này chỉ ở mức LÀM QUEN (nghe-chọn), audio cần đọc rõ phần phủ định \"can't\" để bé phân biệt với \"can\". Ghi chú recycling: các từ \"apple\", \"egg\", \"fish\" và mẫu \"a/an\", \"I like\" được dùng lại có chủ đích (apple/egg ở Bài 1, I like ở Bài 4) nhằm ôn tập, không phải từ/mẫu mới."
 };
   g.ContentData = C;
   if (typeof module !== 'undefined' && module.exports) module.exports = C;

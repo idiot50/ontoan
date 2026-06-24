@@ -555,6 +555,9 @@ a { color: var(--c-primary); }
   border-bottom: 3px solid var(--c-primary-soft);
   box-shadow: 0 2px 0 rgba(91,63,196,0.10), var(--shadow-sm);
 }
+/* [hidden] phải thắng .app-header{display:flex} (cùng specificity 0,1,0 → cần 0,2,0)
+   nếu không, setHeader({hidden:true}) ở màn bản đồ KHÔNG ẩn được header toàn cục → header đôi. */
+.app-header[hidden] { display: none !important; }
 .app-header__title { font-family: var(--font-display); font-weight: var(--fw-black);
                      font-size: var(--fs-lg); color: var(--c-primary-strong);
                      letter-spacing: var(--tracking-wide);

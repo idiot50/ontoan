@@ -192,10 +192,23 @@
   function loadUnit(unitNo) {
     if (state.units[unitNo]) return Promise.resolve(state.units[unitNo]);
     return loadLevelIndex().then(function (idx) {
-      var meta = (idx.units || []).filter(function (u) { return u.unit === unitNo; })[0];
+      // unit < 100 = unit nhỏ gốc; unit >= 101 = BÀI LỚN (lesson). Tìm ở cả hai.
+      var all = (idx.units || []).concat(idx.lessons || []);
+      var meta = all.filter(function (u) { return u.unit === unitNo; })[0];
       if (!meta) throw new Error('Không có unit ' + unitNo);
       return loadJson('level1/' + meta.file).then(function (j) { state.units[unitNo] = j; return j; });
     });
+  }
+  function lessonMetaByUnit(unitNo) {
+    var idx = state.levelIndex; if (!idx) return null;
+    return (idx.lessons || []).filter(function (l) { return l.unit === unitNo; })[0] || null;
+  }
+  function isLessonUnit(unitNo) { return unitNo >= 100; }
+  // Back từ menu: nếu đang ở unit nhỏ mở từ "luyện tập thêm" → về bài lớn; ngược lại về bản đồ.
+  function backFromMenu(unitNo) {
+    if (!isLessonUnit(unitNo) && state.returnLesson != null) {
+      var r = state.returnLesson; state.returnLesson = null; state.currentUnit = r; go('S3');
+    } else { go('S2'); }
   }
   function refreshMastery() {
     if (!state.childId) { state.mastery = null; return Promise.resolve(null); }
@@ -379,49 +392,42 @@
       var weekLine = el('div', { class: 'chip chip--star' }, '🌱 Tuần này em đã học ' + (state.mastery ? state.mastery.weeklyDays : 0) + ' ngày');
       var starChip = el('div', { class: 'chip chip--star' }, '⭐ ' + totalStars);
 
-      var grid = el('div', { class: 'topic-grid' });
-      var units = (idx.units || []).slice().sort(function (a, b) { return (a.order || a.unit) - (b.order || b.unit); });
-      units.forEach(function (meta, i) {
-        var unlocked = isUnitUnlocked(meta.unit, units);
-        var um = unitMastery(meta.unit);
+      // ===== BẢN ĐỒ "CON ĐƯỜNG HỌC" — 5 BÀI LỚN =====
+      var lessons = (idx.lessons || []).slice().sort(function (a, b) { return a.lesson - b.lesson; });
+      var doneCount = 0;
+      lessons.forEach(function (l) { var um = unitMastery(l.unit); if (um && um.masteryPct >= 60) doneCount++; });
+      var lvl = el('div', { class: 'jmap-lvl' }, '★ TIẾNG ANH · LEVEL 1 · ' + doneCount + '/' + lessons.length + ' bài ★');
+
+      var path = el('div', { class: 'jmap' }, el('div', { class: 'jmap__line', 'aria-hidden': 'true' }));
+      lessons.forEach(function (l) {
+        var um = unitMastery(l.unit);
         var pct = um ? um.masteryPct : 0;
-        var pal = TOPIC_PALETTE[i % TOPIC_PALETTE.length];
-        var card = el(unlocked ? 'button' : 'div', {
-          class: 'topic-card',
-          type: unlocked ? 'button' : null,
-          style: '--topic:var(--c-' + pal + ');--topic-soft:var(--c-' + pal + '-soft);--topic-text:var(--c-' + pal + '-text)' + (unlocked ? '' : ';opacity:.6')
-        });
-        card.appendChild(el('div', { class: 'row', style: 'gap:var(--sp-3)' }, [
-          el('span', { class: 'topic-card__icon' }, unlocked ? meta.icon : '🔒'),
-          el('span', { class: 'grow' }, [
-            el('div', { class: 'topic-card__num' }, 'Unit ' + meta.unit),
-            el('div', { class: 'topic-card__name' }, meta.topic_vi),
-            el('div', { class: 'topic-card__en' }, meta.topic)
-          ]),
-          speakerBtn(meta.topic, 'Nghe tên chủ đề: ' + meta.topic)
-        ]));
-        if (unlocked) {
-          card.appendChild(el('div', { class: 'progress-row' }, [
-            el('div', { class: 'progress' }, el('div', { class: 'progress__fill', style: '--_pct:' + pct + '%' })),
-            el('span', { class: 'progress__pct' }, pct + '%')
-          ]));
-          card.appendChild(el('div', { class: 'row', style: 'justify-content:space-between' }, [
-            starsRow(starsForUnit(um), 3),
-            el('span', { class: 'chip' }, pct > 0 ? 'Học tiếp →' : 'Bắt đầu →')
-          ]));
-          card.addEventListener('click', function () { state.currentUnit = meta.unit; go('S3'); });
-        } else {
-          card.appendChild(el('div', { class: 'muted', style: 'font-size:var(--fs-sm)' }, 'Học xong unit trước là mở khoá nha!'));
-          card.addEventListener('click', function () { toast('Học xong unit trước là mở khoá nha! 🦊', '🔒'); });
-          card.style.cursor = 'pointer';
-        }
-        grid.appendChild(card);
+        var stars = starsForUnit(um);
+        var done = pct >= 60, cur = !done && pct > 0;
+        var status = done ? 'done' : (cur ? 'cur' : 'soon');
+        var statusTxt = done ? 'Hoàn thành' : (cur ? ('Đang học · ' + pct + '%') : 'Chưa bắt đầu');
+
+        var nodeKids = [el('span', { class: 'jmap__emoji', 'aria-hidden': 'true' }, l.icon)];
+        if (done) nodeKids.push(el('span', { class: 'jmap__check', 'aria-hidden': 'true' }, '✓'));
+        var node = el('span', { class: 'jmap__node' + (cur ? ' is-cur' : ''), style: '--pal:var(--c-' + l.pal + ');--pal-soft:var(--c-' + l.pal + '-soft)' }, nodeKids);
+
+        var cardKids = [
+          el('div', { class: 'jmap__title' }, 'Bài ' + l.lesson + ' · ' + l.topic_vi),
+          el('div', { class: 'jmap__sub' }, l.sub),
+          el('span', { class: 'jmap__tag jmap__tag--' + status }, statusTxt)
+        ];
+        cardKids.push(done ? starsRow(stars, 3) : el('div', { class: 'jmap__bar' }, el('i', { style: 'width:' + pct + '%' })));
+        var stop = el('button', { class: 'jmap__stop', type: 'button', 'aria-label': 'Bài ' + l.lesson + ' ' + l.topic_vi + ' — ' + statusTxt },
+          [node, el('span', { class: 'jmap__card' }, cardKids)]);
+        stop.addEventListener('click', function () { state.currentUnit = l.unit; state.returnLesson = null; go('S3'); });
+        path.appendChild(stop);
       });
 
       render(el('div', { class: 'screen stack-lg' }, [
         topHeader,
         el('div', { class: 'row-wrap' }, [weekLine, starChip]),
-        grid
+        lvl,
+        path
       ]));
     }).catch(function (e) { renderError(e); });
   }
@@ -460,7 +466,7 @@
     Promise.all([loadUnit(unitNo), refreshMastery()]).then(function (res) {
       var unit = res[0];
       var um = unitMastery(unitNo);
-      setHeader({ title: unit.topic_vi, onBack: function () { go('S2'); }, speakText: unit.topic });
+      setHeader({ title: unit.topic_vi, onBack: function () { backFromMenu(unitNo); }, speakText: unit.topic });
 
       function activity(num, icon, title, sub, skillDone, onClick) {
         var card = el('button', { class: 'act-card', type: 'button' }, [
@@ -493,10 +499,30 @@
       }
       acts.push(activity(++n, '🗣️', 'Nói', 'Nghe mẫu rồi nói theo (không chấm điểm)', practiced(um, 'speaking'), function () { go('S6'); }));
 
-      render(el('div', { class: 'screen stack-lg' }, [
+      var screenKids = [
         el('div', { class: 'row', style: 'justify-content:center' }, [piNode('mascot--sm'), el('div', { class: 'speech' }, 'Hôm nay học gì nào? Chọn một mục nhé!')]),
         el('div', { class: 'stack' }, acts)
-      ]));
+      ];
+      // "Luyện tập thêm" — chỉ ở BÀI LỚN: mở các unit nhỏ nguồn để luyện kỹ hơn.
+      if (isLessonUnit(unitNo) && Array.isArray(unit.sourceUnits) && unit.sourceUnits.length) {
+        var srcMetas = unit.sourceUnits
+          .map(function (fn) { return ((state.levelIndex || {}).units || []).filter(function (u) { return u.file === fn; })[0]; })
+          .filter(Boolean);
+        if (srcMetas.length) {
+          var chips = el('div', { class: 'row-wrap', style: 'gap:var(--sp-2)' });
+          srcMetas.forEach(function (m) {
+            var b = el('button', { class: 'extra-chip', type: 'button' }, [el('span', { 'aria-hidden': 'true' }, m.icon + ' '), m.topic_vi]);
+            b.addEventListener('click', function () { state.returnLesson = unitNo; state.currentUnit = m.unit; go('S3'); });
+            chips.appendChild(b);
+          });
+          screenKids.push(el('div', { class: 'card stack', style: 'gap:var(--sp-3)' }, [
+            el('div', { class: 'act-card__title' }, '🧩 Luyện tập thêm'),
+            el('div', { class: 'muted', style: 'font-size:var(--fs-sm)' }, 'Muốn luyện kỹ hơn? Chọn một chủ đề nhỏ:'),
+            chips
+          ]));
+        }
+      }
+      render(el('div', { class: 'screen stack-lg' }, screenKids));
     }).catch(function (e) { renderError(e); });
   }
 
@@ -1522,7 +1548,13 @@
   }
   function collectSpeakSentences(unit) {
     var out = [];
-    (unit.vocab || []).slice(0, 4).forEach(function (v) { if (v.example) out.push(v.example); });
+    // Bài lớn: ưu tiên câu mẫu trong phần "nói" (speaking[].audioModels).
+    if (Array.isArray(unit.speaking)) {
+      unit.speaking.forEach(function (t) {
+        (t.audioModels || []).forEach(function (s) { if (s && out.indexOf(s) === -1) out.push(s); });
+      });
+    }
+    (unit.vocab || []).slice(0, 4).forEach(function (v) { if (v.example && out.indexOf(v.example) === -1) out.push(v.example); });
     (unit.grammar || []).forEach(function (g) { (g.examples || []).slice(0, 2).forEach(function (e) { if (out.indexOf(e) === -1) out.push(e); }); });
     return out.slice(0, 6);
   }
