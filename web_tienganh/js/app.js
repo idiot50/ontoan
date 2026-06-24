@@ -394,6 +394,20 @@
 
       // ===== BẢN ĐỒ "CON ĐƯỜNG HỌC" — 5 BÀI LỚN =====
       var lessons = (idx.lessons || []).slice().sort(function (a, b) { return a.lesson - b.lesson; });
+      // An toàn: nếu danh mục bài rỗng (vd cache cũ chưa cập nhật) → KHÔNG để trắng màn.
+      if (!lessons.length) {
+        render(el('div', { class: 'screen stack-lg', style: 'padding-top:var(--sp-7)' }, [
+          topHeader,
+          el('div', { class: 'center' }, piNode('mascot--lg')),
+          el('h1', { class: 'title text-center' }, 'Đang cập nhật bài học mới 🎉'),
+          el('p', { class: 'subtitle text-center' }, 'Em bấm nút bên dưới để tải bản mới nhất nhé!'),
+          el('button', { class: 'btn btn--cta btn--block', type: 'button', onclick: function () {
+            try { if ('caches' in window) caches.keys().then(function (ks) { ks.forEach(function (k) { caches.delete(k); }); }).finally(function () { location.reload(true); }); else location.reload(true); }
+            catch (e) { location.reload(true); }
+          } }, '🔄 Tải bài học mới')
+        ]));
+        return;
+      }
       var doneCount = 0;
       lessons.forEach(function (l) { var um = unitMastery(l.unit); if (um && um.masteryPct >= 60) doneCount++; });
       var lvl = el('div', { class: 'jmap-lvl' }, '★ TIẾNG ANH · LEVEL 1 · ' + doneCount + '/' + lessons.length + ' bài ★');

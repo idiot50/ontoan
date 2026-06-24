@@ -19,7 +19,7 @@
  */
 'use strict';
 
-var CACHE = 'enkids-v4';
+var CACHE = 'enkids-v5';
 
 // App shell precache lúc install. Đường dẫn tương đối theo scope.
 // (Nội dung cũng nhúng sẵn trong content-data.js để chạy file://; precache JSON
@@ -87,6 +87,9 @@ self.addEventListener('activate', function (event) {
 
 function isContentOrAsset(url) {
   // content/**, assets/**, audio/** → stale-while-revalidate (mp3 audio lazy-cache theo bài).
+  // NGOẠI LỆ: index.json (danh mục unit/bài) + manifest.json (danh mục audio) là cấu trúc/tra cứu
+  // → để NETWORK-FIRST (luôn lấy bản mới) tránh phục vụ danh mục CŨ làm bản đồ rỗng sau cập nhật.
+  if (/\/(index|manifest)\.json$/.test(url.pathname)) return false;
   return /\/(content|assets|audio)\//.test(url.pathname);
 }
 
