@@ -1,0 +1,187 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 105,
+  "lesson": 5,
+  "sourceUnits": ["unit12.json", "unit09.json", "unit14.json", "unit15.json"],
+  "topic": "Eating and exploring",
+  "topic_vi": "Ăn uống & khám phá",
+  "vocab": [
+    { "word": "rice", "vi": "cơm (gạo)", "icon": "🍚", "example": "I like rice.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "fish", "vi": "cá", "icon": "🐟", "example": "I like fish.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "milk", "vi": "sữa", "icon": "🥛", "example": "I like milk.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "juice", "vi": "nước ép", "icon": "🧃", "example": "I like juice.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "sandwich", "vi": "bánh mì kẹp", "icon": "🥪", "example": "I've got a sandwich.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "apple", "vi": "quả táo", "icon": "🍎", "example": "I've got an apple.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "egg", "vi": "quả trứng", "icon": "🥚", "example": "I've got an egg.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "banana", "vi": "quả chuối", "icon": "🍌", "example": "I've got a banana.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "swim", "vi": "bơi", "icon": "🏊", "example": "I can swim.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "jump", "vi": "nhảy lên", "icon": "🦘", "example": "I can jump.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "sea", "vi": "biển", "icon": "🌊", "example": "Look at the sea.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "shell", "vi": "vỏ sò", "icon": "🐚", "example": "It's a shell.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "like-and-do-you-like",
+      "title_vi": "Ôn \"I like…\" (đã học ở Bài 4) và học hỏi \"Do you like…?\" (MỚI)",
+      "explain_vi": "ÔN: \"I like…\" (nói món em thích) em đã học ở Bài 4, ở đây ta dùng lại với các món ăn. MỚI: hỏi xem bạn có thích món đó không thì nói \"Do you like…?\". Nếu thích, trả lời \"Yes, I do.\"; nếu không thích, trả lời \"No, I don't.\".",
+      "examples": [
+        "I like rice.",
+        "I like fish.",
+        "Do you like milk? Yes, I do.",
+        "Do you like juice? No, I don't."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-like-food", "text": "I like {food}.", "blanks": ["food"], "context_vi": "Nói tên món em thích.", "audioText": "I like rice." },
+          { "id": "question-do-you-like", "text": "Do you like {food}?", "blanks": ["food"], "context_vi": "Hỏi xem bạn có thích món này không.", "audioText": "Do you like milk?" },
+          { "id": "answer-yes", "text": "Yes, I do.", "blanks": [], "context_vi": "Trả lời khi CÓ thích.", "audioText": "Yes, I do." },
+          { "id": "answer-no", "text": "No, I don't.", "blanks": [], "context_vi": "Trả lời khi KHÔNG thích.", "audioText": "No, I don't." }
+        ],
+        "slots": {
+          "food": ["rice", "fish", "milk", "juice", "apple", "egg", "banana"],
+          "answer": ["Yes, I do.", "No, I don't."]
+        },
+        "answerKey": {
+          "i-like-food": { "food": "food" },
+          "question-do-you-like": { "food": "food" },
+          "answer-pairs": { "Yes, I do.": "No, I don't.", "No, I don't.": "Yes, I do." }
+        },
+        "distractors": [
+          "I likes rice.",
+          "I like.",
+          "Yes, I don't.",
+          "No, I do.",
+          "Do you likes fish?",
+          "You like fish?"
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "ive-got-a-an",
+      "title_vi": "Học nói \"I've got…\" (MỚI), mở rộng \"a/an\" (đã học ở Bài 1)",
+      "explain_vi": "MỚI: nói em CÓ một món thì dùng \"I've got…\" rồi nói tên món (\"I've got\" là cách viết gọn của \"I have got\"). ÔN & mở rộng: cách chọn \"a\" hay \"an\" em đã học ở Bài 1 — trước từ bắt đầu bằng nguyên âm (a, e, i, o, u) dùng \"an\" (an apple, an egg); các từ còn lại dùng \"a\" (a sandwich, a banana).",
+      "examples": [
+        "I've got a sandwich.",
+        "I've got an apple.",
+        "I've got an egg.",
+        "I've got a banana."
+      ],
+      "generators": ["fill_blank", "mcq"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-have-got", "text": "I've got {art} {noun}.", "blanks": ["art"], "context_vi": "Nói em CÓ một món, chọn \"a\" hoặc \"an\" cho đúng.", "audioText": "I've got an apple." },
+          { "id": "choose-article-food", "text": "I've got {art} {noun}.", "blanks": ["art"], "context_vi": "Chọn \"a\" hoặc \"an\" cho đúng với từ đứng sau (an apple, an egg, a banana).", "audioText": "I've got an egg." }
+        ],
+        "slots": {
+          "art": ["a", "an"],
+          "noun": ["sandwich", "apple", "egg", "banana"]
+        },
+        "answerKey": {
+          "i-have-got": {
+            "art": { "sandwich": "a", "apple": "an", "egg": "an", "banana": "a" }
+          },
+          "choose-article-food": {
+            "art": { "sandwich": "a", "apple": "an", "egg": "an", "banana": "a" }
+          }
+        },
+        "distractors": [
+          "I've got a apple.",
+          "I've got a egg.",
+          "I've got an sandwich.",
+          "I've got an banana.",
+          "I've got sandwich.",
+          "I got an apple."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "recognition": [
+    {
+      "id": "meet-can-cannot",
+      "title_vi": "Làm quen: can / can't",
+      "explain_vi": "Phần này chỉ để LÀM QUEN (nghe và chọn), em CHƯA cần tự đặt câu. Khi nghe \"can\" nghĩa là LÀM ĐƯỢC; nghe \"can't\" nghĩa là KHÔNG làm được. Em chỉ cần nghe câu mẫu rồi chọn đúng hình hoặc đúng ý.",
+      "examples": [
+        "I can swim.",
+        "I can jump.",
+        "I can't swim."
+      ],
+      "generators": ["listen_choose", "mcq"],
+      "items": [
+        { "id": "rec-can-swim", "audioText": "I can swim.", "meaning_vi": "Bạn nhỏ BƠI ĐƯỢC.", "choices_vi": ["Làm được", "Không làm được"], "answer": 0 },
+        { "id": "rec-can-jump", "audioText": "I can jump.", "meaning_vi": "Bạn nhỏ NHẢY ĐƯỢC.", "choices_vi": ["Làm được", "Không làm được"], "answer": 0 },
+        { "id": "rec-cannot-swim", "audioText": "I can't swim.", "meaning_vi": "Bạn nhỏ KHÔNG bơi được.", "choices_vi": ["Làm được", "Không làm được"], "answer": 1 }
+      ]
+    }
+  ],
+  "phonics": {
+    "position": "mixed",
+    "focus": ["i", "u", "th"],
+    "soundLabels": {
+      "i": { "ipa": "/ɪ/", "anchor": "pig", "position": "medial", "say_vi": "âm /ɪ/ ngắn ở GIỮA từ, như trong \"pig\" (không đọc tên chữ \"ai\")" },
+      "u": { "ipa": "/ʌ/", "anchor": "sun", "position": "medial", "say_vi": "âm /ʌ/ ngắn ở GIỮA từ, như trong \"sun\" (miệng thả lỏng, đọc nhanh)" },
+      "th": { "ipa": "/θ/", "anchor": "three", "position": "initial", "say_vi": "âm /θ/ ở ĐẦU từ — đặt đầu lưỡi giữa hai hàm răng rồi thổi nhẹ, như đầu từ \"three\" (không đọc thành \"t\" hay \"s\")" }
+    },
+    "words": [
+      { "word": "fish", "icon": "🐟", "focusSound": "i", "anchor": "pig", "position": "medial", "audio": "" },
+      { "word": "pig", "icon": "🐷", "focusSound": "i", "anchor": "pig", "position": "medial", "audio": "" },
+      { "word": "sun", "icon": "☀️", "focusSound": "u", "anchor": "sun", "position": "medial", "audio": "" },
+      { "word": "cup", "icon": "🥤", "focusSound": "u", "anchor": "sun", "position": "medial", "audio": "" },
+      { "word": "duck", "icon": "🦆", "focusSound": "u", "anchor": "sun", "position": "medial", "audio": "" },
+      { "word": "three", "icon": "3️⃣", "focusSound": "th", "anchor": "three", "position": "initial", "audio": "" },
+      { "word": "thin", "icon": "📏", "focusSound": "th", "anchor": "three", "position": "initial", "audio": "" },
+      { "word": "think", "icon": "💭", "focusSound": "th", "anchor": "three", "position": "initial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "lunch-at-the-sea",
+      "title": "Lunch at the sea",
+      "title_vi": "Bữa trưa bên biển",
+      "text": "Look at the sea! This is my lunch. I've got a sandwich and an apple. I like fish and rice. I don't like milk, but I like juice. I can swim and I can jump. Look, a shell by the sea!",
+      "questions": [
+        { "id": "q1", "q_vi": "Bạn nhỏ thích cá, đúng không?", "type": "truefalse", "answer": true, "audioText": "Do you like fish?" },
+        { "id": "q2", "q_vi": "Bạn nhỏ KHÔNG thích món nào?", "type": "mcq", "choices": ["milk", "juice", "rice"], "answer": 0, "audioText": "What don't you like?" },
+        { "id": "q3", "q_vi": "Bạn nhỏ làm được việc gì?", "type": "mcq", "choices": ["swim", "fly", "sing"], "answer": 0, "audioText": "What can the child do?" },
+        { "id": "q4", "q_vi": "Bạn nhỏ tìm thấy gì bên biển?", "type": "mcq", "choices": ["a shell", "a fish", "a boat"], "answer": 0, "audioText": "What is by the sea?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "talk-about-food-i-like",
+      "title_vi": "Em nói về món ăn em thích",
+      "prompt_vi": "Nói món em thích và món em KHÔNG thích, rồi hỏi một người bạn xem bạn có thích món đó không.",
+      "sentenceFrames": [
+        "I like ___.",
+        "I don't like ___.",
+        "Do you like ___?"
+      ],
+      "audioModels": [
+        "I like rice.",
+        "I don't like milk.",
+        "Do you like fish?"
+      ]
+    },
+    {
+      "id": "talk-about-what-i-have-got",
+      "title_vi": "Em nói món em có trong hộp cơm",
+      "prompt_vi": "Nói những món em CÓ trong hộp cơm, nhớ chọn \"a\" hay \"an\" cho đúng.",
+      "sentenceFrames": [
+        "I've got a ___.",
+        "I've got an ___."
+      ],
+      "audioModels": [
+        "I've got a sandwich.",
+        "I've got an apple.",
+        "I've got an egg.",
+        "I've got a banana."
+      ]
+    }
+  ],
+  "audioNotes": "Cần thu âm người thật cho: các audioModels phần speaking; audioText câu hỏi reading; audioText các item phần recognition (\"I can swim. / I can jump. / I can't swim.\"); và đặc biệt nhóm phonics /θ/ (three, thin, think) vì TTS hay đọc nhầm \"th\" thành \"t\" hoặc \"s\" — nhớ đặt đầu lưỡi giữa hai hàm răng rồi thổi nhẹ. Hai âm nguyên âm ngắn /ɪ/ (fish, pig) và /ʌ/ (sun, cup, duck) ở GIỮA từ cũng nên có audio chuẩn để bé phân biệt với âm dài. Câu mẫu MỚI \"Do you like…? Yes, I do. / No, I don't.\" và \"I've got a/an…\" nên có audio để bé bắt chước ngữ điệu câu hỏi. Lưu ý can/can't ở bài này chỉ ở mức LÀM QUEN (nghe-chọn), audio cần đọc rõ phần phủ định \"can't\" để bé phân biệt với \"can\". Ghi chú recycling: các từ \"apple\", \"egg\", \"fish\" và mẫu \"a/an\", \"I like\" được dùng lại có chủ đích (apple/egg ở Bài 1, I like ở Bài 4) nhằm ôn tập, không phải từ/mẫu mới."
+}

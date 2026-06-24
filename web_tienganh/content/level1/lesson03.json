@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 103,
+  "lesson": 3,
+  "sourceUnits": ["unit06.json", "unit08.json", "unit13.json"],
+  "topic": "My family and home",
+  "topic_vi": "Gia đình & ngôi nhà",
+  "vocab": [
+    { "word": "mum", "vi": "mẹ", "icon": "👩", "example": "This is my mum.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "dad", "vi": "bố", "icon": "👨", "example": "This is my dad.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "brother", "vi": "anh trai / em trai", "icon": "👦", "example": "This is my brother.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "sister", "vi": "chị gái / em gái", "icon": "👧", "example": "This is my sister.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "grandma", "vi": "bà", "icon": "👵", "example": "This is my grandma.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "grandpa", "vi": "ông", "icon": "👴", "example": "This is my grandpa.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "kitchen", "vi": "nhà bếp", "icon": "🍳", "example": "Mum is in the kitchen.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "bathroom", "vi": "phòng tắm", "icon": "🛁", "example": "Dad is in the bathroom.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "garden", "vi": "khu vườn", "icon": "🌳", "example": "We are in the garden.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "bedroom", "vi": "phòng ngủ", "icon": "🛌", "example": "This is my bedroom.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "bed", "vi": "cái giường", "icon": "🛏️", "example": "It's a bed.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "lamp", "vi": "cái đèn", "icon": "💡", "example": "It's a lamp.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "is-he-she-in-the",
+      "title_vi": "\"Is he/she in the…?\" và cách trả lời",
+      "explain_vi": "Đây là mẫu chính của bài. Hỏi xem một người CÓ ở trong phòng nào không: dùng \"Is she in the…?\" cho bạn nữ và \"Is he in the…?\" cho bạn nam. Nếu đúng, trả lời \"Yes, she is.\" / \"Yes, he is.\". Nếu không, trả lời \"No, she isn't.\" / \"No, he isn't.\". Nhìn HÌNH để biết chọn he hay she.",
+      "examples": [
+        "Is she in the kitchen? Yes, she is.",
+        "Is he in the garden? No, he isn't.",
+        "Is she in the bedroom? Yes, she is.",
+        "Is he in the bathroom? Yes, he is."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose", "match"],
+      "safeZone": {
+        "templates": [
+          { "id": "question-is-in", "text": "Is {subj} in the {room}?", "blanks": ["subj"], "context_vi": "Nhìn hình rồi hỏi: bạn NỮ dùng \"she\", bạn NAM dùng \"he\".", "audioText": "Is she in the kitchen?", "clue": { "she": "👧 bạn nữ → she", "he": "👦 bạn nam → he" } },
+          { "id": "answer-yes", "text": "Yes, {subj} is.", "blanks": ["subj"], "context_vi": "Trả lời khi người đó CÓ ở trong phòng.", "audioText": "Yes, she is.", "clue": { "she": "👧 bạn nữ → she", "he": "👦 bạn nam → he" } },
+          { "id": "answer-no", "text": "No, {subj} isn't.", "blanks": ["subj"], "context_vi": "Trả lời khi người đó KHÔNG ở trong phòng.", "audioText": "No, she isn't.", "clue": { "she": "👧 bạn nữ → she", "he": "👦 bạn nam → he" } },
+          { "id": "match-question-answer", "type": "match", "context_vi": "Nối câu HỎI với câu TRẢ LỜI đúng (đúng he/she và đúng yes/no).", "pairs": [
+            { "left": "Is she in the kitchen?", "right": "Yes, she is.", "icon": "👧🍳" },
+            { "left": "Is he in the garden?", "right": "No, he isn't.", "icon": "👦🌳" },
+            { "left": "Is he in the bathroom?", "right": "Yes, he is.", "icon": "👦🛁" },
+            { "left": "Is she in the bedroom?", "right": "No, she isn't.", "icon": "👧🛌" }
+          ], "audioText": "Is she in the kitchen? Yes, she is." }
+        ],
+        "slots": {
+          "subj": ["she", "he"],
+          "room": ["kitchen", "bathroom", "garden", "bedroom"]
+        },
+        "answerKey": {
+          "match-question-answer": {
+            "Is she in the kitchen?": "Yes, she is.",
+            "Is he in the garden?": "No, he isn't.",
+            "Is he in the bathroom?": "Yes, he is.",
+            "Is she in the bedroom?": "No, she isn't."
+          }
+        },
+        "distractors": [
+          "Yes, she isn't.",
+          "No, she is.",
+          "Is she in kitchen?",
+          "Is she in the kitchen.",
+          "Yes, she's.",
+          "Yes, she not.",
+          "Is he in the kitchen? Yes, she is.",
+          "No, he is."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "this-is-my-person",
+      "title_vi": "Ôn lại: giới thiệu người trong nhà \"This is my…\"",
+      "explain_vi": "Mẫu này em đã gặp ở Bài 2 (\"This is my head.\"), ở đây chỉ ÔN nhanh. Khi giới thiệu một người trong gia đình, em nói \"This is my…\" rồi nói người đó là ai (mum, dad, brother…). \"my\" nghĩa là \"của em\". Sau khi giới thiệu, em có thể nói tiếp họ ở phòng nào.",
+      "examples": [
+        "This is my mum. She's in the kitchen.",
+        "This is my dad. He's in the garden.",
+        "This is my grandma."
+      ],
+      "generators": ["fill_blank", "mcq"],
+      "safeZone": {
+        "templates": [
+          { "id": "this-is-my-person", "text": "This is my {person}.", "blanks": ["person"], "context_vi": "Chỉ vào một người trong nhà và giới thiệu họ là ai.", "audioText": "This is my mum." }
+        ],
+        "slots": {
+          "person": ["mum", "dad", "brother", "sister", "grandma", "grandpa"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "This is me mum.",
+          "This my mum.",
+          "This is a my mum.",
+          "This is mum.",
+          "These is my mum."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["g", "s", "k"],
+    "soundLabels": {
+      "g": { "ipa": "/g/", "anchor": "garden", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"garden\" là /g/ (gằn cổ họng, không đọc tên chữ \"gi\")" },
+      "s": { "ipa": "/s/", "anchor": "sister", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"sister\" là /s/ (rít như con rắn ssss, không đọc tên chữ \"ét\")" },
+      "k": { "ipa": "/k/", "anchor": "kitchen", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"kitchen\" là /k/ (bật nhẹ ở cổ họng, không đọc tên chữ \"cây\")" }
+    },
+    "words": [
+      { "word": "garden", "icon": "🌳", "focusSound": "g", "position": "initial", "anchor": "garden", "audio": "" },
+      { "word": "girl", "icon": "👧", "focusSound": "g", "position": "initial", "anchor": "garden", "audio": "" },
+      { "word": "sister", "icon": "👧", "focusSound": "s", "position": "initial", "anchor": "sister", "audio": "" },
+      { "word": "sun", "icon": "☀️", "focusSound": "s", "position": "initial", "anchor": "sister", "audio": "" },
+      { "word": "kitchen", "icon": "🍳", "focusSound": "k", "position": "initial", "anchor": "kitchen", "audio": "" },
+      { "word": "key", "icon": "🔑", "focusSound": "k", "position": "initial", "anchor": "kitchen", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "my-family-at-home",
+      "title": "My family at home",
+      "title_vi": "Gia đình em ở nhà",
+      "text": "This is my family. Mum is in the kitchen. Dad is in the garden. My brother is in the bedroom. Is my sister in the garden? No, she isn't. She's in the bathroom. I like my family and my home.",
+      "questions": [
+        { "id": "q1", "q_vi": "Mẹ ở trong nhà bếp, đúng không?", "type": "truefalse", "answer": true, "audioText": "Is my mum in the kitchen?" },
+        { "id": "q2", "q_vi": "Chị/em gái có ở trong vườn không?", "type": "mcq", "choices": ["No, she isn't.", "Yes, she is.", "No, he isn't."], "answer": 0, "audioText": "Is my sister in the garden?" },
+        { "id": "q3", "q_vi": "Anh/em trai ở trong phòng nào?", "type": "mcq", "choices": ["the bedroom", "the kitchen", "the garden"], "answer": 0, "audioText": "Is my brother in the bedroom?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "introduce-family",
+      "title_vi": "Giới thiệu người trong nhà em",
+      "prompt_vi": "Em chỉ vào một người trong gia đình và nói to. Dùng mẫu ôn lại \"This is my…\" rồi nói tiếp họ ở phòng nào bằng \"She's / He's in the…\".",
+      "sentenceFrames": [
+        "This is my ___.",
+        "She's in the ___.",
+        "He's in the ___."
+      ],
+      "audioModels": [
+        "This is my mum. She's in the kitchen.",
+        "This is my dad. He's in the garden.",
+        "This is my grandma. She's in the bedroom."
+      ]
+    },
+    {
+      "id": "ask-and-answer-room",
+      "title_vi": "Hỏi và trả lời về phòng",
+      "prompt_vi": "Em hỏi xem một người có ở trong phòng nào không, rồi tự trả lời. Dùng mẫu chính \"Is he/she in the…?\" và trả lời \"Yes, … is.\" hoặc \"No, … isn't.\". Nhớ nhìn xem là bạn nam (he) hay bạn nữ (she).",
+      "sentenceFrames": [
+        "Is she in the ___?",
+        "Is he in the ___?",
+        "Yes, she is. / No, she isn't."
+      ],
+      "audioModels": [
+        "Is she in the kitchen? Yes, she is.",
+        "Is he in the garden? No, he isn't.",
+        "Is he in the bathroom? Yes, he is."
+      ]
+    }
+  ],
+  "audioNotes": "Nên thu âm người thật cho: mẫu phonics ĐẦU từ /g/ (garden, girl), /s/ (sister, sun) và /k/ (kitchen, key) — TTS hay đọc nhầm thành tên chữ cái \"gi / ét / cây\" hoặc đọc \"g\" mềm như trong \"giraffe\". Các câu mẫu grammar \"Is she in the kitchen? Yes, she is.\" và \"No, he isn't.\" nên có audio chuẩn để bé bắt chước ngữ điệu câu hỏi/câu trả lời ngắn. Cũng nên thu audioText các câu hỏi đọc hiểu. Ghi chú nội dung: 'bed' và 'lamp' là TỪ MỚI được giới thiệu lần đầu ở Bài 3 này (gốc từ unit13 — phòng ngủ), dạy bằng mẫu đã học \"It's a…\" để KHÔNG vượt i+1 (cấu trúc \"There's a…\" chưa dạy nên đã bỏ khỏi reading/speaking); Bài 4 chỉ TÁI DÙNG 'bed' trong slot giới từ (\"It's on the bed.\"), không dạy lại."
+}

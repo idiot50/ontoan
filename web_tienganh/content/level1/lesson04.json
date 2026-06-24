@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 104,
+  "lesson": 4,
+  "sourceUnits": ["unit10.json", "unit05.json", "unit11.json"],
+  "topic": "Friends and fun",
+  "topic_vi": "Bạn bè & vui chơi",
+  "vocab": [
+    { "word": "friend", "vi": "bạn", "icon": "🧒", "example": "This is my friend.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "park", "vi": "công viên", "icon": "🏞️", "example": "We are at the park.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "swing", "vi": "cái xích đu", "icon": "🛝", "example": "It's a swing.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "slide", "vi": "cầu trượt", "icon": "🛝", "example": "It's a slide.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "tree", "vi": "cái cây", "icon": "🌳", "example": "It's a tree.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "lion", "vi": "con sư tử", "icon": "🦁", "example": "I like lions.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "monkey", "vi": "con khỉ", "icon": "🐒", "example": "I like monkeys.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "elephant", "vi": "con voi", "icon": "🐘", "example": "Elephants are big.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "giraffe", "vi": "con hươu cao cổ", "icon": "🦒", "example": "Giraffes are tall.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "snake", "vi": "con rắn", "icon": "🐍", "example": "Snakes are long.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "big", "vi": "to, lớn", "icon": "🐘", "example": "The elephant is big.", "partOfSpeech": "adj", "audio": "" },
+    { "word": "tall", "vi": "cao", "icon": "🦒", "example": "The giraffe is tall.", "partOfSpeech": "adj", "audio": "" },
+    { "word": "long", "vi": "dài", "icon": "🐍", "example": "The snake is long.", "partOfSpeech": "adj", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "i-like-i-dont-like",
+      "title_vi": "\"I like…\" / \"I don't like…\"",
+      "explain_vi": "Để nói em THÍCH con vật gì, em dùng \"I like…\". Để nói em KHÔNG thích, em dùng \"I don't like…\" (don't = do not). Khi nói chung chung, tên con vật thêm \"-s\" ở cuối (lions, monkeys, snakes).",
+      "examples": [
+        "I like monkeys.",
+        "I don't like lions.",
+        "I like giraffes.",
+        "I don't like snakes."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-likeneg-animals", "text": "I {verb} {animals}.", "blanks": ["verb"], "context_vi": "Nói em THÍCH (like) hay KHÔNG thích (don't like) con vật nào.", "audioText": "I like monkeys." },
+          { "id": "i-like-animals", "text": "I like {animals}.", "blanks": ["animals"], "context_vi": "Nói tên con vật mà em thích.", "audioText": "I like lions." },
+          { "id": "i-dont-like-animals", "text": "I don't like {animals}.", "blanks": ["animals"], "context_vi": "Nói tên con vật mà em không thích.", "audioText": "I don't like snakes." }
+        ],
+        "slots": {
+          "verb": ["like", "don't like"],
+          "animals": ["lions", "monkeys", "elephants", "giraffes", "snakes"]
+        },
+        "answerKey": {
+          "i-likeneg-animals": { "verb_by_clue": { "smile": "like", "sad": "don't like" } }
+        },
+        "distractors": [
+          "I like monkey.",
+          "I no like lions.",
+          "I don't likes elephants.",
+          "I am like lions.",
+          "I doesn't like lions.",
+          "I don't like a monkeys."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "animals-are-adjective",
+      "title_vi": "\"Elephants are big.\" (Con vật + tính từ)",
+      "explain_vi": "Để tả con vật, em nói tên con vật (số nhiều) + \"are\" + tính từ: big (to), tall (cao), long (dài). Tính từ KHÔNG thêm \"-s\". Em cũng có thể dùng \"They're…\" (They're = They are) để khỏi nhắc lại tên con vật.",
+      "examples": [
+        "Elephants are big.",
+        "Giraffes are tall.",
+        "Snakes are long.",
+        "They're tall."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "animals-are-adj", "text": "{Animals} are {adj}.", "blanks": ["adj"], "context_vi": "Nói con vật đó có tính chất gì (chọn big / tall / long cho đúng hình).", "audioText": "Elephants are big." },
+          { "id": "the-animal-is-adj", "text": "The {animal} is {adj}.", "blanks": ["adj"], "context_vi": "Tả MỘT con vật bằng một tính từ.", "audioText": "The giraffe is tall." },
+          { "id": "theyre-adj", "text": "They're {adj}.", "blanks": ["adj"], "context_vi": "Tả nhiều con vật bằng một tính từ, không nhắc lại tên.", "audioText": "They're big." }
+        ],
+        "slots": {
+          "adj": ["big", "tall", "long"],
+          "Animals": ["Elephants", "Giraffes", "Snakes", "Lions", "Monkeys"],
+          "animal": ["elephant", "giraffe", "snake", "lion", "monkey"]
+        },
+        "answerKey": {
+          "animals-are-adj": {
+            "adj_by_animal": { "Elephants": "big", "Giraffes": "tall", "Snakes": "long", "Lions": "big", "Monkeys": "big" }
+          },
+          "the-animal-is-adj": {
+            "adj_by_animal": { "elephant": "big", "giraffe": "tall", "snake": "long", "lion": "big", "monkey": "big" }
+          }
+        },
+        "distractors": [
+          "Elephants are bigs.",
+          "Elephants is big.",
+          "They're a big.",
+          "They big.",
+          "Giraffes are tall tall.",
+          "The giraffe are tall."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["l", "s", "t"],
+    "soundLabels": {
+      "l": { "ipa": "/l/", "anchor": "lion", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"lion\" là /l/ (lưỡi chạm sau răng trên, không đọc tên chữ \"eo\")" },
+      "s": { "ipa": "/s/", "anchor": "swing", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"swing\" là /s/ (xì hơi như rắn, không đọc tên chữ \"ét-sờ\")" },
+      "t": { "ipa": "/t/", "anchor": "tree", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"tree\" là /t/ (bật đầu lưỡi, không đọc tên chữ \"ti\")" }
+    },
+    "words": [
+      { "word": "lion", "icon": "🦁", "focusSound": "l", "anchor": "lion", "audio": "" },
+      { "word": "leg", "icon": "🦵", "focusSound": "l", "anchor": "lion", "audio": "" },
+      { "word": "swing", "icon": "🛝", "focusSound": "s", "anchor": "swing", "audio": "" },
+      { "word": "slide", "icon": "🛝", "focusSound": "s", "anchor": "swing", "audio": "" },
+      { "word": "tree", "icon": "🌳", "focusSound": "t", "anchor": "tree", "audio": "" },
+      { "word": "tall", "icon": "🦒", "focusSound": "t", "anchor": "tree", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "fun-with-my-friend",
+      "title": "Fun with my friend",
+      "title_vi": "Vui chơi cùng bạn",
+      "text": "This is my friend Tom. We are at the park with a big tree. We like the slide and the swing. Tom likes giraffes. They're tall. I like monkeys. I don't like lions. Lions are big!",
+      "questions": [
+        { "id": "q1", "q_vi": "Tom là bạn của bạn nhỏ, đúng không?", "type": "truefalse", "answer": true, "audioText": "Tom is my friend." },
+        { "id": "q2", "q_vi": "Tom thích con vật nào?", "type": "mcq", "choices": ["giraffes", "lions", "monkeys"], "answer": 0, "audioText": "What does Tom like?" },
+        { "id": "q3", "q_vi": "Hươu cao cổ thế nào?", "type": "mcq", "choices": ["tall", "big", "long"], "answer": 0, "audioText": "They're tall." },
+        { "id": "q4", "q_vi": "Bạn nhỏ KHÔNG thích con vật nào?", "type": "mcq", "choices": ["lions", "monkeys", "giraffes"], "answer": 0, "audioText": "I don't like lions." }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "my-friend-and-animals",
+      "title_vi": "Bạn của em và con vật em thích",
+      "prompt_vi": "Em hãy giới thiệu một người bạn, rồi nói một con vật em THÍCH và một con vật em KHÔNG thích.",
+      "sentenceFrames": [
+        "This is my friend ___.",
+        "I like ___.",
+        "I don't like ___."
+      ],
+      "audioModels": [
+        "This is my friend Tom.",
+        "I like monkeys.",
+        "I don't like lions."
+      ]
+    },
+    {
+      "id": "describe-animals",
+      "title_vi": "Tả con vật",
+      "prompt_vi": "Em hãy chọn vài con vật rồi tả chúng. Em có thể dùng \"They're…\" để khỏi nhắc lại tên con vật.",
+      "sentenceFrames": [
+        "___ are ___.",
+        "The ___ is ___.",
+        "They're ___."
+      ],
+      "audioModels": [
+        "Giraffes are tall.",
+        "The elephant is big.",
+        "They're long."
+      ]
+    }
+  ],
+  "audioNotes": "Nên thu âm người thật cho: các câu mẫu phần speaking (\"This is my friend Tom.\", \"I like monkeys.\", \"I don't like lions.\", \"Giraffes are tall.\", \"The elephant is big.\", \"They're long.\"); audioText các câu hỏi reading (chú ý \"They're tall.\"); và mẫu phonics initial /l/ (lion, leg), /s/ (swing, slide), /t/ (tree, tall) vì TTS hay đọc lẫn tên chữ cái. Các câu mẫu grammar \"I don't like…\" và \"Elephants are big.\" / \"They're tall.\" cũng nên có audio chuẩn để bé bắt chước ngữ điệu (chú ý liền âm \"don't like\", \"They're\" và trọng âm tính từ)."
+}

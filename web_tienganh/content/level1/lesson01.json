@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 101,
+  "lesson": 1,
+  "sourceUnits": ["unit00.json", "unit01.json", "unit02.json"],
+  "topic": "Me and my class",
+  "topic_vi": "Em & lớp học",
+  "vocab": [
+    { "word": "hello", "vi": "xin chào", "icon": "👋", "example": "Hello! I'm Tom.", "partOfSpeech": "phrase", "audio": "" },
+    { "word": "goodbye", "vi": "tạm biệt", "icon": "🙋", "example": "Goodbye! See you.", "partOfSpeech": "phrase", "audio": "" },
+    { "word": "pen", "vi": "bút mực", "icon": "🖊️", "example": "It's a pen.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "pencil", "vi": "bút chì", "icon": "✏️", "example": "It's a pencil.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "book", "vi": "quyển sách", "icon": "📕", "example": "It's a book.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "bag", "vi": "cái cặp", "icon": "🎒", "example": "It's my bag.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "ruler", "vi": "cái thước", "icon": "📏", "example": "It's a ruler.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "apple", "vi": "quả táo", "icon": "🍎", "example": "It's an apple.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "teddy", "vi": "gấu bông", "icon": "🧸", "example": "It's my teddy.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "ball", "vi": "quả bóng", "icon": "⚽", "example": "It's my ball.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "doll", "vi": "búp bê", "icon": "🪆", "example": "It's your doll.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "kite", "vi": "con diều", "icon": "🪁", "example": "It's my kite.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "what-is-this",
+      "title_vi": "Hỏi tên đồ vật: \"What's this?\" và \"a / an\"",
+      "explain_vi": "Hỏi tên một đồ vật ở gần: \"What's this?\". Em trả lời bắt đầu bằng \"It's...\" rồi nói tên đồ vật. Trước từ bắt đầu bằng nguyên âm (a, e, i, o, u) thì dùng \"an\" (ví dụ \"an apple\"); các từ còn lại dùng \"a\".",
+      "examples": [
+        "What's this? It's a pen.",
+        "What's this? It's a book.",
+        "What's this? It's an apple."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "it-is-noun", "text": "It's {art} {noun}.", "blanks": ["noun"], "context_vi": "Chỉ vào một đồ vật và nói tên nó.", "audioText": "It's a pen." },
+          { "id": "what-is-this-answer", "text": "What's this? It's {art} {noun}.", "blanks": ["noun"], "context_vi": "Hỏi và trả lời tên một đồ vật ở gần.", "audioText": "What's this? It's a pen." },
+          { "id": "choose-article", "text": "It's {art} {noun}.", "blanks": ["art"], "context_vi": "Chọn \"a\" hoặc \"an\" cho đúng với từ đứng sau.", "audioText": "It's an apple." }
+        ],
+        "slots": {
+          "art": ["a", "an"],
+          "noun": ["pen", "pencil", "book", "bag", "ruler", "apple", "teddy", "ball", "doll", "kite"]
+        },
+        "answerKey": {
+          "it-is-noun": {
+            "art": { "pen": "a", "pencil": "a", "book": "a", "bag": "a", "ruler": "a", "apple": "an", "teddy": "a", "ball": "a", "doll": "a", "kite": "a" }
+          },
+          "what-is-this-answer": {
+            "art": { "pen": "a", "pencil": "a", "book": "a", "bag": "a", "ruler": "a", "apple": "an", "teddy": "a", "ball": "a", "doll": "a", "kite": "a" }
+          },
+          "choose-article": {
+            "art": { "pen": "a", "pencil": "a", "book": "a", "bag": "a", "ruler": "a", "apple": "an", "teddy": "a", "ball": "a", "doll": "a", "kite": "a" }
+          }
+        },
+        "distractors": [
+          "It's a apple.",
+          "It's an pen.",
+          "It's an book.",
+          "Is a pen.",
+          "It's pen.",
+          "What this? It's a pen."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "my-your",
+      "title_vi": "\"my\" và \"your\" (của em / của bạn)",
+      "explain_vi": "Đồ của em thì nói \"my\" (của em). Đồ của bạn em đang nói chuyện thì nói \"your\" (của bạn). Đặt \"my\" hay \"your\" trước tên đồ vật, ví dụ \"It's my bag.\".",
+      "examples": [
+        "It's my bag.",
+        "It's my teddy.",
+        "It's your doll."
+      ],
+      "generators": ["mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "it-is-poss-noun-mine", "text": "It's {poss} {noun}.", "blanks": ["poss"], "context_vi": "Đồ này là CỦA EM (người nói).", "audioText": "It's my teddy." },
+          { "id": "it-is-poss-noun-yours", "text": "It's {poss} {noun}.", "blanks": ["poss"], "context_vi": "Đồ này là CỦA BẠN (người nghe).", "audioText": "It's your doll." }
+        ],
+        "slots": {
+          "poss": ["my", "your"],
+          "noun": ["bag", "pen", "book", "teddy", "ball", "doll", "kite"]
+        },
+        "answerKey": {
+          "it-is-poss-noun-mine": { "poss": "my" },
+          "it-is-poss-noun-yours": { "poss": "your" }
+        },
+        "distractors": [
+          "It's me teddy.",
+          "It's you doll.",
+          "It's my the bag.",
+          "Is my teddy.",
+          "It's mine teddy."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["a", "b", "c", "e", "f", "k"],
+    "soundLabels": {
+      "a": { "ipa": "/æ/", "anchor": "apple", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"apple\" là /æ/ (không đọc tên chữ \"ây\")" },
+      "b": { "ipa": "/b/", "anchor": "ball", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"ball\" là /b/ (không đọc tên chữ \"bi\")" },
+      "c": { "ipa": "/k/", "anchor": "cat", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"cat\" là /k/ (không đọc tên chữ \"xi\")" },
+      "e": { "ipa": "/e/", "anchor": "egg", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"egg\" là /e/ (không đọc tên chữ \"i\")" },
+      "f": { "ipa": "/f/", "anchor": "fish", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"fish\" là /f/ (không đọc tên chữ \"ép\")" },
+      "k": { "ipa": "/k/", "anchor": "kite", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"kite\" là /k/ (không đọc tên chữ \"kây\")" }
+    },
+    "words": [
+      { "word": "apple", "icon": "🍎", "focusSound": "a", "anchor": "apple", "position": "initial", "audio": "" },
+      { "word": "ant", "icon": "🐜", "focusSound": "a", "anchor": "apple", "position": "initial", "audio": "" },
+      { "word": "ball", "icon": "⚽", "focusSound": "b", "anchor": "ball", "position": "initial", "audio": "" },
+      { "word": "bag", "icon": "🎒", "focusSound": "b", "anchor": "ball", "position": "initial", "audio": "" },
+      { "word": "cat", "icon": "🐱", "focusSound": "c", "anchor": "cat", "position": "initial", "audio": "" },
+      { "word": "cup", "icon": "🥤", "focusSound": "c", "anchor": "cat", "position": "initial", "audio": "" },
+      { "word": "egg", "icon": "🥚", "focusSound": "e", "anchor": "egg", "position": "initial", "audio": "" },
+      { "word": "elephant", "icon": "🐘", "focusSound": "e", "anchor": "egg", "position": "initial", "audio": "" },
+      { "word": "fish", "icon": "🐟", "focusSound": "f", "anchor": "fish", "position": "initial", "audio": "" },
+      { "word": "fox", "icon": "🦊", "focusSound": "f", "anchor": "fish", "position": "initial", "audio": "" },
+      { "word": "kite", "icon": "🪁", "focusSound": "k", "anchor": "kite", "position": "initial", "audio": "" },
+      { "word": "key", "icon": "🔑", "focusSound": "k", "anchor": "kite", "position": "initial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "hello-this-is-my-bag",
+      "title": "Hello! This is my bag",
+      "title_vi": "Xin chào! Đây là cặp của em",
+      "text": "Hello! My name's Mai. This is my bag. It's my pen and my book. This is my teddy, and it's an apple, too. The doll is not my doll. It's your doll.",
+      "teacherNote_vi": "Câu mở đầu \"Hello! My name's Mai.\" là phần ÔN LẠI mẫu chào hỏi từ phần khởi động (unit00). Trọng tâm MỚI của đoạn đọc là \"my / your\" và \"It's a / an...\". Đoạn rút còn 7 câu (theo . ! ?) cho vừa ngưỡng 6-8.",
+      "questions": [
+        { "id": "q1", "q_vi": "Bạn nhỏ tên là Mai, đúng không?", "type": "truefalse", "answer": true, "audioText": "Her name is Mai." },
+        { "id": "q2", "q_vi": "Đồ nào là của Mai?", "type": "mcq", "choices": ["my teddy", "your doll", "my doll"], "answer": 0, "audioText": "What is Mai's?" },
+        { "id": "q3", "q_vi": "Búp bê là của ai?", "type": "mcq", "choices": ["your doll", "my doll", "my teddy"], "answer": 0, "audioText": "Whose doll is it?" },
+        { "id": "q4", "q_vi": "Có quả gì trong cặp của Mai?", "type": "mcq", "choices": ["an apple", "a ball", "a kite"], "answer": 0, "audioText": "What fruit is in the bag?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "say-hello-and-name",
+      "title_vi": "Chào hỏi và giới thiệu tên",
+      "prompt_vi": "Em chào và nói tên mình, rồi chào tạm biệt. Hãy điền tên thật của em vào chỗ trống nhé.",
+      "sentenceFrames": [
+        "Hello! My name's ___.",
+        "Goodbye!"
+      ],
+      "audioModels": [
+        "Hello! My name's Mai.",
+        "Goodbye!"
+      ]
+    },
+    {
+      "id": "what-is-this-my-your",
+      "title_vi": "Hỏi đồ vật và nói của ai",
+      "prompt_vi": "Cầm một đồ vật lên, hỏi và tự trả lời. Sau đó nói đồ đó là của em (my) hay của bạn (your).",
+      "sentenceFrames": [
+        "What's this? It's a ___.",
+        "It's my ___.",
+        "It's your ___."
+      ],
+      "audioModels": [
+        "What's this? It's a pen.",
+        "It's my teddy.",
+        "It's your doll."
+      ]
+    }
+  ],
+  "audioNotes": "Nên thu âm người thật cho: các audioModels phần speaking và audioText câu hỏi reading. Đặc biệt mẫu phonics initial /æ/ (apple, ant), /b/ (ball, bag), /k/ (cat, cup, kite, key), /e/ (egg, elephant), /f/ (fish, fox) — vì TTS dễ đọc thành TÊN CHỮ CÁI (\"ây\", \"bi\", \"xi\", \"kây\", \"i\", \"ép\") thay vì ÂM. Loa chỉ nên đọc TỪ TRỌN VẸN, không đọc rời chữ cái. Lưu ý \"kite\" và \"key\" đều bắt đầu bằng âm /k/ giống \"cat\" — gắn với vocab \"kite\" và phonics \"ball\"/\"bag\" gắn với vocab \"ball\", \"bag\". Hai câu mẫu grammar \"What's this? It's a pen.\" và \"It's my bag.\" cũng nên có audio chuẩn để bé bắt chước ngữ điệu câu hỏi và câu trả lời."
+}

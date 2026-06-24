@@ -1,0 +1,179 @@
+{
+  "schemaVersion": "v1",
+  "level": 1,
+  "unit": 102,
+  "lesson": 2,
+  "topic": "Body and people",
+  "topic_vi": "Cơ thể & con người",
+  "sourceUnits": ["unit03.json", "unit07.json", "unit04.json"],
+  "vocab": [
+    { "word": "head", "vi": "đầu", "icon": "🧑", "example": "This is my head.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "hand", "vi": "bàn tay", "icon": "✋", "example": "This is my hand.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "eye", "vi": "mắt", "icon": "👁️", "example": "This is my eye.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "leg", "vi": "chân (cẳng chân)", "icon": "🦵", "example": "This is my leg.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "T-shirt", "vi": "áo phông", "icon": "👕", "example": "It's a T-shirt.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "hat", "vi": "cái mũ", "icon": "👒", "example": "It's a hat.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "dress", "vi": "váy liền", "icon": "👗", "example": "It's a dress.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "shoes", "vi": "đôi giày", "icon": "👟", "example": "These are my shoes.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "teacher", "vi": "giáo viên", "icon": "🧑‍🏫", "example": "She's a teacher.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "doctor", "vi": "bác sĩ", "icon": "🧑‍⚕️", "example": "He's a doctor.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "farmer", "vi": "nông dân", "icon": "🧑‍🌾", "example": "He's a farmer.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "nurse", "vi": "y tá", "icon": "💉", "example": "She's a nurse.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "this-is-these-are",
+      "title_vi": "\"This is my...\" và \"These are my...\"",
+      "explain_vi": "Khi chỉ MỘT thứ (một bộ phận hay một món đồ), em nói \"This is my ...\". Khi có HAI hay nhiều thứ giống nhau, em nói \"These are my ...\" và thêm \"-s\" vào sau từ: hand → hands, eye → eyes. Riêng \"shoes\" (giày) luôn đi thành đôi nên luôn dùng \"These are my shoes.\".",
+      "examples": [
+        "This is my head.",
+        "This is my hat.",
+        "These are my eyes.",
+        "These are my shoes."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "this-is-singular", "text": "This is my {noun}.", "blanks": ["noun"], "context_vi": "Chỉ vào MỘT thứ (một bộ phận hoặc một món đồ).", "audioText": "This is my head." },
+          { "id": "these-are-plural", "text": "These are my {noun_pl}.", "blanks": ["noun_pl"], "context_vi": "Chỉ vào HAI (hoặc nhiều) thứ giống nhau.", "audioText": "These are my shoes." },
+          { "id": "choose-this-these", "text": "{dem} my {noun_any}.", "blanks": ["dem"], "context_vi": "Chọn \"This is\" hoặc \"These are\" cho đúng với số ít/số nhiều.", "audioText": "These are my eyes." }
+        ],
+        "slots": {
+          "noun": ["head", "hand", "leg", "eye", "T-shirt", "hat", "dress"],
+          "noun_pl": ["hands", "legs", "eyes", "shoes"],
+          "noun_any": ["head", "hand", "leg", "eye", "T-shirt", "hat", "dress", "hands", "legs", "eyes", "shoes"],
+          "dem": ["This is", "These are"]
+        },
+        "answerKey": {
+          "choose-this-these": {
+            "dem": {
+              "head": "This is",
+              "hand": "This is",
+              "leg": "This is",
+              "eye": "This is",
+              "T-shirt": "This is",
+              "hat": "This is",
+              "dress": "This is",
+              "hands": "These are",
+              "legs": "These are",
+              "eyes": "These are",
+              "shoes": "These are"
+            }
+          }
+        },
+        "distractors": [
+          "This is my eyes.",
+          "These are my hat.",
+          "This are my head.",
+          "These is my shoes.",
+          "This is my hands.",
+          "These are my leg."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "he-she-is-a-job",
+      "title_vi": "\"He's a...\" / \"She's a...\" (nghề nghiệp)",
+      "explain_vi": "Khi nói về một bạn nam làm nghề gì, em dùng \"He's a...\" (Anh ấy là...). Khi nói về một bạn nữ, em dùng \"She's a...\" (Chị ấy là...). Rồi nói tên nghề. Các tên nghề trong bài đều dùng \"a\" (a teacher, a doctor, a farmer, a nurse) vì không bắt đầu bằng nguyên âm — đây cũng là phần ôn lại \"a/an\" đã học ở bài trước.",
+      "examples": [
+        "He's a doctor.",
+        "She's a teacher.",
+        "He's a farmer.",
+        "She's a nurse."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "he-is-a-job", "text": "{subj}'s {art} {noun}.", "blanks": ["subj"], "context_vi": "Nói về một bạn NAM (he) làm nghề gì.", "audioText": "He's a doctor." },
+          { "id": "she-is-a-job", "text": "{subj}'s {art} {noun}.", "blanks": ["subj"], "context_vi": "Nói về một bạn NỮ (she) làm nghề gì.", "audioText": "She's a teacher." }
+        ],
+        "slots": {
+          "subj": ["He", "She"],
+          "art": ["a"],
+          "noun": ["teacher", "doctor", "farmer", "nurse"]
+        },
+        "answerKey": {
+          "he-is-a-job": { "subj": "He" },
+          "she-is-a-job": { "subj": "She" }
+        },
+        "distractors": [
+          "He's teacher.",
+          "She a teacher.",
+          "He's an doctor.",
+          "She's the teacher.",
+          "He teacher.",
+          "He is a teacher ."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["sh", "h", "d"],
+    "soundLabels": {
+      "sh": { "ipa": "/ʃ/", "anchor": "shoe", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"shoe\" là /ʃ/ (giống ra hiệu im lặng \"suỵt\", không phải âm \"s\") — đây là âm MỚI của bài này" },
+      "h": { "ipa": "/h/", "anchor": "hat", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"hat\" là /h/ (hơi thở nhẹ ra, không đọc tên chữ \"hếch\") — phần ÔN âm phụ âm đầu" },
+      "d": { "ipa": "/d/", "anchor": "doctor", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"doctor\" là /d/ (đầu lưỡi chạm lợi trên rồi bật ra, không đọc tên chữ \"đi\") — ÔN lại /d/ đã học ở Bài 1 (dog)" }
+    },
+    "words": [
+      { "word": "shoe", "icon": "👞", "focusSound": "sh", "position": "initial", "anchor": "shoe", "audio": "" },
+      { "word": "shop", "icon": "🏪", "focusSound": "sh", "position": "initial", "anchor": "shoe", "audio": "" },
+      { "word": "ship", "icon": "🚢", "focusSound": "sh", "position": "initial", "anchor": "shoe", "audio": "" },
+      { "word": "hat", "icon": "👒", "focusSound": "h", "position": "initial", "anchor": "hat", "audio": "" },
+      { "word": "hand", "icon": "✋", "focusSound": "h", "position": "initial", "anchor": "hat", "audio": "" },
+      { "word": "doctor", "icon": "🧑‍⚕️", "focusSound": "d", "position": "initial", "anchor": "doctor", "audio": "" },
+      { "word": "dress", "icon": "👗", "focusSound": "d", "position": "initial", "anchor": "doctor", "audio": "" }
+    ],
+    "audio": null,
+    "reviewNote_vi": "Âm /ʃ/ (chữ \"sh\") là âm MỚI của bài này. Âm /h/ (hat, hand) và /d/ (doctor, dress) là phần ÔN lại các âm phụ âm đầu đã gặp — Bài 1 đã học /d/ với \"dog\". Nhắc bé so sánh /d/ trong \"doctor, dress\" với /d/ trong \"dog\", và phân biệt /ʃ/ \"sh\" với âm \"s\"."
+  },
+  "reading": [
+    {
+      "id": "this-is-me",
+      "title": "This is me",
+      "title_vi": "Đây là em",
+      "text": "Look at me. This is my hat. These are my eyes. These are my shoes. This is my mum. She's a teacher. My dad is a farmer.",
+      "questions": [
+        { "id": "q1", "q_vi": "Bạn nhỏ có một cái mũ, đúng không?", "type": "truefalse", "answer": true, "audioText": "This is my hat." },
+        { "id": "q2", "q_vi": "Mẹ của bạn nhỏ làm nghề gì?", "type": "mcq", "choices": ["a teacher", "a nurse", "a doctor"], "answer": 0, "audioText": "What is the mum?" },
+        { "id": "q3", "q_vi": "Câu nào nói về NHIỀU thứ (số nhiều)?", "type": "mcq", "choices": ["These are my eyes.", "This is my head.", "This is my hat."], "answer": 0, "audioText": "Which one is about more than one?" },
+        { "id": "q4", "q_vi": "Bố của bạn nhỏ là bác sĩ, đúng không?", "type": "truefalse", "answer": false, "audioText": "The dad is a doctor." }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "point-and-say",
+      "title_vi": "Chỉ và nói về cơ thể, đồ của em",
+      "prompt_vi": "Em hãy chỉ vào người mình và nói to. Dùng \"This is my ...\" khi chỉ MỘT thứ, và \"These are my ...\" khi chỉ NHIỀU thứ giống nhau. Nhớ \"shoes\" (giày) luôn đi thành đôi nên luôn dùng \"These are my shoes.\".",
+      "sentenceFrames": [
+        "This is my ___.",
+        "These are my ___."
+      ],
+      "audioModels": [
+        "This is my hat.",
+        "This is my head.",
+        "These are my eyes.",
+        "These are my shoes."
+      ]
+    },
+    {
+      "id": "my-family-job",
+      "title_vi": "Giới thiệu người thân và nghề của họ",
+      "prompt_vi": "Em hãy giới thiệu mẹ hoặc bố của em rồi nói nghề của họ. Nói câu đầu \"This is my mum.\" hoặc \"This is my dad.\", rồi câu sau dùng \"She's a ...\" cho mẹ hoặc \"He's a ...\" cho bố.",
+      "sentenceFrames": [
+        "This is my mum. She's a ___.",
+        "This is my dad. He's a ___."
+      ],
+      "audioModels": [
+        "This is my mum. She's a teacher.",
+        "This is my dad. He's a farmer.",
+        "This is my mum. She's a nurse.",
+        "This is my dad. He's a doctor."
+      ]
+    }
+  ],
+  "audioNotes": "Nên thu âm người thật cho: các câu mẫu phonics initial /ʃ/ là chữ \"sh\" (shoe, shop, ship), /h/ (hat, hand) và /d/ (doctor, dress) vì TTS hay đọc lẫn thành tên chữ cái hoặc nhầm \"sh\" với \"s\"; audioText các câu hỏi reading; các câu mẫu grammar \"This is my...\", \"These are my...\", \"He's a...\", \"She's a...\" và các audioModels phần speaking — đặc biệt cặp câu \"This is my mum. She's a teacher.\" để bé bắt chước ngữ điệu chuẩn. Lưu ý đọc \"shoes\" ở dạng số nhiều (không đọc \"a shoe\") khi nói về đi giày."
+}

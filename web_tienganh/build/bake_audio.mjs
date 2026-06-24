@@ -111,6 +111,10 @@ function collectTextsFromUnit(u) {
     add(r.text);
     (r.questions || []).forEach(q => { add(q.audioText); (q.choices || []).forEach(add); });
   });
+  // bài lớn: phần "nói" — chỉ bake audioModels (câu mẫu hoàn chỉnh), KHÔNG bake sentenceFrames (có chỗ trống ___)
+  (u.speaking || []).forEach(t => { (t.audioModels || []).forEach(add); });
+  // recognition (vd Bài 5 can/can't làm quen): nếu có examples
+  if (u.recognition && Array.isArray(u.recognition.examples)) u.recognition.examples.forEach(add);
   return Array.from(set);
 }
 
@@ -129,7 +133,12 @@ async function bakeLevel(level, voice, kbps) {
   const dir = path.join(CONTENT, 'level' + level);
   const idx = JSON.parse(fs.readFileSync(path.join(dir, 'index.json'), 'utf8'));
   const files = (idx.units || []).map(u => u.file);
-  // gom toàn bộ text duy nhất
+  return bakeFiles(level, files, voice, kbps);
+}
+
+// Bake từ danh sách file cụ thể trong content/level{level}/ (vd các lesson0N.json).
+async function bakeFiles(level, files, voice, kbps) {
+  const dir = path.join(CONTENT, 'level' + level);
   const texts = new Set();
   for (const f of files) {
     const u = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
@@ -182,5 +191,14 @@ if (args.includes('--selftest')) {
   const voice = arg('--voice', 'en_GB-alba-medium');
   const kbps = parseInt(arg('--kbps', '56'), 10);
   const res = await bakeLevel(level, voice, kbps);
+  console.log(JSON.stringify(res));
+} else if (args.includes('--lessons')) {
+  // Bake các bài lớn lesson0N.json (chỉ synth text MỚI, bỏ qua file đã có theo key).
+  const level = parseInt(arg('--level', '1'), 10);
+  const voice = arg('--voice', 'en_GB-alba-medium');
+  const kbps = parseInt(arg('--kbps', '56'), 10);
+  const n = parseInt(arg('--n', '5'), 10);
+  const files = []; for (let i = 1; i <= n; i++) files.push('lesson0' + i + '.json');
+  const res = await bakeFiles(level, files, voice, kbps);
   console.log(JSON.stringify(res));
 }
