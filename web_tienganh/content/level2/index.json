@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "v1",
+  "level": 2,
+  "units": [],
+  "lessons": [
+    { "lesson": 1, "unit": 201, "file": "lesson01.json", "topic_vi": "Trường lớp & thời gian biểu", "icon": "🕐", "pal": "sun",   "sub": "Thói quen · thời gian · ngôi thứ 3 (+s)" },
+    { "lesson": 2, "unit": 202, "file": "lesson02.json", "topic_vi": "Sở thích & việc đang làm",     "icon": "🎨", "pal": "sky",   "sub": "Đang làm gì (V-ing) · like/love" },
+    { "lesson": 3, "unit": 203, "file": "lesson03.json", "topic_vi": "Đồ ăn & số lượng",             "icon": "🍞", "pal": "mint",  "sub": "some/any · How many?" },
+    { "lesson": 4, "unit": 204, "file": "lesson04.json", "topic_vi": "Nơi chốn & chỉ đường",         "icon": "🧭", "pal": "coral", "sub": "in/on/under · there is/are · chỉ đường" },
+    { "lesson": 5, "unit": 205, "file": "lesson05.json", "topic_vi": "Kể chuyện & quá khứ đơn",      "icon": "📅", "pal": "grape", "sub": "was/were · -ed · kể chuyện" }
+  ]
+}

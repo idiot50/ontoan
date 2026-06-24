@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "v1",
+  "level": 2,
+  "unit": 202,
+  "lesson": 2,
+  "topic": "Hobbies and what we are doing now",
+  "topic_vi": "Sở thích & việc đang làm",
+  "vocab": [
+    { "word": "running", "vi": "(đang) chạy", "icon": "🏃", "example": "Look! She's running.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "jumping", "vi": "(đang) nhảy lên", "icon": "🤸", "example": "The boy is jumping.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "painting", "vi": "(đang) vẽ tô màu", "icon": "🎨", "example": "I'm painting a big sun.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "singing", "vi": "(đang) hát", "icon": "🎤", "example": "We're singing a happy song.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "dancing", "vi": "(đang) nhảy múa", "icon": "💃", "example": "She loves dancing.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "reading", "vi": "(đang) đọc sách", "icon": "📖", "example": "He's reading a book.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "playing", "vi": "(đang) chơi", "icon": "⚽", "example": "They're playing football.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "swimming", "vi": "(đang) bơi", "icon": "🏊", "example": "I like swimming.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "drawing", "vi": "(đang) vẽ hình", "icon": "✏️", "example": "She's drawing a cat.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "riding", "vi": "(đang) đạp/cưỡi", "icon": "🚲", "example": "He's riding a bike.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "clapping", "vi": "(đang) vỗ tay", "icon": "👏", "example": "We're clapping our hands.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "kicking", "vi": "(đang) đá (bóng)", "icon": "🦵", "example": "Tom is kicking the ball.", "partOfSpeech": "verb", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "present-continuous-now",
+      "title_vi": "Việc ĐANG diễn ra: \"be + V-ing\" (am / is / are + động từ-ing)",
+      "explain_vi": "Khi nói một việc ĐANG xảy ra ngay lúc này, em dùng \"am / is / are\" rồi thêm động từ có đuôi \"-ing\". Với \"I\" dùng \"am\" (I'm); với \"he / she / it\" dùng \"is\" (he's, she's, it's); với \"we / you / they\" dùng \"are\" (we're, they're). Ví dụ: \"I'm running.\", \"She's painting.\", \"They're playing.\". Muốn hỏi thì nói \"What are you doing?\" rồi trả lời \"I'm ...\".",
+      "examples": [
+        "I'm running.",
+        "She's painting.",
+        "They're playing.",
+        "What are you doing? I'm reading."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-am-ving", "text": "I'm {ving}.", "blanks": ["ving"], "context_vi": "Tự nói việc EM đang làm ngay bây giờ.", "audioText": "I'm running." },
+          { "id": "she-is-ving", "text": "She's {ving}.", "blanks": ["ving"], "context_vi": "Nói việc một bạn nữ đang làm.", "audioText": "She's painting." },
+          { "id": "they-are-ving", "text": "They're {ving}.", "blanks": ["ving"], "context_vi": "Nói việc nhiều người đang làm.", "audioText": "They're playing." },
+          { "id": "choose-be", "text": "{subj} {be} {ving}.", "blanks": ["be"], "context_vi": "Chọn đúng \"am / is / are\" theo chủ ngữ (I → am, She/He → is, We/They → are).", "audioText": "She is dancing." }
+        ],
+        "slots": {
+          "ving": ["running", "jumping", "painting", "singing", "dancing", "reading", "playing", "swimming", "drawing", "clapping"],
+          "subj": ["I", "She", "He", "We", "They"],
+          "be": ["am", "is", "are"]
+        },
+        "answerKey": {
+          "choose-be": {
+            "be": { "__cond": "subj", "I": "am", "She": "is", "He": "is", "We": "are", "They": "are" }
+          }
+        },
+        "distractors": [
+          "I'm run.",
+          "She're painting.",
+          "She painting.",
+          "They's playing.",
+          "He are reading.",
+          "I running.",
+          "I is running.",
+          "They is playing."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "like-love-ving",
+      "title_vi": "Nói sở thích: \"like / love + V-ing\"",
+      "explain_vi": "Để nói em THÍCH làm gì, dùng \"like\" rồi thêm động từ có đuôi \"-ing\": \"I like reading.\". Nếu rất thích thì dùng \"love\": \"I love dancing.\". Với \"he / she\" thêm \"s\" vào like/love: \"She likes singing.\", \"He loves swimming.\".",
+      "examples": [
+        "I like reading.",
+        "I love dancing.",
+        "She likes singing.",
+        "He loves swimming."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-like-ving", "text": "I {verb} {ving}.", "blanks": ["ving"], "context_vi": "Nói một việc EM thích làm.", "audioText": "I like reading." },
+          { "id": "i-love-ving", "text": "I love {ving}.", "blanks": ["ving"], "context_vi": "Nói một việc EM rất thích.", "audioText": "I love dancing." },
+          { "id": "she-likes-ving", "text": "She {verb3} {ving}.", "blanks": ["verb3"], "context_vi": "Chọn đúng dạng \"likes / loves\" cho \"she\".", "audioText": "She likes singing." }
+        ],
+        "slots": {
+          "verb": ["like", "love"],
+          "verb3": ["likes", "loves"],
+          "ving": ["reading", "dancing", "singing", "swimming", "painting", "drawing", "running", "playing", "jumping", "clapping", "kicking"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "I like read.",
+          "She like singing.",
+          "I likes dancing.",
+          "She likes sing.",
+          "I love to dancing.",
+          "He love swimming."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "medial",
+    "focus": ["ee", "oo", "dr"],
+    "soundLabels": {
+      "ee": { "ipa": "/iː/", "anchor": "green", "position": "medial", "say_vi": "âm dài Ở GIỮA từ \"green\" là /iː/ — kéo dài chữ \"i\" (không đọc nhanh như \"i\" ngắn)" },
+      "oo": { "ipa": "/uː/", "anchor": "moon", "position": "medial", "say_vi": "âm dài Ở GIỮA từ \"moon\" là /uː/ — kéo dài chữ \"u\" (môi tròn, đọc dài)" },
+      "dr": { "ipa": "/dr/", "anchor": "drum", "position": "initial", "say_vi": "âm GHÉP BẮT ĐẦU từ \"drum\" là /dr/ (đọc liền hai âm d và r, không tách rời)" }
+    },
+    "words": [
+      { "word": "green", "icon": "🟢", "focusSound": "ee", "anchor": "green", "position": "medial", "audio": "" },
+      { "word": "tree", "icon": "🌳", "focusSound": "ee", "anchor": "green", "position": "medial", "audio": "" },
+      { "word": "feet", "icon": "🦶", "focusSound": "ee", "anchor": "green", "position": "medial", "audio": "" },
+      { "word": "moon", "icon": "🌙", "focusSound": "oo", "anchor": "moon", "position": "medial", "audio": "" },
+      { "word": "zoo", "icon": "🦁", "focusSound": "oo", "anchor": "moon", "position": "medial", "audio": "" },
+      { "word": "food", "icon": "🍲", "focusSound": "oo", "anchor": "moon", "position": "medial", "audio": "" },
+      { "word": "drum", "icon": "🥁", "focusSound": "dr", "anchor": "drum", "position": "initial", "audio": "" },
+      { "word": "draw", "icon": "✏️", "focusSound": "dr", "anchor": "drum", "position": "initial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "in-the-park-today",
+      "title": "In the park today",
+      "title_vi": "Ở công viên hôm nay",
+      "text": "It's a sunny day. We are in the park. My brother is playing football with his friends. My sister is riding her bike. Mum is reading a book under a tree. I'm drawing a big green star. I love drawing! Everyone is happy today.",
+      "teacherNote_vi": "Đoạn dùng present continuous (be + V-ing) cho việc đang diễn ra và một câu \"I love drawing!\" cho sở thích. Từ vựng controlled: playing, riding, reading, drawing đều có trong vocab; \"green\", \"tree\" và \"drawing\" nối với phần phonics (âm dài /iː/ trong green/tree và cụm /dr/ trong drawing). Đoạn gồm 8 câu (theo . ! ?), vừa ngưỡng 6-8.",
+      "questions": [
+        { "id": "q1", "q_vi": "Hôm nay trời nắng, đúng không?", "type": "truefalse", "answer": true, "audioText": "It's a sunny day." },
+        { "id": "q2", "q_vi": "Anh trai đang làm gì?", "type": "mcq", "choices": ["playing football", "reading a book", "riding a bike"], "answer": 0, "audioText": "What is the brother doing?" },
+        { "id": "q3", "q_vi": "Mẹ đang làm gì?", "type": "mcq", "choices": ["drawing a star", "reading a book", "riding a bike"], "answer": 1, "audioText": "What is Mum doing?" },
+        { "id": "q4", "q_vi": "Bạn nhỏ (người kể) thích làm gì?", "type": "mcq", "choices": ["drawing", "swimming", "singing"], "answer": 0, "audioText": "What does the child love?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "what-are-you-doing",
+      "title_vi": "Nói việc em đang làm",
+      "prompt_vi": "Làm động tác (giả vờ chạy, vẽ, hát...) rồi tự hỏi và trả lời. Em hãy nói thật về việc em đang làm nhé.",
+      "sentenceFrames": [
+        "What are you doing?",
+        "I'm ___.",
+        "She's ___."
+      ],
+      "audioModels": [
+        "What are you doing? I'm running.",
+        "She's painting.",
+        "They're playing."
+      ]
+    },
+    {
+      "id": "i-like-i-love",
+      "title_vi": "Nói sở thích của em",
+      "prompt_vi": "Nói cho cô và các bạn biết em thích và rất thích làm gì. Điền hoạt động em thật sự thích vào chỗ trống.",
+      "sentenceFrames": [
+        "I like ___.",
+        "I love ___.",
+        "My friend likes ___."
+      ],
+      "audioModels": [
+        "I like reading.",
+        "I love dancing.",
+        "My friend likes swimming."
+      ]
+    }
+  ],
+  "audioNotes": "Nên thu âm người thật cho: audioModels phần speaking và audioText câu hỏi reading. ĐẶC BIỆT phonics lần này tập trung NGUYÊN ÂM DÀI Ở GIỮA: green, tree, feet (ee /iː/) và moon, zoo, food (oo /uː/) — TTS hay đọc thành nguyên âm NGẮN; loa phải kéo dài rõ /iː/, /uː/. Cụm phụ âm đầu /dr/ trong drum, draw cần đọc liền hai âm d-r, không chèn nguyên âm (tránh \"đơ-ram\"). Các động từ -ing (running, singing, swimming, drawing, clapping) cần đọc rõ đuôi /ɪŋ/. Hai câu mẫu grammar \"What are you doing? I'm running.\" và \"I love dancing.\" nên có audio chuẩn để bé bắt chước ngữ điệu câu hỏi và câu nói sở thích. Lưu ý phonics dùng position hỗn hợp: ee/oo là MEDIAL, dr là INITIAL (đã ghi position riêng ở từng từ)."
+}

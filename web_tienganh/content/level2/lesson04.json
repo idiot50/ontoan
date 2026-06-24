@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "v1",
+  "level": 2,
+  "unit": 204,
+  "lesson": 4,
+  "topic": "Places and directions",
+  "topic_vi": "Nơi chốn & chỉ đường",
+  "vocab": [
+    { "word": "bedroom", "vi": "phòng ngủ", "icon": "🛏️", "example": "There is a bed in my bedroom.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "table", "vi": "cái bàn", "icon": "🪑", "example": "The lamp is on the table.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "shelf", "vi": "cái kệ", "icon": "📚", "example": "There are five books on the shelf.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "box", "vi": "cái hộp", "icon": "📦", "example": "The cat is in the box.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "lamp", "vi": "cái đèn", "icon": "💡", "example": "The lamp is next to the bed.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "clock", "vi": "cái đồng hồ", "icon": "🕐", "example": "There is a clock on the wall.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "park", "vi": "công viên", "icon": "🌳", "example": "There are three trees in the park.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "shop", "vi": "cửa hàng", "icon": "🏪", "example": "The shop is next to the park.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "school", "vi": "trường học", "icon": "🏫", "example": "My school is behind the park.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "street", "vi": "con phố", "icon": "🛣️", "example": "There are two shops on my street.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "bridge", "vi": "cây cầu", "icon": "🌉", "example": "Go over the bridge.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "tree", "vi": "cái cây", "icon": "🌲", "example": "The bird is in the tree.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "prepositions-of-place",
+      "title_vi": "Giới từ chỉ nơi chốn: in / on / under / next to / behind",
+      "explain_vi": "Để nói một vật ở ĐÂU, em dùng các từ chỉ vị trí: \"in\" (ở trong), \"on\" (ở trên bề mặt), \"under\" (ở dưới), \"next to\" (ở bên cạnh), \"behind\" (ở phía sau). Mẫu câu: tên đồ vật + \"is\" + từ chỉ vị trí + nơi chốn. Ví dụ: \"The cat is under the table.\".",
+      "examples": [
+        "The cat is in the box.",
+        "The lamp is on the table.",
+        "The ball is under the bed.",
+        "The lamp is next to the clock.",
+        "The school is behind the park."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "thing-is-prep-place-in", "text": "The {thing} is {prep} the box.", "blanks": ["prep"], "context_vi": "Đồ vật ở BÊN TRONG cái hộp.", "audioText": "The cat is in the box." },
+          { "id": "thing-is-prep-place-on", "text": "The {thing} is {prep} the table.", "blanks": ["prep"], "context_vi": "Đồ vật ở TRÊN mặt bàn.", "audioText": "The lamp is on the table." },
+          { "id": "thing-is-prep-place-under", "text": "The {thing} is {prep} the bed.", "blanks": ["prep"], "context_vi": "Đồ vật ở PHÍA DƯỚI giường.", "audioText": "The ball is under the bed." },
+          { "id": "thing-is-prep-place-behind", "text": "The {thing} is {prep} the park.", "blanks": ["prep"], "context_vi": "Nơi chốn ở PHÍA SAU công viên.", "audioText": "The school is behind the park." },
+          { "id": "thing-is-prep-place-nextto", "text": "The {thing} is {prep} the shop.", "blanks": ["prep"], "context_vi": "Nơi chốn ở BÊN CẠNH cửa hàng.", "audioText": "The school is next to the shop." }
+        ],
+        "slots": {
+          "thing": ["cat", "lamp", "ball", "clock", "school", "shop"],
+          "prep": ["in", "on", "under", "next to", "behind"]
+        },
+        "answerKey": {
+          "thing-is-prep-place-in": { "prep": "in" },
+          "thing-is-prep-place-on": { "prep": "on" },
+          "thing-is-prep-place-under": { "prep": "under" },
+          "thing-is-prep-place-behind": { "prep": "behind" },
+          "thing-is-prep-place-nextto": { "prep": "next to" }
+        },
+        "distractors": [
+          "The cat is on box.",
+          "The cat in the box.",
+          "The lamp is the table.",
+          "The cat is next the shop.",
+          "The school is behind park."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "there-is-there-are",
+      "title_vi": "There is / There are và chỉ đường nhẹ (Go..., Turn...)",
+      "explain_vi": "Khi nói có CÁI GÌ ở đâu đó: một thứ thì dùng \"There is\" (viết tắt \"There's\"); hai thứ trở lên thì dùng \"There are\". Ví dụ: \"There is a shop.\" / \"There are two shops.\". Khi chỉ đường cho ai đó, em dùng câu mệnh lệnh nhẹ nhàng, bắt đầu bằng động từ: \"Go straight.\" (đi thẳng), \"Turn left.\" (rẽ trái), \"Turn right.\" (rẽ phải).",
+      "examples": [
+        "There is a park on my street.",
+        "There are two shops next to the school.",
+        "There are three trees in the park.",
+        "Go straight to the bridge.",
+        "Turn left at the shop."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "there-be-singular", "text": "There {be} a {noun} on my street.", "blanks": ["be"], "context_vi": "Chỉ có MỘT thứ, nên chọn dạng số ít.", "audioText": "There is a shop on my street." },
+          { "id": "there-be-plural", "text": "There {be} two {noun} on my street.", "blanks": ["be"], "context_vi": "Có HAI thứ, nên chọn dạng số nhiều.", "audioText": "There are two shops on my street." },
+          { "id": "give-direction", "text": "{dir} at the {place}.", "blanks": ["dir"], "context_vi": "Chỉ đường: ghép một cách đi/rẽ vào đầu câu mệnh lệnh. Cách nào cũng đúng, miễn đứng đầu câu.", "audioText": "Turn left at the shop." }
+        ],
+        "slots": {
+          "be": ["is", "are"],
+          "noun": ["shop", "park"],
+          "dir": ["Go straight", "Turn left", "Turn right"],
+          "place": ["shop", "park", "school", "bridge"]
+        },
+        "answerKey": {
+          "there-be-singular": { "be": "is" },
+          "there-be-plural": { "be": "are" }
+        },
+        "distractors": [
+          "There are a shop on my street.",
+          "There is two shops on my street.",
+          "There be a park on my street.",
+          "Turn at the shop left.",
+          "Go straight the bridge."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["st", "br", "gr", "fl", "tr"],
+    "soundLabels": {
+      "st": { "ipa": "/st/", "anchor": "street", "position": "initial", "say_vi": "âm GHÉP đầu từ \"street\" là /st/ — đọc liền hai âm /s/ và /t/ (không tách rời, không chèn nguyên âm)" },
+      "br": { "ipa": "/br/", "anchor": "bridge", "position": "initial", "say_vi": "âm GHÉP đầu từ \"bridge\" là /br/ — đọc liền hai âm /b/ và /r/" },
+      "gr": { "ipa": "/gr/", "anchor": "ground", "position": "initial", "say_vi": "âm GHÉP đầu từ \"ground\" là /gr/ — đọc liền hai âm /g/ và /r/" },
+      "fl": { "ipa": "/fl/", "anchor": "floor", "position": "initial", "say_vi": "âm GHÉP đầu từ \"floor\" là /fl/ — đọc liền hai âm /f/ và /l/" },
+      "tr": { "ipa": "/tr/", "anchor": "tree", "position": "initial", "say_vi": "âm GHÉP đầu từ \"tree\" là /tr/ — đọc liền hai âm /t/ và /r/" }
+    },
+    "words": [
+      { "word": "street", "icon": "🛣️", "focusSound": "st", "anchor": "street", "position": "initial", "audio": "" },
+      { "word": "station", "icon": "🚉", "focusSound": "st", "anchor": "street", "position": "initial", "audio": "" },
+      { "word": "bridge", "icon": "🌉", "focusSound": "br", "anchor": "bridge", "position": "initial", "audio": "" },
+      { "word": "ground", "icon": "🟫", "focusSound": "gr", "anchor": "ground", "position": "initial", "audio": "" },
+      { "word": "grass", "icon": "🌱", "focusSound": "gr", "anchor": "ground", "position": "initial", "audio": "" },
+      { "word": "floor", "icon": "🪵", "focusSound": "fl", "anchor": "floor", "position": "initial", "audio": "" },
+      { "word": "tree", "icon": "🌲", "focusSound": "tr", "anchor": "tree", "position": "initial", "audio": "" },
+      { "word": "train", "icon": "🚆", "focusSound": "tr", "anchor": "tree", "position": "initial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "my-little-town",
+      "title": "My little town",
+      "title_vi": "Thị trấn nhỏ của em",
+      "text": "This is my street. There is a small park next to my house. There are three big trees in the park. The shop is behind the park. The school is next to the shop, too. Go straight and turn left at the park. There is a long bridge over the river.",
+      "teacherNote_vi": "Đoạn 7 câu (theo dấu . ! ?). Ôn lại \"There is / There are\" và giới từ nơi chốn (next to, in, behind), lồng câu chỉ đường \"Go straight and turn left\". Các từ \"street\", \"tree\", \"bridge\" gắn với phần phonics blend đầu mới (st/tr/br). \"river\" là từ i+1 (thêm một chút mới), suy được nghĩa nhờ tranh và \"bridge\". Các từ còn lại đều trong vocab hoặc đã học ở Level 1.",
+      "questions": [
+        { "id": "q1", "q_vi": "Công viên ở bên cạnh nhà bạn nhỏ, đúng không?", "type": "truefalse", "answer": true, "audioText": "The park is next to the house." },
+        { "id": "q2", "q_vi": "Trong công viên có mấy cái cây?", "type": "mcq", "choices": ["one tree", "two trees", "three trees"], "answer": 2, "audioText": "How many trees are there in the park?" },
+        { "id": "q3", "q_vi": "Cửa hàng ở đâu?", "type": "mcq", "choices": ["behind the park", "in the park", "under the park"], "answer": 0, "audioText": "Where is the shop?" },
+        { "id": "q4", "q_vi": "Khi chỉ đường, em rẽ hướng nào ở công viên?", "type": "mcq", "choices": ["turn left", "turn right", "go back"], "answer": 0, "audioText": "Which way do you turn at the park?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "where-is-it",
+      "title_vi": "Nói một vật ở đâu",
+      "prompt_vi": "Nhìn quanh phòng em. Chọn một đồ vật và nói nó ở đâu, dùng in / on / under / next to / behind nhé.",
+      "sentenceFrames": [
+        "The ___ is on the ___.",
+        "The ___ is under the ___.",
+        "The ___ is next to the ___."
+      ],
+      "audioModels": [
+        "The lamp is on the table.",
+        "The ball is under the bed.",
+        "The clock is next to the shelf."
+      ]
+    },
+    {
+      "id": "give-me-directions",
+      "title_vi": "Chỉ đường cho bạn",
+      "prompt_vi": "Hãy chỉ đường cho bạn đến một nơi gần nhà em. Dùng \"There is / There are\" để tả, và \"Go straight\", \"Turn left\", \"Turn right\" để chỉ đường.",
+      "sentenceFrames": [
+        "There is a ___ on my street.",
+        "Go straight to the ___.",
+        "Turn left at the ___."
+      ],
+      "audioModels": [
+        "There is a park on my street.",
+        "Go straight to the bridge.",
+        "Turn left at the shop."
+      ]
+    }
+  ],
+  "audioNotes": "Nên thu âm người thật cho các audioModels phần speaking và audioText câu hỏi reading. ĐẶC BIỆT phần phonics blend phụ âm đầu /st/ (street, station), /br/ (bridge), /gr/ (ground, grass), /fl/ (floor), /tr/ (tree, train) — TTS dễ tách rời hai phụ âm hoặc chèn nguyên âm vào giữa; loa cần đọc TỪ TRỌN VẸN với âm ghép đọc LIỀN, không tách. Các blend này khác Bài 3 (Bài 3 dùng bl/cl) và đều gắn với từ chỉ nơi chốn/thành phố nhỏ. Hai câu mẫu grammar \"There is a shop on my street.\" / \"There are two shops on my street.\" cần audio chuẩn để bé nghe rõ khác biệt is/are. Các câu chỉ đường \"Go straight.\", \"Turn left.\", \"Turn right.\" nên thu với ngữ điệu mệnh lệnh nhẹ, rõ ràng — engine luân phiên cả ba khi luyện điền chỗ trống nên cả ba đều cần audio."
+}

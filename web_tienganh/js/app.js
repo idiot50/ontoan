@@ -26,13 +26,19 @@
   /* ===================== TRẠNG THÁI PHIÊN ===================== */
   var state = {
     childId: null,
-    levelIndex: null,      // index.json của level1
-    units: {},             // unit number -> unit JSON đã nạp
+    level: loadLevel(),    // cấp độ đang chọn (1/2/3)
+    levelIndex: null,      // index.json của level ĐANG chọn
+    levelIndexCache: {},   // level -> index.json (cache)
+    units: {},             // unit number -> unit JSON đã nạp (unit id toàn cục, không trùng giữa level)
     mastery: null,         // cache getMastery
     currentUnit: null,     // unit number đang ở
     stagesThisSession: 0,  // đếm chặng để gợi nghỉ
     settings: loadSettings()
   };
+  function loadLevel() { try { var v = parseInt(localStorage.getItem('pi_level'), 10); return (v === 2 || v === 3) ? v : 1; } catch (e) { return 1; } }
+  function saveLevel(lv) { try { localStorage.setItem('pi_level', String(lv)); } catch (e) {} }
+  // Suy FOLDER-LEVEL từ unit id: 0–15 & 101–105 = Level 1; 201–205 = L2; 301–305 = L3.
+  function levelOfUnit(u) { return u >= 300 ? 3 : u >= 200 ? 2 : 1; }
 
   /* ===================== DOM TIỆN ÍCH ===================== */
   function $(sel, root) { return (root || document).querySelector(sel); }
@@ -185,18 +191,26 @@
         throw new Error('Không nạp được nội dung: ' + relPath);
       });
   }
-  function loadLevelIndex() {
-    if (state.levelIndex) return Promise.resolve(state.levelIndex);
-    return loadJson('level1/index.json').then(function (j) { state.levelIndex = j; return j; });
+  function loadLevelIndex(lv) {
+    lv = lv || state.level;
+    if (state.levelIndexCache[lv]) {
+      if (lv === state.level) state.levelIndex = state.levelIndexCache[lv];
+      return Promise.resolve(state.levelIndexCache[lv]);
+    }
+    return loadJson('level' + lv + '/index.json').then(function (j) {
+      state.levelIndexCache[lv] = j;
+      if (lv === state.level) state.levelIndex = j;
+      return j;
+    });
   }
   function loadUnit(unitNo) {
     if (state.units[unitNo]) return Promise.resolve(state.units[unitNo]);
-    return loadLevelIndex().then(function (idx) {
-      // unit < 100 = unit nhỏ gốc; unit >= 101 = BÀI LỚN (lesson). Tìm ở cả hai.
+    var lv = levelOfUnit(unitNo);   // nạp đúng thư mục theo unit id (kể cả "luyện thêm" L1)
+    return loadLevelIndex(lv).then(function (idx) {
       var all = (idx.units || []).concat(idx.lessons || []);
       var meta = all.filter(function (u) { return u.unit === unitNo; })[0];
       if (!meta) throw new Error('Không có unit ' + unitNo);
-      return loadJson('level1/' + meta.file).then(function (j) { state.units[unitNo] = j; return j; });
+      return loadJson('level' + lv + '/' + meta.file).then(function (j) { state.units[unitNo] = j; return j; });
     });
   }
   function lessonMetaByUnit(unitNo) {
@@ -216,7 +230,7 @@
   }
   function unitMastery(unitNo) {
     if (!state.mastery) return null;
-    return (state.mastery.units || []).filter(function (u) { return u.unit === unitNo && u.level === 1; })[0] || null;
+    return (state.mastery.units || []).filter(function (u) { return u.unit === unitNo; })[0] || null;
   }
 
   /* ===================== HEADER ===================== */
@@ -372,6 +386,46 @@
   }
 
   /* =====================================================================
+     SLV — CHỌN CẤP ĐỘ (1/2/3)
+     ===================================================================== */
+  function screenLevelSelect() {
+    if (!state.childId) { go('S1'); return; }
+    refreshMastery().then(function () {
+      setHeader({ title: 'Chọn cấp độ', onBack: function () { go('S2'); } });
+      var levels = [
+        { n: 1, name: 'Cấp 1 — Khởi đầu', sub: 'Chào hỏi · đồ vật · gia đình · con vật · ăn uống', icon: '🌱', pal: 'mint' },
+        { n: 2, name: 'Cấp 2 — Tiến bộ', sub: 'Thói quen · đang làm gì · số lượng · nơi chốn · quá khứ', icon: '🚀', pal: 'sky' },
+        { n: 3, name: 'Cấp 3 — Vững vàng', sub: 'So sánh · tần suất · tương lai · kể chuyện', icon: '🏆', pal: 'grape' }
+      ];
+      var cards = levels.map(function (L) {
+        var done = state.mastery ? (state.mastery.units || []).filter(function (u) { return u.unit >= L.n * 100 + 1 && u.unit <= L.n * 100 + 5 && u.masteryPct >= 60; }).length : 0;
+        var card = el('button', {
+          class: 'level-card' + (L.n === state.level ? ' is-current' : ''), type: 'button',
+          style: '--pal:var(--c-' + L.pal + ');--pal-soft:var(--c-' + L.pal + '-soft)',
+          'aria-label': L.name + (L.n === state.level ? ' (đang chọn)' : '') + ' — ' + done + ' trên 5 bài'
+        }, [
+          el('span', { class: 'level-card__icon', 'aria-hidden': 'true' }, L.icon),
+          el('span', { class: 'grow' }, [
+            el('div', { class: 'level-card__name' }, 'Cấp ' + L.n + (L.n === state.level ? ' ✓' : '')),
+            el('div', { class: 'level-card__sub' }, L.sub),
+            el('div', { class: 'jmap__bar', style: 'margin-top:8px' }, el('i', { style: 'width:' + (done / 5 * 100) + '%' }))
+          ]),
+          el('span', { class: 'level-card__pct' }, done + '/5')
+        ]);
+        card.addEventListener('click', function () {
+          if (state.level !== L.n) { state.level = L.n; saveLevel(L.n); state.levelIndex = state.levelIndexCache[L.n] || null; }
+          go('S2');
+        });
+        return card;
+      });
+      render(el('div', { class: 'screen stack-lg' }, [
+        el('div', { class: 'row', style: 'justify-content:center' }, [piNode('mascot--sm'), el('div', { class: 'speech' }, 'Chọn cấp độ con muốn học nhé! 🌟')]),
+        el('div', { class: 'stack' }, cards)
+      ]));
+    }).catch(function (e) { renderError(e); });
+  }
+
+  /* =====================================================================
      S2 — BẢN ĐỒ UNIT (màn chính)
      ===================================================================== */
   function screenMap() {
@@ -391,6 +445,7 @@
 
       var weekLine = el('div', { class: 'chip chip--star' }, '🌱 Tuần này em đã học ' + (state.mastery ? state.mastery.weeklyDays : 0) + ' ngày');
       var starChip = el('div', { class: 'chip chip--star' }, '⭐ ' + totalStars);
+      var levelChip = el('button', { class: 'chip chip--level', type: 'button', 'aria-label': 'Đổi cấp độ (đang ở Cấp ' + state.level + ')', onclick: function () { go('SLV'); } }, '📚 Cấp ' + state.level + ' ▾');
 
       // ===== BẢN ĐỒ "CON ĐƯỜNG HỌC" — 5 BÀI LỚN =====
       var lessons = (idx.lessons || []).slice().sort(function (a, b) { return a.lesson - b.lesson; });
@@ -410,7 +465,7 @@
       }
       var doneCount = 0;
       lessons.forEach(function (l) { var um = unitMastery(l.unit); if (um && um.masteryPct >= 60) doneCount++; });
-      var lvl = el('div', { class: 'jmap-lvl' }, '★ TIẾNG ANH · LEVEL 1 · ' + doneCount + '/' + lessons.length + ' bài ★');
+      var lvl = el('div', { class: 'jmap-lvl' }, '★ TIẾNG ANH · CẤP ' + state.level + ' · ' + doneCount + '/' + lessons.length + ' bài ★');
 
       var path = el('div', { class: 'jmap' }, el('div', { class: 'jmap__line', 'aria-hidden': 'true' }));
       lessons.forEach(function (l) {
@@ -439,7 +494,7 @@
 
       render(el('div', { class: 'screen stack-lg' }, [
         topHeader,
-        el('div', { class: 'row-wrap' }, [weekLine, starChip]),
+        el('div', { class: 'row-wrap' }, [levelChip, weekLine, starChip]),
         lvl,
         path
       ]));
@@ -609,7 +664,7 @@
   }
 
   function finishFlashcards(unit, count) {
-    Progress.save({ childId: state.childId, level: 1, unit: unit.unit, skill: 'vocab', score: null, attempts: count, effort: count, ts: Date.now() })
+    Progress.save({ childId: state.childId, level: levelOfUnit(unit.unit), unit: unit.unit, skill: 'vocab', score: null, attempts: count, effort: count, ts: Date.now() })
       .then(refreshMastery).then(function () {
         var node = el('div', { class: 'screen result stack-lg', style: 'padding-top:var(--sp-7)' }, [
           el('div', { class: 'center' }, piNode('is-cheer is-glowing mascot--lg')),
@@ -630,7 +685,7 @@
     var specs = [];
     // mode: 'phonics' | 'listen' | undefined(=ngữ pháp/từ vựng).
     if (mode === 'phonics') {
-      if (unit.phonics) for (var p = 0; p < EXERCISES_PER_STAGE; p++) specs.push({ type: 'phonics_pick', level: 1, unit: unit.unit, phonics: unit.phonics });
+      if (unit.phonics) for (var p = 0; p < EXERCISES_PER_STAGE; p++) specs.push({ type: 'phonics_pick', level: levelOfUnit(unit.unit), unit: unit.unit, phonics: unit.phonics });
       return specs;
     }
     if (mode === 'listen') {
@@ -647,7 +702,7 @@
       if (!bagL.length) return specs;
       for (var li = 0; li < EXERCISES_PER_STAGE; li++) {
         var bl = bagL[li % bagL.length];
-        var sl = { type: 'listen_choose', level: 1, unit: unit.unit };
+        var sl = { type: 'listen_choose', level: levelOfUnit(unit.unit), unit: unit.unit };
         if (bl.kind === 'vocab') sl.vocabPool = unit.vocab;
         else sl.grammar = bl.grammar;
         specs.push(sl);
@@ -667,7 +722,7 @@
     if (!bag.length) return specs;
     for (var i = 0; i < EXERCISES_PER_STAGE; i++) {
       var pickItem = bag[i % bag.length];
-      var spec = { type: pickItem.type, level: 1, unit: unit.unit };
+      var spec = { type: pickItem.type, level: levelOfUnit(unit.unit), unit: unit.unit };
       if (pickItem.grammar) spec.grammar = pickItem.grammar;
       if (pickItem.vocab) spec.vocabPool = vocab;
       specs.push(spec);
@@ -991,7 +1046,7 @@
     var score = total > 0 ? (sess.firstTryCorrect / total) : null;
     // skill đã được xác định đúng theo mode ở screenPractice; giữ nguyên.
     state.stagesThisSession++;
-    Progress.save({ childId: state.childId, level: 1, unit: unit.unit, skill: skill, score: score, attempts: sess.attempts, effort: total, ts: Date.now() })
+    Progress.save({ childId: state.childId, level: levelOfUnit(unit.unit), unit: unit.unit, skill: skill, score: score, attempts: sess.attempts, effort: total, ts: Date.now() })
       .then(refreshMastery).then(function () {
         screenResult(unit, sess, total, score);
       });
@@ -1146,7 +1201,7 @@
   }
 
   function finishSpeaking(unit, count) {
-    Progress.save({ childId: state.childId, level: 1, unit: unit.unit, skill: 'speaking', score: null, attempts: count, effort: count, ts: Date.now() })
+    Progress.save({ childId: state.childId, level: levelOfUnit(unit.unit), unit: unit.unit, skill: 'speaking', score: null, attempts: count, effort: count, ts: Date.now() })
       .then(refreshMastery).then(function () {
         var node = el('div', { class: 'result screen stack-lg', style: 'padding-top:var(--sp-7)' }, [
           el('div', { class: 'center' }, piNode('is-cheer is-glowing mascot--lg')),
@@ -1192,7 +1247,7 @@
       ].concat(sentRows));
 
       function finish() {
-        Progress.save({ childId: state.childId, level: 1, unit: unit.unit, skill: 'reading', score: null, attempts: questions.length, effort: questions.length || 1, ts: Date.now() })
+        Progress.save({ childId: state.childId, level: levelOfUnit(unit.unit), unit: unit.unit, skill: 'reading', score: null, attempts: questions.length, effort: questions.length || 1, ts: Date.now() })
           .then(refreshMastery).then(function () {
             render(el('div', { class: 'result screen stack-lg', style: 'padding-top:var(--sp-7)' }, [
               el('div', { class: 'center' }, piNode('is-cheer is-glowing mascot--lg')),
@@ -1326,7 +1381,7 @@
       ]);
       render(node);
       // Ghi nhận đã XEM phần học âm (nỗ lực) — nhẹ, không chấm.
-      Progress.save({ childId: state.childId, level: 1, unit: unit.unit, skill: 'phonics', score: null, attempts: 0, effort: 1, ts: Date.now() })
+      Progress.save({ childId: state.childId, level: levelOfUnit(unit.unit), unit: unit.unit, skill: 'phonics', score: null, attempts: 0, effort: 1, ts: Date.now() })
         .then(refreshMastery).catch(function () {});
     }).catch(function (e) { renderError(e); });
   }
@@ -1542,7 +1597,7 @@
     // (thiên NỖ LỰC: mọi lượt có attempt đều được ghi nhận để mở khoá unit kế).
     if (sess.attempts > 0) {
       var effort = Math.max(1, sess.idx);
-      Progress.save({ childId: state.childId, level: 1, unit: unit.unit, skill: skill, score: null, attempts: sess.attempts, effort: effort, ts: Date.now() })
+      Progress.save({ childId: state.childId, level: levelOfUnit(unit.unit), unit: unit.unit, skill: skill, score: null, attempts: sess.attempts, effort: effort, ts: Date.now() })
         .then(refreshMastery).then(function () { go('S3'); });
     } else go('S3');
   }
@@ -1701,6 +1756,7 @@
     switch (screen) {
       case 'S0': screenOnboarding(); break;
       case 'S1': screenProfiles(); break;
+      case 'SLV': screenLevelSelect(); break;
       case 'S2': screenMap(); break;
       case 'S3': screenUnitMenu(); break;
       case 'S4': screenFlashcards(); break;

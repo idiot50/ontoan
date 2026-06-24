@@ -1,0 +1,175 @@
+{
+  "schemaVersion": "v1",
+  "level": 2,
+  "unit": 201,
+  "lesson": 1,
+  "topic": "School and my timetable",
+  "topic_vi": "Trường lớp & thời gian biểu",
+  "vocab": [
+    { "word": "get up", "vi": "thức dậy", "icon": "🛌", "example": "I get up at six.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "have breakfast", "vi": "ăn sáng", "icon": "🥣", "example": "I have breakfast at seven.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "go to school", "vi": "đi học", "icon": "🏫", "example": "I go to school in the morning.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "read", "vi": "đọc sách", "icon": "📖", "example": "She reads a book at school.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "play", "vi": "chơi", "icon": "⚽", "example": "We play in the afternoon.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "eat lunch", "vi": "ăn trưa", "icon": "🍱", "example": "He eats lunch at twelve.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "do homework", "vi": "làm bài tập", "icon": "📝", "example": "I do my homework in the evening.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "go to bed", "vi": "đi ngủ", "icon": "🌙", "example": "He goes to bed at nine.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "sleep", "vi": "ngủ", "icon": "😴", "example": "The cat sleeps at night.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "morning", "vi": "buổi sáng", "icon": "🌅", "example": "I go to school in the morning.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "afternoon", "vi": "buổi chiều", "icon": "🌇", "example": "We play in the afternoon.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "evening", "vi": "buổi tối", "icon": "🌃", "example": "She reads in the evening.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "present-simple-routine",
+      "title_vi": "Nói về thói quen hằng ngày: thêm \"s\" với he / she / it",
+      "explain_vi": "Khi nói về việc em làm mỗi ngày, dùng động từ thường: \"I get up\", \"We play\", \"You read\". Nhưng khi nói về MỘT người khác (he = bạn ấy nam, she = bạn ấy nữ, it = nó), em thêm \"s\" vào sau động từ: \"He reads\", \"She plays\". Hai động từ đặc biệt: \"go\" thành \"goes\", \"have\" thành \"has\".",
+      "examples": [
+        "I read a book.",
+        "He reads a book.",
+        "She goes to school.",
+        "I play football."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-verb", "text": "I {verbPhrase}.", "blanks": ["verbPhrase"], "context_vi": "Em nói về việc EM làm mỗi ngày. Sau \"I\" giữ nguyên động từ.", "audioText": "I get up early." },
+          { "id": "he-verb-s", "text": "He {verbsPhrase}.", "blanks": ["verbsPhrase"], "context_vi": "Nói về việc bạn ấy (nam) làm. Sau \"He\" động từ phải thêm s/es.", "audioText": "He reads a book." },
+          { "id": "she-verb-s", "text": "She {verbsPhrase}.", "blanks": ["verbsPhrase"], "context_vi": "Nói về việc bạn ấy (nữ) làm. Sau \"She\" động từ phải thêm s/es.", "audioText": "She goes to school." }
+        ],
+        "slots": {
+          "verbPhrase": ["get up early", "read a book", "play football", "go to school"],
+          "verbsPhrase": ["gets up early", "reads a book", "plays football", "goes to school"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "He read a book.",
+          "She go to school.",
+          "He goe to school.",
+          "I reads a book.",
+          "She play football.",
+          "He get up early."
+        ],
+        "irregulars": {
+          "go": "goes",
+          "have": "has"
+        }
+      }
+    },
+    {
+      "id": "prepositions-time",
+      "title_vi": "Giới từ thời gian: at / in / on",
+      "explain_vi": "Để nói KHI NÀO làm việc gì, em dùng ba từ nhỏ. Dùng \"at\" với giờ: \"at six\", \"at night\". Dùng \"in\" với buổi trong ngày: \"in the morning\", \"in the afternoon\", \"in the evening\". Dùng \"on\" với thứ trong tuần: \"on Monday\".",
+      "examples": [
+        "I get up at six.",
+        "She reads in the evening.",
+        "We go to school on Monday."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "at-time", "text": "I get up {prep} {time}.", "blanks": ["prep"], "context_vi": "Nói giờ làm việc gì. Trước GIỜ dùng \"at\".", "audioText": "I get up at six." },
+          { "id": "in-part", "text": "She reads {prep} {part}.", "blanks": ["prep"], "context_vi": "Nói buổi trong ngày. Trước \"the morning / afternoon / evening\" dùng \"in\".", "audioText": "She reads in the evening." },
+          { "id": "on-day", "text": "We go to school {prep} {day}.", "blanks": ["prep"], "context_vi": "Nói thứ trong tuần. Trước tên thứ dùng \"on\".", "audioText": "We go to school on Monday." }
+        ],
+        "slots": {
+          "prep": ["at", "in", "on"],
+          "time": ["six", "seven", "eight", "night"],
+          "part": ["the morning", "the afternoon", "the evening"],
+          "day": ["Monday", "Friday"]
+        },
+        "answerKey": {
+          "at-time": {
+            "prep": { "six": "at", "seven": "at", "eight": "at", "night": "at" }
+          },
+          "in-part": {
+            "prep": { "the morning": "in", "the afternoon": "in", "the evening": "in" }
+          },
+          "on-day": {
+            "prep": { "Monday": "on", "Friday": "on" }
+          }
+        },
+        "distractors": [
+          "I get up in six.",
+          "She reads at the evening.",
+          "We go to school in Monday.",
+          "I get up on six.",
+          "She reads on the morning.",
+          "We go to school at Friday."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["sl", "st", "sk", "tr"],
+    "soundLabels": {
+      "sl": { "ipa": "/sl/", "anchor": "sleep", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"sleep\" là /sl/ — đọc liền hai âm s và l, không tách rời" },
+      "st": { "ipa": "/st/", "anchor": "star", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"star\" là /st/ — đọc liền hai âm s và t" },
+      "sk": { "ipa": "/sk/", "anchor": "sky", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"sky\" là /sk/ — đọc liền hai âm s và k" },
+      "tr": { "ipa": "/tr/", "anchor": "train", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"train\" là /tr/ — đọc liền hai âm t và r" }
+    },
+    "words": [
+      { "word": "sleep", "icon": "😴", "focusSound": "sl", "anchor": "sleep", "position": "initial", "audio": "" },
+      { "word": "slide", "icon": "🛝", "focusSound": "sl", "anchor": "sleep", "position": "initial", "audio": "" },
+      { "word": "star", "icon": "⭐", "focusSound": "st", "anchor": "star", "position": "initial", "audio": "" },
+      { "word": "stop", "icon": "🛑", "focusSound": "st", "anchor": "star", "position": "initial", "audio": "" },
+      { "word": "sky", "icon": "🌌", "focusSound": "sk", "anchor": "sky", "position": "initial", "audio": "" },
+      { "word": "skate", "icon": "⛸️", "focusSound": "sk", "anchor": "sky", "position": "initial", "audio": "" },
+      { "word": "train", "icon": "🚆", "focusSound": "tr", "anchor": "train", "position": "initial", "audio": "" },
+      { "word": "tree", "icon": "🌳", "focusSound": "tr", "anchor": "train", "position": "initial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "tom-every-day",
+      "title": "Tom's day",
+      "title_vi": "Một ngày của Tom",
+      "text": "Tom gets up at six in the morning. He has breakfast and goes to school. At school, he reads books and plays with his friends. He eats lunch at twelve. In the afternoon, Tom goes home. He does his homework in the evening. Then he goes to bed at nine.",
+      "teacherNote_vi": "Đoạn này ôn lại các động từ thói quen ở vocab và áp dụng đúng hai điểm ngữ pháp: present simple với \"he\" (gets, has, goes, reads, plays, eats, does) và giới từ thời gian (at six, in the morning, at twelve, in the afternoon, in the evening, at nine). Đoạn 8 câu (theo . ! ?), vừa ngưỡng 6-8.",
+      "questions": [
+        { "id": "q1", "q_vi": "Tom thức dậy lúc sáu giờ sáng, đúng không?", "type": "truefalse", "answer": true, "audioText": "Tom gets up at six in the morning." },
+        { "id": "q2", "q_vi": "Ở trường, Tom làm gì?", "type": "mcq", "choices": ["He reads and plays.", "He sleeps.", "He has breakfast."], "answer": 0, "audioText": "What does Tom do at school?" },
+        { "id": "q3", "q_vi": "Tom làm bài tập khi nào?", "type": "mcq", "choices": ["in the evening", "in the morning", "at school"], "answer": 0, "audioText": "When does Tom do his homework?" },
+        { "id": "q4", "q_vi": "Tom đi ngủ lúc mười giờ, đúng không?", "type": "truefalse", "answer": false, "audioText": "Tom goes to bed at nine." }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "my-day",
+      "title_vi": "Kể một ngày của em",
+      "prompt_vi": "Em kể những việc em làm mỗi ngày và mấy giờ thì làm. Điền giờ và buổi thật của em vào chỗ trống nhé.",
+      "sentenceFrames": [
+        "I get up at ___.",
+        "I go to school in the ___.",
+        "I do my homework in the ___.",
+        "I go to bed at ___."
+      ],
+      "audioModels": [
+        "I get up at seven.",
+        "I go to school in the morning.",
+        "I do my homework in the evening.",
+        "I go to bed at nine."
+      ]
+    },
+    {
+      "id": "my-friend-day",
+      "title_vi": "Kể về một ngày của bạn em",
+      "prompt_vi": "Bây giờ em kể về bạn của em. Nhớ thêm \"s\" vào động từ vì là \"he\" hoặc \"she\" nhé.",
+      "sentenceFrames": [
+        "He gets up at ___.",
+        "She goes to school in the ___.",
+        "He reads a book in the ___."
+      ],
+      "audioModels": [
+        "He gets up at six.",
+        "She goes to school in the morning.",
+        "He reads a book in the evening."
+      ]
+    }
+  ],
+  "audioNotes": "Cần thu âm người thật cho: tất cả audioModels phần speaking và audioText câu hỏi reading. ĐẶC BIỆT phần phonics blend phụ âm đầu /sl/ (sleep, slide), /st/ (star, stop), /sk/ (sky, skate), /tr/ (train, tree) — loa phải đọc HAI âm LIỀN NHAU (không tách thành \"s\"+\"l\" hay \"t\"+\"r\" rời, và tuyệt đối không đọc tên chữ cái). Chỉ đọc TỪ TRỌN VẸN. Các câu mẫu ngữ pháp \"He reads a book.\", \"She goes to school.\" cần audio chuẩn để bé nghe rõ âm \"s\" cuối động từ (reads /z/, goes /z/) — TTS dễ nuốt mất. Câu giới từ \"I get up at six.\", \"She reads in the evening.\", \"We go to school on Monday.\" cũng nên có audio chuẩn để bé bắt chước nhịp câu."
+}

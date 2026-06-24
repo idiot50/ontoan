@@ -281,6 +281,23 @@
     .extra-chip:hover { filter: brightness(.98); }
     .extra-chip:focus-visible { outline: 3px solid var(--c-focus-ring); outline-offset: 2px; }
 
+    /* ===== Chọn cấp độ ===== */
+    .chip--level { cursor: pointer; border: 1.5px solid var(--c-border); background: var(--c-surface);
+      color: var(--c-primary-strong); font-weight: var(--fw-bold); min-height: var(--touch-min); }
+    .chip--level:hover { filter: brightness(.98); }
+    .chip--level:focus-visible { outline: 3px solid var(--c-focus-ring); outline-offset: 2px; }
+    .level-card { display: flex; align-items: center; gap: var(--sp-4); width: 100%; text-align: left;
+      cursor: pointer; background: var(--c-surface); border: 3px solid var(--pal-soft);
+      border-radius: var(--radius-xl); padding: var(--sp-4); box-shadow: var(--shadow-md); }
+    .level-card.is-current { border-color: var(--pal); }
+    .level-card__icon { width: 64px; height: 64px; flex: 0 0 auto; border-radius: var(--radius-round);
+      background: var(--pal-soft); display: grid; place-items: center; font-size: 34px; }
+    .level-card__name { font-weight: var(--fw-black); font-size: var(--fs-lg); }
+    .level-card__sub { font-size: var(--fs-sm); color: var(--c-text-soft); margin-top: 2px; }
+    .level-card__pct { flex: 0 0 auto; font-weight: var(--fw-black); color: var(--c-text-soft); font-size: var(--fs-sm); }
+    .level-card:focus-visible { outline: 3px solid var(--c-focus-ring); outline-offset: 2px; }
+    .level-card:active { transform: translateY(2px); }
+
     /* ===== Màn ĐỌC (S5r) ===== */
     .read-line { display: flex; align-items: center; gap: var(--sp-2); padding: var(--sp-2) 0; }
     .read-line + .read-line { border-top: 1px dashed var(--c-border); }

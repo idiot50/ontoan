@@ -237,14 +237,9 @@ if (args.includes('--selftest')) {
   const mp3 = await wavToMp3(wav);
   fs.writeFileSync(out, mp3);
   console.log(JSON.stringify({ ok: true, voice, text, wavBytes: wav.length, mp3Bytes: mp3.length, out }));
-} else if (args.includes('--level')) {
-  const level = parseInt(arg('--level', '1'), 10);
-  const voice = arg('--voice', 'en_GB-alba-medium');
-  const kbps = parseInt(arg('--kbps', '56'), 10);
-  const res = await bakeLevel(level, voice, kbps);
-  console.log(JSON.stringify(res));
 } else if (args.includes('--lessons') || args.includes('--lessons-sweep')) {
   // --lessons: bake text tĩnh của bài lớn. --lessons-sweep: + sweep engine (mọi câu luyện/nghe).
+  // (Đặt TRƯỚC nhánh --level vì lệnh lessons cũng mang cờ --level <N>.)
   const level = parseInt(arg('--level', '1'), 10);
   const voice = arg('--voice', 'en_GB-alba-medium');
   const kbps = parseInt(arg('--kbps', '56'), 10);
@@ -254,5 +249,11 @@ if (args.includes('--selftest')) {
   const res = args.includes('--lessons-sweep')
     ? await bakeLessonsSweep(level, files, voice, kbps, seeds)
     : await bakeFiles(level, files, voice, kbps);
+  console.log(JSON.stringify(res));
+} else if (args.includes('--level')) {
+  const level = parseInt(arg('--level', '1'), 10);
+  const voice = arg('--voice', 'en_GB-alba-medium');
+  const kbps = parseInt(arg('--kbps', '56'), 10);
+  const res = await bakeLevel(level, voice, kbps);
   console.log(JSON.stringify(res));
 }

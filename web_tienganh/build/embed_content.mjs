@@ -21,8 +21,8 @@ function read(p) { return readFileSync(p, 'utf8'); }
 
 const entries = []; // { key: 'level1/unit01.json', raw: '...' }
 
-// Level 1 (và có thể mở rộng các level khác sau này).
-const levels = ['level1'];
+// Tất cả level hiện có (bỏ qua level chưa tạo).
+const levels = ['level1', 'level2', 'level3'];
 for (const lvl of levels) {
   const idxPath = join(CONTENT, lvl, 'index.json');
   if (!existsSync(idxPath)) continue;

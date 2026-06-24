@@ -2868,6 +2868,902 @@
   ],
   "audioNotes": "Cần thu âm người thật cho: các audioModels phần speaking; audioText câu hỏi reading; audioText các item phần recognition (\"I can swim. / I can jump. / I can't swim.\"); và đặc biệt nhóm phonics /θ/ (three, thin, think) vì TTS hay đọc nhầm \"th\" thành \"t\" hoặc \"s\" — nhớ đặt đầu lưỡi giữa hai hàm răng rồi thổi nhẹ. Hai âm nguyên âm ngắn /ɪ/ (fish, pig) và /ʌ/ (sun, cup, duck) ở GIỮA từ cũng nên có audio chuẩn để bé phân biệt với âm dài. Câu mẫu MỚI \"Do you like…? Yes, I do. / No, I don't.\" và \"I've got a/an…\" nên có audio để bé bắt chước ngữ điệu câu hỏi. Lưu ý can/can't ở bài này chỉ ở mức LÀM QUEN (nghe-chọn), audio cần đọc rõ phần phủ định \"can't\" để bé phân biệt với \"can\". Ghi chú recycling: các từ \"apple\", \"egg\", \"fish\" và mẫu \"a/an\", \"I like\" được dùng lại có chủ đích (apple/egg ở Bài 1, I like ở Bài 4) nhằm ôn tập, không phải từ/mẫu mới."
 };
+  C["level2/index.json"] = {
+  "schemaVersion": "v1",
+  "level": 2,
+  "units": [],
+  "lessons": [
+    { "lesson": 1, "unit": 201, "file": "lesson01.json", "topic_vi": "Trường lớp & thời gian biểu", "icon": "🕐", "pal": "sun",   "sub": "Thói quen · thời gian · ngôi thứ 3 (+s)" },
+    { "lesson": 2, "unit": 202, "file": "lesson02.json", "topic_vi": "Sở thích & việc đang làm",     "icon": "🎨", "pal": "sky",   "sub": "Đang làm gì (V-ing) · like/love" },
+    { "lesson": 3, "unit": 203, "file": "lesson03.json", "topic_vi": "Đồ ăn & số lượng",             "icon": "🍞", "pal": "mint",  "sub": "some/any · How many?" },
+    { "lesson": 4, "unit": 204, "file": "lesson04.json", "topic_vi": "Nơi chốn & chỉ đường",         "icon": "🧭", "pal": "coral", "sub": "in/on/under · there is/are · chỉ đường" },
+    { "lesson": 5, "unit": 205, "file": "lesson05.json", "topic_vi": "Kể chuyện & quá khứ đơn",      "icon": "📅", "pal": "grape", "sub": "was/were · -ed · kể chuyện" }
+  ]
+};
+  C["level2/lesson01.json"] = {
+  "schemaVersion": "v1",
+  "level": 2,
+  "unit": 201,
+  "lesson": 1,
+  "topic": "School and my timetable",
+  "topic_vi": "Trường lớp & thời gian biểu",
+  "vocab": [
+    { "word": "get up", "vi": "thức dậy", "icon": "🛌", "example": "I get up at six.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "have breakfast", "vi": "ăn sáng", "icon": "🥣", "example": "I have breakfast at seven.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "go to school", "vi": "đi học", "icon": "🏫", "example": "I go to school in the morning.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "read", "vi": "đọc sách", "icon": "📖", "example": "She reads a book at school.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "play", "vi": "chơi", "icon": "⚽", "example": "We play in the afternoon.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "eat lunch", "vi": "ăn trưa", "icon": "🍱", "example": "He eats lunch at twelve.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "do homework", "vi": "làm bài tập", "icon": "📝", "example": "I do my homework in the evening.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "go to bed", "vi": "đi ngủ", "icon": "🌙", "example": "He goes to bed at nine.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "sleep", "vi": "ngủ", "icon": "😴", "example": "The cat sleeps at night.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "morning", "vi": "buổi sáng", "icon": "🌅", "example": "I go to school in the morning.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "afternoon", "vi": "buổi chiều", "icon": "🌇", "example": "We play in the afternoon.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "evening", "vi": "buổi tối", "icon": "🌃", "example": "She reads in the evening.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "present-simple-routine",
+      "title_vi": "Nói về thói quen hằng ngày: thêm \"s\" với he / she / it",
+      "explain_vi": "Khi nói về việc em làm mỗi ngày, dùng động từ thường: \"I get up\", \"We play\", \"You read\". Nhưng khi nói về MỘT người khác (he = bạn ấy nam, she = bạn ấy nữ, it = nó), em thêm \"s\" vào sau động từ: \"He reads\", \"She plays\". Hai động từ đặc biệt: \"go\" thành \"goes\", \"have\" thành \"has\".",
+      "examples": [
+        "I read a book.",
+        "He reads a book.",
+        "She goes to school.",
+        "I play football."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-verb", "text": "I {verbPhrase}.", "blanks": ["verbPhrase"], "context_vi": "Em nói về việc EM làm mỗi ngày. Sau \"I\" giữ nguyên động từ.", "audioText": "I get up early." },
+          { "id": "he-verb-s", "text": "He {verbsPhrase}.", "blanks": ["verbsPhrase"], "context_vi": "Nói về việc bạn ấy (nam) làm. Sau \"He\" động từ phải thêm s/es.", "audioText": "He reads a book." },
+          { "id": "she-verb-s", "text": "She {verbsPhrase}.", "blanks": ["verbsPhrase"], "context_vi": "Nói về việc bạn ấy (nữ) làm. Sau \"She\" động từ phải thêm s/es.", "audioText": "She goes to school." }
+        ],
+        "slots": {
+          "verbPhrase": ["get up early", "read a book", "play football", "go to school"],
+          "verbsPhrase": ["gets up early", "reads a book", "plays football", "goes to school"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "He read a book.",
+          "She go to school.",
+          "He goe to school.",
+          "I reads a book.",
+          "She play football.",
+          "He get up early."
+        ],
+        "irregulars": {
+          "go": "goes",
+          "have": "has"
+        }
+      }
+    },
+    {
+      "id": "prepositions-time",
+      "title_vi": "Giới từ thời gian: at / in / on",
+      "explain_vi": "Để nói KHI NÀO làm việc gì, em dùng ba từ nhỏ. Dùng \"at\" với giờ: \"at six\", \"at night\". Dùng \"in\" với buổi trong ngày: \"in the morning\", \"in the afternoon\", \"in the evening\". Dùng \"on\" với thứ trong tuần: \"on Monday\".",
+      "examples": [
+        "I get up at six.",
+        "She reads in the evening.",
+        "We go to school on Monday."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "at-time", "text": "I get up {prep} {time}.", "blanks": ["prep"], "context_vi": "Nói giờ làm việc gì. Trước GIỜ dùng \"at\".", "audioText": "I get up at six." },
+          { "id": "in-part", "text": "She reads {prep} {part}.", "blanks": ["prep"], "context_vi": "Nói buổi trong ngày. Trước \"the morning / afternoon / evening\" dùng \"in\".", "audioText": "She reads in the evening." },
+          { "id": "on-day", "text": "We go to school {prep} {day}.", "blanks": ["prep"], "context_vi": "Nói thứ trong tuần. Trước tên thứ dùng \"on\".", "audioText": "We go to school on Monday." }
+        ],
+        "slots": {
+          "prep": ["at", "in", "on"],
+          "time": ["six", "seven", "eight", "night"],
+          "part": ["the morning", "the afternoon", "the evening"],
+          "day": ["Monday", "Friday"]
+        },
+        "answerKey": {
+          "at-time": {
+            "prep": { "six": "at", "seven": "at", "eight": "at", "night": "at" }
+          },
+          "in-part": {
+            "prep": { "the morning": "in", "the afternoon": "in", "the evening": "in" }
+          },
+          "on-day": {
+            "prep": { "Monday": "on", "Friday": "on" }
+          }
+        },
+        "distractors": [
+          "I get up in six.",
+          "She reads at the evening.",
+          "We go to school in Monday.",
+          "I get up on six.",
+          "She reads on the morning.",
+          "We go to school at Friday."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["sl", "st", "sk", "tr"],
+    "soundLabels": {
+      "sl": { "ipa": "/sl/", "anchor": "sleep", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"sleep\" là /sl/ — đọc liền hai âm s và l, không tách rời" },
+      "st": { "ipa": "/st/", "anchor": "star", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"star\" là /st/ — đọc liền hai âm s và t" },
+      "sk": { "ipa": "/sk/", "anchor": "sky", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"sky\" là /sk/ — đọc liền hai âm s và k" },
+      "tr": { "ipa": "/tr/", "anchor": "train", "position": "initial", "say_vi": "âm BẮT ĐẦU từ \"train\" là /tr/ — đọc liền hai âm t và r" }
+    },
+    "words": [
+      { "word": "sleep", "icon": "😴", "focusSound": "sl", "anchor": "sleep", "position": "initial", "audio": "" },
+      { "word": "slide", "icon": "🛝", "focusSound": "sl", "anchor": "sleep", "position": "initial", "audio": "" },
+      { "word": "star", "icon": "⭐", "focusSound": "st", "anchor": "star", "position": "initial", "audio": "" },
+      { "word": "stop", "icon": "🛑", "focusSound": "st", "anchor": "star", "position": "initial", "audio": "" },
+      { "word": "sky", "icon": "🌌", "focusSound": "sk", "anchor": "sky", "position": "initial", "audio": "" },
+      { "word": "skate", "icon": "⛸️", "focusSound": "sk", "anchor": "sky", "position": "initial", "audio": "" },
+      { "word": "train", "icon": "🚆", "focusSound": "tr", "anchor": "train", "position": "initial", "audio": "" },
+      { "word": "tree", "icon": "🌳", "focusSound": "tr", "anchor": "train", "position": "initial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "tom-every-day",
+      "title": "Tom's day",
+      "title_vi": "Một ngày của Tom",
+      "text": "Tom gets up at six in the morning. He has breakfast and goes to school. At school, he reads books and plays with his friends. He eats lunch at twelve. In the afternoon, Tom goes home. He does his homework in the evening. Then he goes to bed at nine.",
+      "teacherNote_vi": "Đoạn này ôn lại các động từ thói quen ở vocab và áp dụng đúng hai điểm ngữ pháp: present simple với \"he\" (gets, has, goes, reads, plays, eats, does) và giới từ thời gian (at six, in the morning, at twelve, in the afternoon, in the evening, at nine). Đoạn 8 câu (theo . ! ?), vừa ngưỡng 6-8.",
+      "questions": [
+        { "id": "q1", "q_vi": "Tom thức dậy lúc sáu giờ sáng, đúng không?", "type": "truefalse", "answer": true, "audioText": "Tom gets up at six in the morning." },
+        { "id": "q2", "q_vi": "Ở trường, Tom làm gì?", "type": "mcq", "choices": ["He reads and plays.", "He sleeps.", "He has breakfast."], "answer": 0, "audioText": "What does Tom do at school?" },
+        { "id": "q3", "q_vi": "Tom làm bài tập khi nào?", "type": "mcq", "choices": ["in the evening", "in the morning", "at school"], "answer": 0, "audioText": "When does Tom do his homework?" },
+        { "id": "q4", "q_vi": "Tom đi ngủ lúc mười giờ, đúng không?", "type": "truefalse", "answer": false, "audioText": "Tom goes to bed at nine." }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "my-day",
+      "title_vi": "Kể một ngày của em",
+      "prompt_vi": "Em kể những việc em làm mỗi ngày và mấy giờ thì làm. Điền giờ và buổi thật của em vào chỗ trống nhé.",
+      "sentenceFrames": [
+        "I get up at ___.",
+        "I go to school in the ___.",
+        "I do my homework in the ___.",
+        "I go to bed at ___."
+      ],
+      "audioModels": [
+        "I get up at seven.",
+        "I go to school in the morning.",
+        "I do my homework in the evening.",
+        "I go to bed at nine."
+      ]
+    },
+    {
+      "id": "my-friend-day",
+      "title_vi": "Kể về một ngày của bạn em",
+      "prompt_vi": "Bây giờ em kể về bạn của em. Nhớ thêm \"s\" vào động từ vì là \"he\" hoặc \"she\" nhé.",
+      "sentenceFrames": [
+        "He gets up at ___.",
+        "She goes to school in the ___.",
+        "He reads a book in the ___."
+      ],
+      "audioModels": [
+        "He gets up at six.",
+        "She goes to school in the morning.",
+        "He reads a book in the evening."
+      ]
+    }
+  ],
+  "audioNotes": "Cần thu âm người thật cho: tất cả audioModels phần speaking và audioText câu hỏi reading. ĐẶC BIỆT phần phonics blend phụ âm đầu /sl/ (sleep, slide), /st/ (star, stop), /sk/ (sky, skate), /tr/ (train, tree) — loa phải đọc HAI âm LIỀN NHAU (không tách thành \"s\"+\"l\" hay \"t\"+\"r\" rời, và tuyệt đối không đọc tên chữ cái). Chỉ đọc TỪ TRỌN VẸN. Các câu mẫu ngữ pháp \"He reads a book.\", \"She goes to school.\" cần audio chuẩn để bé nghe rõ âm \"s\" cuối động từ (reads /z/, goes /z/) — TTS dễ nuốt mất. Câu giới từ \"I get up at six.\", \"She reads in the evening.\", \"We go to school on Monday.\" cũng nên có audio chuẩn để bé bắt chước nhịp câu."
+};
+  C["level2/lesson02.json"] = {
+  "schemaVersion": "v1",
+  "level": 2,
+  "unit": 202,
+  "lesson": 2,
+  "topic": "Hobbies and what we are doing now",
+  "topic_vi": "Sở thích & việc đang làm",
+  "vocab": [
+    { "word": "running", "vi": "(đang) chạy", "icon": "🏃", "example": "Look! She's running.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "jumping", "vi": "(đang) nhảy lên", "icon": "🤸", "example": "The boy is jumping.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "painting", "vi": "(đang) vẽ tô màu", "icon": "🎨", "example": "I'm painting a big sun.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "singing", "vi": "(đang) hát", "icon": "🎤", "example": "We're singing a happy song.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "dancing", "vi": "(đang) nhảy múa", "icon": "💃", "example": "She loves dancing.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "reading", "vi": "(đang) đọc sách", "icon": "📖", "example": "He's reading a book.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "playing", "vi": "(đang) chơi", "icon": "⚽", "example": "They're playing football.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "swimming", "vi": "(đang) bơi", "icon": "🏊", "example": "I like swimming.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "drawing", "vi": "(đang) vẽ hình", "icon": "✏️", "example": "She's drawing a cat.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "riding", "vi": "(đang) đạp/cưỡi", "icon": "🚲", "example": "He's riding a bike.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "clapping", "vi": "(đang) vỗ tay", "icon": "👏", "example": "We're clapping our hands.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "kicking", "vi": "(đang) đá (bóng)", "icon": "🦵", "example": "Tom is kicking the ball.", "partOfSpeech": "verb", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "present-continuous-now",
+      "title_vi": "Việc ĐANG diễn ra: \"be + V-ing\" (am / is / are + động từ-ing)",
+      "explain_vi": "Khi nói một việc ĐANG xảy ra ngay lúc này, em dùng \"am / is / are\" rồi thêm động từ có đuôi \"-ing\". Với \"I\" dùng \"am\" (I'm); với \"he / she / it\" dùng \"is\" (he's, she's, it's); với \"we / you / they\" dùng \"are\" (we're, they're). Ví dụ: \"I'm running.\", \"She's painting.\", \"They're playing.\". Muốn hỏi thì nói \"What are you doing?\" rồi trả lời \"I'm ...\".",
+      "examples": [
+        "I'm running.",
+        "She's painting.",
+        "They're playing.",
+        "What are you doing? I'm reading."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-am-ving", "text": "I'm {ving}.", "blanks": ["ving"], "context_vi": "Tự nói việc EM đang làm ngay bây giờ.", "audioText": "I'm running." },
+          { "id": "she-is-ving", "text": "She's {ving}.", "blanks": ["ving"], "context_vi": "Nói việc một bạn nữ đang làm.", "audioText": "She's painting." },
+          { "id": "they-are-ving", "text": "They're {ving}.", "blanks": ["ving"], "context_vi": "Nói việc nhiều người đang làm.", "audioText": "They're playing." },
+          { "id": "choose-be", "text": "{subj} {be} {ving}.", "blanks": ["be"], "context_vi": "Chọn đúng \"am / is / are\" theo chủ ngữ (I → am, She/He → is, We/They → are).", "audioText": "She is dancing." }
+        ],
+        "slots": {
+          "ving": ["running", "jumping", "painting", "singing", "dancing", "reading", "playing", "swimming", "drawing", "clapping"],
+          "subj": ["I", "She", "He", "We", "They"],
+          "be": ["am", "is", "are"]
+        },
+        "answerKey": {
+          "choose-be": {
+            "be": { "__cond": "subj", "I": "am", "She": "is", "He": "is", "We": "are", "They": "are" }
+          }
+        },
+        "distractors": [
+          "I'm run.",
+          "She're painting.",
+          "She painting.",
+          "They's playing.",
+          "He are reading.",
+          "I running.",
+          "I is running.",
+          "They is playing."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "like-love-ving",
+      "title_vi": "Nói sở thích: \"like / love + V-ing\"",
+      "explain_vi": "Để nói em THÍCH làm gì, dùng \"like\" rồi thêm động từ có đuôi \"-ing\": \"I like reading.\". Nếu rất thích thì dùng \"love\": \"I love dancing.\". Với \"he / she\" thêm \"s\" vào like/love: \"She likes singing.\", \"He loves swimming.\".",
+      "examples": [
+        "I like reading.",
+        "I love dancing.",
+        "She likes singing.",
+        "He loves swimming."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-like-ving", "text": "I {verb} {ving}.", "blanks": ["ving"], "context_vi": "Nói một việc EM thích làm.", "audioText": "I like reading." },
+          { "id": "i-love-ving", "text": "I love {ving}.", "blanks": ["ving"], "context_vi": "Nói một việc EM rất thích.", "audioText": "I love dancing." },
+          { "id": "she-likes-ving", "text": "She {verb3} {ving}.", "blanks": ["verb3"], "context_vi": "Chọn đúng dạng \"likes / loves\" cho \"she\".", "audioText": "She likes singing." }
+        ],
+        "slots": {
+          "verb": ["like", "love"],
+          "verb3": ["likes", "loves"],
+          "ving": ["reading", "dancing", "singing", "swimming", "painting", "drawing", "running", "playing", "jumping", "clapping", "kicking"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "I like read.",
+          "She like singing.",
+          "I likes dancing.",
+          "She likes sing.",
+          "I love to dancing.",
+          "He love swimming."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "medial",
+    "focus": ["ee", "oo", "dr"],
+    "soundLabels": {
+      "ee": { "ipa": "/iː/", "anchor": "green", "position": "medial", "say_vi": "âm dài Ở GIỮA từ \"green\" là /iː/ — kéo dài chữ \"i\" (không đọc nhanh như \"i\" ngắn)" },
+      "oo": { "ipa": "/uː/", "anchor": "moon", "position": "medial", "say_vi": "âm dài Ở GIỮA từ \"moon\" là /uː/ — kéo dài chữ \"u\" (môi tròn, đọc dài)" },
+      "dr": { "ipa": "/dr/", "anchor": "drum", "position": "initial", "say_vi": "âm GHÉP BẮT ĐẦU từ \"drum\" là /dr/ (đọc liền hai âm d và r, không tách rời)" }
+    },
+    "words": [
+      { "word": "green", "icon": "🟢", "focusSound": "ee", "anchor": "green", "position": "medial", "audio": "" },
+      { "word": "tree", "icon": "🌳", "focusSound": "ee", "anchor": "green", "position": "medial", "audio": "" },
+      { "word": "feet", "icon": "🦶", "focusSound": "ee", "anchor": "green", "position": "medial", "audio": "" },
+      { "word": "moon", "icon": "🌙", "focusSound": "oo", "anchor": "moon", "position": "medial", "audio": "" },
+      { "word": "zoo", "icon": "🦁", "focusSound": "oo", "anchor": "moon", "position": "medial", "audio": "" },
+      { "word": "food", "icon": "🍲", "focusSound": "oo", "anchor": "moon", "position": "medial", "audio": "" },
+      { "word": "drum", "icon": "🥁", "focusSound": "dr", "anchor": "drum", "position": "initial", "audio": "" },
+      { "word": "draw", "icon": "✏️", "focusSound": "dr", "anchor": "drum", "position": "initial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "in-the-park-today",
+      "title": "In the park today",
+      "title_vi": "Ở công viên hôm nay",
+      "text": "It's a sunny day. We are in the park. My brother is playing football with his friends. My sister is riding her bike. Mum is reading a book under a tree. I'm drawing a big green star. I love drawing! Everyone is happy today.",
+      "teacherNote_vi": "Đoạn dùng present continuous (be + V-ing) cho việc đang diễn ra và một câu \"I love drawing!\" cho sở thích. Từ vựng controlled: playing, riding, reading, drawing đều có trong vocab; \"green\", \"tree\" và \"drawing\" nối với phần phonics (âm dài /iː/ trong green/tree và cụm /dr/ trong drawing). Đoạn gồm 8 câu (theo . ! ?), vừa ngưỡng 6-8.",
+      "questions": [
+        { "id": "q1", "q_vi": "Hôm nay trời nắng, đúng không?", "type": "truefalse", "answer": true, "audioText": "It's a sunny day." },
+        { "id": "q2", "q_vi": "Anh trai đang làm gì?", "type": "mcq", "choices": ["playing football", "reading a book", "riding a bike"], "answer": 0, "audioText": "What is the brother doing?" },
+        { "id": "q3", "q_vi": "Mẹ đang làm gì?", "type": "mcq", "choices": ["drawing a star", "reading a book", "riding a bike"], "answer": 1, "audioText": "What is Mum doing?" },
+        { "id": "q4", "q_vi": "Bạn nhỏ (người kể) thích làm gì?", "type": "mcq", "choices": ["drawing", "swimming", "singing"], "answer": 0, "audioText": "What does the child love?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "what-are-you-doing",
+      "title_vi": "Nói việc em đang làm",
+      "prompt_vi": "Làm động tác (giả vờ chạy, vẽ, hát...) rồi tự hỏi và trả lời. Em hãy nói thật về việc em đang làm nhé.",
+      "sentenceFrames": [
+        "What are you doing?",
+        "I'm ___.",
+        "She's ___."
+      ],
+      "audioModels": [
+        "What are you doing? I'm running.",
+        "She's painting.",
+        "They're playing."
+      ]
+    },
+    {
+      "id": "i-like-i-love",
+      "title_vi": "Nói sở thích của em",
+      "prompt_vi": "Nói cho cô và các bạn biết em thích và rất thích làm gì. Điền hoạt động em thật sự thích vào chỗ trống.",
+      "sentenceFrames": [
+        "I like ___.",
+        "I love ___.",
+        "My friend likes ___."
+      ],
+      "audioModels": [
+        "I like reading.",
+        "I love dancing.",
+        "My friend likes swimming."
+      ]
+    }
+  ],
+  "audioNotes": "Nên thu âm người thật cho: audioModels phần speaking và audioText câu hỏi reading. ĐẶC BIỆT phonics lần này tập trung NGUYÊN ÂM DÀI Ở GIỮA: green, tree, feet (ee /iː/) và moon, zoo, food (oo /uː/) — TTS hay đọc thành nguyên âm NGẮN; loa phải kéo dài rõ /iː/, /uː/. Cụm phụ âm đầu /dr/ trong drum, draw cần đọc liền hai âm d-r, không chèn nguyên âm (tránh \"đơ-ram\"). Các động từ -ing (running, singing, swimming, drawing, clapping) cần đọc rõ đuôi /ɪŋ/. Hai câu mẫu grammar \"What are you doing? I'm running.\" và \"I love dancing.\" nên có audio chuẩn để bé bắt chước ngữ điệu câu hỏi và câu nói sở thích. Lưu ý phonics dùng position hỗn hợp: ee/oo là MEDIAL, dr là INITIAL (đã ghi position riêng ở từng từ)."
+};
+  C["level2/lesson03.json"] = {
+  "schemaVersion": "v1",
+  "level": 2,
+  "unit": 203,
+  "lesson": 3,
+  "topic": "Food and how much",
+  "topic_vi": "Đồ ăn & số lượng",
+  "vocab": [
+    { "word": "cheese", "vi": "phô mai", "icon": "🧀", "example": "There is some cheese.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "water", "vi": "nước (uống)", "icon": "💧", "example": "There is some water.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "banana", "vi": "quả chuối", "icon": "🍌", "example": "It's a banana.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "egg", "vi": "quả trứng", "icon": "🥚", "example": "It's an egg.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "tomato", "vi": "quả cà chua", "icon": "🍅", "example": "It's a tomato.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "grapes", "vi": "(chùm) nho", "icon": "🍇", "example": "There are some grapes.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "sandwich", "vi": "bánh mì kẹp", "icon": "🥪", "example": "It's a sandwich.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "biscuit", "vi": "bánh quy", "icon": "🍪", "example": "It's a biscuit.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "soup", "vi": "súp (canh)", "icon": "🍲", "example": "There is some soup.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "orange", "vi": "quả cam", "icon": "🍊", "example": "It's an orange.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "cake", "vi": "bánh ngọt", "icon": "🍰", "example": "There is some cake.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "plate", "vi": "cái đĩa", "icon": "🍽️", "example": "There is a plate.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "some-any",
+      "title_vi": "\"some\" và \"any\" (có một ít / không có chút nào)",
+      "explain_vi": "Khi nói có MỘT ÍT thứ gì đó mà không nói rõ số lượng, em dùng \"some\" trong câu khẳng định: \"There is some cheese.\". Khi nói KHÔNG có chút nào, em dùng \"any\" trong câu phủ định: \"There isn't any cheese.\". Mẹo nhỏ: câu CÓ thì dùng \"some\", câu KHÔNG thì dùng \"any\".",
+      "examples": [
+        "There is some water.",
+        "There isn't any water.",
+        "There are some grapes.",
+        "There aren't any grapes."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "there-is-some", "text": "There is {quant} {food}.", "blanks": ["quant"], "context_vi": "Câu CÓ: trên bàn có một ít món này. Chọn từ chỉ số lượng cho đúng.", "audioText": "There is some cheese." },
+          { "id": "there-isnt-any", "text": "There isn't {quant} {food}.", "blanks": ["quant"], "context_vi": "Câu KHÔNG: không có chút nào của món này. Chọn từ chỉ số lượng cho đúng.", "audioText": "There isn't any cheese." }
+        ],
+        "slots": {
+          "quant": ["some", "any"],
+          "food": ["cheese", "water", "soup", "cake"]
+        },
+        "answerKey": {
+          "there-is-some": { "quant": "some" },
+          "there-isnt-any": { "quant": "any" }
+        },
+        "distractors": [
+          "There is any cheese.",
+          "There isn't some cheese.",
+          "There are some cheese.",
+          "There is some a cheese.",
+          "There is any cake."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "how-many",
+      "title_vi": "Hỏi số lượng: \"How many...?\" và trả lời bằng số",
+      "explain_vi": "Để hỏi CÓ BAO NHIÊU cái, em dùng \"How many\" + tên đồ vật ở dạng số nhiều + \"are there?\". Ví dụ: \"How many bananas are there?\". Em trả lời bắt đầu bằng \"There are\" rồi nói SỐ và tên đồ vật, ví dụ \"There are four bananas.\". Nếu chỉ có một cái thì nói \"There is one banana.\".",
+      "examples": [
+        "How many bananas are there? There are four bananas.",
+        "How many eggs are there? There are six eggs.",
+        "How many tomatoes are there? There are two tomatoes."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "how-many-question", "text": "How many {countfood} are there?", "blanks": ["countfood"], "context_vi": "Hỏi xem có bao nhiêu món này (chọn danh từ dạng SỐ NHIỀU cho đúng).", "audioText": "How many bananas are there?" },
+          { "id": "there-are-number", "text": "There are {number} {countfood}.", "blanks": ["countfood"], "context_vi": "Câu trả lời. Chọn danh từ dạng SỐ NHIỀU cho đúng (số do tranh quyết định, mọi số đều đúng ngữ pháp).", "audioText": "There are four bananas." }
+        ],
+        "slots": {
+          "countfood": ["bananas", "eggs", "tomatoes", "oranges", "sandwiches", "biscuits"],
+          "number": ["two", "three", "four", "five", "six"]
+        },
+        "answerKey": {},
+        "teacherNote_vi": "Cả hai slot 'countfood' và 'number' là slot TỰ DO: mọi danh từ số nhiều và mọi số trong slots đều cho câu ĐÚNG NGỮ PHÁP, nên không cần answerKey. fill_blank chỉ nhắm slot 'countfood' (khai báo trong blanks) — KHÔNG hỏi 'number' vì số thật phụ thuộc tranh/ngữ cảnh không có trong text.",
+        "distractors": [
+          "How many banana are there?",
+          "How much bananas are there?",
+          "There is four bananas.",
+          "There are four banana.",
+          "How many bananas there are?"
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "mixed",
+    "focus": ["gr", "br", "fr", "ee", "oo"],
+    "soundLabels": {
+      "gr": { "ipa": "/gr/", "anchor": "grapes", "position": "initial", "say_vi": "âm ghép ĐẦU từ \"grapes\" là /gr/ (đọc liền /g/ và /r/, không tách rời)" },
+      "br": { "ipa": "/br/", "anchor": "bread", "position": "initial", "say_vi": "âm ghép ĐẦU từ \"bread\" là /br/ (đọc liền /b/ và /r/)" },
+      "fr": { "ipa": "/fr/", "anchor": "fruit", "position": "initial", "say_vi": "âm ghép ĐẦU từ \"fruit\" là /fr/ (đọc liền /f/ và /r/)" },
+      "ee": { "ipa": "/iː/", "anchor": "cheese", "position": "medial", "say_vi": "nguyên âm DÀI ở GIỮA từ \"cheese\" là /iː/ — kéo dài âm \"i\", không đọc ngắn" },
+      "oo": { "ipa": "/uː/", "anchor": "spoon", "position": "medial", "say_vi": "nguyên âm DÀI ở GIỮA từ \"spoon\" là /uː/ — kéo dài âm \"u\", không đọc ngắn" }
+    },
+    "words": [
+      { "word": "grapes", "icon": "🍇", "focusSound": "gr", "anchor": "grapes", "position": "initial", "audio": "" },
+      { "word": "green", "icon": "🟢", "focusSound": "gr", "anchor": "grapes", "position": "initial", "audio": "" },
+      { "word": "bread", "icon": "🍞", "focusSound": "br", "anchor": "bread", "position": "initial", "audio": "" },
+      { "word": "fruit", "icon": "🍓", "focusSound": "fr", "anchor": "fruit", "position": "initial", "audio": "" },
+      { "word": "cheese", "icon": "🧀", "focusSound": "ee", "anchor": "cheese", "position": "medial", "audio": "" },
+      { "word": "sweet", "icon": "🍬", "focusSound": "ee", "anchor": "cheese", "position": "medial", "audio": "" },
+      { "word": "spoon", "icon": "🥄", "focusSound": "oo", "anchor": "spoon", "position": "medial", "audio": "" },
+      { "word": "food", "icon": "🍽️", "focusSound": "oo", "anchor": "spoon", "position": "medial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "on-the-table",
+      "title": "On the table",
+      "title_vi": "Trên bàn ăn",
+      "text": "Look at the table. There is some cheese and some bread. There is some water, too. There are three bananas and two eggs. There aren't any tomatoes. How many grapes are there? There are six grapes. Yum, I am happy!",
+      "teacherNote_vi": "Đoạn 8 câu (tính theo . ! ?). Tích hợp đủ trọng tâm: \"some\" cho danh từ không đếm (cheese, bread, water) và danh từ đếm số nhiều (grapes); \"any\" trong câu phủ định (tomatoes); và \"How many ... are there? There are ...\" với số. Câu cuối \"I am happy.\" là phần ôn nhẹ từ Level 1.",
+      "questions": [
+        { "id": "q1", "q_vi": "Trên bàn có phô mai, đúng không?", "type": "truefalse", "answer": true, "audioText": "Is there any cheese on the table?" },
+        { "id": "q2", "q_vi": "Trên bàn KHÔNG có món nào?", "type": "mcq", "choices": ["tomatoes", "bananas", "grapes"], "answer": 0, "audioText": "What isn't there on the table?" },
+        { "id": "q3", "q_vi": "Có bao nhiêu quả chuối?", "type": "mcq", "choices": ["three", "two", "six"], "answer": 0, "audioText": "How many bananas are there?" },
+        { "id": "q4", "q_vi": "Có bao nhiêu chùm nho?", "type": "mcq", "choices": ["six", "two", "three"], "answer": 0, "audioText": "How many grapes are there?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "what-is-on-my-plate",
+      "title_vi": "Nói có gì trên đĩa của em",
+      "prompt_vi": "Nhìn vào đĩa thức ăn (thật hoặc trong tranh) và nói có gì. Dùng \"some\" cho thứ có, và \"any\" khi không có thứ gì đó. Hãy nói về đồ ăn thật của em nhé.",
+      "sentenceFrames": [
+        "There is some ___.",
+        "There are some ___.",
+        "There isn't any ___."
+      ],
+      "audioModels": [
+        "There is some cheese.",
+        "There are some grapes.",
+        "There isn't any soup."
+      ]
+    },
+    {
+      "id": "how-many-on-the-table",
+      "title_vi": "Hỏi và đếm số lượng",
+      "prompt_vi": "Cùng một bạn, hỏi xem có bao nhiêu món trên bàn rồi đếm và trả lời bằng số. Em hỏi, bạn trả lời, rồi đổi vai.",
+      "sentenceFrames": [
+        "How many ___ are there?",
+        "There are ___ ___."
+      ],
+      "audioModels": [
+        "How many eggs are there?",
+        "There are two eggs."
+      ]
+    }
+  ],
+  "audioNotes": "Cần thu âm người thật cho: (1) audioModels phần speaking và audioText câu hỏi reading; (2) ĐẶC BIỆT các từ phonics — BLEND ĐẦU TỪ: grapes, green (/gr/), bread (/br/), fruit (/fr/); NGUYÊN ÂM DÀI Ở GIỮA: cheese, sweet (/iː/), spoon, food (/uː/). Với blend đầu, TTS dễ tách rời hai phụ âm hoặc chèn nguyên âm vào giữa (gơ-rếp, bơ-rét); loa PHẢI đọc liền hai phụ âm. Với nguyên âm dài /iː/, /uː/, TTS dễ đọc thành âm NGẮN (chít thay vì chiiz, sun thay vì suun); cần kéo dài nguyên âm cho đúng. Luôn đọc TỪ TRỌN VẸN, không đọc rời chữ cái. (3) Hai mẫu câu trọng tâm \"There is some cheese.\" / \"There isn't any cheese.\" và cặp hỏi-đáp \"How many bananas are there? There are four bananas.\" nên có audio chuẩn để bé bắt chước ngữ điệu câu hỏi và câu trả lời. Lưu ý phát âm số nhiều: \"tomatoes\", \"sandwiches\" có thêm âm /ɪz/ hoặc /z/ — thu âm chuẩn để bé nghe đúng đuôi."
+};
+  C["level2/lesson04.json"] = {
+  "schemaVersion": "v1",
+  "level": 2,
+  "unit": 204,
+  "lesson": 4,
+  "topic": "Places and directions",
+  "topic_vi": "Nơi chốn & chỉ đường",
+  "vocab": [
+    { "word": "bedroom", "vi": "phòng ngủ", "icon": "🛏️", "example": "There is a bed in my bedroom.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "table", "vi": "cái bàn", "icon": "🪑", "example": "The lamp is on the table.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "shelf", "vi": "cái kệ", "icon": "📚", "example": "There are five books on the shelf.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "box", "vi": "cái hộp", "icon": "📦", "example": "The cat is in the box.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "lamp", "vi": "cái đèn", "icon": "💡", "example": "The lamp is next to the bed.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "clock", "vi": "cái đồng hồ", "icon": "🕐", "example": "There is a clock on the wall.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "park", "vi": "công viên", "icon": "🌳", "example": "There are three trees in the park.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "shop", "vi": "cửa hàng", "icon": "🏪", "example": "The shop is next to the park.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "school", "vi": "trường học", "icon": "🏫", "example": "My school is behind the park.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "street", "vi": "con phố", "icon": "🛣️", "example": "There are two shops on my street.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "bridge", "vi": "cây cầu", "icon": "🌉", "example": "Go over the bridge.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "tree", "vi": "cái cây", "icon": "🌲", "example": "The bird is in the tree.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "prepositions-of-place",
+      "title_vi": "Giới từ chỉ nơi chốn: in / on / under / next to / behind",
+      "explain_vi": "Để nói một vật ở ĐÂU, em dùng các từ chỉ vị trí: \"in\" (ở trong), \"on\" (ở trên bề mặt), \"under\" (ở dưới), \"next to\" (ở bên cạnh), \"behind\" (ở phía sau). Mẫu câu: tên đồ vật + \"is\" + từ chỉ vị trí + nơi chốn. Ví dụ: \"The cat is under the table.\".",
+      "examples": [
+        "The cat is in the box.",
+        "The lamp is on the table.",
+        "The ball is under the bed.",
+        "The lamp is next to the clock.",
+        "The school is behind the park."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "thing-is-prep-place-in", "text": "The {thing} is {prep} the box.", "blanks": ["prep"], "context_vi": "Đồ vật ở BÊN TRONG cái hộp.", "audioText": "The cat is in the box." },
+          { "id": "thing-is-prep-place-on", "text": "The {thing} is {prep} the table.", "blanks": ["prep"], "context_vi": "Đồ vật ở TRÊN mặt bàn.", "audioText": "The lamp is on the table." },
+          { "id": "thing-is-prep-place-under", "text": "The {thing} is {prep} the bed.", "blanks": ["prep"], "context_vi": "Đồ vật ở PHÍA DƯỚI giường.", "audioText": "The ball is under the bed." },
+          { "id": "thing-is-prep-place-behind", "text": "The {thing} is {prep} the park.", "blanks": ["prep"], "context_vi": "Nơi chốn ở PHÍA SAU công viên.", "audioText": "The school is behind the park." },
+          { "id": "thing-is-prep-place-nextto", "text": "The {thing} is {prep} the shop.", "blanks": ["prep"], "context_vi": "Nơi chốn ở BÊN CẠNH cửa hàng.", "audioText": "The school is next to the shop." }
+        ],
+        "slots": {
+          "thing": ["cat", "lamp", "ball", "clock", "school", "shop"],
+          "prep": ["in", "on", "under", "next to", "behind"]
+        },
+        "answerKey": {
+          "thing-is-prep-place-in": { "prep": "in" },
+          "thing-is-prep-place-on": { "prep": "on" },
+          "thing-is-prep-place-under": { "prep": "under" },
+          "thing-is-prep-place-behind": { "prep": "behind" },
+          "thing-is-prep-place-nextto": { "prep": "next to" }
+        },
+        "distractors": [
+          "The cat is on box.",
+          "The cat in the box.",
+          "The lamp is the table.",
+          "The cat is next the shop.",
+          "The school is behind park."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "there-is-there-are",
+      "title_vi": "There is / There are và chỉ đường nhẹ (Go..., Turn...)",
+      "explain_vi": "Khi nói có CÁI GÌ ở đâu đó: một thứ thì dùng \"There is\" (viết tắt \"There's\"); hai thứ trở lên thì dùng \"There are\". Ví dụ: \"There is a shop.\" / \"There are two shops.\". Khi chỉ đường cho ai đó, em dùng câu mệnh lệnh nhẹ nhàng, bắt đầu bằng động từ: \"Go straight.\" (đi thẳng), \"Turn left.\" (rẽ trái), \"Turn right.\" (rẽ phải).",
+      "examples": [
+        "There is a park on my street.",
+        "There are two shops next to the school.",
+        "There are three trees in the park.",
+        "Go straight to the bridge.",
+        "Turn left at the shop."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "there-be-singular", "text": "There {be} a {noun} on my street.", "blanks": ["be"], "context_vi": "Chỉ có MỘT thứ, nên chọn dạng số ít.", "audioText": "There is a shop on my street." },
+          { "id": "there-be-plural", "text": "There {be} two {noun} on my street.", "blanks": ["be"], "context_vi": "Có HAI thứ, nên chọn dạng số nhiều.", "audioText": "There are two shops on my street." },
+          { "id": "give-direction", "text": "{dir} at the {place}.", "blanks": ["dir"], "context_vi": "Chỉ đường: ghép một cách đi/rẽ vào đầu câu mệnh lệnh. Cách nào cũng đúng, miễn đứng đầu câu.", "audioText": "Turn left at the shop." }
+        ],
+        "slots": {
+          "be": ["is", "are"],
+          "noun": ["shop", "park"],
+          "dir": ["Go straight", "Turn left", "Turn right"],
+          "place": ["shop", "park", "school", "bridge"]
+        },
+        "answerKey": {
+          "there-be-singular": { "be": "is" },
+          "there-be-plural": { "be": "are" }
+        },
+        "distractors": [
+          "There are a shop on my street.",
+          "There is two shops on my street.",
+          "There be a park on my street.",
+          "Turn at the shop left.",
+          "Go straight the bridge."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "initial",
+    "focus": ["st", "br", "gr", "fl", "tr"],
+    "soundLabels": {
+      "st": { "ipa": "/st/", "anchor": "street", "position": "initial", "say_vi": "âm GHÉP đầu từ \"street\" là /st/ — đọc liền hai âm /s/ và /t/ (không tách rời, không chèn nguyên âm)" },
+      "br": { "ipa": "/br/", "anchor": "bridge", "position": "initial", "say_vi": "âm GHÉP đầu từ \"bridge\" là /br/ — đọc liền hai âm /b/ và /r/" },
+      "gr": { "ipa": "/gr/", "anchor": "ground", "position": "initial", "say_vi": "âm GHÉP đầu từ \"ground\" là /gr/ — đọc liền hai âm /g/ và /r/" },
+      "fl": { "ipa": "/fl/", "anchor": "floor", "position": "initial", "say_vi": "âm GHÉP đầu từ \"floor\" là /fl/ — đọc liền hai âm /f/ và /l/" },
+      "tr": { "ipa": "/tr/", "anchor": "tree", "position": "initial", "say_vi": "âm GHÉP đầu từ \"tree\" là /tr/ — đọc liền hai âm /t/ và /r/" }
+    },
+    "words": [
+      { "word": "street", "icon": "🛣️", "focusSound": "st", "anchor": "street", "position": "initial", "audio": "" },
+      { "word": "station", "icon": "🚉", "focusSound": "st", "anchor": "street", "position": "initial", "audio": "" },
+      { "word": "bridge", "icon": "🌉", "focusSound": "br", "anchor": "bridge", "position": "initial", "audio": "" },
+      { "word": "ground", "icon": "🟫", "focusSound": "gr", "anchor": "ground", "position": "initial", "audio": "" },
+      { "word": "grass", "icon": "🌱", "focusSound": "gr", "anchor": "ground", "position": "initial", "audio": "" },
+      { "word": "floor", "icon": "🪵", "focusSound": "fl", "anchor": "floor", "position": "initial", "audio": "" },
+      { "word": "tree", "icon": "🌲", "focusSound": "tr", "anchor": "tree", "position": "initial", "audio": "" },
+      { "word": "train", "icon": "🚆", "focusSound": "tr", "anchor": "tree", "position": "initial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "my-little-town",
+      "title": "My little town",
+      "title_vi": "Thị trấn nhỏ của em",
+      "text": "This is my street. There is a small park next to my house. There are three big trees in the park. The shop is behind the park. The school is next to the shop, too. Go straight and turn left at the park. There is a long bridge over the river.",
+      "teacherNote_vi": "Đoạn 7 câu (theo dấu . ! ?). Ôn lại \"There is / There are\" và giới từ nơi chốn (next to, in, behind), lồng câu chỉ đường \"Go straight and turn left\". Các từ \"street\", \"tree\", \"bridge\" gắn với phần phonics blend đầu mới (st/tr/br). \"river\" là từ i+1 (thêm một chút mới), suy được nghĩa nhờ tranh và \"bridge\". Các từ còn lại đều trong vocab hoặc đã học ở Level 1.",
+      "questions": [
+        { "id": "q1", "q_vi": "Công viên ở bên cạnh nhà bạn nhỏ, đúng không?", "type": "truefalse", "answer": true, "audioText": "The park is next to the house." },
+        { "id": "q2", "q_vi": "Trong công viên có mấy cái cây?", "type": "mcq", "choices": ["one tree", "two trees", "three trees"], "answer": 2, "audioText": "How many trees are there in the park?" },
+        { "id": "q3", "q_vi": "Cửa hàng ở đâu?", "type": "mcq", "choices": ["behind the park", "in the park", "under the park"], "answer": 0, "audioText": "Where is the shop?" },
+        { "id": "q4", "q_vi": "Khi chỉ đường, em rẽ hướng nào ở công viên?", "type": "mcq", "choices": ["turn left", "turn right", "go back"], "answer": 0, "audioText": "Which way do you turn at the park?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "where-is-it",
+      "title_vi": "Nói một vật ở đâu",
+      "prompt_vi": "Nhìn quanh phòng em. Chọn một đồ vật và nói nó ở đâu, dùng in / on / under / next to / behind nhé.",
+      "sentenceFrames": [
+        "The ___ is on the ___.",
+        "The ___ is under the ___.",
+        "The ___ is next to the ___."
+      ],
+      "audioModels": [
+        "The lamp is on the table.",
+        "The ball is under the bed.",
+        "The clock is next to the shelf."
+      ]
+    },
+    {
+      "id": "give-me-directions",
+      "title_vi": "Chỉ đường cho bạn",
+      "prompt_vi": "Hãy chỉ đường cho bạn đến một nơi gần nhà em. Dùng \"There is / There are\" để tả, và \"Go straight\", \"Turn left\", \"Turn right\" để chỉ đường.",
+      "sentenceFrames": [
+        "There is a ___ on my street.",
+        "Go straight to the ___.",
+        "Turn left at the ___."
+      ],
+      "audioModels": [
+        "There is a park on my street.",
+        "Go straight to the bridge.",
+        "Turn left at the shop."
+      ]
+    }
+  ],
+  "audioNotes": "Nên thu âm người thật cho các audioModels phần speaking và audioText câu hỏi reading. ĐẶC BIỆT phần phonics blend phụ âm đầu /st/ (street, station), /br/ (bridge), /gr/ (ground, grass), /fl/ (floor), /tr/ (tree, train) — TTS dễ tách rời hai phụ âm hoặc chèn nguyên âm vào giữa; loa cần đọc TỪ TRỌN VẸN với âm ghép đọc LIỀN, không tách. Các blend này khác Bài 3 (Bài 3 dùng bl/cl) và đều gắn với từ chỉ nơi chốn/thành phố nhỏ. Hai câu mẫu grammar \"There is a shop on my street.\" / \"There are two shops on my street.\" cần audio chuẩn để bé nghe rõ khác biệt is/are. Các câu chỉ đường \"Go straight.\", \"Turn left.\", \"Turn right.\" nên thu với ngữ điệu mệnh lệnh nhẹ, rõ ràng — engine luân phiên cả ba khi luyện điền chỗ trống nên cả ba đều cần audio."
+};
+  C["level2/lesson05.json"] = {
+  "schemaVersion": "v1",
+  "level": 2,
+  "unit": 205,
+  "lesson": 5,
+  "topic": "Telling a story: my day and my trip",
+  "topic_vi": "Kể chuyện & quá khứ đơn",
+  "vocab": [
+    { "word": "yesterday", "vi": "hôm qua", "icon": "📅", "example": "Yesterday was Sunday.", "partOfSpeech": "adverb", "audio": "" },
+    { "word": "played", "vi": "đã chơi", "icon": "⚽", "example": "I played football with my friends.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "watched", "vi": "đã xem", "icon": "📺", "example": "We watched a film at home.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "went", "vi": "đã đi (đến)", "icon": "🚶", "example": "I went to the zoo with my mum.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "saw", "vi": "đã thấy / nhìn thấy", "icon": "👀", "example": "We saw a big lion.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "had", "vi": "đã có / đã ăn", "icon": "🍦", "example": "I had an ice cream at the beach.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "zoo", "vi": "sở thú", "icon": "🦁", "example": "The zoo was fun.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "beach", "vi": "bãi biển", "icon": "🏖️", "example": "We went to the beach on Saturday.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "park", "vi": "công viên", "icon": "🌳", "example": "I played in the park.", "partOfSpeech": "noun", "audio": "", "recycled": true, "recycledNote_vi": "Ôn lại từ Bài 2 và Bài 4 (dùng lại có chủ đích)." },
+    { "word": "farm", "vi": "nông trại", "icon": "🚜", "example": "We saw cows on the farm.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "happy", "vi": "vui / hạnh phúc", "icon": "😊", "example": "My family was happy.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "trip", "vi": "chuyến đi chơi", "icon": "🎒", "example": "It was a great trip.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "be-past-was-were",
+      "title_vi": "Quá khứ của \"to be\": was / were (đã là, đã ở)",
+      "explain_vi": "Để kể chuyện đã xảy ra (hôm qua, tuần trước...), em dùng quá khứ của \"to be\". Với I, he, she, it thì dùng \"was\"; với you, we, they thì dùng \"were\". Ví dụ: \"I was happy.\" (Em đã vui), \"We were at the zoo.\" (Chúng em đã ở sở thú). Câu phủ định thêm \"not\": wasn't, weren't.",
+      "examples": [
+        "Yesterday I was at the park.",
+        "We were happy.",
+        "It was a sunny day.",
+        "The lions weren't sad."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "subj-was-were-place", "text": "{subj} {be} at the {place}.", "blanks": ["be"], "context_vi": "Nói ai đó đã Ở ĐÂU hôm qua. Chọn was hay were cho đúng với chủ ngữ.", "audioText": "I was at the park." },
+          { "id": "subj-was-were-adj", "text": "Yesterday {subj} {be} {adj}.", "blanks": ["be"], "context_vi": "Nói hôm qua ai đó CẢM THẤY thế nào. Chọn was hay were.", "audioText": "Yesterday we were happy." },
+          { "id": "it-was-weather", "text": "It {be} a {adj} day.", "blanks": ["be"], "context_vi": "Nói về thời tiết của một ngày trong quá khứ. Với \"it\" luôn dùng was.", "audioText": "It was a sunny day." }
+        ],
+        "slots": {
+          "subj": ["I", "He", "She", "We", "They", "You"],
+          "be": ["was", "were"],
+          "place": ["zoo", "beach", "park", "farm"],
+          "adj": ["happy", "tired", "sunny", "great"]
+        },
+        "answerKey": {
+          "subj-was-were-place": {
+            "be": { "I": "was", "He": "was", "She": "was", "We": "were", "They": "were", "You": "were" }
+          },
+          "subj-was-were-adj": {
+            "be": { "I": "was", "He": "was", "She": "was", "We": "were", "They": "were", "You": "were" }
+          },
+          "it-was-weather": {
+            "be": { "happy": "was", "tired": "was", "sunny": "was", "great": "was" }
+          }
+        },
+        "distractors": [
+          "Yesterday I were happy.",
+          "We was at the zoo.",
+          "It were a sunny day.",
+          "They was at the farm.",
+          "He were tired.",
+          "Yesterday we are happy."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "past-simple-verbs",
+      "title_vi": "Kể việc đã làm: thêm -ed (played, watched) và động từ đặc biệt (went, saw, had)",
+      "explain_vi": "Để kể việc em ĐÃ LÀM hôm qua, phần lớn động từ chỉ cần thêm \"-ed\": play → played, watch → watched. Nhưng vài động từ rất hay dùng lại ĐỔI HẲN, em học thuộc nhé: go → went (đã đi), see → saw (đã thấy), have → had (đã có/đã ăn). Dạng này dùng chung cho I, you, he, she, we, they.",
+      "examples": [
+        "I played football in the park.",
+        "We watched a film at home.",
+        "I went to the zoo.",
+        "We saw a big lion.",
+        "She had an ice cream."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-past-verb-place", "text": "I {pastverb} {place_phrase}.", "blanks": ["pastverb"], "context_vi": "Chọn dạng QUÁ KHỨ đúng của động từ để kể việc em đã làm.", "audioText": "I played in the park." },
+          { "id": "we-past-verb", "text": "We {pastverb} {object}.", "blanks": ["pastverb"], "context_vi": "Chọn dạng quá khứ đúng. Nhớ: go → went, see → saw, have → had.", "audioText": "We saw a big lion." },
+          { "id": "yesterday-i-went", "text": "Yesterday I {pastverb} to the {place}.", "blanks": ["pastverb"], "context_vi": "Đi ĐẾN một nơi trong quá khứ thì dùng \"went to\".", "audioText": "Yesterday I went to the beach." }
+        ],
+        "slots": {
+          "pastverb": ["played", "watched", "went", "saw", "had"],
+          "place": ["zoo", "beach", "park", "farm"],
+          "place_phrase": ["in the park", "at home"],
+          "object": ["a big lion", "a film", "an ice cream"]
+        },
+        "answerKey": {
+          "i-past-verb-place": {
+            "pastverb": { "in the park": "played", "at home": "watched" }
+          },
+          "we-past-verb": {
+            "pastverb": { "a big lion": "saw", "a film": "watched", "an ice cream": "had" }
+          },
+          "yesterday-i-went": {
+            "pastverb": { "zoo": "went", "beach": "went", "park": "went", "farm": "went" }
+          }
+        },
+        "distractors": [
+          "I goed to the zoo.",
+          "We seed a big lion.",
+          "She haved an ice cream.",
+          "Yesterday I went the beach.",
+          "I playd football.",
+          "We watch a film yesterday."
+        ],
+        "irregulars": {
+          "go": "went",
+          "see": "saw",
+          "have": "had",
+          "play": "played",
+          "watch": "watched"
+        }
+      }
+    }
+  ],
+  "recognition": [
+    {
+      "id": "meet-past-vs-present",
+      "title_vi": "Làm quen: QUÁ KHỨ hay HIỆN TẠI?",
+      "explain_vi": "Phần này chỉ để LÀM QUEN (nghe và chọn), em CHƯA cần tự đặt câu. Khi nghe \"went, played, saw, had\" nghĩa là việc ĐÃ XẢY RA (quá khứ); khi nghe \"go, play, see, have\" nghĩa là việc BÂY GIỜ / hằng ngày (hiện tại). Em chỉ cần nghe câu mẫu rồi chọn xem là chuyện ĐÃ QUA hay BÂY GIỜ.",
+      "examples": [
+        "I went to the zoo.",
+        "I go to the zoo.",
+        "We played in the park.",
+        "We saw a big lion."
+      ],
+      "generators": ["listen_choose", "mcq"],
+      "items": [
+        { "id": "rec-went", "audioText": "I went to the zoo.", "meaning_vi": "Bạn nhỏ ĐÃ ĐI sở thú (chuyện đã qua).", "choices_vi": ["Quá khứ (đã qua)", "Hiện tại (bây giờ)"], "answer": 0 },
+        { "id": "rec-go", "audioText": "I go to the zoo.", "meaning_vi": "Bạn nhỏ hay ĐI sở thú (bây giờ / hằng ngày).", "choices_vi": ["Quá khứ (đã qua)", "Hiện tại (bây giờ)"], "answer": 1 },
+        { "id": "rec-played", "audioText": "We played in the park.", "meaning_vi": "Chúng em ĐÃ CHƠI ở công viên (chuyện đã qua).", "choices_vi": ["Quá khứ (đã qua)", "Hiện tại (bây giờ)"], "answer": 0 },
+        { "id": "rec-saw", "audioText": "We saw a big lion.", "meaning_vi": "Chúng em ĐÃ THẤY một con sư tử (chuyện đã qua).", "choices_vi": ["Quá khứ (đã qua)", "Hiện tại (bây giờ)"], "answer": 0 },
+        { "id": "rec-have", "audioText": "I have an ice cream.", "meaning_vi": "Bạn nhỏ CÓ một que kem (bây giờ).", "choices_vi": ["Quá khứ (đã qua)", "Hiện tại (bây giờ)"], "answer": 1 },
+        { "id": "rec-had", "audioText": "I had an ice cream.", "meaning_vi": "Bạn nhỏ ĐÃ ĂN một que kem (chuyện đã qua).", "choices_vi": ["Quá khứ (đã qua)", "Hiện tại (bây giờ)"], "answer": 0 }
+      ]
+    }
+  ],
+  "phonics": {
+    "position": "mixed",
+    "focus": ["pl", "gr", "nd"],
+    "soundLabels": {
+      "pl": { "ipa": "/pl/", "anchor": "play", "position": "initial", "say_vi": "âm GHÉP ĐẦU từ \"play\" là /pl/ — đọc dính p và l liền nhau, không tách rời" },
+      "gr": { "ipa": "/gr/", "anchor": "grass", "position": "initial", "say_vi": "âm GHÉP ĐẦU từ \"grass\" là /gr/ — đọc dính g và r liền nhau" },
+      "nd": { "ipa": "/nd/", "anchor": "sand", "position": "final", "say_vi": "âm GHÉP CUỐI từ \"sand\" là /nd/ — đọc dính n và d ở cuối từ, không thêm nguyên âm" }
+    },
+    "words": [
+      { "word": "play", "icon": "⚽", "focusSound": "pl", "anchor": "play", "position": "initial", "audio": "" },
+      { "word": "plant", "icon": "🪴", "focusSound": "pl", "anchor": "play", "position": "initial", "audio": "" },
+      { "word": "grass", "icon": "🌱", "focusSound": "gr", "anchor": "grass", "position": "initial", "audio": "" },
+      { "word": "green", "icon": "🟢", "focusSound": "gr", "anchor": "grass", "position": "initial", "audio": "" },
+      { "word": "sand", "icon": "🏖️", "focusSound": "nd", "anchor": "sand", "position": "final", "audio": "" },
+      { "word": "hand", "icon": "✋", "focusSound": "nd", "anchor": "sand", "position": "final", "audio": "" },
+      { "word": "friend", "icon": "🧑‍🤝‍🧑", "focusSound": "nd", "anchor": "sand", "position": "final", "audio": "" },
+      { "word": "wind", "icon": "🌬️", "focusSound": "nd", "anchor": "sand", "position": "final", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "my-trip-to-the-zoo",
+      "title": "My trip to the zoo",
+      "title_vi": "Chuyến đi sở thú của em",
+      "text": "Yesterday was Saturday. I went to the zoo with my mum and dad. It was a sunny day. We saw a big lion and three monkeys. The monkeys were very funny. I had an ice cream, and then we played in the park. It was a great trip, and we were all happy.",
+      "teacherNote_vi": "Đoạn gồm 8 câu (theo dấu . ! ?). Gói gọn trọng tâm BÀI LỚN 5: was/were (was Saturday, was sunny, were funny, were happy) + V-ed (played) + bất quy tắc (went, saw, had). Từ mới ngoài vocab chỉ thêm lion/monkeys (i+1, dễ đoán nhờ ngữ cảnh sở thú).",
+      "questions": [
+        { "id": "q1", "q_vi": "Bạn nhỏ đi sở thú vào hôm qua, đúng không?", "type": "truefalse", "answer": true, "audioText": "She went to the zoo yesterday." },
+        { "id": "q2", "q_vi": "Hôm đó thời tiết thế nào?", "type": "mcq", "choices": ["It was sunny.", "It was rainy.", "It was windy."], "answer": 0, "audioText": "What was the weather like?" },
+        { "id": "q3", "q_vi": "Bạn nhỏ đã nhìn thấy con gì ở sở thú?", "type": "mcq", "choices": ["a lion and monkeys", "a dog and a cat", "a fish and a bird"], "answer": 0, "audioText": "What did she see at the zoo?" },
+        { "id": "q4", "q_vi": "Bạn nhỏ đã ăn kem ở sở thú, đúng không?", "type": "truefalse", "answer": true, "audioText": "She had an ice cream." },
+        { "id": "q5", "q_vi": "Cuối cùng cả nhà cảm thấy thế nào?", "type": "mcq", "choices": ["happy", "tired", "sad"], "answer": 0, "audioText": "How did the family feel?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "tell-about-yesterday",
+      "title_vi": "Kể về ngày hôm qua của em",
+      "prompt_vi": "Hãy kể em đã ở đâu và cảm thấy thế nào hôm qua. Điền nơi chốn và cảm xúc thật của em vào chỗ trống. Nhớ dùng \"was\" với I nhé.",
+      "sentenceFrames": [
+        "Yesterday I was at the ___.",
+        "It was ___.",
+        "I was ___."
+      ],
+      "audioModels": [
+        "Yesterday I was at the park.",
+        "It was sunny.",
+        "I was happy."
+      ]
+    },
+    {
+      "id": "tell-about-my-trip",
+      "title_vi": "Kể một việc em đã làm trong chuyến đi",
+      "prompt_vi": "Kể một chuyến đi hoặc một ngày vui: em đã đi đâu, đã thấy gì, đã làm gì. Dùng went, saw và played hoặc had.",
+      "sentenceFrames": [
+        "I went to the ___.",
+        "I saw a ___.",
+        "I played / had ___."
+      ],
+      "audioModels": [
+        "I went to the zoo.",
+        "I saw a big lion.",
+        "I had an ice cream."
+      ]
+    }
+  ],
+  "audioNotes": "Cần thu âm người thật cho: (1) Phonics — blend phụ âm ĐẦU /pl/ (play, plant), /gr/ (grass, green) đọc dính liền; và blend phụ âm CUỐI /nd/ (sand, hand, friend, wind) — đây là blend cuối-từ mang tính TỔNG KẾT Level, TTS dễ thêm nguyên âm chen vào hoặc nuốt mất /d/ cuối, loa phải đọc TỪ TRỌN VẸN với n-d dính liền ở cuối. (2) Phần recognition 'QUÁ KHỨ hay HIỆN TẠI' — đọc rõ cặp tối thiểu để bé phân biệt: 'I went' vs 'I go', 'I had' vs 'I have', và 'We played / We saw'; đọc rõ đuôi -ed của 'played' /pleɪd/ để khác 'play'. (3) Cặp dạng đúng/sai động từ quá khứ trong examples (went, saw, had) để bé phân biệt với lỗi 'goed/seed/haved'. (4) audioModels phần speaking và audioText câu hỏi reading. Lưu ý đọc rõ đuôi -ed của 'played' /pleɪd/ và 'watched' /wɒtʃt/ (đuôi /t/ không thành 'ed' tách âm). Ghi chú recycling: từ 'park' được dùng lại có chủ đích (đã xuất hiện ở Bài 2 và Bài 4) nhằm ôn tập, không phải từ mới; các nơi chốn MỚI của bài là zoo, beach, farm."
+};
   g.ContentData = C;
   if (typeof module !== 'undefined' && module.exports) module.exports = C;
 })(typeof window !== 'undefined' ? window : this);

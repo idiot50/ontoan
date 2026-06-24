@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "v1",
+  "level": 2,
+  "unit": 203,
+  "lesson": 3,
+  "topic": "Food and how much",
+  "topic_vi": "Đồ ăn & số lượng",
+  "vocab": [
+    { "word": "cheese", "vi": "phô mai", "icon": "🧀", "example": "There is some cheese.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "water", "vi": "nước (uống)", "icon": "💧", "example": "There is some water.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "banana", "vi": "quả chuối", "icon": "🍌", "example": "It's a banana.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "egg", "vi": "quả trứng", "icon": "🥚", "example": "It's an egg.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "tomato", "vi": "quả cà chua", "icon": "🍅", "example": "It's a tomato.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "grapes", "vi": "(chùm) nho", "icon": "🍇", "example": "There are some grapes.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "sandwich", "vi": "bánh mì kẹp", "icon": "🥪", "example": "It's a sandwich.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "biscuit", "vi": "bánh quy", "icon": "🍪", "example": "It's a biscuit.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "soup", "vi": "súp (canh)", "icon": "🍲", "example": "There is some soup.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "orange", "vi": "quả cam", "icon": "🍊", "example": "It's an orange.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "cake", "vi": "bánh ngọt", "icon": "🍰", "example": "There is some cake.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "plate", "vi": "cái đĩa", "icon": "🍽️", "example": "There is a plate.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "some-any",
+      "title_vi": "\"some\" và \"any\" (có một ít / không có chút nào)",
+      "explain_vi": "Khi nói có MỘT ÍT thứ gì đó mà không nói rõ số lượng, em dùng \"some\" trong câu khẳng định: \"There is some cheese.\". Khi nói KHÔNG có chút nào, em dùng \"any\" trong câu phủ định: \"There isn't any cheese.\". Mẹo nhỏ: câu CÓ thì dùng \"some\", câu KHÔNG thì dùng \"any\".",
+      "examples": [
+        "There is some water.",
+        "There isn't any water.",
+        "There are some grapes.",
+        "There aren't any grapes."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "there-is-some", "text": "There is {quant} {food}.", "blanks": ["quant"], "context_vi": "Câu CÓ: trên bàn có một ít món này. Chọn từ chỉ số lượng cho đúng.", "audioText": "There is some cheese." },
+          { "id": "there-isnt-any", "text": "There isn't {quant} {food}.", "blanks": ["quant"], "context_vi": "Câu KHÔNG: không có chút nào của món này. Chọn từ chỉ số lượng cho đúng.", "audioText": "There isn't any cheese." }
+        ],
+        "slots": {
+          "quant": ["some", "any"],
+          "food": ["cheese", "water", "soup", "cake"]
+        },
+        "answerKey": {
+          "there-is-some": { "quant": "some" },
+          "there-isnt-any": { "quant": "any" }
+        },
+        "distractors": [
+          "There is any cheese.",
+          "There isn't some cheese.",
+          "There are some cheese.",
+          "There is some a cheese.",
+          "There is any cake."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "how-many",
+      "title_vi": "Hỏi số lượng: \"How many...?\" và trả lời bằng số",
+      "explain_vi": "Để hỏi CÓ BAO NHIÊU cái, em dùng \"How many\" + tên đồ vật ở dạng số nhiều + \"are there?\". Ví dụ: \"How many bananas are there?\". Em trả lời bắt đầu bằng \"There are\" rồi nói SỐ và tên đồ vật, ví dụ \"There are four bananas.\". Nếu chỉ có một cái thì nói \"There is one banana.\".",
+      "examples": [
+        "How many bananas are there? There are four bananas.",
+        "How many eggs are there? There are six eggs.",
+        "How many tomatoes are there? There are two tomatoes."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "how-many-question", "text": "How many {countfood} are there?", "blanks": ["countfood"], "context_vi": "Hỏi xem có bao nhiêu món này (chọn danh từ dạng SỐ NHIỀU cho đúng).", "audioText": "How many bananas are there?" },
+          { "id": "there-are-number", "text": "There are {number} {countfood}.", "blanks": ["countfood"], "context_vi": "Câu trả lời. Chọn danh từ dạng SỐ NHIỀU cho đúng (số do tranh quyết định, mọi số đều đúng ngữ pháp).", "audioText": "There are four bananas." }
+        ],
+        "slots": {
+          "countfood": ["bananas", "eggs", "tomatoes", "oranges", "sandwiches", "biscuits"],
+          "number": ["two", "three", "four", "five", "six"]
+        },
+        "answerKey": {},
+        "teacherNote_vi": "Cả hai slot 'countfood' và 'number' là slot TỰ DO: mọi danh từ số nhiều và mọi số trong slots đều cho câu ĐÚNG NGỮ PHÁP, nên không cần answerKey. fill_blank chỉ nhắm slot 'countfood' (khai báo trong blanks) — KHÔNG hỏi 'number' vì số thật phụ thuộc tranh/ngữ cảnh không có trong text.",
+        "distractors": [
+          "How many banana are there?",
+          "How much bananas are there?",
+          "There is four bananas.",
+          "There are four banana.",
+          "How many bananas there are?"
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "mixed",
+    "focus": ["gr", "br", "fr", "ee", "oo"],
+    "soundLabels": {
+      "gr": { "ipa": "/gr/", "anchor": "grapes", "position": "initial", "say_vi": "âm ghép ĐẦU từ \"grapes\" là /gr/ (đọc liền /g/ và /r/, không tách rời)" },
+      "br": { "ipa": "/br/", "anchor": "bread", "position": "initial", "say_vi": "âm ghép ĐẦU từ \"bread\" là /br/ (đọc liền /b/ và /r/)" },
+      "fr": { "ipa": "/fr/", "anchor": "fruit", "position": "initial", "say_vi": "âm ghép ĐẦU từ \"fruit\" là /fr/ (đọc liền /f/ và /r/)" },
+      "ee": { "ipa": "/iː/", "anchor": "cheese", "position": "medial", "say_vi": "nguyên âm DÀI ở GIỮA từ \"cheese\" là /iː/ — kéo dài âm \"i\", không đọc ngắn" },
+      "oo": { "ipa": "/uː/", "anchor": "spoon", "position": "medial", "say_vi": "nguyên âm DÀI ở GIỮA từ \"spoon\" là /uː/ — kéo dài âm \"u\", không đọc ngắn" }
+    },
+    "words": [
+      { "word": "grapes", "icon": "🍇", "focusSound": "gr", "anchor": "grapes", "position": "initial", "audio": "" },
+      { "word": "green", "icon": "🟢", "focusSound": "gr", "anchor": "grapes", "position": "initial", "audio": "" },
+      { "word": "bread", "icon": "🍞", "focusSound": "br", "anchor": "bread", "position": "initial", "audio": "" },
+      { "word": "fruit", "icon": "🍓", "focusSound": "fr", "anchor": "fruit", "position": "initial", "audio": "" },
+      { "word": "cheese", "icon": "🧀", "focusSound": "ee", "anchor": "cheese", "position": "medial", "audio": "" },
+      { "word": "sweet", "icon": "🍬", "focusSound": "ee", "anchor": "cheese", "position": "medial", "audio": "" },
+      { "word": "spoon", "icon": "🥄", "focusSound": "oo", "anchor": "spoon", "position": "medial", "audio": "" },
+      { "word": "food", "icon": "🍽️", "focusSound": "oo", "anchor": "spoon", "position": "medial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "on-the-table",
+      "title": "On the table",
+      "title_vi": "Trên bàn ăn",
+      "text": "Look at the table. There is some cheese and some bread. There is some water, too. There are three bananas and two eggs. There aren't any tomatoes. How many grapes are there? There are six grapes. Yum, I am happy!",
+      "teacherNote_vi": "Đoạn 8 câu (tính theo . ! ?). Tích hợp đủ trọng tâm: \"some\" cho danh từ không đếm (cheese, bread, water) và danh từ đếm số nhiều (grapes); \"any\" trong câu phủ định (tomatoes); và \"How many ... are there? There are ...\" với số. Câu cuối \"I am happy.\" là phần ôn nhẹ từ Level 1.",
+      "questions": [
+        { "id": "q1", "q_vi": "Trên bàn có phô mai, đúng không?", "type": "truefalse", "answer": true, "audioText": "Is there any cheese on the table?" },
+        { "id": "q2", "q_vi": "Trên bàn KHÔNG có món nào?", "type": "mcq", "choices": ["tomatoes", "bananas", "grapes"], "answer": 0, "audioText": "What isn't there on the table?" },
+        { "id": "q3", "q_vi": "Có bao nhiêu quả chuối?", "type": "mcq", "choices": ["three", "two", "six"], "answer": 0, "audioText": "How many bananas are there?" },
+        { "id": "q4", "q_vi": "Có bao nhiêu chùm nho?", "type": "mcq", "choices": ["six", "two", "three"], "answer": 0, "audioText": "How many grapes are there?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "what-is-on-my-plate",
+      "title_vi": "Nói có gì trên đĩa của em",
+      "prompt_vi": "Nhìn vào đĩa thức ăn (thật hoặc trong tranh) và nói có gì. Dùng \"some\" cho thứ có, và \"any\" khi không có thứ gì đó. Hãy nói về đồ ăn thật của em nhé.",
+      "sentenceFrames": [
+        "There is some ___.",
+        "There are some ___.",
+        "There isn't any ___."
+      ],
+      "audioModels": [
+        "There is some cheese.",
+        "There are some grapes.",
+        "There isn't any soup."
+      ]
+    },
+    {
+      "id": "how-many-on-the-table",
+      "title_vi": "Hỏi và đếm số lượng",
+      "prompt_vi": "Cùng một bạn, hỏi xem có bao nhiêu món trên bàn rồi đếm và trả lời bằng số. Em hỏi, bạn trả lời, rồi đổi vai.",
+      "sentenceFrames": [
+        "How many ___ are there?",
+        "There are ___ ___."
+      ],
+      "audioModels": [
+        "How many eggs are there?",
+        "There are two eggs."
+      ]
+    }
+  ],
+  "audioNotes": "Cần thu âm người thật cho: (1) audioModels phần speaking và audioText câu hỏi reading; (2) ĐẶC BIỆT các từ phonics — BLEND ĐẦU TỪ: grapes, green (/gr/), bread (/br/), fruit (/fr/); NGUYÊN ÂM DÀI Ở GIỮA: cheese, sweet (/iː/), spoon, food (/uː/). Với blend đầu, TTS dễ tách rời hai phụ âm hoặc chèn nguyên âm vào giữa (gơ-rếp, bơ-rét); loa PHẢI đọc liền hai phụ âm. Với nguyên âm dài /iː/, /uː/, TTS dễ đọc thành âm NGẮN (chít thay vì chiiz, sun thay vì suun); cần kéo dài nguyên âm cho đúng. Luôn đọc TỪ TRỌN VẸN, không đọc rời chữ cái. (3) Hai mẫu câu trọng tâm \"There is some cheese.\" / \"There isn't any cheese.\" và cặp hỏi-đáp \"How many bananas are there? There are four bananas.\" nên có audio chuẩn để bé bắt chước ngữ điệu câu hỏi và câu trả lời. Lưu ý phát âm số nhiều: \"tomatoes\", \"sandwiches\" có thêm âm /ɪz/ hoặc /z/ — thu âm chuẩn để bé nghe đúng đuôi."
+}

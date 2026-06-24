@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "v1",
+  "level": 2,
+  "unit": 205,
+  "lesson": 5,
+  "topic": "Telling a story: my day and my trip",
+  "topic_vi": "Kể chuyện & quá khứ đơn",
+  "vocab": [
+    { "word": "yesterday", "vi": "hôm qua", "icon": "📅", "example": "Yesterday was Sunday.", "partOfSpeech": "adverb", "audio": "" },
+    { "word": "played", "vi": "đã chơi", "icon": "⚽", "example": "I played football with my friends.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "watched", "vi": "đã xem", "icon": "📺", "example": "We watched a film at home.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "went", "vi": "đã đi (đến)", "icon": "🚶", "example": "I went to the zoo with my mum.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "saw", "vi": "đã thấy / nhìn thấy", "icon": "👀", "example": "We saw a big lion.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "had", "vi": "đã có / đã ăn", "icon": "🍦", "example": "I had an ice cream at the beach.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "zoo", "vi": "sở thú", "icon": "🦁", "example": "The zoo was fun.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "beach", "vi": "bãi biển", "icon": "🏖️", "example": "We went to the beach on Saturday.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "park", "vi": "công viên", "icon": "🌳", "example": "I played in the park.", "partOfSpeech": "noun", "audio": "", "recycled": true, "recycledNote_vi": "Ôn lại từ Bài 2 và Bài 4 (dùng lại có chủ đích)." },
+    { "word": "farm", "vi": "nông trại", "icon": "🚜", "example": "We saw cows on the farm.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "happy", "vi": "vui / hạnh phúc", "icon": "😊", "example": "My family was happy.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "trip", "vi": "chuyến đi chơi", "icon": "🎒", "example": "It was a great trip.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "be-past-was-were",
+      "title_vi": "Quá khứ của \"to be\": was / were (đã là, đã ở)",
+      "explain_vi": "Để kể chuyện đã xảy ra (hôm qua, tuần trước...), em dùng quá khứ của \"to be\". Với I, he, she, it thì dùng \"was\"; với you, we, they thì dùng \"were\". Ví dụ: \"I was happy.\" (Em đã vui), \"We were at the zoo.\" (Chúng em đã ở sở thú). Câu phủ định thêm \"not\": wasn't, weren't.",
+      "examples": [
+        "Yesterday I was at the park.",
+        "We were happy.",
+        "It was a sunny day.",
+        "The lions weren't sad."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "subj-was-were-place", "text": "{subj} {be} at the {place}.", "blanks": ["be"], "context_vi": "Nói ai đó đã Ở ĐÂU hôm qua. Chọn was hay were cho đúng với chủ ngữ.", "audioText": "I was at the park." },
+          { "id": "subj-was-were-adj", "text": "Yesterday {subj} {be} {adj}.", "blanks": ["be"], "context_vi": "Nói hôm qua ai đó CẢM THẤY thế nào. Chọn was hay were.", "audioText": "Yesterday we were happy." },
+          { "id": "it-was-weather", "text": "It {be} a {adj} day.", "blanks": ["be"], "context_vi": "Nói về thời tiết của một ngày trong quá khứ. Với \"it\" luôn dùng was.", "audioText": "It was a sunny day." }
+        ],
+        "slots": {
+          "subj": ["I", "He", "She", "We", "They", "You"],
+          "be": ["was", "were"],
+          "place": ["zoo", "beach", "park", "farm"],
+          "adj": ["happy", "tired", "sunny", "great"]
+        },
+        "answerKey": {
+          "subj-was-were-place": {
+            "be": { "I": "was", "He": "was", "She": "was", "We": "were", "They": "were", "You": "were" }
+          },
+          "subj-was-were-adj": {
+            "be": { "I": "was", "He": "was", "She": "was", "We": "were", "They": "were", "You": "were" }
+          },
+          "it-was-weather": {
+            "be": { "happy": "was", "tired": "was", "sunny": "was", "great": "was" }
+          }
+        },
+        "distractors": [
+          "Yesterday I were happy.",
+          "We was at the zoo.",
+          "It were a sunny day.",
+          "They was at the farm.",
+          "He were tired.",
+          "Yesterday we are happy."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "past-simple-verbs",
+      "title_vi": "Kể việc đã làm: thêm -ed (played, watched) và động từ đặc biệt (went, saw, had)",
+      "explain_vi": "Để kể việc em ĐÃ LÀM hôm qua, phần lớn động từ chỉ cần thêm \"-ed\": play → played, watch → watched. Nhưng vài động từ rất hay dùng lại ĐỔI HẲN, em học thuộc nhé: go → went (đã đi), see → saw (đã thấy), have → had (đã có/đã ăn). Dạng này dùng chung cho I, you, he, she, we, they.",
+      "examples": [
+        "I played football in the park.",
+        "We watched a film at home.",
+        "I went to the zoo.",
+        "We saw a big lion.",
+        "She had an ice cream."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-past-verb-place", "text": "I {pastverb} {place_phrase}.", "blanks": ["pastverb"], "context_vi": "Chọn dạng QUÁ KHỨ đúng của động từ để kể việc em đã làm.", "audioText": "I played in the park." },
+          { "id": "we-past-verb", "text": "We {pastverb} {object}.", "blanks": ["pastverb"], "context_vi": "Chọn dạng quá khứ đúng. Nhớ: go → went, see → saw, have → had.", "audioText": "We saw a big lion." },
+          { "id": "yesterday-i-went", "text": "Yesterday I {pastverb} to the {place}.", "blanks": ["pastverb"], "context_vi": "Đi ĐẾN một nơi trong quá khứ thì dùng \"went to\".", "audioText": "Yesterday I went to the beach." }
+        ],
+        "slots": {
+          "pastverb": ["played", "watched", "went", "saw", "had"],
+          "place": ["zoo", "beach", "park", "farm"],
+          "place_phrase": ["in the park", "at home"],
+          "object": ["a big lion", "a film", "an ice cream"]
+        },
+        "answerKey": {
+          "i-past-verb-place": {
+            "pastverb": { "in the park": "played", "at home": "watched" }
+          },
+          "we-past-verb": {
+            "pastverb": { "a big lion": "saw", "a film": "watched", "an ice cream": "had" }
+          },
+          "yesterday-i-went": {
+            "pastverb": { "zoo": "went", "beach": "went", "park": "went", "farm": "went" }
+          }
+        },
+        "distractors": [
+          "I goed to the zoo.",
+          "We seed a big lion.",
+          "She haved an ice cream.",
+          "Yesterday I went the beach.",
+          "I playd football.",
+          "We watch a film yesterday."
+        ],
+        "irregulars": {
+          "go": "went",
+          "see": "saw",
+          "have": "had",
+          "play": "played",
+          "watch": "watched"
+        }
+      }
+    }
+  ],
+  "recognition": [
+    {
+      "id": "meet-past-vs-present",
+      "title_vi": "Làm quen: QUÁ KHỨ hay HIỆN TẠI?",
+      "explain_vi": "Phần này chỉ để LÀM QUEN (nghe và chọn), em CHƯA cần tự đặt câu. Khi nghe \"went, played, saw, had\" nghĩa là việc ĐÃ XẢY RA (quá khứ); khi nghe \"go, play, see, have\" nghĩa là việc BÂY GIỜ / hằng ngày (hiện tại). Em chỉ cần nghe câu mẫu rồi chọn xem là chuyện ĐÃ QUA hay BÂY GIỜ.",
+      "examples": [
+        "I went to the zoo.",
+        "I go to the zoo.",
+        "We played in the park.",
+        "We saw a big lion."
+      ],
+      "generators": ["listen_choose", "mcq"],
+      "items": [
+        { "id": "rec-went", "audioText": "I went to the zoo.", "meaning_vi": "Bạn nhỏ ĐÃ ĐI sở thú (chuyện đã qua).", "choices_vi": ["Quá khứ (đã qua)", "Hiện tại (bây giờ)"], "answer": 0 },
+        { "id": "rec-go", "audioText": "I go to the zoo.", "meaning_vi": "Bạn nhỏ hay ĐI sở thú (bây giờ / hằng ngày).", "choices_vi": ["Quá khứ (đã qua)", "Hiện tại (bây giờ)"], "answer": 1 },
+        { "id": "rec-played", "audioText": "We played in the park.", "meaning_vi": "Chúng em ĐÃ CHƠI ở công viên (chuyện đã qua).", "choices_vi": ["Quá khứ (đã qua)", "Hiện tại (bây giờ)"], "answer": 0 },
+        { "id": "rec-saw", "audioText": "We saw a big lion.", "meaning_vi": "Chúng em ĐÃ THẤY một con sư tử (chuyện đã qua).", "choices_vi": ["Quá khứ (đã qua)", "Hiện tại (bây giờ)"], "answer": 0 },
+        { "id": "rec-have", "audioText": "I have an ice cream.", "meaning_vi": "Bạn nhỏ CÓ một que kem (bây giờ).", "choices_vi": ["Quá khứ (đã qua)", "Hiện tại (bây giờ)"], "answer": 1 },
+        { "id": "rec-had", "audioText": "I had an ice cream.", "meaning_vi": "Bạn nhỏ ĐÃ ĂN một que kem (chuyện đã qua).", "choices_vi": ["Quá khứ (đã qua)", "Hiện tại (bây giờ)"], "answer": 0 }
+      ]
+    }
+  ],
+  "phonics": {
+    "position": "mixed",
+    "focus": ["pl", "gr", "nd"],
+    "soundLabels": {
+      "pl": { "ipa": "/pl/", "anchor": "play", "position": "initial", "say_vi": "âm GHÉP ĐẦU từ \"play\" là /pl/ — đọc dính p và l liền nhau, không tách rời" },
+      "gr": { "ipa": "/gr/", "anchor": "grass", "position": "initial", "say_vi": "âm GHÉP ĐẦU từ \"grass\" là /gr/ — đọc dính g và r liền nhau" },
+      "nd": { "ipa": "/nd/", "anchor": "sand", "position": "final", "say_vi": "âm GHÉP CUỐI từ \"sand\" là /nd/ — đọc dính n và d ở cuối từ, không thêm nguyên âm" }
+    },
+    "words": [
+      { "word": "play", "icon": "⚽", "focusSound": "pl", "anchor": "play", "position": "initial", "audio": "" },
+      { "word": "plant", "icon": "🪴", "focusSound": "pl", "anchor": "play", "position": "initial", "audio": "" },
+      { "word": "grass", "icon": "🌱", "focusSound": "gr", "anchor": "grass", "position": "initial", "audio": "" },
+      { "word": "green", "icon": "🟢", "focusSound": "gr", "anchor": "grass", "position": "initial", "audio": "" },
+      { "word": "sand", "icon": "🏖️", "focusSound": "nd", "anchor": "sand", "position": "final", "audio": "" },
+      { "word": "hand", "icon": "✋", "focusSound": "nd", "anchor": "sand", "position": "final", "audio": "" },
+      { "word": "friend", "icon": "🧑‍🤝‍🧑", "focusSound": "nd", "anchor": "sand", "position": "final", "audio": "" },
+      { "word": "wind", "icon": "🌬️", "focusSound": "nd", "anchor": "sand", "position": "final", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "my-trip-to-the-zoo",
+      "title": "My trip to the zoo",
+      "title_vi": "Chuyến đi sở thú của em",
+      "text": "Yesterday was Saturday. I went to the zoo with my mum and dad. It was a sunny day. We saw a big lion and three monkeys. The monkeys were very funny. I had an ice cream, and then we played in the park. It was a great trip, and we were all happy.",
+      "teacherNote_vi": "Đoạn gồm 8 câu (theo dấu . ! ?). Gói gọn trọng tâm BÀI LỚN 5: was/were (was Saturday, was sunny, were funny, were happy) + V-ed (played) + bất quy tắc (went, saw, had). Từ mới ngoài vocab chỉ thêm lion/monkeys (i+1, dễ đoán nhờ ngữ cảnh sở thú).",
+      "questions": [
+        { "id": "q1", "q_vi": "Bạn nhỏ đi sở thú vào hôm qua, đúng không?", "type": "truefalse", "answer": true, "audioText": "She went to the zoo yesterday." },
+        { "id": "q2", "q_vi": "Hôm đó thời tiết thế nào?", "type": "mcq", "choices": ["It was sunny.", "It was rainy.", "It was windy."], "answer": 0, "audioText": "What was the weather like?" },
+        { "id": "q3", "q_vi": "Bạn nhỏ đã nhìn thấy con gì ở sở thú?", "type": "mcq", "choices": ["a lion and monkeys", "a dog and a cat", "a fish and a bird"], "answer": 0, "audioText": "What did she see at the zoo?" },
+        { "id": "q4", "q_vi": "Bạn nhỏ đã ăn kem ở sở thú, đúng không?", "type": "truefalse", "answer": true, "audioText": "She had an ice cream." },
+        { "id": "q5", "q_vi": "Cuối cùng cả nhà cảm thấy thế nào?", "type": "mcq", "choices": ["happy", "tired", "sad"], "answer": 0, "audioText": "How did the family feel?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "tell-about-yesterday",
+      "title_vi": "Kể về ngày hôm qua của em",
+      "prompt_vi": "Hãy kể em đã ở đâu và cảm thấy thế nào hôm qua. Điền nơi chốn và cảm xúc thật của em vào chỗ trống. Nhớ dùng \"was\" với I nhé.",
+      "sentenceFrames": [
+        "Yesterday I was at the ___.",
+        "It was ___.",
+        "I was ___."
+      ],
+      "audioModels": [
+        "Yesterday I was at the park.",
+        "It was sunny.",
+        "I was happy."
+      ]
+    },
+    {
+      "id": "tell-about-my-trip",
+      "title_vi": "Kể một việc em đã làm trong chuyến đi",
+      "prompt_vi": "Kể một chuyến đi hoặc một ngày vui: em đã đi đâu, đã thấy gì, đã làm gì. Dùng went, saw và played hoặc had.",
+      "sentenceFrames": [
+        "I went to the ___.",
+        "I saw a ___.",
+        "I played / had ___."
+      ],
+      "audioModels": [
+        "I went to the zoo.",
+        "I saw a big lion.",
+        "I had an ice cream."
+      ]
+    }
+  ],
+  "audioNotes": "Cần thu âm người thật cho: (1) Phonics — blend phụ âm ĐẦU /pl/ (play, plant), /gr/ (grass, green) đọc dính liền; và blend phụ âm CUỐI /nd/ (sand, hand, friend, wind) — đây là blend cuối-từ mang tính TỔNG KẾT Level, TTS dễ thêm nguyên âm chen vào hoặc nuốt mất /d/ cuối, loa phải đọc TỪ TRỌN VẸN với n-d dính liền ở cuối. (2) Phần recognition 'QUÁ KHỨ hay HIỆN TẠI' — đọc rõ cặp tối thiểu để bé phân biệt: 'I went' vs 'I go', 'I had' vs 'I have', và 'We played / We saw'; đọc rõ đuôi -ed của 'played' /pleɪd/ để khác 'play'. (3) Cặp dạng đúng/sai động từ quá khứ trong examples (went, saw, had) để bé phân biệt với lỗi 'goed/seed/haved'. (4) audioModels phần speaking và audioText câu hỏi reading. Lưu ý đọc rõ đuôi -ed của 'played' /pleɪd/ và 'watched' /wɒtʃt/ (đuôi /t/ không thành 'ed' tách âm). Ghi chú recycling: từ 'park' được dùng lại có chủ đích (đã xuất hiện ở Bài 2 và Bài 4) nhằm ôn tập, không phải từ mới; các nơi chốn MỚI của bài là zoo, beach, farm."
+}
