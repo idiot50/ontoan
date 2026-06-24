@@ -1,0 +1,198 @@
+{
+  "schemaVersion": "v1",
+  "level": 3,
+  "unit": 305,
+  "lesson": 5,
+  "topic": "Reading and retelling a story",
+  "topic_vi": "Đọc hiểu & kể lại",
+  "vocab": [
+    { "word": "story", "vi": "câu chuyện", "icon": "📖", "example": "I read a funny story yesterday.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "because", "vi": "bởi vì (nói lý do)", "icon": "🔗", "example": "I was happy because we went to the beach.", "partOfSpeech": "conjunction", "audio": "" },
+    { "word": "so", "vi": "vì vậy / nên (nói kết quả)", "icon": "➡️", "example": "It was hot, so we had an ice cream.", "partOfSpeech": "conjunction", "audio": "" },
+    { "word": "but", "vi": "nhưng (nói ý ngược lại)", "icon": "↔️", "example": "I was tired, but I was happy.", "partOfSpeech": "conjunction", "audio": "" },
+    { "word": "found", "vi": "đã tìm thấy", "icon": "🔍", "example": "She found a little cat under the tree.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "lost", "vi": "bị lạc / đã mất", "icon": "🧭", "example": "The dog was lost in the park.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "helped", "vi": "đã giúp", "icon": "🤝", "example": "My brother helped the old man.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "cried", "vi": "đã khóc", "icon": "😢", "example": "The baby cried all night.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "laughed", "vi": "đã cười", "icon": "😄", "example": "We laughed at the funny clown.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "scared", "vi": "sợ hãi", "icon": "😨", "example": "The little girl was scared of the dark.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "excited", "vi": "phấn khích / háo hức", "icon": "🤩", "example": "We were excited about the trip.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "surprised", "vi": "ngạc nhiên", "icon": "😲", "example": "Mum was surprised by the big gift.", "partOfSpeech": "adjective", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "linkers-because-so-but",
+      "title_vi": "Nối ý bằng \"because\", \"so\" và \"but\"",
+      "explain_vi": "Để câu chuyện hay hơn, em nối hai ý lại với nhau. Dùng \"because\" (bởi vì) để nói LÝ DO: việc xảy ra TRƯỚC đứng sau \"because\" (Ví dụ: \"I was happy because we won.\" — vui vì đã thắng). Dùng \"so\" (vì vậy/nên) để nói KẾT QUẢ: lý do đứng trước, kết quả đứng sau \"so\" (Ví dụ: \"It was hot, so we had an ice cream.\"). Dùng \"but\" (nhưng) khi hai ý NGƯỢC nhau (Ví dụ: \"I was tired, but I was happy.\").",
+      "examples": [
+        "I was happy because we went to the zoo.",
+        "It was raining, so we played at home.",
+        "The film was long, but it was fun.",
+        "She cried because she lost her doll."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "happy-because", "text": "I was happy {link} {goodreason}.", "blanks": ["link"], "context_vi": "Câu nói LÝ DO làm em VUI (việc tốt nằm sau chỗ trống) nên phải chọn \"because\".", "audioText": "I was happy because we went to the zoo." },
+          { "id": "sad-because", "text": "She was sad {link} {badreason}.", "blanks": ["link"], "context_vi": "Câu nói LÝ DO làm bạn ấy BUỒN (việc không vui nằm sau chỗ trống) nên phải chọn \"because\".", "audioText": "She was sad because she lost her doll." },
+          { "id": "result-so", "text": "It was {cause}, {link} we {action}.", "blanks": ["link"], "context_vi": "Vế đầu là nguyên nhân, vế sau là KẾT QUẢ nên phải chọn \"so\".", "audioText": "It was raining, so we played at home." },
+          { "id": "contrast-but", "text": "It was {firstidea}, {link} it was {secondidea}.", "blanks": ["link"], "context_vi": "Hai ý NGƯỢC nhau (một không hay, một hay) nên phải chọn \"but\".", "audioText": "It was long, but it was fun." }
+        ],
+        "slots": {
+          "link": ["because", "so", "but"],
+          "goodreason": ["we went to the zoo", "we won the game", "we saw a film", "it was my birthday"],
+          "badreason": ["she lost her doll", "the dog was lost", "it was raining", "she was ill"],
+          "cause": ["raining", "hot", "very late", "sunny"],
+          "action": ["played at home", "had an ice cream", "went to bed", "went to the park"],
+          "firstidea": ["long", "small", "hard", "cold"],
+          "secondidea": ["fun", "nice", "good", "great"]
+        },
+        "answerKey": {
+          "happy-because": { "link": "because" },
+          "sad-because": { "link": "because" },
+          "result-so": { "link": "so" },
+          "contrast-but": { "link": "but" }
+        },
+        "distractors": [
+          "I was happy so we went to the zoo.",
+          "It was raining, because we played at home.",
+          "It was long, so it was fun but.",
+          "I was happy but we went to the zoo.",
+          "It was hot so but we had an ice cream.",
+          "She cried so she lost her doll."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "past-simple-retell",
+      "title_vi": "Ôn quá khứ đơn để KỂ LẠI chuyện (V-ed và động từ bất quy tắc)",
+      "explain_vi": "Khi kể lại một câu chuyện đã xảy ra, em dùng QUÁ KHỨ ĐƠN. Phần lớn động từ thêm \"-ed\": help → helped, laugh → laughed; động từ có \"y\" sau phụ âm đổi thành \"-ied\": cry → cried. Vài động từ hay dùng đổi hẳn, học thuộc nhé: find → found (đã tìm thấy), go → went (đã đi), see → saw (đã thấy), have → had (đã có/đã ăn). Dạng quá khứ dùng chung cho mọi chủ ngữ (I, she, we, they...).",
+      "examples": [
+        "She found a little cat in the garden.",
+        "We helped the old man with his bag.",
+        "The baby cried, but then it laughed.",
+        "Last summer we went to the farm and saw the cows."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "subj-found-thing", "text": "{subj} found {foundthing}.", "blanks": ["foundthing"], "context_vi": "Kể về việc TÌM THẤY một thứ gì đó (động từ \"found\" = đã tìm thấy). Mọi thứ trong danh sách đều có thể tìm thấy, nên mọi đáp án đều đúng.", "audioText": "She found a little cat." },
+          { "id": "subj-helped-person", "text": "{subj} helped {person}.", "blanks": ["person"], "context_vi": "Kể về việc ĐÃ GIÚP một người (động từ \"helped\" = đã giúp). Em chỉ giúp được NGƯỜI, nên mọi đáp án trong danh sách đều là người và đều đúng.", "audioText": "We helped the old man." },
+          { "id": "subj-saw-sight", "text": "{subj} saw {sight}.", "blanks": ["sight"], "context_vi": "Kể về việc ĐÃ NHÌN THẤY điều gì (động từ \"saw\" = đã thấy). Mọi thứ trong danh sách đều có thể nhìn thấy, nên mọi đáp án đều đúng.", "audioText": "He saw a big bird." },
+          { "id": "yesterday-subj-wentto", "text": "Yesterday {subjLower} went to the {place}.", "blanks": ["place"], "context_vi": "Đi ĐẾN một nơi trong quá khứ dùng \"went to the...\". Chọn một nơi chốn; nơi nào cũng đúng ngữ pháp.", "audioText": "Yesterday we went to the farm." },
+          { "id": "excited-because-found", "text": "I was excited because I found {foundthing}.", "blanks": ["foundthing"], "context_vi": "Vế \"because\" kể việc ĐÃ xảy ra nên dùng \"found\" (quá khứ). Người ta thường thấy VUI/HÁO HỨC khi tìm thấy đồ, nên mọi thứ tìm được đều hợp nghĩa.", "audioText": "I was excited because I found a little cat." },
+          { "id": "scared-because-saw", "text": "I was scared because I saw {scarysight}.", "blanks": ["scarysight"], "context_vi": "Vế \"because\" kể việc ĐÃ xảy ra nên dùng \"saw\" (quá khứ). Người ta thấy SỢ khi nhìn thấy thứ đáng sợ, nên mọi đáp án đều là thứ đáng sợ và hợp nghĩa.", "audioText": "I was scared because I saw a big spider." }
+        ],
+        "slots": {
+          "subj": ["I", "She", "He", "We", "They"],
+          "subjLower": ["I", "she", "he", "we", "they"],
+          "foundthing": ["a little cat", "an old key", "a lost ball", "an ice cream"],
+          "person": ["the old man", "her friend", "the lost boy"],
+          "sight": ["a big bird", "a funny film", "the new house"],
+          "scarysight": ["a big spider", "a snake", "a dark cave"],
+          "place": ["farm", "park", "zoo", "beach"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "She finded a little cat.",
+          "We helpd the old man.",
+          "The baby cryed all night.",
+          "Yesterday we go to the farm.",
+          "I was excited because I finded a little cat.",
+          "He seed a big bird.",
+          "She found helped the old man."
+        ],
+        "irregulars": {
+          "find": "found",
+          "go": "went",
+          "see": "saw",
+          "have": "had",
+          "help": "helped",
+          "laugh": "laughed",
+          "cry": "cried"
+        }
+      }
+    }
+  ],
+  "phonics": {
+    "position": "mixed",
+    "focus": ["ar", "or", "oo", "ai", "oa", "ee"],
+    "soundLabels": {
+      "ar": { "ipa": "/ɑː/", "anchor": "car", "position": "medial", "say_vi": "âm GIỮA từ \"car\" là /ɑː/ — miệng mở to, kéo dài \"a\", không đọc tách \"a\" và \"r\"" },
+      "or": { "ipa": "/ɔː/", "anchor": "fork", "position": "medial", "say_vi": "âm GIỮA từ \"fork\" là /ɔː/ — môi tròn, kéo dài \"o\", không đọc tách \"o\" và \"r\"" },
+      "oo": { "ipa": "/uː/", "anchor": "moon", "position": "medial", "say_vi": "âm GIỮA từ \"moon\" là /uː/ — môi tròn nhỏ, kéo dài \"u\", không đọc thành hai chữ \"o\"" },
+      "ai": { "ipa": "/eɪ/", "anchor": "rain", "position": "medial", "say_vi": "âm GIỮA từ \"rain\" là /eɪ/ — trượt từ \"ê\" sang \"i\", đọc liền một hơi" },
+      "oa": { "ipa": "/əʊ/", "anchor": "boat", "position": "medial", "say_vi": "âm GIỮA từ \"boat\" là /əʊ/ — trượt từ \"ơ\" sang \"u\", đọc liền một hơi" },
+      "ee": { "ipa": "/iː/", "anchor": "tree", "position": "medial", "say_vi": "âm GIỮA từ \"tree\" là /iː/ — cười nhẹ, kéo dài \"i\", không đọc thành hai chữ \"e\"" }
+    },
+    "words": [
+      { "word": "car", "icon": "🚗", "focusSound": "ar", "anchor": "car", "position": "medial", "audio": "" },
+      { "word": "star", "icon": "⭐", "focusSound": "ar", "anchor": "car", "position": "medial", "audio": "" },
+      { "word": "fork", "icon": "🍴", "focusSound": "or", "anchor": "fork", "position": "medial", "audio": "" },
+      { "word": "moon", "icon": "🌙", "focusSound": "oo", "anchor": "moon", "position": "medial", "audio": "" },
+      { "word": "rain", "icon": "🌧️", "focusSound": "ai", "anchor": "rain", "position": "medial", "audio": "" },
+      { "word": "train", "icon": "🚆", "focusSound": "ai", "anchor": "rain", "position": "medial", "audio": "" },
+      { "word": "boat", "icon": "⛵", "focusSound": "oa", "anchor": "boat", "position": "medial", "audio": "" },
+      { "word": "tree", "icon": "🌳", "focusSound": "ee", "anchor": "tree", "position": "medial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "the-lost-kite",
+      "title": "The lost kite",
+      "title_vi": "Con diều bị lạc",
+      "text": "Last Sunday, Nam and his sister Lan went to the park. It was sunny, so they flew a big red kite. Lan was excited because the kite flew very high. Then the wind was strong, and the kite was lost in a tall tree. Lan was sad, but Nam had a good plan. A kind man helped them, and they found the kite. Lan laughed because she was happy again. It was a great day for Nam and Lan.",
+      "glossary": [
+        { "word": "flew", "vi": "đã bay (quá khứ của \"fly\")", "icon": "🪁" },
+        { "word": "wind", "vi": "gió", "icon": "💨" },
+        { "word": "strong", "vi": "mạnh", "icon": "💪" },
+        { "word": "tall", "vi": "cao", "icon": "🌳" },
+        { "word": "kind", "vi": "tốt bụng", "icon": "😊" },
+        { "word": "plan", "vi": "kế hoạch / cách làm", "icon": "💡" }
+      ],
+      "teacherNote_vi": "Đoạn gồm 8 câu (theo dấu . ! ?), dài hơn Level 2 một chút theo yêu cầu kể lại. Gói gọn trọng tâm BÀI LỚN 5: liên từ because/so/but (so they flew; excited because; sad, but Nam; laughed because) + quá khứ đơn để kể (went, flew, was/were, helped, found, laughed). Từ mới ngoài vocab chỉ thêm flew/wind/strong/tall/kind/plan (i+1, đoán được nhờ ngữ cảnh; kite, park, sunny, wind đã gặp ở Level 1-2). Đã thêm \"glossary\" gloss_vi cho 6 từ i+1 (đặc biệt flew = quá khứ của fly, strong, kind) để hỗ trợ đọc hiểu sâu phục vụ kể lại, theo góp ý review.",
+      "questions": [
+        { "id": "q1", "q_vi": "Nam và Lan đã đi đâu vào Chủ nhật tuần trước?", "type": "mcq", "choices": ["to the park", "to the zoo", "to the beach"], "answer": 0, "audioText": "Where did Nam and Lan go last Sunday?" },
+        { "id": "q2", "q_vi": "Vì sao Lan thấy háo hức?", "type": "mcq", "choices": ["because the kite flew very high", "because it was raining", "because she had an ice cream"], "answer": 0, "audioText": "Why was Lan excited?" },
+        { "id": "q3", "q_vi": "Con diều bị làm sao?", "type": "mcq", "choices": ["It was lost in a tall tree.", "It was broken.", "It was on the boat."], "answer": 0, "audioText": "What happened to the kite?" },
+        { "id": "q4", "q_vi": "Một người tốt bụng đã giúp hai bạn lấy lại con diều, đúng không?", "type": "truefalse", "answer": true, "audioText": "A kind man helped them find the kite." },
+        { "id": "q5", "q_vi": "Cuối cùng Lan cảm thấy thế nào?", "type": "mcq", "choices": ["happy", "scared", "tired"], "answer": 0, "audioText": "How did Lan feel at the end?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "tell-why-i-felt",
+      "title_vi": "Kể một cảm xúc của em và LÝ DO",
+      "prompt_vi": "Hãy kể một lần em vui, buồn hoặc háo hức và NÓI LÝ DO bằng \"because\". Điền cảm xúc và việc đã xảy ra thật của em vào chỗ trống. Nhớ dùng động từ ở quá khứ nhé.",
+      "sentenceFrames": [
+        "I was ___ because I ___.",
+        "It was ___, so I ___.",
+        "It was ___, but it was ___."
+      ],
+      "audioModels": [
+        "I was happy because I found my dog.",
+        "It was hot, so I had an ice cream.",
+        "It was hard, but it was fun."
+      ]
+    },
+    {
+      "id": "retell-a-story",
+      "title_vi": "Kể lại một câu chuyện ngắn của em",
+      "prompt_vi": "Hãy kể lại một câu chuyện hoặc một việc đã xảy ra với em theo ba bước: bắt đầu, chuyện gì xảy ra, kết thúc. Dùng went, saw, found, helped và liên từ because/so/but.",
+      "sentenceFrames": [
+        "Last weekend I went to the ___.",
+        "I saw / found ___, so ___.",
+        "It was ___ because ___."
+      ],
+      "audioModels": [
+        "Last weekend I went to the park.",
+        "I found a little cat, so I helped it.",
+        "It was a great day because we were all happy."
+      ]
+    }
+  ],
+  "audioNotes": "Cần thu âm người thật cho: (1) Phonics Level 3 — nguyên âm đôi và âm-r ở GIỮA từ: /ɑː/ (car, star), /ɔː/ (fork), /uː/ (moon), /eɪ/ (rain, train), /əʊ/ (boat), /iː/ (tree). TTS dễ đọc tách 'a-r', 'o-r' hoặc biến /uː/, /eɪ/, /əʊ/, /iː/ thành tên chữ; loa phải đọc TỪ TRỌN VẸN, kéo dài nguyên âm liền một hơi, không tách rời chữ cái. Lưu ý phân biệt cặp dễ lẫn: 'boat' /əʊ/ khác 'moon' /uː/, 'rain' /eɪ/ khác 'tree' /iː/. (2) Câu mẫu liên từ trong grammar examples — đọc rõ chỗ nghỉ trước 'so' và 'but' (có dấu phẩy) và nối liền 'happy because', để bé nghe được ngữ điệu nối ý. (3) Các đuôi quá khứ trong vocab/examples: 'helped' /helpt/ (đuôi /t/), 'laughed' /lɑːft/ (đuôi /t/), 'cried' /kraɪd/ (đuôi /d/), 'found' /faʊnd/, 'saw' /sɔː/ — đọc rõ để bé phân biệt với lỗi 'finded/cryed/helpd/seed'. (4) audioModels phần speaking và audioText câu hỏi reading; riêng reading 'The lost kite' nên đọc chậm, ngắt câu rõ để bé theo dõi mạch kể chuyện. Ghi chú recycling: kite, park, sunny, wind, happy, sad đã gặp ở Level 1-2, dùng lại có chủ đích để ôn; trọng tâm MỚI là liên từ because/so/but và mở rộng quá khứ đơn (found, helped, cried, laughed) cùng nhóm cảm xúc (scared, excited, surprised)."
+}

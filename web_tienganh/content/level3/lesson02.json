@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "v1",
+  "level": 3,
+  "unit": 302,
+  "lesson": 2,
+  "topic": "Habits and how often we do things",
+  "topic_vi": "Thói quen & tần suất",
+  "vocab": [
+    { "word": "always", "vi": "luôn luôn (100%)", "icon": "💯", "example": "I always brush my teeth.", "partOfSpeech": "adverb", "audio": "" },
+    { "word": "usually", "vi": "thường (hầu hết các lần)", "icon": "🔁", "example": "She usually walks to school.", "partOfSpeech": "adverb", "audio": "" },
+    { "word": "sometimes", "vi": "thỉnh thoảng", "icon": "🤔", "example": "We sometimes play chess.", "partOfSpeech": "adverb", "audio": "" },
+    { "word": "never", "vi": "không bao giờ (0%)", "icon": "🚫", "example": "He never eats fast food.", "partOfSpeech": "adverb", "audio": "" },
+    { "word": "wake up", "vi": "thức dậy", "icon": "⏰", "example": "I wake up at six.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "brush", "vi": "đánh (răng) / chải (tóc)", "icon": "🪥", "example": "I always brush my teeth.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "walk", "vi": "đi bộ", "icon": "🚶", "example": "She usually walks to school.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "help", "vi": "giúp đỡ", "icon": "🤝", "example": "I sometimes help my mum.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "tidy", "vi": "dọn dẹp", "icon": "🧹", "example": "We tidy our room on Sunday.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "homework", "vi": "bài tập về nhà", "icon": "📚", "example": "I always do my homework.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "weekend", "vi": "cuối tuần", "icon": "📅", "example": "On the weekend, we visit Grandma.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "morning", "vi": "buổi sáng", "icon": "🌅", "example": "In the morning, I have breakfast.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "adverbs-of-frequency-position",
+      "title_vi": "Trạng từ tần suất + vị trí TRƯỚC động từ thường (always / usually / sometimes / never)",
+      "explain_vi": "Để nói em làm một việc THƯỜNG XUYÊN đến mức nào, em dùng trạng từ tần suất: always (luôn luôn, 100%), usually (thường), sometimes (thỉnh thoảng), never (không bao giờ, 0%). Trạng từ này đứng TRƯỚC động từ thường, ví dụ \"I always walk to school.\", \"She usually helps her mum.\". Lưu ý: \"never\" đã mang nghĩa phủ định, nên KHÔNG dùng thêm \"don't / doesn't\" với never. Đây là câu present simple nói về thói quen.",
+      "examples": [
+        "I always brush my teeth.",
+        "We usually walk to school.",
+        "I sometimes help my mum.",
+        "He never eats fast food."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-adv-verb", "text": "I {adv} {verb} after school.", "blanks": ["adv"], "context_vi": "Đây chỉ là bài LUYỆN VỊ TRÍ trạng từ, không phải nói về bản thân em. Mọi trạng từ tần suất (kể cả \"never\") đều đúng ngữ pháp khi đứng TRƯỚC động từ thường. Ngữ cảnh trung tính: một việc em làm sau giờ học.", "audioText": "I usually play after school." },
+          { "id": "we-adv-verb", "text": "We {adv} {verb2} to school.", "blanks": ["adv"], "context_vi": "Nói nhóm em đi bộ đến trường thường xuyên đến mức nào.", "audioText": "We usually walk to school." },
+          { "id": "he-adv-verb3", "text": "He {adv} {verb3} his room.", "blanks": ["verb3"], "context_vi": "Chọn đúng dạng động từ cho \"he\" (thêm s): tidies. Trạng từ đã đặt sẵn trước động từ.", "audioText": "He always tidies his room." }
+        ],
+        "slots": {
+          "adv": ["always", "usually", "sometimes", "never"],
+          "verb": ["play", "read", "draw"],
+          "verb2": ["walk"],
+          "verb3": ["tidies"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "I play always after school.",
+          "I always playing after school.",
+          "He never doesn't tidy his room.",
+          "We walk usually to school.",
+          "He always tidy his room.",
+          "I read after school always.",
+          "We always walks to school."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "frequency-with-be-and-doesnt",
+      "title_vi": "Tần suất với \"be\" (đứng SAU) và với he/she (thêm s)",
+      "explain_vi": "Có hai điểm cần nhớ. Một là: với động từ \"be\" (am / is / are), trạng từ tần suất đứng SAU \"be\", ví dụ \"She is always happy.\", \"They are usually late.\". Hai là: trong present simple, với he / she / it động từ thường thêm \"s\": \"She always walks.\", \"He usually helps.\". Còn \"never\" thì không cần \"doesn't\" vì nó đã là phủ định rồi: nói \"He never eats fast food.\".",
+      "examples": [
+        "She is always happy.",
+        "They are usually late.",
+        "She always walks to school.",
+        "He sometimes helps his dad."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "subj-be-adv", "text": "{subj} {be} {adv} happy.", "blanks": ["be"], "context_vi": "Chọn đúng \"am / is / are\" theo chủ ngữ. Trạng từ tần suất đứng SAU be.", "audioText": "She is always happy." },
+          { "id": "be-adv-position", "text": "She is {adv} happy.", "blanks": ["adv"], "context_vi": "Chọn một trạng từ tần suất đặt đúng chỗ SAU \"is\".", "audioText": "She is usually happy." },
+          { "id": "subj3-adv-verb3", "text": "{subj3} {adv} {verb3}.", "blanks": ["verb3"], "context_vi": "Chọn đúng dạng động từ thêm s cho he/she (walks / helps).", "audioText": "She always walks." }
+        ],
+        "slots": {
+          "subj": ["I", "She", "He", "We", "They"],
+          "subj3": ["She", "He"],
+          "be": ["am", "is", "are"],
+          "adv": ["always", "usually", "sometimes", "never"],
+          "verb3": ["walks", "helps"]
+        },
+        "answerKey": {
+          "subj-be-adv": {
+            "be": { "__cond": "subj", "I": "am", "She": "is", "He": "is", "We": "are", "They": "are" }
+          }
+        },
+        "distractors": [
+          "She always is happy.",
+          "They is usually late.",
+          "She walk always to school.",
+          "He always walk.",
+          "She is happy always.",
+          "We is sometimes late.",
+          "He never helps not his dad."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "medial",
+    "focus": ["ar", "ai", "oa"],
+    "soundLabels": {
+      "ar": { "ipa": "/ɑː/", "anchor": "star", "position": "medial", "say_vi": "TIẾP TỤC CỦNG CỐ từ bài trước. âm Ở GIỮA từ \"star\" là /ɑː/ — mở miệng to, kéo dài \"a\" (giống \"aa\" trong tiếng Việt, không đọc tên chữ \"a-rờ\")" },
+      "ai": { "ipa": "/eɪ/", "anchor": "rain", "position": "medial", "say_vi": "ÔN LẠI từ bài trước. âm Ở GIỮA từ \"rain\" là /eɪ/ — đọc trượt từ \"ê\" sang \"i\" (giống \"ây\"), không đọc rời \"a\" và \"i\"" },
+      "oa": { "ipa": "/əʊ/", "anchor": "boat", "position": "medial", "say_vi": "ÂM MỚI. âm Ở GIỮA từ \"boat\" là /əʊ/ — đọc trượt từ \"ơ\" sang \"u\" (giống \"âu\"), không đọc thành \"o\" ngắn" }
+    },
+    "words": [
+      { "word": "star", "icon": "⭐", "focusSound": "ar", "anchor": "star", "position": "medial", "audio": "" },
+      { "word": "car", "icon": "🚗", "focusSound": "ar", "anchor": "star", "position": "medial", "audio": "" },
+      { "word": "park", "icon": "🏞️", "focusSound": "ar", "anchor": "star", "position": "medial", "audio": "" },
+      { "word": "rain", "icon": "🌧️", "focusSound": "ai", "anchor": "rain", "position": "medial", "audio": "" },
+      { "word": "train", "icon": "🚆", "focusSound": "ai", "anchor": "rain", "position": "medial", "audio": "" },
+      { "word": "boat", "icon": "⛵", "focusSound": "oa", "anchor": "boat", "position": "medial", "audio": "" },
+      { "word": "goat", "icon": "🐐", "focusSound": "oa", "anchor": "boat", "position": "medial", "audio": "" },
+      { "word": "coat", "icon": "🧥", "focusSound": "oa", "anchor": "boat", "position": "medial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "my-week-and-weekend",
+      "title": "My week and my weekend",
+      "title_vi": "Tuần học và cuối tuần của em",
+      "text": "My name is Linh. On school days, I always wake up at six in the morning. I usually walk to school with my friend Nam. After school, I always do my homework first. I sometimes help my mum in the kitchen. On the weekend, I never wake up early. We usually visit Grandma and tidy her garden. I am always happy on Saturday!",
+      "teacherNote_vi": "Đoạn dùng present simple để nói thói quen, với cả bốn trạng từ tần suất (always, usually, sometimes, never) đặt ĐÚNG vị trí: TRƯỚC động từ thường (\"I always wake up\", \"I usually walk\", \"I sometimes help\", \"I never wake up\") và SAU be (\"I am always happy\"). Từ vựng controlled từ vocab: wake up, walk, homework, help, tidy, weekend, morning. \"park\" của phonics không xuất hiện ở đây nhưng \"morning\" có âm /ɔː/ gần với nhóm âm r; trọng tâm phonics ar/ai/oa luyện tách riêng. Đoạn gồm 8 câu (theo . !), vừa ngưỡng 6-8.",
+      "questions": [
+        { "id": "q1", "q_vi": "Bạn Linh luôn thức dậy lúc 6 giờ vào ngày đi học, đúng không?", "type": "truefalse", "answer": true, "audioText": "Linh always wakes up at six on school days." },
+        { "id": "q2", "q_vi": "Linh thường đến trường bằng cách nào?", "type": "mcq", "choices": ["walks to school", "rides a bike", "goes by car"], "answer": 0, "audioText": "How does Linh usually go to school?" },
+        { "id": "q3", "q_vi": "Vào cuối tuần, Linh dậy sớm thường xuyên đến mức nào?", "type": "mcq", "choices": ["never", "always", "usually"], "answer": 0, "audioText": "How often does Linh wake up early on the weekend?" },
+        { "id": "q4", "q_vi": "Linh thỉnh thoảng làm gì để giúp mẹ?", "type": "mcq", "choices": ["helps in the kitchen", "tidies the garden", "walks the dog"], "answer": 0, "audioText": "What does Linh sometimes do for her mum?" },
+        { "id": "q5", "q_vi": "Vào thứ Bảy, Linh cảm thấy thế nào?", "type": "mcq", "choices": ["always happy", "always tired", "sometimes sad"], "answer": 0, "audioText": "How does Linh feel on Saturday?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "talk-about-my-habits",
+      "title_vi": "Nói về thói quen của em",
+      "prompt_vi": "Hãy nói thật về thói quen của em: việc gì em luôn làm, thường làm, thỉnh thoảng làm, và không bao giờ làm. Nhớ đặt trạng từ TRƯỚC động từ.",
+      "sentenceFrames": [
+        "I always ___.",
+        "I usually ___.",
+        "I sometimes ___.",
+        "I never ___."
+      ],
+      "audioModels": [
+        "I always brush my teeth.",
+        "I usually walk to school.",
+        "I sometimes help my mum.",
+        "I never eat fast food."
+      ]
+    },
+    {
+      "id": "ask-how-often",
+      "title_vi": "Hỏi bạn làm việc đó thường xuyên không",
+      "prompt_vi": "Hỏi một người bạn xem họ có hay làm một việc nào đó không, rồi nghe bạn trả lời bằng trạng từ tần suất. Sau đó kể lại bằng \"He/She...\" và nhớ thêm \"s\" vào động từ.",
+      "sentenceFrames": [
+        "Do you ___ on the weekend?",
+        "She usually ___.",
+        "He never ___."
+      ],
+      "audioModels": [
+        "Do you tidy your room on the weekend?",
+        "She usually helps her mum.",
+        "He never wakes up late."
+      ]
+    }
+  ],
+  "audioNotes": "Nên thu âm người thật cho: audioModels phần speaking và audioText câu hỏi reading. TRỌNG TÂM phonics lần này là NGUYÊN ÂM ĐÔI / ÂM R Ở GIỮA. Trong đó \"oa\" là ÂM MỚI của bài; \"ar\" và \"ai\" là TIẾP NỐI từ lesson01 cùng Level 3 (ôn lại, củng cố). Cụ thể: star, car, park (ar /ɑː/ — mở miệng to, KHÔNG bật âm /r/ rõ kiểu Mỹ và KHÔNG đọc tên chữ \"a-rờ\"); rain, train (ai /eɪ/ — trượt ê→i, không tách rời); boat, goat, coat (oa /əʊ/ — trượt ơ→u, không đọc thành \"o\" ngắn). TTS rất hay đọc sai các nguyên âm đôi này thành nguyên âm ngắn hoặc đọc rời từng chữ, nên BẮT BUỘC cần giọng người thật. Câu mẫu grammar cần audio chuẩn để bé nghe rõ VỊ TRÍ trạng từ: \"I usually play after school.\" (trạng từ TRƯỚC động từ thường) và \"She is always happy.\" (trạng từ SAU be) — đây là điểm bé hay nhầm. Lưu ý đọc rõ đuôi -s ở \"walks\", \"helps\", \"tidies\", \"wakes\" trong các câu he/she."
+}

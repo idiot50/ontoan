@@ -1,0 +1,221 @@
+{
+  "schemaVersion": "v1",
+  "level": 3,
+  "unit": 304,
+  "lesson": 4,
+  "topic": "What was happening: yesterday's moments",
+  "topic_vi": "Việc đang & đã diễn ra",
+  "vocab": [
+    { "word": "playing", "vi": "đang chơi", "icon": "⚽", "example": "I was playing football at four o'clock.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "reading", "vi": "đang đọc", "icon": "📖", "example": "She was reading a book in her room.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "sleeping", "vi": "đang ngủ", "icon": "😴", "example": "The cat was sleeping on the sofa.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "cooking", "vi": "đang nấu ăn", "icon": "🍳", "example": "Mum was cooking in the kitchen.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "drawing", "vi": "đang vẽ", "icon": "🖍️", "example": "We were drawing a big star.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "running", "vi": "đang chạy", "icon": "🏃", "example": "The dog was running in the park.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "raining", "vi": "trời đang mưa", "icon": "🌧️", "example": "It was raining all morning.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "snowing", "vi": "trời đang có tuyết", "icon": "🌨️", "example": "It was snowing at six o'clock.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "watching", "vi": "đang xem", "icon": "📺", "example": "They were watching TV after dinner.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "this morning", "vi": "sáng nay", "icon": "🌅", "example": "This morning I was eating breakfast at seven.", "partOfSpeech": "phrase", "audio": "" },
+    { "word": "last night", "vi": "tối qua", "icon": "🌙", "example": "Last night we were reading a story.", "partOfSpeech": "phrase", "audio": "" },
+    { "word": "at six o'clock", "vi": "lúc sáu giờ", "icon": "🕕", "example": "At six o'clock Dad was driving home.", "partOfSpeech": "phrase", "audio": "" },
+    { "word": "when", "vi": "khi / lúc", "icon": "⏰", "example": "I was sleeping when the phone rang.", "partOfSpeech": "conjunction", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "past-continuous-was-were-ving",
+      "title_vi": "Việc ĐANG diễn ra trong quá khứ: was / were + V-ing",
+      "explain_vi": "Khi muốn kể một việc ĐANG XẢY RA tại một thời điểm trong quá khứ (ví dụ \"lúc sáu giờ\", \"sáng nay\"), em dùng was/were + động từ thêm \"-ing\". Với I, he, she, it dùng \"was\"; với you, we, they dùng \"were\". Ví dụ: \"I was playing football at four o'clock.\" (Lúc bốn giờ em đang chơi bóng), \"They were watching TV.\" (Họ đang xem ti vi). Khác với quá khứ đơn (đã làm xong) như \"I played\", dạng này nhấn mạnh việc ĐANG diễn ra, chưa xong.",
+      "examples": [
+        "I was playing football at four o'clock.",
+        "She was reading a book in her room.",
+        "We were drawing a big star.",
+        "It was raining this morning."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "subj-be-ving-time", "text": "{subj} {be} {verbing} {time}.", "blanks": ["be"], "context_vi": "Kể một việc ĐANG diễn ra tại một thời điểm trong quá khứ. Chọn was hay were cho đúng với chủ ngữ.", "audioText": "I was playing football at four o'clock." },
+          { "id": "it-was-raining", "text": "It {be} {weatherving} {time}.", "blanks": ["be"], "context_vi": "Nói trời ĐANG mưa hay đang có nắng tại một thời điểm trong quá khứ. Với \"it\" luôn dùng was.", "audioText": "It was raining this morning." },
+          { "id": "clause-was-were-ving", "text": "{clause} {time}.", "blanks": ["clause"], "context_vi": "Chọn cụm chủ-ngữ + was/were + động-từ-ing ĐÚNG để kể việc đang diễn ra. Mọi cụm trong danh sách đều đúng was/were theo chủ ngữ.", "audioText": "She was reading this morning." }
+        ],
+        "slots": {
+          "subj": ["I", "He", "She", "We", "They", "You"],
+          "be": ["was", "were"],
+          "verbing": ["playing", "reading", "sleeping", "cooking", "drawing", "running", "watching"],
+          "weatherving": ["raining", "snowing"],
+          "time": ["this morning", "last night", "at six o'clock", "at four o'clock"],
+          "clause": [
+            "I was playing",
+            "He was reading",
+            "She was cooking",
+            "We were drawing",
+            "They were watching",
+            "You were running"
+          ]
+        },
+        "answerKey": {
+          "subj-be-ving-time": {
+            "be": { "__cond": "subj", "I": "was", "He": "was", "She": "was", "We": "were", "They": "were", "You": "were" }
+          },
+          "it-was-raining": {
+            "be": { "__cond": "weatherving", "raining": "was", "snowing": "was" }
+          }
+        },
+        "distractors": [
+          "I were playing football at four o'clock.",
+          "She were reading a book in her room.",
+          "We was drawing a big star.",
+          "They was watching TV.",
+          "It were raining this morning.",
+          "I was play football at four o'clock.",
+          "She was read a book this morning.",
+          "He were sleeping last night."
+        ],
+        "irregulars": {
+          "play": "playing",
+          "read": "reading",
+          "sleep": "sleeping",
+          "cook": "cooking",
+          "draw": "drawing",
+          "run": "running",
+          "watch": "watching"
+        }
+      }
+    },
+    {
+      "id": "when-while-past-continuous",
+      "title_vi": "Nối câu với \"when\" và \"while\": một việc ĐANG diễn ra thì việc khác xảy ra",
+      "explain_vi": "Để kể \"em đang làm việc A thì việc B xảy ra\", em dùng was/were + V-ing cho việc ĐANG diễn ra (việc dài hơn), và quá khứ đơn cho việc xảy ra CẮT NGANG (việc ngắn). Dùng \"when\" trước việc ngắn: \"I was sleeping when the phone rang.\" (Em đang ngủ thì điện thoại reo). Dùng \"while\" trước việc đang diễn ra: \"While I was reading, my mum called me.\" (Trong khi em đang đọc, mẹ gọi em). Chú ý: việc ĐANG diễn ra vẫn cần was/were + V-ing.",
+      "examples": [
+        "I was sleeping when the phone rang.",
+        "She was cooking when I came home.",
+        "While we were playing, it started to rain.",
+        "While they were watching TV, Dad arrived."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "subj-be-ving-when", "text": "{subj} {be} {verbing} when the phone rang.", "blanks": ["be"], "context_vi": "Một việc ĐANG diễn ra thì điện thoại reo (việc ngắn cắt ngang). Chọn was hay were cho việc đang diễn ra.", "audioText": "I was sleeping when the phone rang." },
+          { "id": "while-clause-rain", "text": "While {clauseLower}, it started to rain.", "blanks": ["clauseLower"], "context_vi": "Trong khi ai đó ĐANG làm việc gì thì trời bắt đầu mưa. Chọn cụm chủ-ngữ + was/were + V-ing ĐÚNG (đặt giữa câu nên viết thường).", "audioText": "While we were playing, it started to rain." },
+          { "id": "clause-when-dad", "text": "{clause} when Dad came home.", "blanks": ["clause"], "context_vi": "Chọn cụm chủ-ngữ + was/were + V-ing ĐÚNG cho việc đang diễn ra khi bố về nhà.", "audioText": "She was cooking when Dad came home." }
+        ],
+        "slots": {
+          "subj": ["I", "He", "She", "We", "They", "You"],
+          "be": ["was", "were"],
+          "verbing": ["sleeping", "reading", "cooking", "playing", "drawing", "watching"],
+          "clause": [
+            "I was sleeping",
+            "He was reading",
+            "She was cooking",
+            "We were playing",
+            "They were watching",
+            "You were drawing"
+          ],
+          "clauseLower": [
+            "I was sleeping",
+            "he was reading",
+            "she was cooking",
+            "we were playing",
+            "they were watching",
+            "you were drawing"
+          ]
+        },
+        "answerKey": {
+          "subj-be-ving-when": {
+            "be": { "__cond": "subj", "I": "was", "He": "was", "She": "was", "We": "were", "They": "were", "You": "were" }
+          }
+        },
+        "distractors": [
+          "I were sleeping when the phone rang.",
+          "She were cooking when Dad came home.",
+          "While we was playing, it started to rain.",
+          "While they was watching TV, Dad arrived.",
+          "I was sleep when the phone rang.",
+          "She was cook when Dad came home.",
+          "While we were play, it started to rain.",
+          "He were reading when the phone rang."
+        ],
+        "irregulars": {
+          "ring": "rang",
+          "come": "came",
+          "start": "started"
+        }
+      }
+    }
+  ],
+  "phonics": {
+    "position": "medial",
+    "focus": ["ar", "or", "oo", "ee"],
+    "soundLabels": {
+      "ar": { "ipa": "/ɑː/", "anchor": "star", "position": "medial", "say_vi": "âm GIỮA từ \"star\" là /ɑː/ — đọc dài \"a\" có âm r nhẹ phía sau, không đọc rời từng chữ a-r" },
+      "or": { "ipa": "/ɔː/", "anchor": "fork", "position": "medial", "say_vi": "âm GIỮA từ \"fork\" là /ɔː/ — đọc tròn môi \"o\" dài, không đọc rời o-r" },
+      "oo": { "ipa": "/uː/", "anchor": "moon", "position": "medial", "say_vi": "âm GIỮA từ \"moon\" là /uː/ — đọc dài \"u\", không đọc thành hai chữ o" },
+      "ee": { "ipa": "/iː/", "anchor": "tree", "position": "medial", "say_vi": "âm GIỮA từ \"tree\" là /iː/ — đọc dài \"i\", không đọc thành hai chữ e" }
+    },
+    "words": [
+      { "word": "star", "icon": "⭐", "focusSound": "ar", "anchor": "star", "position": "medial", "audio": "" },
+      { "word": "car", "icon": "🚗", "focusSound": "ar", "anchor": "star", "position": "medial", "audio": "" },
+      { "word": "fork", "icon": "🍴", "focusSound": "or", "anchor": "fork", "position": "medial", "audio": "" },
+      { "word": "corn", "icon": "🌽", "focusSound": "or", "anchor": "fork", "position": "medial", "audio": "" },
+      { "word": "moon", "icon": "🌙", "focusSound": "oo", "anchor": "moon", "position": "medial", "audio": "" },
+      { "word": "spoon", "icon": "🥄", "focusSound": "oo", "anchor": "moon", "position": "medial", "audio": "" },
+      { "word": "tree", "icon": "🌳", "focusSound": "ee", "anchor": "tree", "position": "medial", "audio": "" },
+      { "word": "sheep", "icon": "🐑", "focusSound": "ee", "anchor": "tree", "position": "medial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "what-we-were-doing-last-night",
+      "title": "What we were doing last night",
+      "title_vi": "Tối qua nhà em đang làm gì",
+      "text": "Last night at eight o'clock my family was very busy. I was reading a story in my room. My little sister was sleeping in her bed. Mum was cooking dinner in the kitchen, and Dad was watching the news on TV. While we were doing all these things, it started to rain. Then the lights went off! We were all in the dark, but we were not afraid. We found a candle and sat together. It was a funny night, and we were happy.",
+      "teacherNote_vi": "Đoạn 8 câu (theo dấu . ! ?). Gói trọng tâm BÀI LỚN 4: was/were + V-ing (was reading, was sleeping, was cooking, was watching, were doing) + nối câu với while + việc ngắn cắt ngang ở quá khứ đơn (it started to rain, the lights went off). Từ ngoài vocab chỉ thêm 'candle', 'dark', 'news' (i+1, dễ đoán nhờ ngữ cảnh mất điện); 'happy', 'family', 'story', 'kitchen', 'room' đã quen từ Level 1-2 (recycling). Cụm 'the lights went off' và 'candle' được chú thích ở 'glosses' để bé không hiểu sai mạch truyện MẤT ĐIỆN.",
+      "glosses": [
+        { "word": "the lights went off", "vi": "đèn tắt phụt (mất điện)", "icon": "💡", "note_vi": "Cả nhà mất điện nên tối thui — đây là việc ngắn cắt ngang lúc cả nhà đang bận." },
+        { "word": "candle", "vi": "cây nến", "icon": "🕯️", "note_vi": "Cây nến đốt lên để có ánh sáng khi mất điện." },
+        { "word": "in the dark", "vi": "trong bóng tối", "icon": "🌑", "note_vi": "Vì mất điện nên cả nhà ở trong bóng tối, nhưng không sợ." }
+      ],
+      "questions": [
+        { "id": "q1", "q_vi": "Lúc tám giờ tối qua bạn nhỏ đang làm gì?", "type": "mcq", "choices": ["reading a story", "watching TV", "cooking dinner"], "answer": 0, "audioText": "What was the child doing at eight o'clock?" },
+        { "id": "q2", "q_vi": "Em gái nhỏ đang ngủ, đúng không?", "type": "truefalse", "answer": true, "audioText": "The little sister was sleeping." },
+        { "id": "q3", "q_vi": "Mẹ đang làm gì trong bếp?", "type": "mcq", "choices": ["cooking dinner", "reading a book", "sleeping"], "answer": 0, "audioText": "What was Mum doing in the kitchen?" },
+        { "id": "q4", "q_vi": "Chuyện gì xảy ra trong khi cả nhà đang bận?", "type": "mcq", "choices": ["It started to rain and the lights went off.", "A friend came to visit.", "They went to the park."], "answer": 0, "audioText": "What happened while the family was busy?" },
+        { "id": "q5", "q_vi": "Cả nhà có sợ hãi không?", "type": "truefalse", "answer": false, "audioText": "Were they afraid?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "say-what-i-was-doing",
+      "title_vi": "Kể việc em đang làm lúc nào đó tối qua",
+      "prompt_vi": "Hãy kể em ĐANG làm gì vào một thời điểm tối qua hoặc sáng nay. Điền việc thật của em vào chỗ trống. Nhớ dùng \"I was\" + động từ thêm -ing nhé.",
+      "sentenceFrames": [
+        "Last night I was ___.",
+        "This morning I was ___.",
+        "At six o'clock I was ___."
+      ],
+      "audioModels": [
+        "Last night I was reading a story.",
+        "This morning I was eating breakfast.",
+        "At six o'clock I was watching TV."
+      ]
+    },
+    {
+      "id": "say-when-while-sentence",
+      "title_vi": "Nối hai việc bằng \"when\" hoặc \"while\"",
+      "prompt_vi": "Kể một việc em đang làm thì có việc khác xảy ra. Dùng \"when\" trước việc ngắn, hoặc \"while\" trước việc đang diễn ra. Điền việc thật của em.",
+      "sentenceFrames": [
+        "I was ___ when ___.",
+        "While I was ___, ___.",
+        "We were ___ when ___."
+      ],
+      "audioModels": [
+        "I was sleeping when the phone rang.",
+        "While I was reading, my mum called me.",
+        "We were playing when it started to rain."
+      ]
+    }
+  ],
+  "audioNotes": "Cần thu âm người thật cho: (1) Phonics nguyên âm GIỮA-từ /ɑː/ (star, car), /ɔː/ (fork, corn), /uː/ (moon, spoon), /iː/ (tree, sheep) — TTS dễ đọc 'ar/or/oo/ee' rời thành từng chữ cái hoặc làm ngắn nguyên âm, loa phải đọc TỪ TRỌN VẸN, kéo dài đúng nguyên âm và âm r của /ɑː/, /ɔː/ chỉ là màu sắc nhẹ (giọng Anh-Anh không cuộn r mạnh). (2) Cặp đúng/sai để bé phân biệt was/were: 'I was playing' vs sai 'I were playing'; 'We were drawing' vs sai 'We was drawing' — đọc rõ was /wɒz/ và were /wɜː/. (3) Đọc rõ dạng V-ing đầy đủ để bé không nuốt -ing: playing, reading, sleeping, cooking, drawing, running, watching, raining, snowing. (4) Các câu nối when/while: 'I was sleeping when the phone rang.', 'While we were playing, it started to rain.' — đọc rõ ngắt câu trước/sau when, while để bé nghe ra hai mệnh đề. (5) audioModels phần speaking và audioText câu hỏi reading. Ghi chú đối lập với quá khứ đơn đã học ở Level 2 (played/went): bài này nhấn việc ĐANG diễn ra (was playing) khác việc ĐÃ XONG (played) — nên đọc một cặp 'I was playing / I played' để bé cảm nhận khác biệt."
+}

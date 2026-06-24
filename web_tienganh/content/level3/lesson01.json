@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "v1",
+  "level": 3,
+  "unit": 301,
+  "lesson": 1,
+  "topic": "Compare and describe",
+  "topic_vi": "So sánh & mô tả",
+  "vocab": [
+    { "word": "big", "vi": "to, lớn", "icon": "🐘", "example": "An elephant is big.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "small", "vi": "nhỏ, bé", "icon": "🐜", "example": "An ant is small.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "tall", "vi": "cao", "icon": "🦒", "example": "A giraffe is tall.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "short", "vi": "thấp, ngắn", "icon": "📏", "example": "My pencil is short.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "long", "vi": "dài", "icon": "🐍", "example": "A snake is long.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "fast", "vi": "nhanh", "icon": "🐆", "example": "A cheetah is fast.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "slow", "vi": "chậm", "icon": "🐢", "example": "A turtle is slow.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "old", "vi": "già, cũ", "icon": "👴", "example": "My grandpa is old.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "young", "vi": "trẻ, nhỏ tuổi", "icon": "👶", "example": "My sister is young.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "river", "vi": "con sông", "icon": "🏞️", "example": "The river is very long.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "mountain", "vi": "ngọn núi", "icon": "⛰️", "example": "The mountain is high.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "building", "vi": "toà nhà", "icon": "🏢", "example": "This building is tall.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "comparative-than",
+      "title_vi": "So sánh hơn: tính từ + \"-er\" và \"than\"",
+      "explain_vi": "Khi em so sánh HAI vật (hoặc hai người, hai con vật), em thêm \"-er\" vào sau tính từ ngắn rồi dùng \"than\": tall → taller, long → longer. Mẫu câu: \"A giraffe is taller than a horse.\". Vài từ thay đổi một chút khi viết: \"big\" gấp đôi chữ cuối thành \"bigger\"; tính từ kết thúc bằng \"y\" như \"happy\" đổi thành \"happier\" (bài này chỉ dùng tính từ ngắn quen thuộc). Lưu ý: KHÔNG nói \"more big\", chỉ nói \"bigger\".",
+      "examples": [
+        "An elephant is bigger than a dog.",
+        "A giraffe is taller than a horse.",
+        "A turtle is slower than a cat."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "noun-be-adjer-than", "text": "{subjAnimal} is {adjerAnimal} than {objAnimal}.", "blanks": ["adjerAnimal"], "context_vi": "So sánh hai con vật: con này HƠN con kia. Tính từ đã được thêm \"-er\" sẵn, em chỉ chọn cho đúng nghĩa (con vật so về to/nhỏ/nhanh/chậm/cao).", "audioText": "A giraffe is taller than a horse." },
+          { "id": "place-be-adjer-than", "text": "The {place1} is {adjerPlace} than the {place2}.", "blanks": ["adjerPlace"], "context_vi": "So sánh hai địa điểm về độ dài/rộng/cao. Nhớ có \"than\" sau tính từ so sánh hơn.", "audioText": "The river is longer than the road." }
+        ],
+        "slots": {
+          "subjAnimal": ["A giraffe", "An elephant", "A cheetah"],
+          "objAnimal": ["a horse", "a dog", "a turtle"],
+          "place1": ["river", "mountain", "building"],
+          "place2": ["road", "hill", "house"],
+          "adjerAnimal": ["taller", "bigger", "smaller", "faster", "slower"],
+          "adjerPlace": ["longer", "wider", "higher"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "A giraffe is more tall than a horse.",
+          "A giraffe is taller a horse.",
+          "A giraffe is tallest than a horse.",
+          "A giraffe is more taller than a horse.",
+          "The river is more long than the road.",
+          "The river is longest than the road."
+        ],
+        "irregulars": {
+          "big": "bigger",
+          "good": "better",
+          "bad": "worse"
+        }
+      }
+    },
+    {
+      "id": "superlative-the-est",
+      "title_vi": "So sánh nhất: \"the\" + tính từ + \"-est\"",
+      "explain_vi": "Khi em nói một vật là NHẤT trong cả nhóm (từ ba vật trở lên), em dùng \"the\" trước tính từ và thêm \"-est\" vào sau: tall → the tallest, long → the longest. Mẫu câu: \"The blue whale is the biggest animal.\". Luôn có \"the\" đứng trước. KHÔNG nói \"most tall\", chỉ nói \"the tallest\".",
+      "examples": [
+        "The blue whale is the biggest animal.",
+        "The cheetah is the fastest animal.",
+        "The Nile is the longest river."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "the-est-thing", "text": "{subjAnimal} is {art} {adjAnimal} animal.", "blanks": ["art"], "context_vi": "Nói con vật này là NHẤT. Trước tính từ so sánh nhất LUÔN dùng \"the\" — KHÔNG dùng \"a\".", "audioText": "The cheetah is the fastest animal." },
+          { "id": "the-est-choose-form", "text": "The {placeName} is the {adjPlace} river.", "blanks": ["adjPlace"], "context_vi": "Chọn tính từ so sánh nhất đúng nghĩa. Tính từ đã thêm \"-est\" sẵn.", "audioText": "The Nile is the longest river." }
+        ],
+        "slots": {
+          "subjAnimal": ["The cheetah", "The blue whale", "The giraffe", "The elephant"],
+          "art": ["the"],
+          "adjAnimal": ["fastest", "biggest", "tallest", "smallest"],
+          "placeName": ["Nile", "Amazon", "Mekong"],
+          "adjPlace": ["longest", "widest"]
+        },
+        "answerKey": {
+          "the-est-thing": {
+            "art": "the"
+          }
+        },
+        "distractors": [
+          "The cheetah is fastest animal.",
+          "The cheetah is the most fast animal.",
+          "The cheetah is a fastest animal.",
+          "The cheetah is the faster animal.",
+          "The Nile is the most long river.",
+          "The Nile is longest river."
+        ],
+        "irregulars": {
+          "big": "biggest",
+          "good": "best",
+          "bad": "worst"
+        }
+      }
+    }
+  ],
+  "phonics": {
+    "position": "medial",
+    "focus": ["ar", "or", "oo", "ai"],
+    "soundLabels": {
+      "ar": { "ipa": "/ɑː/", "anchor": "car", "position": "medial", "say_vi": "âm GIỮA từ \"car\" là /ɑː/ — kéo dài như \"a\", không đọc rời chữ a và r" },
+      "or": { "ipa": "/ɔː/", "anchor": "fork", "position": "medial", "say_vi": "âm GIỮA từ \"fork\" là /ɔː/ — tròn môi như \"o\", không đọc rời chữ o và r" },
+      "oo": { "ipa": "/uː/", "anchor": "moon", "position": "medial", "say_vi": "âm GIỮA từ \"moon\" là /uː/ — kéo dài như \"u\", không đọc thành \"oo\" rời" },
+      "ai": { "ipa": "/eɪ/", "anchor": "rain", "position": "medial", "say_vi": "âm GIỮA từ \"rain\" là /eɪ/ — như \"ây\", không đọc rời chữ a và i" }
+    },
+    "words": [
+      { "word": "car", "icon": "🚗", "focusSound": "ar", "anchor": "car", "position": "medial", "audio": "" },
+      { "word": "star", "icon": "⭐", "focusSound": "ar", "anchor": "car", "position": "medial", "audio": "" },
+      { "word": "fork", "icon": "🍴", "focusSound": "or", "anchor": "fork", "position": "medial", "audio": "" },
+      { "word": "horse", "icon": "🐴", "focusSound": "or", "anchor": "fork", "position": "medial", "audio": "" },
+      { "word": "moon", "icon": "🌙", "focusSound": "oo", "anchor": "moon", "position": "medial", "audio": "" },
+      { "word": "spoon", "icon": "🥄", "focusSound": "oo", "anchor": "moon", "position": "medial", "audio": "" },
+      { "word": "rain", "icon": "🌧️", "focusSound": "ai", "anchor": "rain", "position": "medial", "audio": "" },
+      { "word": "train", "icon": "🚆", "focusSound": "ai", "anchor": "rain", "position": "medial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "the-animal-race",
+      "title": "The animal race",
+      "title_vi": "Cuộc thi chạy của các con vật",
+      "text": "Today the animals have a race. The turtle is the slowest, but he is happy. The dog is faster than the turtle. The horse is faster than the dog. The cheetah is the fastest animal here! He runs and wins the race. The giraffe is the tallest animal, but she is not the fastest. The little ant is the smallest of all, and she cheers for her friends.",
+      "gloss_vi": {
+        "race": "cuộc thi chạy / cuộc đua",
+        "win": "thắng, về nhất (wins = thắng)",
+        "cheer": "cổ vũ, reo hò (cheers = cổ vũ)",
+        "happy": "vui",
+        "friends": "các bạn"
+      },
+      "teacherNote_vi": "Đoạn 8 câu (theo . ! ?), vừa ngưỡng 6-8. Áp dụng đúng hai điểm ngữ pháp: so sánh hơn với \"than\" (faster than the turtle, faster than the dog) và so sánh nhất với \"the\" (the slowest, the fastest, the tallest, the smallest). Ôn lại present simple đã học ở Level 2 (have, is, runs, wins, cheers). Từ mới nhẹ i+1: race, win, cheer — đã thêm gloss_vi để trẻ tự đọc đỡ tải; đoán thêm được qua ngữ cảnh.",
+      "questions": [
+        { "id": "q1", "q_vi": "Con rùa là con chậm nhất, đúng không?", "type": "truefalse", "answer": true, "audioText": "The turtle is the slowest animal." },
+        { "id": "q2", "q_vi": "Con vật nào nhanh nhất và thắng cuộc?", "type": "mcq", "choices": ["the cheetah", "the horse", "the turtle"], "answer": 0, "audioText": "Which animal is the fastest and wins the race?" },
+        { "id": "q3", "q_vi": "Con ngựa so với con chó thì thế nào?", "type": "mcq", "choices": ["The horse is faster than the dog.", "The horse is slower than the dog.", "The horse is the slowest."], "answer": 0, "audioText": "How fast is the horse compared with the dog?" },
+        { "id": "q4", "q_vi": "Con vật nào nhỏ nhất?", "type": "mcq", "choices": ["the ant", "the giraffe", "the cheetah"], "answer": 0, "audioText": "Which animal is the smallest?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "compare-two-things",
+      "title_vi": "So sánh hai vật (hơn)",
+      "prompt_vi": "Em chọn hai con vật hoặc hai đồ vật rồi so sánh. Nhớ thêm \"-er\" và \"than\" nhé. Em có thể nói về đồ thật quanh em.",
+      "sentenceFrames": [
+        "A ___ is bigger than a ___.",
+        "A ___ is taller than a ___.",
+        "My ___ is longer than my ___."
+      ],
+      "audioModels": [
+        "An elephant is bigger than a dog.",
+        "A giraffe is taller than a horse.",
+        "My pencil is longer than my pen."
+      ]
+    },
+    {
+      "id": "say-the-most",
+      "title_vi": "Nói vật nào là NHẤT",
+      "prompt_vi": "Em nói một vật là nhất trong nhóm. Nhớ có \"the\" và thêm \"-est\". Hãy nói về gia đình hoặc bạn của em nữa.",
+      "sentenceFrames": [
+        "The ___ is the fastest animal.",
+        "The ___ is the tallest in my class.",
+        "My ___ is the oldest in my family."
+      ],
+      "audioModels": [
+        "The cheetah is the fastest animal.",
+        "Tom is the tallest in my class.",
+        "My grandpa is the oldest in my family."
+      ]
+    }
+  ],
+  "audioNotes": "Cần thu âm người thật cho: tất cả audioModels phần speaking và audioText câu hỏi reading. ĐẶC BIỆT phần phonics nguyên âm đôi / âm r ở GIỮA từ: /ɑː/ (car, star), /ɔː/ (fork, horse), /uː/ (moon, spoon), /eɪ/ (rain, train) — loa phải đọc TỪ TRỌN VẸN, không tách rời từng chữ cái (vd không đọc \"a\"+\"r\" hay \"o\"+\"o\"). Hai câu mẫu ngữ pháp \"A giraffe is taller than a horse.\" và \"The cheetah is the fastest animal.\" cần audio chuẩn để bé nghe rõ \"-er than\" và \"the ...-est\" (TTS dễ nuốt âm \"-er\"/\"-est\" hoặc đọc lẫn \"the\"). Các tính từ so sánh chia sẵn (taller, bigger, faster, longer, fastest, biggest, tallest, longest) nên có audio chuẩn để bé bắt chước đúng phần đuôi."
+}

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "v1",
+  "level": 3,
+  "units": [],
+  "lessons": [
+    { "lesson": 1, "unit": 301, "file": "lesson01.json", "topic_vi": "So sánh & mô tả",          "icon": "📏", "pal": "sun",   "sub": "so sánh hơn/nhất (-er · the -est)" },
+    { "lesson": 2, "unit": 302, "file": "lesson02.json", "topic_vi": "Thói quen & tần suất",      "icon": "🔁", "pal": "sky",   "sub": "always/usually/sometimes/never" },
+    { "lesson": 3, "unit": 303, "file": "lesson03.json", "topic_vi": "Kế hoạch & tương lai",      "icon": "🔮", "pal": "mint",  "sub": "be going to · will · must/have to" },
+    { "lesson": 4, "unit": 304, "file": "lesson04.json", "topic_vi": "Việc đang & đã diễn ra",    "icon": "⏳", "pal": "coral", "sub": "past continuous · when/while" },
+    { "lesson": 5, "unit": 305, "file": "lesson05.json", "topic_vi": "Đọc hiểu & kể lại",         "icon": "📚", "pal": "grape", "sub": "because/so/but · kể chuyện" }
+  ]
+}

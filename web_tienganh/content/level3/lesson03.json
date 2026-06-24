@@ -1,0 +1,194 @@
+{
+  "schemaVersion": "v1",
+  "level": 3,
+  "unit": 303,
+  "lesson": 3,
+  "topic": "Plans and the future",
+  "topic_vi": "Kế hoạch & tương lai",
+  "vocab": [
+    { "word": "tomorrow", "vi": "ngày mai", "icon": "📅", "example": "Tomorrow is Saturday.", "partOfSpeech": "adverb", "audio": "" },
+    { "word": "plan", "vi": "kế hoạch / dự định", "icon": "📝", "example": "I have a plan for the weekend.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "weekend", "vi": "cuối tuần", "icon": "🗓️", "example": "We are going to visit Grandma this weekend.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "visit", "vi": "đi thăm", "icon": "🏡", "example": "I am going to visit my friend.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "stay", "vi": "ở lại", "icon": "🏠", "example": "We will stay at home today.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "help", "vi": "giúp đỡ", "icon": "🤝", "example": "I will help my mum.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "tidy", "vi": "dọn dẹp / gọn gàng", "icon": "🧹", "example": "I have to tidy my room.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "picnic", "vi": "buổi dã ngoại", "icon": "🧺", "example": "We are going to have a picnic.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "weather", "vi": "thời tiết", "icon": "🌤️", "example": "The weather is nice today.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "sunny", "vi": "nắng", "icon": "☀️", "example": "It will be sunny tomorrow.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "rainy", "vi": "mưa", "icon": "🌧️", "example": "It will be rainy on Sunday.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "windy", "vi": "gió", "icon": "🌬️", "example": "It is windy, so we will fly a kite.", "partOfSpeech": "adjective", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "be-going-to-plans",
+      "title_vi": "Nói dự định: \"be going to\" (định / sắp làm gì)",
+      "explain_vi": "Khi em đã có kế hoạch hoặc dự định làm gì, em dùng \"be going to + động từ\". Nhớ chọn \"to be\" cho đúng chủ ngữ: I → am, he/she/it → is, you/we/they → are. Ví dụ: \"I am going to visit Grandma.\" (Em định đi thăm Bà), \"We are going to have a picnic.\" (Chúng em định đi dã ngoại). Sau \"going to\" luôn là động từ nguyên thể (visit, help, stay...).",
+      "examples": [
+        "I am going to visit my friend.",
+        "We are going to have a picnic.",
+        "She is going to help her mum.",
+        "They are going to stay at home."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "subj-be-going-to-verb", "text": "{subj} {be} going to {verb} this weekend.", "blanks": ["be"], "context_vi": "Nói ai đó ĐỊNH làm gì cuối tuần. Chọn am/is/are cho đúng chủ ngữ.", "audioText": "I am going to visit Grandma this weekend." },
+          { "id": "be-going-to-have-picnic", "text": "{subj} {be} going to have a picnic.", "blanks": ["be"], "context_vi": "Nói ai đó ĐỊNH đi dã ngoại. Chọn am/is/are cho đúng chủ ngữ.", "audioText": "We are going to have a picnic." },
+          { "id": "be-going-to-pick-verb", "text": "I am going to {verb} tomorrow.", "blanks": ["verb"], "context_vi": "Chọn một động từ NGUYÊN THỂ để nói em định làm gì ngày mai.", "audioText": "I am going to help my mum tomorrow." }
+        ],
+        "slots": {
+          "subj": ["I", "He", "She", "We", "They", "You"],
+          "be": ["am", "is", "are"],
+          "verb": ["visit Grandma", "help my mum", "tidy my room", "stay at home"]
+        },
+        "answerKey": {
+          "subj-be-going-to-verb": {
+            "be": { "__cond": "subj", "I": "am", "He": "is", "She": "is", "We": "are", "They": "are", "You": "are" }
+          },
+          "be-going-to-have-picnic": {
+            "be": { "__cond": "subj", "I": "am", "He": "is", "She": "is", "We": "are", "They": "are", "You": "are" }
+          }
+        },
+        "distractors": [
+          "I is going to visit Grandma.",
+          "She are going to help her mum.",
+          "We is going to have a picnic.",
+          "They am going to stay at home.",
+          "I am going to visited Grandma.",
+          "He going to tidy his room."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "will-future",
+      "title_vi": "Nói về tương lai với \"will\": dự đoán & quyết định ngay (sẽ)",
+      "explain_vi": "Em dùng \"will + động từ\" để nói điều SẼ xảy ra hoặc điều em quyết định làm ngay lúc nói. \"will\" dùng giống nhau cho mọi chủ ngữ (I will, he will, they will...) và sau \"will\" luôn là động từ nguyên thể. Ví dụ: \"It will be sunny tomorrow.\" (Ngày mai trời sẽ nắng), \"I will help you.\" (Em sẽ giúp bạn). Câu phủ định dùng \"will not\" hoặc viết gọn \"won't\".",
+      "examples": [
+        "It will be sunny tomorrow.",
+        "I will help my mum.",
+        "We will stay at home.",
+        "It won't be rainy on Sunday."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "it-will-be-weather", "text": "It will be {weather} tomorrow.", "blanks": ["weather"], "context_vi": "Đoán thời tiết ngày mai. Chọn một từ chỉ thời tiết.", "audioText": "It will be sunny tomorrow." },
+          { "id": "subj-will-verb", "text": "{subj} will {verb}.", "blanks": ["verb"], "context_vi": "Nói ai đó SẼ làm gì. Sau \"will\" là động từ nguyên thể.", "audioText": "I will help my mum." },
+          { "id": "tomorrow-it-will-be", "text": "Tomorrow it will be {weather}.", "blanks": ["weather"], "context_vi": "Đoán thời tiết NGÀY MAI. \"will\" dùng giống nhau cho mọi chủ ngữ.", "audioText": "Tomorrow it will be rainy." }
+        ],
+        "slots": {
+          "subj": ["I", "He", "She", "We", "They", "You"],
+          "weather": ["sunny", "rainy", "windy"],
+          "verb": ["help my mum", "stay at home", "visit Grandma", "tidy my room"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "It will is sunny tomorrow.",
+          "I will helps my mum.",
+          "She will to stay at home.",
+          "We wills visit Grandma.",
+          "It will sunny tomorrow.",
+          "I am will help you."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "recognition": [
+    {
+      "id": "meet-must-have-to",
+      "title_vi": "Làm quen: \"must\" / \"have to\" — việc PHẢI làm (bổn phận)",
+      "explain_vi": "Phần này chỉ để LÀM QUEN (nghe và chọn), em CHƯA cần tự đặt câu. \"must\" và \"have to\" đều có nghĩa là PHẢI làm việc gì đó (bổn phận). Ví dụ: \"I must tidy my room.\" / \"I have to tidy my room.\" đều có nghĩa là em PHẢI dọn phòng. Em chỉ cần nghe câu rồi chọn xem đó là việc PHẢI làm (bổn phận) hay là một DỰ ĐỊNH / điều SẼ xảy ra.",
+      "examples": [
+        "I must tidy my room.",
+        "We have to help at home.",
+        "I am going to have a picnic.",
+        "It will be sunny tomorrow."
+      ],
+      "generators": ["listen_choose", "mcq"],
+      "items": [
+        { "id": "rec-must-tidy", "audioText": "I must tidy my room.", "meaning_vi": "Em PHẢI dọn phòng (bổn phận).", "choices_vi": ["Việc PHẢI làm (bổn phận)", "Dự định / điều sẽ xảy ra"], "answer": 0 },
+        { "id": "rec-have-to-help", "audioText": "We have to help at home.", "meaning_vi": "Chúng em PHẢI giúp việc nhà (bổn phận).", "choices_vi": ["Việc PHẢI làm (bổn phận)", "Dự định / điều sẽ xảy ra"], "answer": 0 },
+        { "id": "rec-going-to-picnic", "audioText": "I am going to have a picnic.", "meaning_vi": "Em ĐỊNH đi dã ngoại (dự định).", "choices_vi": ["Việc PHẢI làm (bổn phận)", "Dự định / điều sẽ xảy ra"], "answer": 1 },
+        { "id": "rec-will-sunny", "audioText": "It will be sunny tomorrow.", "meaning_vi": "Ngày mai trời SẼ nắng (điều sẽ xảy ra).", "choices_vi": ["Việc PHẢI làm (bổn phận)", "Dự định / điều sẽ xảy ra"], "answer": 1 },
+        { "id": "rec-must-stay", "audioText": "It is rainy, so we must stay at home.", "meaning_vi": "Trời mưa nên chúng em PHẢI ở nhà (bổn phận).", "choices_vi": ["Việc PHẢI làm (bổn phận)", "Dự định / điều sẽ xảy ra"], "answer": 0 },
+        { "id": "rec-going-to-visit", "audioText": "She is going to visit Grandma.", "meaning_vi": "Bạn ấy ĐỊNH đi thăm Bà (dự định).", "choices_vi": ["Việc PHẢI làm (bổn phận)", "Dự định / điều sẽ xảy ra"], "answer": 1 }
+      ]
+    }
+  ],
+  "phonics": {
+    "position": "medial",
+    "focus": ["ai", "oa", "ar", "ee"],
+    "newSounds": ["ai", "oa", "ar"],
+    "reviewSounds": ["ee"],
+    "note_vi": "Bài lớn 3 học 3 ÂM MỚI: nguyên âm đôi /eɪ/ (ai) và /əʊ/ (oa), cùng âm-r /ɑː/ (ar). Âm /iː/ (ee) chỉ ÔN LẠI (đã làm quen ở Level 2 dạng nguyên âm dài), không tính là âm mới — để bé không phải nhớ quá nhiều âm một lúc.",
+    "soundLabels": {
+      "ai": { "ipa": "/eɪ/", "anchor": "rain", "position": "medial", "say_vi": "âm GIỮA từ \"rain\" là /eɪ/ — hai chữ a-i đi cùng nhau đọc thành MỘT âm \"ây\", không tách rời thành a rồi i" },
+      "oa": { "ipa": "/əʊ/", "anchor": "boat", "position": "medial", "say_vi": "âm GIỮA từ \"boat\" là /əʊ/ — hai chữ o-a đi cùng nhau đọc thành MỘT âm \"âu\", không tách rời thành o rồi a" },
+      "ar": { "ipa": "/ɑː/", "anchor": "park", "position": "medial", "say_vi": "âm GIỮA từ \"park\" là /ɑː/ — chữ a đứng trước r đọc thành \"a\" dài, KHÔNG đọc tên chữ r ở cuối" },
+      "ee": { "ipa": "/iː/", "anchor": "week", "position": "medial", "say_vi": "ÔN LẠI: âm GIỮA từ \"week\" là /iː/ — hai chữ e-e đọc thành một âm \"i\" kéo dài (em đã gặp âm này ở Level 2)" }
+    },
+    "words": [
+      { "word": "rain", "icon": "🌧️", "focusSound": "ai", "anchor": "rain", "position": "medial", "audio": "" },
+      { "word": "train", "icon": "🚆", "focusSound": "ai", "anchor": "rain", "position": "medial", "audio": "" },
+      { "word": "boat", "icon": "⛵", "focusSound": "oa", "anchor": "boat", "position": "medial", "audio": "" },
+      { "word": "coat", "icon": "🧥", "focusSound": "oa", "anchor": "boat", "position": "medial", "audio": "" },
+      { "word": "park", "icon": "🌳", "focusSound": "ar", "anchor": "park", "position": "medial", "audio": "" },
+      { "word": "car", "icon": "🚗", "focusSound": "ar", "anchor": "park", "position": "medial", "audio": "" },
+      { "word": "week", "icon": "🗓️", "focusSound": "ee", "anchor": "week", "position": "medial", "isReview": true, "audio": "" },
+      { "word": "tree", "icon": "🌲", "focusSound": "ee", "anchor": "week", "position": "medial", "isReview": true, "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "our-weekend-plan",
+      "title": "Our weekend plan",
+      "title_vi": "Kế hoạch cuối tuần của chúng em",
+      "text": "Tomorrow is Saturday, and we have a plan. The weather will be sunny, so we are going to have a picnic in the park. First, I have to tidy my room and help my mum. Then we are going to visit Grandma. My sister will bring her kite, and we will fly it together. On Sunday it will be rainy, so we are going to stay at home. It is going to be a happy weekend!",
+      "teacherNote_vi": "Đoạn gồm 7 câu (theo dấu . ! ?). Gói gọn trọng tâm BÀI LỚN 3: be going to (are going to have/visit/stay, is going to be) cho dự định + will (will be sunny/rainy, will bring, will fly) cho dự đoán/quyết định + một câu have to (bổn phận, đã làm quen ở phần recognition). Ôn lại từ Level 2: in the park, at home, kite. Từ ngoài vocab chỉ thêm First/Then/together (từ nối dễ đoán, i+1).",
+      "questions": [
+        { "id": "q1", "q_vi": "Cả nhà có kế hoạch cho ngày mai (thứ Bảy), đúng không?", "type": "truefalse", "answer": true, "audioText": "They have a plan for Saturday." },
+        { "id": "q2", "q_vi": "Thứ Bảy thời tiết sẽ thế nào?", "type": "mcq", "choices": ["It will be sunny.", "It will be rainy.", "It will be windy."], "answer": 0, "audioText": "What will the weather be like on Saturday?" },
+        { "id": "q3", "q_vi": "Trước khi đi chơi, bạn nhỏ phải làm gì?", "type": "mcq", "choices": ["tidy the room and help mum", "cook dinner", "wash the car"], "answer": 0, "audioText": "What does the child have to do first?" },
+        { "id": "q4", "q_vi": "Cả nhà định đi thăm ai?", "type": "mcq", "choices": ["Grandma", "a friend", "the teacher"], "answer": 0, "audioText": "Who are they going to visit?" },
+        { "id": "q5", "q_vi": "Chủ nhật trời mưa thì cả nhà sẽ làm gì?", "type": "mcq", "choices": ["stay at home", "go to the beach", "fly a kite"], "answer": 0, "audioText": "What will they do on rainy Sunday?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "tell-my-weekend-plan",
+      "title_vi": "Kể kế hoạch cuối tuần của em (be going to)",
+      "prompt_vi": "Hãy kể em ĐỊNH làm gì cuối tuần này. Điền việc thật của em vào chỗ trống. Nhớ dùng \"I am going to\" và động từ nguyên thể nhé.",
+      "sentenceFrames": [
+        "This weekend I am going to ___.",
+        "I am going to visit ___.",
+        "We are going to ___."
+      ],
+      "audioModels": [
+        "This weekend I am going to have a picnic.",
+        "I am going to visit Grandma.",
+        "We are going to stay at home."
+      ]
+    },
+    {
+      "id": "say-will-future",
+      "title_vi": "Dự đoán thời tiết và việc em sẽ làm (will)",
+      "prompt_vi": "Hãy đoán thời tiết ngày mai và nói một việc em SẼ làm. Dùng \"will + động từ nguyên thể\". Em có thể nói thêm em PHẢI làm gì (have to) nếu muốn.",
+      "sentenceFrames": [
+        "Tomorrow it will be ___.",
+        "I will ___.",
+        "I have to ___."
+      ],
+      "audioModels": [
+        "Tomorrow it will be sunny.",
+        "I will help my mum.",
+        "I have to tidy my room."
+      ]
+    }
+  ],
+  "audioNotes": "Cần thu âm người thật cho: (1) Phonics Level 3 — bài này gọn còn 4 âm: 3 ÂM MỚI gồm nguyên âm đôi (vowel teams) /eɪ/ ai (rain, train), /əʊ/ oa (boat, coat) và âm r (r-controlled) /ɑː/ ar (park, car); cộng 1 ÂM ÔN /iː/ ee (week, tree) — đánh dấu isReview vì đã làm quen ở Level 2. (Đã bỏ /ɔː/ or 'morning' khỏi bài này cho nhẹ tải nhận thức của trẻ ~9 tuổi; để dành cho bài phonics sau.) TTS dễ tách rời 2 chữ cái (đọc 'a-i', 'o-a', 'e-e') hoặc đọc rõ tên chữ 'r' ở ar — loa PHẢI đọc TỪ TRỌN VẸN: ai/oa/ee là MỘT âm liền, ar kéo dài nguyên âm và KHÔNG bật âm 'r' rõ kiểu Mỹ-cường. (2) Cặp câu mẫu grammar để bé bắt chước ngữ điệu: 'I am going to visit Grandma.' (be going to) và 'It will be sunny tomorrow.' / 'I will help you.' (will) — đọc rõ dạng rút gọn won't ở câu phủ định nếu thu thêm. (3) Phần recognition must/have to — đọc rõ cặp 'I must tidy my room.' và 'We have to help at home.' để phân biệt với 'going to / will'. (4) audioModels phần speaking và audioText câu hỏi reading. Ghi chú recycling: 'in the park', 'at home', 'kite' dùng lại từ Level 2 có chủ đích (ôn tập); trọng tâm MỚI là cấu trúc tương lai be going to + will và bổn phận must/have to (làm quen)."
+}

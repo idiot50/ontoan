@@ -3764,6 +3764,984 @@
   ],
   "audioNotes": "Cần thu âm người thật cho: (1) Phonics — blend phụ âm ĐẦU /pl/ (play, plant), /gr/ (grass, green) đọc dính liền; và blend phụ âm CUỐI /nd/ (sand, hand, friend, wind) — đây là blend cuối-từ mang tính TỔNG KẾT Level, TTS dễ thêm nguyên âm chen vào hoặc nuốt mất /d/ cuối, loa phải đọc TỪ TRỌN VẸN với n-d dính liền ở cuối. (2) Phần recognition 'QUÁ KHỨ hay HIỆN TẠI' — đọc rõ cặp tối thiểu để bé phân biệt: 'I went' vs 'I go', 'I had' vs 'I have', và 'We played / We saw'; đọc rõ đuôi -ed của 'played' /pleɪd/ để khác 'play'. (3) Cặp dạng đúng/sai động từ quá khứ trong examples (went, saw, had) để bé phân biệt với lỗi 'goed/seed/haved'. (4) audioModels phần speaking và audioText câu hỏi reading. Lưu ý đọc rõ đuôi -ed của 'played' /pleɪd/ và 'watched' /wɒtʃt/ (đuôi /t/ không thành 'ed' tách âm). Ghi chú recycling: từ 'park' được dùng lại có chủ đích (đã xuất hiện ở Bài 2 và Bài 4) nhằm ôn tập, không phải từ mới; các nơi chốn MỚI của bài là zoo, beach, farm."
 };
+  C["level3/index.json"] = {
+  "schemaVersion": "v1",
+  "level": 3,
+  "units": [],
+  "lessons": [
+    { "lesson": 1, "unit": 301, "file": "lesson01.json", "topic_vi": "So sánh & mô tả",          "icon": "📏", "pal": "sun",   "sub": "so sánh hơn/nhất (-er · the -est)" },
+    { "lesson": 2, "unit": 302, "file": "lesson02.json", "topic_vi": "Thói quen & tần suất",      "icon": "🔁", "pal": "sky",   "sub": "always/usually/sometimes/never" },
+    { "lesson": 3, "unit": 303, "file": "lesson03.json", "topic_vi": "Kế hoạch & tương lai",      "icon": "🔮", "pal": "mint",  "sub": "be going to · will · must/have to" },
+    { "lesson": 4, "unit": 304, "file": "lesson04.json", "topic_vi": "Việc đang & đã diễn ra",    "icon": "⏳", "pal": "coral", "sub": "past continuous · when/while" },
+    { "lesson": 5, "unit": 305, "file": "lesson05.json", "topic_vi": "Đọc hiểu & kể lại",         "icon": "📚", "pal": "grape", "sub": "because/so/but · kể chuyện" }
+  ]
+};
+  C["level3/lesson01.json"] = {
+  "schemaVersion": "v1",
+  "level": 3,
+  "unit": 301,
+  "lesson": 1,
+  "topic": "Compare and describe",
+  "topic_vi": "So sánh & mô tả",
+  "vocab": [
+    { "word": "big", "vi": "to, lớn", "icon": "🐘", "example": "An elephant is big.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "small", "vi": "nhỏ, bé", "icon": "🐜", "example": "An ant is small.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "tall", "vi": "cao", "icon": "🦒", "example": "A giraffe is tall.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "short", "vi": "thấp, ngắn", "icon": "📏", "example": "My pencil is short.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "long", "vi": "dài", "icon": "🐍", "example": "A snake is long.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "fast", "vi": "nhanh", "icon": "🐆", "example": "A cheetah is fast.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "slow", "vi": "chậm", "icon": "🐢", "example": "A turtle is slow.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "old", "vi": "già, cũ", "icon": "👴", "example": "My grandpa is old.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "young", "vi": "trẻ, nhỏ tuổi", "icon": "👶", "example": "My sister is young.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "river", "vi": "con sông", "icon": "🏞️", "example": "The river is very long.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "mountain", "vi": "ngọn núi", "icon": "⛰️", "example": "The mountain is high.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "building", "vi": "toà nhà", "icon": "🏢", "example": "This building is tall.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "comparative-than",
+      "title_vi": "So sánh hơn: tính từ + \"-er\" và \"than\"",
+      "explain_vi": "Khi em so sánh HAI vật (hoặc hai người, hai con vật), em thêm \"-er\" vào sau tính từ ngắn rồi dùng \"than\": tall → taller, long → longer. Mẫu câu: \"A giraffe is taller than a horse.\". Vài từ thay đổi một chút khi viết: \"big\" gấp đôi chữ cuối thành \"bigger\"; tính từ kết thúc bằng \"y\" như \"happy\" đổi thành \"happier\" (bài này chỉ dùng tính từ ngắn quen thuộc). Lưu ý: KHÔNG nói \"more big\", chỉ nói \"bigger\".",
+      "examples": [
+        "An elephant is bigger than a dog.",
+        "A giraffe is taller than a horse.",
+        "A turtle is slower than a cat."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "noun-be-adjer-than", "text": "{subjAnimal} is {adjerAnimal} than {objAnimal}.", "blanks": ["adjerAnimal"], "context_vi": "So sánh hai con vật: con này HƠN con kia. Tính từ đã được thêm \"-er\" sẵn, em chỉ chọn cho đúng nghĩa (con vật so về to/nhỏ/nhanh/chậm/cao).", "audioText": "A giraffe is taller than a horse." },
+          { "id": "place-be-adjer-than", "text": "The {place1} is {adjerPlace} than the {place2}.", "blanks": ["adjerPlace"], "context_vi": "So sánh hai địa điểm về độ dài/rộng/cao. Nhớ có \"than\" sau tính từ so sánh hơn.", "audioText": "The river is longer than the road." }
+        ],
+        "slots": {
+          "subjAnimal": ["A giraffe", "An elephant", "A cheetah"],
+          "objAnimal": ["a horse", "a dog", "a turtle"],
+          "place1": ["river", "mountain", "building"],
+          "place2": ["road", "hill", "house"],
+          "adjerAnimal": ["taller", "bigger", "smaller", "faster", "slower"],
+          "adjerPlace": ["longer", "wider", "higher"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "A giraffe is more tall than a horse.",
+          "A giraffe is taller a horse.",
+          "A giraffe is tallest than a horse.",
+          "A giraffe is more taller than a horse.",
+          "The river is more long than the road.",
+          "The river is longest than the road."
+        ],
+        "irregulars": {
+          "big": "bigger",
+          "good": "better",
+          "bad": "worse"
+        }
+      }
+    },
+    {
+      "id": "superlative-the-est",
+      "title_vi": "So sánh nhất: \"the\" + tính từ + \"-est\"",
+      "explain_vi": "Khi em nói một vật là NHẤT trong cả nhóm (từ ba vật trở lên), em dùng \"the\" trước tính từ và thêm \"-est\" vào sau: tall → the tallest, long → the longest. Mẫu câu: \"The blue whale is the biggest animal.\". Luôn có \"the\" đứng trước. KHÔNG nói \"most tall\", chỉ nói \"the tallest\".",
+      "examples": [
+        "The blue whale is the biggest animal.",
+        "The cheetah is the fastest animal.",
+        "The Nile is the longest river."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "the-est-thing", "text": "{subjAnimal} is {art} {adjAnimal} animal.", "blanks": ["art"], "context_vi": "Nói con vật này là NHẤT. Trước tính từ so sánh nhất LUÔN dùng \"the\" — KHÔNG dùng \"a\".", "audioText": "The cheetah is the fastest animal." },
+          { "id": "the-est-choose-form", "text": "The {placeName} is the {adjPlace} river.", "blanks": ["adjPlace"], "context_vi": "Chọn tính từ so sánh nhất đúng nghĩa. Tính từ đã thêm \"-est\" sẵn.", "audioText": "The Nile is the longest river." }
+        ],
+        "slots": {
+          "subjAnimal": ["The cheetah", "The blue whale", "The giraffe", "The elephant"],
+          "art": ["the"],
+          "adjAnimal": ["fastest", "biggest", "tallest", "smallest"],
+          "placeName": ["Nile", "Amazon", "Mekong"],
+          "adjPlace": ["longest", "widest"]
+        },
+        "answerKey": {
+          "the-est-thing": {
+            "art": "the"
+          }
+        },
+        "distractors": [
+          "The cheetah is fastest animal.",
+          "The cheetah is the most fast animal.",
+          "The cheetah is a fastest animal.",
+          "The cheetah is the faster animal.",
+          "The Nile is the most long river.",
+          "The Nile is longest river."
+        ],
+        "irregulars": {
+          "big": "biggest",
+          "good": "best",
+          "bad": "worst"
+        }
+      }
+    }
+  ],
+  "phonics": {
+    "position": "medial",
+    "focus": ["ar", "or", "oo", "ai"],
+    "soundLabels": {
+      "ar": { "ipa": "/ɑː/", "anchor": "car", "position": "medial", "say_vi": "âm GIỮA từ \"car\" là /ɑː/ — kéo dài như \"a\", không đọc rời chữ a và r" },
+      "or": { "ipa": "/ɔː/", "anchor": "fork", "position": "medial", "say_vi": "âm GIỮA từ \"fork\" là /ɔː/ — tròn môi như \"o\", không đọc rời chữ o và r" },
+      "oo": { "ipa": "/uː/", "anchor": "moon", "position": "medial", "say_vi": "âm GIỮA từ \"moon\" là /uː/ — kéo dài như \"u\", không đọc thành \"oo\" rời" },
+      "ai": { "ipa": "/eɪ/", "anchor": "rain", "position": "medial", "say_vi": "âm GIỮA từ \"rain\" là /eɪ/ — như \"ây\", không đọc rời chữ a và i" }
+    },
+    "words": [
+      { "word": "car", "icon": "🚗", "focusSound": "ar", "anchor": "car", "position": "medial", "audio": "" },
+      { "word": "star", "icon": "⭐", "focusSound": "ar", "anchor": "car", "position": "medial", "audio": "" },
+      { "word": "fork", "icon": "🍴", "focusSound": "or", "anchor": "fork", "position": "medial", "audio": "" },
+      { "word": "horse", "icon": "🐴", "focusSound": "or", "anchor": "fork", "position": "medial", "audio": "" },
+      { "word": "moon", "icon": "🌙", "focusSound": "oo", "anchor": "moon", "position": "medial", "audio": "" },
+      { "word": "spoon", "icon": "🥄", "focusSound": "oo", "anchor": "moon", "position": "medial", "audio": "" },
+      { "word": "rain", "icon": "🌧️", "focusSound": "ai", "anchor": "rain", "position": "medial", "audio": "" },
+      { "word": "train", "icon": "🚆", "focusSound": "ai", "anchor": "rain", "position": "medial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "the-animal-race",
+      "title": "The animal race",
+      "title_vi": "Cuộc thi chạy của các con vật",
+      "text": "Today the animals have a race. The turtle is the slowest, but he is happy. The dog is faster than the turtle. The horse is faster than the dog. The cheetah is the fastest animal here! He runs and wins the race. The giraffe is the tallest animal, but she is not the fastest. The little ant is the smallest of all, and she cheers for her friends.",
+      "gloss_vi": {
+        "race": "cuộc thi chạy / cuộc đua",
+        "win": "thắng, về nhất (wins = thắng)",
+        "cheer": "cổ vũ, reo hò (cheers = cổ vũ)",
+        "happy": "vui",
+        "friends": "các bạn"
+      },
+      "teacherNote_vi": "Đoạn 8 câu (theo . ! ?), vừa ngưỡng 6-8. Áp dụng đúng hai điểm ngữ pháp: so sánh hơn với \"than\" (faster than the turtle, faster than the dog) và so sánh nhất với \"the\" (the slowest, the fastest, the tallest, the smallest). Ôn lại present simple đã học ở Level 2 (have, is, runs, wins, cheers). Từ mới nhẹ i+1: race, win, cheer — đã thêm gloss_vi để trẻ tự đọc đỡ tải; đoán thêm được qua ngữ cảnh.",
+      "questions": [
+        { "id": "q1", "q_vi": "Con rùa là con chậm nhất, đúng không?", "type": "truefalse", "answer": true, "audioText": "The turtle is the slowest animal." },
+        { "id": "q2", "q_vi": "Con vật nào nhanh nhất và thắng cuộc?", "type": "mcq", "choices": ["the cheetah", "the horse", "the turtle"], "answer": 0, "audioText": "Which animal is the fastest and wins the race?" },
+        { "id": "q3", "q_vi": "Con ngựa so với con chó thì thế nào?", "type": "mcq", "choices": ["The horse is faster than the dog.", "The horse is slower than the dog.", "The horse is the slowest."], "answer": 0, "audioText": "How fast is the horse compared with the dog?" },
+        { "id": "q4", "q_vi": "Con vật nào nhỏ nhất?", "type": "mcq", "choices": ["the ant", "the giraffe", "the cheetah"], "answer": 0, "audioText": "Which animal is the smallest?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "compare-two-things",
+      "title_vi": "So sánh hai vật (hơn)",
+      "prompt_vi": "Em chọn hai con vật hoặc hai đồ vật rồi so sánh. Nhớ thêm \"-er\" và \"than\" nhé. Em có thể nói về đồ thật quanh em.",
+      "sentenceFrames": [
+        "A ___ is bigger than a ___.",
+        "A ___ is taller than a ___.",
+        "My ___ is longer than my ___."
+      ],
+      "audioModels": [
+        "An elephant is bigger than a dog.",
+        "A giraffe is taller than a horse.",
+        "My pencil is longer than my pen."
+      ]
+    },
+    {
+      "id": "say-the-most",
+      "title_vi": "Nói vật nào là NHẤT",
+      "prompt_vi": "Em nói một vật là nhất trong nhóm. Nhớ có \"the\" và thêm \"-est\". Hãy nói về gia đình hoặc bạn của em nữa.",
+      "sentenceFrames": [
+        "The ___ is the fastest animal.",
+        "The ___ is the tallest in my class.",
+        "My ___ is the oldest in my family."
+      ],
+      "audioModels": [
+        "The cheetah is the fastest animal.",
+        "Tom is the tallest in my class.",
+        "My grandpa is the oldest in my family."
+      ]
+    }
+  ],
+  "audioNotes": "Cần thu âm người thật cho: tất cả audioModels phần speaking và audioText câu hỏi reading. ĐẶC BIỆT phần phonics nguyên âm đôi / âm r ở GIỮA từ: /ɑː/ (car, star), /ɔː/ (fork, horse), /uː/ (moon, spoon), /eɪ/ (rain, train) — loa phải đọc TỪ TRỌN VẸN, không tách rời từng chữ cái (vd không đọc \"a\"+\"r\" hay \"o\"+\"o\"). Hai câu mẫu ngữ pháp \"A giraffe is taller than a horse.\" và \"The cheetah is the fastest animal.\" cần audio chuẩn để bé nghe rõ \"-er than\" và \"the ...-est\" (TTS dễ nuốt âm \"-er\"/\"-est\" hoặc đọc lẫn \"the\"). Các tính từ so sánh chia sẵn (taller, bigger, faster, longer, fastest, biggest, tallest, longest) nên có audio chuẩn để bé bắt chước đúng phần đuôi."
+};
+  C["level3/lesson02.json"] = {
+  "schemaVersion": "v1",
+  "level": 3,
+  "unit": 302,
+  "lesson": 2,
+  "topic": "Habits and how often we do things",
+  "topic_vi": "Thói quen & tần suất",
+  "vocab": [
+    { "word": "always", "vi": "luôn luôn (100%)", "icon": "💯", "example": "I always brush my teeth.", "partOfSpeech": "adverb", "audio": "" },
+    { "word": "usually", "vi": "thường (hầu hết các lần)", "icon": "🔁", "example": "She usually walks to school.", "partOfSpeech": "adverb", "audio": "" },
+    { "word": "sometimes", "vi": "thỉnh thoảng", "icon": "🤔", "example": "We sometimes play chess.", "partOfSpeech": "adverb", "audio": "" },
+    { "word": "never", "vi": "không bao giờ (0%)", "icon": "🚫", "example": "He never eats fast food.", "partOfSpeech": "adverb", "audio": "" },
+    { "word": "wake up", "vi": "thức dậy", "icon": "⏰", "example": "I wake up at six.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "brush", "vi": "đánh (răng) / chải (tóc)", "icon": "🪥", "example": "I always brush my teeth.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "walk", "vi": "đi bộ", "icon": "🚶", "example": "She usually walks to school.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "help", "vi": "giúp đỡ", "icon": "🤝", "example": "I sometimes help my mum.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "tidy", "vi": "dọn dẹp", "icon": "🧹", "example": "We tidy our room on Sunday.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "homework", "vi": "bài tập về nhà", "icon": "📚", "example": "I always do my homework.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "weekend", "vi": "cuối tuần", "icon": "📅", "example": "On the weekend, we visit Grandma.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "morning", "vi": "buổi sáng", "icon": "🌅", "example": "In the morning, I have breakfast.", "partOfSpeech": "noun", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "adverbs-of-frequency-position",
+      "title_vi": "Trạng từ tần suất + vị trí TRƯỚC động từ thường (always / usually / sometimes / never)",
+      "explain_vi": "Để nói em làm một việc THƯỜNG XUYÊN đến mức nào, em dùng trạng từ tần suất: always (luôn luôn, 100%), usually (thường), sometimes (thỉnh thoảng), never (không bao giờ, 0%). Trạng từ này đứng TRƯỚC động từ thường, ví dụ \"I always walk to school.\", \"She usually helps her mum.\". Lưu ý: \"never\" đã mang nghĩa phủ định, nên KHÔNG dùng thêm \"don't / doesn't\" với never. Đây là câu present simple nói về thói quen.",
+      "examples": [
+        "I always brush my teeth.",
+        "We usually walk to school.",
+        "I sometimes help my mum.",
+        "He never eats fast food."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "i-adv-verb", "text": "I {adv} {verb} after school.", "blanks": ["adv"], "context_vi": "Đây chỉ là bài LUYỆN VỊ TRÍ trạng từ, không phải nói về bản thân em. Mọi trạng từ tần suất (kể cả \"never\") đều đúng ngữ pháp khi đứng TRƯỚC động từ thường. Ngữ cảnh trung tính: một việc em làm sau giờ học.", "audioText": "I usually play after school." },
+          { "id": "we-adv-verb", "text": "We {adv} {verb2} to school.", "blanks": ["adv"], "context_vi": "Nói nhóm em đi bộ đến trường thường xuyên đến mức nào.", "audioText": "We usually walk to school." },
+          { "id": "he-adv-verb3", "text": "He {adv} {verb3} his room.", "blanks": ["verb3"], "context_vi": "Chọn đúng dạng động từ cho \"he\" (thêm s): tidies. Trạng từ đã đặt sẵn trước động từ.", "audioText": "He always tidies his room." }
+        ],
+        "slots": {
+          "adv": ["always", "usually", "sometimes", "never"],
+          "verb": ["play", "read", "draw"],
+          "verb2": ["walk"],
+          "verb3": ["tidies"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "I play always after school.",
+          "I always playing after school.",
+          "He never doesn't tidy his room.",
+          "We walk usually to school.",
+          "He always tidy his room.",
+          "I read after school always.",
+          "We always walks to school."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "frequency-with-be-and-doesnt",
+      "title_vi": "Tần suất với \"be\" (đứng SAU) và với he/she (thêm s)",
+      "explain_vi": "Có hai điểm cần nhớ. Một là: với động từ \"be\" (am / is / are), trạng từ tần suất đứng SAU \"be\", ví dụ \"She is always happy.\", \"They are usually late.\". Hai là: trong present simple, với he / she / it động từ thường thêm \"s\": \"She always walks.\", \"He usually helps.\". Còn \"never\" thì không cần \"doesn't\" vì nó đã là phủ định rồi: nói \"He never eats fast food.\".",
+      "examples": [
+        "She is always happy.",
+        "They are usually late.",
+        "She always walks to school.",
+        "He sometimes helps his dad."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "subj-be-adv", "text": "{subj} {be} {adv} happy.", "blanks": ["be"], "context_vi": "Chọn đúng \"am / is / are\" theo chủ ngữ. Trạng từ tần suất đứng SAU be.", "audioText": "She is always happy." },
+          { "id": "be-adv-position", "text": "She is {adv} happy.", "blanks": ["adv"], "context_vi": "Chọn một trạng từ tần suất đặt đúng chỗ SAU \"is\".", "audioText": "She is usually happy." },
+          { "id": "subj3-adv-verb3", "text": "{subj3} {adv} {verb3}.", "blanks": ["verb3"], "context_vi": "Chọn đúng dạng động từ thêm s cho he/she (walks / helps).", "audioText": "She always walks." }
+        ],
+        "slots": {
+          "subj": ["I", "She", "He", "We", "They"],
+          "subj3": ["She", "He"],
+          "be": ["am", "is", "are"],
+          "adv": ["always", "usually", "sometimes", "never"],
+          "verb3": ["walks", "helps"]
+        },
+        "answerKey": {
+          "subj-be-adv": {
+            "be": { "__cond": "subj", "I": "am", "She": "is", "He": "is", "We": "are", "They": "are" }
+          }
+        },
+        "distractors": [
+          "She always is happy.",
+          "They is usually late.",
+          "She walk always to school.",
+          "He always walk.",
+          "She is happy always.",
+          "We is sometimes late.",
+          "He never helps not his dad."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "phonics": {
+    "position": "medial",
+    "focus": ["ar", "ai", "oa"],
+    "soundLabels": {
+      "ar": { "ipa": "/ɑː/", "anchor": "star", "position": "medial", "say_vi": "TIẾP TỤC CỦNG CỐ từ bài trước. âm Ở GIỮA từ \"star\" là /ɑː/ — mở miệng to, kéo dài \"a\" (giống \"aa\" trong tiếng Việt, không đọc tên chữ \"a-rờ\")" },
+      "ai": { "ipa": "/eɪ/", "anchor": "rain", "position": "medial", "say_vi": "ÔN LẠI từ bài trước. âm Ở GIỮA từ \"rain\" là /eɪ/ — đọc trượt từ \"ê\" sang \"i\" (giống \"ây\"), không đọc rời \"a\" và \"i\"" },
+      "oa": { "ipa": "/əʊ/", "anchor": "boat", "position": "medial", "say_vi": "ÂM MỚI. âm Ở GIỮA từ \"boat\" là /əʊ/ — đọc trượt từ \"ơ\" sang \"u\" (giống \"âu\"), không đọc thành \"o\" ngắn" }
+    },
+    "words": [
+      { "word": "star", "icon": "⭐", "focusSound": "ar", "anchor": "star", "position": "medial", "audio": "" },
+      { "word": "car", "icon": "🚗", "focusSound": "ar", "anchor": "star", "position": "medial", "audio": "" },
+      { "word": "park", "icon": "🏞️", "focusSound": "ar", "anchor": "star", "position": "medial", "audio": "" },
+      { "word": "rain", "icon": "🌧️", "focusSound": "ai", "anchor": "rain", "position": "medial", "audio": "" },
+      { "word": "train", "icon": "🚆", "focusSound": "ai", "anchor": "rain", "position": "medial", "audio": "" },
+      { "word": "boat", "icon": "⛵", "focusSound": "oa", "anchor": "boat", "position": "medial", "audio": "" },
+      { "word": "goat", "icon": "🐐", "focusSound": "oa", "anchor": "boat", "position": "medial", "audio": "" },
+      { "word": "coat", "icon": "🧥", "focusSound": "oa", "anchor": "boat", "position": "medial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "my-week-and-weekend",
+      "title": "My week and my weekend",
+      "title_vi": "Tuần học và cuối tuần của em",
+      "text": "My name is Linh. On school days, I always wake up at six in the morning. I usually walk to school with my friend Nam. After school, I always do my homework first. I sometimes help my mum in the kitchen. On the weekend, I never wake up early. We usually visit Grandma and tidy her garden. I am always happy on Saturday!",
+      "teacherNote_vi": "Đoạn dùng present simple để nói thói quen, với cả bốn trạng từ tần suất (always, usually, sometimes, never) đặt ĐÚNG vị trí: TRƯỚC động từ thường (\"I always wake up\", \"I usually walk\", \"I sometimes help\", \"I never wake up\") và SAU be (\"I am always happy\"). Từ vựng controlled từ vocab: wake up, walk, homework, help, tidy, weekend, morning. \"park\" của phonics không xuất hiện ở đây nhưng \"morning\" có âm /ɔː/ gần với nhóm âm r; trọng tâm phonics ar/ai/oa luyện tách riêng. Đoạn gồm 8 câu (theo . !), vừa ngưỡng 6-8.",
+      "questions": [
+        { "id": "q1", "q_vi": "Bạn Linh luôn thức dậy lúc 6 giờ vào ngày đi học, đúng không?", "type": "truefalse", "answer": true, "audioText": "Linh always wakes up at six on school days." },
+        { "id": "q2", "q_vi": "Linh thường đến trường bằng cách nào?", "type": "mcq", "choices": ["walks to school", "rides a bike", "goes by car"], "answer": 0, "audioText": "How does Linh usually go to school?" },
+        { "id": "q3", "q_vi": "Vào cuối tuần, Linh dậy sớm thường xuyên đến mức nào?", "type": "mcq", "choices": ["never", "always", "usually"], "answer": 0, "audioText": "How often does Linh wake up early on the weekend?" },
+        { "id": "q4", "q_vi": "Linh thỉnh thoảng làm gì để giúp mẹ?", "type": "mcq", "choices": ["helps in the kitchen", "tidies the garden", "walks the dog"], "answer": 0, "audioText": "What does Linh sometimes do for her mum?" },
+        { "id": "q5", "q_vi": "Vào thứ Bảy, Linh cảm thấy thế nào?", "type": "mcq", "choices": ["always happy", "always tired", "sometimes sad"], "answer": 0, "audioText": "How does Linh feel on Saturday?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "talk-about-my-habits",
+      "title_vi": "Nói về thói quen của em",
+      "prompt_vi": "Hãy nói thật về thói quen của em: việc gì em luôn làm, thường làm, thỉnh thoảng làm, và không bao giờ làm. Nhớ đặt trạng từ TRƯỚC động từ.",
+      "sentenceFrames": [
+        "I always ___.",
+        "I usually ___.",
+        "I sometimes ___.",
+        "I never ___."
+      ],
+      "audioModels": [
+        "I always brush my teeth.",
+        "I usually walk to school.",
+        "I sometimes help my mum.",
+        "I never eat fast food."
+      ]
+    },
+    {
+      "id": "ask-how-often",
+      "title_vi": "Hỏi bạn làm việc đó thường xuyên không",
+      "prompt_vi": "Hỏi một người bạn xem họ có hay làm một việc nào đó không, rồi nghe bạn trả lời bằng trạng từ tần suất. Sau đó kể lại bằng \"He/She...\" và nhớ thêm \"s\" vào động từ.",
+      "sentenceFrames": [
+        "Do you ___ on the weekend?",
+        "She usually ___.",
+        "He never ___."
+      ],
+      "audioModels": [
+        "Do you tidy your room on the weekend?",
+        "She usually helps her mum.",
+        "He never wakes up late."
+      ]
+    }
+  ],
+  "audioNotes": "Nên thu âm người thật cho: audioModels phần speaking và audioText câu hỏi reading. TRỌNG TÂM phonics lần này là NGUYÊN ÂM ĐÔI / ÂM R Ở GIỮA. Trong đó \"oa\" là ÂM MỚI của bài; \"ar\" và \"ai\" là TIẾP NỐI từ lesson01 cùng Level 3 (ôn lại, củng cố). Cụ thể: star, car, park (ar /ɑː/ — mở miệng to, KHÔNG bật âm /r/ rõ kiểu Mỹ và KHÔNG đọc tên chữ \"a-rờ\"); rain, train (ai /eɪ/ — trượt ê→i, không tách rời); boat, goat, coat (oa /əʊ/ — trượt ơ→u, không đọc thành \"o\" ngắn). TTS rất hay đọc sai các nguyên âm đôi này thành nguyên âm ngắn hoặc đọc rời từng chữ, nên BẮT BUỘC cần giọng người thật. Câu mẫu grammar cần audio chuẩn để bé nghe rõ VỊ TRÍ trạng từ: \"I usually play after school.\" (trạng từ TRƯỚC động từ thường) và \"She is always happy.\" (trạng từ SAU be) — đây là điểm bé hay nhầm. Lưu ý đọc rõ đuôi -s ở \"walks\", \"helps\", \"tidies\", \"wakes\" trong các câu he/she."
+};
+  C["level3/lesson03.json"] = {
+  "schemaVersion": "v1",
+  "level": 3,
+  "unit": 303,
+  "lesson": 3,
+  "topic": "Plans and the future",
+  "topic_vi": "Kế hoạch & tương lai",
+  "vocab": [
+    { "word": "tomorrow", "vi": "ngày mai", "icon": "📅", "example": "Tomorrow is Saturday.", "partOfSpeech": "adverb", "audio": "" },
+    { "word": "plan", "vi": "kế hoạch / dự định", "icon": "📝", "example": "I have a plan for the weekend.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "weekend", "vi": "cuối tuần", "icon": "🗓️", "example": "We are going to visit Grandma this weekend.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "visit", "vi": "đi thăm", "icon": "🏡", "example": "I am going to visit my friend.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "stay", "vi": "ở lại", "icon": "🏠", "example": "We will stay at home today.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "help", "vi": "giúp đỡ", "icon": "🤝", "example": "I will help my mum.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "tidy", "vi": "dọn dẹp / gọn gàng", "icon": "🧹", "example": "I have to tidy my room.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "picnic", "vi": "buổi dã ngoại", "icon": "🧺", "example": "We are going to have a picnic.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "weather", "vi": "thời tiết", "icon": "🌤️", "example": "The weather is nice today.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "sunny", "vi": "nắng", "icon": "☀️", "example": "It will be sunny tomorrow.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "rainy", "vi": "mưa", "icon": "🌧️", "example": "It will be rainy on Sunday.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "windy", "vi": "gió", "icon": "🌬️", "example": "It is windy, so we will fly a kite.", "partOfSpeech": "adjective", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "be-going-to-plans",
+      "title_vi": "Nói dự định: \"be going to\" (định / sắp làm gì)",
+      "explain_vi": "Khi em đã có kế hoạch hoặc dự định làm gì, em dùng \"be going to + động từ\". Nhớ chọn \"to be\" cho đúng chủ ngữ: I → am, he/she/it → is, you/we/they → are. Ví dụ: \"I am going to visit Grandma.\" (Em định đi thăm Bà), \"We are going to have a picnic.\" (Chúng em định đi dã ngoại). Sau \"going to\" luôn là động từ nguyên thể (visit, help, stay...).",
+      "examples": [
+        "I am going to visit my friend.",
+        "We are going to have a picnic.",
+        "She is going to help her mum.",
+        "They are going to stay at home."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "subj-be-going-to-verb", "text": "{subj} {be} going to {verb} this weekend.", "blanks": ["be"], "context_vi": "Nói ai đó ĐỊNH làm gì cuối tuần. Chọn am/is/are cho đúng chủ ngữ.", "audioText": "I am going to visit Grandma this weekend." },
+          { "id": "be-going-to-have-picnic", "text": "{subj} {be} going to have a picnic.", "blanks": ["be"], "context_vi": "Nói ai đó ĐỊNH đi dã ngoại. Chọn am/is/are cho đúng chủ ngữ.", "audioText": "We are going to have a picnic." },
+          { "id": "be-going-to-pick-verb", "text": "I am going to {verb} tomorrow.", "blanks": ["verb"], "context_vi": "Chọn một động từ NGUYÊN THỂ để nói em định làm gì ngày mai.", "audioText": "I am going to help my mum tomorrow." }
+        ],
+        "slots": {
+          "subj": ["I", "He", "She", "We", "They", "You"],
+          "be": ["am", "is", "are"],
+          "verb": ["visit Grandma", "help my mum", "tidy my room", "stay at home"]
+        },
+        "answerKey": {
+          "subj-be-going-to-verb": {
+            "be": { "__cond": "subj", "I": "am", "He": "is", "She": "is", "We": "are", "They": "are", "You": "are" }
+          },
+          "be-going-to-have-picnic": {
+            "be": { "__cond": "subj", "I": "am", "He": "is", "She": "is", "We": "are", "They": "are", "You": "are" }
+          }
+        },
+        "distractors": [
+          "I is going to visit Grandma.",
+          "She are going to help her mum.",
+          "We is going to have a picnic.",
+          "They am going to stay at home.",
+          "I am going to visited Grandma.",
+          "He going to tidy his room."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "will-future",
+      "title_vi": "Nói về tương lai với \"will\": dự đoán & quyết định ngay (sẽ)",
+      "explain_vi": "Em dùng \"will + động từ\" để nói điều SẼ xảy ra hoặc điều em quyết định làm ngay lúc nói. \"will\" dùng giống nhau cho mọi chủ ngữ (I will, he will, they will...) và sau \"will\" luôn là động từ nguyên thể. Ví dụ: \"It will be sunny tomorrow.\" (Ngày mai trời sẽ nắng), \"I will help you.\" (Em sẽ giúp bạn). Câu phủ định dùng \"will not\" hoặc viết gọn \"won't\".",
+      "examples": [
+        "It will be sunny tomorrow.",
+        "I will help my mum.",
+        "We will stay at home.",
+        "It won't be rainy on Sunday."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "it-will-be-weather", "text": "It will be {weather} tomorrow.", "blanks": ["weather"], "context_vi": "Đoán thời tiết ngày mai. Chọn một từ chỉ thời tiết.", "audioText": "It will be sunny tomorrow." },
+          { "id": "subj-will-verb", "text": "{subj} will {verb}.", "blanks": ["verb"], "context_vi": "Nói ai đó SẼ làm gì. Sau \"will\" là động từ nguyên thể.", "audioText": "I will help my mum." },
+          { "id": "tomorrow-it-will-be", "text": "Tomorrow it will be {weather}.", "blanks": ["weather"], "context_vi": "Đoán thời tiết NGÀY MAI. \"will\" dùng giống nhau cho mọi chủ ngữ.", "audioText": "Tomorrow it will be rainy." }
+        ],
+        "slots": {
+          "subj": ["I", "He", "She", "We", "They", "You"],
+          "weather": ["sunny", "rainy", "windy"],
+          "verb": ["help my mum", "stay at home", "visit Grandma", "tidy my room"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "It will is sunny tomorrow.",
+          "I will helps my mum.",
+          "She will to stay at home.",
+          "We wills visit Grandma.",
+          "It will sunny tomorrow.",
+          "I am will help you."
+        ],
+        "irregulars": {}
+      }
+    }
+  ],
+  "recognition": [
+    {
+      "id": "meet-must-have-to",
+      "title_vi": "Làm quen: \"must\" / \"have to\" — việc PHẢI làm (bổn phận)",
+      "explain_vi": "Phần này chỉ để LÀM QUEN (nghe và chọn), em CHƯA cần tự đặt câu. \"must\" và \"have to\" đều có nghĩa là PHẢI làm việc gì đó (bổn phận). Ví dụ: \"I must tidy my room.\" / \"I have to tidy my room.\" đều có nghĩa là em PHẢI dọn phòng. Em chỉ cần nghe câu rồi chọn xem đó là việc PHẢI làm (bổn phận) hay là một DỰ ĐỊNH / điều SẼ xảy ra.",
+      "examples": [
+        "I must tidy my room.",
+        "We have to help at home.",
+        "I am going to have a picnic.",
+        "It will be sunny tomorrow."
+      ],
+      "generators": ["listen_choose", "mcq"],
+      "items": [
+        { "id": "rec-must-tidy", "audioText": "I must tidy my room.", "meaning_vi": "Em PHẢI dọn phòng (bổn phận).", "choices_vi": ["Việc PHẢI làm (bổn phận)", "Dự định / điều sẽ xảy ra"], "answer": 0 },
+        { "id": "rec-have-to-help", "audioText": "We have to help at home.", "meaning_vi": "Chúng em PHẢI giúp việc nhà (bổn phận).", "choices_vi": ["Việc PHẢI làm (bổn phận)", "Dự định / điều sẽ xảy ra"], "answer": 0 },
+        { "id": "rec-going-to-picnic", "audioText": "I am going to have a picnic.", "meaning_vi": "Em ĐỊNH đi dã ngoại (dự định).", "choices_vi": ["Việc PHẢI làm (bổn phận)", "Dự định / điều sẽ xảy ra"], "answer": 1 },
+        { "id": "rec-will-sunny", "audioText": "It will be sunny tomorrow.", "meaning_vi": "Ngày mai trời SẼ nắng (điều sẽ xảy ra).", "choices_vi": ["Việc PHẢI làm (bổn phận)", "Dự định / điều sẽ xảy ra"], "answer": 1 },
+        { "id": "rec-must-stay", "audioText": "It is rainy, so we must stay at home.", "meaning_vi": "Trời mưa nên chúng em PHẢI ở nhà (bổn phận).", "choices_vi": ["Việc PHẢI làm (bổn phận)", "Dự định / điều sẽ xảy ra"], "answer": 0 },
+        { "id": "rec-going-to-visit", "audioText": "She is going to visit Grandma.", "meaning_vi": "Bạn ấy ĐỊNH đi thăm Bà (dự định).", "choices_vi": ["Việc PHẢI làm (bổn phận)", "Dự định / điều sẽ xảy ra"], "answer": 1 }
+      ]
+    }
+  ],
+  "phonics": {
+    "position": "medial",
+    "focus": ["ai", "oa", "ar", "ee"],
+    "newSounds": ["ai", "oa", "ar"],
+    "reviewSounds": ["ee"],
+    "note_vi": "Bài lớn 3 học 3 ÂM MỚI: nguyên âm đôi /eɪ/ (ai) và /əʊ/ (oa), cùng âm-r /ɑː/ (ar). Âm /iː/ (ee) chỉ ÔN LẠI (đã làm quen ở Level 2 dạng nguyên âm dài), không tính là âm mới — để bé không phải nhớ quá nhiều âm một lúc.",
+    "soundLabels": {
+      "ai": { "ipa": "/eɪ/", "anchor": "rain", "position": "medial", "say_vi": "âm GIỮA từ \"rain\" là /eɪ/ — hai chữ a-i đi cùng nhau đọc thành MỘT âm \"ây\", không tách rời thành a rồi i" },
+      "oa": { "ipa": "/əʊ/", "anchor": "boat", "position": "medial", "say_vi": "âm GIỮA từ \"boat\" là /əʊ/ — hai chữ o-a đi cùng nhau đọc thành MỘT âm \"âu\", không tách rời thành o rồi a" },
+      "ar": { "ipa": "/ɑː/", "anchor": "park", "position": "medial", "say_vi": "âm GIỮA từ \"park\" là /ɑː/ — chữ a đứng trước r đọc thành \"a\" dài, KHÔNG đọc tên chữ r ở cuối" },
+      "ee": { "ipa": "/iː/", "anchor": "week", "position": "medial", "say_vi": "ÔN LẠI: âm GIỮA từ \"week\" là /iː/ — hai chữ e-e đọc thành một âm \"i\" kéo dài (em đã gặp âm này ở Level 2)" }
+    },
+    "words": [
+      { "word": "rain", "icon": "🌧️", "focusSound": "ai", "anchor": "rain", "position": "medial", "audio": "" },
+      { "word": "train", "icon": "🚆", "focusSound": "ai", "anchor": "rain", "position": "medial", "audio": "" },
+      { "word": "boat", "icon": "⛵", "focusSound": "oa", "anchor": "boat", "position": "medial", "audio": "" },
+      { "word": "coat", "icon": "🧥", "focusSound": "oa", "anchor": "boat", "position": "medial", "audio": "" },
+      { "word": "park", "icon": "🌳", "focusSound": "ar", "anchor": "park", "position": "medial", "audio": "" },
+      { "word": "car", "icon": "🚗", "focusSound": "ar", "anchor": "park", "position": "medial", "audio": "" },
+      { "word": "week", "icon": "🗓️", "focusSound": "ee", "anchor": "week", "position": "medial", "isReview": true, "audio": "" },
+      { "word": "tree", "icon": "🌲", "focusSound": "ee", "anchor": "week", "position": "medial", "isReview": true, "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "our-weekend-plan",
+      "title": "Our weekend plan",
+      "title_vi": "Kế hoạch cuối tuần của chúng em",
+      "text": "Tomorrow is Saturday, and we have a plan. The weather will be sunny, so we are going to have a picnic in the park. First, I have to tidy my room and help my mum. Then we are going to visit Grandma. My sister will bring her kite, and we will fly it together. On Sunday it will be rainy, so we are going to stay at home. It is going to be a happy weekend!",
+      "teacherNote_vi": "Đoạn gồm 7 câu (theo dấu . ! ?). Gói gọn trọng tâm BÀI LỚN 3: be going to (are going to have/visit/stay, is going to be) cho dự định + will (will be sunny/rainy, will bring, will fly) cho dự đoán/quyết định + một câu have to (bổn phận, đã làm quen ở phần recognition). Ôn lại từ Level 2: in the park, at home, kite. Từ ngoài vocab chỉ thêm First/Then/together (từ nối dễ đoán, i+1).",
+      "questions": [
+        { "id": "q1", "q_vi": "Cả nhà có kế hoạch cho ngày mai (thứ Bảy), đúng không?", "type": "truefalse", "answer": true, "audioText": "They have a plan for Saturday." },
+        { "id": "q2", "q_vi": "Thứ Bảy thời tiết sẽ thế nào?", "type": "mcq", "choices": ["It will be sunny.", "It will be rainy.", "It will be windy."], "answer": 0, "audioText": "What will the weather be like on Saturday?" },
+        { "id": "q3", "q_vi": "Trước khi đi chơi, bạn nhỏ phải làm gì?", "type": "mcq", "choices": ["tidy the room and help mum", "cook dinner", "wash the car"], "answer": 0, "audioText": "What does the child have to do first?" },
+        { "id": "q4", "q_vi": "Cả nhà định đi thăm ai?", "type": "mcq", "choices": ["Grandma", "a friend", "the teacher"], "answer": 0, "audioText": "Who are they going to visit?" },
+        { "id": "q5", "q_vi": "Chủ nhật trời mưa thì cả nhà sẽ làm gì?", "type": "mcq", "choices": ["stay at home", "go to the beach", "fly a kite"], "answer": 0, "audioText": "What will they do on rainy Sunday?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "tell-my-weekend-plan",
+      "title_vi": "Kể kế hoạch cuối tuần của em (be going to)",
+      "prompt_vi": "Hãy kể em ĐỊNH làm gì cuối tuần này. Điền việc thật của em vào chỗ trống. Nhớ dùng \"I am going to\" và động từ nguyên thể nhé.",
+      "sentenceFrames": [
+        "This weekend I am going to ___.",
+        "I am going to visit ___.",
+        "We are going to ___."
+      ],
+      "audioModels": [
+        "This weekend I am going to have a picnic.",
+        "I am going to visit Grandma.",
+        "We are going to stay at home."
+      ]
+    },
+    {
+      "id": "say-will-future",
+      "title_vi": "Dự đoán thời tiết và việc em sẽ làm (will)",
+      "prompt_vi": "Hãy đoán thời tiết ngày mai và nói một việc em SẼ làm. Dùng \"will + động từ nguyên thể\". Em có thể nói thêm em PHẢI làm gì (have to) nếu muốn.",
+      "sentenceFrames": [
+        "Tomorrow it will be ___.",
+        "I will ___.",
+        "I have to ___."
+      ],
+      "audioModels": [
+        "Tomorrow it will be sunny.",
+        "I will help my mum.",
+        "I have to tidy my room."
+      ]
+    }
+  ],
+  "audioNotes": "Cần thu âm người thật cho: (1) Phonics Level 3 — bài này gọn còn 4 âm: 3 ÂM MỚI gồm nguyên âm đôi (vowel teams) /eɪ/ ai (rain, train), /əʊ/ oa (boat, coat) và âm r (r-controlled) /ɑː/ ar (park, car); cộng 1 ÂM ÔN /iː/ ee (week, tree) — đánh dấu isReview vì đã làm quen ở Level 2. (Đã bỏ /ɔː/ or 'morning' khỏi bài này cho nhẹ tải nhận thức của trẻ ~9 tuổi; để dành cho bài phonics sau.) TTS dễ tách rời 2 chữ cái (đọc 'a-i', 'o-a', 'e-e') hoặc đọc rõ tên chữ 'r' ở ar — loa PHẢI đọc TỪ TRỌN VẸN: ai/oa/ee là MỘT âm liền, ar kéo dài nguyên âm và KHÔNG bật âm 'r' rõ kiểu Mỹ-cường. (2) Cặp câu mẫu grammar để bé bắt chước ngữ điệu: 'I am going to visit Grandma.' (be going to) và 'It will be sunny tomorrow.' / 'I will help you.' (will) — đọc rõ dạng rút gọn won't ở câu phủ định nếu thu thêm. (3) Phần recognition must/have to — đọc rõ cặp 'I must tidy my room.' và 'We have to help at home.' để phân biệt với 'going to / will'. (4) audioModels phần speaking và audioText câu hỏi reading. Ghi chú recycling: 'in the park', 'at home', 'kite' dùng lại từ Level 2 có chủ đích (ôn tập); trọng tâm MỚI là cấu trúc tương lai be going to + will và bổn phận must/have to (làm quen)."
+};
+  C["level3/lesson04.json"] = {
+  "schemaVersion": "v1",
+  "level": 3,
+  "unit": 304,
+  "lesson": 4,
+  "topic": "What was happening: yesterday's moments",
+  "topic_vi": "Việc đang & đã diễn ra",
+  "vocab": [
+    { "word": "playing", "vi": "đang chơi", "icon": "⚽", "example": "I was playing football at four o'clock.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "reading", "vi": "đang đọc", "icon": "📖", "example": "She was reading a book in her room.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "sleeping", "vi": "đang ngủ", "icon": "😴", "example": "The cat was sleeping on the sofa.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "cooking", "vi": "đang nấu ăn", "icon": "🍳", "example": "Mum was cooking in the kitchen.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "drawing", "vi": "đang vẽ", "icon": "🖍️", "example": "We were drawing a big star.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "running", "vi": "đang chạy", "icon": "🏃", "example": "The dog was running in the park.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "raining", "vi": "trời đang mưa", "icon": "🌧️", "example": "It was raining all morning.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "snowing", "vi": "trời đang có tuyết", "icon": "🌨️", "example": "It was snowing at six o'clock.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "watching", "vi": "đang xem", "icon": "📺", "example": "They were watching TV after dinner.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "this morning", "vi": "sáng nay", "icon": "🌅", "example": "This morning I was eating breakfast at seven.", "partOfSpeech": "phrase", "audio": "" },
+    { "word": "last night", "vi": "tối qua", "icon": "🌙", "example": "Last night we were reading a story.", "partOfSpeech": "phrase", "audio": "" },
+    { "word": "at six o'clock", "vi": "lúc sáu giờ", "icon": "🕕", "example": "At six o'clock Dad was driving home.", "partOfSpeech": "phrase", "audio": "" },
+    { "word": "when", "vi": "khi / lúc", "icon": "⏰", "example": "I was sleeping when the phone rang.", "partOfSpeech": "conjunction", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "past-continuous-was-were-ving",
+      "title_vi": "Việc ĐANG diễn ra trong quá khứ: was / were + V-ing",
+      "explain_vi": "Khi muốn kể một việc ĐANG XẢY RA tại một thời điểm trong quá khứ (ví dụ \"lúc sáu giờ\", \"sáng nay\"), em dùng was/were + động từ thêm \"-ing\". Với I, he, she, it dùng \"was\"; với you, we, they dùng \"were\". Ví dụ: \"I was playing football at four o'clock.\" (Lúc bốn giờ em đang chơi bóng), \"They were watching TV.\" (Họ đang xem ti vi). Khác với quá khứ đơn (đã làm xong) như \"I played\", dạng này nhấn mạnh việc ĐANG diễn ra, chưa xong.",
+      "examples": [
+        "I was playing football at four o'clock.",
+        "She was reading a book in her room.",
+        "We were drawing a big star.",
+        "It was raining this morning."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "subj-be-ving-time", "text": "{subj} {be} {verbing} {time}.", "blanks": ["be"], "context_vi": "Kể một việc ĐANG diễn ra tại một thời điểm trong quá khứ. Chọn was hay were cho đúng với chủ ngữ.", "audioText": "I was playing football at four o'clock." },
+          { "id": "it-was-raining", "text": "It {be} {weatherving} {time}.", "blanks": ["be"], "context_vi": "Nói trời ĐANG mưa hay đang có nắng tại một thời điểm trong quá khứ. Với \"it\" luôn dùng was.", "audioText": "It was raining this morning." },
+          { "id": "clause-was-were-ving", "text": "{clause} {time}.", "blanks": ["clause"], "context_vi": "Chọn cụm chủ-ngữ + was/were + động-từ-ing ĐÚNG để kể việc đang diễn ra. Mọi cụm trong danh sách đều đúng was/were theo chủ ngữ.", "audioText": "She was reading this morning." }
+        ],
+        "slots": {
+          "subj": ["I", "He", "She", "We", "They", "You"],
+          "be": ["was", "were"],
+          "verbing": ["playing", "reading", "sleeping", "cooking", "drawing", "running", "watching"],
+          "weatherving": ["raining", "snowing"],
+          "time": ["this morning", "last night", "at six o'clock", "at four o'clock"],
+          "clause": [
+            "I was playing",
+            "He was reading",
+            "She was cooking",
+            "We were drawing",
+            "They were watching",
+            "You were running"
+          ]
+        },
+        "answerKey": {
+          "subj-be-ving-time": {
+            "be": { "__cond": "subj", "I": "was", "He": "was", "She": "was", "We": "were", "They": "were", "You": "were" }
+          },
+          "it-was-raining": {
+            "be": { "__cond": "weatherving", "raining": "was", "snowing": "was" }
+          }
+        },
+        "distractors": [
+          "I were playing football at four o'clock.",
+          "She were reading a book in her room.",
+          "We was drawing a big star.",
+          "They was watching TV.",
+          "It were raining this morning.",
+          "I was play football at four o'clock.",
+          "She was read a book this morning.",
+          "He were sleeping last night."
+        ],
+        "irregulars": {
+          "play": "playing",
+          "read": "reading",
+          "sleep": "sleeping",
+          "cook": "cooking",
+          "draw": "drawing",
+          "run": "running",
+          "watch": "watching"
+        }
+      }
+    },
+    {
+      "id": "when-while-past-continuous",
+      "title_vi": "Nối câu với \"when\" và \"while\": một việc ĐANG diễn ra thì việc khác xảy ra",
+      "explain_vi": "Để kể \"em đang làm việc A thì việc B xảy ra\", em dùng was/were + V-ing cho việc ĐANG diễn ra (việc dài hơn), và quá khứ đơn cho việc xảy ra CẮT NGANG (việc ngắn). Dùng \"when\" trước việc ngắn: \"I was sleeping when the phone rang.\" (Em đang ngủ thì điện thoại reo). Dùng \"while\" trước việc đang diễn ra: \"While I was reading, my mum called me.\" (Trong khi em đang đọc, mẹ gọi em). Chú ý: việc ĐANG diễn ra vẫn cần was/were + V-ing.",
+      "examples": [
+        "I was sleeping when the phone rang.",
+        "She was cooking when I came home.",
+        "While we were playing, it started to rain.",
+        "While they were watching TV, Dad arrived."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "subj-be-ving-when", "text": "{subj} {be} {verbing} when the phone rang.", "blanks": ["be"], "context_vi": "Một việc ĐANG diễn ra thì điện thoại reo (việc ngắn cắt ngang). Chọn was hay were cho việc đang diễn ra.", "audioText": "I was sleeping when the phone rang." },
+          { "id": "while-clause-rain", "text": "While {clauseLower}, it started to rain.", "blanks": ["clauseLower"], "context_vi": "Trong khi ai đó ĐANG làm việc gì thì trời bắt đầu mưa. Chọn cụm chủ-ngữ + was/were + V-ing ĐÚNG (đặt giữa câu nên viết thường).", "audioText": "While we were playing, it started to rain." },
+          { "id": "clause-when-dad", "text": "{clause} when Dad came home.", "blanks": ["clause"], "context_vi": "Chọn cụm chủ-ngữ + was/were + V-ing ĐÚNG cho việc đang diễn ra khi bố về nhà.", "audioText": "She was cooking when Dad came home." }
+        ],
+        "slots": {
+          "subj": ["I", "He", "She", "We", "They", "You"],
+          "be": ["was", "were"],
+          "verbing": ["sleeping", "reading", "cooking", "playing", "drawing", "watching"],
+          "clause": [
+            "I was sleeping",
+            "He was reading",
+            "She was cooking",
+            "We were playing",
+            "They were watching",
+            "You were drawing"
+          ],
+          "clauseLower": [
+            "I was sleeping",
+            "he was reading",
+            "she was cooking",
+            "we were playing",
+            "they were watching",
+            "you were drawing"
+          ]
+        },
+        "answerKey": {
+          "subj-be-ving-when": {
+            "be": { "__cond": "subj", "I": "was", "He": "was", "She": "was", "We": "were", "They": "were", "You": "were" }
+          }
+        },
+        "distractors": [
+          "I were sleeping when the phone rang.",
+          "She were cooking when Dad came home.",
+          "While we was playing, it started to rain.",
+          "While they was watching TV, Dad arrived.",
+          "I was sleep when the phone rang.",
+          "She was cook when Dad came home.",
+          "While we were play, it started to rain.",
+          "He were reading when the phone rang."
+        ],
+        "irregulars": {
+          "ring": "rang",
+          "come": "came",
+          "start": "started"
+        }
+      }
+    }
+  ],
+  "phonics": {
+    "position": "medial",
+    "focus": ["ar", "or", "oo", "ee"],
+    "soundLabels": {
+      "ar": { "ipa": "/ɑː/", "anchor": "star", "position": "medial", "say_vi": "âm GIỮA từ \"star\" là /ɑː/ — đọc dài \"a\" có âm r nhẹ phía sau, không đọc rời từng chữ a-r" },
+      "or": { "ipa": "/ɔː/", "anchor": "fork", "position": "medial", "say_vi": "âm GIỮA từ \"fork\" là /ɔː/ — đọc tròn môi \"o\" dài, không đọc rời o-r" },
+      "oo": { "ipa": "/uː/", "anchor": "moon", "position": "medial", "say_vi": "âm GIỮA từ \"moon\" là /uː/ — đọc dài \"u\", không đọc thành hai chữ o" },
+      "ee": { "ipa": "/iː/", "anchor": "tree", "position": "medial", "say_vi": "âm GIỮA từ \"tree\" là /iː/ — đọc dài \"i\", không đọc thành hai chữ e" }
+    },
+    "words": [
+      { "word": "star", "icon": "⭐", "focusSound": "ar", "anchor": "star", "position": "medial", "audio": "" },
+      { "word": "car", "icon": "🚗", "focusSound": "ar", "anchor": "star", "position": "medial", "audio": "" },
+      { "word": "fork", "icon": "🍴", "focusSound": "or", "anchor": "fork", "position": "medial", "audio": "" },
+      { "word": "corn", "icon": "🌽", "focusSound": "or", "anchor": "fork", "position": "medial", "audio": "" },
+      { "word": "moon", "icon": "🌙", "focusSound": "oo", "anchor": "moon", "position": "medial", "audio": "" },
+      { "word": "spoon", "icon": "🥄", "focusSound": "oo", "anchor": "moon", "position": "medial", "audio": "" },
+      { "word": "tree", "icon": "🌳", "focusSound": "ee", "anchor": "tree", "position": "medial", "audio": "" },
+      { "word": "sheep", "icon": "🐑", "focusSound": "ee", "anchor": "tree", "position": "medial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "what-we-were-doing-last-night",
+      "title": "What we were doing last night",
+      "title_vi": "Tối qua nhà em đang làm gì",
+      "text": "Last night at eight o'clock my family was very busy. I was reading a story in my room. My little sister was sleeping in her bed. Mum was cooking dinner in the kitchen, and Dad was watching the news on TV. While we were doing all these things, it started to rain. Then the lights went off! We were all in the dark, but we were not afraid. We found a candle and sat together. It was a funny night, and we were happy.",
+      "teacherNote_vi": "Đoạn 8 câu (theo dấu . ! ?). Gói trọng tâm BÀI LỚN 4: was/were + V-ing (was reading, was sleeping, was cooking, was watching, were doing) + nối câu với while + việc ngắn cắt ngang ở quá khứ đơn (it started to rain, the lights went off). Từ ngoài vocab chỉ thêm 'candle', 'dark', 'news' (i+1, dễ đoán nhờ ngữ cảnh mất điện); 'happy', 'family', 'story', 'kitchen', 'room' đã quen từ Level 1-2 (recycling). Cụm 'the lights went off' và 'candle' được chú thích ở 'glosses' để bé không hiểu sai mạch truyện MẤT ĐIỆN.",
+      "glosses": [
+        { "word": "the lights went off", "vi": "đèn tắt phụt (mất điện)", "icon": "💡", "note_vi": "Cả nhà mất điện nên tối thui — đây là việc ngắn cắt ngang lúc cả nhà đang bận." },
+        { "word": "candle", "vi": "cây nến", "icon": "🕯️", "note_vi": "Cây nến đốt lên để có ánh sáng khi mất điện." },
+        { "word": "in the dark", "vi": "trong bóng tối", "icon": "🌑", "note_vi": "Vì mất điện nên cả nhà ở trong bóng tối, nhưng không sợ." }
+      ],
+      "questions": [
+        { "id": "q1", "q_vi": "Lúc tám giờ tối qua bạn nhỏ đang làm gì?", "type": "mcq", "choices": ["reading a story", "watching TV", "cooking dinner"], "answer": 0, "audioText": "What was the child doing at eight o'clock?" },
+        { "id": "q2", "q_vi": "Em gái nhỏ đang ngủ, đúng không?", "type": "truefalse", "answer": true, "audioText": "The little sister was sleeping." },
+        { "id": "q3", "q_vi": "Mẹ đang làm gì trong bếp?", "type": "mcq", "choices": ["cooking dinner", "reading a book", "sleeping"], "answer": 0, "audioText": "What was Mum doing in the kitchen?" },
+        { "id": "q4", "q_vi": "Chuyện gì xảy ra trong khi cả nhà đang bận?", "type": "mcq", "choices": ["It started to rain and the lights went off.", "A friend came to visit.", "They went to the park."], "answer": 0, "audioText": "What happened while the family was busy?" },
+        { "id": "q5", "q_vi": "Cả nhà có sợ hãi không?", "type": "truefalse", "answer": false, "audioText": "Were they afraid?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "say-what-i-was-doing",
+      "title_vi": "Kể việc em đang làm lúc nào đó tối qua",
+      "prompt_vi": "Hãy kể em ĐANG làm gì vào một thời điểm tối qua hoặc sáng nay. Điền việc thật của em vào chỗ trống. Nhớ dùng \"I was\" + động từ thêm -ing nhé.",
+      "sentenceFrames": [
+        "Last night I was ___.",
+        "This morning I was ___.",
+        "At six o'clock I was ___."
+      ],
+      "audioModels": [
+        "Last night I was reading a story.",
+        "This morning I was eating breakfast.",
+        "At six o'clock I was watching TV."
+      ]
+    },
+    {
+      "id": "say-when-while-sentence",
+      "title_vi": "Nối hai việc bằng \"when\" hoặc \"while\"",
+      "prompt_vi": "Kể một việc em đang làm thì có việc khác xảy ra. Dùng \"when\" trước việc ngắn, hoặc \"while\" trước việc đang diễn ra. Điền việc thật của em.",
+      "sentenceFrames": [
+        "I was ___ when ___.",
+        "While I was ___, ___.",
+        "We were ___ when ___."
+      ],
+      "audioModels": [
+        "I was sleeping when the phone rang.",
+        "While I was reading, my mum called me.",
+        "We were playing when it started to rain."
+      ]
+    }
+  ],
+  "audioNotes": "Cần thu âm người thật cho: (1) Phonics nguyên âm GIỮA-từ /ɑː/ (star, car), /ɔː/ (fork, corn), /uː/ (moon, spoon), /iː/ (tree, sheep) — TTS dễ đọc 'ar/or/oo/ee' rời thành từng chữ cái hoặc làm ngắn nguyên âm, loa phải đọc TỪ TRỌN VẸN, kéo dài đúng nguyên âm và âm r của /ɑː/, /ɔː/ chỉ là màu sắc nhẹ (giọng Anh-Anh không cuộn r mạnh). (2) Cặp đúng/sai để bé phân biệt was/were: 'I was playing' vs sai 'I were playing'; 'We were drawing' vs sai 'We was drawing' — đọc rõ was /wɒz/ và were /wɜː/. (3) Đọc rõ dạng V-ing đầy đủ để bé không nuốt -ing: playing, reading, sleeping, cooking, drawing, running, watching, raining, snowing. (4) Các câu nối when/while: 'I was sleeping when the phone rang.', 'While we were playing, it started to rain.' — đọc rõ ngắt câu trước/sau when, while để bé nghe ra hai mệnh đề. (5) audioModels phần speaking và audioText câu hỏi reading. Ghi chú đối lập với quá khứ đơn đã học ở Level 2 (played/went): bài này nhấn việc ĐANG diễn ra (was playing) khác việc ĐÃ XONG (played) — nên đọc một cặp 'I was playing / I played' để bé cảm nhận khác biệt."
+};
+  C["level3/lesson05.json"] = {
+  "schemaVersion": "v1",
+  "level": 3,
+  "unit": 305,
+  "lesson": 5,
+  "topic": "Reading and retelling a story",
+  "topic_vi": "Đọc hiểu & kể lại",
+  "vocab": [
+    { "word": "story", "vi": "câu chuyện", "icon": "📖", "example": "I read a funny story yesterday.", "partOfSpeech": "noun", "audio": "" },
+    { "word": "because", "vi": "bởi vì (nói lý do)", "icon": "🔗", "example": "I was happy because we went to the beach.", "partOfSpeech": "conjunction", "audio": "" },
+    { "word": "so", "vi": "vì vậy / nên (nói kết quả)", "icon": "➡️", "example": "It was hot, so we had an ice cream.", "partOfSpeech": "conjunction", "audio": "" },
+    { "word": "but", "vi": "nhưng (nói ý ngược lại)", "icon": "↔️", "example": "I was tired, but I was happy.", "partOfSpeech": "conjunction", "audio": "" },
+    { "word": "found", "vi": "đã tìm thấy", "icon": "🔍", "example": "She found a little cat under the tree.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "lost", "vi": "bị lạc / đã mất", "icon": "🧭", "example": "The dog was lost in the park.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "helped", "vi": "đã giúp", "icon": "🤝", "example": "My brother helped the old man.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "cried", "vi": "đã khóc", "icon": "😢", "example": "The baby cried all night.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "laughed", "vi": "đã cười", "icon": "😄", "example": "We laughed at the funny clown.", "partOfSpeech": "verb", "audio": "" },
+    { "word": "scared", "vi": "sợ hãi", "icon": "😨", "example": "The little girl was scared of the dark.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "excited", "vi": "phấn khích / háo hức", "icon": "🤩", "example": "We were excited about the trip.", "partOfSpeech": "adjective", "audio": "" },
+    { "word": "surprised", "vi": "ngạc nhiên", "icon": "😲", "example": "Mum was surprised by the big gift.", "partOfSpeech": "adjective", "audio": "" }
+  ],
+  "grammar": [
+    {
+      "id": "linkers-because-so-but",
+      "title_vi": "Nối ý bằng \"because\", \"so\" và \"but\"",
+      "explain_vi": "Để câu chuyện hay hơn, em nối hai ý lại với nhau. Dùng \"because\" (bởi vì) để nói LÝ DO: việc xảy ra TRƯỚC đứng sau \"because\" (Ví dụ: \"I was happy because we won.\" — vui vì đã thắng). Dùng \"so\" (vì vậy/nên) để nói KẾT QUẢ: lý do đứng trước, kết quả đứng sau \"so\" (Ví dụ: \"It was hot, so we had an ice cream.\"). Dùng \"but\" (nhưng) khi hai ý NGƯỢC nhau (Ví dụ: \"I was tired, but I was happy.\").",
+      "examples": [
+        "I was happy because we went to the zoo.",
+        "It was raining, so we played at home.",
+        "The film was long, but it was fun.",
+        "She cried because she lost her doll."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "happy-because", "text": "I was happy {link} {goodreason}.", "blanks": ["link"], "context_vi": "Câu nói LÝ DO làm em VUI (việc tốt nằm sau chỗ trống) nên phải chọn \"because\".", "audioText": "I was happy because we went to the zoo." },
+          { "id": "sad-because", "text": "She was sad {link} {badreason}.", "blanks": ["link"], "context_vi": "Câu nói LÝ DO làm bạn ấy BUỒN (việc không vui nằm sau chỗ trống) nên phải chọn \"because\".", "audioText": "She was sad because she lost her doll." },
+          { "id": "result-so", "text": "It was {cause}, {link} we {action}.", "blanks": ["link"], "context_vi": "Vế đầu là nguyên nhân, vế sau là KẾT QUẢ nên phải chọn \"so\".", "audioText": "It was raining, so we played at home." },
+          { "id": "contrast-but", "text": "It was {firstidea}, {link} it was {secondidea}.", "blanks": ["link"], "context_vi": "Hai ý NGƯỢC nhau (một không hay, một hay) nên phải chọn \"but\".", "audioText": "It was long, but it was fun." }
+        ],
+        "slots": {
+          "link": ["because", "so", "but"],
+          "goodreason": ["we went to the zoo", "we won the game", "we saw a film", "it was my birthday"],
+          "badreason": ["she lost her doll", "the dog was lost", "it was raining", "she was ill"],
+          "cause": ["raining", "hot", "very late", "sunny"],
+          "action": ["played at home", "had an ice cream", "went to bed", "went to the park"],
+          "firstidea": ["long", "small", "hard", "cold"],
+          "secondidea": ["fun", "nice", "good", "great"]
+        },
+        "answerKey": {
+          "happy-because": { "link": "because" },
+          "sad-because": { "link": "because" },
+          "result-so": { "link": "so" },
+          "contrast-but": { "link": "but" }
+        },
+        "distractors": [
+          "I was happy so we went to the zoo.",
+          "It was raining, because we played at home.",
+          "It was long, so it was fun but.",
+          "I was happy but we went to the zoo.",
+          "It was hot so but we had an ice cream.",
+          "She cried so she lost her doll."
+        ],
+        "irregulars": {}
+      }
+    },
+    {
+      "id": "past-simple-retell",
+      "title_vi": "Ôn quá khứ đơn để KỂ LẠI chuyện (V-ed và động từ bất quy tắc)",
+      "explain_vi": "Khi kể lại một câu chuyện đã xảy ra, em dùng QUÁ KHỨ ĐƠN. Phần lớn động từ thêm \"-ed\": help → helped, laugh → laughed; động từ có \"y\" sau phụ âm đổi thành \"-ied\": cry → cried. Vài động từ hay dùng đổi hẳn, học thuộc nhé: find → found (đã tìm thấy), go → went (đã đi), see → saw (đã thấy), have → had (đã có/đã ăn). Dạng quá khứ dùng chung cho mọi chủ ngữ (I, she, we, they...).",
+      "examples": [
+        "She found a little cat in the garden.",
+        "We helped the old man with his bag.",
+        "The baby cried, but then it laughed.",
+        "Last summer we went to the farm and saw the cows."
+      ],
+      "generators": ["fill_blank", "mcq", "order_words", "listen_choose"],
+      "safeZone": {
+        "templates": [
+          { "id": "subj-found-thing", "text": "{subj} found {foundthing}.", "blanks": ["foundthing"], "context_vi": "Kể về việc TÌM THẤY một thứ gì đó (động từ \"found\" = đã tìm thấy). Mọi thứ trong danh sách đều có thể tìm thấy, nên mọi đáp án đều đúng.", "audioText": "She found a little cat." },
+          { "id": "subj-helped-person", "text": "{subj} helped {person}.", "blanks": ["person"], "context_vi": "Kể về việc ĐÃ GIÚP một người (động từ \"helped\" = đã giúp). Em chỉ giúp được NGƯỜI, nên mọi đáp án trong danh sách đều là người và đều đúng.", "audioText": "We helped the old man." },
+          { "id": "subj-saw-sight", "text": "{subj} saw {sight}.", "blanks": ["sight"], "context_vi": "Kể về việc ĐÃ NHÌN THẤY điều gì (động từ \"saw\" = đã thấy). Mọi thứ trong danh sách đều có thể nhìn thấy, nên mọi đáp án đều đúng.", "audioText": "He saw a big bird." },
+          { "id": "yesterday-subj-wentto", "text": "Yesterday {subjLower} went to the {place}.", "blanks": ["place"], "context_vi": "Đi ĐẾN một nơi trong quá khứ dùng \"went to the...\". Chọn một nơi chốn; nơi nào cũng đúng ngữ pháp.", "audioText": "Yesterday we went to the farm." },
+          { "id": "excited-because-found", "text": "I was excited because I found {foundthing}.", "blanks": ["foundthing"], "context_vi": "Vế \"because\" kể việc ĐÃ xảy ra nên dùng \"found\" (quá khứ). Người ta thường thấy VUI/HÁO HỨC khi tìm thấy đồ, nên mọi thứ tìm được đều hợp nghĩa.", "audioText": "I was excited because I found a little cat." },
+          { "id": "scared-because-saw", "text": "I was scared because I saw {scarysight}.", "blanks": ["scarysight"], "context_vi": "Vế \"because\" kể việc ĐÃ xảy ra nên dùng \"saw\" (quá khứ). Người ta thấy SỢ khi nhìn thấy thứ đáng sợ, nên mọi đáp án đều là thứ đáng sợ và hợp nghĩa.", "audioText": "I was scared because I saw a big spider." }
+        ],
+        "slots": {
+          "subj": ["I", "She", "He", "We", "They"],
+          "subjLower": ["I", "she", "he", "we", "they"],
+          "foundthing": ["a little cat", "an old key", "a lost ball", "an ice cream"],
+          "person": ["the old man", "her friend", "the lost boy"],
+          "sight": ["a big bird", "a funny film", "the new house"],
+          "scarysight": ["a big spider", "a snake", "a dark cave"],
+          "place": ["farm", "park", "zoo", "beach"]
+        },
+        "answerKey": {},
+        "distractors": [
+          "She finded a little cat.",
+          "We helpd the old man.",
+          "The baby cryed all night.",
+          "Yesterday we go to the farm.",
+          "I was excited because I finded a little cat.",
+          "He seed a big bird.",
+          "She found helped the old man."
+        ],
+        "irregulars": {
+          "find": "found",
+          "go": "went",
+          "see": "saw",
+          "have": "had",
+          "help": "helped",
+          "laugh": "laughed",
+          "cry": "cried"
+        }
+      }
+    }
+  ],
+  "phonics": {
+    "position": "mixed",
+    "focus": ["ar", "or", "oo", "ai", "oa", "ee"],
+    "soundLabels": {
+      "ar": { "ipa": "/ɑː/", "anchor": "car", "position": "medial", "say_vi": "âm GIỮA từ \"car\" là /ɑː/ — miệng mở to, kéo dài \"a\", không đọc tách \"a\" và \"r\"" },
+      "or": { "ipa": "/ɔː/", "anchor": "fork", "position": "medial", "say_vi": "âm GIỮA từ \"fork\" là /ɔː/ — môi tròn, kéo dài \"o\", không đọc tách \"o\" và \"r\"" },
+      "oo": { "ipa": "/uː/", "anchor": "moon", "position": "medial", "say_vi": "âm GIỮA từ \"moon\" là /uː/ — môi tròn nhỏ, kéo dài \"u\", không đọc thành hai chữ \"o\"" },
+      "ai": { "ipa": "/eɪ/", "anchor": "rain", "position": "medial", "say_vi": "âm GIỮA từ \"rain\" là /eɪ/ — trượt từ \"ê\" sang \"i\", đọc liền một hơi" },
+      "oa": { "ipa": "/əʊ/", "anchor": "boat", "position": "medial", "say_vi": "âm GIỮA từ \"boat\" là /əʊ/ — trượt từ \"ơ\" sang \"u\", đọc liền một hơi" },
+      "ee": { "ipa": "/iː/", "anchor": "tree", "position": "medial", "say_vi": "âm GIỮA từ \"tree\" là /iː/ — cười nhẹ, kéo dài \"i\", không đọc thành hai chữ \"e\"" }
+    },
+    "words": [
+      { "word": "car", "icon": "🚗", "focusSound": "ar", "anchor": "car", "position": "medial", "audio": "" },
+      { "word": "star", "icon": "⭐", "focusSound": "ar", "anchor": "car", "position": "medial", "audio": "" },
+      { "word": "fork", "icon": "🍴", "focusSound": "or", "anchor": "fork", "position": "medial", "audio": "" },
+      { "word": "moon", "icon": "🌙", "focusSound": "oo", "anchor": "moon", "position": "medial", "audio": "" },
+      { "word": "rain", "icon": "🌧️", "focusSound": "ai", "anchor": "rain", "position": "medial", "audio": "" },
+      { "word": "train", "icon": "🚆", "focusSound": "ai", "anchor": "rain", "position": "medial", "audio": "" },
+      { "word": "boat", "icon": "⛵", "focusSound": "oa", "anchor": "boat", "position": "medial", "audio": "" },
+      { "word": "tree", "icon": "🌳", "focusSound": "ee", "anchor": "tree", "position": "medial", "audio": "" }
+    ],
+    "audio": null
+  },
+  "reading": [
+    {
+      "id": "the-lost-kite",
+      "title": "The lost kite",
+      "title_vi": "Con diều bị lạc",
+      "text": "Last Sunday, Nam and his sister Lan went to the park. It was sunny, so they flew a big red kite. Lan was excited because the kite flew very high. Then the wind was strong, and the kite was lost in a tall tree. Lan was sad, but Nam had a good plan. A kind man helped them, and they found the kite. Lan laughed because she was happy again. It was a great day for Nam and Lan.",
+      "glossary": [
+        { "word": "flew", "vi": "đã bay (quá khứ của \"fly\")", "icon": "🪁" },
+        { "word": "wind", "vi": "gió", "icon": "💨" },
+        { "word": "strong", "vi": "mạnh", "icon": "💪" },
+        { "word": "tall", "vi": "cao", "icon": "🌳" },
+        { "word": "kind", "vi": "tốt bụng", "icon": "😊" },
+        { "word": "plan", "vi": "kế hoạch / cách làm", "icon": "💡" }
+      ],
+      "teacherNote_vi": "Đoạn gồm 8 câu (theo dấu . ! ?), dài hơn Level 2 một chút theo yêu cầu kể lại. Gói gọn trọng tâm BÀI LỚN 5: liên từ because/so/but (so they flew; excited because; sad, but Nam; laughed because) + quá khứ đơn để kể (went, flew, was/were, helped, found, laughed). Từ mới ngoài vocab chỉ thêm flew/wind/strong/tall/kind/plan (i+1, đoán được nhờ ngữ cảnh; kite, park, sunny, wind đã gặp ở Level 1-2). Đã thêm \"glossary\" gloss_vi cho 6 từ i+1 (đặc biệt flew = quá khứ của fly, strong, kind) để hỗ trợ đọc hiểu sâu phục vụ kể lại, theo góp ý review.",
+      "questions": [
+        { "id": "q1", "q_vi": "Nam và Lan đã đi đâu vào Chủ nhật tuần trước?", "type": "mcq", "choices": ["to the park", "to the zoo", "to the beach"], "answer": 0, "audioText": "Where did Nam and Lan go last Sunday?" },
+        { "id": "q2", "q_vi": "Vì sao Lan thấy háo hức?", "type": "mcq", "choices": ["because the kite flew very high", "because it was raining", "because she had an ice cream"], "answer": 0, "audioText": "Why was Lan excited?" },
+        { "id": "q3", "q_vi": "Con diều bị làm sao?", "type": "mcq", "choices": ["It was lost in a tall tree.", "It was broken.", "It was on the boat."], "answer": 0, "audioText": "What happened to the kite?" },
+        { "id": "q4", "q_vi": "Một người tốt bụng đã giúp hai bạn lấy lại con diều, đúng không?", "type": "truefalse", "answer": true, "audioText": "A kind man helped them find the kite." },
+        { "id": "q5", "q_vi": "Cuối cùng Lan cảm thấy thế nào?", "type": "mcq", "choices": ["happy", "scared", "tired"], "answer": 0, "audioText": "How did Lan feel at the end?" }
+      ]
+    }
+  ],
+  "speaking": [
+    {
+      "id": "tell-why-i-felt",
+      "title_vi": "Kể một cảm xúc của em và LÝ DO",
+      "prompt_vi": "Hãy kể một lần em vui, buồn hoặc háo hức và NÓI LÝ DO bằng \"because\". Điền cảm xúc và việc đã xảy ra thật của em vào chỗ trống. Nhớ dùng động từ ở quá khứ nhé.",
+      "sentenceFrames": [
+        "I was ___ because I ___.",
+        "It was ___, so I ___.",
+        "It was ___, but it was ___."
+      ],
+      "audioModels": [
+        "I was happy because I found my dog.",
+        "It was hot, so I had an ice cream.",
+        "It was hard, but it was fun."
+      ]
+    },
+    {
+      "id": "retell-a-story",
+      "title_vi": "Kể lại một câu chuyện ngắn của em",
+      "prompt_vi": "Hãy kể lại một câu chuyện hoặc một việc đã xảy ra với em theo ba bước: bắt đầu, chuyện gì xảy ra, kết thúc. Dùng went, saw, found, helped và liên từ because/so/but.",
+      "sentenceFrames": [
+        "Last weekend I went to the ___.",
+        "I saw / found ___, so ___.",
+        "It was ___ because ___."
+      ],
+      "audioModels": [
+        "Last weekend I went to the park.",
+        "I found a little cat, so I helped it.",
+        "It was a great day because we were all happy."
+      ]
+    }
+  ],
+  "audioNotes": "Cần thu âm người thật cho: (1) Phonics Level 3 — nguyên âm đôi và âm-r ở GIỮA từ: /ɑː/ (car, star), /ɔː/ (fork), /uː/ (moon), /eɪ/ (rain, train), /əʊ/ (boat), /iː/ (tree). TTS dễ đọc tách 'a-r', 'o-r' hoặc biến /uː/, /eɪ/, /əʊ/, /iː/ thành tên chữ; loa phải đọc TỪ TRỌN VẸN, kéo dài nguyên âm liền một hơi, không tách rời chữ cái. Lưu ý phân biệt cặp dễ lẫn: 'boat' /əʊ/ khác 'moon' /uː/, 'rain' /eɪ/ khác 'tree' /iː/. (2) Câu mẫu liên từ trong grammar examples — đọc rõ chỗ nghỉ trước 'so' và 'but' (có dấu phẩy) và nối liền 'happy because', để bé nghe được ngữ điệu nối ý. (3) Các đuôi quá khứ trong vocab/examples: 'helped' /helpt/ (đuôi /t/), 'laughed' /lɑːft/ (đuôi /t/), 'cried' /kraɪd/ (đuôi /d/), 'found' /faʊnd/, 'saw' /sɔː/ — đọc rõ để bé phân biệt với lỗi 'finded/cryed/helpd/seed'. (4) audioModels phần speaking và audioText câu hỏi reading; riêng reading 'The lost kite' nên đọc chậm, ngắt câu rõ để bé theo dõi mạch kể chuyện. Ghi chú recycling: kite, park, sunny, wind, happy, sad đã gặp ở Level 1-2, dùng lại có chủ đích để ôn; trọng tâm MỚI là liên từ because/so/but và mở rộng quá khứ đơn (found, helped, cried, laughed) cùng nhóm cảm xúc (scared, excited, surprised)."
+};
   g.ContentData = C;
   if (typeof module !== 'undefined' && module.exports) module.exports = C;
 })(typeof window !== 'undefined' ? window : this);
