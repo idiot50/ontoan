@@ -18,6 +18,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { spawnSync } from 'node:child_process';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const PIPER_EXE = path.join(HERE, 'piper', 'piper', 'piper.exe');
@@ -109,6 +111,8 @@ function collectTextsFromUnit(u) {
   Object.keys(sl).forEach(k => add(sl[k].anchor));
   (u.reading || []).forEach(r => {
     add(r.text);
+    // tách từng câu đoạn đọc (để màn Đọc có loa từng câu — UDL)
+    (String(r.text || '').match(/[^.!?]+[.!?]+|\S[^.!?]*$/g) || []).forEach(s => add(s.trim()));
     (r.questions || []).forEach(q => { add(q.audioText); (q.choices || []).forEach(add); });
   });
   // bài lớn: phần "nói" — chỉ bake audioModels (câu mẫu hoàn chỉnh), KHÔNG bake sentenceFrames (có chỗ trống ___)
@@ -144,7 +148,11 @@ async function bakeFiles(level, files, voice, kbps) {
     const u = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
     collectTextsFromUnit(u).forEach(t => texts.add(t));
   }
-  const list = Array.from(texts);
+  return bakeTextList(level, Array.from(texts), voice, kbps);
+}
+
+// Bake một DANH SÁCH text (dùng chung cho file-walk lẫn engine-sweep). Bỏ qua key đã có.
+async function bakeTextList(level, list, voice, kbps) {
   const voiceDir = path.join(AUDIO_DIR, voice);
   fs.mkdirSync(voiceDir, { recursive: true });
   const man = readManifest();
@@ -174,6 +182,49 @@ async function bakeFiles(level, files, voice, kbps) {
   return { level, voice, total: list.length, made, skipped, newBytes: bytes, manifestItems: Object.keys(man.items).length };
 }
 
+// SWEEP ENGINE: nạp js/engine.js, sinh bài qua nhiều seed để thu MỌI câu (audioText + choices)
+// engine có thể nói trong luyện tập/nghe → đảm bảo audio phủ hết (không rơi về TTS).
+function distinctSpecs(unit) {
+  const specs = [];
+  const grammars = unit.grammar || [], vocab = unit.vocab || [];
+  grammars.forEach(g => (g.generators || []).forEach(t => {
+    if (t === 'fill_blank' || t === 'mcq' || t === 'order_words') specs.push({ type: t, level: 1, unit: unit.unit, grammar: g });
+  }));
+  if (vocab.length >= 4) {
+    specs.push({ type: 'mcq', level: 1, unit: unit.unit, vocabPool: vocab });
+    specs.push({ type: 'listen_choose', level: 1, unit: unit.unit, vocabPool: vocab });
+  }
+  grammars.forEach(g => {
+    if ((g.generators || []).indexOf('listen_choose') !== -1 || g.safeZone) specs.push({ type: 'listen_choose', level: 1, unit: unit.unit, grammar: g });
+  });
+  if (unit.phonics && unit.phonics.words && unit.phonics.words.length) specs.push({ type: 'phonics_pick', level: 1, unit: unit.unit, phonics: unit.phonics });
+  return specs;
+}
+async function bakeLessonsSweep(level, files, voice, kbps, seeds) {
+  globalThis.window = globalThis.window || {};
+  const Engine = require(path.join(ROOT, 'js', 'engine.js'));
+  const gen = (Engine && Engine.generate) ? Engine.generate.bind(Engine) : (globalThis.window.Engine && globalThis.window.Engine.generate);
+  if (!gen) throw new Error('Không nạp được Engine.generate');
+  const dir = path.join(CONTENT, 'level' + level);
+  const texts = new Set();
+  const isEng = s => typeof s === 'string' && /[A-Za-z]/.test(s) && s.indexOf('___') < 0;
+  for (const f of files) {
+    const u = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+    // text tĩnh + đoạn đọc + nói + recognition
+    collectTextsFromUnit(u).forEach(t => texts.add(t));
+    for (const spec of distinctSpecs(u)) {
+      for (let s = 0; s < seeds; s++) {
+        let ex; try { ex = gen(spec, s * 7 + 3); } catch (e) { continue; }
+        if (!ex) continue;
+        if (isEng(ex.audioText)) texts.add(ex.audioText.trim());
+        if (isEng(ex.answer)) texts.add(ex.answer.trim());
+        (ex.choices || []).forEach(c => { if (isEng(c)) texts.add(String(c).trim()); });
+      }
+    }
+  }
+  return bakeTextList(level, Array.from(texts), voice, kbps);
+}
+
 /* ---------- CLI ---------- */
 const args = process.argv.slice(2);
 function arg(name, def) { const i = args.indexOf(name); return i >= 0 ? args[i+1] : def; }
@@ -192,13 +243,16 @@ if (args.includes('--selftest')) {
   const kbps = parseInt(arg('--kbps', '56'), 10);
   const res = await bakeLevel(level, voice, kbps);
   console.log(JSON.stringify(res));
-} else if (args.includes('--lessons')) {
-  // Bake các bài lớn lesson0N.json (chỉ synth text MỚI, bỏ qua file đã có theo key).
+} else if (args.includes('--lessons') || args.includes('--lessons-sweep')) {
+  // --lessons: bake text tĩnh của bài lớn. --lessons-sweep: + sweep engine (mọi câu luyện/nghe).
   const level = parseInt(arg('--level', '1'), 10);
   const voice = arg('--voice', 'en_GB-alba-medium');
   const kbps = parseInt(arg('--kbps', '56'), 10);
   const n = parseInt(arg('--n', '5'), 10);
+  const seeds = parseInt(arg('--seeds', '250'), 10);
   const files = []; for (let i = 1; i <= n; i++) files.push('lesson0' + i + '.json');
-  const res = await bakeFiles(level, files, voice, kbps);
+  const res = args.includes('--lessons-sweep')
+    ? await bakeLessonsSweep(level, files, voice, kbps, seeds)
+    : await bakeFiles(level, files, voice, kbps);
   console.log(JSON.stringify(res));
 }

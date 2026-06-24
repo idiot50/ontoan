@@ -409,7 +409,7 @@
 
         var nodeKids = [el('span', { class: 'jmap__emoji', 'aria-hidden': 'true' }, l.icon)];
         if (done) nodeKids.push(el('span', { class: 'jmap__check', 'aria-hidden': 'true' }, '✓'));
-        var node = el('span', { class: 'jmap__node' + (cur ? ' is-cur' : ''), style: '--pal:var(--c-' + l.pal + ');--pal-soft:var(--c-' + l.pal + '-soft)' }, nodeKids);
+        var node = el('span', { class: 'jmap__node' + (cur ? ' is-cur' : '') + (status === 'soon' ? ' is-soon' : ''), style: '--pal:var(--c-' + l.pal + ');--pal-soft:var(--c-' + l.pal + '-soft)' }, nodeKids);
 
         var cardKids = [
           el('div', { class: 'jmap__title' }, 'Bài ' + l.lesson + ' · ' + l.topic_vi),
@@ -496,6 +496,10 @@
       // Phonics — học âm trước (S5ph) rồi luyện (S5p, mở từ trong màn học).
       if (unit.phonics && unit.phonics.words && unit.phonics.words.length) {
         acts.push(activity(++n, '🔡', 'Phonics', 'Học âm chữ rồi luyện nhận diện', practiced(um, 'phonics'), function () { go('S5ph'); }));
+      }
+      // Đọc — đoạn đọc ngắn + câu hỏi (chủ yếu ở BÀI LỚN; unit nhỏ nào có reading cũng hiện).
+      if (Array.isArray(unit.reading) && unit.reading.length && (unit.reading[0] || {}).text) {
+        acts.push(activity(++n, '📖', 'Đọc', 'Đọc đoạn ngắn rồi trả lời câu hỏi', practiced(um, 'reading'), function () { go('S5r'); }));
       }
       acts.push(activity(++n, '🗣️', 'Nói', 'Nghe mẫu rồi nói theo (không chấm điểm)', practiced(um, 'speaking'), function () { go('S6'); }));
 
@@ -1143,6 +1147,103 @@
   }
 
   /* =====================================================================
+     S5r — ĐỌC HIỂU: đoạn đọc ngắn (mỗi câu có loa) + câu hỏi true/false & mcq
+     ===================================================================== */
+  function readingSentences(text) {
+    var parts = String(text || '').match(/[^.!?]+[.!?]+|\S[^.!?]*$/g) || [];
+    return parts.map(function (s) { return s.trim(); }).filter(Boolean);
+  }
+  function screenReading() {
+    var unitNo = state.currentUnit;
+    loadUnit(unitNo).then(function (unit) {
+      var passages = (unit.reading || []).filter(function (r) { return r && r.text; });
+      if (!passages.length) { renderError(new Error('Bài chưa có đoạn đọc.')); return; }
+      var r = passages[0];
+      var questions = (r.questions || []);
+      var doneQ = {};
+      setHeader({ title: 'Đọc · ' + unit.topic_vi, onBack: function () { go('S3'); }, speakText: r.text });
+
+      // Đoạn đọc: từng câu một dòng, có nút loa riêng (UDL — hỗ trợ trẻ đọc yếu).
+      var sentRows = readingSentences(r.text).map(function (s) {
+        return el('div', { class: 'read-line' }, [
+          el('span', { class: 'read-line__text en grow' }, s),
+          speakerBtn(s, 'Nghe: ' + s)
+        ]);
+      });
+      var passageCard = el('div', { class: 'card stack', style: 'gap:var(--sp-2)' }, [
+        el('div', { class: 'row', style: 'justify-content:space-between;align-items:center' }, [
+          el('div', { class: 'act-card__title' }, '📖 ' + (r.title_vi || 'Đoạn đọc')),
+          speakerBtn(r.text, 'Nghe cả đoạn', { accent: true })
+        ])
+      ].concat(sentRows));
+
+      function finish() {
+        Progress.save({ childId: state.childId, level: 1, unit: unit.unit, skill: 'reading', score: null, attempts: questions.length, effort: questions.length || 1, ts: Date.now() })
+          .then(refreshMastery).then(function () {
+            render(el('div', { class: 'result screen stack-lg', style: 'padding-top:var(--sp-7)' }, [
+              el('div', { class: 'center' }, piNode('is-cheer is-glowing mascot--lg')),
+              el('h1', { class: 'celebrate__title' }, 'Em đã đọc xong! 📖🌟'),
+              el('p', { class: 'subtitle' }, 'Em đọc hiểu rất giỏi. Pi tự hào về em!'),
+              el('button', { class: 'btn btn--cta btn--block', type: 'button', onclick: function () { go('S3'); } }, 'Về bài học'),
+              el('button', { class: 'btn btn--ghost btn--block', type: 'button', onclick: function () { go('S2'); } }, 'Về bản đồ')
+            ]));
+            confettiBurst();
+          });
+      }
+
+      var finishBtn = el('button', { class: 'btn btn--cta btn--block', type: 'button', onclick: finish }, 'Xong, em đã đọc! 🌟');
+      finishBtn.disabled = questions.length ? true : null;
+      function checkAllDone() {
+        if (questions.every(function (q) { return doneQ[q.id]; })) finishBtn.disabled = null;
+      }
+
+      var qCards = questions.map(function (q, qi) {
+        var isTF = q.type === 'truefalse';
+        var opts = isTF ? ['Đúng', 'Sai'] : (q.choices || []).slice();
+        var correctIdx = isTF ? (q.answer ? 0 : 1) : q.answer;
+        var grp = el('div', { class: 'choice-list' });
+        opts.forEach(function (label, idx) {
+          var kids = [el('span', { class: 'choice__text' + (isTF ? '' : ' en') + ' grow' }, label)];
+          if (!isTF) {
+            var spk = el('span', { class: 'icon-btn choice__spk', role: 'button', tabindex: '0', 'aria-label': 'Nghe ' + label }, '🔊');
+            spk.addEventListener('click', function (e) { e.stopPropagation(); speak(label, { btn: spk }); });
+            kids.push(spk);
+          }
+          kids.push(el('span', { class: 'choice__mark' }, ''));
+          var b = el('button', { class: 'choice', type: 'button' }, kids);
+          b.addEventListener('click', function () {
+            if (doneQ[q.id] || b.classList.contains('is-wrong')) return;
+            if (idx === correctIdx) {
+              b.classList.add('is-correct'); b.querySelector('.choice__mark').textContent = '✓';
+              doneQ[q.id] = true;
+              Array.prototype.forEach.call(grp.children, function (x) { x.classList.add('is-disabled'); });
+              toast('🌟 Đúng rồi!', '🌟'); checkAllDone();
+            } else {
+              b.classList.add('is-wrong', 'is-disabled'); b.disabled = true;
+              b.querySelector('.choice__mark').textContent = '✗';
+              toast('Đọc lại đoạn rồi thử lại nhé 🦊', '🤔');
+            }
+          });
+          grp.appendChild(b);
+        });
+        return el('div', { class: 'card stack', style: 'gap:var(--sp-3)' }, [
+          el('div', { class: 'row', style: 'gap:var(--sp-2);align-items:flex-start' }, [
+            el('div', { class: 'q-prompt grow' }, 'Câu ' + (qi + 1) + '. ' + (q.q_vi || q.q || '')),
+            q.audioText ? speakerBtn(q.audioText, 'Nghe câu hỏi') : el('span')
+          ]),
+          grp
+        ]);
+      });
+
+      render(el('div', { class: 'screen stack-lg' }, [
+        el('div', { class: 'row', style: 'justify-content:center' }, [piNode('mascot--sm'), el('div', { class: 'speech' }, 'Đọc đoạn rồi trả lời câu hỏi nhé! 📖')]),
+        passageCard
+      ].concat(qCards).concat([finishBtn])));
+      autoRead(r.text);
+    }).catch(function (e) { renderError(e); });
+  }
+
+  /* =====================================================================
      S5ph — PHONICS (HỌC): xem âm trọng tâm + từ ví dụ + loa, rồi luyện
      ---------------------------------------------------------------------
      Sư phạm: KHÔNG đọc rời tên chữ ("ây","bi"); mô tả ÂM bằng tiếng Việt
@@ -1554,9 +1655,15 @@
         (t.audioModels || []).forEach(function (s) { if (s && out.indexOf(s) === -1) out.push(s); });
       });
     }
+    // "Làm quen" (recognition, vd can/can't ở Bài 5): cho trẻ nghe & nói câu mẫu.
+    if (Array.isArray(unit.recognition)) {
+      unit.recognition.forEach(function (rc) {
+        (rc.examples || []).forEach(function (s) { if (s && out.indexOf(s) === -1) out.push(s); });
+      });
+    }
     (unit.vocab || []).slice(0, 4).forEach(function (v) { if (v.example && out.indexOf(v.example) === -1) out.push(v.example); });
     (unit.grammar || []).forEach(function (g) { (g.examples || []).slice(0, 2).forEach(function (e) { if (out.indexOf(e) === -1) out.push(e); }); });
-    return out.slice(0, 6);
+    return out.slice(0, 8);
   }
 
   /* =====================================================================
@@ -1587,6 +1694,7 @@
       case 'S5p': screenPractice('phonics'); break;
       case 'S5ph': screenPhonicsLearn(); break;
       case 'S5l': screenPractice('listen'); break;
+      case 'S5r': screenReading(); break;
       case 'S6': screenSpeaking(); break;
       case 'S8': screenParent(); break;
       case 'S9': screenSettings(); break;
