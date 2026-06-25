@@ -218,6 +218,23 @@
     return (idx.lessons || []).filter(function (l) { return l.unit === unitNo; })[0] || null;
   }
   function isLessonUnit(unitNo) { return unitNo >= 100; }
+  // ===== ÔN TẬP CẤP ĐỘ: gộp 5 bài lớn của 1 cấp thành "unit ôn tập" (id = level*100+9) =====
+  function reviewUnitId(level) { return level * 100 + 9; }
+  function buildReviewUnit(level) {
+    var rid = reviewUnitId(level);
+    if (state.units[rid]) return Promise.resolve(state.units[rid]);
+    var ids = []; for (var i = 1; i <= 5; i++) ids.push(level * 100 + i);
+    return Promise.all(ids.map(loadUnit)).then(function (lessons) {
+      var vocab = [], seen = {}, grammar = [];
+      lessons.forEach(function (u) {
+        (u.vocab || []).forEach(function (v) { if (v && v.word && !seen[v.word]) { seen[v.word] = 1; vocab.push(v); } });
+        (u.grammar || []).forEach(function (g) { grammar.push(g); });
+      });
+      var merged = { schemaVersion: 'v1', level: level, unit: rid, topic: 'Review', topic_vi: 'Ôn tập Cấp ' + level, vocab: vocab, grammar: grammar, reading: [], speaking: [] };
+      state.units[rid] = merged;
+      return merged;
+    });
+  }
   // Back từ menu: nếu đang ở unit nhỏ mở từ "luyện tập thêm" → về bài lớn; ngược lại về bản đồ.
   function backFromMenu(unitNo) {
     if (!isLessonUnit(unitNo) && state.returnLesson != null) {
@@ -492,6 +509,19 @@
         path.appendChild(stop);
       });
 
+      // ===== Chặng cuối: ÔN TẬP cấp độ (tóm tắt ngữ pháp + luyện tổng hợp) =====
+      var rNode = el('span', { class: 'jmap__node jmap__node--review' }, el('span', { class: 'jmap__emoji', 'aria-hidden': 'true' }, '🏅'));
+      var rStop = el('button', { class: 'jmap__stop', type: 'button', 'aria-label': 'Ôn tập Cấp ' + state.level + ' — tóm tắt ngữ pháp và luyện tổng hợp' }, [
+        rNode,
+        el('span', { class: 'jmap__card' }, [
+          el('div', { class: 'jmap__title' }, 'Ôn tập Cấp ' + state.level),
+          el('div', { class: 'jmap__sub' }, 'Tóm tắt ngữ pháp + luyện tổng hợp'),
+          el('span', { class: 'jmap__tag jmap__tag--cur' }, '🔁 Ôn mọi lúc')
+        ])
+      ]);
+      rStop.addEventListener('click', function () { go('SR'); });
+      path.appendChild(rStop);
+
       render(el('div', { class: 'screen stack-lg' }, [
         topHeader,
         el('div', { class: 'row-wrap' }, [levelChip, weekLine, starChip]),
@@ -525,6 +555,58 @@
   function computeTotalStars() {
     if (!state.mastery) return 0;
     return (state.mastery.units || []).reduce(function (sum, u) { return sum + starsForUnit(u); }, 0);
+  }
+
+  /* =====================================================================
+     SR — ÔN TẬP CẤP ĐỘ (tóm tắt ngữ pháp + luyện tổng hợp ngữ pháp & từ vựng)
+     ===================================================================== */
+  function reviewActCard(icon, title, sub, onClick) {
+    var card = el('button', { class: 'act-card', type: 'button' }, [
+      el('span', { class: 'act-card__icon' }, icon),
+      el('span', { class: 'grow' }, [
+        el('div', { class: 'act-card__title' }, title),
+        el('div', { class: 'muted', style: 'font-size:var(--fs-sm)' }, sub)
+      ]),
+      el('span', { class: 'pi-mini' }, '→')
+    ]);
+    card.addEventListener('click', onClick);
+    return card;
+  }
+  function screenReview() {
+    if (!state.childId) { go('S1'); return; }
+    buildReviewUnit(state.level).then(function (merged) {
+      var rid = merged.unit;
+      setHeader({ title: 'Ôn tập · Cấp ' + state.level, onBack: function () { go('S2'); } });
+      var nG = (merged.grammar || []).length, nV = (merged.vocab || []).length;
+      var acts = [
+        reviewActCard('📝', 'Tóm tắt ngữ pháp', 'Xem lại ' + nG + ' điểm ngữ pháp của cả cấp', function () { go('SRG'); }),
+        reviewActCard('✍️', 'Luyện ngữ pháp', 'Bài tập trộn từ tất cả bài trong cấp', function () { state.currentUnit = rid; go('S5'); }),
+        reviewActCard('🔤', 'Luyện từ vựng', 'Chọn từ đúng — ' + nV + ' từ của cả cấp', function () { state.currentUnit = rid; go('S5v'); }),
+        reviewActCard('📇', 'Thẻ từ vựng', 'Lật thẻ nghe & ôn lại từ', function () { state.currentUnit = rid; go('S4'); })
+      ];
+      render(el('div', { class: 'screen stack-lg' }, [
+        el('div', { class: 'row', style: 'justify-content:center' }, [piNode('mascot--sm'), el('div', { class: 'speech' }, 'Ôn lại cả cấp cho nhớ lâu nhé! 🏅')]),
+        el('div', { class: 'stack' }, acts)
+      ]));
+    }).catch(function (e) { renderError(e); });
+  }
+  function screenGrammarSummary() {
+    if (!state.childId) { go('S1'); return; }
+    buildReviewUnit(state.level).then(function (merged) {
+      setHeader({ title: 'Tóm tắt ngữ pháp · Cấp ' + state.level, onBack: function () { go('SR'); } });
+      var cards = (merged.grammar || []).map(function (g, i) {
+        var ex = (g.examples || []).slice(0, 2).map(function (e) {
+          return el('div', { class: 'read-line' }, [el('span', { class: 'read-line__text en grow' }, e), speakerBtn(e, 'Nghe: ' + e)]);
+        });
+        return el('div', { class: 'card stack', style: 'gap:var(--sp-2)' }, [
+          el('div', { class: 'act-card__title' }, '📌 ' + (i + 1) + '. ' + g.title_vi),
+          g.explain_vi ? el('div', { class: 'muted', style: 'font-size:var(--fs-base);line-height:var(--lh-base)' }, g.explain_vi) : el('span')
+        ].concat(ex));
+      });
+      render(el('div', { class: 'screen stack-lg' }, [
+        el('div', { class: 'row', style: 'justify-content:center' }, [piNode('mascot--sm'), el('div', { class: 'speech' }, 'Cùng ôn lại ngữ pháp của cấp nhé! 📝')])
+      ].concat(cards)));
+    }).catch(function (e) { renderError(e); });
   }
 
   /* =====================================================================
@@ -683,9 +765,16 @@
      ===================================================================== */
   function buildSpecs(unit, mode) {
     var specs = [];
-    // mode: 'phonics' | 'listen' | undefined(=ngữ pháp/từ vựng).
+    // mode: 'phonics' | 'listen' | 'vocab' | undefined(=ngữ pháp/từ vựng).
     if (mode === 'phonics') {
       if (unit.phonics) for (var p = 0; p < EXERCISES_PER_STAGE; p++) specs.push({ type: 'phonics_pick', level: levelOfUnit(unit.unit), unit: unit.unit, phonics: unit.phonics });
+      return specs;
+    }
+    if (mode === 'vocab') {
+      // Ôn TỪ VỰNG: toàn bộ mcq chọn từ theo nghĩa/tranh (cho mục Ôn tập cấp độ).
+      var vp = unit.vocab || [];
+      if (vp.length < 4) return specs;
+      for (var vi = 0; vi < EXERCISES_PER_STAGE; vi++) specs.push({ type: 'mcq', level: levelOfUnit(unit.unit), unit: unit.unit, vocabPool: vp });
       return specs;
     }
     if (mode === 'listen') {
@@ -1764,7 +1853,10 @@
       case 'S5p': screenPractice('phonics'); break;
       case 'S5ph': screenPhonicsLearn(); break;
       case 'S5l': screenPractice('listen'); break;
+      case 'S5v': screenPractice('vocab'); break;
       case 'S5r': screenReading(); break;
+      case 'SR': screenReview(); break;
+      case 'SRG': screenGrammarSummary(); break;
       case 'S6': screenSpeaking(); break;
       case 'S8': screenParent(); break;
       case 'S9': screenSettings(); break;
