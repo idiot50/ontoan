@@ -19,7 +19,7 @@
  */
 'use strict';
 
-var CACHE = 'enkids-v5';
+var CACHE = 'enkids-v6';
 
 // App shell precache lúc install. Đường dẫn tương đối theo scope.
 // (Nội dung cũng nhúng sẵn trong content-data.js để chạy file://; precache JSON

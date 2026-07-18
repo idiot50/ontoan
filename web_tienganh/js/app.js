@@ -995,16 +995,14 @@
         spk,
         el('span', { class: 'choice__mark' }, '')
       ]);
-      function previewSpeak(e) { e.stopPropagation(); previewed = true; speak(c, { btn: spk }); }
+      function previewSpeak(e) { e.stopPropagation(); speak(c, { btn: spk }); }
       spk.addEventListener('click', previewSpeak);
       spk.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); previewSpeak(e); } });
-      // chạm-giữ để nghe trước (preview) — không tính là chọn (giữ làm bổ trợ)
-      var pressTimer = null, previewed = false;
-      ch.addEventListener('pointerdown', function () { previewed = false; pressTimer = setTimeout(function () { previewed = true; speak(c); }, 450); });
-      ch.addEventListener('pointerup', function () { if (pressTimer) clearTimeout(pressTimer); });
-      ch.addEventListener('pointerleave', function () { if (pressTimer) clearTimeout(pressTimer); });
+      // Nghe thử CHỈ qua nút loa 🔊. KHÔNG dùng chạm-giữ ẩn trên nút lựa chọn:
+      // trẻ bấm chậm (>450ms) từng bị nuốt cú chạm — không chấm, không phản hồi
+      // ("bấm không thấy gì", lộ rõ nhất ở Phonics vì trẻ nghe thử rồi mới chọn).
+      // Mọi cú bấm vào lựa chọn LUÔN được tính là trả lời.
       ch.addEventListener('click', function () {
-        if (previewed) { previewed = false; return; }
         // Đã khoá toàn bộ, hoặc nút này đã chọn sai trước đó → bỏ qua (không tính lần thử lặp).
         if (locked || ch.classList.contains('is-wrong')) return;
         var correct = (i === ex.answer);
