@@ -1,0 +1,599 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 414,
+  "lesson": 14,
+  "topic": "Modal verbs: must, should, may, have to",
+  "topic_vi": "Động từ khiếm khuyết: must · should · may · have to",
+  "vocab": [
+    {
+      "word": "helmet",
+      "vi": "mũ bảo hiểm",
+      "icon": "⛑️",
+      "example": "You have to wear a helmet on the bike.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "hospital",
+      "vi": "bệnh viện",
+      "icon": "🏥",
+      "example": "This is a hospital, so you must be quiet.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "library",
+      "vi": "thư viện",
+      "icon": "📚",
+      "example": "The library is open now.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "rule",
+      "vi": "quy định, nội quy",
+      "icon": "📋",
+      "example": "Our school has clear rules.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "cough",
+      "vi": "cơn ho",
+      "icon": "😷",
+      "example": "You have a bad cough.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "bench",
+      "vi": "băng ghế",
+      "icon": "🪑",
+      "example": "You may not sit on the bench.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "gate",
+      "vi": "cái cổng",
+      "icon": "🚪",
+      "example": "The garden gate is locked.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "practice",
+      "vi": "buổi luyện tập",
+      "icon": "🏃",
+      "example": "You must join the practice.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "quiet",
+      "vi": "yên lặng",
+      "icon": "🤫",
+      "example": "You must be quiet in here.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "dirty",
+      "vi": "bẩn",
+      "icon": "🧼",
+      "example": "Your hands are dirty.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "wet",
+      "vi": "ướt",
+      "icon": "💦",
+      "example": "The floor is wet.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "borrow",
+      "vi": "mượn",
+      "icon": "📖",
+      "example": "You may borrow two books.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "must-mustnt",
+      "title_vi": "\"must\" / \"mustn't\": phải làm · không được làm",
+      "explain_vi": "\"must\" = phải làm; \"mustn't\" = không được làm (bị cấm). Sau must/mustn't luôn là động từ nguyên mẫu — không thêm \"to\", không thêm \"-s\".",
+      "examples": [
+        "The traffic light is red. You must stop your bike.",
+        "This is a hospital. You mustn't shout in here.",
+        "You mustn't touch the wall because the paint is still wet."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "rule-then-must",
+            "text": "{sit} You {modal} {act}.",
+            "blanks": [
+              "modal"
+            ],
+            "context_vi": "Đọc tình huống ở câu đầu: việc này BẮT BUỘC làm hay BỊ CẤM làm?",
+            "audioText": "The traffic light is red. You must stop your bike."
+          },
+          {
+            "id": "must-because",
+            "text": "You {modal2} {act3} because {reason}.",
+            "blanks": [
+              "modal2"
+            ],
+            "context_vi": "Lí do ở cuối câu cho biết đây là việc phải làm hay việc bị cấm.",
+            "audioText": "You mustn't touch the wall because the paint is still wet."
+          }
+        ],
+        "slots": {
+          "sit": [
+            "The traffic light is red.",
+            "This is a hospital.",
+            "The floor is wet.",
+            "The bus leaves at six.",
+            "This water is dirty.",
+            "The test is tomorrow."
+          ],
+          "modal": [
+            "must",
+            "mustn't"
+          ],
+          "act": [
+            "stop your bike",
+            "shout in here",
+            "run in the hall",
+            "be at the stop before six",
+            "drink it",
+            "study tonight"
+          ],
+          "modal2": [
+            "must",
+            "mustn't"
+          ],
+          "act3": [
+            "come early",
+            "touch the wall",
+            "walk on the lake",
+            "join the practice"
+          ],
+          "reason": [
+            "the museum closes at five",
+            "the paint is still wet",
+            "the ice is very thin",
+            "our team needs you"
+          ]
+        },
+        "answerKey": {
+          "rule-then-must": {
+            "modal": {
+              "__cond": "sit",
+              "The traffic light is red.": "must",
+              "This is a hospital.": "mustn't",
+              "The floor is wet.": "mustn't",
+              "The bus leaves at six.": "must",
+              "This water is dirty.": "mustn't",
+              "The test is tomorrow.": "must"
+            },
+            "act": {
+              "__cond": "sit",
+              "The traffic light is red.": "stop your bike",
+              "This is a hospital.": "shout in here",
+              "The floor is wet.": "run in the hall",
+              "The bus leaves at six.": "be at the stop before six",
+              "This water is dirty.": "drink it",
+              "The test is tomorrow.": "study tonight"
+            }
+          },
+          "must-because": {
+            "modal2": {
+              "__cond": "reason",
+              "the museum closes at five": "must",
+              "the paint is still wet": "mustn't",
+              "the ice is very thin": "mustn't",
+              "our team needs you": "must"
+            },
+            "act3": {
+              "__cond": "reason",
+              "the museum closes at five": "come early",
+              "the paint is still wet": "touch the wall",
+              "the ice is very thin": "walk on the lake",
+              "our team needs you": "join the practice"
+            }
+          }
+        },
+        "distractors": [
+          "The traffic light is red. You must to stop your bike.",
+          "This is a hospital. You mustn't to shout in here.",
+          "The floor is wet. You must not runs in the hall.",
+          "The test is tomorrow. You musts study tonight.",
+          "You mustn't touching the wall because the paint is still wet.",
+          "The traffic light is red. You mustn't stop your bike."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"must\" nói việc BẮT BUỘC phải làm, thường là điều người nói thấy rất quan trọng: \"The test is tomorrow. You must study tonight.\" Còn \"mustn't\" (viết đầy đủ là \"must not\") KHÔNG có nghĩa \"không cần\" mà có nghĩa CẤM — tuyệt đối không được làm: \"The floor is wet. You mustn't run in the hall.\" Cả hai đều giữ nguyên với mọi chủ ngữ (I must, she must, they must — không bao giờ \"musts\"), và sau chúng luôn là động từ nguyên mẫu: \"You must stop\" (đúng) — \"You must to stop\", \"You must stops\", \"You mustn't touching\" (đều sai). Khi làm bài, em hãy đọc kĩ tình huống: đèn đỏ, xe buýt sắp chạy, hôm sau có bài kiểm tra → việc phải làm (must); bệnh viện, sàn ướt, nước bẩn, sơn còn ướt → việc bị cấm (mustn't)."
+    },
+    {
+      "id": "should",
+      "title_vi": "\"should\" / \"shouldn't\": nên · không nên (lời khuyên)",
+      "explain_vi": "\"should\" = nên, \"shouldn't\" = không nên — dùng để khuyên. Sau should là động từ nguyên mẫu: you should rest (không \"should to rest\").",
+      "examples": [
+        "You have a bad cough. You should drink warm water.",
+        "It is very late. You shouldn't watch another film.",
+        "That river is very deep. I think you shouldn't swim there alone."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "problem-advice",
+            "text": "{problem} You {sh} {advice}.",
+            "blanks": [
+              "sh"
+            ],
+            "context_vi": "Đọc vấn đề ở câu đầu: việc này NÊN làm hay KHÔNG NÊN làm?",
+            "audioText": "You have a bad cough. You should drink warm water."
+          },
+          {
+            "id": "i-think-advice",
+            "text": "{problem2} I think you {sh2} {advice2}.",
+            "blanks": [
+              "sh2"
+            ],
+            "context_vi": "\"I think\" làm lời khuyên nhẹ hơn. Vẫn phải chọn should hay shouldn't cho khớp tình huống.",
+            "audioText": "That river is very deep. I think you shouldn't swim there alone."
+          }
+        ],
+        "slots": {
+          "problem": [
+            "You have a bad cough.",
+            "Your eyes are tired.",
+            "It is very late.",
+            "The soup is too hot.",
+            "You have a test on Monday.",
+            "Your hands are dirty."
+          ],
+          "sh": [
+            "should",
+            "shouldn't"
+          ],
+          "advice": [
+            "drink warm water",
+            "rest for ten minutes",
+            "watch another film",
+            "eat it now",
+            "start early",
+            "touch the bread"
+          ],
+          "problem2": [
+            "Your bike makes a strange noise.",
+            "This film is scary for small children.",
+            "You forgot your homework again.",
+            "That river is very deep."
+          ],
+          "sh2": [
+            "should",
+            "shouldn't"
+          ],
+          "advice2": [
+            "check the wheels",
+            "show it to your little sister",
+            "write a list every evening",
+            "swim there alone"
+          ]
+        },
+        "answerKey": {
+          "problem-advice": {
+            "sh": {
+              "__cond": "problem",
+              "You have a bad cough.": "should",
+              "Your eyes are tired.": "should",
+              "It is very late.": "shouldn't",
+              "The soup is too hot.": "shouldn't",
+              "You have a test on Monday.": "should",
+              "Your hands are dirty.": "shouldn't"
+            },
+            "advice": {
+              "__cond": "problem",
+              "You have a bad cough.": "drink warm water",
+              "Your eyes are tired.": "rest for ten minutes",
+              "It is very late.": "watch another film",
+              "The soup is too hot.": "eat it now",
+              "You have a test on Monday.": "start early",
+              "Your hands are dirty.": "touch the bread"
+            }
+          },
+          "i-think-advice": {
+            "sh2": {
+              "__cond": "problem2",
+              "Your bike makes a strange noise.": "should",
+              "This film is scary for small children.": "shouldn't",
+              "You forgot your homework again.": "should",
+              "That river is very deep.": "shouldn't"
+            },
+            "advice2": {
+              "__cond": "problem2",
+              "Your bike makes a strange noise.": "check the wheels",
+              "This film is scary for small children.": "show it to your little sister",
+              "You forgot your homework again.": "write a list every evening",
+              "That river is very deep.": "swim there alone"
+            }
+          }
+        },
+        "distractors": [
+          "You have a bad cough. You should to drink warm water.",
+          "Your eyes are tired. You shoulds rest for ten minutes.",
+          "It is very late. You should not watching another film.",
+          "That river is very deep. I think you should swim there alone.",
+          "Your hands are dirty. You should touch the bread.",
+          "You forgot your homework again. I think you shouldn't write a list every evening."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"should\" là lời KHUYÊN, nhẹ hơn \"must\" nhiều: \"must\" là bắt buộc, còn \"should\" chỉ là \"nên thế thì tốt hơn\". Ví dụ: \"Your eyes are tired. You should rest for ten minutes.\" Ngược lại, \"shouldn't\" (= should not) là \"không nên\": \"It is very late. You shouldn't watch another film.\" Giống must, \"should\" giữ nguyên với mọi chủ ngữ (I should, he should, they should — không có \"shoulds\") và sau nó là động từ nguyên mẫu: \"You should rest\" (đúng) — \"You should to rest\", \"You should resting\" (sai). Người Việt hay thêm \"I think\" ở đầu cho lịch sự: \"I think you should check the wheels.\" — cấu trúc bên trong vẫn y như cũ."
+    },
+    {
+      "id": "may-permission",
+      "title_vi": "\"may\" / \"may not\": được phép · không được phép",
+      "explain_vi": "\"may\" = được phép; \"may not\" = không được phép. Sau \"may\" là động từ nguyên mẫu, không thêm \"to\" và không thêm \"-s\".",
+      "examples": [
+        "The library is open now, so you may borrow two books.",
+        "This box is not yours, so you may not open it.",
+        "You may have a small cake because you finished your dinner."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "may-cue",
+            "text": "{cue}, so you {perm} {act}.",
+            "blanks": [
+              "perm"
+            ],
+            "context_vi": "Vế đầu cho biết em CÓ được phép hay KHÔNG được phép làm việc đó.",
+            "audioText": "The library is open now, so you may borrow two books."
+          },
+          {
+            "id": "may-because",
+            "text": "You {perm2} {act2} because {reason2}.",
+            "blanks": [
+              "perm2"
+            ],
+            "context_vi": "Lí do ở cuối câu cho biết chọn \"may\" hay \"may not\".",
+            "audioText": "You may not talk in the room because the exam has started."
+          }
+        ],
+        "slots": {
+          "cue": [
+            "The library is open now",
+            "This box is not yours",
+            "Your name is on the list",
+            "The garden gate is locked",
+            "Your homework is finished"
+          ],
+          "perm": [
+            "may",
+            "may not"
+          ],
+          "act": [
+            "borrow two books",
+            "open it",
+            "join the trip",
+            "play outside today",
+            "watch one cartoon"
+          ],
+          "perm2": [
+            "may",
+            "may not"
+          ],
+          "act2": [
+            "talk in the room",
+            "stay until seven",
+            "sit on the bench",
+            "have a small cake"
+          ],
+          "reason2": [
+            "the exam has started",
+            "your parents said yes",
+            "the paint is fresh",
+            "you finished your dinner"
+          ]
+        },
+        "answerKey": {
+          "may-cue": {
+            "perm": {
+              "__cond": "cue",
+              "The library is open now": "may",
+              "This box is not yours": "may not",
+              "Your name is on the list": "may",
+              "The garden gate is locked": "may not",
+              "Your homework is finished": "may"
+            },
+            "act": {
+              "__cond": "cue",
+              "The library is open now": "borrow two books",
+              "This box is not yours": "open it",
+              "Your name is on the list": "join the trip",
+              "The garden gate is locked": "play outside today",
+              "Your homework is finished": "watch one cartoon"
+            }
+          },
+          "may-because": {
+            "perm2": {
+              "__cond": "reason2",
+              "the exam has started": "may not",
+              "your parents said yes": "may",
+              "the paint is fresh": "may not",
+              "you finished your dinner": "may"
+            },
+            "act2": {
+              "__cond": "reason2",
+              "the exam has started": "talk in the room",
+              "your parents said yes": "stay until seven",
+              "the paint is fresh": "sit on the bench",
+              "you finished your dinner": "have a small cake"
+            }
+          }
+        },
+        "distractors": [
+          "The library is open now, so you may to borrow two books.",
+          "This box is not yours, so you may not to open it.",
+          "Your name is on the list, so you mays join the trip.",
+          "This box is not yours, so you may open it.",
+          "You may talk in the room because the exam has started.",
+          "The garden gate is locked, so you may play outside today."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"may\" nói về SỰ CHO PHÉP. Khi người lớn cho phép em làm gì, họ nói: \"You may watch one cartoon.\" Khi không cho phép, họ nói \"may not\": \"You may not sit on the bench because the paint is fresh.\" Em cũng dùng \"May I …?\" để XIN PHÉP một cách lịch sự: \"May I borrow this book, please?\" — trả lời là \"Yes, you may.\" hoặc \"No, you may not.\" Sau \"may\" luôn là động từ nguyên mẫu, không thêm \"to\", không thêm \"-s\": \"you may open\" (đúng) — \"you may to open\", \"you mays open\" (sai). Phân biệt nhanh: \"must\" là bắt buộc, \"should\" là nên, còn \"may\" là được phép."
+    },
+    {
+      "id": "have-to",
+      "title_vi": "\"have to\" / \"has to\": phải làm theo quy định",
+      "explain_vi": "\"have to\" = phải (do quy định bên ngoài). He/She và một người dùng \"has to\". Phủ định \"don't / doesn't have to\" nghĩa là KHÔNG CẦN.",
+      "examples": [
+        "My cousin has to wear a helmet on the bike.",
+        "We have to wear a helmet on the bike.",
+        "My sister doesn't have to go to school on Sunday."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "have-has-to",
+            "text": "{doer} {ht} to wear a helmet on the bike.",
+            "blanks": [
+              "ht"
+            ],
+            "context_vi": "Chọn \"have\" hay \"has\" cho khớp chủ ngữ.",
+            "audioText": "My cousin has to wear a helmet on the bike."
+          },
+          {
+            "id": "not-have-to",
+            "text": "{doer} {dht} have to go to school on Sunday.",
+            "blanks": [
+              "dht"
+            ],
+            "context_vi": "Câu phủ định: chọn \"don't\" hay \"doesn't\" cho khớp chủ ngữ. Nghĩa là KHÔNG CẦN.",
+            "audioText": "My sister doesn't have to go to school on Sunday."
+          }
+        ],
+        "slots": {
+          "doer": [
+            "I",
+            "You",
+            "We",
+            "They",
+            "My cousin",
+            "My sister",
+            "The children",
+            "My friend Nam"
+          ],
+          "ht": [
+            "have",
+            "has"
+          ],
+          "dht": [
+            "don't",
+            "doesn't"
+          ]
+        },
+        "answerKey": {
+          "have-has-to": {
+            "ht": {
+              "__cond": "doer",
+              "I": "have",
+              "You": "have",
+              "We": "have",
+              "They": "have",
+              "My cousin": "has",
+              "My sister": "has",
+              "The children": "have",
+              "My friend Nam": "has"
+            }
+          },
+          "not-have-to": {
+            "dht": {
+              "__cond": "doer",
+              "I": "don't",
+              "You": "don't",
+              "We": "don't",
+              "They": "don't",
+              "My cousin": "doesn't",
+              "My sister": "doesn't",
+              "The children": "don't",
+              "My friend Nam": "doesn't"
+            }
+          }
+        },
+        "distractors": [
+          "My cousin have to wear a helmet on the bike.",
+          "I has to wear a helmet on the bike.",
+          "The children has to wear a helmet on the bike.",
+          "My sister don't have to go to school on Sunday.",
+          "We doesn't have to go to school on Sunday.",
+          "My friend Nam have to wear a helmet on the bike."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"have to\" cũng nghĩa là PHẢI, nhưng bắt buộc đến từ BÊN NGOÀI: luật giao thông, nội quy trường, lời bố mẹ. \"You have to wear a helmet on the bike.\" (Luật quy định thế). Khác với \"must\" (không đổi hình), \"have to\" ĐỔI theo chủ ngữ giống động từ thường: I/You/We/They + have to; He/She/It và MỘT người + has to — \"My cousin has to wear a helmet.\" Câu phủ định dùng don't / doesn't: \"We don't have to go to school on Sunday.\", \"My sister doesn't have to go to school on Sunday.\" Chú ý điểm rất dễ sai: \"don't have to\" = KHÔNG CẦN (không bắt buộc), khác hoàn toàn với \"mustn't\" = KHÔNG ĐƯỢC (bị cấm). Chủ nhật không cần đi học ≠ Chủ nhật bị cấm đi học."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "rules-at-the-pool",
+      "title": "Rules at the swimming pool",
+      "title_vi": "Nội quy ở bể bơi",
+      "text": "Here are the rules at our swimming pool. You must take a shower before you swim. You mustn't run beside the water, because the floor is wet. Small children have to swim with an adult. You may borrow a swimming ring at the desk, but you have to give it back. When you feel cold, you should get out and dry yourself. On Monday the pool is closed, so you don't have to bring your towel on that day.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Ở bể bơi, em KHÔNG ĐƯỢC chạy cạnh mép nước, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "You mustn't run beside the water."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Trẻ nhỏ phải bơi cùng ai?",
+          "type": "mcq",
+          "choices": [
+            "cùng một người lớn",
+            "cùng một bạn cùng lớp",
+            "bơi một mình cũng được"
+          ],
+          "answer": 0,
+          "audioText": "Small children have to swim with an adult."
+        }
+      ]
+    }
+  ]
+}

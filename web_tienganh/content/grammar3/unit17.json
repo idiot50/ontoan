@@ -1,0 +1,488 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 417,
+  "lesson": 17,
+  "topic": "The passive voice: be + past participle",
+  "topic_vi": "Câu bị động",
+  "vocab": [
+    {
+      "word": "clean",
+      "vi": "làm sạch, dọn",
+      "icon": "🧽",
+      "example": "The room is cleaned every day.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "wash",
+      "vi": "rửa, giặt",
+      "icon": "🧼",
+      "example": "The dishes are washed after dinner.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "build",
+      "vi": "xây",
+      "icon": "🏗️",
+      "example": "The school was built in 1990.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "make",
+      "vi": "làm, chế biến",
+      "icon": "🍰",
+      "example": "The cake is made at home.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "find",
+      "vi": "tìm thấy",
+      "icon": "🔎",
+      "example": "The keys were found in the garden.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "break",
+      "vi": "làm vỡ, làm hỏng",
+      "icon": "💥",
+      "example": "The window was broken by Nam.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "write",
+      "vi": "viết",
+      "icon": "✍️",
+      "example": "This letter was written by my sister.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "paint",
+      "vi": "sơn, vẽ màu",
+      "icon": "🎨",
+      "example": "This window was painted by my brother.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "letter",
+      "vi": "bức thư",
+      "icon": "✉️",
+      "example": "This letter was sent by my father.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "window",
+      "vi": "cửa sổ",
+      "icon": "🪟",
+      "example": "The window was cleaned by my mother.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "bridge",
+      "vi": "cây cầu",
+      "icon": "🌉",
+      "example": "The bridge was built in 2020.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "floor",
+      "vi": "sàn nhà",
+      "icon": "🧹",
+      "example": "The floor is cleaned every day.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "present-passive",
+      "title_vi": "Bị động hiện tại: is / are + V3",
+      "explain_vi": "Khi không cần nói ai làm, em dùng bị động: chủ ngữ số ít → \"is\" + V3, chủ ngữ số nhiều → \"are\" + V3. Ví dụ: The room is cleaned. The windows are cleaned.",
+      "examples": [
+        "The room is cleaned every day.",
+        "The windows are cleaned every day.",
+        "The cake is made at home.",
+        "The noodles are made at home."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose",
+        "transform"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "pres-pass-clean",
+            "text": "The {place} {be} cleaned every day.",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "Nhìn danh từ: số ít → is, số nhiều → are. Sau đó luôn là V3 \"cleaned\".",
+            "audioText": "The room is cleaned every day."
+          },
+          {
+            "id": "pres-pass-make",
+            "text": "{food} {be2} made at home.",
+            "blanks": [
+              "be2"
+            ],
+            "context_vi": "Món ăn số ít đi với \"is made\", số nhiều đi với \"are made\".",
+            "audioText": "The cake is made at home."
+          }
+        ],
+        "slots": {
+          "place": [
+            "room",
+            "kitchen",
+            "classroom",
+            "floor",
+            "rooms",
+            "windows",
+            "desks",
+            "tables"
+          ],
+          "be": [
+            "is",
+            "are"
+          ],
+          "food": [
+            "The cake",
+            "The bread",
+            "The soup",
+            "The cakes",
+            "The noodles",
+            "The sandwiches"
+          ],
+          "be2": [
+            "is",
+            "are"
+          ]
+        },
+        "answerKey": {
+          "pres-pass-clean": {
+            "be": {
+              "__cond": "place",
+              "room": "is",
+              "kitchen": "is",
+              "classroom": "is",
+              "floor": "is",
+              "rooms": "are",
+              "windows": "are",
+              "desks": "are",
+              "tables": "are"
+            }
+          },
+          "pres-pass-make": {
+            "be2": {
+              "__cond": "food",
+              "The cake": "is",
+              "The bread": "is",
+              "The soup": "is",
+              "The cakes": "are",
+              "The noodles": "are",
+              "The sandwiches": "are"
+            }
+          },
+          "answer-pairs": {
+            "The room is cleaned every day.": "The room is not cleaned every day.",
+            "The windows are cleaned every day.": "The windows are not cleaned every day.",
+            "The cake is made at home.": "The cake is not made at home.",
+            "The noodles are made at home.": "The noodles are not made at home.",
+            "The floor is not cleaned every day.": "The floor is cleaned every day.",
+            "The desks are not cleaned every day.": "The desks are cleaned every day.",
+            "The bread is not made at home.": "The bread is made at home.",
+            "The sandwiches are not made at home.": "The sandwiches are made at home."
+          }
+        },
+        "distractors": [
+          "The room are cleaned every day.",
+          "The windows is cleaned every day.",
+          "The room cleaned every day.",
+          "The cake is make at home.",
+          "The cakes is made at home.",
+          "The bread are made at home."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Bình thường em nói ai làm gì: \"My mother cleans the room.\" Nhưng nhiều khi điều quan trọng là CÁI GÌ ĐƯỢC LÀM, còn ai làm thì không cần nhắc. Lúc đó em dùng câu bị động: đưa vật lên làm chủ ngữ, rồi dùng is/are + V3 (dạng thứ ba của động từ): \"The room is cleaned every day.\" Chọn is khi chủ ngữ số ít, chọn are khi chủ ngữ số nhiều: \"The window is cleaned.\" — \"The windows are cleaned.\" Hai lỗi hay gặp: (1) quên \"be\" — nói \"The room cleaned every day\" là sai; (2) quên đổi sang V3 — nói \"The cake is make at home\" là sai, phải là \"is made\". Muốn nói phủ định thì thêm \"not\" ngay sau is/are: \"The room is not cleaned every day.\""
+    },
+    {
+      "id": "past-passive",
+      "title_vi": "Bị động quá khứ: was / were + V3",
+      "explain_vi": "Việc đã xảy ra rồi thì dùng \"was\" + V3 với chủ ngữ số ít và \"were\" + V3 với chủ ngữ số nhiều: The school was built. The houses were built.",
+      "examples": [
+        "The school was built in 1990.",
+        "The houses were built in 2020.",
+        "The keys were found in the garden.",
+        "The ball was found in the garden."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "past-pass-build",
+            "text": "The {building} {beP} built in 2020.",
+            "blanks": [
+              "beP"
+            ],
+            "context_vi": "Chuyện đã xong: số ít → was built, số nhiều → were built.",
+            "audioText": "The school was built in 2020."
+          },
+          {
+            "id": "past-pass-find",
+            "text": "The {lost} {beP2} found in the garden.",
+            "blanks": [
+              "beP2"
+            ],
+            "context_vi": "Nhìn danh từ số ít hay số nhiều để chọn was hay were, sau đó là V3 \"found\".",
+            "audioText": "The keys were found in the garden."
+          }
+        ],
+        "slots": {
+          "building": [
+            "school",
+            "house",
+            "bridge",
+            "library",
+            "houses",
+            "shops",
+            "bridges"
+          ],
+          "beP": [
+            "was",
+            "were"
+          ],
+          "lost": [
+            "ball",
+            "key",
+            "kite",
+            "pen",
+            "keys",
+            "toys",
+            "books"
+          ],
+          "beP2": [
+            "was",
+            "were"
+          ]
+        },
+        "answerKey": {
+          "past-pass-build": {
+            "beP": {
+              "__cond": "building",
+              "school": "was",
+              "house": "was",
+              "bridge": "was",
+              "library": "was",
+              "houses": "were",
+              "shops": "were",
+              "bridges": "were"
+            }
+          },
+          "past-pass-find": {
+            "beP2": {
+              "__cond": "lost",
+              "ball": "was",
+              "key": "was",
+              "kite": "was",
+              "pen": "was",
+              "keys": "were",
+              "toys": "were",
+              "books": "were"
+            }
+          }
+        },
+        "distractors": [
+          "The school were built in 2020.",
+          "The houses was built in 2020.",
+          "The school was build in 2020.",
+          "The keys was found in the garden.",
+          "The ball were found in the garden.",
+          "The toys were find in the garden."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Khi việc đã xảy ra trong quá khứ, câu bị động dùng was/were + V3. Chọn \"was\" cho chủ ngữ số ít (\"The bridge was built in 2020.\") và \"were\" cho chủ ngữ số nhiều (\"The houses were built in 2020.\"). Cách nhớ: was/were chính là dạng quá khứ của is/are, nên em chỉ cần đổi is → was, are → were, phần V3 giữ nguyên. Nhớ giữ đúng V3: build → built, find → found, break → broken, write → written. Nói \"The school was build\" là sai vì \"build\" chưa phải V3."
+    },
+    {
+      "id": "by-agent",
+      "title_vi": "Nói ai làm việc đó: \"by + người\"",
+      "explain_vi": "Muốn nói rõ AI làm việc đó, em thêm \"by + người\" ở cuối câu bị động: This window was broken by Nam. Động từ vẫn phải ở dạng V3.",
+      "examples": [
+        "My mother cleaned this window. This window was cleaned by my mother.",
+        "Nam broke this window. This window was broken by Nam.",
+        "My sister wrote this letter. This letter was written by my sister."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "by-letter",
+            "text": "{doer} {vPastL} this letter. This letter was {v3L} by {agent}.",
+            "blanks": [
+              "v3L",
+              "agent"
+            ],
+            "context_vi": "Câu đầu cho biết ai làm và làm gì. Câu bị động dùng V3 rồi thêm \"by + người đó\".",
+            "audioText": "My sister wrote this letter. This letter was written by my sister."
+          },
+          {
+            "id": "by-window",
+            "text": "{doer} {vPastW} this window. This window was {v3W} by {agent}.",
+            "blanks": [
+              "v3W",
+              "agent"
+            ],
+            "context_vi": "Đổi động từ ở câu đầu sang dạng V3, rồi cho người làm đứng sau \"by\".",
+            "audioText": "Nam broke this window. This window was broken by Nam."
+          }
+        ],
+        "slots": {
+          "doer": [
+            "My mother",
+            "My father",
+            "My sister",
+            "My brother",
+            "Miss Lan",
+            "Nam",
+            "Minh"
+          ],
+          "agent": [
+            "my mother",
+            "my father",
+            "my sister",
+            "my brother",
+            "Miss Lan",
+            "Nam",
+            "Minh"
+          ],
+          "vPastL": [
+            "wrote",
+            "found",
+            "sent"
+          ],
+          "v3L": [
+            "written",
+            "found",
+            "sent"
+          ],
+          "vPastW": [
+            "broke",
+            "cleaned",
+            "painted"
+          ],
+          "v3W": [
+            "broken",
+            "cleaned",
+            "painted"
+          ]
+        },
+        "answerKey": {
+          "by-letter": {
+            "v3L": {
+              "__cond": "vPastL",
+              "wrote": "written",
+              "found": "found",
+              "sent": "sent"
+            },
+            "agent": {
+              "__cond": "doer",
+              "My mother": "my mother",
+              "My father": "my father",
+              "My sister": "my sister",
+              "My brother": "my brother",
+              "Miss Lan": "Miss Lan",
+              "Nam": "Nam",
+              "Minh": "Minh"
+            }
+          },
+          "by-window": {
+            "v3W": {
+              "__cond": "vPastW",
+              "broke": "broken",
+              "cleaned": "cleaned",
+              "painted": "painted"
+            },
+            "agent": {
+              "__cond": "doer",
+              "My mother": "my mother",
+              "My father": "my father",
+              "My sister": "my sister",
+              "My brother": "my brother",
+              "Miss Lan": "Miss Lan",
+              "Nam": "Nam",
+              "Minh": "Minh"
+            }
+          }
+        },
+        "distractors": [
+          "Nam broke this window. This window was broke by Nam.",
+          "Nam broke this window. This window was broken from Nam.",
+          "My sister wrote this letter. This letter was write by my sister.",
+          "My sister wrote this letter. This letter was written from my sister.",
+          "My mother cleaned this window. This window cleaned by my mother.",
+          "My father sent this letter. This letter was send by my father."
+        ],
+        "irregulars": {
+          "write": "written",
+          "break": "broken",
+          "find": "found",
+          "send": "sent",
+          "build": "built",
+          "make": "made"
+        }
+      },
+      "teach_vi": "Câu bị động thường không nhắc ai làm, nhưng nếu người làm là thông tin quan trọng thì em thêm \"by + người\" vào cuối câu: \"This window was broken by Nam.\" Cách đổi từ câu chủ động sang bị động: lấy tân ngữ (vật bị tác động) lên làm chủ ngữ → thêm was/were (hoặc is/are) → đổi động từ sang V3 → cuối cùng thêm \"by\" và người làm. Ví dụ: \"My sister wrote this letter.\" → \"This letter was written by my sister.\" Hai lỗi hay gặp: dùng \"from\" thay cho \"by\" (sai), và quên đổi sang V3 — nói \"was broke\" thay vì \"was broken\" (sai). Nhớ vài V3 bất quy tắc: write → written, break → broken, find → found, send → sent."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "our-old-school",
+      "title": "Our old school",
+      "title_vi": "Ngôi trường cũ của chúng em",
+      "text": "Our school is old. It was built in 1990. Every morning the classrooms are cleaned by two workers. Last week a new tree was planted in the garden. The tree was given to our school by Miss Lan's family. Now our garden is very beautiful.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Trường được xây năm 1990, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "The school was built in 1990."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Ai tặng cây mới cho trường?",
+          "type": "mcq",
+          "choices": [
+            "Miss Lan's family",
+            "Two workers",
+            "The children of class 5"
+          ],
+          "answer": 0,
+          "audioText": "Who gave the new tree to the school?"
+        }
+      ]
+    }
+  ]
+}

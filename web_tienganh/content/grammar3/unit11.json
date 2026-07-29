@@ -1,0 +1,517 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 411,
+  "lesson": 11,
+  "topic": "Present Perfect",
+  "topic_vi": "Hiện tại hoàn thành",
+  "vocab": [
+    {
+      "word": "already",
+      "vi": "đã ... rồi",
+      "icon": "✔️",
+      "example": "I have already eaten lunch.",
+      "partOfSpeech": "adv",
+      "audio": ""
+    },
+    {
+      "word": "yet",
+      "vi": "chưa (trong câu phủ định, câu hỏi)",
+      "icon": "❓",
+      "example": "I have not eaten lunch yet.",
+      "partOfSpeech": "adv",
+      "audio": ""
+    },
+    {
+      "word": "just",
+      "vi": "vừa mới",
+      "icon": "⏱️",
+      "example": "She has just come home.",
+      "partOfSpeech": "adv",
+      "audio": ""
+    },
+    {
+      "word": "ever",
+      "vi": "từng, bao giờ",
+      "icon": "🌍",
+      "example": "Have you ever eaten sushi?",
+      "partOfSpeech": "adv",
+      "audio": ""
+    },
+    {
+      "word": "never",
+      "vi": "chưa bao giờ",
+      "icon": "🚫",
+      "example": "I have never been to Sa Pa.",
+      "partOfSpeech": "adv",
+      "audio": ""
+    },
+    {
+      "word": "finish",
+      "vi": "làm xong, hoàn thành",
+      "icon": "🏁",
+      "example": "He has finished his homework.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "homework",
+      "vi": "bài tập về nhà",
+      "icon": "📝",
+      "example": "My homework is easy today.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "lose",
+      "vi": "mất, làm mất",
+      "icon": "🔑",
+      "example": "I have lost my key.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "sushi",
+      "vi": "món sushi",
+      "icon": "🍣",
+      "example": "Have you ever eaten sushi?",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "pizza",
+      "vi": "bánh pizza",
+      "icon": "🍕",
+      "example": "I have never eaten pizza.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "clean",
+      "vi": "dọn dẹp",
+      "icon": "🧹",
+      "example": "Lan has just cleaned her room.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "milk",
+      "vi": "sữa",
+      "icon": "🥛",
+      "example": "I have already bought some milk.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "breakfast",
+      "vi": "bữa sáng",
+      "icon": "🥣",
+      "example": "Nam has not eaten breakfast yet.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "have-has-v3",
+      "title_vi": "\"Have / has\" + động từ dạng thứ ba (V3)",
+      "explain_vi": "Nói việc đã xong mà còn liên quan tới bây giờ: I / you / we / they + have + V3; he / she / it và MỘT người + has + V3. Động từ luôn ở dạng thứ ba (V3).",
+      "examples": [
+        "I have finished the homework.",
+        "My sister has finished the homework.",
+        "I want to eat it, but I have already eaten it."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "transform"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "hh-finished",
+            "text": "{subj} {hh} finished the homework.",
+            "blanks": [
+              "hh"
+            ],
+            "context_vi": "Nhìn chủ ngữ để chọn \"have\" hay \"has\".",
+            "audioText": "My sister has finished the homework."
+          },
+          {
+            "id": "hh-v3-already",
+            "text": "I want to {base} it, but I have already {v3} it.",
+            "blanks": [
+              "v3"
+            ],
+            "context_vi": "Động từ nguyên mẫu sau \"want to\" là manh mối — hãy đổi nó sang dạng thứ ba (V3).",
+            "audioText": "I want to eat it, but I have already eaten it."
+          }
+        ],
+        "slots": {
+          "subj": [
+            "I",
+            "You",
+            "We",
+            "They",
+            "He",
+            "She",
+            "My brother",
+            "My sister",
+            "My parents",
+            "The children"
+          ],
+          "hh": [
+            "have",
+            "has"
+          ],
+          "base": [
+            "eat",
+            "see",
+            "do",
+            "write",
+            "take",
+            "make",
+            "buy",
+            "finish",
+            "clean",
+            "read"
+          ],
+          "v3": [
+            "eaten",
+            "seen",
+            "done",
+            "written",
+            "taken",
+            "made",
+            "bought",
+            "finished",
+            "cleaned",
+            "read"
+          ]
+        },
+        "answerKey": {
+          "hh-finished": {
+            "hh": {
+              "__cond": "subj",
+              "I": "have",
+              "You": "have",
+              "We": "have",
+              "They": "have",
+              "He": "has",
+              "She": "has",
+              "My brother": "has",
+              "My sister": "has",
+              "My parents": "have",
+              "The children": "have"
+            }
+          },
+          "hh-v3-already": {
+            "v3": {
+              "__cond": "base",
+              "eat": "eaten",
+              "see": "seen",
+              "do": "done",
+              "write": "written",
+              "take": "taken",
+              "make": "made",
+              "buy": "bought",
+              "finish": "finished",
+              "clean": "cleaned",
+              "read": "read"
+            }
+          },
+          "answer-pairs": {
+            "I have finished the homework.": "I have not finished the homework.",
+            "You have finished the homework.": "You have not finished the homework.",
+            "We have finished the homework.": "We have not finished the homework.",
+            "They have finished the homework.": "They have not finished the homework.",
+            "He has finished the homework.": "He has not finished the homework.",
+            "She has finished the homework.": "She has not finished the homework.",
+            "My brother has finished the homework.": "My brother has not finished the homework.",
+            "My parents have finished the homework.": "My parents have not finished the homework."
+          },
+          "transform-explain": {
+            "I have finished the homework.": "Phủ định chỉ cần thêm \"not\" ngay sau \"have\": have finished → have not (haven't) finished.",
+            "You have finished the homework.": "Phủ định chỉ cần thêm \"not\" ngay sau \"have\": have finished → have not (haven't) finished.",
+            "We have finished the homework.": "Phủ định chỉ cần thêm \"not\" ngay sau \"have\": have finished → have not (haven't) finished.",
+            "They have finished the homework.": "Phủ định chỉ cần thêm \"not\" ngay sau \"have\": have finished → have not (haven't) finished.",
+            "He has finished the homework.": "Phủ định chỉ cần thêm \"not\" ngay sau \"has\": has finished → has not (hasn't) finished.",
+            "She has finished the homework.": "Phủ định chỉ cần thêm \"not\" ngay sau \"has\": has finished → has not (hasn't) finished.",
+            "My brother has finished the homework.": "\"My brother\" là MỘT người nên dùng \"has\"; phủ định là \"has not finished\".",
+            "My parents have finished the homework.": "\"My parents\" là NHIỀU người nên dùng \"have\"; phủ định là \"have not finished\"."
+          }
+        },
+        "distractors": [
+          "She have finished the homework.",
+          "My brother have finished the homework.",
+          "They has finished the homework.",
+          "I has finished the homework.",
+          "I want to eat it, but I have already ate it.",
+          "I want to write it, but I have already wrote it.",
+          "I want to see it, but I have already saw it.",
+          "I want to do it, but I have already did it."
+        ],
+        "irregulars": {
+          "eat": "eaten",
+          "see": "seen",
+          "do": "done",
+          "write": "written",
+          "take": "taken",
+          "make": "made",
+          "buy": "bought",
+          "read": "read",
+          "go": "gone",
+          "be": "been",
+          "lose": "lost",
+          "come": "come"
+        }
+      },
+      "teach_vi": "Thì hiện tại hoàn thành nối QUÁ KHỨ với BÂY GIỜ: việc đã xong nhưng kết quả vẫn còn đến lúc này. Công thức: have / has + V3. Dùng \"have\" với I, you, we, they và nhiều người; dùng \"has\" với he, she, it và MỘT người: I have finished, my sister has finished. V3 (dạng thứ ba) của động từ có quy tắc giống dạng quá khứ, chỉ thêm \"-ed\": finish → finished, clean → cleaned. Nhưng nhiều động từ bất quy tắc có V3 riêng, phải học thuộc: eat → eaten, see → seen, do → done, write → written, take → taken, go → gone, be → been, lose → lost. Phủ định thêm \"not\" ngay sau have/has: I have not (haven't) finished, she has not (hasn't) finished. Lỗi hay gặp của người Việt: \"She have finished\" và \"I have saw it\" — nhớ has đi với MỘT người, và sau have/has luôn là V3."
+    },
+    {
+      "id": "ever-never",
+      "title_vi": "\"Ever\" và \"never\": kinh nghiệm đã từng / chưa từng",
+      "explain_vi": "Hỏi ai đã từng làm gì chưa: Have you EVER…? Trả lời rằng chưa bao giờ: I have NEVER… \"Never\" đã mang nghĩa phủ định nên không cần thêm \"not\".",
+      "examples": [
+        "Have you ever eaten pizza? No, I have never eaten pizza.",
+        "Have you ever eaten sushi? No, I have never eaten sushi.",
+        "I have never been to Sa Pa, but I want to go there one day."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "ever-question",
+            "text": "Have you {ev} eaten {food}? No, I have {nev} eaten {food}.",
+            "blanks": [
+              "ev",
+              "nev"
+            ],
+            "context_vi": "Trong CÂU HỎI dùng \"ever\"; trong câu trả lời \"No, I have …\" dùng \"never\".",
+            "audioText": "Have you ever eaten pizza? No, I have never eaten pizza."
+          },
+          {
+            "id": "never-been",
+            "text": "I have {nev} been to {place}, but I want to go there one day.",
+            "blanks": [
+              "nev"
+            ],
+            "context_vi": "\"Nhưng tôi muốn đi\" cho biết người nói CHƯA BAO GIỜ đến đó.",
+            "audioText": "I have never been to Sa Pa, but I want to go there one day."
+          }
+        ],
+        "slots": {
+          "ev": [
+            "ever",
+            "never"
+          ],
+          "nev": [
+            "ever",
+            "never"
+          ],
+          "food": [
+            "sushi",
+            "pizza",
+            "noodles",
+            "cheese",
+            "corn",
+            "fish"
+          ],
+          "place": [
+            "Ha Noi",
+            "Hue",
+            "Da Nang",
+            "Sa Pa",
+            "Can Tho",
+            "Nha Trang"
+          ]
+        },
+        "answerKey": {
+          "ever-question": {
+            "ev": "ever",
+            "nev": "never"
+          },
+          "never-been": {
+            "nev": "never"
+          }
+        },
+        "distractors": [
+          "Have you ever eat pizza? No, I have never eaten pizza.",
+          "Have you ever eaten sushi? No, I have ever eaten sushi.",
+          "Have you never eaten noodles? No, I have ever eaten noodles.",
+          "I have ever been to Ha Noi, but I want to go there one day.",
+          "I have never went to Hue, but I want to go there one day.",
+          "Have you ever ate cheese? No, I have never ate cheese.",
+          "I have not never been to Da Nang, but I want to go there one day.",
+          "I have never be to Nha Trang, but I want to go there one day."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Khi muốn hỏi bạn mình đã TỪNG làm việc gì đó trong đời chưa, em dùng \"ever\" và đặt nó giữa chủ ngữ với V3: Have you ever eaten sushi? Have you ever been to Ha Noi? Khi trả lời rằng CHƯA BAO GIỜ, em dùng \"never\" ở đúng chỗ đó: I have never eaten sushi. I have never been to Ha Noi. Điều quan trọng: \"never\" đã mang nghĩa phủ định sẵn, nên KHÔNG viết \"I have not never…\" và cũng không viết \"I have never not…\". Còn \"ever\" thì hầu như chỉ xuất hiện trong câu hỏi — đừng dùng \"ever\" trong câu kể. Nếu đã từng làm rồi thì trả lời: Yes, I have. / Yes, I have eaten sushi once."
+    },
+    {
+      "id": "just-already-yet",
+      "title_vi": "\"Just\" · \"already\" · \"yet\"",
+      "explain_vi": "\"Just\" = vừa mới xong; \"already\" = đã xong rồi (câu khẳng định); \"yet\" = chưa, chỉ dùng trong câu phủ định hoặc câu hỏi và đứng ở CUỐI câu.",
+      "examples": [
+        "I have not eaten breakfast yet.",
+        "Have you cleaned your room yet?",
+        "Nam finished his lunch a minute ago. He has just finished it.",
+        "You do not need to buy milk. I have already bought it."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "yet-not",
+            "text": "I have not {myThing} {jay}.",
+            "blanks": [
+              "jay"
+            ],
+            "context_vi": "Câu PHỦ ĐỊNH (\"have not\") — chọn \"just\", \"already\" hay \"yet\"?",
+            "audioText": "I have not eaten breakfast yet."
+          },
+          {
+            "id": "yet-question",
+            "text": "Have you {yourThing} {jay}?",
+            "blanks": [
+              "jay"
+            ],
+            "context_vi": "Đây là câu HỎI — chọn \"just\", \"already\" hay \"yet\"?",
+            "audioText": "Have you cleaned your room yet?"
+          },
+          {
+            "id": "just-minute",
+            "text": "Nam finished his lunch a minute ago. He has {jay} finished it.",
+            "blanks": [
+              "jay"
+            ],
+            "context_vi": "\"A minute ago\" nghĩa là mới cách đây một phút — chọn \"just\", \"already\" hay \"yet\"?",
+            "audioText": "Nam finished his lunch a minute ago. He has just finished it."
+          },
+          {
+            "id": "just-bus",
+            "text": "The bus arrived a minute ago. It has {jay} arrived.",
+            "blanks": [
+              "jay"
+            ],
+            "context_vi": "Việc vừa xảy ra cách đây một phút — chọn \"just\", \"already\" hay \"yet\"?",
+            "audioText": "The bus arrived a minute ago. It has just arrived."
+          },
+          {
+            "id": "already-no-need",
+            "text": "You do not need to buy milk. I have {jay} bought it.",
+            "blanks": [
+              "jay"
+            ],
+            "context_vi": "\"Không cần mua nữa\" vì việc ĐÃ XONG RỒI — chọn \"just\", \"already\" hay \"yet\"?",
+            "audioText": "You do not need to buy milk. I have already bought it."
+          },
+          {
+            "id": "already-news",
+            "text": "You do not need to tell me the news. I have {jay} heard it.",
+            "blanks": [
+              "jay"
+            ],
+            "context_vi": "\"Không cần kể nữa\" vì tôi ĐÃ nghe RỒI — chọn \"just\", \"already\" hay \"yet\"?",
+            "audioText": "You do not need to tell me the news. I have already heard it."
+          }
+        ],
+        "slots": {
+          "jay": [
+            "just",
+            "already",
+            "yet"
+          ],
+          "myThing": [
+            "eaten breakfast",
+            "done my homework",
+            "cleaned my room",
+            "washed my hands",
+            "read the book",
+            "found my key"
+          ],
+          "yourThing": [
+            "cleaned your room",
+            "done your homework",
+            "eaten your lunch",
+            "washed your hands",
+            "read the book",
+            "found your key"
+          ]
+        },
+        "answerKey": {
+          "yet-not": {
+            "jay": "yet"
+          },
+          "yet-question": {
+            "jay": "yet"
+          },
+          "just-minute": {
+            "jay": "just"
+          },
+          "just-bus": {
+            "jay": "just"
+          },
+          "already-no-need": {
+            "jay": "already"
+          },
+          "already-news": {
+            "jay": "already"
+          }
+        },
+        "distractors": [
+          "I have not eaten breakfast already.",
+          "I have not done my homework just.",
+          "Have you cleaned your room just?",
+          "Have you already washed your hands yet?",
+          "Nam finished his lunch a minute ago. He has yet finished it.",
+          "Nam finished his lunch a minute ago. He has just finish it.",
+          "The bus arrived a minute ago. It has yet arrived.",
+          "You do not need to buy milk. I have yet bought it.",
+          "You do not need to buy milk. I have already buy it.",
+          "You do not need to tell me the news. I have heard it yet."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Ba từ này đi cùng have/has + V3 và mỗi từ có một chỗ đứng riêng. \"Just\" = vừa mới, việc xong cách đây rất ít phút; nó đứng GIỮA have/has và V3: She has just come home. \"Already\" = đã ... rồi, dùng trong câu khẳng định, cũng đứng giữa have/has và V3: I have already bought the milk. \"Yet\" = chưa, chỉ dùng trong câu PHỦ ĐỊNH và câu HỎI, và luôn đứng ở CUỐI câu: I have not finished my homework yet. Have you finished your homework yet? Nhớ hai điều: đừng dùng \"yet\" trong câu khẳng định, và đừng đặt \"already\" hay \"just\" ở cuối câu. Sau have/has luôn là V3, không phải nguyên mẫu."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "sunday-morning",
+      "title": "Sunday morning",
+      "title_vi": "Sáng chủ nhật",
+      "text": "It is nine o'clock on Sunday. Lan has already cleaned her room and she has just finished her breakfast. Her brother Nam has not got up yet. Their mother is not happy. \"Nam, have you ever tidied your room?\" she asks. Nam smiles. He has never tidied it, but today he wants to try.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Lan đã dọn phòng xong rồi, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "Lan has already cleaned her room."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Nam đã ngủ dậy chưa?",
+          "type": "mcq",
+          "choices": [
+            "He has not got up yet.",
+            "He has already got up.",
+            "He has just got up."
+          ],
+          "answer": 0,
+          "audioText": "Has Nam got up yet?"
+        }
+      ]
+    }
+  ]
+}

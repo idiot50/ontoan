@@ -4742,6 +4742,10040 @@
   ],
   "audioNotes": "Cần thu âm người thật cho: (1) Phonics Level 3 — nguyên âm đôi và âm-r ở GIỮA từ: /ɑː/ (car, star), /ɔː/ (fork), /uː/ (moon), /eɪ/ (rain, train), /əʊ/ (boat), /iː/ (tree). TTS dễ đọc tách 'a-r', 'o-r' hoặc biến /uː/, /eɪ/, /əʊ/, /iː/ thành tên chữ; loa phải đọc TỪ TRỌN VẸN, kéo dài nguyên âm liền một hơi, không tách rời chữ cái. Lưu ý phân biệt cặp dễ lẫn: 'boat' /əʊ/ khác 'moon' /uː/, 'rain' /eɪ/ khác 'tree' /iː/. (2) Câu mẫu liên từ trong grammar examples — đọc rõ chỗ nghỉ trước 'so' và 'but' (có dấu phẩy) và nối liền 'happy because', để bé nghe được ngữ điệu nối ý. (3) Các đuôi quá khứ trong vocab/examples: 'helped' /helpt/ (đuôi /t/), 'laughed' /lɑːft/ (đuôi /t/), 'cried' /kraɪd/ (đuôi /d/), 'found' /faʊnd/, 'saw' /sɔː/ — đọc rõ để bé phân biệt với lỗi 'finded/cryed/helpd/seed'. (4) audioModels phần speaking và audioText câu hỏi reading; riêng reading 'The lost kite' nên đọc chậm, ngắt câu rõ để bé theo dõi mạch kể chuyện. Ghi chú recycling: kite, park, sunny, wind, happy, sad đã gặp ở Level 1-2, dùng lại có chủ đích để ôn; trọng tâm MỚI là liên từ because/so/but và mở rộng quá khứ đơn (found, helped, cried, laughed) cùng nhóm cảm xúc (scared, excited, surprised)."
 };
+  C["grammar3/index.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "title_vi": "Ngữ pháp Tăng cường — 20 bài",
+  "note_vi": "Mạch ngữ pháp tham chiếu syllabus ôn ngữ pháp phổ thông (xem docs/ROUNDUP_GRAMMAR_MAP.md). Toàn bộ câu, ví dụ, đáp án và câu nhiễu là nội dung GỐC do dự án tự soạn.",
+  "units": [],
+  "lessons": [
+    {
+      "lesson": 1,
+      "unit": 401,
+      "file": "unit01.json",
+      "topic_vi": "Số nhiều & danh từ không đếm được",
+      "icon": "🧺",
+      "pal": "sun",
+      "sub": "+s/+es · bất quy tắc · some/much/many",
+      "status": "ready"
+    },
+    {
+      "lesson": 2,
+      "unit": 402,
+      "file": "unit02.json",
+      "topic_vi": "Đại từ · to be · have got · can",
+      "icon": "🙋",
+      "pal": "sky",
+      "sub": "He/She/They · am/is/are · have/has got",
+      "status": "ready"
+    },
+    {
+      "lesson": 3,
+      "unit": 403,
+      "file": "unit03.json",
+      "topic_vi": "Sở hữu & từ chỉ định",
+      "icon": "👉",
+      "pal": "mint",
+      "sub": "my/his/her · 's · this/that/these/those",
+      "status": "ready"
+    },
+    {
+      "lesson": 4,
+      "unit": 404,
+      "file": "unit04.json",
+      "topic_vi": "Mạo từ a / an / the",
+      "icon": "🅰️",
+      "pal": "coral",
+      "sub": "a · an · the · không mạo từ",
+      "status": "ready"
+    },
+    {
+      "lesson": 5,
+      "unit": 405,
+      "file": "unit05.json",
+      "topic_vi": "Diễn tả số lượng",
+      "icon": "⚖️",
+      "pal": "grape",
+      "sub": "some/any · a lot of · a few/a little",
+      "status": "ready"
+    },
+    {
+      "lesson": 6,
+      "unit": 406,
+      "file": "unit06.json",
+      "topic_vi": "Đại từ bất định",
+      "icon": "🔍",
+      "pal": "sun",
+      "sub": "someone/anything/nobody/everywhere",
+      "status": "ready"
+    },
+    {
+      "lesson": 7,
+      "unit": 407,
+      "file": "unit07.json",
+      "topic_vi": "Hiện tại đơn",
+      "icon": "🔁",
+      "pal": "sky",
+      "sub": "thêm -s · do/does · trạng từ tần suất",
+      "status": "ready"
+    },
+    {
+      "lesson": 8,
+      "unit": 408,
+      "file": "unit08.json",
+      "topic_vi": "Hiện tại tiếp diễn",
+      "icon": "🏃",
+      "pal": "mint",
+      "sub": "am/is/are + V-ing · quy tắc thêm -ing",
+      "status": "ready"
+    },
+    {
+      "lesson": 9,
+      "unit": 409,
+      "file": "unit09.json",
+      "topic_vi": "Giới từ",
+      "icon": "📍",
+      "pal": "coral",
+      "sub": "nơi chốn · chuyển động · thời gian",
+      "status": "ready"
+    },
+    {
+      "lesson": 10,
+      "unit": 410,
+      "file": "unit10.json",
+      "topic_vi": "Quá khứ đơn",
+      "icon": "⏪",
+      "pal": "grape",
+      "sub": "-ed · động từ bất quy tắc · did",
+      "status": "ready"
+    },
+    {
+      "lesson": 11,
+      "unit": 411,
+      "file": "unit11.json",
+      "topic_vi": "Hiện tại hoàn thành",
+      "icon": "✅",
+      "pal": "sun",
+      "sub": "have/has + V3 · ever/never/just/yet",
+      "status": "ready"
+    },
+    {
+      "lesson": 12,
+      "unit": 412,
+      "file": "unit12.json",
+      "topic_vi": "Quá khứ tiếp diễn",
+      "icon": "⏳",
+      "pal": "sky",
+      "sub": "was/were + V-ing · when/while",
+      "status": "ready"
+    },
+    {
+      "lesson": 13,
+      "unit": 413,
+      "file": "unit13.json",
+      "topic_vi": "Tương lai",
+      "icon": "🔮",
+      "pal": "mint",
+      "sub": "be going to · will · phân biệt hai cách",
+      "status": "ready"
+    },
+    {
+      "lesson": 14,
+      "unit": 414,
+      "file": "unit14.json",
+      "topic_vi": "Động từ khiếm khuyết",
+      "icon": "🔑",
+      "pal": "coral",
+      "sub": "must/mustn't · should · may · have to",
+      "status": "ready"
+    },
+    {
+      "lesson": 15,
+      "unit": 415,
+      "file": "unit15.json",
+      "topic_vi": "Câu điều kiện",
+      "icon": "🌦️",
+      "pal": "grape",
+      "sub": "loại 0 · loại 1 · loại 2",
+      "status": "ready"
+    },
+    {
+      "lesson": 16,
+      "unit": 416,
+      "file": "unit16.json",
+      "topic_vi": "Câu hỏi",
+      "icon": "❓",
+      "pal": "sun",
+      "sub": "Yes/No · Wh- · trật tự từ",
+      "status": "ready"
+    },
+    {
+      "lesson": 17,
+      "unit": 417,
+      "file": "unit17.json",
+      "topic_vi": "Câu bị động",
+      "icon": "🔄",
+      "pal": "sky",
+      "sub": "be + V3 · by · hiện tại & quá khứ",
+      "status": "ready"
+    },
+    {
+      "lesson": 18,
+      "unit": 418,
+      "file": "unit18.json",
+      "topic_vi": "To V · V-ing · too/enough",
+      "icon": "🧩",
+      "pal": "mint",
+      "sub": "want to · like V-ing · too/enough",
+      "status": "ready"
+    },
+    {
+      "lesson": 19,
+      "unit": 419,
+      "file": "unit19.json",
+      "topic_vi": "Đại từ quan hệ",
+      "icon": "🔗",
+      "pal": "coral",
+      "sub": "who · which · that · whose",
+      "status": "ready"
+    },
+    {
+      "lesson": 20,
+      "unit": 420,
+      "file": "unit20.json",
+      "topic_vi": "Tính từ · trạng từ · so sánh",
+      "icon": "📊",
+      "pal": "grape",
+      "sub": "-ly · -er/-est · as…as",
+      "status": "ready"
+    }
+  ]
+};
+  C["grammar3/unit01.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 401,
+  "lesson": 1,
+  "topic": "Plurals: countable and uncountable nouns",
+  "topic_vi": "Số nhiều & danh từ không đếm được",
+  "vocab": [
+    {
+      "word": "box",
+      "vi": "cái hộp",
+      "icon": "📦",
+      "example": "There are three boxes here.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "bus",
+      "vi": "xe buýt",
+      "icon": "🚌",
+      "example": "Two buses stop near my house.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "city",
+      "vi": "thành phố",
+      "icon": "🏙️",
+      "example": "Viet Nam has many cities.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "tomato",
+      "vi": "quả cà chua",
+      "icon": "🍅",
+      "example": "Mum needs four tomatoes.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "baby",
+      "vi": "em bé",
+      "icon": "👶",
+      "example": "The babies are asleep.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "child",
+      "vi": "đứa trẻ",
+      "icon": "🧒",
+      "example": "Six children are playing.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "tooth",
+      "vi": "cái răng",
+      "icon": "🦷",
+      "example": "Brush your teeth every day.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "water",
+      "vi": "nước",
+      "icon": "💧",
+      "example": "I drink some water.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "rice",
+      "vi": "gạo, cơm",
+      "icon": "🍚",
+      "example": "We eat some rice.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "bread",
+      "vi": "bánh mì",
+      "icon": "🍞",
+      "example": "She buys some bread.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "milk",
+      "vi": "sữa",
+      "icon": "🥛",
+      "example": "He drinks some milk.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "money",
+      "vi": "tiền",
+      "icon": "💰",
+      "example": "I have some money.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "plural-regular",
+      "title_vi": "Số nhiều thường: thêm -s / -es / y → ies / o → oes",
+      "explain_vi": "Thêm \"-s\" để nói nhiều thứ. Nhưng: kết thúc bằng s/x/ch/sh thì thêm \"-es\" (box → boxes); phụ âm + y thì đổi thành \"-ies\" (city → cities); vài từ kết thúc bằng o thì thêm \"-es\" (tomato → tomatoes).",
+      "examples": [
+        "One box, two boxes.",
+        "One city, two cities.",
+        "I have one key. My friend has two keys."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "one-two",
+            "text": "One {noun}, two {plural}.",
+            "blanks": [
+              "plural"
+            ],
+            "context_vi": "Đổi danh từ ở trước sang dạng số nhiều đúng.",
+            "audioText": "One box, two boxes."
+          },
+          {
+            "id": "have-one-two",
+            "text": "I have one {noun}. My friend has two {plural}.",
+            "blanks": [
+              "plural"
+            ],
+            "context_vi": "Câu sau nói về HAI thứ, nên danh từ phải ở dạng số nhiều.",
+            "audioText": "I have one key. My friend has two keys."
+          }
+        ],
+        "slots": {
+          "noun": [
+            "box",
+            "bus",
+            "city",
+            "tomato",
+            "baby",
+            "key",
+            "brush",
+            "book"
+          ],
+          "plural": [
+            "boxes",
+            "buses",
+            "cities",
+            "tomatoes",
+            "babies",
+            "keys",
+            "brushes",
+            "books"
+          ]
+        },
+        "answerKey": {
+          "one-two": {
+            "plural": {
+              "__cond": "noun",
+              "box": "boxes",
+              "bus": "buses",
+              "city": "cities",
+              "tomato": "tomatoes",
+              "baby": "babies",
+              "key": "keys",
+              "brush": "brushes",
+              "book": "books"
+            }
+          },
+          "have-one-two": {
+            "plural": {
+              "__cond": "noun",
+              "box": "boxes",
+              "bus": "buses",
+              "city": "cities",
+              "tomato": "tomatoes",
+              "baby": "babies",
+              "key": "keys",
+              "brush": "brushes",
+              "book": "books"
+            }
+          }
+        },
+        "distractors": [
+          "One box, two boxs.",
+          "One bus, two buss.",
+          "One city, two citys.",
+          "One tomato, two tomatos.",
+          "One baby, two babys.",
+          "One brush, two brushs."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Muốn nói NHIỀU thứ, em thêm \"-s\" vào sau danh từ: book → books. Nhưng có bốn nhóm đặc biệt: (1) từ kết thúc bằng s, x, ch, sh thì thêm \"-es\" — bus → buses, box → boxes, brush → brushes; (2) từ kết thúc bằng phụ âm + y thì đổi y thành \"-ies\" — city → cities, baby → babies; (3) vài từ kết thúc bằng o thì thêm \"-es\" — tomato → tomatoes, potato → potatoes; (4) từ kết thúc bằng nguyên âm + y thì chỉ thêm \"-s\" — key → keys, day → days."
+    },
+    {
+      "id": "plural-irregular",
+      "title_vi": "Số nhiều bất quy tắc: đổi hẳn cả từ",
+      "explain_vi": "Vài danh từ đổi hẳn cả từ, không thêm \"-s\": child → children, foot → feet, mouse → mice. Riêng sheep và fish giữ nguyên.",
+      "examples": [
+        "One child, two children.",
+        "One tooth, two teeth.",
+        "I have one fish. My friend has two fish."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "irr-one-two",
+            "text": "One {noun}, two {plural}.",
+            "blanks": [
+              "plural"
+            ],
+            "context_vi": "Đây là danh từ bất quy tắc — không thêm \"-s\".",
+            "audioText": "One child, two children."
+          },
+          {
+            "id": "irr-count",
+            "text": "I can see one {noun} and three {plural}.",
+            "blanks": [
+              "plural"
+            ],
+            "context_vi": "Sau số 3 phải dùng dạng số nhiều bất quy tắc của danh từ đó.",
+            "audioText": "I can see one child and three children."
+          }
+        ],
+        "slots": {
+          "noun": [
+            "child",
+            "man",
+            "woman",
+            "foot",
+            "tooth",
+            "mouse",
+            "goose",
+            "sheep",
+            "fish"
+          ],
+          "plural": [
+            "children",
+            "men",
+            "women",
+            "feet",
+            "teeth",
+            "mice",
+            "geese",
+            "sheep",
+            "fish"
+          ]
+        },
+        "answerKey": {
+          "irr-one-two": {
+            "plural": {
+              "__cond": "noun",
+              "child": "children",
+              "man": "men",
+              "woman": "women",
+              "foot": "feet",
+              "tooth": "teeth",
+              "mouse": "mice",
+              "goose": "geese",
+              "sheep": "sheep",
+              "fish": "fish"
+            }
+          },
+          "irr-count": {
+            "plural": {
+              "__cond": "noun",
+              "child": "children",
+              "man": "men",
+              "woman": "women",
+              "foot": "feet",
+              "tooth": "teeth",
+              "mouse": "mice",
+              "goose": "geese",
+              "sheep": "sheep",
+              "fish": "fish"
+            }
+          }
+        },
+        "distractors": [
+          "One child, two childs.",
+          "One man, two mans.",
+          "One woman, two womans.",
+          "One foot, two foots.",
+          "One tooth, two tooths.",
+          "One mouse, two mouses."
+        ],
+        "irregulars": {
+          "child": "children",
+          "man": "men",
+          "woman": "women",
+          "foot": "feet",
+          "tooth": "teeth",
+          "mouse": "mice",
+          "goose": "geese",
+          "sheep": "sheep",
+          "fish": "fish"
+        }
+      },
+      "teach_vi": "Một số danh từ KHÔNG thêm \"-s\" mà đổi hẳn: child → children, man → men, woman → women, foot → feet, tooth → teeth, mouse → mice, goose → geese. Vài từ giữ nguyên không đổi gì: sheep → sheep, fish → fish. Những từ này phải học thuộc, không suy ra được bằng quy tắc."
+    },
+    {
+      "id": "uncountable-some-much-many",
+      "title_vi": "Danh từ không đếm được: some · much · many",
+      "explain_vi": "Thứ không đếm được (water, rice, money) dùng \"some\", không dùng \"a\". Hỏi số lượng: không đếm được → \"much\", đếm được số nhiều → \"many\".",
+      "examples": [
+        "I need some rice.",
+        "I need a cake.",
+        "How much water do you need?",
+        "How many books do you need?"
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "need-det",
+            "text": "I need {det} {thing}.",
+            "blanks": [
+              "det"
+            ],
+            "context_vi": "Danh từ không đếm được đi với \"some\"; danh từ đếm được số ít đi với \"a\".",
+            "audioText": "I need some rice."
+          },
+          {
+            "id": "how-much-many",
+            "text": "How {mm} {thing2} do you need?",
+            "blanks": [
+              "mm"
+            ],
+            "context_vi": "Hỏi số lượng: không đếm được → \"much\"; đếm được số nhiều → \"many\".",
+            "audioText": "How much water do you need?"
+          }
+        ],
+        "slots": {
+          "det": [
+            "some",
+            "a"
+          ],
+          "thing": [
+            "water",
+            "milk",
+            "rice",
+            "bread",
+            "money",
+            "cake",
+            "book",
+            "pen",
+            "banana"
+          ],
+          "mm": [
+            "much",
+            "many"
+          ],
+          "thing2": [
+            "water",
+            "milk",
+            "rice",
+            "bread",
+            "money",
+            "cakes",
+            "books",
+            "pens",
+            "bananas"
+          ]
+        },
+        "answerKey": {
+          "need-det": {
+            "det": {
+              "__cond": "thing",
+              "water": "some",
+              "milk": "some",
+              "rice": "some",
+              "bread": "some",
+              "money": "some",
+              "cake": "a",
+              "book": "a",
+              "pen": "a",
+              "banana": "a"
+            }
+          },
+          "how-much-many": {
+            "mm": {
+              "__cond": "thing2",
+              "water": "much",
+              "milk": "much",
+              "rice": "much",
+              "bread": "much",
+              "money": "much",
+              "cakes": "many",
+              "books": "many",
+              "pens": "many",
+              "bananas": "many"
+            }
+          }
+        },
+        "distractors": [
+          "I need a rice.",
+          "I need a water.",
+          "I need some banana.",
+          "How many water do you need?",
+          "How much books do you need?",
+          "How many rice do you need?"
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Có những thứ em không đếm được từng cái một: water, milk, rice, bread, money. Chúng KHÔNG có dạng số nhiều và KHÔNG dùng \"a/an\" — em dùng \"some\": some water, some rice. Còn danh từ đếm được thì dùng \"a/an\" khi có một cái: a book, a cake. Khi hỏi số lượng: danh từ không đếm được đi với \"much\" (How much water?), danh từ đếm được số nhiều đi với \"many\" (How many books?)."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "at-the-market",
+      "title": "At the market",
+      "title_vi": "Ở chợ",
+      "text": "Mai and her mum are at the market. Mai has a list: four tomatoes, two boxes of eggs, some rice and some milk. \"We need some bread, too,\" says Mai. Her mum smiles. \"Good. Now we have everything.\"",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Trong danh sách có bốn quả cà chua, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "There are four tomatoes on the list."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Thứ nào trong danh sách là danh từ KHÔNG đếm được?",
+          "type": "mcq",
+          "choices": [
+            "rice",
+            "tomatoes",
+            "boxes"
+          ],
+          "answer": 0,
+          "audioText": "Which word is uncountable?"
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit02.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 402,
+  "lesson": 2,
+  "topic": "Personal pronouns, be, have got, can",
+  "topic_vi": "Đại từ · to be · have got · can",
+  "vocab": [
+    {
+      "word": "brother",
+      "vi": "anh, em trai",
+      "icon": "👦",
+      "example": "My brother is ten years old.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "sister",
+      "vi": "chị, em gái",
+      "icon": "👧",
+      "example": "My sister can sing well.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "parents",
+      "vi": "bố mẹ",
+      "icon": "👨‍👩‍👦",
+      "example": "My parents are teachers.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "friend",
+      "vi": "người bạn",
+      "icon": "👫",
+      "example": "My friend has got a new bike.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "bike",
+      "vi": "xe đạp",
+      "icon": "🚲",
+      "example": "I have got a red bike.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "pet",
+      "vi": "vật nuôi",
+      "icon": "🐹",
+      "example": "They have got two pets.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "garden",
+      "vi": "khu vườn",
+      "icon": "🌳",
+      "example": "The children are in the garden.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "happy",
+      "vi": "vui, hạnh phúc",
+      "icon": "😀",
+      "example": "She is happy today.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "hungry",
+      "vi": "đói",
+      "icon": "🍽️",
+      "example": "We are hungry now.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "swim",
+      "vi": "bơi",
+      "icon": "🏊",
+      "example": "I can swim very well.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "draw",
+      "vi": "vẽ",
+      "icon": "🎨",
+      "example": "He can draw very well.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "cook",
+      "vi": "nấu ăn",
+      "icon": "🍳",
+      "example": "My mother can cook very well.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "subject-pronouns",
+      "title_vi": "Đại từ nhân xưng: He · She · We · They",
+      "explain_vi": "Thay danh từ bằng đại từ cho khỏi lặp: một người nam → He, một người nữ → She, nhiều người có mình ở trong → We, nhiều người không có mình → They.",
+      "examples": [
+        "My brother is at home. He is happy.",
+        "My sister is at home. She is happy.",
+        "My parents are at home. They are happy."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "one-person-pron",
+            "text": "{person} is at home. {pron} is happy.",
+            "blanks": [
+              "pron"
+            ],
+            "context_vi": "Câu nói về MỘT người — chọn đại từ khớp với người đó.",
+            "audioText": "My brother is at home. He is happy."
+          },
+          {
+            "id": "group-pron",
+            "text": "{group} are at home. {pronPl} are happy.",
+            "blanks": [
+              "pronPl"
+            ],
+            "context_vi": "Câu nói về NHIỀU người. Nếu có \"and I\" thì dùng \"We\", còn lại dùng \"They\".",
+            "audioText": "My parents are at home. They are happy."
+          }
+        ],
+        "slots": {
+          "person": [
+            "My brother",
+            "My father",
+            "My uncle",
+            "My sister",
+            "My mother",
+            "My aunt"
+          ],
+          "pron": [
+            "He",
+            "She"
+          ],
+          "group": [
+            "My brother and I",
+            "My friend and I",
+            "My parents",
+            "My sisters",
+            "The children"
+          ],
+          "pronPl": [
+            "We",
+            "They"
+          ]
+        },
+        "answerKey": {
+          "one-person-pron": {
+            "pron": {
+              "__cond": "person",
+              "My brother": "He",
+              "My father": "He",
+              "My uncle": "He",
+              "My sister": "She",
+              "My mother": "She",
+              "My aunt": "She"
+            }
+          },
+          "group-pron": {
+            "pronPl": {
+              "__cond": "group",
+              "My brother and I": "We",
+              "My friend and I": "We",
+              "My parents": "They",
+              "My sisters": "They",
+              "The children": "They"
+            }
+          }
+        },
+        "distractors": [
+          "My brother is at home. She is happy.",
+          "My sister is at home. He is happy.",
+          "My parents are at home. We are happy.",
+          "My brother and I are at home. They are happy.",
+          "The children are at home. It is happy.",
+          "My mother is at home. They is happy."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Để không phải nhắc lại tên hay danh từ hai lần, em thay nó bằng đại từ. Một người nam → \"He\"; một người nữ → \"She\"; một vật/con vật → \"It\"; nhiều người mà CÓ em ở trong đó → \"We\"; nhiều người mà KHÔNG có em → \"They\". Nhớ đại từ phải khớp với danh từ đứng trước, và đại từ số nhiều đi với \"are\"."
+    },
+    {
+      "id": "be-am-is-are",
+      "title_vi": "Động từ \"to be\": am · is · are",
+      "explain_vi": "\"I\" đi với am; \"He/She/It\" và một người đi với is; \"You/We/They\" và nhiều người đi với are. Phủ định thì thêm \"not\" ngay sau am/is/are.",
+      "examples": [
+        "I am happy today.",
+        "She is happy today.",
+        "They are not at school today."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words",
+        "listen_choose",
+        "transform"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "be-affirm",
+            "text": "{subj} {be} happy today.",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "Chọn dạng \"to be\" khớp với chủ ngữ.",
+            "audioText": "She is happy today."
+          },
+          {
+            "id": "be-negative",
+            "text": "{subj} {be} not at school today.",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "Câu phủ định: \"not\" đứng ngay sau am/is/are.",
+            "audioText": "They are not at school today."
+          }
+        ],
+        "slots": {
+          "subj": [
+            "I",
+            "He",
+            "She",
+            "You",
+            "We",
+            "They"
+          ],
+          "be": [
+            "am",
+            "is",
+            "are"
+          ]
+        },
+        "answerKey": {
+          "be-affirm": {
+            "be": {
+              "__cond": "subj",
+              "I": "am",
+              "He": "is",
+              "She": "is",
+              "You": "are",
+              "We": "are",
+              "They": "are"
+            }
+          },
+          "be-negative": {
+            "be": {
+              "__cond": "subj",
+              "I": "am",
+              "He": "is",
+              "She": "is",
+              "You": "are",
+              "We": "are",
+              "They": "are"
+            }
+          },
+          "answer-pairs": {
+            "I am happy today.": "I am not happy today.",
+            "He is happy today.": "He is not happy today.",
+            "She is happy today.": "She is not happy today.",
+            "You are happy today.": "You are not happy today.",
+            "We are happy today.": "We are not happy today.",
+            "They are happy today.": "They are not happy today."
+          }
+        },
+        "distractors": [
+          "I is happy today.",
+          "He are happy today.",
+          "They is happy today.",
+          "We am happy today.",
+          "She are not at school today.",
+          "You is not at school today."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"To be\" đổi theo chủ ngữ: \"I\" đi với \"am\"; \"He / She / It\" và một người/một vật đi với \"is\"; \"You / We / They\" và nhiều người/nhiều vật đi với \"are\". Câu phủ định chỉ cần thêm \"not\" ngay sau am/is/are: I am not, he is not (he isn't), they are not (they aren't)."
+    },
+    {
+      "id": "have-got",
+      "title_vi": "\"Have got\" / \"has got\": nói về cái mình có",
+      "explain_vi": "Nói về cái mình có: I/you/we/they + have got; he/she/it và một người + has got. Luôn có \"got\" đi kèm.",
+      "examples": [
+        "I have got a new bike.",
+        "My sister has got a new bike.",
+        "They have got two pets."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "have-got-bike",
+            "text": "{owner} {hg} got a new bike.",
+            "blanks": [
+              "hg"
+            ],
+            "context_vi": "Chọn \"have\" hay \"has\" cho khớp chủ ngữ.",
+            "audioText": "My sister has got a new bike."
+          },
+          {
+            "id": "have-got-pets",
+            "text": "{owner} {hg} got two pets at home.",
+            "blanks": [
+              "hg"
+            ],
+            "context_vi": "\"He / She\" và một người thì dùng \"has got\".",
+            "audioText": "My brother has got two pets at home."
+          }
+        ],
+        "slots": {
+          "owner": [
+            "I",
+            "You",
+            "We",
+            "They",
+            "He",
+            "She",
+            "My brother",
+            "My parents"
+          ],
+          "hg": [
+            "have",
+            "has"
+          ]
+        },
+        "answerKey": {
+          "have-got-bike": {
+            "hg": {
+              "__cond": "owner",
+              "I": "have",
+              "You": "have",
+              "We": "have",
+              "They": "have",
+              "He": "has",
+              "She": "has",
+              "My brother": "has",
+              "My parents": "have"
+            }
+          },
+          "have-got-pets": {
+            "hg": {
+              "__cond": "owner",
+              "I": "have",
+              "You": "have",
+              "We": "have",
+              "They": "have",
+              "He": "has",
+              "She": "has",
+              "My brother": "has",
+              "My parents": "have"
+            }
+          }
+        },
+        "distractors": [
+          "She have got a new bike.",
+          "I has got a new bike.",
+          "My brother have got two pets at home.",
+          "They has got two pets at home.",
+          "He have got a new bike.",
+          "We has got two pets at home."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Nói về thứ mình có, em dùng \"have got\". Với \"He / She / It\" hoặc một người thì đổi thành \"has got\": I have got a bike, my sister has got a bike. Câu phủ định thêm \"not\": I haven't got a bike, she hasn't got a bike. Lưu ý luôn có \"got\" đi kèm, và KHÔNG nói \"she have got\"."
+    },
+    {
+      "id": "can-bare-infinitive",
+      "title_vi": "\"Can\" + động từ nguyên mẫu",
+      "explain_vi": "Sau \"can\" là động từ nguyên mẫu — không thêm \"-s\", không thêm \"to\": She can swim (không phải \"cans swim\" hay \"can to swim\").",
+      "examples": [
+        "My sister can swim very well.",
+        "He can draw very well.",
+        "They can cook very well."
+      ],
+      "generators": [
+        "mcq",
+        "order_words",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "can-do-well",
+            "text": "{doer} can {verb} very well.",
+            "blanks": [],
+            "context_vi": "Sau \"can\" là động từ nguyên mẫu, không thêm gì.",
+            "audioText": "My sister can swim very well."
+          }
+        ],
+        "slots": {
+          "doer": [
+            "My sister",
+            "My brother",
+            "He",
+            "She",
+            "They",
+            "We"
+          ],
+          "verb": [
+            "swim",
+            "draw",
+            "cook",
+            "sing",
+            "dance"
+          ]
+        },
+        "answerKey": {},
+        "distractors": [
+          "My sister cans swim very well.",
+          "My sister can swims very well.",
+          "He can to draw very well.",
+          "They can cooks very well.",
+          "She cans dance very well.",
+          "We can to sing very well."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"Can\" nghĩa là có thể / biết làm gì. Sau \"can\" luôn là động từ ở dạng nguyên mẫu, KHÔNG thêm \"-s\", KHÔNG thêm \"to\": She can swim (đúng) — She cans swim, She can swims, She can to swim (đều sai). \"Can\" giữ nguyên với mọi chủ ngữ: I can, he can, they can."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "my-family-at-home",
+      "title": "At home",
+      "title_vi": "Ở nhà",
+      "text": "It is Sunday. My parents are in the garden. They have got a small dog. My sister is in the kitchen with my mother. She can cook noodles very well. I am in my room. I have got a new bike, but it is raining today.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Bố mẹ bạn ấy đang ở trong vườn, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "The parents are in the garden."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Người chị/em gái biết làm gì rất giỏi?",
+          "type": "mcq",
+          "choices": [
+            "cook noodles",
+            "ride a bike",
+            "swim in the river"
+          ],
+          "answer": 0,
+          "audioText": "What can the sister do very well?"
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit03.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 403,
+  "lesson": 3,
+  "topic": "Possessives and demonstratives",
+  "topic_vi": "Sở hữu & từ chỉ định",
+  "vocab": [
+    {
+      "word": "bag",
+      "vi": "cái cặp",
+      "icon": "🎒",
+      "example": "This bag is mine.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "book",
+      "vi": "quyển sách",
+      "icon": "📕",
+      "example": "That book is new.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "pen",
+      "vi": "cây bút",
+      "icon": "🖊️",
+      "example": "These pens are red.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "ruler",
+      "vi": "cái thước",
+      "icon": "📐",
+      "example": "Is this your ruler?",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "desk",
+      "vi": "cái bàn học",
+      "icon": "🪑",
+      "example": "Those desks are old.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "cat",
+      "vi": "con mèo",
+      "icon": "🐱",
+      "example": "Her cat is white.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "teacher",
+      "vi": "giáo viên",
+      "icon": "👩‍🏫",
+      "example": "The teacher's desk is big.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "parents",
+      "vi": "bố mẹ",
+      "icon": "👨‍👩‍👦",
+      "example": "Their parents are teachers.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "mine",
+      "vi": "của tôi",
+      "icon": "🙋",
+      "example": "This bag is mine.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "blue",
+      "vi": "màu xanh",
+      "icon": "🔵",
+      "example": "His bag is blue.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "possessive-adjectives",
+      "title_vi": "Tính từ sở hữu: my · your · his · her · our · their",
+      "explain_vi": "Tính từ sở hữu đứng trước danh từ và không đổi theo số nhiều: his bag, his bags. Một người nam → His, một người nữ → Her, nhiều người có mình → Our, còn lại → Their.",
+      "examples": [
+        "My brother has a new bag. His bag is blue.",
+        "My sister has a new bag. Her bag is blue.",
+        "My parents have new bags. Their bags are blue."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "one-owner-poss",
+            "text": "{person} has a new bag. {poss} bag is blue.",
+            "blanks": [
+              "poss"
+            ],
+            "context_vi": "Người chủ là MỘT người — chọn \"his\" hoặc \"her\" cho khớp.",
+            "audioText": "My sister has a new bag. Her bag is blue."
+          },
+          {
+            "id": "group-owner-poss",
+            "text": "{group} have new bags. {possPl} bags are blue.",
+            "blanks": [
+              "possPl"
+            ],
+            "context_vi": "Người chủ là NHIỀU người. Có \"and I\" thì dùng \"Our\", còn lại dùng \"Their\".",
+            "audioText": "My parents have new bags. Their bags are blue."
+          }
+        ],
+        "slots": {
+          "person": [
+            "My brother",
+            "My father",
+            "My uncle",
+            "My sister",
+            "My mother",
+            "My aunt"
+          ],
+          "poss": [
+            "His",
+            "Her"
+          ],
+          "group": [
+            "My parents",
+            "My sisters",
+            "The children",
+            "My friend and I",
+            "My brother and I"
+          ],
+          "possPl": [
+            "Their",
+            "Our"
+          ]
+        },
+        "answerKey": {
+          "one-owner-poss": {
+            "poss": {
+              "__cond": "person",
+              "My brother": "His",
+              "My father": "His",
+              "My uncle": "His",
+              "My sister": "Her",
+              "My mother": "Her",
+              "My aunt": "Her"
+            }
+          },
+          "group-owner-poss": {
+            "possPl": {
+              "__cond": "group",
+              "My parents": "Their",
+              "My sisters": "Their",
+              "The children": "Their",
+              "My friend and I": "Our",
+              "My brother and I": "Our"
+            }
+          }
+        },
+        "distractors": [
+          "My brother has a new bag. Her bag is blue.",
+          "My sister has a new bag. His bag is blue.",
+          "My parents have new bags. Our bags are blue.",
+          "My brother and I have new bags. Their bags are blue.",
+          "My mother has a new bag. Their bag is blue.",
+          "The children have new bags. Our bags are blue."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Tính từ sở hữu cho biết cái đó CỦA AI, và luôn đứng trước danh từ: my bag, his bag, their bags. Chọn theo người chủ: tôi → my; bạn → your; một người nam → his; một người nữ → her; chúng tôi (có tôi ở trong) → our; họ → their. Tính từ sở hữu KHÔNG đổi theo số nhiều: his bag và his bags đều dùng \"his\"."
+    },
+    {
+      "id": "possessive-s",
+      "title_vi": "Sở hữu cách với \"'s\"",
+      "explain_vi": "Thêm \"'s\" vào sau người chủ rồi mới đến vật: Lan's bag. Thứ tự luôn là NGƯỜI + 's + VẬT.",
+      "examples": [
+        "This bag belongs to Lan. It is Lan's bag.",
+        "I know my sister. This is my sister's cat.",
+        "This desk belongs to the teacher. It is the teacher's desk."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "belongs-to-s",
+            "text": "This bag belongs to {owner}. It is {ownerS} bag.",
+            "blanks": [
+              "ownerS"
+            ],
+            "context_vi": "Thêm \"'s\" vào sau người chủ.",
+            "audioText": "This bag belongs to Lan. It is Lan's bag."
+          },
+          {
+            "id": "know-owner-s",
+            "text": "I know {owner}. This is {ownerS} cat.",
+            "blanks": [
+              "ownerS"
+            ],
+            "context_vi": "Con mèo thuộc về ai thì thêm \"'s\" vào sau người đó.",
+            "audioText": "I know my sister. This is my sister's cat."
+          }
+        ],
+        "slots": {
+          "owner": [
+            "Lan",
+            "Minh",
+            "my sister",
+            "my brother",
+            "the teacher",
+            "my friend"
+          ],
+          "ownerS": [
+            "Lan's",
+            "Minh's",
+            "my sister's",
+            "my brother's",
+            "the teacher's",
+            "my friend's"
+          ]
+        },
+        "answerKey": {
+          "belongs-to-s": {
+            "ownerS": {
+              "__cond": "owner",
+              "Lan": "Lan's",
+              "Minh": "Minh's",
+              "my sister": "my sister's",
+              "my brother": "my brother's",
+              "the teacher": "the teacher's",
+              "my friend": "my friend's"
+            }
+          },
+          "know-owner-s": {
+            "ownerS": {
+              "__cond": "owner",
+              "Lan": "Lan's",
+              "Minh": "Minh's",
+              "my sister": "my sister's",
+              "my brother": "my brother's",
+              "the teacher": "the teacher's",
+              "my friend": "my friend's"
+            }
+          }
+        },
+        "distractors": [
+          "This bag belongs to Lan. It is Lan bag.",
+          "This bag belongs to Lan. It is bag of Lan.",
+          "I know my sister. This is my sister cat.",
+          "I know Minh. This is cat of Minh.",
+          "This bag belongs to Minh. It is Minhs bag.",
+          "I know the teacher. This is the teacher cat."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Muốn nói một vật thuộc về ai, em thêm \"'s\" vào sau tên người rồi mới đến vật: Lan's bag (cái cặp của Lan), my sister's cat (con mèo của chị tôi). Thứ tự luôn là NGƯỜI + 's + VẬT. Nếu người chủ ở số nhiều đã có \"-s\" thì chỉ thêm dấu nháy: my parents' car."
+    },
+    {
+      "id": "demonstratives",
+      "title_vi": "Từ chỉ định: this · these · that · those",
+      "explain_vi": "Gần + một → this, gần + nhiều → these, xa + một → that, xa + nhiều → those. \"here\" là gần, \"over there\" là xa; this/that đi với is, these/those đi với are.",
+      "examples": [
+        "This book here is mine.",
+        "These books here are mine.",
+        "That desk over there is new.",
+        "Those desks over there are new."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "near-this-these",
+            "text": "{demNear} {thing} here {beNear} mine.",
+            "blanks": [
+              "demNear"
+            ],
+            "context_vi": "\"here\" nghĩa là Ở ĐÂY (gần). Nhìn danh từ là số ít hay số nhiều để chọn this/these.",
+            "audioText": "This book here is mine."
+          },
+          {
+            "id": "far-that-those",
+            "text": "{demFar} {thing} over there {beFar} new.",
+            "blanks": [
+              "demFar"
+            ],
+            "context_vi": "\"over there\" nghĩa là Ở KIA (xa). Nhìn danh từ là số ít hay số nhiều để chọn that/those.",
+            "audioText": "That desk over there is new."
+          }
+        ],
+        "slots": {
+          "thing": [
+            "book",
+            "books",
+            "pen",
+            "pens",
+            "bag",
+            "bags",
+            "ruler",
+            "rulers",
+            "desk",
+            "desks"
+          ],
+          "demNear": [
+            "This",
+            "These"
+          ],
+          "demFar": [
+            "That",
+            "Those"
+          ],
+          "beNear": [
+            "is",
+            "are"
+          ],
+          "beFar": [
+            "is",
+            "are"
+          ]
+        },
+        "answerKey": {
+          "near-this-these": {
+            "demNear": {
+              "__cond": "thing",
+              "book": "This",
+              "books": "These",
+              "pen": "This",
+              "pens": "These",
+              "bag": "This",
+              "bags": "These",
+              "ruler": "This",
+              "rulers": "These",
+              "desk": "This",
+              "desks": "These"
+            },
+            "beNear": {
+              "__cond": "thing",
+              "book": "is",
+              "books": "are",
+              "pen": "is",
+              "pens": "are",
+              "bag": "is",
+              "bags": "are",
+              "ruler": "is",
+              "rulers": "are",
+              "desk": "is",
+              "desks": "are"
+            }
+          },
+          "far-that-those": {
+            "demFar": {
+              "__cond": "thing",
+              "book": "That",
+              "books": "Those",
+              "pen": "That",
+              "pens": "Those",
+              "bag": "That",
+              "bags": "Those",
+              "ruler": "That",
+              "rulers": "Those",
+              "desk": "That",
+              "desks": "Those"
+            },
+            "beFar": {
+              "__cond": "thing",
+              "book": "is",
+              "books": "are",
+              "pen": "is",
+              "pens": "are",
+              "bag": "is",
+              "bags": "are",
+              "ruler": "is",
+              "rulers": "are",
+              "desk": "is",
+              "desks": "are"
+            }
+          }
+        },
+        "distractors": [
+          "These book here is mine.",
+          "This books here are mine.",
+          "That books over there is new.",
+          "Those desk over there are new.",
+          "This pens here is mine.",
+          "Those ruler over there are new."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Chọn theo hai điều: GẦN hay XA, và MỘT hay NHIỀU. Gần + một → \"this\"; gần + nhiều → \"these\"; xa + một → \"that\"; xa + nhiều → \"those\". Nhớ đi kèm động từ cho đúng: this/that đi với \"is\", these/those đi với \"are\". Từ \"here\" (ở đây) báo hiệu GẦN, còn \"over there\" (ở kia) báo hiệu XA."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "in-the-classroom",
+      "title": "In the classroom",
+      "title_vi": "Trong lớp học",
+      "text": "Look at our classroom. This bag here is mine. That bag over there is Lan's. Her bag is blue and mine is green. Those desks near the window are new, but my desk is old. The teacher's desk is next to the door.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Cái cặp màu xanh dương là của Lan, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "Lan's bag is blue."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Những cái bàn ở gần cửa sổ thì thế nào?",
+          "type": "mcq",
+          "choices": [
+            "They are new.",
+            "They are old.",
+            "They are green."
+          ],
+          "answer": 0,
+          "audioText": "The desks near the window are new."
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit04.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 404,
+  "lesson": 4,
+  "topic": "Articles: a, an, the",
+  "topic_vi": "Mạo từ a / an / the",
+  "vocab": [
+    {
+      "word": "apple",
+      "vi": "quả táo",
+      "icon": "🍎",
+      "example": "This is an apple.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "orange",
+      "vi": "quả cam",
+      "icon": "🍊",
+      "example": "I can see an orange.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "egg",
+      "vi": "quả trứng",
+      "icon": "🥚",
+      "example": "I can see an egg.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "umbrella",
+      "vi": "cái ô, cây dù",
+      "icon": "☂️",
+      "example": "I have got an umbrella.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "elephant",
+      "vi": "con voi",
+      "icon": "🐘",
+      "example": "An elephant is very big.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "book",
+      "vi": "quyển sách",
+      "icon": "📕",
+      "example": "This is a book.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "pen",
+      "vi": "cây bút",
+      "icon": "🖊️",
+      "example": "I can see a pen.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "dog",
+      "vi": "con chó",
+      "icon": "🐶",
+      "example": "I have got a dog.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "moon",
+      "vi": "mặt trăng",
+      "icon": "🌙",
+      "example": "Look at the moon!",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "door",
+      "vi": "cái cửa",
+      "icon": "🚪",
+      "example": "Please close the door.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "football",
+      "vi": "bóng đá",
+      "icon": "⚽",
+      "example": "We play football after school.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "breakfast",
+      "vi": "bữa sáng",
+      "icon": "🥣",
+      "example": "I have breakfast with my family every day.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "a-vs-an",
+      "title_vi": "Mạo từ \"a\" và \"an\": chọn theo chữ đầu của danh từ",
+      "explain_vi": "Danh từ đếm được số ít cần \"a\" hoặc \"an\". Từ bắt đầu bằng nguyên âm a, e, i, o, u thì dùng \"an\" (an apple); các từ còn lại dùng \"a\" (a book).",
+      "examples": [
+        "This is a book.",
+        "This is an apple.",
+        "I can see an umbrella."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "see-art-noun",
+            "text": "I can see {art} {noun}.",
+            "blanks": [
+              "art"
+            ],
+            "context_vi": "Nhìn chữ đầu của danh từ: nguyên âm thì \"an\", phụ âm thì \"a\".",
+            "audioText": "I can see an apple."
+          },
+          {
+            "id": "this-is-art-noun",
+            "text": "This is {art} {noun}.",
+            "blanks": [
+              "art"
+            ],
+            "context_vi": "Một cái thôi, nên phải có mạo từ \"a\" hoặc \"an\" trước danh từ.",
+            "audioText": "This is a book."
+          }
+        ],
+        "slots": {
+          "art": [
+            "a",
+            "an"
+          ],
+          "noun": [
+            "apple",
+            "orange",
+            "egg",
+            "umbrella",
+            "elephant",
+            "book",
+            "pen",
+            "dog",
+            "cat",
+            "table"
+          ]
+        },
+        "answerKey": {
+          "see-art-noun": {
+            "art": {
+              "__cond": "noun",
+              "apple": "an",
+              "orange": "an",
+              "egg": "an",
+              "umbrella": "an",
+              "elephant": "an",
+              "book": "a",
+              "pen": "a",
+              "dog": "a",
+              "cat": "a",
+              "table": "a"
+            }
+          },
+          "this-is-art-noun": {
+            "art": {
+              "__cond": "noun",
+              "apple": "an",
+              "orange": "an",
+              "egg": "an",
+              "umbrella": "an",
+              "elephant": "an",
+              "book": "a",
+              "pen": "a",
+              "dog": "a",
+              "cat": "a",
+              "table": "a"
+            }
+          }
+        },
+        "distractors": [
+          "I can see a apple.",
+          "I can see a egg.",
+          "I can see an pen.",
+          "This is a umbrella.",
+          "This is an book.",
+          "This is an dog."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Khi nói về MỘT thứ đếm được, tiếng Anh luôn cần mạo từ trước danh từ: a book, an apple. Chọn \"a\" hay \"an\" tuỳ chữ cái đầu của từ đi ngay sau: nếu là nguyên âm a, e, i, o, u thì dùng \"an\" — an apple, an orange, an egg, an umbrella, an elephant; nếu là phụ âm thì dùng \"a\" — a book, a pen, a dog, a table. Lý do là để hai nguyên âm không dính vào nhau, đọc cho dễ. Người Việt hay quên hẳn mạo từ (\"This is book\") hoặc dùng sai (\"a apple\") — hai lỗi này em cần để ý nhất."
+    },
+    {
+      "id": "the-definite",
+      "title_vi": "Mạo từ \"the\": khi cả hai đều đã biết thứ đó",
+      "explain_vi": "Dùng \"the\" khi người nghe đã biết rõ thứ đó: nhắc lại lần thứ hai (a book → the book), hoặc thứ chỉ có một duy nhất như the moon, the sky.",
+      "examples": [
+        "I have got a book. The book is new.",
+        "Look at the moon!",
+        "Please close the door."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "second-mention",
+            "text": "I have got {art} {noun}. {def} {noun} is new.",
+            "blanks": [
+              "def"
+            ],
+            "context_vi": "Câu sau nhắc lại đúng thứ vừa nói ở câu trước — nhắc lại lần hai thì dùng mạo từ nào?",
+            "audioText": "I have got a book. The book is new."
+          },
+          {
+            "id": "look-at-unique",
+            "text": "Look at {def2} {unique}!",
+            "blanks": [
+              "def2"
+            ],
+            "context_vi": "Trên trời chỉ có duy nhất một thứ đó — thứ duy nhất thì dùng mạo từ nào?",
+            "audioText": "Look at the moon!"
+          },
+          {
+            "id": "close-the-thing",
+            "text": "Please close {def2} {roomthing}.",
+            "blanks": [
+              "def2"
+            ],
+            "context_vi": "Cả hai người đều biết rõ là cái nào trong phòng này — chọn mạo từ cho đúng.",
+            "audioText": "Please close the door."
+          }
+        ],
+        "slots": {
+          "art": [
+            "a",
+            "an"
+          ],
+          "noun": [
+            "book",
+            "bike",
+            "pen",
+            "apple",
+            "egg",
+            "umbrella"
+          ],
+          "def": [
+            "The",
+            "A",
+            "An"
+          ],
+          "def2": [
+            "the",
+            "a",
+            "an"
+          ],
+          "unique": [
+            "moon",
+            "sky",
+            "stars",
+            "rainbow"
+          ],
+          "roomthing": [
+            "door",
+            "window",
+            "gate",
+            "fridge"
+          ]
+        },
+        "answerKey": {
+          "second-mention": {
+            "def": "The",
+            "art": {
+              "__cond": "noun",
+              "book": "a",
+              "bike": "a",
+              "pen": "a",
+              "apple": "an",
+              "egg": "an",
+              "umbrella": "an"
+            }
+          },
+          "look-at-unique": {
+            "def2": "the"
+          },
+          "close-the-thing": {
+            "def2": "the"
+          }
+        },
+        "distractors": [
+          "I have got a book. A book is new.",
+          "I have got an egg. An egg is new.",
+          "I have got a bike. Bike is new.",
+          "Look at a moon!",
+          "Look at moon!",
+          "Please close door."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"A / an\" dùng khi nói tới một thứ LẦN ĐẦU, người nghe chưa biết là cái nào. Sang lần thứ hai, cả hai đã biết rõ cái đó rồi thì đổi sang \"the\": I have got a book. The book is new. Ngoài ra em dùng \"the\" khi trên đời chỉ có một thứ như thế — the moon, the sun, the sky — và khi thứ đó rõ ràng trong hoàn cảnh đang nói: Please close the door (cái cửa của phòng này). Khác với \"a/an\", \"the\" dùng được cho cả số ít và số nhiều: the door, the doors."
+    },
+    {
+      "id": "no-article",
+      "title_vi": "Khi KHÔNG dùng mạo từ",
+      "explain_vi": "Không dùng mạo từ trước tên môn học, môn chơi, bữa ăn và ngôn ngữ: play football, study English, have breakfast — không nói \"a football\" hay \"the breakfast\".",
+      "examples": [
+        "We play football after school.",
+        "My brother studies English at school.",
+        "I have breakfast with my family every day."
+      ],
+      "generators": [
+        "mcq",
+        "order_words"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "play-game",
+            "text": "We play {game} after school.",
+            "blanks": [],
+            "context_vi": "Tên môn chơi đứng một mình, không có mạo từ.",
+            "audioText": "We play football after school."
+          },
+          {
+            "id": "study-subject",
+            "text": "My brother studies {subject} at school.",
+            "blanks": [],
+            "context_vi": "Tên môn học và tên ngôn ngữ không có mạo từ.",
+            "audioText": "My brother studies English at school."
+          },
+          {
+            "id": "have-meal",
+            "text": "I have {meal} with my family every day.",
+            "blanks": [],
+            "context_vi": "Tên bữa ăn không có mạo từ.",
+            "audioText": "I have breakfast with my family every day."
+          }
+        ],
+        "slots": {
+          "game": [
+            "football",
+            "chess",
+            "badminton",
+            "volleyball",
+            "tennis"
+          ],
+          "subject": [
+            "English",
+            "maths",
+            "music",
+            "art",
+            "history"
+          ],
+          "meal": [
+            "breakfast",
+            "lunch",
+            "dinner"
+          ]
+        },
+        "answerKey": {},
+        "distractors": [
+          "We play the football after school.",
+          "We play a chess after school.",
+          "My brother studies the maths at school.",
+          "My brother studies a English at school.",
+          "I have a breakfast with my family every day.",
+          "I have the dinner with my family every day."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Có những chỗ tiếng Anh KHÔNG dùng mạo từ, dù tiếng Việt vẫn nói \"môn bóng đá\", \"bữa sáng\". Bốn nhóm em cần nhớ: (1) môn chơi và môn thể thao — play football, play chess, play tennis; (2) môn học và ngôn ngữ — study English, study maths, learn music; (3) bữa ăn — have breakfast, have lunch, have dinner; (4) danh từ số nhiều hoặc không đếm được khi nói chung chung — I like apples, I drink milk. Vì vậy \"We play the football\" hay \"I have a breakfast\" đều sai."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "monday-morning",
+      "title": "Monday morning",
+      "title_vi": "Buổi sáng thứ Hai",
+      "text": "It is Monday morning. I have breakfast at six o'clock. Then I take an umbrella and a book, and I go to school. The umbrella is new. At school we study English and maths. After school my friends and I play football in the park near my house.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Bạn ấy mang theo một cái ô, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "The child takes an umbrella."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Sau giờ học các bạn ấy làm gì?",
+          "type": "mcq",
+          "choices": [
+            "play football in the park",
+            "study maths at home",
+            "have breakfast at school"
+          ],
+          "answer": 0,
+          "audioText": "What do they do after school?"
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit05.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 405,
+  "lesson": 5,
+  "topic": "Expressing quantity",
+  "topic_vi": "Diễn tả số lượng",
+  "vocab": [
+    {
+      "word": "water",
+      "vi": "nước",
+      "icon": "💧",
+      "example": "I need a little water.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "milk",
+      "vi": "sữa",
+      "icon": "🥛",
+      "example": "There is some milk in the fridge.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "juice",
+      "vi": "nước ép",
+      "icon": "🧃",
+      "example": "I have got a lot of juice.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "bread",
+      "vi": "bánh mì",
+      "icon": "🍞",
+      "example": "We have only a little bread left.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "rice",
+      "vi": "gạo, cơm",
+      "icon": "🍚",
+      "example": "How much rice do you want?",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "money",
+      "vi": "tiền",
+      "icon": "💰",
+      "example": "I have not got much money.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "sweets",
+      "vi": "bánh kẹo",
+      "icon": "🍬",
+      "example": "I have got a few sweets in my bag.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "books",
+      "vi": "những quyển sách",
+      "icon": "📚",
+      "example": "How many books have you got?",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "apples",
+      "vi": "những quả táo",
+      "icon": "🍎",
+      "example": "There are some apples on the table.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "eggs",
+      "vi": "những quả trứng",
+      "icon": "🥚",
+      "example": "We need a few eggs.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "pens",
+      "vi": "những cây bút",
+      "icon": "🖊️",
+      "example": "I have got a lot of pens.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "fridge",
+      "vi": "tủ lạnh",
+      "icon": "🧊",
+      "example": "The fridge is empty.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "some-any",
+      "title_vi": "\"Some\" và \"any\": nói về một lượng nào đó",
+      "explain_vi": "Câu khẳng định dùng \"some\"; câu phủ định (có not) và câu hỏi dùng \"any\": I have got some milk. / I have not got any milk. / Have you got any milk?",
+      "examples": [
+        "I have got some books in my bag.",
+        "I have not got any books in my bag.",
+        "Have you got any books in your bag?"
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "some-affirm",
+            "text": "I have got {sa} {qnoun} in my bag.",
+            "blanks": [
+              "sa"
+            ],
+            "context_vi": "Đây là câu KHẲNG ĐỊNH (không có \"not\") — chọn \"some\" hay \"any\"?",
+            "audioText": "I have got some books in my bag."
+          },
+          {
+            "id": "any-negative",
+            "text": "I have not got {sa} {qnoun} in my bag.",
+            "blanks": [
+              "sa"
+            ],
+            "context_vi": "Câu có \"not\" nên là câu PHỦ ĐỊNH — chọn \"some\" hay \"any\"?",
+            "audioText": "I have not got any books in my bag."
+          },
+          {
+            "id": "any-question",
+            "text": "Have you got {sa} {qnoun} in your bag?",
+            "blanks": [
+              "sa"
+            ],
+            "context_vi": "Đây là câu HỎI (có dấu ?) — chọn \"some\" hay \"any\"?",
+            "audioText": "Have you got any books in your bag?"
+          }
+        ],
+        "slots": {
+          "sa": [
+            "some",
+            "any"
+          ],
+          "qnoun": [
+            "water",
+            "milk",
+            "bread",
+            "rice",
+            "sweets",
+            "books",
+            "apples",
+            "pens"
+          ]
+        },
+        "answerKey": {
+          "some-affirm": {
+            "sa": "some"
+          },
+          "any-negative": {
+            "sa": "any"
+          },
+          "any-question": {
+            "sa": "any"
+          }
+        },
+        "distractors": [
+          "I have got any water in my bag.",
+          "I have got any books in my bag.",
+          "I have not got some bread in my bag.",
+          "I have not got some pens in my bag.",
+          "Have you got some milk in your bag?",
+          "Have you got some sweets in your bag?"
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"Some\" và \"any\" đều nghĩa là \"một ít / một vài\", dùng trước danh từ số nhiều (some books) hoặc danh từ không đếm được (some milk). Cách chọn rất đơn giản: câu KHẲNG ĐỊNH dùng \"some\" — I have got some sweets; câu PHỦ ĐỊNH có \"not\" dùng \"any\" — I have not got any sweets; câu HỎI cũng dùng \"any\" — Have you got any sweets? Chỉ có một ngoại lệ nhỏ em sẽ gặp sau này: khi mời hoặc xin thì vẫn nói \"some\" trong câu hỏi — Would you like some juice?"
+    },
+    {
+      "id": "a-lot-of",
+      "title_vi": "\"A lot of\" · \"much\" · \"many\": nói về lượng nhiều",
+      "explain_vi": "Câu khẳng định dùng \"a lot of\" cho cả hai loại danh từ. Trong câu phủ định và câu hỏi: không đếm được → \"much\", đếm được số nhiều → \"many\".",
+      "examples": [
+        "I have got a lot of juice at home.",
+        "I have not got much juice at home.",
+        "How many books do you want?"
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "alot-affirm",
+            "text": "I have got {alot} {qn} at home.",
+            "blanks": [
+              "alot"
+            ],
+            "context_vi": "Câu khẳng định nói \"nhiều\" — chọn \"a lot of\", \"much\" hay \"many\"?",
+            "audioText": "I have got a lot of juice at home."
+          },
+          {
+            "id": "not-much-many",
+            "text": "I have not got {mm} {qn} at home.",
+            "blanks": [
+              "mm"
+            ],
+            "context_vi": "Câu phủ định: danh từ không đếm được → \"much\"; đếm được số nhiều → \"many\".",
+            "audioText": "I have not got much juice at home."
+          },
+          {
+            "id": "how-much-many",
+            "text": "How {mm} {qn} do you want?",
+            "blanks": [
+              "mm"
+            ],
+            "context_vi": "Hỏi số lượng: không đếm được → \"much\"; đếm được số nhiều → \"many\".",
+            "audioText": "How many books do you want?"
+          }
+        ],
+        "slots": {
+          "alot": [
+            "a lot of",
+            "much",
+            "many"
+          ],
+          "mm": [
+            "much",
+            "many"
+          ],
+          "qn": [
+            "water",
+            "milk",
+            "juice",
+            "rice",
+            "bread",
+            "money",
+            "books",
+            "apples",
+            "sweets",
+            "pens"
+          ]
+        },
+        "answerKey": {
+          "alot-affirm": {
+            "alot": "a lot of"
+          },
+          "not-much-many": {
+            "mm": {
+              "__cond": "qn",
+              "water": "much",
+              "milk": "much",
+              "juice": "much",
+              "rice": "much",
+              "bread": "much",
+              "money": "much",
+              "books": "many",
+              "apples": "many",
+              "sweets": "many",
+              "pens": "many"
+            }
+          },
+          "how-much-many": {
+            "mm": {
+              "__cond": "qn",
+              "water": "much",
+              "milk": "much",
+              "juice": "much",
+              "rice": "much",
+              "bread": "much",
+              "money": "much",
+              "books": "many",
+              "apples": "many",
+              "sweets": "many",
+              "pens": "many"
+            }
+          }
+        },
+        "distractors": [
+          "I have got a lot water at home.",
+          "I have got lot of milk at home.",
+          "I have not got much books at home.",
+          "I have not got many rice at home.",
+          "How much books do you want?",
+          "How many water do you want?"
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Muốn nói \"nhiều\", trong câu khẳng định em dùng \"a lot of\" — nó đi được với cả danh từ đếm được số nhiều (a lot of books) và danh từ không đếm được (a lot of water). Nhớ đủ ba chữ \"a lot of\", đừng bỏ \"a\" hay \"of\". Trong câu phủ định và câu hỏi, người ta thường dùng \"much\" với danh từ KHÔNG đếm được (How much water? / I have not got much water) và \"many\" với danh từ đếm được SỐ NHIỀU (How many books? / I have not got many books). Bí quyết: cứ hỏi \"thứ này đếm từng cái được không?\" — được thì many, không được thì much."
+    },
+    {
+      "id": "a-few-a-little",
+      "title_vi": "\"A few\" và \"a little\": nói về lượng ít",
+      "explain_vi": "\"A few\" đi với danh từ đếm được số nhiều (a few eggs); \"a little\" đi với danh từ không đếm được (a little milk). Cả hai đều nghĩa là \"một ít\".",
+      "examples": [
+        "I have got a few eggs in my bag.",
+        "I have got a little milk in my bag.",
+        "We have only a little bread left."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "few-little-bag",
+            "text": "I have got {fl} {qn2} in my bag.",
+            "blanks": [
+              "fl"
+            ],
+            "context_vi": "Đếm từng cái được → \"a few\"; không đếm được → \"a little\".",
+            "audioText": "I have got a few eggs in my bag."
+          },
+          {
+            "id": "only-few-little",
+            "text": "We have only {fl} {qn2} left.",
+            "blanks": [
+              "fl"
+            ],
+            "context_vi": "Nhìn danh từ: đếm được số nhiều → \"a few\"; không đếm được → \"a little\".",
+            "audioText": "We have only a little bread left."
+          }
+        ],
+        "slots": {
+          "fl": [
+            "a few",
+            "a little"
+          ],
+          "qn2": [
+            "water",
+            "milk",
+            "bread",
+            "rice",
+            "money",
+            "sweets",
+            "books",
+            "apples",
+            "eggs",
+            "pens"
+          ]
+        },
+        "answerKey": {
+          "few-little-bag": {
+            "fl": {
+              "__cond": "qn2",
+              "water": "a little",
+              "milk": "a little",
+              "bread": "a little",
+              "rice": "a little",
+              "money": "a little",
+              "sweets": "a few",
+              "books": "a few",
+              "apples": "a few",
+              "eggs": "a few",
+              "pens": "a few"
+            }
+          },
+          "only-few-little": {
+            "fl": {
+              "__cond": "qn2",
+              "water": "a little",
+              "milk": "a little",
+              "bread": "a little",
+              "rice": "a little",
+              "money": "a little",
+              "sweets": "a few",
+              "books": "a few",
+              "apples": "a few",
+              "eggs": "a few",
+              "pens": "a few"
+            }
+          }
+        },
+        "distractors": [
+          "I have got a few milk in my bag.",
+          "I have got a little eggs in my bag.",
+          "I have got a little books in my bag.",
+          "We have only a little sweets left.",
+          "We have only a few water left.",
+          "We have only few money left."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"A few\" và \"a little\" đều nghĩa là \"một ít\", nhưng dùng cho hai loại danh từ khác nhau. \"A few\" + danh từ ĐẾM ĐƯỢC SỐ NHIỀU: a few eggs, a few books, a few sweets. \"A little\" + danh từ KHÔNG ĐẾM ĐƯỢC: a little milk, a little water, a little money. Cách kiểm tra nhanh: nếu em nói được \"một quả, hai quả\" thì dùng a few; nếu phải đong bằng ly, bằng cân thì dùng a little. Đừng bỏ chữ \"a\": \"few books\" và \"little milk\" nghe như \"gần chẳng có gì\", nghĩa khác hẳn với \"a few books\" (có một ít)."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "picnic-basket",
+      "title": "The picnic basket",
+      "title_vi": "Giỏ đi chơi picnic",
+      "text": "We are going on a picnic today. Mum looks in the fridge. There is a lot of juice, but there is only a little bread. \"Have you got any apples?\" she asks me. \"Yes, I have got a few apples and some sweets,\" I say. Mum smiles. \"Good. We do not need much rice today.\"",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Trong tủ lạnh chỉ còn một ít bánh mì, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "There is only a little bread in the fridge."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Bạn ấy có bao nhiêu quả táo?",
+          "type": "mcq",
+          "choices": [
+            "a few apples",
+            "a lot of apples",
+            "no apples"
+          ],
+          "answer": 0,
+          "audioText": "How many apples has the child got?"
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit06.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 406,
+  "lesson": 6,
+  "topic": "Indefinite pronouns",
+  "topic_vi": "Đại từ bất định",
+  "vocab": [
+    {
+      "word": "somebody",
+      "vi": "ai đó, có người",
+      "icon": "🙋",
+      "example": "Somebody is at the door.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "anybody",
+      "vi": "ai (trong câu phủ định, câu hỏi)",
+      "icon": "🤷",
+      "example": "I cannot see anybody in the garden.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "nobody",
+      "vi": "không ai cả",
+      "icon": "🚷",
+      "example": "Nobody is in the kitchen.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "something",
+      "vi": "cái gì đó",
+      "icon": "🎁",
+      "example": "I want something to eat.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "anything",
+      "vi": "cái gì (trong câu phủ định, câu hỏi)",
+      "icon": "❔",
+      "example": "I cannot find anything in my bag.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "nothing",
+      "vi": "không có gì cả",
+      "icon": "⭕",
+      "example": "There is nothing in the box.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "everybody",
+      "vi": "mọi người",
+      "icon": "👨‍👩‍👧‍👦",
+      "example": "Everybody in my class is happy.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "everything",
+      "vi": "mọi thứ",
+      "icon": "🌈",
+      "example": "Everything in my bag is new.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "everywhere",
+      "vi": "khắp mọi nơi",
+      "icon": "🗺️",
+      "example": "We looked for the cat everywhere.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "garden",
+      "vi": "khu vườn",
+      "icon": "🌳",
+      "example": "The garden is empty.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "noise",
+      "vi": "tiếng động",
+      "icon": "🔔",
+      "example": "I can hear a noise.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "empty",
+      "vi": "trống, rỗng",
+      "icon": "🕳️",
+      "example": "My bag is empty.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "some-any-no-body",
+      "title_vi": "Nói về NGƯỜI: somebody · anybody · nobody",
+      "explain_vi": "Câu khẳng định dùng \"somebody\" (có ai đó); câu phủ định có \"cannot / not\" dùng \"anybody\"; muốn nói \"không ai cả\" thì dùng \"nobody\" và bỏ \"not\" đi.",
+      "examples": [
+        "I can hear a noise. Somebody is knocking at the door.",
+        "I cannot see anybody in the garden.",
+        "The garden is empty. Nobody is there."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "cannot-see-anybody",
+            "text": "I cannot see {ip} in the {place}.",
+            "blanks": [
+              "ip"
+            ],
+            "context_vi": "Câu đã có \"cannot\" nên dùng \"anybody\"; thêm \"nobody\" nữa là phủ định hai lần, sai.",
+            "audioText": "I cannot see anybody in the garden."
+          },
+          {
+            "id": "empty-nobody",
+            "text": "The {place} is empty. {ipCap} is there.",
+            "blanks": [
+              "ipCap"
+            ],
+            "context_vi": "Phòng trống không — chọn \"Somebody\", \"Anybody\" hay \"Nobody\" cho đúng nghĩa?",
+            "audioText": "The garden is empty. Nobody is there."
+          },
+          {
+            "id": "noise-somebody",
+            "text": "I can hear a noise. {ipCap} is knocking at the {entrance}.",
+            "blanks": [
+              "ipCap"
+            ],
+            "context_vi": "Có tiếng động, và đây là câu khẳng định — chọn \"Somebody\", \"Anybody\" hay \"Nobody\"?",
+            "audioText": "I can hear a noise. Somebody is knocking at the door."
+          }
+        ],
+        "slots": {
+          "ip": [
+            "somebody",
+            "anybody",
+            "nobody"
+          ],
+          "ipCap": [
+            "Somebody",
+            "Anybody",
+            "Nobody"
+          ],
+          "place": [
+            "garden",
+            "kitchen",
+            "classroom",
+            "park"
+          ],
+          "entrance": [
+            "door",
+            "window",
+            "gate"
+          ]
+        },
+        "answerKey": {
+          "cannot-see-anybody": {
+            "ip": "anybody"
+          },
+          "empty-nobody": {
+            "ipCap": "Nobody"
+          },
+          "noise-somebody": {
+            "ipCap": "Somebody"
+          }
+        },
+        "distractors": [
+          "I cannot see nobody in the garden.",
+          "I cannot see nothing in the kitchen.",
+          "The garden is empty. Nobody are there.",
+          "The park is empty. Anybody is there.",
+          "I can hear a noise. Anybody is knocking at the door.",
+          "I can hear a noise. Somebody are knocking at the door."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Ba từ này đều nói về NGƯỜI mà ta không biết rõ là ai. \"Somebody\" (= someone) dùng trong câu khẳng định: Somebody is at the door — có ai đó ở ngoài cửa. \"Anybody\" (= anyone) dùng trong câu phủ định và câu hỏi: I cannot see anybody. / Can you see anybody? \"Nobody\" (= no one) tự nó đã mang nghĩa phủ định \"không ai cả\", nên câu KHÔNG được có \"not\" nữa: Nobody is there (đúng) — I cannot see nobody (sai, phủ định hai lần). Một điểm nữa rất hay quên: cả ba từ đều là SỐ ÍT, luôn đi với \"is\" chứ không phải \"are\" — Everybody is happy, Nobody is there."
+    },
+    {
+      "id": "thing-compounds",
+      "title_vi": "Nói về VẬT: something · anything · nothing",
+      "explain_vi": "Câu khẳng định dùng \"something\"; câu phủ định có \"cannot / not\" dùng \"anything\"; muốn nói \"không có gì cả\" thì dùng \"nothing\" và bỏ \"not\" đi.",
+      "examples": [
+        "I am hungry. I want something to eat.",
+        "I cannot find anything in my bag.",
+        "My bag is empty. There is nothing in it."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "cannot-find-anything",
+            "text": "I cannot find {th} in my {place2}.",
+            "blanks": [
+              "th"
+            ],
+            "context_vi": "Câu đã có \"cannot\" nên dùng \"anything\"; thêm \"nothing\" nữa là phủ định hai lần, sai.",
+            "audioText": "I cannot find anything in my bag."
+          },
+          {
+            "id": "empty-nothing",
+            "text": "My {container} is empty. There is {th} in it.",
+            "blanks": [
+              "th"
+            ],
+            "context_vi": "Chỗ đó trống không — chọn \"something\", \"anything\" hay \"nothing\"?",
+            "audioText": "My bag is empty. There is nothing in it."
+          },
+          {
+            "id": "hungry-something",
+            "text": "I am {state}. I want {th} to {eatdrink}.",
+            "blanks": [
+              "th"
+            ],
+            "context_vi": "Đang đói/khát và MUỐN có, câu khẳng định — chọn \"something\", \"anything\" hay \"nothing\"?",
+            "audioText": "I am hungry. I want something to eat."
+          }
+        ],
+        "slots": {
+          "th": [
+            "something",
+            "anything",
+            "nothing"
+          ],
+          "container": [
+            "bag",
+            "box",
+            "cup",
+            "basket"
+          ],
+          "place2": [
+            "bag",
+            "box",
+            "room",
+            "pocket"
+          ],
+          "state": [
+            "hungry",
+            "thirsty"
+          ],
+          "eatdrink": [
+            "eat",
+            "drink"
+          ]
+        },
+        "answerKey": {
+          "cannot-find-anything": {
+            "th": "anything"
+          },
+          "empty-nothing": {
+            "th": "nothing"
+          },
+          "hungry-something": {
+            "th": "something",
+            "eatdrink": {
+              "__cond": "state",
+              "hungry": "eat",
+              "thirsty": "drink"
+            }
+          }
+        },
+        "distractors": [
+          "I cannot find nothing in my bag.",
+          "I cannot find any thing in my bag.",
+          "My box is empty. There are nothing in it.",
+          "My bag is empty. There is no anything in it.",
+          "I am thirsty. I want something drink.",
+          "I am hungry. I want anything for eat."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Ba từ này nói về VẬT mà ta không nói rõ là cái gì, và chúng đi theo đúng luật của some / any / no. \"Something\" dùng trong câu khẳng định: I want something to eat. \"Anything\" dùng trong câu phủ định và câu hỏi: I cannot find anything. / Have you got anything for me? \"Nothing\" tự nó đã phủ định (= not anything), nên trong câu không có \"not\" nữa: There is nothing in it (đúng) — There is not nothing in it (sai). Nhớ viết LIỀN một từ: something, anything, nothing — viết tách thành \"some thing\", \"any thing\" là sai."
+    },
+    {
+      "id": "every-where",
+      "title_vi": "Nói về TẤT CẢ: everybody · everything · everywhere",
+      "explain_vi": "\"Everybody\" = tất cả mọi người, \"everything\" = tất cả mọi thứ, \"everywhere\" = khắp mọi nơi. Everybody và everything là SỐ ÍT, luôn đi với \"is\".",
+      "examples": [
+        "Everybody in my class is happy today.",
+        "Everything in my bag is new.",
+        "We looked for the cat everywhere."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "everybody-class",
+            "text": "{ev} in my {group} is happy today.",
+            "blanks": [
+              "ev"
+            ],
+            "context_vi": "Câu này nói về NGƯỜI — chọn \"Everybody\", \"Everything\" hay \"Everywhere\"?",
+            "audioText": "Everybody in my class is happy today."
+          },
+          {
+            "id": "everything-bag",
+            "text": "{ev} in my {container2} is new.",
+            "blanks": [
+              "ev"
+            ],
+            "context_vi": "Câu này nói về ĐỒ VẬT — chọn \"Everybody\", \"Everything\" hay \"Everywhere\"?",
+            "audioText": "Everything in my bag is new."
+          },
+          {
+            "id": "looked-everywhere",
+            "text": "We looked for the {lostthing} {ev2}.",
+            "blanks": [
+              "ev2"
+            ],
+            "context_vi": "Câu này nói về NƠI đã tìm — chọn \"everywhere\", \"everybody\" hay \"everything\"?",
+            "audioText": "We looked for the cat everywhere."
+          },
+          {
+            "id": "everybody-be",
+            "text": "Everybody in my family {be} at home now.",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "\"Everybody\" là số ít, nên đi với \"is\" chứ không phải \"are\".",
+            "audioText": "Everybody in my family is at home now."
+          }
+        ],
+        "slots": {
+          "ev": [
+            "Everybody",
+            "Everything",
+            "Everywhere"
+          ],
+          "ev2": [
+            "everywhere",
+            "everybody",
+            "everything"
+          ],
+          "be": [
+            "is",
+            "are"
+          ],
+          "lostthing": [
+            "cat",
+            "ball",
+            "key",
+            "dog"
+          ],
+          "group": [
+            "class",
+            "family",
+            "team"
+          ],
+          "container2": [
+            "bag",
+            "box",
+            "room"
+          ]
+        },
+        "answerKey": {
+          "everybody-class": {
+            "ev": "Everybody"
+          },
+          "everything-bag": {
+            "ev": "Everything"
+          },
+          "looked-everywhere": {
+            "ev2": "everywhere"
+          },
+          "everybody-be": {
+            "be": "is"
+          }
+        },
+        "distractors": [
+          "Everybody in my class are happy today.",
+          "Everything in my bag are new.",
+          "Everywhere in my class is happy today.",
+          "Everybody in my bag is new.",
+          "We looked for the cat everybody.",
+          "Everybody in my family are at home now."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Nhóm \"every-\" nói về TẤT CẢ: \"everybody\" (= everyone) là tất cả mọi người, \"everything\" là tất cả mọi thứ, \"everywhere\" là khắp mọi nơi. Chọn theo nội dung: nói về người thì everybody, nói về đồ vật thì everything, nói về địa điểm thì everywhere (và everywhere thường đứng ở cuối câu: We looked everywhere). Điều dễ sai nhất: dù nghĩa là \"tất cả\", everybody và everything vẫn là SỐ ÍT, nên đi với \"is\" và động từ thêm \"-s\": Everybody is happy (không phải \"are happy\"), Everything looks new."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "a-quiet-afternoon",
+      "title": "A quiet afternoon",
+      "title_vi": "Một buổi chiều yên tĩnh",
+      "text": "It is very quiet at home this afternoon. Nobody is in the living room. I look in the kitchen: there is nothing on the table. Then I hear a noise in the garden. Somebody is there! It is my little brother. He is looking for his ball. We look everywhere, and at last we find it under the tree. Now everybody is happy.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Trong phòng khách không có ai cả, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "Nobody is in the living room."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Ai đang ở trong vườn?",
+          "type": "mcq",
+          "choices": [
+            "my little brother",
+            "my mother",
+            "nobody"
+          ],
+          "answer": 0,
+          "audioText": "Who is in the garden?"
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit07.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 407,
+  "lesson": 7,
+  "topic": "Present Simple",
+  "topic_vi": "Hiện tại đơn",
+  "vocab": [
+    {
+      "word": "get up",
+      "vi": "thức dậy",
+      "icon": "🌅",
+      "example": "I get up at six every morning.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "walk",
+      "vi": "đi bộ",
+      "icon": "🚶",
+      "example": "My sister walks to school every day.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "study",
+      "vi": "học",
+      "icon": "📖",
+      "example": "They study English every week.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "watch",
+      "vi": "xem",
+      "icon": "📺",
+      "example": "We watch TV at night.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "drink",
+      "vi": "uống",
+      "icon": "🥛",
+      "example": "My brother drinks milk every day.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "breakfast",
+      "vi": "bữa sáng",
+      "icon": "🍳",
+      "example": "My mother eats noodles for breakfast.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "coffee",
+      "vi": "cà phê",
+      "icon": "☕",
+      "example": "My father likes coffee.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "football",
+      "vi": "bóng đá",
+      "icon": "⚽",
+      "example": "My brother plays football after school.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "always",
+      "vi": "luôn luôn",
+      "icon": "💯",
+      "example": "My sister always walks to school.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "usually",
+      "vi": "thường thường",
+      "icon": "🕐",
+      "example": "I usually get up at six.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "sometimes",
+      "vi": "thỉnh thoảng",
+      "icon": "🔄",
+      "example": "We sometimes play football after school.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "never",
+      "vi": "không bao giờ",
+      "icon": "🚫",
+      "example": "They never watch TV at night.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "third-person-s",
+      "title_vi": "Thêm \"-s\" cho He · She · It",
+      "explain_vi": "Với He / She / It hoặc MỘT người, động từ thêm \"-s\": goes, studies, plays. Với I / You / We / They hoặc nhiều người, động từ để nguyên: go, study, play.",
+      "examples": [
+        "My brother goes to school by bus.",
+        "They go to school by bus.",
+        "My sister studies English every week.",
+        "We play football after school."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "go-by-bus",
+            "text": "{subj} {goForm} to school by bus.",
+            "blanks": [
+              "goForm"
+            ],
+            "context_vi": "Chọn dạng đúng cho khớp chủ ngữ: \"go\" hay \"goes\"?",
+            "audioText": "My brother goes to school by bus."
+          },
+          {
+            "id": "study-english",
+            "text": "{subj} {studyForm} English every week.",
+            "blanks": [
+              "studyForm"
+            ],
+            "context_vi": "Chọn dạng đúng cho khớp chủ ngữ: \"study\" hay \"studies\"? Nhớ quy tắc y → ies.",
+            "audioText": "My sister studies English every week."
+          },
+          {
+            "id": "play-football",
+            "text": "{subj} {playForm} football after school.",
+            "blanks": [
+              "playForm"
+            ],
+            "context_vi": "Chọn dạng đúng cho khớp chủ ngữ: \"play\" hay \"plays\"?",
+            "audioText": "My brother plays football after school."
+          }
+        ],
+        "slots": {
+          "subj": [
+            "I",
+            "You",
+            "We",
+            "They",
+            "He",
+            "She",
+            "My brother",
+            "My sister",
+            "My friends"
+          ],
+          "goForm": [
+            "go",
+            "goes"
+          ],
+          "studyForm": [
+            "study",
+            "studies"
+          ],
+          "playForm": [
+            "play",
+            "plays"
+          ]
+        },
+        "answerKey": {
+          "go-by-bus": {
+            "goForm": {
+              "__cond": "subj",
+              "I": "go",
+              "You": "go",
+              "We": "go",
+              "They": "go",
+              "He": "goes",
+              "She": "goes",
+              "My brother": "goes",
+              "My sister": "goes",
+              "My friends": "go"
+            }
+          },
+          "study-english": {
+            "studyForm": {
+              "__cond": "subj",
+              "I": "study",
+              "You": "study",
+              "We": "study",
+              "They": "study",
+              "He": "studies",
+              "She": "studies",
+              "My brother": "studies",
+              "My sister": "studies",
+              "My friends": "study"
+            }
+          },
+          "play-football": {
+            "playForm": {
+              "__cond": "subj",
+              "I": "play",
+              "You": "play",
+              "We": "play",
+              "They": "play",
+              "He": "plays",
+              "She": "plays",
+              "My brother": "plays",
+              "My sister": "plays",
+              "My friends": "play"
+            }
+          }
+        },
+        "distractors": [
+          "My brother go to school by bus.",
+          "We goes to school by bus.",
+          "My sister studys English every week.",
+          "He study English every week.",
+          "They plays football after school.",
+          "My friends plays football after school."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Hiện tại đơn nói về việc làm THƯỜNG XUYÊN, quen thuộc: đi học, ăn sáng, chơi bóng. Động từ chỉ đổi khi chủ ngữ là He / She / It hoặc MỘT người, MỘT vật — lúc đó thêm \"-s\": He plays, My sister walks. Có ba kiểu thêm: (1) thường chỉ thêm \"-s\" — play → plays, walk → walks; (2) động từ kết thúc bằng s, x, ch, sh, o thì thêm \"-es\" — watch → watches, go → goes, do → does; (3) động từ kết thúc bằng phụ âm + y thì đổi y thành \"-ies\" — study → studies, fly → flies. Với I / You / We / They hoặc nhiều người, động từ để NGUYÊN: I play, They walk, My friends study."
+    },
+    {
+      "id": "do-does-questions",
+      "title_vi": "Câu hỏi với Do · Does",
+      "explain_vi": "Câu hỏi hiện tại đơn bắt đầu bằng Do hoặc Does. He / She / It và một người → Does; I / You / We / They và nhiều người → Do. Sau đó động từ để NGUYÊN.",
+      "examples": [
+        "Do you like ice cream?",
+        "Does your brother like ice cream?",
+        "Do your friends live in Ha Noi?",
+        "Does Lan live in Ha Noi?"
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "q-like-ice-cream",
+            "text": "{aux} {subjQ} like ice cream?",
+            "blanks": [
+              "aux"
+            ],
+            "context_vi": "Chủ ngữ một người thì mở đầu bằng \"Does\", còn lại là \"Do\".",
+            "audioText": "Does your brother like ice cream?"
+          },
+          {
+            "id": "q-live-in-hanoi",
+            "text": "{aux} {subjQ} live in Ha Noi?",
+            "blanks": [
+              "aux"
+            ],
+            "context_vi": "Nhớ: sau Do/Does, động từ để nguyên — \"live\", không phải \"lives\".",
+            "audioText": "Do your friends live in Ha Noi?"
+          }
+        ],
+        "slots": {
+          "subjQ": [
+            "you",
+            "they",
+            "we",
+            "he",
+            "she",
+            "your brother",
+            "your sister",
+            "your friends",
+            "Nam",
+            "Lan"
+          ],
+          "aux": [
+            "Do",
+            "Does"
+          ]
+        },
+        "answerKey": {
+          "q-like-ice-cream": {
+            "aux": {
+              "__cond": "subjQ",
+              "you": "Do",
+              "they": "Do",
+              "we": "Do",
+              "he": "Does",
+              "she": "Does",
+              "your brother": "Does",
+              "your sister": "Does",
+              "your friends": "Do",
+              "Nam": "Does",
+              "Lan": "Does"
+            }
+          },
+          "q-live-in-hanoi": {
+            "aux": {
+              "__cond": "subjQ",
+              "you": "Do",
+              "they": "Do",
+              "we": "Do",
+              "he": "Does",
+              "she": "Does",
+              "your brother": "Does",
+              "your sister": "Does",
+              "your friends": "Do",
+              "Nam": "Does",
+              "Lan": "Does"
+            }
+          }
+        },
+        "distractors": [
+          "Does you like ice cream?",
+          "Do your brother like ice cream?",
+          "Does they live in Ha Noi?",
+          "Do she live in Ha Noi?",
+          "Does your friends like ice cream?",
+          "Does Nam likes ice cream?"
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Muốn hỏi trong hiện tại đơn, em đặt \"Do\" hoặc \"Does\" lên đầu câu: Do you like ice cream? / Does your sister like ice cream? Cách chọn giống quy tắc thêm \"-s\": chủ ngữ là He / She / It hoặc MỘT người thì dùng \"Does\", còn I / You / We / They hoặc nhiều người thì dùng \"Do\". Điểm trẻ Việt hay sai nhất: sau \"Does\" thì động từ phải để NGUYÊN, vì chữ \"-s\" đã nhảy sang \"Does\" rồi — nói \"Does she like…?\" chứ KHÔNG nói \"Does she likes…?\". Trả lời ngắn: Yes, I do. / No, she doesn't."
+    },
+    {
+      "id": "dont-doesnt",
+      "title_vi": "Phủ định: don't · doesn't",
+      "explain_vi": "Phủ định hiện tại đơn: He / She / It và một người → doesn't; I / You / We / They và nhiều người → don't. Sau don't / doesn't, động từ để NGUYÊN, không thêm \"-s\".",
+      "examples": [
+        "I don't like coffee.",
+        "My brother doesn't like coffee.",
+        "My parents don't watch TV at night.",
+        "She doesn't watch TV at night."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words",
+        "transform",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "neg-like-coffee",
+            "text": "{subjN} {neg} like coffee.",
+            "blanks": [
+              "neg"
+            ],
+            "context_vi": "Chủ ngữ một người thì dùng \"doesn't\", còn lại dùng \"don't\".",
+            "audioText": "My brother doesn't like coffee."
+          },
+          {
+            "id": "neg-watch-tv",
+            "text": "{subjN} {neg} watch TV at night.",
+            "blanks": [
+              "neg"
+            ],
+            "context_vi": "Sau don't / doesn't, động từ để nguyên — \"watch\", không phải \"watches\".",
+            "audioText": "My parents don't watch TV at night."
+          }
+        ],
+        "slots": {
+          "subjN": [
+            "I",
+            "You",
+            "We",
+            "They",
+            "He",
+            "She",
+            "My brother",
+            "My sister",
+            "My parents"
+          ],
+          "neg": [
+            "don't",
+            "doesn't"
+          ]
+        },
+        "answerKey": {
+          "neg-like-coffee": {
+            "neg": {
+              "__cond": "subjN",
+              "I": "don't",
+              "You": "don't",
+              "We": "don't",
+              "They": "don't",
+              "He": "doesn't",
+              "She": "doesn't",
+              "My brother": "doesn't",
+              "My sister": "doesn't",
+              "My parents": "don't"
+            }
+          },
+          "neg-watch-tv": {
+            "neg": {
+              "__cond": "subjN",
+              "I": "don't",
+              "You": "don't",
+              "We": "don't",
+              "They": "don't",
+              "He": "doesn't",
+              "She": "doesn't",
+              "My brother": "doesn't",
+              "My sister": "doesn't",
+              "My parents": "don't"
+            }
+          },
+          "answer-pairs": {
+            "I like coffee.": "I don't like coffee.",
+            "You like coffee.": "You don't like coffee.",
+            "We like coffee.": "We don't like coffee.",
+            "They like coffee.": "They don't like coffee.",
+            "He likes coffee.": "He doesn't like coffee.",
+            "She likes coffee.": "She doesn't like coffee.",
+            "My brother likes coffee.": "My brother doesn't like coffee.",
+            "My parents watch TV at night.": "My parents don't watch TV at night.",
+            "My sister watches TV at night.": "My sister doesn't watch TV at night.",
+            "He watches TV at night.": "He doesn't watch TV at night."
+          }
+        },
+        "distractors": [
+          "He don't like coffee.",
+          "I doesn't like coffee.",
+          "She doesn't likes coffee.",
+          "My brother don't watch TV at night.",
+          "They doesn't watch TV at night.",
+          "We doesn't watch TV at night."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Để nói KHÔNG làm việc gì trong hiện tại đơn, em thêm \"don't\" hoặc \"doesn't\" trước động từ. Chủ ngữ He / She / It hoặc MỘT người → \"doesn't\"; I / You / We / They hoặc nhiều người → \"don't\". Rất quan trọng: sau don't / doesn't thì động từ để NGUYÊN, vì chữ \"-s\" đã chuyển sang \"doesn't\" — nói \"She doesn't like coffee\" chứ KHÔNG nói \"She doesn't likes coffee\". Muốn đổi từ câu khẳng định sang phủ định, em bỏ \"-s\" của động từ rồi thêm \"doesn't\": He watches TV → He doesn't watch TV."
+    },
+    {
+      "id": "frequency-adverbs",
+      "title_vi": "Trạng từ tần suất: always · usually · sometimes · never",
+      "explain_vi": "Trạng từ tần suất đứng TRƯỚC động từ thường: always (mọi ngày), usually (phần lớn các ngày), sometimes (thỉnh thoảng), never (không bao giờ).",
+      "examples": [
+        "My brother always walks to school, seven days a week.",
+        "My sister usually eats noodles for breakfast, five or six days a week.",
+        "We sometimes walk to school, one or two days a month.",
+        "They never eat noodles for breakfast, not even once a year."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "freq-walk",
+            "text": "{subjF} {freq} {walkForm} to school, {timePhrase}.",
+            "blanks": [
+              "freq"
+            ],
+            "context_vi": "Đọc phần sau dấu phẩy để biết bao nhiêu lần, rồi chọn trạng từ khớp.",
+            "audioText": "My brother always walks to school, seven days a week."
+          },
+          {
+            "id": "freq-breakfast",
+            "text": "{subjF} {freq} {eatForm} noodles for breakfast, {timePhrase}.",
+            "blanks": [
+              "freq"
+            ],
+            "context_vi": "Phần sau dấu phẩy cho biết số lần — chọn trạng từ tần suất khớp với nó.",
+            "audioText": "My sister usually eats noodles for breakfast, five or six days a week."
+          }
+        ],
+        "slots": {
+          "subjF": [
+            "I",
+            "You",
+            "We",
+            "They",
+            "He",
+            "She",
+            "My brother",
+            "My sister",
+            "My friends"
+          ],
+          "freq": [
+            "always",
+            "usually",
+            "sometimes",
+            "never"
+          ],
+          "timePhrase": [
+            "seven days a week",
+            "five or six days a week",
+            "one or two days a month",
+            "not even once a year"
+          ],
+          "walkForm": [
+            "walk",
+            "walks"
+          ],
+          "eatForm": [
+            "eat",
+            "eats"
+          ]
+        },
+        "answerKey": {
+          "freq-walk": {
+            "freq": {
+              "__cond": "timePhrase",
+              "seven days a week": "always",
+              "five or six days a week": "usually",
+              "one or two days a month": "sometimes",
+              "not even once a year": "never"
+            },
+            "walkForm": {
+              "__cond": "subjF",
+              "I": "walk",
+              "You": "walk",
+              "We": "walk",
+              "They": "walk",
+              "He": "walks",
+              "She": "walks",
+              "My brother": "walks",
+              "My sister": "walks",
+              "My friends": "walk"
+            }
+          },
+          "freq-breakfast": {
+            "freq": {
+              "__cond": "timePhrase",
+              "seven days a week": "always",
+              "five or six days a week": "usually",
+              "one or two days a month": "sometimes",
+              "not even once a year": "never"
+            },
+            "eatForm": {
+              "__cond": "subjF",
+              "I": "eat",
+              "You": "eat",
+              "We": "eat",
+              "They": "eat",
+              "He": "eats",
+              "She": "eats",
+              "My brother": "eats",
+              "My sister": "eats",
+              "My friends": "eat"
+            }
+          }
+        },
+        "distractors": [
+          "My brother walks always to school, seven days a week.",
+          "My sister eats always noodles for breakfast, seven days a week.",
+          "They never walks to school, not even once a year.",
+          "He usually walk to school, five or six days a week.",
+          "We sometimes eats noodles for breakfast, one or two days a month.",
+          "My friends always eats noodles for breakfast, seven days a week."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Trạng từ tần suất cho biết một việc xảy ra bao nhiêu lần: always (luôn luôn, gần như mọi lần) → usually (thường thường) → often (hay) → sometimes (thỉnh thoảng) → never (không bao giờ). Vị trí là điều trẻ Việt hay đặt sai: trạng từ tần suất đứng TRƯỚC động từ thường — \"She always walks to school\", KHÔNG nói \"She walks always to school\". Nhưng nếu câu có am / is / are thì trạng từ đứng SAU nó: \"He is always late\". Nhớ thêm: dù có trạng từ tần suất, động từ vẫn phải khớp chủ ngữ — She always walks, They always walk."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "nams-day",
+      "title": "Nam's day",
+      "title_vi": "Một ngày của Nam",
+      "text": "Nam is my classmate. He gets up at six every morning. He always walks to school with his sister. Nam does not like coffee, but he drinks milk every day. His sister usually reads a book after dinner. They never watch TV at night.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Nam luôn đi bộ đến trường cùng chị/em gái, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "Nam always walks to school with his sister."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Nam KHÔNG thích thứ nào?",
+          "type": "mcq",
+          "choices": [
+            "coffee",
+            "milk",
+            "noodles"
+          ],
+          "answer": 0,
+          "audioText": "What does Nam not like?"
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit08.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 408,
+  "lesson": 8,
+  "topic": "Present Continuous",
+  "topic_vi": "Hiện tại tiếp diễn",
+  "vocab": [
+    {
+      "word": "read",
+      "vi": "đọc",
+      "icon": "📖",
+      "example": "My sister is reading a book now.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "run",
+      "vi": "chạy",
+      "icon": "🏃",
+      "example": "Look! My brother is running very fast.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "swim",
+      "vi": "bơi",
+      "icon": "🏊",
+      "example": "I am swimming in the river now.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "write",
+      "vi": "viết",
+      "icon": "✍️",
+      "example": "She is writing a letter now.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "dance",
+      "vi": "múa, nhảy",
+      "icon": "💃",
+      "example": "They are dancing in the garden.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "draw",
+      "vi": "vẽ",
+      "icon": "🎨",
+      "example": "My brother is drawing a picture.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "cook",
+      "vi": "nấu ăn",
+      "icon": "🍳",
+      "example": "My mother is cooking noodles now.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "music",
+      "vi": "âm nhạc",
+      "icon": "🎵",
+      "example": "We are listening to music now.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "homework",
+      "vi": "bài tập về nhà",
+      "icon": "📝",
+      "example": "He is doing his homework now.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "garden",
+      "vi": "khu vườn",
+      "icon": "🌳",
+      "example": "The children are playing in the garden.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "now",
+      "vi": "bây giờ",
+      "icon": "⏰",
+      "example": "My sister is singing now.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "at the moment",
+      "vi": "lúc này",
+      "icon": "⌚",
+      "example": "My father is reading at the moment.",
+      "partOfSpeech": "phrase",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "be-ving",
+      "title_vi": "am · is · are + động từ -ing",
+      "explain_vi": "Hiện tại tiếp diễn = am / is / are + động từ thêm \"-ing\". I → am; He / She / It và một người → is; You / We / They và nhiều người → are.",
+      "examples": [
+        "I am listening to music now.",
+        "My brother is listening to music now.",
+        "Look! They are running very fast.",
+        "My friends are running very fast."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words",
+        "transform",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "listen-music",
+            "text": "{subjC} {be} listening to music now.",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "Chọn am / is / are cho khớp chủ ngữ; động từ đã có \"-ing\" rồi.",
+            "audioText": "My brother is listening to music now."
+          },
+          {
+            "id": "run-fast",
+            "text": "Look! {subjC} {be} running very fast.",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "\"Look!\" cho biết việc đang xảy ra ngay lúc này — dùng hiện tại tiếp diễn.",
+            "audioText": "Look! My sister is running very fast."
+          }
+        ],
+        "slots": {
+          "subjC": [
+            "I",
+            "You",
+            "We",
+            "They",
+            "He",
+            "She",
+            "My brother",
+            "My sister",
+            "My friends"
+          ],
+          "be": [
+            "am",
+            "is",
+            "are"
+          ]
+        },
+        "answerKey": {
+          "listen-music": {
+            "be": {
+              "__cond": "subjC",
+              "I": "am",
+              "You": "are",
+              "We": "are",
+              "They": "are",
+              "He": "is",
+              "She": "is",
+              "My brother": "is",
+              "My sister": "is",
+              "My friends": "are"
+            }
+          },
+          "run-fast": {
+            "be": {
+              "__cond": "subjC",
+              "I": "am",
+              "You": "are",
+              "We": "are",
+              "They": "are",
+              "He": "is",
+              "She": "is",
+              "My brother": "is",
+              "My sister": "is",
+              "My friends": "are"
+            }
+          },
+          "answer-pairs": {
+            "I am listening to music now.": "I am not listening to music now.",
+            "You are listening to music now.": "You are not listening to music now.",
+            "We are listening to music now.": "We are not listening to music now.",
+            "They are listening to music now.": "They are not listening to music now.",
+            "He is listening to music now.": "He is not listening to music now.",
+            "My sister is listening to music now.": "My sister is not listening to music now.",
+            "She is running very fast.": "She is not running very fast.",
+            "My brother is running very fast.": "My brother is not running very fast.",
+            "My friends are running very fast.": "My friends are not running very fast.",
+            "I am running very fast.": "I am not running very fast."
+          }
+        },
+        "distractors": [
+          "My brother are listening to music now.",
+          "I is listening to music now.",
+          "My friends is listening to music now.",
+          "My brother is listen to music now.",
+          "Look! They is running very fast.",
+          "Look! He are running very fast."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Hiện tại tiếp diễn nói về việc ĐANG xảy ra ngay lúc này. Công thức: chủ ngữ + am / is / are + động từ thêm \"-ing\". Chọn \"to be\" như đã học: I → am; He / She / It hoặc MỘT người → is; You / We / They hoặc nhiều người → are. Hai lỗi trẻ Việt hay mắc: (1) bỏ mất am/is/are — nói \"I going to school\" thay vì \"I am going to school\"; (2) bỏ mất \"-ing\" — nói \"He is listen\" thay vì \"He is listening\". Phủ định chỉ cần thêm \"not\" ngay sau am/is/are: I am not listening, She is not running, They are not running. Những từ như now, at the moment, Look! là dấu hiệu của thì này."
+    },
+    {
+      "id": "ing-spelling",
+      "title_vi": "Cách thêm \"-ing\" cho động từ",
+      "explain_vi": "Thêm \"-ing\": thường giữ nguyên (read → reading); bỏ \"e\" cuối (write → writing); gấp đôi phụ âm cuối khi trước nó là một nguyên âm ngắn (run → running).",
+      "examples": [
+        "My sister can swim well. She is swimming now.",
+        "My sister can write well. She is writing now.",
+        "I like to read. Look, I am reading now!",
+        "I like to dance. Look, I am dancing now!"
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "can-well-now",
+            "text": "My sister can {verbBase} well. She is {verbIng} now.",
+            "blanks": [
+              "verbIng"
+            ],
+            "context_vi": "Đổi động từ ở câu trước sang dạng \"-ing\" cho đúng chính tả.",
+            "audioText": "My sister can swim well. She is swimming now."
+          },
+          {
+            "id": "like-to-now",
+            "text": "I like to {verbBase}. Look, I am {verbIng} now!",
+            "blanks": [
+              "verbIng"
+            ],
+            "context_vi": "Lấy đúng động từ ở câu trước rồi thêm \"-ing\" theo quy tắc chính tả.",
+            "audioText": "I like to run. Look, I am running now!"
+          }
+        ],
+        "slots": {
+          "verbBase": [
+            "swim",
+            "run",
+            "write",
+            "dance",
+            "draw",
+            "play",
+            "read",
+            "cook"
+          ],
+          "verbIng": [
+            "swimming",
+            "running",
+            "writing",
+            "dancing",
+            "drawing",
+            "playing",
+            "reading",
+            "cooking"
+          ]
+        },
+        "answerKey": {
+          "can-well-now": {
+            "verbIng": {
+              "__cond": "verbBase",
+              "swim": "swimming",
+              "run": "running",
+              "write": "writing",
+              "dance": "dancing",
+              "draw": "drawing",
+              "play": "playing",
+              "read": "reading",
+              "cook": "cooking"
+            }
+          },
+          "like-to-now": {
+            "verbIng": {
+              "__cond": "verbBase",
+              "swim": "swimming",
+              "run": "running",
+              "write": "writing",
+              "dance": "dancing",
+              "draw": "drawing",
+              "play": "playing",
+              "read": "reading",
+              "cook": "cooking"
+            }
+          }
+        },
+        "distractors": [
+          "My sister can swim well. She is swiming now.",
+          "My sister can run well. She is runing now.",
+          "My sister can write well. She is writeing now.",
+          "My sister can dance well. She is danceing now.",
+          "I like to swim. Look, I am swim now!",
+          "I like to run. Look, I am runing now!"
+        ],
+        "irregulars": {
+          "swim": "swimming",
+          "run": "running",
+          "sit": "sitting",
+          "put": "putting",
+          "write": "writing",
+          "dance": "dancing",
+          "make": "making",
+          "come": "coming"
+        }
+      },
+      "teach_vi": "Có ba quy tắc thêm \"-ing\". (1) Phần lớn động từ chỉ thêm \"-ing\" và không đổi gì: read → reading, play → playing, cook → cooking, draw → drawing. (2) Động từ kết thúc bằng chữ \"e\" câm thì BỎ \"e\" rồi thêm \"-ing\": write → writing, dance → dancing, make → making, come → coming. (3) Động từ một âm tiết kết thúc bằng một phụ âm mà ngay trước nó là một nguyên âm ngắn thì GẤP ĐÔI phụ âm cuối: run → running, swim → swimming, sit → sitting, put → putting. Đừng viết \"swiming\", \"runing\", \"writeing\" — đó là ba lỗi chính tả phổ biến nhất."
+    },
+    {
+      "id": "simple-vs-continuous",
+      "title_vi": "Hiện tại đơn hay hiện tại tiếp diễn?",
+      "explain_vi": "\"every day, every afternoon\" là việc làm thường xuyên → hiện tại đơn (plays). \"now, right now, at the moment\" là đang xảy ra → hiện tại tiếp diễn (is playing).",
+      "examples": [
+        "My brother plays football every day.",
+        "My brother is playing football right now.",
+        "Lan reads a book every afternoon.",
+        "Lan is reading a book at the moment."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "which-tense-football",
+            "text": "{subj3} {vfPlay} football {timeMark}.",
+            "blanks": [
+              "vfPlay"
+            ],
+            "context_vi": "Xem cụm chỉ thời gian ở cuối câu: thường xuyên → \"plays\"; đang xảy ra → \"is playing\".",
+            "audioText": "My brother is playing football right now."
+          },
+          {
+            "id": "which-tense-book",
+            "text": "{subj3} {vfRead} a book {timeMark}.",
+            "blanks": [
+              "vfRead"
+            ],
+            "context_vi": "Cụm thời gian ở cuối câu cho biết chọn \"reads\" hay \"is reading\".",
+            "audioText": "My sister reads a book every afternoon."
+          }
+        ],
+        "slots": {
+          "subj3": [
+            "My brother",
+            "My sister",
+            "He",
+            "She",
+            "Nam",
+            "Lan"
+          ],
+          "timeMark": [
+            "every day",
+            "every afternoon",
+            "right now",
+            "at the moment"
+          ],
+          "vfPlay": [
+            "plays",
+            "is playing"
+          ],
+          "vfRead": [
+            "reads",
+            "is reading"
+          ]
+        },
+        "answerKey": {
+          "which-tense-football": {
+            "vfPlay": {
+              "__cond": "timeMark",
+              "every day": "plays",
+              "every afternoon": "plays",
+              "right now": "is playing",
+              "at the moment": "is playing"
+            }
+          },
+          "which-tense-book": {
+            "vfRead": {
+              "__cond": "timeMark",
+              "every day": "reads",
+              "every afternoon": "reads",
+              "right now": "is reading",
+              "at the moment": "is reading"
+            }
+          }
+        },
+        "distractors": [
+          "My brother is play football every day.",
+          "My brother plays football right now.",
+          "My sister reading a book at the moment.",
+          "My sister is read a book at the moment.",
+          "Nam playing football at the moment.",
+          "Lan reads a book right now."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Hai thì này rất dễ lẫn, nên em hãy tìm DẤU HIỆU THỜI GIAN trong câu. Nếu câu có every day, every afternoon, every week, always, usually, sometimes, never — đó là việc làm thường xuyên, dùng HIỆN TẠI ĐƠN: My brother plays football every day. Nếu câu có now, right now, at the moment, today, Look!, Listen! — đó là việc đang xảy ra ngay lúc này, dùng HIỆN TẠI TIẾP DIỄN: My brother is playing football right now. Nhớ rằng hiện tại tiếp diễn LUÔN có am/is/are đi cùng động từ \"-ing\" — thiếu một trong hai là câu sai."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "saturday-morning",
+      "title": "Saturday morning",
+      "title_vi": "Buổi sáng thứ Bảy",
+      "text": "It is Saturday morning and my family is at home. My mother is cooking noodles in the kitchen. My father is reading a newspaper. My brother is doing his homework, but he is not writing — he is drawing a picture of a cat! I am listening to music in my room. Nobody is watching TV today.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Mẹ đang nấu mì trong nhà bếp, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "The mother is cooking noodles in the kitchen."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Người anh/em trai đang làm gì?",
+          "type": "mcq",
+          "choices": [
+            "He is drawing a picture.",
+            "He is watching TV.",
+            "He is cooking noodles."
+          ],
+          "answer": 0,
+          "audioText": "What is the brother doing?"
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit09.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 409,
+  "lesson": 9,
+  "topic": "Prepositions of place, movement and time",
+  "topic_vi": "Giới từ nơi chốn · chuyển động · thời gian",
+  "vocab": [
+    {
+      "word": "box",
+      "vi": "cái hộp",
+      "icon": "📦",
+      "example": "The cat is in the box.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "kitchen",
+      "vi": "nhà bếp",
+      "icon": "🍽️",
+      "example": "My mother is in the kitchen.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "classroom",
+      "vi": "lớp học",
+      "icon": "🏫",
+      "example": "My brother is in the classroom.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "bus",
+      "vi": "xe buýt",
+      "icon": "🚌",
+      "example": "Nam is on the bus.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "hill",
+      "vi": "đồi",
+      "icon": "⛰️",
+      "example": "The dog runs up the hill.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "river",
+      "vi": "con sông",
+      "icon": "🌊",
+      "example": "The boy swims across the river.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "tunnel",
+      "vi": "đường hầm",
+      "icon": "🚇",
+      "example": "The train goes through the tunnel.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "under",
+      "vi": "ở dưới",
+      "icon": "⬇️",
+      "example": "The cat is under the table.",
+      "partOfSpeech": "preposition",
+      "audio": ""
+    },
+    {
+      "word": "behind",
+      "vi": "ở phía sau",
+      "icon": "🔙",
+      "example": "The cat is behind the box.",
+      "partOfSpeech": "preposition",
+      "audio": ""
+    },
+    {
+      "word": "next to",
+      "vi": "ở bên cạnh",
+      "icon": "↔️",
+      "example": "My desk is next to the door.",
+      "partOfSpeech": "preposition",
+      "audio": ""
+    },
+    {
+      "word": "into",
+      "vi": "vào trong",
+      "icon": "🚪",
+      "example": "Lan walks into the room.",
+      "partOfSpeech": "preposition",
+      "audio": ""
+    },
+    {
+      "word": "night",
+      "vi": "buổi tối, ban đêm",
+      "icon": "🌙",
+      "example": "We watch TV at night.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "prep-place",
+      "title_vi": "Giới từ nơi chốn: at · in · on · under · behind · next to",
+      "explain_vi": "at + home / school; in + phòng hoặc vườn (in the kitchen); on + xe buýt hoặc tàu (on the bus). Vị trí: in (trong), on (trên), under (dưới), next to (cạnh), behind (sau).",
+      "examples": [
+        "My brother is at home now.",
+        "My sister is in the kitchen now.",
+        "Nam is on the bus now.",
+        "The cat is below the box, so it is under the box."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "place-at-in-on",
+            "text": "{subjP} is {prepA} {placeA} now.",
+            "blanks": [
+              "prepA"
+            ],
+            "context_vi": "Ba giới từ at / in / on đi với những loại nơi khác nhau — chọn cụm đúng.",
+            "audioText": "My brother is at home now."
+          },
+          {
+            "id": "place-synonym",
+            "text": "The cat is {glossB}, so it is {prepB} the box.",
+            "blanks": [
+              "prepB"
+            ],
+            "context_vi": "Đọc phần đầu câu để biết vị trí, rồi chọn giới từ có nghĩa giống hệt.",
+            "audioText": "The cat is below the box, so it is under the box."
+          }
+        ],
+        "slots": {
+          "subjP": [
+            "My sister",
+            "My brother",
+            "My mother",
+            "My father",
+            "Nam",
+            "Lan"
+          ],
+          "placeA": [
+            "home",
+            "school",
+            "the kitchen",
+            "the garden",
+            "the classroom",
+            "the bus",
+            "the train"
+          ],
+          "prepA": [
+            "at",
+            "in",
+            "on"
+          ],
+          "glossB": [
+            "inside the box",
+            "on top of the box",
+            "below the box",
+            "beside the box",
+            "at the back of the box",
+            "at the front of the box"
+          ],
+          "prepB": [
+            "in",
+            "on",
+            "under",
+            "next to",
+            "behind",
+            "in front of"
+          ]
+        },
+        "answerKey": {
+          "place-at-in-on": {
+            "prepA": {
+              "__cond": "placeA",
+              "home": "at",
+              "school": "at",
+              "the kitchen": "in",
+              "the garden": "in",
+              "the classroom": "in",
+              "the bus": "on",
+              "the train": "on"
+            }
+          },
+          "place-synonym": {
+            "prepB": {
+              "__cond": "glossB",
+              "inside the box": "in",
+              "on top of the box": "on",
+              "below the box": "under",
+              "beside the box": "next to",
+              "at the back of the box": "behind",
+              "at the front of the box": "in front of"
+            }
+          }
+        },
+        "distractors": [
+          "My brother is in home now.",
+          "My sister is on school now.",
+          "Nam is at the kitchen now.",
+          "Lan is in the bus now.",
+          "The cat is below the box, so it is on the box.",
+          "The cat is inside the box, so it is under the box."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Giới từ nơi chốn cho biết một người hay một vật Ở ĐÂU. Nhóm thứ nhất là ba cụm cố định phải học thuộc: \"at\" đi với home, school, work (at home, at school); \"in\" đi với không gian có bao quanh — in the kitchen, in the garden, in the classroom, in Ha Noi; \"on\" đi với phương tiện công cộng và bề mặt — on the bus, on the train, on the wall, on the floor. Nhóm thứ hai là vị trí so với vật khác: in (ở trong), on (ở trên), under (ở dưới), next to (ở bên cạnh), behind (ở phía sau), in front of (ở phía trước), between (ở giữa hai vật). Trẻ Việt hay nói \"in home\" hoặc \"in the bus\" — hãy nhớ đúng là \"at home\" và \"on the bus\"."
+    },
+    {
+      "id": "prep-movement",
+      "title_vi": "Giới từ chuyển động: into · out of · up · down · across · through",
+      "explain_vi": "Giới từ chuyển động cho biết đi theo hướng nào: into (vào trong), out of (ra khỏi), up (lên), down (xuống), across (băng qua bề mặt), through (xuyên qua bên trong).",
+      "examples": [
+        "First Nam is outside the room. Then he walks into the room.",
+        "First Lan is inside the room. Then she walks out of the room.",
+        "The dog wants to reach the top of the hill. So it runs up the hill.",
+        "There is a long tunnel here. The boy goes through it to the other side."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "move-into",
+            "text": "First {mover} is outside the room. Then {pronK} walks {prepInto} the room.",
+            "blanks": [
+              "prepInto"
+            ],
+            "context_vi": "Lúc đầu ở NGOÀI phòng, sau đó đi vào trong — chọn giới từ chỉ đúng hướng đó.",
+            "audioText": "First Nam is outside the room. Then he walks into the room."
+          },
+          {
+            "id": "move-out-of",
+            "text": "First {mover} is inside the room. Then {pronK} walks {prepOut} the room.",
+            "blanks": [
+              "prepOut"
+            ],
+            "context_vi": "Lúc đầu ở TRONG phòng, sau đó đi ra ngoài — chọn giới từ chỉ đúng hướng đó.",
+            "audioText": "First Lan is inside the room. Then she walks out of the room."
+          },
+          {
+            "id": "move-up-down",
+            "text": "{clueUD} So it runs {prepUD} the hill.",
+            "blanks": [
+              "prepUD"
+            ],
+            "context_vi": "Con chó muốn tới đâu? Lên đỉnh đồi thì \"up\", xuống chân đồi thì \"down\".",
+            "audioText": "The dog wants to reach the top of the hill. So it runs up the hill."
+          },
+          {
+            "id": "move-across-through",
+            "text": "{clueAT} The boy goes {prepAT} it to the other side.",
+            "blanks": [
+              "prepAT"
+            ],
+            "context_vi": "Qua mặt sông rộng thì \"across\"; đi lọt vào bên trong đường hầm thì \"through\".",
+            "audioText": "There is a wide river here. The boy goes across it to the other side."
+          }
+        ],
+        "slots": {
+          "mover": [
+            "Nam",
+            "Lan",
+            "my brother",
+            "my sister",
+            "the cat",
+            "the dog"
+          ],
+          "pronK": [
+            "he",
+            "she",
+            "it"
+          ],
+          "prepInto": [
+            "into",
+            "out of",
+            "up",
+            "down"
+          ],
+          "prepOut": [
+            "into",
+            "out of",
+            "up",
+            "down"
+          ],
+          "clueUD": [
+            "The dog wants to reach the top of the hill.",
+            "The dog wants to reach the bottom of the hill."
+          ],
+          "prepUD": [
+            "up",
+            "down"
+          ],
+          "clueAT": [
+            "There is a wide river here.",
+            "There is a long tunnel here."
+          ],
+          "prepAT": [
+            "across",
+            "through"
+          ]
+        },
+        "answerKey": {
+          "move-into": {
+            "prepInto": "into",
+            "pronK": {
+              "__cond": "mover",
+              "Nam": "he",
+              "Lan": "she",
+              "my brother": "he",
+              "my sister": "she",
+              "the cat": "it",
+              "the dog": "it"
+            }
+          },
+          "move-out-of": {
+            "prepOut": "out of",
+            "pronK": {
+              "__cond": "mover",
+              "Nam": "he",
+              "Lan": "she",
+              "my brother": "he",
+              "my sister": "she",
+              "the cat": "it",
+              "the dog": "it"
+            }
+          },
+          "move-up-down": {
+            "prepUD": {
+              "__cond": "clueUD",
+              "The dog wants to reach the top of the hill.": "up",
+              "The dog wants to reach the bottom of the hill.": "down"
+            }
+          },
+          "move-across-through": {
+            "prepAT": {
+              "__cond": "clueAT",
+              "There is a wide river here.": "across",
+              "There is a long tunnel here.": "through"
+            }
+          }
+        },
+        "distractors": [
+          "First Nam is outside the room. Then he walks out of the room.",
+          "First Lan is inside the room. Then she walks into the room.",
+          "The dog wants to reach the top of the hill. So it runs down the hill.",
+          "The dog wants to reach the bottom of the hill. So it runs up the hill.",
+          "There is a wide river here. The boy goes through it to the other side.",
+          "There is a long tunnel here. The boy goes across it to the other side."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Giới từ nơi chốn nói VẬT Ở ĐÂU, còn giới từ chuyển động nói VẬT ĐI THEO HƯỚNG NÀO. Hãy nhớ từng cặp ngược nhau: into (đi vào trong) ↔ out of (đi ra khỏi); up (đi lên) ↔ down (đi xuống); to (đi tới) ↔ from (đi từ). Hai từ dễ lẫn nhất là across và through: \"across\" là băng qua BỀ MẶT của cái gì đó — swim across the river, walk across the street; còn \"through\" là xuyên qua BÊN TRONG của cái gì đó — go through the tunnel, walk through the forest. Ngoài ra còn \"along\" là đi dọc theo — walk along the river, và \"over\" là vượt qua phía trên — jump over the wall."
+    },
+    {
+      "id": "prep-time",
+      "title_vi": "Giới từ thời gian: at · on · in",
+      "explain_vi": "at + giờ và cụm \"at night\"; on + thứ hoặc ngày (on Monday); in + tháng, mùa, buổi trong ngày (in July, in the morning).",
+      "examples": [
+        "The film starts at seven o'clock.",
+        "The film starts on Monday evening.",
+        "We often go swimming in July.",
+        "We often go swimming at night."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "time-clock-day",
+            "text": "The film starts {prepT1} {timeT1}.",
+            "blanks": [
+              "prepT1"
+            ],
+            "context_vi": "Đọc cụm thời gian: đó là một GIỜ cụ thể hay một NGÀY trong tuần?",
+            "audioText": "The film starts at seven o'clock."
+          },
+          {
+            "id": "time-month-part",
+            "text": "We often go swimming {prepT2} {timeT2}.",
+            "blanks": [
+              "prepT2"
+            ],
+            "context_vi": "Đọc cụm thời gian: đó là tháng, mùa, một buổi trong ngày, hay là ban đêm?",
+            "audioText": "We often go swimming in the morning."
+          }
+        ],
+        "slots": {
+          "timeT1": [
+            "seven o'clock",
+            "half past eight",
+            "Monday",
+            "Friday",
+            "Sunday",
+            "Monday evening"
+          ],
+          "prepT1": [
+            "at",
+            "on",
+            "in"
+          ],
+          "timeT2": [
+            "July",
+            "August",
+            "summer",
+            "the morning",
+            "the afternoon",
+            "the evening",
+            "night"
+          ],
+          "prepT2": [
+            "at",
+            "on",
+            "in"
+          ]
+        },
+        "answerKey": {
+          "time-clock-day": {
+            "prepT1": {
+              "__cond": "timeT1",
+              "seven o'clock": "at",
+              "half past eight": "at",
+              "Monday": "on",
+              "Friday": "on",
+              "Sunday": "on",
+              "Monday evening": "on"
+            }
+          },
+          "time-month-part": {
+            "prepT2": {
+              "__cond": "timeT2",
+              "July": "in",
+              "August": "in",
+              "summer": "in",
+              "the morning": "in",
+              "the afternoon": "in",
+              "the evening": "in",
+              "night": "at"
+            }
+          }
+        },
+        "distractors": [
+          "The film starts in seven o'clock.",
+          "The film starts at Monday.",
+          "The film starts in Monday evening.",
+          "We often go swimming on July.",
+          "We often go swimming in night.",
+          "We often go swimming at the morning."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Ba giới từ thời gian đi từ hẹp đến rộng. \"at\" dùng cho một ĐIỂM thời gian: at seven o'clock, at half past eight, at midday — và hai cụm đặc biệt phải học thuộc là at night, at the weekend. \"on\" dùng cho một NGÀY cụ thể: on Monday, on Sunday morning, on 2 September, on my birthday. \"in\" dùng cho một KHOẢNG dài: in July, in summer, in 2026, và cho các buổi trong ngày — in the morning, in the afternoon, in the evening. Hãy để ý điểm bẫy: buổi sáng, trưa, chiều dùng \"in\" nhưng ban đêm lại dùng \"at\" — in the morning nhưng at night."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "the-way-to-school",
+      "title": "The way to school",
+      "title_vi": "Đường đến trường",
+      "text": "My school is on Nguyen Trai Street. Lessons start at seven o'clock in the morning. On Monday we always have English. My classroom is on the second floor, next to the library. After school I walk down the hill and across a small bridge to get home. In July we do not go to school.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Giờ học bắt đầu lúc bảy giờ sáng, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "Lessons start at seven o'clock in the morning."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Lớp học của bạn ấy ở đâu?",
+          "type": "mcq",
+          "choices": [
+            "on the second floor",
+            "under the library",
+            "in the garden"
+          ],
+          "answer": 0,
+          "audioText": "Where is the classroom?"
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit10.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 410,
+  "lesson": 10,
+  "topic": "Past Simple",
+  "topic_vi": "Quá khứ đơn",
+  "vocab": [
+    {
+      "word": "yesterday",
+      "vi": "hôm qua",
+      "icon": "📅",
+      "example": "I played football yesterday.",
+      "partOfSpeech": "adv",
+      "audio": ""
+    },
+    {
+      "word": "play",
+      "vi": "chơi",
+      "icon": "⚽",
+      "example": "We played in the park yesterday.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "study",
+      "vi": "học",
+      "icon": "📖",
+      "example": "She studied English last night.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "clean",
+      "vi": "dọn dẹp",
+      "icon": "🧹",
+      "example": "I cleaned my room yesterday.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "jog",
+      "vi": "chạy bộ",
+      "icon": "🏃",
+      "example": "My father jogged in the park.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "go",
+      "vi": "đi",
+      "icon": "🚶",
+      "example": "We went to the market yesterday.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "eat",
+      "vi": "ăn",
+      "icon": "🍜",
+      "example": "I ate noodles for lunch.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "see",
+      "vi": "thấy, nhìn thấy",
+      "icon": "👀",
+      "example": "I saw a big bird yesterday.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "buy",
+      "vi": "mua",
+      "icon": "🛒",
+      "example": "My mother bought some bread.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "write",
+      "vi": "viết",
+      "icon": "✍️",
+      "example": "He wrote a letter last week.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "sleep",
+      "vi": "ngủ",
+      "icon": "😴",
+      "example": "I slept at home last night.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "sing",
+      "vi": "hát",
+      "icon": "🎤",
+      "example": "Lan sang a nice song.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "market",
+      "vi": "cái chợ",
+      "icon": "🏪",
+      "example": "We went to the market yesterday.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "late",
+      "vi": "muộn, trễ",
+      "icon": "⏰",
+      "example": "Nam was late for school yesterday.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "ed-regular",
+      "title_vi": "Quá khứ có quy tắc: thêm -ed",
+      "explain_vi": "Việc đã xảy ra rồi thì thêm \"-ed\": play → played. Từ kết thúc bằng \"e\" chỉ thêm \"-d\"; phụ âm + y đổi thành \"-ied\"; nguyên âm ngắn + 1 phụ âm thì gấp đôi phụ âm.",
+      "examples": [
+        "I play every day. Yesterday I played, too.",
+        "I study every day. Yesterday I studied, too.",
+        "Today I do not jog, but yesterday I jogged."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "transform"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "ed-every-day",
+            "text": "I {base} every day. Yesterday I {past}, too.",
+            "blanks": [
+              "past"
+            ],
+            "context_vi": "Câu sau nói về HÔM QUA, nên động từ ở trước phải chuyển sang dạng quá khứ.",
+            "audioText": "I play every day. Yesterday I played, too."
+          },
+          {
+            "id": "ed-not-today",
+            "text": "Today I do not {base}, but yesterday I {past}.",
+            "blanks": [
+              "past"
+            ],
+            "context_vi": "Sau \"do not\" động từ giữ nguyên mẫu; phần nói về hôm qua phải ở quá khứ.",
+            "audioText": "Today I do not dance, but yesterday I danced."
+          }
+        ],
+        "slots": {
+          "base": [
+            "play",
+            "cook",
+            "clean",
+            "walk",
+            "dance",
+            "smile",
+            "study",
+            "hurry",
+            "jog",
+            "chat"
+          ],
+          "past": [
+            "played",
+            "cooked",
+            "cleaned",
+            "walked",
+            "danced",
+            "smiled",
+            "studied",
+            "hurried",
+            "jogged",
+            "chatted"
+          ]
+        },
+        "answerKey": {
+          "ed-every-day": {
+            "past": {
+              "__cond": "base",
+              "play": "played",
+              "cook": "cooked",
+              "clean": "cleaned",
+              "walk": "walked",
+              "dance": "danced",
+              "smile": "smiled",
+              "study": "studied",
+              "hurry": "hurried",
+              "jog": "jogged",
+              "chat": "chatted"
+            }
+          },
+          "ed-not-today": {
+            "past": {
+              "__cond": "base",
+              "play": "played",
+              "cook": "cooked",
+              "clean": "cleaned",
+              "walk": "walked",
+              "dance": "danced",
+              "smile": "smiled",
+              "study": "studied",
+              "hurry": "hurried",
+              "jog": "jogged",
+              "chat": "chatted"
+            }
+          },
+          "answer-pairs": {
+            "I played football yesterday.": "I did not play football yesterday.",
+            "I cooked dinner yesterday.": "I did not cook dinner yesterday.",
+            "I studied English yesterday.": "I did not study English yesterday.",
+            "I cleaned my room yesterday.": "I did not clean my room yesterday.",
+            "I walked to school yesterday.": "I did not walk to school yesterday.",
+            "I danced at the party yesterday.": "I did not dance at the party yesterday.",
+            "I jogged in the park yesterday.": "I did not jog in the park yesterday.",
+            "I chatted with my friend yesterday.": "I did not chat with my friend yesterday."
+          },
+          "transform-explain": {
+            "I played football yesterday.": "Phủ định ở quá khứ dùng \"did not\" + động từ NGUYÊN MẪU: played → did not play.",
+            "I cooked dinner yesterday.": "Phủ định ở quá khứ dùng \"did not\" + động từ NGUYÊN MẪU: cooked → did not cook.",
+            "I studied English yesterday.": "Phủ định ở quá khứ dùng \"did not\" + động từ NGUYÊN MẪU: studied → did not study.",
+            "I cleaned my room yesterday.": "Phủ định ở quá khứ dùng \"did not\" + động từ NGUYÊN MẪU: cleaned → did not clean.",
+            "I walked to school yesterday.": "Phủ định ở quá khứ dùng \"did not\" + động từ NGUYÊN MẪU: walked → did not walk.",
+            "I danced at the party yesterday.": "Phủ định ở quá khứ dùng \"did not\" + động từ NGUYÊN MẪU: danced → did not dance.",
+            "I jogged in the park yesterday.": "Phủ định ở quá khứ dùng \"did not\" + động từ NGUYÊN MẪU: jogged → did not jog.",
+            "I chatted with my friend yesterday.": "Phủ định ở quá khứ dùng \"did not\" + động từ NGUYÊN MẪU: chatted → did not chat."
+          }
+        },
+        "distractors": [
+          "I play every day. Yesterday I playd, too.",
+          "I study every day. Yesterday I studyed, too.",
+          "I dance every day. Yesterday I danceed, too.",
+          "I jog every day. Yesterday I joged, too.",
+          "Today I do not walk, but yesterday I walk.",
+          "Today I do not chat, but yesterday I chated.",
+          "Today I do not study, but yesterday I studyed.",
+          "Today I do not hurry, but yesterday I hurryed."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Khi kể một việc ĐÃ XONG trong quá khứ, em đổi động từ sang dạng quá khứ. Với động từ có quy tắc, em chỉ cần thêm \"-ed\": play → played, cook → cooked, walk → walked. Có bốn nhóm cần để ý: (1) từ đã kết thúc bằng \"e\" thì chỉ thêm \"-d\" — dance → danced, smile → smiled; (2) phụ âm + y thì đổi y thành \"-ied\" — study → studied, hurry → hurried; (3) từ ngắn có nguyên âm ngắn + một phụ âm cuối thì gấp đôi phụ âm rồi mới thêm \"-ed\" — jog → jogged, chat → chatted, stop → stopped; (4) nguyên âm + y thì chỉ thêm \"-ed\" — play → played. Dấu hiệu nhận ra quá khứ trong câu: yesterday, last night, last week, two days ago. Khi câu đã có \"did not\" thì động từ trở lại dạng NGUYÊN MẪU: I did not play (không phải \"did not played\")."
+    },
+    {
+      "id": "irregular-past",
+      "title_vi": "Động từ bất quy tắc ở quá khứ",
+      "explain_vi": "Nhiều động từ không thêm \"-ed\" mà đổi hẳn cả từ: see → saw, eat → ate, buy → bought, write → wrote. Những từ này phải học thuộc.",
+      "examples": [
+        "I see it every day. Yesterday I saw it, too.",
+        "I buy it every day. Yesterday I bought it, too.",
+        "Yesterday I wrote it, but today I do not write it."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "irr-every-day",
+            "text": "I {base} it every day. Yesterday I {past} it, too.",
+            "blanks": [
+              "past"
+            ],
+            "context_vi": "Đây là động từ bất quy tắc — không thêm \"-ed\", phải đổi cả từ.",
+            "audioText": "I see it every day. Yesterday I saw it, too."
+          },
+          {
+            "id": "irr-yesterday-but",
+            "text": "Yesterday I {past} it, but today I do not {base} it.",
+            "blanks": [
+              "past"
+            ],
+            "context_vi": "Động từ nguyên mẫu ở cuối câu là manh mối — hãy đổi nó sang dạng quá khứ bất quy tắc.",
+            "audioText": "Yesterday I ate it, but today I do not eat it."
+          }
+        ],
+        "slots": {
+          "base": [
+            "see",
+            "eat",
+            "buy",
+            "write",
+            "make",
+            "take",
+            "do",
+            "find",
+            "drink",
+            "get"
+          ],
+          "past": [
+            "saw",
+            "ate",
+            "bought",
+            "wrote",
+            "made",
+            "took",
+            "did",
+            "found",
+            "drank",
+            "got"
+          ]
+        },
+        "answerKey": {
+          "irr-every-day": {
+            "past": {
+              "__cond": "base",
+              "see": "saw",
+              "eat": "ate",
+              "buy": "bought",
+              "write": "wrote",
+              "make": "made",
+              "take": "took",
+              "do": "did",
+              "find": "found",
+              "drink": "drank",
+              "get": "got"
+            }
+          },
+          "irr-yesterday-but": {
+            "past": {
+              "__cond": "base",
+              "see": "saw",
+              "eat": "ate",
+              "buy": "bought",
+              "write": "wrote",
+              "make": "made",
+              "take": "took",
+              "do": "did",
+              "find": "found",
+              "drink": "drank",
+              "get": "got"
+            }
+          }
+        },
+        "distractors": [
+          "I see it every day. Yesterday I seed it, too.",
+          "I eat it every day. Yesterday I eated it, too.",
+          "I buy it every day. Yesterday I buyed it, too.",
+          "I write it every day. Yesterday I writed it, too.",
+          "Yesterday I taked it, but today I do not take it.",
+          "Yesterday I drinked it, but today I do not drink it.",
+          "Yesterday I seed it, but today I do not see it.",
+          "Yesterday I finded it, but today I do not find it."
+        ],
+        "irregulars": {
+          "see": "saw",
+          "eat": "ate",
+          "buy": "bought",
+          "write": "wrote",
+          "make": "made",
+          "take": "took",
+          "do": "did",
+          "find": "found",
+          "drink": "drank",
+          "get": "got",
+          "go": "went",
+          "have": "had",
+          "sing": "sang",
+          "sleep": "slept",
+          "read": "read"
+        }
+      },
+      "teach_vi": "Có một nhóm động từ rất hay dùng KHÔNG chịu thêm \"-ed\" — chúng đổi hẳn cả từ. Em cần học thuộc theo cặp: see → saw, eat → ate, buy → bought, write → wrote, make → made, take → took, do → did, find → found, drink → drank, get → got, go → went, have → had, sing → sang, sleep → slept. Vài từ đặc biệt giữ nguyên chữ viết: read → read (nhưng đọc khác nhau), cut → cut, put → put. Mẹo học: mỗi ngày học 3 cặp và tự đặt một câu với \"yesterday\". Lưu ý: khi câu đã có \"did not\" thì dùng lại NGUYÊN MẪU — I did not see it (không phải \"did not saw\")."
+    },
+    {
+      "id": "did-questions",
+      "title_vi": "Câu hỏi quá khứ với \"Did\"",
+      "explain_vi": "Hỏi về quá khứ: \"Did\" + chủ ngữ + động từ NGUYÊN MẪU. Vì \"did\" đã mang nghĩa quá khứ nên động từ chính không đổi. Khi trả lời mới dùng dạng quá khứ.",
+      "examples": [
+        "I stayed at home yesterday. Did you stay at home yesterday?",
+        "Did you cook at home last night? Yes, I cooked at home last night.",
+        "Did you sing at home last night? Yes, I sang at home last night."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "did-question",
+            "text": "I {pastQ} at home yesterday. Did you {baseQ} at home yesterday?",
+            "blanks": [
+              "baseQ"
+            ],
+            "context_vi": "Sau \"Did you\" động từ trở lại NGUYÊN MẪU, không thêm -ed và không đổi bất quy tắc.",
+            "audioText": "I stayed at home yesterday. Did you stay at home yesterday?"
+          },
+          {
+            "id": "did-short-answer",
+            "text": "Did you {baseQ} at home last night? Yes, I {pastQ} at home last night.",
+            "blanks": [
+              "pastQ"
+            ],
+            "context_vi": "Câu trả lời không còn \"did\" nữa, nên động từ phải chuyển sang dạng quá khứ.",
+            "audioText": "Did you cook at home last night? Yes, I cooked at home last night."
+          }
+        ],
+        "slots": {
+          "pastQ": [
+            "stayed",
+            "cooked",
+            "studied",
+            "worked",
+            "slept",
+            "played",
+            "ate",
+            "sang"
+          ],
+          "baseQ": [
+            "stay",
+            "cook",
+            "study",
+            "work",
+            "sleep",
+            "play",
+            "eat",
+            "sing"
+          ]
+        },
+        "answerKey": {
+          "did-question": {
+            "baseQ": {
+              "__cond": "pastQ",
+              "stayed": "stay",
+              "cooked": "cook",
+              "studied": "study",
+              "worked": "work",
+              "slept": "sleep",
+              "played": "play",
+              "ate": "eat",
+              "sang": "sing"
+            }
+          },
+          "did-short-answer": {
+            "pastQ": {
+              "__cond": "baseQ",
+              "stay": "stayed",
+              "cook": "cooked",
+              "study": "studied",
+              "work": "worked",
+              "sleep": "slept",
+              "play": "played",
+              "eat": "ate",
+              "sing": "sang"
+            }
+          }
+        },
+        "distractors": [
+          "I stayed at home yesterday. Did you stayed at home yesterday?",
+          "I played at home yesterday. Did you played at home yesterday?",
+          "I ate at home yesterday. Did you ate at home yesterday?",
+          "Did you cook at home last night? Yes, I cook at home last night.",
+          "Did you sing at home last night? Yes, I singed at home last night.",
+          "Did you study at home last night? Yes, I studyed at home last night."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Muốn hỏi về một việc trong quá khứ, em đặt \"Did\" lên đầu: Did you play football yesterday? Điều quan trọng nhất: \"did\" đã mang nghĩa quá khứ rồi, nên động từ chính TRỞ LẠI NGUYÊN MẪU — Did you play? (không phải \"Did you played?\"), Did you eat? (không phải \"Did you ate?\"). Trả lời ngắn: Yes, I did. / No, I did not (didn't). Nếu trả lời dài, câu không còn \"did\" nữa nên động từ phải quay lại dạng quá khứ: Yes, I played football yesterday. \"Did\" dùng cho mọi chủ ngữ: Did I…? Did he…? Did they…? — không bao giờ có \"Dids\"."
+    },
+    {
+      "id": "was-were",
+      "title_vi": "\"Was\" và \"were\": quá khứ của to be",
+      "explain_vi": "\"Was\" và \"were\" là dạng quá khứ của \"to be\": I / he / she / it và MỘT người → was; you / we / they và NHIỀU người → were. Phủ định thêm \"not\" ngay sau.",
+      "examples": [
+        "I was at school yesterday.",
+        "My parents were at school yesterday.",
+        "She was not at home last night."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose",
+        "order_words",
+        "transform"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "was-were-school",
+            "text": "{subj} {bw} at school yesterday.",
+            "blanks": [
+              "bw"
+            ],
+            "context_vi": "Nhìn chủ ngữ để chọn \"was\" hay \"were\".",
+            "audioText": "My sister was at school yesterday."
+          },
+          {
+            "id": "was-were-not-home",
+            "text": "{subj} {bw} not at home last night.",
+            "blanks": [
+              "bw"
+            ],
+            "context_vi": "Câu phủ định: \"not\" đứng ngay sau was/were, chủ ngữ vẫn quyết định chọn was hay were.",
+            "audioText": "They were not at home last night."
+          }
+        ],
+        "slots": {
+          "subj": [
+            "I",
+            "He",
+            "She",
+            "You",
+            "We",
+            "They",
+            "My brother",
+            "My sister",
+            "My parents",
+            "The children"
+          ],
+          "bw": [
+            "was",
+            "were"
+          ]
+        },
+        "answerKey": {
+          "was-were-school": {
+            "bw": {
+              "__cond": "subj",
+              "I": "was",
+              "He": "was",
+              "She": "was",
+              "You": "were",
+              "We": "were",
+              "They": "were",
+              "My brother": "was",
+              "My sister": "was",
+              "My parents": "were",
+              "The children": "were"
+            }
+          },
+          "was-were-not-home": {
+            "bw": {
+              "__cond": "subj",
+              "I": "was",
+              "He": "was",
+              "She": "was",
+              "You": "were",
+              "We": "were",
+              "They": "were",
+              "My brother": "was",
+              "My sister": "was",
+              "My parents": "were",
+              "The children": "were"
+            }
+          },
+          "answer-pairs": {
+            "I was at school yesterday.": "I was not at school yesterday.",
+            "He was at school yesterday.": "He was not at school yesterday.",
+            "She was at school yesterday.": "She was not at school yesterday.",
+            "You were at school yesterday.": "You were not at school yesterday.",
+            "We were at school yesterday.": "We were not at school yesterday.",
+            "They were at school yesterday.": "They were not at school yesterday.",
+            "My brother was at school yesterday.": "My brother was not at school yesterday.",
+            "My parents were at school yesterday.": "My parents were not at school yesterday."
+          },
+          "transform-explain": {
+            "I was at school yesterday.": "Câu có \"was\" thì phủ định chỉ cần thêm \"not\" ngay sau: was → was not (wasn't).",
+            "He was at school yesterday.": "Câu có \"was\" thì phủ định chỉ cần thêm \"not\" ngay sau: was → was not (wasn't).",
+            "She was at school yesterday.": "Câu có \"was\" thì phủ định chỉ cần thêm \"not\" ngay sau: was → was not (wasn't).",
+            "You were at school yesterday.": "Câu có \"were\" thì phủ định chỉ cần thêm \"not\" ngay sau: were → were not (weren't).",
+            "We were at school yesterday.": "Câu có \"were\" thì phủ định chỉ cần thêm \"not\" ngay sau: were → were not (weren't).",
+            "They were at school yesterday.": "Câu có \"were\" thì phủ định chỉ cần thêm \"not\" ngay sau: were → were not (weren't).",
+            "My brother was at school yesterday.": "\"My brother\" là MỘT người nên dùng \"was\"; phủ định là \"was not\".",
+            "My parents were at school yesterday.": "\"My parents\" là NHIỀU người nên dùng \"were\"; phủ định là \"were not\"."
+          }
+        },
+        "distractors": [
+          "They was at school yesterday.",
+          "I were at school yesterday.",
+          "My brother were at school yesterday.",
+          "The children was at school yesterday.",
+          "She were not at home last night.",
+          "We was not at home last night.",
+          "My parents was not at home last night.",
+          "I were not at home last night."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"To be\" ở quá khứ chỉ có hai dạng, dễ hơn hiện tại nhiều: \"was\" và \"were\". Dùng \"was\" với I, he, she, it và với MỘT người hay một vật (my brother was, the cat was). Dùng \"were\" với you, we, they và với NHIỀU người hay nhiều vật (my parents were, the children were). Câu phủ định chỉ cần thêm \"not\" ngay sau: I was not (wasn't) tired, they were not (weren't) at home. Câu hỏi thì đảo lên trước: Were you at school yesterday? — Yes, I was. / No, I wasn't. Lỗi hay gặp: \"They was…\" và \"I were…\" — nhớ was đi với MỘT, were đi với NHIỀU (và với you)."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "last-sunday",
+      "title": "Last Sunday",
+      "title_vi": "Chủ nhật tuần trước",
+      "text": "Last Sunday my family went to the market. My mother bought some bread and a big fish. I saw a small dog near the gate, so I played with it for ten minutes. Then we walked home together. My father cooked lunch and we ate noodles. In the evening I studied English for one hour. I did not watch TV, but I was very happy.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Mẹ của bạn ấy đã mua bánh mì, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "My mother bought some bread."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Buổi tối bạn ấy đã làm gì?",
+          "type": "mcq",
+          "choices": [
+            "studied English",
+            "watched TV",
+            "cooked lunch"
+          ],
+          "answer": 0,
+          "audioText": "What did the child do in the evening?"
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit11.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 411,
+  "lesson": 11,
+  "topic": "Present Perfect",
+  "topic_vi": "Hiện tại hoàn thành",
+  "vocab": [
+    {
+      "word": "already",
+      "vi": "đã ... rồi",
+      "icon": "✔️",
+      "example": "I have already eaten lunch.",
+      "partOfSpeech": "adv",
+      "audio": ""
+    },
+    {
+      "word": "yet",
+      "vi": "chưa (trong câu phủ định, câu hỏi)",
+      "icon": "❓",
+      "example": "I have not eaten lunch yet.",
+      "partOfSpeech": "adv",
+      "audio": ""
+    },
+    {
+      "word": "just",
+      "vi": "vừa mới",
+      "icon": "⏱️",
+      "example": "She has just come home.",
+      "partOfSpeech": "adv",
+      "audio": ""
+    },
+    {
+      "word": "ever",
+      "vi": "từng, bao giờ",
+      "icon": "🌍",
+      "example": "Have you ever eaten sushi?",
+      "partOfSpeech": "adv",
+      "audio": ""
+    },
+    {
+      "word": "never",
+      "vi": "chưa bao giờ",
+      "icon": "🚫",
+      "example": "I have never been to Sa Pa.",
+      "partOfSpeech": "adv",
+      "audio": ""
+    },
+    {
+      "word": "finish",
+      "vi": "làm xong, hoàn thành",
+      "icon": "🏁",
+      "example": "He has finished his homework.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "homework",
+      "vi": "bài tập về nhà",
+      "icon": "📝",
+      "example": "My homework is easy today.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "lose",
+      "vi": "mất, làm mất",
+      "icon": "🔑",
+      "example": "I have lost my key.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "sushi",
+      "vi": "món sushi",
+      "icon": "🍣",
+      "example": "Have you ever eaten sushi?",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "pizza",
+      "vi": "bánh pizza",
+      "icon": "🍕",
+      "example": "I have never eaten pizza.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "clean",
+      "vi": "dọn dẹp",
+      "icon": "🧹",
+      "example": "Lan has just cleaned her room.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "milk",
+      "vi": "sữa",
+      "icon": "🥛",
+      "example": "I have already bought some milk.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "breakfast",
+      "vi": "bữa sáng",
+      "icon": "🥣",
+      "example": "Nam has not eaten breakfast yet.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "have-has-v3",
+      "title_vi": "\"Have / has\" + động từ dạng thứ ba (V3)",
+      "explain_vi": "Nói việc đã xong mà còn liên quan tới bây giờ: I / you / we / they + have + V3; he / she / it và MỘT người + has + V3. Động từ luôn ở dạng thứ ba (V3).",
+      "examples": [
+        "I have finished the homework.",
+        "My sister has finished the homework.",
+        "I want to eat it, but I have already eaten it."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "transform"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "hh-finished",
+            "text": "{subj} {hh} finished the homework.",
+            "blanks": [
+              "hh"
+            ],
+            "context_vi": "Nhìn chủ ngữ để chọn \"have\" hay \"has\".",
+            "audioText": "My sister has finished the homework."
+          },
+          {
+            "id": "hh-v3-already",
+            "text": "I want to {base} it, but I have already {v3} it.",
+            "blanks": [
+              "v3"
+            ],
+            "context_vi": "Động từ nguyên mẫu sau \"want to\" là manh mối — hãy đổi nó sang dạng thứ ba (V3).",
+            "audioText": "I want to eat it, but I have already eaten it."
+          }
+        ],
+        "slots": {
+          "subj": [
+            "I",
+            "You",
+            "We",
+            "They",
+            "He",
+            "She",
+            "My brother",
+            "My sister",
+            "My parents",
+            "The children"
+          ],
+          "hh": [
+            "have",
+            "has"
+          ],
+          "base": [
+            "eat",
+            "see",
+            "do",
+            "write",
+            "take",
+            "make",
+            "buy",
+            "finish",
+            "clean",
+            "read"
+          ],
+          "v3": [
+            "eaten",
+            "seen",
+            "done",
+            "written",
+            "taken",
+            "made",
+            "bought",
+            "finished",
+            "cleaned",
+            "read"
+          ]
+        },
+        "answerKey": {
+          "hh-finished": {
+            "hh": {
+              "__cond": "subj",
+              "I": "have",
+              "You": "have",
+              "We": "have",
+              "They": "have",
+              "He": "has",
+              "She": "has",
+              "My brother": "has",
+              "My sister": "has",
+              "My parents": "have",
+              "The children": "have"
+            }
+          },
+          "hh-v3-already": {
+            "v3": {
+              "__cond": "base",
+              "eat": "eaten",
+              "see": "seen",
+              "do": "done",
+              "write": "written",
+              "take": "taken",
+              "make": "made",
+              "buy": "bought",
+              "finish": "finished",
+              "clean": "cleaned",
+              "read": "read"
+            }
+          },
+          "answer-pairs": {
+            "I have finished the homework.": "I have not finished the homework.",
+            "You have finished the homework.": "You have not finished the homework.",
+            "We have finished the homework.": "We have not finished the homework.",
+            "They have finished the homework.": "They have not finished the homework.",
+            "He has finished the homework.": "He has not finished the homework.",
+            "She has finished the homework.": "She has not finished the homework.",
+            "My brother has finished the homework.": "My brother has not finished the homework.",
+            "My parents have finished the homework.": "My parents have not finished the homework."
+          },
+          "transform-explain": {
+            "I have finished the homework.": "Phủ định chỉ cần thêm \"not\" ngay sau \"have\": have finished → have not (haven't) finished.",
+            "You have finished the homework.": "Phủ định chỉ cần thêm \"not\" ngay sau \"have\": have finished → have not (haven't) finished.",
+            "We have finished the homework.": "Phủ định chỉ cần thêm \"not\" ngay sau \"have\": have finished → have not (haven't) finished.",
+            "They have finished the homework.": "Phủ định chỉ cần thêm \"not\" ngay sau \"have\": have finished → have not (haven't) finished.",
+            "He has finished the homework.": "Phủ định chỉ cần thêm \"not\" ngay sau \"has\": has finished → has not (hasn't) finished.",
+            "She has finished the homework.": "Phủ định chỉ cần thêm \"not\" ngay sau \"has\": has finished → has not (hasn't) finished.",
+            "My brother has finished the homework.": "\"My brother\" là MỘT người nên dùng \"has\"; phủ định là \"has not finished\".",
+            "My parents have finished the homework.": "\"My parents\" là NHIỀU người nên dùng \"have\"; phủ định là \"have not finished\"."
+          }
+        },
+        "distractors": [
+          "She have finished the homework.",
+          "My brother have finished the homework.",
+          "They has finished the homework.",
+          "I has finished the homework.",
+          "I want to eat it, but I have already ate it.",
+          "I want to write it, but I have already wrote it.",
+          "I want to see it, but I have already saw it.",
+          "I want to do it, but I have already did it."
+        ],
+        "irregulars": {
+          "eat": "eaten",
+          "see": "seen",
+          "do": "done",
+          "write": "written",
+          "take": "taken",
+          "make": "made",
+          "buy": "bought",
+          "read": "read",
+          "go": "gone",
+          "be": "been",
+          "lose": "lost",
+          "come": "come"
+        }
+      },
+      "teach_vi": "Thì hiện tại hoàn thành nối QUÁ KHỨ với BÂY GIỜ: việc đã xong nhưng kết quả vẫn còn đến lúc này. Công thức: have / has + V3. Dùng \"have\" với I, you, we, they và nhiều người; dùng \"has\" với he, she, it và MỘT người: I have finished, my sister has finished. V3 (dạng thứ ba) của động từ có quy tắc giống dạng quá khứ, chỉ thêm \"-ed\": finish → finished, clean → cleaned. Nhưng nhiều động từ bất quy tắc có V3 riêng, phải học thuộc: eat → eaten, see → seen, do → done, write → written, take → taken, go → gone, be → been, lose → lost. Phủ định thêm \"not\" ngay sau have/has: I have not (haven't) finished, she has not (hasn't) finished. Lỗi hay gặp của người Việt: \"She have finished\" và \"I have saw it\" — nhớ has đi với MỘT người, và sau have/has luôn là V3."
+    },
+    {
+      "id": "ever-never",
+      "title_vi": "\"Ever\" và \"never\": kinh nghiệm đã từng / chưa từng",
+      "explain_vi": "Hỏi ai đã từng làm gì chưa: Have you EVER…? Trả lời rằng chưa bao giờ: I have NEVER… \"Never\" đã mang nghĩa phủ định nên không cần thêm \"not\".",
+      "examples": [
+        "Have you ever eaten pizza? No, I have never eaten pizza.",
+        "Have you ever eaten sushi? No, I have never eaten sushi.",
+        "I have never been to Sa Pa, but I want to go there one day."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "ever-question",
+            "text": "Have you {ev} eaten {food}? No, I have {nev} eaten {food}.",
+            "blanks": [
+              "ev",
+              "nev"
+            ],
+            "context_vi": "Trong CÂU HỎI dùng \"ever\"; trong câu trả lời \"No, I have …\" dùng \"never\".",
+            "audioText": "Have you ever eaten pizza? No, I have never eaten pizza."
+          },
+          {
+            "id": "never-been",
+            "text": "I have {nev} been to {place}, but I want to go there one day.",
+            "blanks": [
+              "nev"
+            ],
+            "context_vi": "\"Nhưng tôi muốn đi\" cho biết người nói CHƯA BAO GIỜ đến đó.",
+            "audioText": "I have never been to Sa Pa, but I want to go there one day."
+          }
+        ],
+        "slots": {
+          "ev": [
+            "ever",
+            "never"
+          ],
+          "nev": [
+            "ever",
+            "never"
+          ],
+          "food": [
+            "sushi",
+            "pizza",
+            "noodles",
+            "cheese",
+            "corn",
+            "fish"
+          ],
+          "place": [
+            "Ha Noi",
+            "Hue",
+            "Da Nang",
+            "Sa Pa",
+            "Can Tho",
+            "Nha Trang"
+          ]
+        },
+        "answerKey": {
+          "ever-question": {
+            "ev": "ever",
+            "nev": "never"
+          },
+          "never-been": {
+            "nev": "never"
+          }
+        },
+        "distractors": [
+          "Have you ever eat pizza? No, I have never eaten pizza.",
+          "Have you ever eaten sushi? No, I have ever eaten sushi.",
+          "Have you never eaten noodles? No, I have ever eaten noodles.",
+          "I have ever been to Ha Noi, but I want to go there one day.",
+          "I have never went to Hue, but I want to go there one day.",
+          "Have you ever ate cheese? No, I have never ate cheese.",
+          "I have not never been to Da Nang, but I want to go there one day.",
+          "I have never be to Nha Trang, but I want to go there one day."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Khi muốn hỏi bạn mình đã TỪNG làm việc gì đó trong đời chưa, em dùng \"ever\" và đặt nó giữa chủ ngữ với V3: Have you ever eaten sushi? Have you ever been to Ha Noi? Khi trả lời rằng CHƯA BAO GIỜ, em dùng \"never\" ở đúng chỗ đó: I have never eaten sushi. I have never been to Ha Noi. Điều quan trọng: \"never\" đã mang nghĩa phủ định sẵn, nên KHÔNG viết \"I have not never…\" và cũng không viết \"I have never not…\". Còn \"ever\" thì hầu như chỉ xuất hiện trong câu hỏi — đừng dùng \"ever\" trong câu kể. Nếu đã từng làm rồi thì trả lời: Yes, I have. / Yes, I have eaten sushi once."
+    },
+    {
+      "id": "just-already-yet",
+      "title_vi": "\"Just\" · \"already\" · \"yet\"",
+      "explain_vi": "\"Just\" = vừa mới xong; \"already\" = đã xong rồi (câu khẳng định); \"yet\" = chưa, chỉ dùng trong câu phủ định hoặc câu hỏi và đứng ở CUỐI câu.",
+      "examples": [
+        "I have not eaten breakfast yet.",
+        "Have you cleaned your room yet?",
+        "Nam finished his lunch a minute ago. He has just finished it.",
+        "You do not need to buy milk. I have already bought it."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "yet-not",
+            "text": "I have not {myThing} {jay}.",
+            "blanks": [
+              "jay"
+            ],
+            "context_vi": "Câu PHỦ ĐỊNH (\"have not\") — chọn \"just\", \"already\" hay \"yet\"?",
+            "audioText": "I have not eaten breakfast yet."
+          },
+          {
+            "id": "yet-question",
+            "text": "Have you {yourThing} {jay}?",
+            "blanks": [
+              "jay"
+            ],
+            "context_vi": "Đây là câu HỎI — chọn \"just\", \"already\" hay \"yet\"?",
+            "audioText": "Have you cleaned your room yet?"
+          },
+          {
+            "id": "just-minute",
+            "text": "Nam finished his lunch a minute ago. He has {jay} finished it.",
+            "blanks": [
+              "jay"
+            ],
+            "context_vi": "\"A minute ago\" nghĩa là mới cách đây một phút — chọn \"just\", \"already\" hay \"yet\"?",
+            "audioText": "Nam finished his lunch a minute ago. He has just finished it."
+          },
+          {
+            "id": "just-bus",
+            "text": "The bus arrived a minute ago. It has {jay} arrived.",
+            "blanks": [
+              "jay"
+            ],
+            "context_vi": "Việc vừa xảy ra cách đây một phút — chọn \"just\", \"already\" hay \"yet\"?",
+            "audioText": "The bus arrived a minute ago. It has just arrived."
+          },
+          {
+            "id": "already-no-need",
+            "text": "You do not need to buy milk. I have {jay} bought it.",
+            "blanks": [
+              "jay"
+            ],
+            "context_vi": "\"Không cần mua nữa\" vì việc ĐÃ XONG RỒI — chọn \"just\", \"already\" hay \"yet\"?",
+            "audioText": "You do not need to buy milk. I have already bought it."
+          },
+          {
+            "id": "already-news",
+            "text": "You do not need to tell me the news. I have {jay} heard it.",
+            "blanks": [
+              "jay"
+            ],
+            "context_vi": "\"Không cần kể nữa\" vì tôi ĐÃ nghe RỒI — chọn \"just\", \"already\" hay \"yet\"?",
+            "audioText": "You do not need to tell me the news. I have already heard it."
+          }
+        ],
+        "slots": {
+          "jay": [
+            "just",
+            "already",
+            "yet"
+          ],
+          "myThing": [
+            "eaten breakfast",
+            "done my homework",
+            "cleaned my room",
+            "washed my hands",
+            "read the book",
+            "found my key"
+          ],
+          "yourThing": [
+            "cleaned your room",
+            "done your homework",
+            "eaten your lunch",
+            "washed your hands",
+            "read the book",
+            "found your key"
+          ]
+        },
+        "answerKey": {
+          "yet-not": {
+            "jay": "yet"
+          },
+          "yet-question": {
+            "jay": "yet"
+          },
+          "just-minute": {
+            "jay": "just"
+          },
+          "just-bus": {
+            "jay": "just"
+          },
+          "already-no-need": {
+            "jay": "already"
+          },
+          "already-news": {
+            "jay": "already"
+          }
+        },
+        "distractors": [
+          "I have not eaten breakfast already.",
+          "I have not done my homework just.",
+          "Have you cleaned your room just?",
+          "Have you already washed your hands yet?",
+          "Nam finished his lunch a minute ago. He has yet finished it.",
+          "Nam finished his lunch a minute ago. He has just finish it.",
+          "The bus arrived a minute ago. It has yet arrived.",
+          "You do not need to buy milk. I have yet bought it.",
+          "You do not need to buy milk. I have already buy it.",
+          "You do not need to tell me the news. I have heard it yet."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Ba từ này đi cùng have/has + V3 và mỗi từ có một chỗ đứng riêng. \"Just\" = vừa mới, việc xong cách đây rất ít phút; nó đứng GIỮA have/has và V3: She has just come home. \"Already\" = đã ... rồi, dùng trong câu khẳng định, cũng đứng giữa have/has và V3: I have already bought the milk. \"Yet\" = chưa, chỉ dùng trong câu PHỦ ĐỊNH và câu HỎI, và luôn đứng ở CUỐI câu: I have not finished my homework yet. Have you finished your homework yet? Nhớ hai điều: đừng dùng \"yet\" trong câu khẳng định, và đừng đặt \"already\" hay \"just\" ở cuối câu. Sau have/has luôn là V3, không phải nguyên mẫu."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "sunday-morning",
+      "title": "Sunday morning",
+      "title_vi": "Sáng chủ nhật",
+      "text": "It is nine o'clock on Sunday. Lan has already cleaned her room and she has just finished her breakfast. Her brother Nam has not got up yet. Their mother is not happy. \"Nam, have you ever tidied your room?\" she asks. Nam smiles. He has never tidied it, but today he wants to try.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Lan đã dọn phòng xong rồi, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "Lan has already cleaned her room."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Nam đã ngủ dậy chưa?",
+          "type": "mcq",
+          "choices": [
+            "He has not got up yet.",
+            "He has already got up.",
+            "He has just got up."
+          ],
+          "answer": 0,
+          "audioText": "Has Nam got up yet?"
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit12.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 412,
+  "lesson": 12,
+  "topic": "Past Continuous",
+  "topic_vi": "Quá khứ tiếp diễn",
+  "vocab": [
+    {
+      "word": "while",
+      "vi": "trong khi",
+      "icon": "⏳",
+      "example": "While I was reading, the phone rang.",
+      "partOfSpeech": "conjunction",
+      "audio": ""
+    },
+    {
+      "word": "when",
+      "vi": "khi, lúc",
+      "icon": "🔔",
+      "example": "When the bell rang, we were playing.",
+      "partOfSpeech": "conjunction",
+      "audio": ""
+    },
+    {
+      "word": "ring",
+      "vi": "reo, rung",
+      "icon": "📞",
+      "example": "The phone rang at seven o'clock.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "watch",
+      "vi": "xem",
+      "icon": "📺",
+      "example": "I was watching TV last night.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "sleep",
+      "vi": "ngủ",
+      "icon": "😴",
+      "example": "She was not sleeping at nine o'clock.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "run",
+      "vi": "chạy",
+      "icon": "🏃",
+      "example": "The children were running in the yard.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "swim",
+      "vi": "bơi",
+      "icon": "🏊",
+      "example": "We were swimming in the river.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "read",
+      "vi": "đọc",
+      "icon": "📖",
+      "example": "I was reading in my room.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "dinner",
+      "vi": "bữa tối",
+      "icon": "🍽️",
+      "example": "Lan ate her dinner in ten minutes.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "homework",
+      "vi": "bài tập về nhà",
+      "icon": "📝",
+      "example": "I was doing my homework at eight.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "yard",
+      "vi": "cái sân",
+      "icon": "🏫",
+      "example": "We were playing in the yard.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "suddenly",
+      "vi": "bỗng nhiên",
+      "icon": "⚡",
+      "example": "Suddenly the lights went out.",
+      "partOfSpeech": "adv",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "was-were-ving",
+      "title_vi": "\"Was / were\" + V-ing",
+      "explain_vi": "Kể việc đang diễn ra tại một lúc trong quá khứ: was / were + V-ing. Dùng \"was\" với I, he, she, it và MỘT người; dùng \"were\" với you, we, they và NHIỀU người.",
+      "examples": [
+        "My brother was watching TV at seven o'clock last night.",
+        "My parents were watching TV at seven o'clock last night.",
+        "I like to swim, and yesterday at five I was swimming."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "cont-tv",
+            "text": "{subj} {bw} watching TV at seven o'clock last night.",
+            "blanks": [
+              "bw"
+            ],
+            "context_vi": "Nhìn chủ ngữ để chọn \"was\" hay \"were\".",
+            "audioText": "My brother was watching TV at seven o'clock last night."
+          },
+          {
+            "id": "cont-not-sleeping",
+            "text": "{subj} {bw} not sleeping at nine o'clock last night.",
+            "blanks": [
+              "bw"
+            ],
+            "context_vi": "Câu phủ định: \"not\" đứng giữa was/were và V-ing.",
+            "audioText": "They were not sleeping at nine o'clock last night."
+          },
+          {
+            "id": "ing-spelling",
+            "text": "I like to {base}, and yesterday at five I was {ving}.",
+            "blanks": [
+              "ving"
+            ],
+            "context_vi": "Động từ nguyên mẫu sau \"like to\" là manh mối — hãy thêm \"-ing\" cho đúng quy tắc.",
+            "audioText": "I like to swim, and yesterday at five I was swimming."
+          }
+        ],
+        "slots": {
+          "subj": [
+            "I",
+            "He",
+            "She",
+            "You",
+            "We",
+            "They",
+            "My brother",
+            "My sister",
+            "My parents",
+            "The children"
+          ],
+          "bw": [
+            "was",
+            "were"
+          ],
+          "base": [
+            "run",
+            "swim",
+            "jog",
+            "write",
+            "ride",
+            "dance",
+            "play",
+            "study",
+            "read",
+            "cook"
+          ],
+          "ving": [
+            "running",
+            "swimming",
+            "jogging",
+            "writing",
+            "riding",
+            "dancing",
+            "playing",
+            "studying",
+            "reading",
+            "cooking"
+          ]
+        },
+        "answerKey": {
+          "cont-tv": {
+            "bw": {
+              "__cond": "subj",
+              "I": "was",
+              "He": "was",
+              "She": "was",
+              "You": "were",
+              "We": "were",
+              "They": "were",
+              "My brother": "was",
+              "My sister": "was",
+              "My parents": "were",
+              "The children": "were"
+            }
+          },
+          "cont-not-sleeping": {
+            "bw": {
+              "__cond": "subj",
+              "I": "was",
+              "He": "was",
+              "She": "was",
+              "You": "were",
+              "We": "were",
+              "They": "were",
+              "My brother": "was",
+              "My sister": "was",
+              "My parents": "were",
+              "The children": "were"
+            }
+          },
+          "ing-spelling": {
+            "ving": {
+              "__cond": "base",
+              "run": "running",
+              "swim": "swimming",
+              "jog": "jogging",
+              "write": "writing",
+              "ride": "riding",
+              "dance": "dancing",
+              "play": "playing",
+              "study": "studying",
+              "read": "reading",
+              "cook": "cooking"
+            }
+          }
+        },
+        "distractors": [
+          "They was watching TV at seven o'clock last night.",
+          "I were watching TV at seven o'clock last night.",
+          "My brother were watching TV at seven o'clock last night.",
+          "The children was watching TV at seven o'clock last night.",
+          "She were not sleeping at nine o'clock last night.",
+          "We was not sleeping at nine o'clock last night.",
+          "I like to run, and yesterday at five I was runing.",
+          "I like to swim, and yesterday at five I was swiming.",
+          "I like to write, and yesterday at five I was writeing.",
+          "I like to dance, and yesterday at five I was danceing."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Quá khứ tiếp diễn kể một việc ĐANG diễn ra tại một thời điểm trong quá khứ. Công thức: was / were + V-ing. Chọn was hay were giống hệt như đã học ở bài Quá khứ đơn: \"was\" đi với I, he, she, it và MỘT người (my brother was playing); \"were\" đi với you, we, they và NHIỀU người (my parents were playing). Câu phủ định đặt \"not\" ở giữa: I was not (wasn't) sleeping, they were not (weren't) sleeping. Cách thêm \"-ing\": thường chỉ thêm \"-ing\" (play → playing, study → studying); nếu từ kết thúc bằng \"e\" thì bỏ \"e\" rồi thêm \"-ing\" (write → writing, ride → riding, dance → dancing); nếu từ ngắn có nguyên âm ngắn + một phụ âm cuối thì gấp đôi phụ âm (run → running, swim → swimming, jog → jogging). Dấu hiệu thường gặp: at seven o'clock last night, at that moment, all morning yesterday."
+    },
+    {
+      "id": "when-while",
+      "title_vi": "\"When\" và \"while\": nối hai việc trong quá khứ",
+      "explain_vi": "\"While\" đi với việc DÀI đang diễn ra (was/were + V-ing); \"when\" đi với việc NGẮN xảy ra và cắt ngang (quá khứ đơn). Hãy xem động từ ngay sau nó để chọn.",
+      "examples": [
+        "While I was reading in my room, the phone rang.",
+        "When the phone rang, I was reading in my room.",
+        "While I was studying in my room, the phone rang."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "while-long",
+            "text": "{ww} I was {ving} in my room, the phone rang.",
+            "blanks": [
+              "ww"
+            ],
+            "context_vi": "Ngay sau chỗ trống là việc DÀI (was + V-ing) — chọn \"When\" hay \"While\"?",
+            "audioText": "While I was reading in my room, the phone rang."
+          },
+          {
+            "id": "when-short",
+            "text": "{ww} the phone rang, I was {ving} in my room.",
+            "blanks": [
+              "ww"
+            ],
+            "context_vi": "Ngay sau chỗ trống là việc NGẮN ở quá khứ đơn — chọn \"When\" hay \"While\"?",
+            "audioText": "When the phone rang, I was reading in my room."
+          }
+        ],
+        "slots": {
+          "ww": [
+            "When",
+            "While"
+          ],
+          "ving": [
+            "reading",
+            "writing",
+            "studying",
+            "drawing",
+            "singing",
+            "sleeping"
+          ]
+        },
+        "answerKey": {
+          "while-long": {
+            "ww": "While"
+          },
+          "when-short": {
+            "ww": "When"
+          }
+        },
+        "distractors": [
+          "While I was read in my room, the phone rang.",
+          "While I reading in my room, the phone rang.",
+          "While I was studying in my room, the phone ringed.",
+          "When the phone rang, I was read in my room.",
+          "When the phone rang, I were reading in my room.",
+          "When the phone ringed, I was writing in my room."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Trong một câu kể quá khứ thường có hai việc: một việc DÀI đang diễn ra và một việc NGẮN xảy ra chen vào. Việc DÀI dùng quá khứ tiếp diễn (was / were + V-ing) và đi với \"while\"; việc NGẮN dùng quá khứ đơn và đi với \"when\". Ví dụ: While I was reading, the phone rang. — hoặc đảo lại: When the phone rang, I was reading. Hai câu này nghĩa giống nhau, chỉ khác thứ tự. Mẹo làm bài: em nhìn động từ đứng NGAY SAU chỗ trống. Nếu đó là \"was / were + V-ing\" thì điền \"While\"; nếu đó là một động từ quá khứ đơn ngắn (rang, came, went) thì điền \"When\". Khi mệnh đề phụ đứng trước thì có dấu phẩy ở giữa hai mệnh đề."
+    },
+    {
+      "id": "past-simple-vs-continuous",
+      "title_vi": "Quá khứ đơn hay quá khứ tiếp diễn?",
+      "explain_vi": "Việc đang diễn ra, bị cắt ngang hoặc đi sau \"while\" → quá khứ tiếp diễn. Việc xảy ra một cái rồi xong, hoặc làm hết trong khoảng thời gian → quá khứ đơn.",
+      "examples": [
+        "While I was doing my homework, my mother came in.",
+        "I was watching TV when the phone rang.",
+        "Yesterday Lan ate her dinner in ten minutes."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "while-doing",
+            "text": "While I {formDo} my homework, {who} came in.",
+            "blanks": [
+              "formDo"
+            ],
+            "context_vi": "Sau \"While\" là việc DÀI đang diễn ra, nên dùng quá khứ tiếp diễn.",
+            "audioText": "While I was doing my homework, my mother came in."
+          },
+          {
+            "id": "while-cooking",
+            "text": "While my mother {formCook} dinner, I set the table.",
+            "blanks": [
+              "formCook"
+            ],
+            "context_vi": "Sau \"While\" là việc DÀI (nấu bữa tối), nên dùng quá khứ tiếp diễn.",
+            "audioText": "While my mother was cooking dinner, I set the table."
+          },
+          {
+            "id": "when-rang",
+            "text": "I was {actVing} when the phone {formRing}.",
+            "blanks": [
+              "formRing"
+            ],
+            "context_vi": "Điện thoại reo là việc NGẮN cắt ngang việc đang làm, nên dùng quá khứ đơn.",
+            "audioText": "I was watching TV when the phone rang."
+          },
+          {
+            "id": "when-came",
+            "text": "We were playing in the yard when the teacher {formCome}.",
+            "blanks": [
+              "formCome"
+            ],
+            "context_vi": "Cô giáo đến là việc NGẮN cắt ngang việc đang chơi, nên dùng quá khứ đơn.",
+            "audioText": "We were playing in the yard when the teacher came."
+          },
+          {
+            "id": "in-ten-minutes",
+            "text": "Yesterday Lan {formEat} her {meal} in ten minutes.",
+            "blanks": [
+              "formEat"
+            ],
+            "context_vi": "\"In ten minutes\" cho biết việc đã LÀM XONG trong mười phút, nên dùng quá khứ đơn.",
+            "audioText": "Yesterday Lan ate her dinner in ten minutes."
+          }
+        ],
+        "slots": {
+          "formDo": [
+            "was doing",
+            "did"
+          ],
+          "formCook": [
+            "was cooking",
+            "cooked"
+          ],
+          "formRing": [
+            "rang",
+            "was ringing"
+          ],
+          "formCome": [
+            "came",
+            "was coming"
+          ],
+          "formEat": [
+            "ate",
+            "was eating"
+          ],
+          "who": [
+            "my mother",
+            "my father",
+            "my sister",
+            "my brother",
+            "my teacher"
+          ],
+          "actVing": [
+            "watching TV",
+            "reading a book",
+            "doing my homework",
+            "eating dinner",
+            "drawing a picture"
+          ],
+          "meal": [
+            "dinner",
+            "lunch",
+            "breakfast",
+            "soup",
+            "noodles"
+          ]
+        },
+        "answerKey": {
+          "while-doing": {
+            "formDo": "was doing"
+          },
+          "while-cooking": {
+            "formCook": "was cooking"
+          },
+          "when-rang": {
+            "formRing": "rang"
+          },
+          "when-came": {
+            "formCome": "came"
+          },
+          "in-ten-minutes": {
+            "formEat": "ate"
+          }
+        },
+        "distractors": [
+          "While I did my homework, my mother came in.",
+          "While I was do my homework, my mother came in.",
+          "While my mother cooked dinner, I set the table.",
+          "While my mother was cook dinner, I set the table.",
+          "I was watching TV when the phone was ringing.",
+          "I was reading a book when the phone was ringing.",
+          "We were playing in the yard when the teacher was coming.",
+          "We were playing in the yard when the teacher comed.",
+          "Yesterday Lan was eating her dinner in ten minutes.",
+          "Yesterday Lan was ate her soup in ten minutes."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Hai thì này hay đi cùng nhau trong một câu, nên em cần biết chọn thì nào. Dùng QUÁ KHỨ TIẾP DIỄN (was/were + V-ing) khi việc đó KÉO DÀI, đang giữa dòng, thường bị việc khác cắt ngang, hoặc đứng sau \"while\": While I was doing my homework, my mother came in. Dùng QUÁ KHỨ ĐƠN khi việc xảy ra MỘT CÁI rồi xong ngay, khi nó cắt ngang việc dài (thường đi với \"when\"), hoặc khi việc được làm hết trong một khoảng thời gian: The phone rang. / Lan ate her dinner in ten minutes. Mẹo nhớ: việc dài là \"cái nền\", việc ngắn là \"cái chen vào\". Cụm \"in ten minutes\" (làm xong trong mười phút) luôn đi với quá khứ đơn, còn \"at eight o'clock last night\" (đúng lúc đó đang làm) thì đi với quá khứ tiếp diễn."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "a-rainy-afternoon",
+      "title": "A rainy afternoon",
+      "title_vi": "Một buổi chiều mưa",
+      "text": "Yesterday afternoon it was raining. My sister was reading a book in her room and I was doing my homework at my desk. My mother was cooking in the kitchen. Suddenly the lights went out! While we were looking for a candle, my father came home. He was laughing, because he was very wet.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Lúc đó chị/em gái đang đọc sách, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "My sister was reading a book."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Bố về nhà lúc mọi người đang làm gì?",
+          "type": "mcq",
+          "choices": [
+            "looking for a candle",
+            "watching TV",
+            "eating dinner"
+          ],
+          "answer": 0,
+          "audioText": "What were they doing when father came home?"
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit13.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 413,
+  "lesson": 13,
+  "topic": "The future: be going to, will",
+  "topic_vi": "Tương lai: be going to · will",
+  "vocab": [
+    {
+      "word": "kite",
+      "vi": "cái diều",
+      "icon": "🪁",
+      "example": "I will bring a big kite to the field tomorrow.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "field",
+      "vi": "cánh đồng, sân bãi",
+      "icon": "🌾",
+      "example": "We will play football in the field.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "poster",
+      "vi": "tấm áp phích",
+      "icon": "🖼️",
+      "example": "Our class is going to paint a poster.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "guitar",
+      "vi": "đàn ghi-ta",
+      "icon": "🎸",
+      "example": "My cousin is going to learn the guitar.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "museum",
+      "vi": "viện bảo tàng",
+      "icon": "🏛️",
+      "example": "We are going to visit the science museum.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "ticket",
+      "vi": "vé",
+      "icon": "🎫",
+      "example": "I bought the tickets last week.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "club",
+      "vi": "câu lạc bộ",
+      "icon": "♟️",
+      "example": "Our class is going to join the chess club.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "heavy",
+      "vi": "nặng",
+      "icon": "🏋️",
+      "example": "That bag is very heavy.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "decide",
+      "vi": "quyết định",
+      "icon": "🤔",
+      "example": "First we decide, then we make a plan.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "bake",
+      "vi": "nướng bánh",
+      "icon": "🍰",
+      "example": "We are going to bake a cake.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "plant",
+      "vi": "trồng cây",
+      "icon": "🌱",
+      "example": "They are going to plant a tree.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "pack",
+      "vi": "xếp đồ vào túi",
+      "icon": "🎒",
+      "example": "My bag is already packed.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "be-going-to",
+      "title_vi": "\"be going to\": kế hoạch đã định trước",
+      "explain_vi": "Kế hoạch ĐÃ ĐỊNH trước thì dùng \"be going to + động từ nguyên mẫu\". Chọn am/is/are cho khớp chủ ngữ; phủ định thêm \"not\" ngay sau am/is/are.",
+      "examples": [
+        "I am going to bake a cake next Saturday.",
+        "My cousin is going to paint a poster next Saturday.",
+        "We are not going to plant a tree next Saturday."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose",
+        "transform"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "plan-affirm",
+            "text": "{planner} {be} going to {plan} next Saturday.",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "Nói kế hoạch đã định cho thứ Bảy tới. Chọn am/is/are cho khớp chủ ngữ.",
+            "audioText": "My cousin is going to paint a poster next Saturday."
+          },
+          {
+            "id": "plan-negative",
+            "text": "{planner} {be} not going to {plan} next Saturday.",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "Câu phủ định: \"not\" đứng ngay sau am/is/are, trước \"going to\".",
+            "audioText": "We are not going to plant a tree next Saturday."
+          }
+        ],
+        "slots": {
+          "planner": [
+            "I",
+            "You",
+            "We",
+            "My cousin",
+            "My neighbours",
+            "Our class"
+          ],
+          "be": [
+            "am",
+            "is",
+            "are"
+          ],
+          "plan": [
+            "bake a cake",
+            "paint a poster",
+            "plant a tree",
+            "learn the guitar",
+            "join the chess club"
+          ]
+        },
+        "answerKey": {
+          "plan-affirm": {
+            "be": {
+              "__cond": "planner",
+              "I": "am",
+              "You": "are",
+              "We": "are",
+              "My cousin": "is",
+              "My neighbours": "are",
+              "Our class": "is"
+            }
+          },
+          "plan-negative": {
+            "be": {
+              "__cond": "planner",
+              "I": "am",
+              "You": "are",
+              "We": "are",
+              "My cousin": "is",
+              "My neighbours": "are",
+              "Our class": "is"
+            }
+          },
+          "answer-pairs": {
+            "I am going to bake a cake next Saturday.": "I am not going to bake a cake next Saturday.",
+            "You are going to learn the guitar next Saturday.": "You are not going to learn the guitar next Saturday.",
+            "We are going to plant a tree next Saturday.": "We are not going to plant a tree next Saturday.",
+            "My cousin is going to paint a poster next Saturday.": "My cousin is not going to paint a poster next Saturday.",
+            "My neighbours are going to plant a tree next Saturday.": "My neighbours are not going to plant a tree next Saturday.",
+            "Our class is going to join the chess club next Saturday.": "Our class is not going to join the chess club next Saturday."
+          }
+        },
+        "distractors": [
+          "I is going to bake a cake next Saturday.",
+          "My cousin are going to paint a poster next Saturday.",
+          "We is going to plant a tree next Saturday.",
+          "My cousin going to learn the guitar next Saturday.",
+          "Our class is going to bakes a cake next Saturday.",
+          "You are going bake a cake next Saturday."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Khi em đã BÀN TRƯỚC, đã chuẩn bị, đã ghi vào sổ — nói bằng \"be going to\". Công thức: chủ ngữ + am/is/are + going to + động từ nguyên mẫu. Chọn \"to be\" theo chủ ngữ: I → am; He/She/It và MỘT người → is; You/We/They và NHIỀU người → are. Ví dụ: \"I am going to bake a cake next Saturday.\" (Thứ Bảy tới em định nướng bánh). Sau \"going to\" luôn là động từ nguyên mẫu, KHÔNG thêm \"-s\", KHÔNG chia thì: nói \"is going to bake\", không nói \"is going to bakes\" hay \"is going to baked\". Hai lỗi hay gặp nữa: bỏ mất \"to\" (\"is going bake\" ✗) và bỏ mất am/is/are (\"My cousin going to paint\" ✗). Muốn nói KHÔNG định làm, em chỉ cần thêm \"not\" ngay sau am/is/are: \"We are not going to plant a tree.\""
+    },
+    {
+      "id": "will",
+      "title_vi": "\"will\": quyết định tức thì & dự đoán",
+      "explain_vi": "\"will\" giữ nguyên với mọi chủ ngữ và sau nó là động từ nguyên mẫu (will bring — không \"wills\", không \"will to\"). Phủ định: will not = won't.",
+      "examples": [
+        "I will bring a big kite to the field tomorrow.",
+        "My cousin will play football tomorrow because the field is dry.",
+        "We won't play football tomorrow because the ball is broken."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose",
+        "transform"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "will-same-for-all",
+            "text": "{doer} {wl} bring a big kite to the field tomorrow.",
+            "blanks": [
+              "wl"
+            ],
+            "context_vi": "\"will\" giữ nguyên với mọi chủ ngữ, không bao giờ thêm \"-s\" — chọn \"will\" hay \"wills\"?",
+            "audioText": "My cousin will bring a big kite to the field tomorrow."
+          },
+          {
+            "id": "will-or-wont",
+            "text": "{doer} {wl2} play football tomorrow because {reason}.",
+            "blanks": [
+              "wl2"
+            ],
+            "context_vi": "Đọc lí do ở cuối câu: thuận lợi thì dùng \"will\", trở ngại thì dùng \"won't\".",
+            "audioText": "We won't play football tomorrow because the ball is broken."
+          }
+        ],
+        "slots": {
+          "doer": [
+            "I",
+            "You",
+            "We",
+            "My cousin",
+            "My neighbours",
+            "Our class"
+          ],
+          "wl": [
+            "will",
+            "wills"
+          ],
+          "wl2": [
+            "will",
+            "won't"
+          ],
+          "reason": [
+            "the field is dry",
+            "the field is closed",
+            "everyone is free",
+            "the ball is broken"
+          ]
+        },
+        "answerKey": {
+          "will-same-for-all": {
+            "wl": {
+              "__cond": "doer",
+              "I": "will",
+              "You": "will",
+              "We": "will",
+              "My cousin": "will",
+              "My neighbours": "will",
+              "Our class": "will"
+            }
+          },
+          "will-or-wont": {
+            "wl2": {
+              "__cond": "reason",
+              "the field is dry": "will",
+              "the field is closed": "won't",
+              "everyone is free": "will",
+              "the ball is broken": "won't"
+            }
+          },
+          "answer-pairs": {
+            "I will bring a big kite to the field tomorrow.": "I won't bring a big kite to the field tomorrow.",
+            "We will bring a big kite to the field tomorrow.": "We won't bring a big kite to the field tomorrow.",
+            "You will find the answer in this book.": "You won't find the answer in this book.",
+            "My cousin will play football tomorrow.": "My cousin won't play football tomorrow.",
+            "Our class will play football tomorrow.": "Our class won't play football tomorrow.",
+            "My neighbours will paint the old gate.": "My neighbours won't paint the old gate."
+          }
+        },
+        "distractors": [
+          "My cousin wills bring a big kite to the field tomorrow.",
+          "We will brings a big kite to the field tomorrow.",
+          "I will to bring a big kite to the field tomorrow.",
+          "Our class will played football tomorrow because the field is dry.",
+          "My neighbours won't plays football tomorrow because the ball is broken.",
+          "You will play football tomorrow because the ball is broken."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"will\" dùng cho hai việc: (1) điều em QUYẾT ĐỊNH NGAY lúc đang nói — \"That bag is heavy. I will carry it for you.\"; (2) điều em ĐOÁN sẽ xảy ra — \"Our class will win the match.\" Điểm dễ nhất của \"will\": nó giữ nguyên với MỌI chủ ngữ — I will, you will, she will, they will — không bao giờ có \"wills\". Sau \"will\" là động từ nguyên mẫu, KHÔNG thêm \"to\" và KHÔNG thêm \"-s\": \"He will play\" (đúng) — \"He will to play\", \"He will plays\", \"He will played\" (đều sai). Phủ định là \"will not\", nói gọn thành \"won't\": \"We won't play football tomorrow.\" Nhớ sau \"won't\" cũng là động từ nguyên mẫu, không phải \"won't plays\"."
+    },
+    {
+      "id": "will-vs-going-to",
+      "title_vi": "Phân biệt \"will\" và \"be going to\"",
+      "explain_vi": "Vừa nghĩ ra, quyết định ngay lúc nói → dùng \"will\". Kế hoạch đã bàn, đã chuẩn bị từ trước → dùng \"be going to\".",
+      "examples": [
+        "Look, that bag is very heavy. I will carry it for you right now.",
+        "My bag is already packed. I am going to travel to Da Lat next weekend.",
+        "I bought the tickets last week. I am going to visit the science museum next weekend."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "sudden-decision",
+            "text": "{cueNow} I {ff} {helpAct} right now.",
+            "blanks": [
+              "ff"
+            ],
+            "context_vi": "Đọc câu đầu: đây là việc vừa nghĩ ra hay kế hoạch đã định? Rồi chọn dạng tương lai đúng.",
+            "audioText": "Look, that bag is very heavy. I will carry it for you right now."
+          },
+          {
+            "id": "made-a-plan",
+            "text": "{cuePlan} I {ff} {planAct} next weekend.",
+            "blanks": [
+              "ff"
+            ],
+            "context_vi": "Đọc câu đầu: đây là việc vừa nghĩ ra hay kế hoạch đã định? Rồi chọn dạng tương lai đúng.",
+            "audioText": "My bag is already packed. I am going to travel to Da Lat next weekend."
+          }
+        ],
+        "slots": {
+          "cueNow": [
+            "Look, that bag is very heavy.",
+            "Oh no, the milk is on the floor.",
+            "Wait, the door is still open."
+          ],
+          "cuePlan": [
+            "I bought the tickets last week.",
+            "My bag is already packed.",
+            "I wrote my plan in my notebook on Monday."
+          ],
+          "ff": [
+            "will",
+            "am going to"
+          ],
+          "helpAct": [
+            "carry it for you",
+            "clean it up",
+            "close it"
+          ],
+          "planAct": [
+            "visit the science museum",
+            "travel to Da Lat",
+            "join the swimming class"
+          ]
+        },
+        "answerKey": {
+          "sudden-decision": {
+            "ff": "will",
+            "helpAct": {
+              "__cond": "cueNow",
+              "Look, that bag is very heavy.": "carry it for you",
+              "Oh no, the milk is on the floor.": "clean it up",
+              "Wait, the door is still open.": "close it"
+            }
+          },
+          "made-a-plan": {
+            "ff": "am going to",
+            "planAct": {
+              "__cond": "cuePlan",
+              "I bought the tickets last week.": "visit the science museum",
+              "My bag is already packed.": "travel to Da Lat",
+              "I wrote my plan in my notebook on Monday.": "join the swimming class"
+            }
+          }
+        },
+        "distractors": [
+          "Look, that bag is very heavy. I am going to carry it for you right now.",
+          "My bag is already packed. I will travel to Da Lat next weekend.",
+          "Look, that bag is very heavy. I will to carry it for you right now.",
+          "I bought the tickets last week. I going to visit the science museum next weekend.",
+          "Wait, the door is still open. I will closing it right now.",
+          "My bag is already packed. I am going travel to Da Lat next weekend."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Hai cách nói tương lai này KHÔNG thay thế nhau được. Em nhìn vào MANH MỐI trong câu trước: nếu việc đó VỪA XẢY RA và em phản ứng ngay — thấy cái túi nặng, thấy sữa đổ, thấy cửa còn mở — thì đó là quyết định tức thì, dùng \"will\": \"Oh no, the milk is on the floor. I will clean it up right now.\" Còn nếu câu trước cho thấy em ĐÃ CHUẨN BỊ TỪ TRƯỚC — đã mua vé, đã xếp xong túi, đã ghi kế hoạch vào sổ — thì đó là kế hoạch đã định, dùng \"be going to\": \"I bought the tickets last week. I am going to visit the science museum next weekend.\" Mẹo nhớ: \"will\" = nghĩ ra LÚC NÓI; \"be going to\" = nghĩ ra TRƯỚC KHI NÓI. Riêng khi đoán tương lai dựa vào cảm nhận của mình thì dùng \"will\" (\"I think our team will win\")."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "our-class-plan",
+      "title": "Our class plan",
+      "title_vi": "Kế hoạch của lớp em",
+      "text": "Our class has a big plan. Next Saturday we are going to visit the science museum in the city. Nam bought the tickets last week, so everything is ready. I am going to bring my camera, and Mai is going to bring her notebook. Our teacher thinks the weather will be fine. Oh, look at the sky! It is grey now. I will put my raincoat in my bag.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Bạn Nam đã mua vé từ tuần trước, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "Nam bought the tickets last week."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Vì sao bạn nhỏ nói \"I will put my raincoat in my bag\" chứ không nói \"I am going to\"?",
+          "type": "mcq",
+          "choices": [
+            "Vì bạn ấy vừa nhìn thấy trời xám và quyết định NGAY lúc đó",
+            "Vì bạn ấy đã lên kế hoạch mang áo mưa từ tuần trước",
+            "Vì cô giáo đã yêu cầu cả lớp mang áo mưa"
+          ],
+          "answer": 0,
+          "audioText": "Why does the child say \"I will put my raincoat in my bag\"?"
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit14.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 414,
+  "lesson": 14,
+  "topic": "Modal verbs: must, should, may, have to",
+  "topic_vi": "Động từ khiếm khuyết: must · should · may · have to",
+  "vocab": [
+    {
+      "word": "helmet",
+      "vi": "mũ bảo hiểm",
+      "icon": "⛑️",
+      "example": "You have to wear a helmet on the bike.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "hospital",
+      "vi": "bệnh viện",
+      "icon": "🏥",
+      "example": "This is a hospital, so you must be quiet.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "library",
+      "vi": "thư viện",
+      "icon": "📚",
+      "example": "The library is open now.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "rule",
+      "vi": "quy định, nội quy",
+      "icon": "📋",
+      "example": "Our school has clear rules.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "cough",
+      "vi": "cơn ho",
+      "icon": "😷",
+      "example": "You have a bad cough.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "bench",
+      "vi": "băng ghế",
+      "icon": "🪑",
+      "example": "You may not sit on the bench.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "gate",
+      "vi": "cái cổng",
+      "icon": "🚪",
+      "example": "The garden gate is locked.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "practice",
+      "vi": "buổi luyện tập",
+      "icon": "🏃",
+      "example": "You must join the practice.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "quiet",
+      "vi": "yên lặng",
+      "icon": "🤫",
+      "example": "You must be quiet in here.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "dirty",
+      "vi": "bẩn",
+      "icon": "🧼",
+      "example": "Your hands are dirty.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "wet",
+      "vi": "ướt",
+      "icon": "💦",
+      "example": "The floor is wet.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "borrow",
+      "vi": "mượn",
+      "icon": "📖",
+      "example": "You may borrow two books.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "must-mustnt",
+      "title_vi": "\"must\" / \"mustn't\": phải làm · không được làm",
+      "explain_vi": "\"must\" = phải làm; \"mustn't\" = không được làm (bị cấm). Sau must/mustn't luôn là động từ nguyên mẫu — không thêm \"to\", không thêm \"-s\".",
+      "examples": [
+        "The traffic light is red. You must stop your bike.",
+        "This is a hospital. You mustn't shout in here.",
+        "You mustn't touch the wall because the paint is still wet."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "rule-then-must",
+            "text": "{sit} You {modal} {act}.",
+            "blanks": [
+              "modal"
+            ],
+            "context_vi": "Đọc tình huống ở câu đầu: việc này BẮT BUỘC làm hay BỊ CẤM làm?",
+            "audioText": "The traffic light is red. You must stop your bike."
+          },
+          {
+            "id": "must-because",
+            "text": "You {modal2} {act3} because {reason}.",
+            "blanks": [
+              "modal2"
+            ],
+            "context_vi": "Lí do ở cuối câu cho biết đây là việc phải làm hay việc bị cấm.",
+            "audioText": "You mustn't touch the wall because the paint is still wet."
+          }
+        ],
+        "slots": {
+          "sit": [
+            "The traffic light is red.",
+            "This is a hospital.",
+            "The floor is wet.",
+            "The bus leaves at six.",
+            "This water is dirty.",
+            "The test is tomorrow."
+          ],
+          "modal": [
+            "must",
+            "mustn't"
+          ],
+          "act": [
+            "stop your bike",
+            "shout in here",
+            "run in the hall",
+            "be at the stop before six",
+            "drink it",
+            "study tonight"
+          ],
+          "modal2": [
+            "must",
+            "mustn't"
+          ],
+          "act3": [
+            "come early",
+            "touch the wall",
+            "walk on the lake",
+            "join the practice"
+          ],
+          "reason": [
+            "the museum closes at five",
+            "the paint is still wet",
+            "the ice is very thin",
+            "our team needs you"
+          ]
+        },
+        "answerKey": {
+          "rule-then-must": {
+            "modal": {
+              "__cond": "sit",
+              "The traffic light is red.": "must",
+              "This is a hospital.": "mustn't",
+              "The floor is wet.": "mustn't",
+              "The bus leaves at six.": "must",
+              "This water is dirty.": "mustn't",
+              "The test is tomorrow.": "must"
+            },
+            "act": {
+              "__cond": "sit",
+              "The traffic light is red.": "stop your bike",
+              "This is a hospital.": "shout in here",
+              "The floor is wet.": "run in the hall",
+              "The bus leaves at six.": "be at the stop before six",
+              "This water is dirty.": "drink it",
+              "The test is tomorrow.": "study tonight"
+            }
+          },
+          "must-because": {
+            "modal2": {
+              "__cond": "reason",
+              "the museum closes at five": "must",
+              "the paint is still wet": "mustn't",
+              "the ice is very thin": "mustn't",
+              "our team needs you": "must"
+            },
+            "act3": {
+              "__cond": "reason",
+              "the museum closes at five": "come early",
+              "the paint is still wet": "touch the wall",
+              "the ice is very thin": "walk on the lake",
+              "our team needs you": "join the practice"
+            }
+          }
+        },
+        "distractors": [
+          "The traffic light is red. You must to stop your bike.",
+          "This is a hospital. You mustn't to shout in here.",
+          "The floor is wet. You must not runs in the hall.",
+          "The test is tomorrow. You musts study tonight.",
+          "You mustn't touching the wall because the paint is still wet.",
+          "The traffic light is red. You mustn't stop your bike."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"must\" nói việc BẮT BUỘC phải làm, thường là điều người nói thấy rất quan trọng: \"The test is tomorrow. You must study tonight.\" Còn \"mustn't\" (viết đầy đủ là \"must not\") KHÔNG có nghĩa \"không cần\" mà có nghĩa CẤM — tuyệt đối không được làm: \"The floor is wet. You mustn't run in the hall.\" Cả hai đều giữ nguyên với mọi chủ ngữ (I must, she must, they must — không bao giờ \"musts\"), và sau chúng luôn là động từ nguyên mẫu: \"You must stop\" (đúng) — \"You must to stop\", \"You must stops\", \"You mustn't touching\" (đều sai). Khi làm bài, em hãy đọc kĩ tình huống: đèn đỏ, xe buýt sắp chạy, hôm sau có bài kiểm tra → việc phải làm (must); bệnh viện, sàn ướt, nước bẩn, sơn còn ướt → việc bị cấm (mustn't)."
+    },
+    {
+      "id": "should",
+      "title_vi": "\"should\" / \"shouldn't\": nên · không nên (lời khuyên)",
+      "explain_vi": "\"should\" = nên, \"shouldn't\" = không nên — dùng để khuyên. Sau should là động từ nguyên mẫu: you should rest (không \"should to rest\").",
+      "examples": [
+        "You have a bad cough. You should drink warm water.",
+        "It is very late. You shouldn't watch another film.",
+        "That river is very deep. I think you shouldn't swim there alone."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "problem-advice",
+            "text": "{problem} You {sh} {advice}.",
+            "blanks": [
+              "sh"
+            ],
+            "context_vi": "Đọc vấn đề ở câu đầu: việc này NÊN làm hay KHÔNG NÊN làm?",
+            "audioText": "You have a bad cough. You should drink warm water."
+          },
+          {
+            "id": "i-think-advice",
+            "text": "{problem2} I think you {sh2} {advice2}.",
+            "blanks": [
+              "sh2"
+            ],
+            "context_vi": "\"I think\" làm lời khuyên nhẹ hơn. Vẫn phải chọn should hay shouldn't cho khớp tình huống.",
+            "audioText": "That river is very deep. I think you shouldn't swim there alone."
+          }
+        ],
+        "slots": {
+          "problem": [
+            "You have a bad cough.",
+            "Your eyes are tired.",
+            "It is very late.",
+            "The soup is too hot.",
+            "You have a test on Monday.",
+            "Your hands are dirty."
+          ],
+          "sh": [
+            "should",
+            "shouldn't"
+          ],
+          "advice": [
+            "drink warm water",
+            "rest for ten minutes",
+            "watch another film",
+            "eat it now",
+            "start early",
+            "touch the bread"
+          ],
+          "problem2": [
+            "Your bike makes a strange noise.",
+            "This film is scary for small children.",
+            "You forgot your homework again.",
+            "That river is very deep."
+          ],
+          "sh2": [
+            "should",
+            "shouldn't"
+          ],
+          "advice2": [
+            "check the wheels",
+            "show it to your little sister",
+            "write a list every evening",
+            "swim there alone"
+          ]
+        },
+        "answerKey": {
+          "problem-advice": {
+            "sh": {
+              "__cond": "problem",
+              "You have a bad cough.": "should",
+              "Your eyes are tired.": "should",
+              "It is very late.": "shouldn't",
+              "The soup is too hot.": "shouldn't",
+              "You have a test on Monday.": "should",
+              "Your hands are dirty.": "shouldn't"
+            },
+            "advice": {
+              "__cond": "problem",
+              "You have a bad cough.": "drink warm water",
+              "Your eyes are tired.": "rest for ten minutes",
+              "It is very late.": "watch another film",
+              "The soup is too hot.": "eat it now",
+              "You have a test on Monday.": "start early",
+              "Your hands are dirty.": "touch the bread"
+            }
+          },
+          "i-think-advice": {
+            "sh2": {
+              "__cond": "problem2",
+              "Your bike makes a strange noise.": "should",
+              "This film is scary for small children.": "shouldn't",
+              "You forgot your homework again.": "should",
+              "That river is very deep.": "shouldn't"
+            },
+            "advice2": {
+              "__cond": "problem2",
+              "Your bike makes a strange noise.": "check the wheels",
+              "This film is scary for small children.": "show it to your little sister",
+              "You forgot your homework again.": "write a list every evening",
+              "That river is very deep.": "swim there alone"
+            }
+          }
+        },
+        "distractors": [
+          "You have a bad cough. You should to drink warm water.",
+          "Your eyes are tired. You shoulds rest for ten minutes.",
+          "It is very late. You should not watching another film.",
+          "That river is very deep. I think you should swim there alone.",
+          "Your hands are dirty. You should touch the bread.",
+          "You forgot your homework again. I think you shouldn't write a list every evening."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"should\" là lời KHUYÊN, nhẹ hơn \"must\" nhiều: \"must\" là bắt buộc, còn \"should\" chỉ là \"nên thế thì tốt hơn\". Ví dụ: \"Your eyes are tired. You should rest for ten minutes.\" Ngược lại, \"shouldn't\" (= should not) là \"không nên\": \"It is very late. You shouldn't watch another film.\" Giống must, \"should\" giữ nguyên với mọi chủ ngữ (I should, he should, they should — không có \"shoulds\") và sau nó là động từ nguyên mẫu: \"You should rest\" (đúng) — \"You should to rest\", \"You should resting\" (sai). Người Việt hay thêm \"I think\" ở đầu cho lịch sự: \"I think you should check the wheels.\" — cấu trúc bên trong vẫn y như cũ."
+    },
+    {
+      "id": "may-permission",
+      "title_vi": "\"may\" / \"may not\": được phép · không được phép",
+      "explain_vi": "\"may\" = được phép; \"may not\" = không được phép. Sau \"may\" là động từ nguyên mẫu, không thêm \"to\" và không thêm \"-s\".",
+      "examples": [
+        "The library is open now, so you may borrow two books.",
+        "This box is not yours, so you may not open it.",
+        "You may have a small cake because you finished your dinner."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "may-cue",
+            "text": "{cue}, so you {perm} {act}.",
+            "blanks": [
+              "perm"
+            ],
+            "context_vi": "Vế đầu cho biết em CÓ được phép hay KHÔNG được phép làm việc đó.",
+            "audioText": "The library is open now, so you may borrow two books."
+          },
+          {
+            "id": "may-because",
+            "text": "You {perm2} {act2} because {reason2}.",
+            "blanks": [
+              "perm2"
+            ],
+            "context_vi": "Lí do ở cuối câu cho biết chọn \"may\" hay \"may not\".",
+            "audioText": "You may not talk in the room because the exam has started."
+          }
+        ],
+        "slots": {
+          "cue": [
+            "The library is open now",
+            "This box is not yours",
+            "Your name is on the list",
+            "The garden gate is locked",
+            "Your homework is finished"
+          ],
+          "perm": [
+            "may",
+            "may not"
+          ],
+          "act": [
+            "borrow two books",
+            "open it",
+            "join the trip",
+            "play outside today",
+            "watch one cartoon"
+          ],
+          "perm2": [
+            "may",
+            "may not"
+          ],
+          "act2": [
+            "talk in the room",
+            "stay until seven",
+            "sit on the bench",
+            "have a small cake"
+          ],
+          "reason2": [
+            "the exam has started",
+            "your parents said yes",
+            "the paint is fresh",
+            "you finished your dinner"
+          ]
+        },
+        "answerKey": {
+          "may-cue": {
+            "perm": {
+              "__cond": "cue",
+              "The library is open now": "may",
+              "This box is not yours": "may not",
+              "Your name is on the list": "may",
+              "The garden gate is locked": "may not",
+              "Your homework is finished": "may"
+            },
+            "act": {
+              "__cond": "cue",
+              "The library is open now": "borrow two books",
+              "This box is not yours": "open it",
+              "Your name is on the list": "join the trip",
+              "The garden gate is locked": "play outside today",
+              "Your homework is finished": "watch one cartoon"
+            }
+          },
+          "may-because": {
+            "perm2": {
+              "__cond": "reason2",
+              "the exam has started": "may not",
+              "your parents said yes": "may",
+              "the paint is fresh": "may not",
+              "you finished your dinner": "may"
+            },
+            "act2": {
+              "__cond": "reason2",
+              "the exam has started": "talk in the room",
+              "your parents said yes": "stay until seven",
+              "the paint is fresh": "sit on the bench",
+              "you finished your dinner": "have a small cake"
+            }
+          }
+        },
+        "distractors": [
+          "The library is open now, so you may to borrow two books.",
+          "This box is not yours, so you may not to open it.",
+          "Your name is on the list, so you mays join the trip.",
+          "This box is not yours, so you may open it.",
+          "You may talk in the room because the exam has started.",
+          "The garden gate is locked, so you may play outside today."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"may\" nói về SỰ CHO PHÉP. Khi người lớn cho phép em làm gì, họ nói: \"You may watch one cartoon.\" Khi không cho phép, họ nói \"may not\": \"You may not sit on the bench because the paint is fresh.\" Em cũng dùng \"May I …?\" để XIN PHÉP một cách lịch sự: \"May I borrow this book, please?\" — trả lời là \"Yes, you may.\" hoặc \"No, you may not.\" Sau \"may\" luôn là động từ nguyên mẫu, không thêm \"to\", không thêm \"-s\": \"you may open\" (đúng) — \"you may to open\", \"you mays open\" (sai). Phân biệt nhanh: \"must\" là bắt buộc, \"should\" là nên, còn \"may\" là được phép."
+    },
+    {
+      "id": "have-to",
+      "title_vi": "\"have to\" / \"has to\": phải làm theo quy định",
+      "explain_vi": "\"have to\" = phải (do quy định bên ngoài). He/She và một người dùng \"has to\". Phủ định \"don't / doesn't have to\" nghĩa là KHÔNG CẦN.",
+      "examples": [
+        "My cousin has to wear a helmet on the bike.",
+        "We have to wear a helmet on the bike.",
+        "My sister doesn't have to go to school on Sunday."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "have-has-to",
+            "text": "{doer} {ht} to wear a helmet on the bike.",
+            "blanks": [
+              "ht"
+            ],
+            "context_vi": "Chọn \"have\" hay \"has\" cho khớp chủ ngữ.",
+            "audioText": "My cousin has to wear a helmet on the bike."
+          },
+          {
+            "id": "not-have-to",
+            "text": "{doer} {dht} have to go to school on Sunday.",
+            "blanks": [
+              "dht"
+            ],
+            "context_vi": "Câu phủ định: chọn \"don't\" hay \"doesn't\" cho khớp chủ ngữ. Nghĩa là KHÔNG CẦN.",
+            "audioText": "My sister doesn't have to go to school on Sunday."
+          }
+        ],
+        "slots": {
+          "doer": [
+            "I",
+            "You",
+            "We",
+            "They",
+            "My cousin",
+            "My sister",
+            "The children",
+            "My friend Nam"
+          ],
+          "ht": [
+            "have",
+            "has"
+          ],
+          "dht": [
+            "don't",
+            "doesn't"
+          ]
+        },
+        "answerKey": {
+          "have-has-to": {
+            "ht": {
+              "__cond": "doer",
+              "I": "have",
+              "You": "have",
+              "We": "have",
+              "They": "have",
+              "My cousin": "has",
+              "My sister": "has",
+              "The children": "have",
+              "My friend Nam": "has"
+            }
+          },
+          "not-have-to": {
+            "dht": {
+              "__cond": "doer",
+              "I": "don't",
+              "You": "don't",
+              "We": "don't",
+              "They": "don't",
+              "My cousin": "doesn't",
+              "My sister": "doesn't",
+              "The children": "don't",
+              "My friend Nam": "doesn't"
+            }
+          }
+        },
+        "distractors": [
+          "My cousin have to wear a helmet on the bike.",
+          "I has to wear a helmet on the bike.",
+          "The children has to wear a helmet on the bike.",
+          "My sister don't have to go to school on Sunday.",
+          "We doesn't have to go to school on Sunday.",
+          "My friend Nam have to wear a helmet on the bike."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"have to\" cũng nghĩa là PHẢI, nhưng bắt buộc đến từ BÊN NGOÀI: luật giao thông, nội quy trường, lời bố mẹ. \"You have to wear a helmet on the bike.\" (Luật quy định thế). Khác với \"must\" (không đổi hình), \"have to\" ĐỔI theo chủ ngữ giống động từ thường: I/You/We/They + have to; He/She/It và MỘT người + has to — \"My cousin has to wear a helmet.\" Câu phủ định dùng don't / doesn't: \"We don't have to go to school on Sunday.\", \"My sister doesn't have to go to school on Sunday.\" Chú ý điểm rất dễ sai: \"don't have to\" = KHÔNG CẦN (không bắt buộc), khác hoàn toàn với \"mustn't\" = KHÔNG ĐƯỢC (bị cấm). Chủ nhật không cần đi học ≠ Chủ nhật bị cấm đi học."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "rules-at-the-pool",
+      "title": "Rules at the swimming pool",
+      "title_vi": "Nội quy ở bể bơi",
+      "text": "Here are the rules at our swimming pool. You must take a shower before you swim. You mustn't run beside the water, because the floor is wet. Small children have to swim with an adult. You may borrow a swimming ring at the desk, but you have to give it back. When you feel cold, you should get out and dry yourself. On Monday the pool is closed, so you don't have to bring your towel on that day.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Ở bể bơi, em KHÔNG ĐƯỢC chạy cạnh mép nước, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "You mustn't run beside the water."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Trẻ nhỏ phải bơi cùng ai?",
+          "type": "mcq",
+          "choices": [
+            "cùng một người lớn",
+            "cùng một bạn cùng lớp",
+            "bơi một mình cũng được"
+          ],
+          "answer": 0,
+          "audioText": "Small children have to swim with an adult."
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit15.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 415,
+  "lesson": 15,
+  "topic": "Conditionals: zero, first and second",
+  "topic_vi": "Câu điều kiện: loại 0 · loại 1 · loại 2",
+  "vocab": [
+    {
+      "word": "ice",
+      "vi": "băng, đá lạnh",
+      "icon": "🧊",
+      "example": "If you heat ice, it melts.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "melt",
+      "vi": "tan chảy",
+      "icon": "💧",
+      "example": "Ice melts in the sun.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "sink",
+      "vi": "chìm xuống",
+      "icon": "⬇️",
+      "example": "A stone sinks in water.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "grow",
+      "vi": "trồng, mọc lên",
+      "icon": "🌱",
+      "example": "I would grow tomatoes if I had a garden.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "island",
+      "vi": "hòn đảo",
+      "icon": "🏝️",
+      "example": "I would sail to that island.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "wing",
+      "vi": "cái cánh",
+      "icon": "🪽",
+      "example": "A bird has two wings.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "telescope",
+      "vi": "kính viễn vọng",
+      "icon": "🔭",
+      "example": "I would buy a big telescope.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "mountain",
+      "vi": "núi",
+      "icon": "⛰️",
+      "example": "I would fly over the mountains.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "snail",
+      "vi": "con ốc sên",
+      "icon": "🐌",
+      "example": "If you touch a snail, it hides.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "lamp",
+      "vi": "cái đèn",
+      "icon": "💡",
+      "example": "The lamp turns on if you press this button.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "dinosaur",
+      "vi": "con khủng long",
+      "icon": "🦕",
+      "example": "I would run away fast if I met a dinosaur.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "pilot",
+      "vi": "phi công",
+      "icon": "🧑‍✈️",
+      "example": "I would fly a big plane if I were a pilot.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "zero-conditional",
+      "title_vi": "Điều kiện loại 0: điều LUÔN đúng",
+      "explain_vi": "Điều luôn đúng: If + hiện tại đơn, hiện tại đơn. Cả hai vế đều KHÔNG dùng \"will\". Chủ ngữ số ít thì động từ thêm \"-s\": it melts.",
+      "examples": [
+        "If you heat ice, it melts.",
+        "Plants die if you forget to water them.",
+        "The lamp turns on if you press this button."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "zero-if-result",
+            "text": "If you {action}, it {vb}.",
+            "blanks": [
+              "vb"
+            ],
+            "context_vi": "Điều luôn đúng — vế sau dùng hiện tại đơn. Chủ ngữ \"it\" nên động từ thêm \"-s\".",
+            "audioText": "If you heat ice, it melts."
+          },
+          {
+            "id": "zero-result-first",
+            "text": "{topic} {vb2} if you {action3}.",
+            "blanks": [
+              "vb2"
+            ],
+            "context_vi": "Vế chính đứng trước, vế \"if\" đứng sau (không cần dấu phẩy). Nhìn chủ ngữ số ít hay số nhiều để thêm \"-s\".",
+            "audioText": "The lamp turns on if you press this button."
+          }
+        ],
+        "slots": {
+          "action": [
+            "heat ice",
+            "drop a stone in water",
+            "put a plant in the dark",
+            "press the doorbell",
+            "leave milk in the sun",
+            "touch a snail"
+          ],
+          "vb": [
+            "melts",
+            "sinks",
+            "dies",
+            "rings",
+            "goes bad",
+            "hides"
+          ],
+          "topic": [
+            "The ice",
+            "The lamp",
+            "Plants",
+            "The salt",
+            "Snails"
+          ],
+          "vb2": [
+            "melts",
+            "turns on",
+            "die",
+            "disappears",
+            "hide"
+          ],
+          "action3": [
+            "put it in the sun",
+            "press this button",
+            "forget to water them",
+            "add it to warm water",
+            "touch them"
+          ]
+        },
+        "answerKey": {
+          "zero-if-result": {
+            "vb": {
+              "__cond": "action",
+              "heat ice": "melts",
+              "drop a stone in water": "sinks",
+              "put a plant in the dark": "dies",
+              "press the doorbell": "rings",
+              "leave milk in the sun": "goes bad",
+              "touch a snail": "hides"
+            }
+          },
+          "zero-result-first": {
+            "vb2": {
+              "__cond": "topic",
+              "The ice": "melts",
+              "The lamp": "turns on",
+              "Plants": "die",
+              "The salt": "disappears",
+              "Snails": "hide"
+            },
+            "action3": {
+              "__cond": "topic",
+              "The ice": "put it in the sun",
+              "The lamp": "press this button",
+              "Plants": "forget to water them",
+              "The salt": "add it to warm water",
+              "Snails": "touch them"
+            }
+          }
+        },
+        "distractors": [
+          "If you heat ice, it will melts.",
+          "If you heat ice, it melt.",
+          "If you will heat ice, it melts.",
+          "If you press the doorbell, it will rings.",
+          "Plants dies if you forget to water them.",
+          "The ice melt if you put it in the sun."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Điều kiện loại 0 nói về điều LÚC NÀO CŨNG ĐÚNG: quy luật tự nhiên, thói quen, cách một cái máy hoạt động. Công thức rất dễ: If + hiện tại đơn, hiện tại đơn. Ví dụ: \"If you heat ice, it melts.\" (Cứ làm nóng đá là nó tan). Hai vế có thể đổi chỗ; khi vế \"if\" đứng SAU thì không cần dấu phẩy: \"Plants die if you forget to water them.\" Điều quan trọng nhất phải nhớ: loại 0 KHÔNG dùng \"will\" ở vế nào cả — nói \"it melts\", không nói \"it will melt\" hay \"it will melts\". Và đừng quên quy tắc hiện tại đơn: chủ ngữ số ít thì động từ thêm \"-s\" (the lamp turns on, the salt disappears), chủ ngữ số nhiều thì giữ nguyên (plants die, snails hide)."
+    },
+    {
+      "id": "first-conditional",
+      "title_vi": "Điều kiện loại 1: việc CÓ THỂ xảy ra",
+      "explain_vi": "Việc có thể xảy ra: If + hiện tại đơn, will + động từ nguyên mẫu. Sau \"if\" KHÔNG dùng will; vế chính dùng will hoặc won't.",
+      "examples": [
+        "If you leave now, you will catch the early bus.",
+        "If the sun shines tomorrow, we will fly our kites in the field.",
+        "If the rain does not stop, we won't play outside today."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "first-if-present",
+            "text": "If you {vb} now, you will {act}.",
+            "blanks": [
+              "vb"
+            ],
+            "context_vi": "Sau \"if\" dùng HIỆN TẠI ĐƠN, không dùng \"will\". Chọn động từ khớp với kết quả ở vế sau.",
+            "audioText": "If you leave now, you will catch the early bus."
+          },
+          {
+            "id": "first-will-or-wont",
+            "text": "If {cond}, we {wl} {act2}.",
+            "blanks": [
+              "wl"
+            ],
+            "context_vi": "Đọc vế \"if\": thuận lợi thì vế chính dùng \"will\", trở ngại thì dùng \"won't\".",
+            "audioText": "If the rain does not stop, we won't play outside today."
+          }
+        ],
+        "slots": {
+          "vb": [
+            "leave",
+            "start",
+            "rest",
+            "listen"
+          ],
+          "act": [
+            "catch the early bus",
+            "finish before dinner",
+            "feel much better",
+            "hear the whole story"
+          ],
+          "cond": [
+            "the sun shines tomorrow",
+            "the rain does not stop",
+            "everyone comes early",
+            "the bus breaks down"
+          ],
+          "wl": [
+            "will",
+            "won't"
+          ],
+          "act2": [
+            "fly our kites in the field",
+            "play outside today",
+            "start the game at eight",
+            "arrive before ten"
+          ]
+        },
+        "answerKey": {
+          "first-if-present": {
+            "vb": {
+              "__cond": "act",
+              "catch the early bus": "leave",
+              "finish before dinner": "start",
+              "feel much better": "rest",
+              "hear the whole story": "listen"
+            }
+          },
+          "first-will-or-wont": {
+            "wl": {
+              "__cond": "cond",
+              "the sun shines tomorrow": "will",
+              "the rain does not stop": "won't",
+              "everyone comes early": "will",
+              "the bus breaks down": "won't"
+            },
+            "act2": {
+              "__cond": "cond",
+              "the sun shines tomorrow": "fly our kites in the field",
+              "the rain does not stop": "play outside today",
+              "everyone comes early": "start the game at eight",
+              "the bus breaks down": "arrive before ten"
+            }
+          }
+        },
+        "distractors": [
+          "If you will leave now, you will catch the early bus.",
+          "If you leave now, you catch the early bus.",
+          "If you rest now, you will feels much better.",
+          "If the sun shines tomorrow, we will flies our kites in the field.",
+          "If the rain will not stop, we won't play outside today.",
+          "If everyone comes early, we will to start the game at eight."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Điều kiện loại 1 nói về việc THẬT SỰ CÓ THỂ xảy ra trong tương lai: ngày mai có thể mưa, xe buýt có thể đến muộn. Công thức: If + hiện tại đơn, will + động từ nguyên mẫu. Ví dụ: \"If you leave now, you will catch the early bus.\" (Nếu em đi bây giờ, em sẽ kịp chuyến xe sớm). Lỗi số một của người Việt là đưa \"will\" vào sau \"if\" — vì tiếng Việt nói \"nếu trời SẼ mưa\". Tiếng Anh KHÔNG như vậy: \"If it rains tomorrow…\" (đúng) — \"If it will rain tomorrow…\" (sai). Vế chính thì bắt buộc phải có \"will\", hoặc \"won't\" nếu kết quả là điều không xảy ra: \"If the rain does not stop, we won't play outside today.\" Sau will/won't luôn là động từ nguyên mẫu, không thêm \"-s\", không thêm \"to\"."
+    },
+    {
+      "id": "second-conditional",
+      "title_vi": "Điều kiện loại 2: điều TƯỞNG TƯỢNG",
+      "explain_vi": "Điều tưởng tượng, không thật: If + quá khứ đơn, would + động từ nguyên mẫu. Với \"I\" thường dùng \"were\": If I were a bird, I would fly.",
+      "examples": [
+        "If I were a bird, I would fly over the mountains.",
+        "If I had one million dong, I would buy a big telescope.",
+        "I would grow tomatoes if I had a garden."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "second-if-past",
+            "text": "If I {vb} {thing}, I would {act}.",
+            "blanks": [
+              "vb"
+            ],
+            "context_vi": "Điều tưởng tượng: sau \"if\" dùng QUÁ KHỨ ĐƠN. Có danh từ thì dùng \"had\", còn miêu tả \"là gì / thế nào\" thì dùng \"were\".",
+            "audioText": "If I were a bird, I would fly over the mountains."
+          },
+          {
+            "id": "second-would-first",
+            "text": "I would {vb4} if I {cond2}.",
+            "blanks": [
+              "vb4"
+            ],
+            "context_vi": "Sau \"would\" là động từ NGUYÊN MẪU. Chọn việc khớp với điều tưởng tượng ở vế \"if\".",
+            "audioText": "I would grow tomatoes if I had a garden."
+          }
+        ],
+        "slots": {
+          "vb": [
+            "had",
+            "were"
+          ],
+          "thing": [
+            "a small boat",
+            "a bird",
+            "one million dong",
+            "taller",
+            "wings"
+          ],
+          "act": [
+            "sail to that island",
+            "fly over the mountains",
+            "buy a big telescope",
+            "reach the top shelf",
+            "fly to school every day"
+          ],
+          "vb4": [
+            "grow tomatoes",
+            "fly a big plane",
+            "look at the moon",
+            "swim every morning",
+            "run away fast"
+          ],
+          "cond2": [
+            "had a garden",
+            "were a pilot",
+            "had a telescope",
+            "lived near the sea",
+            "met a dinosaur"
+          ]
+        },
+        "answerKey": {
+          "second-if-past": {
+            "vb": {
+              "__cond": "thing",
+              "a small boat": "had",
+              "a bird": "were",
+              "one million dong": "had",
+              "taller": "were",
+              "wings": "had"
+            },
+            "act": {
+              "__cond": "thing",
+              "a small boat": "sail to that island",
+              "a bird": "fly over the mountains",
+              "one million dong": "buy a big telescope",
+              "taller": "reach the top shelf",
+              "wings": "fly to school every day"
+            }
+          },
+          "second-would-first": {
+            "vb4": {
+              "__cond": "cond2",
+              "had a garden": "grow tomatoes",
+              "were a pilot": "fly a big plane",
+              "had a telescope": "look at the moon",
+              "lived near the sea": "swim every morning",
+              "met a dinosaur": "run away fast"
+            }
+          }
+        },
+        "distractors": [
+          "If I had a small boat, I will sail to that island.",
+          "If I have a small boat, I would sail to that island.",
+          "If I were a bird, I would to fly over the mountains.",
+          "If I had wings, I would flies to school every day.",
+          "I would grow tomatoes if I have a garden.",
+          "I would swimming every morning if I lived near the sea."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Điều kiện loại 2 dùng để MƠ MỘNG, tưởng tượng điều không có thật: em không phải con chim, em không có một triệu đồng. Công thức: If + quá khứ đơn, would + động từ nguyên mẫu. Ví dụ: \"If I had wings, I would fly to school every day.\" (Nếu em có cánh, em sẽ bay đến trường mỗi ngày). Dùng \"quá khứ\" ở đây KHÔNG có nghĩa là chuyện đã qua — nó chỉ là dấu hiệu cho biết \"đây là chuyện tưởng tượng\". Một điểm đặc biệt: với động từ \"to be\", câu tưởng tượng thường dùng \"were\" cho MỌI chủ ngữ, kể cả \"I\" và \"he\": \"If I were a bird…\", \"If he were taller…\" Vế chính dùng \"would\" (không phải \"will\") và sau \"would\" là động từ nguyên mẫu: \"I would fly\" (đúng) — \"I would to fly\", \"I would flies\" (sai). So sánh nhanh: \"If it rains, I will stay home.\" (có thể xảy ra thật) ≠ \"If I lived on the moon, I would see the Earth every night.\" (chỉ tưởng tượng)."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "if-i-had-wings",
+      "title": "If I had wings",
+      "title_vi": "Nếu em có cánh",
+      "text": "In our science lesson we talk about water. If you heat ice, it melts. If you heat water for a long time, steam comes out of the pot. Then our teacher asks a funny question: \"What will you do if it rains at the weekend?\" Mai says, \"If it rains, I will read my new book at home.\" Then she smiles and adds, \"But if I had wings, I would fly above the clouds and find the sun!\"",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Nếu em làm nóng nước thật lâu thì có hơi nước bay ra khỏi nồi, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "If you heat water for a long time, steam comes out of the pot."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Câu \"If I had wings, I would fly above the clouds\" của bạn Mai nói về điều gì?",
+          "type": "mcq",
+          "choices": [
+            "Một điều tưởng tượng, không có thật",
+            "Một việc chắc chắn sẽ xảy ra cuối tuần",
+            "Một quy luật khoa học luôn đúng"
+          ],
+          "answer": 0,
+          "audioText": "If I had wings, I would fly above the clouds."
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit16.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 416,
+  "lesson": 16,
+  "topic": "Questions: yes/no questions and wh-questions",
+  "topic_vi": "Câu hỏi",
+  "vocab": [
+    {
+      "word": "who",
+      "vi": "ai (hỏi về người)",
+      "icon": "🙋",
+      "example": "Who is your teacher?",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "what",
+      "vi": "cái gì (hỏi về vật, việc)",
+      "icon": "❓",
+      "example": "What is in your bag?",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "where",
+      "vi": "ở đâu (hỏi về nơi chốn)",
+      "icon": "📍",
+      "example": "Where is Mai now?",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "when",
+      "vi": "khi nào (hỏi về thời gian)",
+      "icon": "⏰",
+      "example": "When do you go to school?",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "why",
+      "vi": "vì sao (hỏi lí do)",
+      "icon": "🤔",
+      "example": "Why are you late?",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "how",
+      "vi": "bằng cách nào, thế nào",
+      "icon": "🧭",
+      "example": "How do you go to school?",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "how old",
+      "vi": "bao nhiêu tuổi",
+      "icon": "🎂",
+      "example": "How old is your brother?",
+      "partOfSpeech": "phrase",
+      "audio": ""
+    },
+    {
+      "word": "how many",
+      "vi": "bao nhiêu (đếm được)",
+      "icon": "🔢",
+      "example": "How many pens do you have?",
+      "partOfSpeech": "phrase",
+      "audio": ""
+    },
+    {
+      "word": "teacher",
+      "vi": "giáo viên",
+      "icon": "👩‍🏫",
+      "example": "Miss Lan is my teacher.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "football",
+      "vi": "môn bóng đá",
+      "icon": "⚽",
+      "example": "Do you play football?",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "apple",
+      "vi": "quả táo",
+      "icon": "🍎",
+      "example": "I eat an apple every day.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "late",
+      "vi": "muộn, trễ",
+      "icon": "⏱️",
+      "example": "Am I late today?",
+      "partOfSpeech": "adj",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "yes-no-questions",
+      "title_vi": "Câu hỏi Yes/No: Do · Does · Am · Is · Are",
+      "explain_vi": "Câu hỏi Yes/No mở đầu bằng trợ động từ: he/she và một người dùng \"Does\", còn I/you/we/they và nhiều người dùng \"Do\". Với \"to be\" thì đưa am/is/are lên trước chủ ngữ.",
+      "examples": [
+        "Does she read books?",
+        "Do you play football?",
+        "Is my brother happy today?",
+        "Am I late today?"
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose",
+        "transform"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "do-does-q",
+            "text": "{aux} {subj} {vp}?",
+            "blanks": [
+              "aux"
+            ],
+            "context_vi": "Nhìn chủ ngữ: he/she/một người → Does; I/you/we/they/nhiều người → Do.",
+            "audioText": "Does she read books?"
+          },
+          {
+            "id": "be-q",
+            "text": "{be} {subj2} {adj} today?",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "Câu hỏi với \"to be\": am/is/are đứng TRƯỚC chủ ngữ và phải khớp chủ ngữ.",
+            "audioText": "Is my brother happy today?"
+          }
+        ],
+        "slots": {
+          "aux": [
+            "Do",
+            "Does"
+          ],
+          "subj": [
+            "you",
+            "we",
+            "they",
+            "he",
+            "she",
+            "my brother",
+            "my sister",
+            "the children"
+          ],
+          "vp": [
+            "like apples",
+            "play football",
+            "read books",
+            "watch TV",
+            "eat rice",
+            "want a new bike"
+          ],
+          "be": [
+            "Am",
+            "Is",
+            "Are"
+          ],
+          "subj2": [
+            "I",
+            "you",
+            "we",
+            "they",
+            "he",
+            "she",
+            "my brother",
+            "my parents"
+          ],
+          "adj": [
+            "happy",
+            "hungry",
+            "tired",
+            "late",
+            "busy"
+          ]
+        },
+        "answerKey": {
+          "do-does-q": {
+            "aux": {
+              "__cond": "subj",
+              "you": "Do",
+              "we": "Do",
+              "they": "Do",
+              "he": "Does",
+              "she": "Does",
+              "my brother": "Does",
+              "my sister": "Does",
+              "the children": "Do"
+            }
+          },
+          "be-q": {
+            "be": {
+              "__cond": "subj2",
+              "I": "Am",
+              "you": "Are",
+              "we": "Are",
+              "they": "Are",
+              "he": "Is",
+              "she": "Is",
+              "my brother": "Is",
+              "my parents": "Are"
+            }
+          },
+          "answer-pairs": {
+            "Yes, he is.": "No, he isn't.",
+            "Yes, she is.": "No, she isn't.",
+            "Yes, they are.": "No, they aren't.",
+            "Yes, I am.": "No, I am not.",
+            "Yes, I do.": "No, I don't.",
+            "Yes, we do.": "No, we don't.",
+            "Yes, he does.": "No, he doesn't.",
+            "No, she isn't.": "Yes, she is.",
+            "No, they aren't.": "Yes, they are.",
+            "No, I don't.": "Yes, I do.",
+            "No, she doesn't.": "Yes, she does."
+          }
+        },
+        "distractors": [
+          "Does you like apples?",
+          "Do she read books?",
+          "Does he likes apples?",
+          "Is you happy today?",
+          "Are she tired today?",
+          "Do you are hungry today?"
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Câu hỏi Yes/No là câu hỏi mà người ta trả lời bằng \"Yes\" hoặc \"No\". Có hai kiểu. (1) Với động từ thường, em đặt Do/Does lên đầu câu, rồi đến chủ ngữ, rồi đến động từ nguyên mẫu: \"Do you play football?\", \"Does she read books?\". Chọn Does khi chủ ngữ là he/she/it hoặc MỘT người; chọn Do với I/you/we/they hoặc NHIỀU người. Nhớ: sau Do/Does, động từ KHÔNG thêm \"-s\" — nói \"Does she like...\", không nói \"Does she likes...\". (2) Với động từ \"to be\", em không cần Do/Does, chỉ cần đưa am/is/are lên trước chủ ngữ: \"Is my brother happy today?\", \"Are they hungry?\", \"Am I late?\". Câu trả lời ngắn thì lặp lại đúng trợ động từ đã dùng: \"Yes, I do.\" / \"No, I don't.\" / \"Yes, she is.\" / \"No, she isn't.\""
+    },
+    {
+      "id": "wh-questions",
+      "title_vi": "Câu hỏi với từ hỏi: Who · What · Where · When · Why · How",
+      "explain_vi": "Từ hỏi đứng đầu câu: người → Who, vật/việc → What, nơi → Where, lúc → When, lí do → Why, cách → How. Nhìn câu trả lời là biết phải hỏi bằng từ nào.",
+      "examples": [
+        "Who is your teacher? Miss Lan is my teacher.",
+        "Where is Mai now? She is in the garden.",
+        "How old is your brother? He is ten years old."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "wh-word-answer",
+            "text": "{wh} {tail}",
+            "blanks": [
+              "wh"
+            ],
+            "context_vi": "Đọc câu trả lời ở sau: nó cho em biết phải hỏi bằng từ hỏi nào.",
+            "audioText": "Who is your teacher? Miss Lan is my teacher."
+          },
+          {
+            "id": "wh-how-family",
+            "text": "{whHow} {tailHow}",
+            "blanks": [
+              "whHow"
+            ],
+            "context_vi": "Hỏi tuổi → How old; hỏi số lượng đếm được → How many; hỏi giá hoặc thứ không đếm được → How much.",
+            "audioText": "How old is your brother? He is ten years old."
+          }
+        ],
+        "slots": {
+          "wh": [
+            "Who",
+            "What",
+            "Where",
+            "When",
+            "Why",
+            "How"
+          ],
+          "tail": [
+            "is your teacher? Miss Lan is my teacher.",
+            "is that boy? He is my brother.",
+            "is in your bag? A new book is in my bag.",
+            "do you want? I want a red pen.",
+            "is Mai now? She is in the garden.",
+            "are my shoes? They are under the bed.",
+            "do you go to school? I go to school at seven o'clock.",
+            "does the film start? It starts at eight o'clock.",
+            "is she happy? Because she has a new bike.",
+            "are you late? Because my bike is broken.",
+            "do you go to school? I go to school by bike.",
+            "is your mother? She is fine, thank you."
+          ],
+          "whHow": [
+            "How old",
+            "How many",
+            "How much"
+          ],
+          "tailHow": [
+            "is your brother? He is ten years old.",
+            "are you? I am eleven years old.",
+            "pens do you have? I have five pens.",
+            "children are in your class? There are thirty children.",
+            "is this book? It is fifty thousand dong.",
+            "water do you drink every day? I drink two litres."
+          ]
+        },
+        "answerKey": {
+          "wh-word-answer": {
+            "wh": {
+              "__cond": "tail",
+              "is your teacher? Miss Lan is my teacher.": "Who",
+              "is that boy? He is my brother.": "Who",
+              "is in your bag? A new book is in my bag.": "What",
+              "do you want? I want a red pen.": "What",
+              "is Mai now? She is in the garden.": "Where",
+              "are my shoes? They are under the bed.": "Where",
+              "do you go to school? I go to school at seven o'clock.": "When",
+              "does the film start? It starts at eight o'clock.": "When",
+              "is she happy? Because she has a new bike.": "Why",
+              "are you late? Because my bike is broken.": "Why",
+              "do you go to school? I go to school by bike.": "How",
+              "is your mother? She is fine, thank you.": "How"
+            }
+          },
+          "wh-how-family": {
+            "whHow": {
+              "__cond": "tailHow",
+              "is your brother? He is ten years old.": "How old",
+              "are you? I am eleven years old.": "How old",
+              "pens do you have? I have five pens.": "How many",
+              "children are in your class? There are thirty children.": "How many",
+              "is this book? It is fifty thousand dong.": "How much",
+              "water do you drink every day? I drink two litres.": "How much"
+            }
+          }
+        },
+        "distractors": [
+          "What is your teacher? Miss Lan is my teacher.",
+          "Who is in your bag? A new book is in my bag.",
+          "Where do you go to school? I go to school at seven o'clock.",
+          "When is she happy? Because she has a new bike.",
+          "How many is your brother? He is ten years old.",
+          "How old pens do you have? I have five pens."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Khi em muốn biết một thông tin cụ thể, em dùng TỪ HỎI đặt ở ĐẦU câu. Who hỏi về người (\"Who is your teacher?\"), What hỏi về vật hoặc việc (\"What is in your bag?\"), Where hỏi về nơi chốn (\"Where is Mai?\"), When hỏi về thời gian (\"When do you go to school?\"), Why hỏi lí do — câu trả lời thường bắt đầu bằng \"Because…\", và How hỏi về cách thức (\"How do you go to school? I go by bike.\"). Ngoài ra có nhóm \"How + từ khác\": How old (bao nhiêu tuổi), How many (bao nhiêu — với danh từ đếm được số nhiều), How much (bao nhiêu tiền, hoặc với danh từ không đếm được). Mẹo làm bài: đọc CÂU TRẢ LỜI trước, thấy nói về người thì hỏi Who, nói về chỗ thì hỏi Where, nói về giờ thì hỏi When."
+    },
+    {
+      "id": "question-word-order",
+      "title_vi": "Trật tự từ trong câu hỏi",
+      "explain_vi": "Trong câu hỏi, trợ động từ (Do/Does/Is/Are) đứng TRƯỚC chủ ngữ, rồi mới đến phần còn lại. Không nói \"You do like apples?\" hay \"Where you are going?\".",
+      "examples": [
+        "Do you like apples?",
+        "Does my sister want a new bike?",
+        "Are they in the garden?"
+      ],
+      "generators": [
+        "order_words",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "wo-aux-q",
+            "text": "{aux} {subj} {vp}?",
+            "blanks": [],
+            "context_vi": "Thứ tự: Do/Does + chủ ngữ + động từ nguyên mẫu + phần còn lại + dấu hỏi.",
+            "audioText": "Do you like apples?"
+          },
+          {
+            "id": "wo-be-q",
+            "text": "{be} {subj2} {compl}?",
+            "blanks": [],
+            "context_vi": "Thứ tự: Is/Are + chủ ngữ + phần còn lại + dấu hỏi.",
+            "audioText": "Are they in the garden?"
+          }
+        ],
+        "slots": {
+          "aux": [
+            "Do",
+            "Does"
+          ],
+          "subj": [
+            "you",
+            "he",
+            "she",
+            "they",
+            "we",
+            "the children"
+          ],
+          "vp": [
+            "like apples",
+            "play football",
+            "read books",
+            "watch TV",
+            "eat rice",
+            "want a new bike"
+          ],
+          "be": [
+            "Is",
+            "Are"
+          ],
+          "subj2": [
+            "she",
+            "he",
+            "they",
+            "you",
+            "we"
+          ],
+          "compl": [
+            "at home",
+            "in the garden",
+            "hungry now",
+            "ready for school",
+            "in the classroom"
+          ]
+        },
+        "answerKey": {
+          "wo-aux-q": {
+            "aux": {
+              "__cond": "subj",
+              "you": "Do",
+              "he": "Does",
+              "she": "Does",
+              "they": "Do",
+              "we": "Do",
+              "the children": "Do"
+            }
+          },
+          "wo-be-q": {
+            "be": {
+              "__cond": "subj2",
+              "she": "Is",
+              "he": "Is",
+              "they": "Are",
+              "you": "Are",
+              "we": "Are"
+            }
+          }
+        },
+        "distractors": [
+          "Do like you apples?",
+          "Play you football?",
+          "You do watch TV?",
+          "Are hungry you now?",
+          "Is at home she?",
+          "Where you are going?"
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Tiếng Việt hỏi bằng cách thêm từ ở cuối câu (\"Bạn thích táo không?\"), nên nhiều bạn viết sai thành \"You like apples?\". Tiếng Anh thì phải ĐẢO trợ động từ lên trước chủ ngữ. Công thức 1: Do/Does + chủ ngữ + động từ nguyên mẫu + …? → \"Do you like apples?\", \"Does she read books?\". Công thức 2: Am/Is/Are + chủ ngữ + …? → \"Are they in the garden?\", \"Is she at home?\". Nếu câu có từ hỏi thì từ hỏi đứng trước cùng, rồi mới đến trợ động từ: \"Where are you going?\" (KHÔNG phải \"Where you are going?\"). Và đừng quên dấu hỏi \"?\" ở cuối câu."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "the-new-boy",
+      "title": "The new boy",
+      "title_vi": "Cậu bạn mới",
+      "text": "Nam is a new boy in my class. \"Where are you from?\" I ask him. \"I am from Hue,\" he says. \"How do you go to school?\" \"I go by bike. Do you play football?\" \"Yes, I do,\" I say. Now Nam is my new friend.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Nam đến trường bằng xe đạp, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "Nam goes to school by bike."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Nam đến từ thành phố nào?",
+          "type": "mcq",
+          "choices": [
+            "Hue",
+            "Ha Noi",
+            "Da Nang"
+          ],
+          "answer": 0,
+          "audioText": "Where is Nam from?"
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit17.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 417,
+  "lesson": 17,
+  "topic": "The passive voice: be + past participle",
+  "topic_vi": "Câu bị động",
+  "vocab": [
+    {
+      "word": "clean",
+      "vi": "làm sạch, dọn",
+      "icon": "🧽",
+      "example": "The room is cleaned every day.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "wash",
+      "vi": "rửa, giặt",
+      "icon": "🧼",
+      "example": "The dishes are washed after dinner.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "build",
+      "vi": "xây",
+      "icon": "🏗️",
+      "example": "The school was built in 1990.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "make",
+      "vi": "làm, chế biến",
+      "icon": "🍰",
+      "example": "The cake is made at home.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "find",
+      "vi": "tìm thấy",
+      "icon": "🔎",
+      "example": "The keys were found in the garden.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "break",
+      "vi": "làm vỡ, làm hỏng",
+      "icon": "💥",
+      "example": "The window was broken by Nam.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "write",
+      "vi": "viết",
+      "icon": "✍️",
+      "example": "This letter was written by my sister.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "paint",
+      "vi": "sơn, vẽ màu",
+      "icon": "🎨",
+      "example": "This window was painted by my brother.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "letter",
+      "vi": "bức thư",
+      "icon": "✉️",
+      "example": "This letter was sent by my father.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "window",
+      "vi": "cửa sổ",
+      "icon": "🪟",
+      "example": "The window was cleaned by my mother.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "bridge",
+      "vi": "cây cầu",
+      "icon": "🌉",
+      "example": "The bridge was built in 2020.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "floor",
+      "vi": "sàn nhà",
+      "icon": "🧹",
+      "example": "The floor is cleaned every day.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "present-passive",
+      "title_vi": "Bị động hiện tại: is / are + V3",
+      "explain_vi": "Khi không cần nói ai làm, em dùng bị động: chủ ngữ số ít → \"is\" + V3, chủ ngữ số nhiều → \"are\" + V3. Ví dụ: The room is cleaned. The windows are cleaned.",
+      "examples": [
+        "The room is cleaned every day.",
+        "The windows are cleaned every day.",
+        "The cake is made at home.",
+        "The noodles are made at home."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose",
+        "transform"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "pres-pass-clean",
+            "text": "The {place} {be} cleaned every day.",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "Nhìn danh từ: số ít → is, số nhiều → are. Sau đó luôn là V3 \"cleaned\".",
+            "audioText": "The room is cleaned every day."
+          },
+          {
+            "id": "pres-pass-make",
+            "text": "{food} {be2} made at home.",
+            "blanks": [
+              "be2"
+            ],
+            "context_vi": "Món ăn số ít đi với \"is made\", số nhiều đi với \"are made\".",
+            "audioText": "The cake is made at home."
+          }
+        ],
+        "slots": {
+          "place": [
+            "room",
+            "kitchen",
+            "classroom",
+            "floor",
+            "rooms",
+            "windows",
+            "desks",
+            "tables"
+          ],
+          "be": [
+            "is",
+            "are"
+          ],
+          "food": [
+            "The cake",
+            "The bread",
+            "The soup",
+            "The cakes",
+            "The noodles",
+            "The sandwiches"
+          ],
+          "be2": [
+            "is",
+            "are"
+          ]
+        },
+        "answerKey": {
+          "pres-pass-clean": {
+            "be": {
+              "__cond": "place",
+              "room": "is",
+              "kitchen": "is",
+              "classroom": "is",
+              "floor": "is",
+              "rooms": "are",
+              "windows": "are",
+              "desks": "are",
+              "tables": "are"
+            }
+          },
+          "pres-pass-make": {
+            "be2": {
+              "__cond": "food",
+              "The cake": "is",
+              "The bread": "is",
+              "The soup": "is",
+              "The cakes": "are",
+              "The noodles": "are",
+              "The sandwiches": "are"
+            }
+          },
+          "answer-pairs": {
+            "The room is cleaned every day.": "The room is not cleaned every day.",
+            "The windows are cleaned every day.": "The windows are not cleaned every day.",
+            "The cake is made at home.": "The cake is not made at home.",
+            "The noodles are made at home.": "The noodles are not made at home.",
+            "The floor is not cleaned every day.": "The floor is cleaned every day.",
+            "The desks are not cleaned every day.": "The desks are cleaned every day.",
+            "The bread is not made at home.": "The bread is made at home.",
+            "The sandwiches are not made at home.": "The sandwiches are made at home."
+          }
+        },
+        "distractors": [
+          "The room are cleaned every day.",
+          "The windows is cleaned every day.",
+          "The room cleaned every day.",
+          "The cake is make at home.",
+          "The cakes is made at home.",
+          "The bread are made at home."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Bình thường em nói ai làm gì: \"My mother cleans the room.\" Nhưng nhiều khi điều quan trọng là CÁI GÌ ĐƯỢC LÀM, còn ai làm thì không cần nhắc. Lúc đó em dùng câu bị động: đưa vật lên làm chủ ngữ, rồi dùng is/are + V3 (dạng thứ ba của động từ): \"The room is cleaned every day.\" Chọn is khi chủ ngữ số ít, chọn are khi chủ ngữ số nhiều: \"The window is cleaned.\" — \"The windows are cleaned.\" Hai lỗi hay gặp: (1) quên \"be\" — nói \"The room cleaned every day\" là sai; (2) quên đổi sang V3 — nói \"The cake is make at home\" là sai, phải là \"is made\". Muốn nói phủ định thì thêm \"not\" ngay sau is/are: \"The room is not cleaned every day.\""
+    },
+    {
+      "id": "past-passive",
+      "title_vi": "Bị động quá khứ: was / were + V3",
+      "explain_vi": "Việc đã xảy ra rồi thì dùng \"was\" + V3 với chủ ngữ số ít và \"were\" + V3 với chủ ngữ số nhiều: The school was built. The houses were built.",
+      "examples": [
+        "The school was built in 1990.",
+        "The houses were built in 2020.",
+        "The keys were found in the garden.",
+        "The ball was found in the garden."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "past-pass-build",
+            "text": "The {building} {beP} built in 2020.",
+            "blanks": [
+              "beP"
+            ],
+            "context_vi": "Chuyện đã xong: số ít → was built, số nhiều → were built.",
+            "audioText": "The school was built in 2020."
+          },
+          {
+            "id": "past-pass-find",
+            "text": "The {lost} {beP2} found in the garden.",
+            "blanks": [
+              "beP2"
+            ],
+            "context_vi": "Nhìn danh từ số ít hay số nhiều để chọn was hay were, sau đó là V3 \"found\".",
+            "audioText": "The keys were found in the garden."
+          }
+        ],
+        "slots": {
+          "building": [
+            "school",
+            "house",
+            "bridge",
+            "library",
+            "houses",
+            "shops",
+            "bridges"
+          ],
+          "beP": [
+            "was",
+            "were"
+          ],
+          "lost": [
+            "ball",
+            "key",
+            "kite",
+            "pen",
+            "keys",
+            "toys",
+            "books"
+          ],
+          "beP2": [
+            "was",
+            "were"
+          ]
+        },
+        "answerKey": {
+          "past-pass-build": {
+            "beP": {
+              "__cond": "building",
+              "school": "was",
+              "house": "was",
+              "bridge": "was",
+              "library": "was",
+              "houses": "were",
+              "shops": "were",
+              "bridges": "were"
+            }
+          },
+          "past-pass-find": {
+            "beP2": {
+              "__cond": "lost",
+              "ball": "was",
+              "key": "was",
+              "kite": "was",
+              "pen": "was",
+              "keys": "were",
+              "toys": "were",
+              "books": "were"
+            }
+          }
+        },
+        "distractors": [
+          "The school were built in 2020.",
+          "The houses was built in 2020.",
+          "The school was build in 2020.",
+          "The keys was found in the garden.",
+          "The ball were found in the garden.",
+          "The toys were find in the garden."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Khi việc đã xảy ra trong quá khứ, câu bị động dùng was/were + V3. Chọn \"was\" cho chủ ngữ số ít (\"The bridge was built in 2020.\") và \"were\" cho chủ ngữ số nhiều (\"The houses were built in 2020.\"). Cách nhớ: was/were chính là dạng quá khứ của is/are, nên em chỉ cần đổi is → was, are → were, phần V3 giữ nguyên. Nhớ giữ đúng V3: build → built, find → found, break → broken, write → written. Nói \"The school was build\" là sai vì \"build\" chưa phải V3."
+    },
+    {
+      "id": "by-agent",
+      "title_vi": "Nói ai làm việc đó: \"by + người\"",
+      "explain_vi": "Muốn nói rõ AI làm việc đó, em thêm \"by + người\" ở cuối câu bị động: This window was broken by Nam. Động từ vẫn phải ở dạng V3.",
+      "examples": [
+        "My mother cleaned this window. This window was cleaned by my mother.",
+        "Nam broke this window. This window was broken by Nam.",
+        "My sister wrote this letter. This letter was written by my sister."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "by-letter",
+            "text": "{doer} {vPastL} this letter. This letter was {v3L} by {agent}.",
+            "blanks": [
+              "v3L",
+              "agent"
+            ],
+            "context_vi": "Câu đầu cho biết ai làm và làm gì. Câu bị động dùng V3 rồi thêm \"by + người đó\".",
+            "audioText": "My sister wrote this letter. This letter was written by my sister."
+          },
+          {
+            "id": "by-window",
+            "text": "{doer} {vPastW} this window. This window was {v3W} by {agent}.",
+            "blanks": [
+              "v3W",
+              "agent"
+            ],
+            "context_vi": "Đổi động từ ở câu đầu sang dạng V3, rồi cho người làm đứng sau \"by\".",
+            "audioText": "Nam broke this window. This window was broken by Nam."
+          }
+        ],
+        "slots": {
+          "doer": [
+            "My mother",
+            "My father",
+            "My sister",
+            "My brother",
+            "Miss Lan",
+            "Nam",
+            "Minh"
+          ],
+          "agent": [
+            "my mother",
+            "my father",
+            "my sister",
+            "my brother",
+            "Miss Lan",
+            "Nam",
+            "Minh"
+          ],
+          "vPastL": [
+            "wrote",
+            "found",
+            "sent"
+          ],
+          "v3L": [
+            "written",
+            "found",
+            "sent"
+          ],
+          "vPastW": [
+            "broke",
+            "cleaned",
+            "painted"
+          ],
+          "v3W": [
+            "broken",
+            "cleaned",
+            "painted"
+          ]
+        },
+        "answerKey": {
+          "by-letter": {
+            "v3L": {
+              "__cond": "vPastL",
+              "wrote": "written",
+              "found": "found",
+              "sent": "sent"
+            },
+            "agent": {
+              "__cond": "doer",
+              "My mother": "my mother",
+              "My father": "my father",
+              "My sister": "my sister",
+              "My brother": "my brother",
+              "Miss Lan": "Miss Lan",
+              "Nam": "Nam",
+              "Minh": "Minh"
+            }
+          },
+          "by-window": {
+            "v3W": {
+              "__cond": "vPastW",
+              "broke": "broken",
+              "cleaned": "cleaned",
+              "painted": "painted"
+            },
+            "agent": {
+              "__cond": "doer",
+              "My mother": "my mother",
+              "My father": "my father",
+              "My sister": "my sister",
+              "My brother": "my brother",
+              "Miss Lan": "Miss Lan",
+              "Nam": "Nam",
+              "Minh": "Minh"
+            }
+          }
+        },
+        "distractors": [
+          "Nam broke this window. This window was broke by Nam.",
+          "Nam broke this window. This window was broken from Nam.",
+          "My sister wrote this letter. This letter was write by my sister.",
+          "My sister wrote this letter. This letter was written from my sister.",
+          "My mother cleaned this window. This window cleaned by my mother.",
+          "My father sent this letter. This letter was send by my father."
+        ],
+        "irregulars": {
+          "write": "written",
+          "break": "broken",
+          "find": "found",
+          "send": "sent",
+          "build": "built",
+          "make": "made"
+        }
+      },
+      "teach_vi": "Câu bị động thường không nhắc ai làm, nhưng nếu người làm là thông tin quan trọng thì em thêm \"by + người\" vào cuối câu: \"This window was broken by Nam.\" Cách đổi từ câu chủ động sang bị động: lấy tân ngữ (vật bị tác động) lên làm chủ ngữ → thêm was/were (hoặc is/are) → đổi động từ sang V3 → cuối cùng thêm \"by\" và người làm. Ví dụ: \"My sister wrote this letter.\" → \"This letter was written by my sister.\" Hai lỗi hay gặp: dùng \"from\" thay cho \"by\" (sai), và quên đổi sang V3 — nói \"was broke\" thay vì \"was broken\" (sai). Nhớ vài V3 bất quy tắc: write → written, break → broken, find → found, send → sent."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "our-old-school",
+      "title": "Our old school",
+      "title_vi": "Ngôi trường cũ của chúng em",
+      "text": "Our school is old. It was built in 1990. Every morning the classrooms are cleaned by two workers. Last week a new tree was planted in the garden. The tree was given to our school by Miss Lan's family. Now our garden is very beautiful.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Trường được xây năm 1990, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "The school was built in 1990."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Ai tặng cây mới cho trường?",
+          "type": "mcq",
+          "choices": [
+            "Miss Lan's family",
+            "Two workers",
+            "The children of class 5"
+          ],
+          "answer": 0,
+          "audioText": "Who gave the new tree to the school?"
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit18.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 418,
+  "lesson": 18,
+  "topic": "Infinitive, -ing form and too / enough",
+  "topic_vi": "To V · V-ing · too/enough",
+  "vocab": [
+    {
+      "word": "want",
+      "vi": "muốn",
+      "icon": "🙋",
+      "example": "I want to read a new book.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "need",
+      "vi": "cần",
+      "icon": "🆘",
+      "example": "My hands are dirty. I need to wash them.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "enjoy",
+      "vi": "thích thú, thấy vui khi làm",
+      "icon": "😊",
+      "example": "I enjoy riding my bike every day.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "swim",
+      "vi": "bơi",
+      "icon": "🏊",
+      "example": "I like swimming in the sea.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "draw",
+      "vi": "vẽ",
+      "icon": "🎨",
+      "example": "My sister likes drawing pictures.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "heavy",
+      "vi": "nặng",
+      "icon": "🪨",
+      "example": "This box is too heavy for me.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "light",
+      "vi": "nhẹ",
+      "icon": "🎈",
+      "example": "This bag is light enough for a child.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "hot",
+      "vi": "nóng",
+      "icon": "☕",
+      "example": "The tea is too hot to drink.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "high",
+      "vi": "cao",
+      "icon": "🗄️",
+      "example": "The shelf is too high for me.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "money",
+      "vi": "tiền",
+      "icon": "💰",
+      "example": "I have enough money to buy this book.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "egg",
+      "vi": "quả trứng",
+      "icon": "🥚",
+      "example": "I need six eggs to make a cake.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "guitar",
+      "vi": "đàn ghi-ta",
+      "icon": "🎸",
+      "example": "I enjoy playing the guitar.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "want-to-v",
+      "title_vi": "want / need + to + động từ",
+      "explain_vi": "Sau \"want\" và \"need\" phải có \"to\" rồi mới đến động từ nguyên mẫu: I want to read. Không nói \"I want read\" hay \"I want reading\".",
+      "examples": [
+        "I love books. I want to read now.",
+        "I am very hungry. I need to eat something.",
+        "My hands are dirty. I need to wash them."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "want-to-clue",
+            "text": "I love {hobby}. I want {toV} now.",
+            "blanks": [
+              "toV"
+            ],
+            "context_vi": "Câu đầu cho biết em thích gì. Sau \"want\" nhớ có \"to\" + động từ nguyên mẫu.",
+            "audioText": "I love books. I want to read now."
+          },
+          {
+            "id": "need-to-clue",
+            "text": "{problem} I need {toV2}.",
+            "blanks": [
+              "toV2"
+            ],
+            "context_vi": "Đọc vấn đề ở câu đầu để biết cần làm gì. Sau \"need\" cũng phải có \"to\".",
+            "audioText": "My hands are dirty. I need to wash them."
+          }
+        ],
+        "slots": {
+          "hobby": [
+            "books",
+            "football",
+            "music",
+            "cakes",
+            "the sea",
+            "pictures"
+          ],
+          "toV": [
+            "to read",
+            "to play football",
+            "to listen to music",
+            "to eat a cake",
+            "to swim",
+            "to draw"
+          ],
+          "problem": [
+            "My hands are dirty.",
+            "I am very hungry.",
+            "I am very tired.",
+            "My room is dirty.",
+            "My hair is too long."
+          ],
+          "toV2": [
+            "to wash them",
+            "to eat something",
+            "to sleep",
+            "to clean it",
+            "to cut it"
+          ]
+        },
+        "answerKey": {
+          "want-to-clue": {
+            "toV": {
+              "__cond": "hobby",
+              "books": "to read",
+              "football": "to play football",
+              "music": "to listen to music",
+              "cakes": "to eat a cake",
+              "the sea": "to swim",
+              "pictures": "to draw"
+            }
+          },
+          "need-to-clue": {
+            "toV2": {
+              "__cond": "problem",
+              "My hands are dirty.": "to wash them",
+              "I am very hungry.": "to eat something",
+              "I am very tired.": "to sleep",
+              "My room is dirty.": "to clean it",
+              "My hair is too long.": "to cut it"
+            }
+          }
+        },
+        "distractors": [
+          "I love books. I want read now.",
+          "I love books. I want reading now.",
+          "I love football. I want to playing football now.",
+          "I am very hungry. I need eat something.",
+          "I am very tired. I need to sleeping.",
+          "My room is dirty. I need clean it."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Có những động từ mà sau nó phải dùng \"to + động từ nguyên mẫu\". Hai từ em gặp nhiều nhất là want (muốn) và need (cần): \"I want to read a book.\", \"I need to wash my hands.\" Người Việt hay dịch từng chữ nên viết thành \"I want read\" (thiếu \"to\") hoặc \"I want reading\" (dùng sai dạng) — cả hai đều sai. Cùng nhóm này còn có: would like to, hope to, try to, decide to. Nếu câu có chủ ngữ khác thì chỉ đổi want/need cho khớp chủ ngữ, phần \"to + V\" giữ nguyên: \"She wants to read.\", \"They want to read.\""
+    },
+    {
+      "id": "like-ving",
+      "title_vi": "like / enjoy + động từ thêm -ing",
+      "explain_vi": "Sau \"like\", \"love\" và \"enjoy\" thì động từ thêm \"-ing\": I like swimming. Không nói \"I like to swimming\" hay \"I enjoy swim\".",
+      "examples": [
+        "I have a new bike. I enjoy riding it every day.",
+        "I am at the swimming pool. I like swimming here.",
+        "I have many books. I enjoy reading them every day."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "enjoy-ving-thing",
+            "text": "I have {thing}. I enjoy {ving} every day.",
+            "blanks": [
+              "ving"
+            ],
+            "context_vi": "Câu đầu cho biết em có gì. Sau \"enjoy\", động từ luôn thêm \"-ing\".",
+            "audioText": "I have a new bike. I enjoy riding it every day."
+          },
+          {
+            "id": "like-ving-place",
+            "text": "{place} I like {ving4} here.",
+            "blanks": [
+              "ving4"
+            ],
+            "context_vi": "Nơi em đang ở cho biết em làm gì. Sau \"like\", động từ thêm \"-ing\".",
+            "audioText": "I am at the swimming pool. I like swimming here."
+          }
+        ],
+        "slots": {
+          "thing": [
+            "a new bike",
+            "many books",
+            "a football",
+            "a guitar",
+            "a camera",
+            "a big garden"
+          ],
+          "ving": [
+            "riding it",
+            "reading them",
+            "playing football",
+            "playing it",
+            "taking photos",
+            "planting flowers"
+          ],
+          "place": [
+            "I am at the swimming pool.",
+            "I am in the library.",
+            "I am in the kitchen with my mother.",
+            "I am in the music room.",
+            "I am on the football field.",
+            "I am in the art room."
+          ],
+          "ving4": [
+            "swimming",
+            "reading books",
+            "cooking",
+            "singing",
+            "playing football",
+            "drawing"
+          ]
+        },
+        "answerKey": {
+          "enjoy-ving-thing": {
+            "ving": {
+              "__cond": "thing",
+              "a new bike": "riding it",
+              "many books": "reading them",
+              "a football": "playing football",
+              "a guitar": "playing it",
+              "a camera": "taking photos",
+              "a big garden": "planting flowers"
+            }
+          },
+          "like-ving-place": {
+            "ving4": {
+              "__cond": "place",
+              "I am at the swimming pool.": "swimming",
+              "I am in the library.": "reading books",
+              "I am in the kitchen with my mother.": "cooking",
+              "I am in the music room.": "singing",
+              "I am on the football field.": "playing football",
+              "I am in the art room.": "drawing"
+            }
+          }
+        },
+        "distractors": [
+          "I have a new bike. I enjoy to ride it every day.",
+          "I have many books. I enjoy read them every day.",
+          "I am at the swimming pool. I like to swimming here.",
+          "I am in the library. I like read books here.",
+          "I have a camera. I enjoy to taking photos every day.",
+          "I am in the art room. I like to drawing here."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Nhóm động từ nói về SỞ THÍCH — like, love, enjoy, hate — thì động từ đi sau phải thêm \"-ing\": \"I like swimming.\", \"I enjoy reading books.\", \"She loves drawing.\" Riêng \"enjoy\" thì BẮT BUỘC dùng \"-ing\", không bao giờ dùng \"to\": nói \"I enjoy to swim\" là sai. Quy tắc thêm \"-ing\": thường chỉ thêm \"-ing\" (read → reading); nếu từ kết thúc bằng \"e\" thì bỏ \"e\" (ride → riding, take → taking); nếu là một âm và kết thúc bằng nguyên âm + phụ âm thì gấp đôi phụ âm (swim → swimming, run → running). Lỗi hay gặp nhất của người Việt là trộn hai kiểu lại: \"I like to swimming\" — sai, phải chọn một là \"I like swimming\" hoặc \"I like to swim\"."
+    },
+    {
+      "id": "too-enough",
+      "title_vi": "too (quá) và enough (đủ)",
+      "explain_vi": "\"too\" đứng TRƯỚC tính từ và mang nghĩa quá mức nên KHÔNG làm được: too heavy. \"enough\" đứng SAU tính từ và nghĩa là đủ để làm được: light enough.",
+      "examples": [
+        "I can't lift this box. It is too heavy.",
+        "I can lift this box. It is light enough.",
+        "I need six eggs to make a cake. I have four eggs. That is not enough."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "too-or-enough",
+            "text": "{res} It is {te}.",
+            "blanks": [
+              "te"
+            ],
+            "context_vi": "KHÔNG làm được → too + tính từ. LÀM ĐƯỢC → tính từ + enough.",
+            "audioText": "I can't lift this box. It is too heavy."
+          },
+          {
+            "id": "enough-eggs",
+            "text": "I need six eggs to make a cake. I have {num} eggs. That is {teB}.",
+            "blanks": [
+              "teB"
+            ],
+            "context_vi": "So số trứng em có với số trứng em cần: bằng hoặc nhiều hơn → enough; ít hơn → not enough.",
+            "audioText": "I need six eggs to make a cake. I have four eggs. That is not enough."
+          }
+        ],
+        "slots": {
+          "res": [
+            "I can't lift this box.",
+            "I can lift this box.",
+            "I can't drink this tea.",
+            "I can drink this tea.",
+            "I can't reach the shelf.",
+            "I can reach the shelf."
+          ],
+          "te": [
+            "too heavy",
+            "light enough",
+            "too hot",
+            "cool enough",
+            "too high",
+            "low enough"
+          ],
+          "num": [
+            "ten",
+            "eight",
+            "six",
+            "four",
+            "three",
+            "two"
+          ],
+          "teB": [
+            "enough",
+            "not enough"
+          ]
+        },
+        "answerKey": {
+          "too-or-enough": {
+            "te": {
+              "__cond": "res",
+              "I can't lift this box.": "too heavy",
+              "I can lift this box.": "light enough",
+              "I can't drink this tea.": "too hot",
+              "I can drink this tea.": "cool enough",
+              "I can't reach the shelf.": "too high",
+              "I can reach the shelf.": "low enough"
+            }
+          },
+          "enough-eggs": {
+            "teB": {
+              "__cond": "num",
+              "ten": "enough",
+              "eight": "enough",
+              "six": "enough",
+              "four": "not enough",
+              "three": "not enough",
+              "two": "not enough"
+            }
+          }
+        },
+        "distractors": [
+          "I can't lift this box. It is enough heavy.",
+          "I can lift this box. It is enough light.",
+          "I can't drink this tea. It is hot too.",
+          "I can reach the shelf. It is enough low.",
+          "I need six eggs to make a cake. I have four eggs. That is enough not.",
+          "I can't lift this box. It is too heavy enough."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Hai từ này nói về mức độ nhưng đứng ở hai chỗ khác nhau. \"too\" nghĩa là QUÁ (quá mức nên không làm được) và đứng TRƯỚC tính từ: \"The box is too heavy. I can't lift it.\", \"The tea is too hot to drink.\" Còn \"enough\" nghĩa là ĐỦ (đủ nên làm được) và đứng SAU tính từ: \"The box is light enough. I can lift it.\", \"He is tall enough to reach the shelf.\" Lưu ý vị trí — nói \"enough heavy\" là sai, phải là \"heavy enough\". Khi \"enough\" đi với DANH TỪ thì nó lại đứng TRƯỚC danh từ: \"I have enough money.\", \"I don't have enough eggs.\" Muốn nói thiếu thì dùng \"not enough\": \"Four eggs is not enough.\""
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "mai-makes-a-cake",
+      "title": "Mai makes a cake",
+      "title_vi": "Mai làm bánh",
+      "text": "Mai wants to be a cook one day. She enjoys making cakes with her mother. Today she needs six eggs, but she has only two. That is not enough. \"Don't worry,\" says her mother. \"The shop is not too far. We can walk there together.\"",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Mai đã có đủ sáu quả trứng, đúng không?",
+          "type": "truefalse",
+          "answer": false,
+          "audioText": "Mai has only two eggs. That is not enough."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Mai thích làm việc gì cùng mẹ?",
+          "type": "mcq",
+          "choices": [
+            "making cakes",
+            "playing football",
+            "reading books"
+          ],
+          "answer": 0,
+          "audioText": "What does Mai enjoy doing with her mother?"
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit19.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 419,
+  "lesson": 19,
+  "topic": "Relative pronouns: who, which, whose",
+  "topic_vi": "Đại từ quan hệ",
+  "vocab": [
+    {
+      "word": "who",
+      "vi": "người mà (dùng cho NGƯỜI)",
+      "icon": "🙋",
+      "example": "The man who helped me is my uncle.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "which",
+      "vi": "cái mà (dùng cho VẬT, CON VẬT)",
+      "icon": "📦",
+      "example": "The box which is red is mine.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "whose",
+      "vi": "của người mà (chỉ sự sở hữu)",
+      "icon": "🔑",
+      "example": "I know a girl whose bike is new.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "neighbour",
+      "vi": "người láng giềng",
+      "icon": "🏘️",
+      "example": "My neighbour has a big dog.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "doctor",
+      "vi": "bác sĩ",
+      "icon": "👩‍⚕️",
+      "example": "The doctor who helped me was very kind.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "nurse",
+      "vi": "điều dưỡng, y sĩ",
+      "icon": "🧑‍⚕️",
+      "example": "I know a nurse who works at night.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "robot",
+      "vi": "người máy",
+      "icon": "🤖",
+      "example": "This is the robot which cleans our house.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "photo",
+      "vi": "bức ảnh",
+      "icon": "📷",
+      "example": "Look at the photo which is on the wall.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "kite",
+      "vi": "con diều",
+      "icon": "🪁",
+      "example": "The kite which we made is very big.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "guitar",
+      "vi": "đàn ghi-ta",
+      "icon": "🎸",
+      "example": "I know a girl who plays the guitar.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "clock",
+      "vi": "cái đồng hồ",
+      "icon": "⏰",
+      "example": "The clock which is on the wall is new.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "race",
+      "vi": "cuộc thi chạy",
+      "icon": "🏁",
+      "example": "I saw the boy who won the race.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "famous",
+      "vi": "nổi tiếng",
+      "icon": "⭐",
+      "example": "I know a boy whose father is famous.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "who-person",
+      "title_vi": "\"who\" — nối lại khi nói về NGƯỜI",
+      "explain_vi": "Nói thêm về một NGƯỜI thì dùng \"who\"; nói thêm về con vật hay đồ vật thì dùng \"which\". Hãy nhìn danh từ đứng ngay TRƯỚC chỗ trống để chọn.",
+      "examples": [
+        "This is the woman who helped me yesterday.",
+        "This is the dog which helped me yesterday.",
+        "I saw the boy who won the race last week."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "person-helped",
+            "text": "This is the {being} {rel} helped me yesterday.",
+            "blanks": [
+              "rel"
+            ],
+            "context_vi": "Nhìn danh từ ngay trước chỗ trống: người → who, con vật hay đồ vật → which",
+            "audioText": "This is the woman who helped me yesterday."
+          },
+          {
+            "id": "person-won-race",
+            "text": "I saw the {being} {rel} won the race last week.",
+            "blanks": [
+              "rel"
+            ],
+            "context_vi": "Bài này chỉ dùng who hoặc which; người → who, con vật hay đồ vật → which",
+            "audioText": "I saw the boy who won the race last week."
+          }
+        ],
+        "slots": {
+          "being": [
+            "man",
+            "woman",
+            "boy",
+            "girl",
+            "teacher",
+            "nurse",
+            "dog",
+            "robot"
+          ],
+          "rel": [
+            "who",
+            "which"
+          ]
+        },
+        "answerKey": {
+          "person-helped": {
+            "rel": {
+              "__cond": "being",
+              "man": "who",
+              "woman": "who",
+              "boy": "who",
+              "girl": "who",
+              "teacher": "who",
+              "nurse": "who",
+              "dog": "which",
+              "robot": "which"
+            }
+          },
+          "person-won-race": {
+            "rel": {
+              "__cond": "being",
+              "man": "who",
+              "woman": "who",
+              "boy": "who",
+              "girl": "who",
+              "teacher": "who",
+              "nurse": "who",
+              "dog": "which",
+              "robot": "which"
+            }
+          }
+        },
+        "distractors": [
+          "This is the man which helped me yesterday.",
+          "This is the teacher which helped me yesterday.",
+          "I saw the girl which won the race last week.",
+          "I saw the nurse which won the race last week.",
+          "This is the woman who she helped me yesterday.",
+          "I saw the boy who he won the race last week."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Khi em muốn nói thêm về một người hay một vật mà không phải bắt đầu câu mới, em dùng đại từ quan hệ để NỐI hai câu lại. Ví dụ: \"This is the woman.\" + \"She helped me.\" → \"This is the woman who helped me.\" Cách chọn rất dễ: danh từ đứng ngay TRƯỚC chỗ nối là NGƯỜI thì dùng \"who\" (the boy who won the race), là CON VẬT hay ĐỒ VẬT thì dùng \"which\" (the dog which won the race). Đại từ quan hệ luôn đứng NGAY SAU danh từ nó nhắc lại, và nó đã thay cho \"he / she / it\" rồi nên em KHÔNG viết thêm chủ ngữ nữa: nói \"the woman who helped me\", không nói \"the woman who she helped me\". (Người lớn còn dùng \"that\" thay cho who/which, nhưng bài này em chỉ luyện who và which cho thật chắc.)"
+    },
+    {
+      "id": "which-thing",
+      "title_vi": "\"which\" — nối lại khi nói về ĐỒ VẬT",
+      "explain_vi": "Danh từ trước chỗ trống là đồ vật → dùng \"which\"; là người → dùng \"who\". Đại từ quan hệ luôn đứng ngay sau danh từ mà nó nhắc lại.",
+      "examples": [
+        "The bike which I saw at the shop was very nice.",
+        "The woman who I saw at the shop was very nice.",
+        "Look at the cake which is in this photo."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "thing-at-shop",
+            "text": "The {item} {rel2} I saw at the shop was very nice.",
+            "blanks": [
+              "rel2"
+            ],
+            "context_vi": "Đồ vật → which, người → who. Nhìn danh từ ngay trước chỗ trống",
+            "audioText": "The bike which I saw at the shop was very nice."
+          },
+          {
+            "id": "thing-in-photo",
+            "text": "Look at the {item} {rel2} is in this photo.",
+            "blanks": [
+              "rel2"
+            ],
+            "context_vi": "Chọn which cho đồ vật, who cho người; chỉ dùng hai từ này",
+            "audioText": "Look at the cake which is in this photo."
+          }
+        ],
+        "slots": {
+          "item": [
+            "bike",
+            "kite",
+            "dress",
+            "cake",
+            "clock",
+            "hat",
+            "man",
+            "woman",
+            "girl"
+          ],
+          "rel2": [
+            "which",
+            "who"
+          ]
+        },
+        "answerKey": {
+          "thing-at-shop": {
+            "rel2": {
+              "__cond": "item",
+              "bike": "which",
+              "kite": "which",
+              "dress": "which",
+              "cake": "which",
+              "clock": "which",
+              "hat": "which",
+              "man": "who",
+              "woman": "who",
+              "girl": "who"
+            }
+          },
+          "thing-in-photo": {
+            "rel2": {
+              "__cond": "item",
+              "bike": "which",
+              "kite": "which",
+              "dress": "which",
+              "cake": "which",
+              "clock": "which",
+              "hat": "which",
+              "man": "who",
+              "woman": "who",
+              "girl": "who"
+            }
+          }
+        },
+        "distractors": [
+          "The bike who I saw at the shop was very nice.",
+          "The clock who I saw at the shop was very nice.",
+          "Look at the kite who is in this photo.",
+          "Look at the hat who is in this photo.",
+          "The dress which I saw it at the shop was very nice.",
+          "Look at the girl who she is in this photo."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"which\" dùng để nói thêm về ĐỒ VẬT hoặc CON VẬT: \"The kite which we made is very big.\" Còn với NGƯỜI thì em đổi sang \"who\": \"The girl who made this kite is my sister.\" Hai lỗi các bạn hay mắc: (1) dùng \"who\" cho đồ vật — sai: \"the bike who I saw\", đúng: \"the bike which I saw\"; (2) viết thêm \"it / he / she\" sau đại từ quan hệ — sai: \"the dress which I saw it\", đúng: \"the dress which I saw\", vì \"which\" đã thay cho \"it\" rồi. Mẹo nhỏ: chỉ tay vào danh từ ngay trước chỗ trống rồi tự hỏi \"cái này là người hay là vật?\" — có câu trả lời là chọn được ngay."
+    },
+    {
+      "id": "whose-possession",
+      "title_vi": "\"whose\" — nói cái đó CỦA AI",
+      "explain_vi": "Sau \"whose\" là một DANH TỪ vì nó nói về cái thuộc về ai (a boy whose father...). Sau \"who\" là một ĐỘNG TỪ (a boy who plays...). Nhìn chữ ngay sau chỗ trống.",
+      "examples": [
+        "I know a boy whose father is famous.",
+        "I know a girl whose sister is famous.",
+        "I know a girl who plays the guitar very well."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "whose-family-famous",
+            "text": "I know a {person} {rel3} {family} is famous.",
+            "blanks": [
+              "rel3"
+            ],
+            "context_vi": "Ngay sau chỗ trống là một DANH TỪ chỉ người trong gia đình, nên đây là câu nói về sở hữu",
+            "audioText": "I know a boy whose father is famous."
+          },
+          {
+            "id": "who-does-talent",
+            "text": "I know a {person} {rel3} {talent}.",
+            "blanks": [
+              "rel3"
+            ],
+            "context_vi": "Ngay sau chỗ trống là một ĐỘNG TỪ chỉ việc bạn ấy làm, không phải danh từ sở hữu",
+            "audioText": "I know a girl who plays the guitar very well."
+          }
+        ],
+        "slots": {
+          "person": [
+            "boy",
+            "girl",
+            "man",
+            "woman",
+            "student",
+            "teacher"
+          ],
+          "family": [
+            "father",
+            "mother",
+            "brother",
+            "sister",
+            "uncle",
+            "aunt"
+          ],
+          "talent": [
+            "plays the guitar very well",
+            "draws beautiful pictures",
+            "swims every morning",
+            "sings in our school band"
+          ],
+          "rel3": [
+            "whose",
+            "who",
+            "which"
+          ]
+        },
+        "answerKey": {
+          "whose-family-famous": {
+            "rel3": {
+              "__cond": "family",
+              "father": "whose",
+              "mother": "whose",
+              "brother": "whose",
+              "sister": "whose",
+              "uncle": "whose",
+              "aunt": "whose"
+            }
+          },
+          "who-does-talent": {
+            "rel3": {
+              "__cond": "talent",
+              "plays the guitar very well": "who",
+              "draws beautiful pictures": "who",
+              "swims every morning": "who",
+              "sings in our school band": "who"
+            }
+          }
+        },
+        "distractors": [
+          "I know a boy who father is famous.",
+          "I know a girl who mother is famous.",
+          "I know a man which uncle is famous.",
+          "I know a boy whose plays the guitar very well.",
+          "I know a girl whose sings in our school band.",
+          "I know a boy whose his father is famous."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"whose\" nghĩa là \"của người ấy\". Em dùng nó khi muốn nói một thứ THUỘC VỀ ai: \"I know a girl. Her bike is new.\" → \"I know a girl whose bike is new.\" Dấu hiệu nhận ra rất rõ: ngay sau \"whose\" luôn là một DANH TỪ (whose father, whose bike, whose dog), còn ngay sau \"who\" luôn là một ĐỘNG TỪ (who swims, who plays, who won). Vì \"whose\" đã mang nghĩa sở hữu nên em KHÔNG viết thêm his / her nữa: nói \"a boy whose father is famous\", không nói \"a boy whose his father is famous\". Và đừng dùng \"who\" thay cho \"whose\": \"a boy who father is famous\" là sai."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "the-people-i-know",
+      "title": "The people I know",
+      "title_vi": "Những người mà em biết",
+      "text": "The woman who lives next door is a doctor. She has a big dog which barks every morning. My best friend is a boy whose father works at the same hospital. He has a new kite which we fly in the park on Sunday. The photo which is on my desk shows all of us together.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Người phụ nữ ở nhà bên cạnh là bác sĩ, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "The woman who lives next door is a doctor."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Con chó làm gì mỗi buổi sáng?",
+          "type": "mcq",
+          "choices": [
+            "It barks every morning.",
+            "It flies the kite every morning.",
+            "It sleeps in the park every morning."
+          ],
+          "answer": 0,
+          "audioText": "What does the dog do every morning?"
+        }
+      ]
+    }
+  ]
+};
+  C["grammar3/unit20.json"] = {
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 420,
+  "lesson": 20,
+  "topic": "Adjectives, adverbs and comparisons",
+  "topic_vi": "Tính từ · trạng từ · so sánh",
+  "vocab": [
+    {
+      "word": "quick",
+      "vi": "nhanh (tính từ)",
+      "icon": "⚡",
+      "example": "My brother is a quick runner.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "quickly",
+      "vi": "một cách nhanh nhẹn (trạng từ)",
+      "icon": "🏃",
+      "example": "He runs quickly.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "careful",
+      "vi": "cẩn thận (tính từ)",
+      "icon": "🧐",
+      "example": "Lan is a careful writer.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "carefully",
+      "vi": "một cách cẩn thận (trạng từ)",
+      "icon": "✍️",
+      "example": "She writes carefully.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "good",
+      "vi": "tốt, giỏi (tính từ)",
+      "icon": "👍",
+      "example": "This drawing is good.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "well",
+      "vi": "một cách giỏi (trạng từ của good)",
+      "icon": "🎶",
+      "example": "My sister sings well.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "fast",
+      "vi": "nhanh (tính từ và trạng từ viết giống nhau)",
+      "icon": "🚀",
+      "example": "Nam runs fast.",
+      "partOfSpeech": "adj/adverb",
+      "audio": ""
+    },
+    {
+      "word": "badly",
+      "vi": "một cách tệ (trạng từ của bad)",
+      "icon": "😖",
+      "example": "Our team played badly last week.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "better",
+      "vi": "tốt hơn (so sánh hơn của good)",
+      "icon": "⬆️",
+      "example": "Tomorrow will be better than today.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "worse",
+      "vi": "tệ hơn (so sánh hơn của bad)",
+      "icon": "⬇️",
+      "example": "My old bike is worse than my new one.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "the best",
+      "vi": "tốt nhất, giỏi nhất",
+      "icon": "🏆",
+      "example": "Nam is the best player in our class.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "the worst",
+      "vi": "tệ nhất",
+      "icon": "💥",
+      "example": "That was the worst test of the year.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "windy",
+      "vi": "có nhiều gió",
+      "icon": "🌬️",
+      "example": "Today is windy.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "funny",
+      "vi": "hài, vui nhộn",
+      "icon": "😂",
+      "example": "This book is funny.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "heavy",
+      "vi": "nặng",
+      "icon": "🧱",
+      "example": "My school bag is heavy.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "as … as",
+      "vi": "bằng … như (so sánh bằng)",
+      "icon": "⚖️",
+      "example": "This pen is as long as that pen.",
+      "partOfSpeech": "phrase",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "adj-vs-adverb",
+      "title_vi": "Tính từ hay trạng từ: quick ↔ quickly · good ↔ well",
+      "explain_vi": "Tính từ tả người hay vật và đi sau \"be\" (is quick). Trạng từ tả hành động và đi sau động từ thường (runs quickly). Nhớ hai từ lạ: good → well, fast → fast.",
+      "examples": [
+        "My brother is a quick runner. He runs quickly.",
+        "My brother is a fast runner. He runs fast.",
+        "My sister sings well. Her voice is very good."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "runner-adv",
+            "text": "My brother is a {adj} runner. He runs {adv}.",
+            "blanks": [
+              "adv"
+            ],
+            "context_vi": "Chỗ trống đứng sau động từ thường \"runs\", nên cần TRẠNG TỪ của tính từ ở câu trước",
+            "audioText": "My brother is a quick runner. He runs quickly."
+          },
+          {
+            "id": "singer-adj",
+            "text": "My sister sings {adv2}. Her voice is very {adj2}.",
+            "blanks": [
+              "adj2"
+            ],
+            "context_vi": "Chỗ trống đứng sau \"is\", nên cần TÍNH TỪ ứng với trạng từ ở câu trước",
+            "audioText": "My sister sings well. Her voice is very good."
+          }
+        ],
+        "slots": {
+          "adj": [
+            "quick",
+            "slow",
+            "careful",
+            "good",
+            "bad",
+            "fast"
+          ],
+          "adv": [
+            "quickly",
+            "slowly",
+            "carefully",
+            "well",
+            "badly",
+            "fast"
+          ],
+          "adv2": [
+            "well",
+            "sadly",
+            "beautifully",
+            "quietly",
+            "loudly"
+          ],
+          "adj2": [
+            "good",
+            "sad",
+            "beautiful",
+            "quiet",
+            "loud"
+          ]
+        },
+        "answerKey": {
+          "runner-adv": {
+            "adv": {
+              "__cond": "adj",
+              "quick": "quickly",
+              "slow": "slowly",
+              "careful": "carefully",
+              "good": "well",
+              "bad": "badly",
+              "fast": "fast"
+            }
+          },
+          "singer-adj": {
+            "adj2": {
+              "__cond": "adv2",
+              "well": "good",
+              "sadly": "sad",
+              "beautifully": "beautiful",
+              "quietly": "quiet",
+              "loudly": "loud"
+            }
+          }
+        },
+        "distractors": [
+          "My brother is a quick runner. He runs quick.",
+          "My brother is a good runner. He runs good.",
+          "My brother is a fast runner. He runs fastly.",
+          "My sister sings good. Her voice is very good.",
+          "My sister sings beautifully. Her voice is very beautifully.",
+          "My sister sings quiet. Her voice is very quietly."
+        ],
+        "irregulars": {
+          "good": "well",
+          "bad": "badly",
+          "fast": "fast"
+        }
+      },
+      "teach_vi": "Tính từ (adjective) tả NGƯỜI hoặc VẬT, nên nó đứng trước danh từ (a quick runner) hoặc đứng sau \"be\" (He is quick). Trạng từ (adverb) tả HÀNH ĐỘNG, nên nó đứng sau động từ thường (He runs quickly). Cách tạo trạng từ: thường chỉ thêm \"-ly\" — quick → quickly, slow → slowly, careful → carefully, loud → loudly; nếu tính từ kết thúc bằng phụ âm + y thì đổi thành \"-ily\" — happy → happily, easy → easily. Có hai từ đặc biệt phải học thuộc: good → well (không có \"goodly\") và fast → fast (không có \"fastly\"). Mẹo kiểm tra: nhìn chữ ngay TRƯỚC chỗ trống — nếu là is / am / are thì điền tính từ, nếu là một động từ hành động (runs, sings, works) thì điền trạng từ."
+    },
+    {
+      "id": "comparative-er",
+      "title_vi": "So sánh hơn: \"-er\" + \"than\", chính tả và bất quy tắc better / worse",
+      "explain_vi": "So sánh hai thứ: thêm \"-er\" rồi dùng \"than\" (colder than). y → ier (windy → windier), gấp đôi phụ âm cuối (hot → hotter). Bất quy tắc: good → better, bad → worse.",
+      "examples": [
+        "My first drawing was good. My second drawing was better than my first one.",
+        "My first drawing was bad. My second drawing was worse than my first one.",
+        "Today is windy. Tomorrow will be windier than today."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "drawing-er",
+            "text": "My first drawing was {adj1}. My second drawing was {adj1er} than my first one.",
+            "blanks": [
+              "adj1er"
+            ],
+            "context_vi": "Đổi tính từ ở câu trước sang dạng so sánh hơn; sau nó đã có \"than\" sẵn",
+            "audioText": "My first drawing was good. My second drawing was better than my first one."
+          },
+          {
+            "id": "weather-er",
+            "text": "Today is {adj2w}. Tomorrow will be {adj2wer} than today.",
+            "blanks": [
+              "adj2wer"
+            ],
+            "context_vi": "Đổi tính từ chỉ thời tiết ở câu trước sang dạng so sánh hơn cho đúng chính tả",
+            "audioText": "Today is windy. Tomorrow will be windier than today."
+          }
+        ],
+        "slots": {
+          "adj1": [
+            "good",
+            "bad",
+            "big",
+            "small",
+            "pretty",
+            "funny"
+          ],
+          "adj1er": [
+            "better",
+            "worse",
+            "bigger",
+            "smaller",
+            "prettier",
+            "funnier"
+          ],
+          "adj2w": [
+            "hot",
+            "cold",
+            "wet",
+            "windy",
+            "sunny",
+            "good",
+            "bad"
+          ],
+          "adj2wer": [
+            "hotter",
+            "colder",
+            "wetter",
+            "windier",
+            "sunnier",
+            "better",
+            "worse"
+          ]
+        },
+        "answerKey": {
+          "drawing-er": {
+            "adj1er": {
+              "__cond": "adj1",
+              "good": "better",
+              "bad": "worse",
+              "big": "bigger",
+              "small": "smaller",
+              "pretty": "prettier",
+              "funny": "funnier"
+            }
+          },
+          "weather-er": {
+            "adj2wer": {
+              "__cond": "adj2w",
+              "hot": "hotter",
+              "cold": "colder",
+              "wet": "wetter",
+              "windy": "windier",
+              "sunny": "sunnier",
+              "good": "better",
+              "bad": "worse"
+            }
+          }
+        },
+        "distractors": [
+          "My first drawing was good. My second drawing was gooder than my first one.",
+          "My first drawing was pretty. My second drawing was prettyer than my first one.",
+          "My first drawing was big. My second drawing was more big than my first one.",
+          "Today is hot. Tomorrow will be more hot than today.",
+          "Today is good. Tomorrow will be more better than today.",
+          "Today is windy. Tomorrow will be windyer than today."
+        ],
+        "irregulars": {
+          "good": "better",
+          "bad": "worse",
+          "hot": "hotter",
+          "wet": "wetter",
+          "windy": "windier",
+          "sunny": "sunnier"
+        }
+      },
+      "teach_vi": "Khi so sánh HAI thứ, em thêm \"-er\" vào tính từ ngắn rồi dùng \"than\": cold → colder than, small → smaller than. Ba điều về chính tả: (1) tính từ kết thúc bằng phụ âm + y thì đổi y thành \"-ier\" — windy → windier, sunny → sunnier, pretty → prettier, funny → funnier; (2) tính từ một âm tiết kết thúc bằng một nguyên âm + một phụ âm thì gấp đôi phụ âm cuối — hot → hotter, wet → wetter, big → bigger; (3) hai tính từ bất quy tắc phải học thuộc — good → better, bad → worse. Lưu ý lỗi hay gặp: KHÔNG nói \"more cold\", \"more hot\" với tính từ ngắn, cũng KHÔNG nói \"gooder\", \"more better\" hay \"badder\". Và luôn nhớ có \"than\" khi so sánh với thứ kia."
+    },
+    {
+      "id": "superlative-est",
+      "title_vi": "So sánh nhất: \"the\" + \"-est\", và bất quy tắc the best / the worst",
+      "explain_vi": "Nhất trong cả nhóm thì dùng \"the\" + \"-est\" (the oldest). y → iest, gấp đôi phụ âm cuối. Bất quy tắc: good → the best, bad → the worst. Không nói \"the most old\".",
+      "examples": [
+        "This book is funny. It is the funniest book in our library.",
+        "This book is good. It is the best book in our library.",
+        "That test was bad. It was the worst test of the year."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "book-est",
+            "text": "This book is {adjB}. It is the {adjBest} book in our library.",
+            "blanks": [
+              "adjBest"
+            ],
+            "context_vi": "Đổi tính từ ở câu trước sang dạng so sánh nhất; chữ \"the\" đã có sẵn trước chỗ trống",
+            "audioText": "This book is funny. It is the funniest book in our library."
+          },
+          {
+            "id": "test-est",
+            "text": "That test was {adjT}. It was the {adjTest} test of the year.",
+            "blanks": [
+              "adjTest"
+            ],
+            "context_vi": "So sánh nhất trong cả năm — đổi tính từ ở câu trước sang dạng có \"-est\"",
+            "audioText": "That test was easy. It was the easiest test of the year."
+          }
+        ],
+        "slots": {
+          "adjB": [
+            "funny",
+            "good",
+            "bad",
+            "old",
+            "big",
+            "thin"
+          ],
+          "adjBest": [
+            "funniest",
+            "best",
+            "worst",
+            "oldest",
+            "biggest",
+            "thinnest"
+          ],
+          "adjT": [
+            "easy",
+            "hard",
+            "long",
+            "short",
+            "good",
+            "bad"
+          ],
+          "adjTest": [
+            "easiest",
+            "hardest",
+            "longest",
+            "shortest",
+            "best",
+            "worst"
+          ]
+        },
+        "answerKey": {
+          "book-est": {
+            "adjBest": {
+              "__cond": "adjB",
+              "funny": "funniest",
+              "good": "best",
+              "bad": "worst",
+              "old": "oldest",
+              "big": "biggest",
+              "thin": "thinnest"
+            }
+          },
+          "test-est": {
+            "adjTest": {
+              "__cond": "adjT",
+              "easy": "easiest",
+              "hard": "hardest",
+              "long": "longest",
+              "short": "shortest",
+              "good": "best",
+              "bad": "worst"
+            }
+          }
+        },
+        "distractors": [
+          "This book is funny. It is the funnyest book in our library.",
+          "This book is good. It is the goodest book in our library.",
+          "This book is old. It is the most old book in our library.",
+          "That test was easy. It was the most easy test of the year.",
+          "That test was bad. It was the baddest test of the year.",
+          "That test was long. It was longest test of the year."
+        ],
+        "irregulars": {
+          "good": "best",
+          "bad": "worst",
+          "big": "biggest",
+          "thin": "thinnest",
+          "funny": "funniest",
+          "easy": "easiest"
+        }
+      },
+      "teach_vi": "Khi một thứ là NHẤT trong cả nhóm (từ ba thứ trở lên), em dùng \"the\" + tính từ + \"-est\": old → the oldest, long → the longest. Chính tả giống bên so sánh hơn: phụ âm + y đổi thành \"-iest\" (funny → the funniest, easy → the easiest); một âm tiết có một nguyên âm + một phụ âm thì gấp đôi phụ âm cuối (big → the biggest, thin → the thinnest); bất quy tắc là good → the best và bad → the worst. Hai lỗi hay gặp: BỎ QUÊN chữ \"the\" (\"It was longest test\" — sai), và dùng \"the most\" với tính từ ngắn (\"the most old\", \"the most easy\" — sai). Sau tính từ so sánh nhất em thường nói rõ phạm vi: in our library, in our class, of the year."
+    },
+    {
+      "id": "as-as-equal",
+      "title_vi": "So sánh bằng: \"as … as\" và \"not as … as\"",
+      "explain_vi": "Bằng nhau thì dùng \"as + tính từ GỐC + as\" (as tall as). Không bằng thì thêm \"not\": not as tall as. Tuyệt đối không nói \"as taller as\" hay \"as tallest as\".",
+      "examples": [
+        "My red pen is not longer than my blue pen. It is exactly as long as my blue pen.",
+        "My red pen is not better than my blue pen. It is exactly as good as my blue pen.",
+        "Minh is taller than Nam. So Nam is not as tall as Minh."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "as-as-pen",
+            "text": "My red pen is not {adjC} than my blue pen. It is exactly as {adjCbase} as my blue pen.",
+            "blanks": [
+              "adjCbase"
+            ],
+            "context_vi": "Hai cây bút bằng nhau — giữa \"as … as\" phải là tính từ GỐC, không thêm \"-er\"",
+            "audioText": "My red pen is not longer than my blue pen. It is exactly as long as my blue pen."
+          },
+          {
+            "id": "not-as-as-friends",
+            "text": "Minh is {adjD} than Nam. So Nam is not as {adjDbase} as Minh.",
+            "blanks": [
+              "adjDbase"
+            ],
+            "context_vi": "Nam kém hơn nên dùng \"not as … as\"; giữa hai chữ \"as\" là tính từ GỐC",
+            "audioText": "Minh is taller than Nam. So Nam is not as tall as Minh."
+          }
+        ],
+        "slots": {
+          "adjC": [
+            "longer",
+            "bigger",
+            "heavier",
+            "better",
+            "newer",
+            "cheaper"
+          ],
+          "adjCbase": [
+            "long",
+            "big",
+            "heavy",
+            "good",
+            "new",
+            "cheap"
+          ],
+          "adjD": [
+            "taller",
+            "older",
+            "faster",
+            "stronger",
+            "younger",
+            "shorter"
+          ],
+          "adjDbase": [
+            "tall",
+            "old",
+            "fast",
+            "strong",
+            "young",
+            "short"
+          ]
+        },
+        "answerKey": {
+          "as-as-pen": {
+            "adjCbase": {
+              "__cond": "adjC",
+              "longer": "long",
+              "bigger": "big",
+              "heavier": "heavy",
+              "better": "good",
+              "newer": "new",
+              "cheaper": "cheap"
+            }
+          },
+          "not-as-as-friends": {
+            "adjDbase": {
+              "__cond": "adjD",
+              "taller": "tall",
+              "older": "old",
+              "faster": "fast",
+              "stronger": "strong",
+              "younger": "young",
+              "shorter": "short"
+            }
+          }
+        },
+        "distractors": [
+          "My red pen is not longer than my blue pen. It is exactly as longer as my blue pen.",
+          "My red pen is not bigger than my blue pen. It is exactly as bigger as my blue pen.",
+          "My red pen is not better than my blue pen. It is exactly as best as my blue pen.",
+          "Minh is taller than Nam. So Nam is not as taller as Minh.",
+          "Minh is faster than Nam. So Nam is not as fastest as Minh.",
+          "Minh is older than Nam. So Nam is not as older as Minh."
+        ],
+        "irregulars": {
+          "better": "good",
+          "worse": "bad"
+        }
+      },
+      "teach_vi": "Khi hai thứ BẰNG NHAU, em không dùng \"-er\" nữa mà dùng \"as … as\" với tính từ ở dạng GỐC: \"This pen is as long as that pen.\" (dài bằng nhau). Muốn nói KHÔNG bằng thì thêm \"not\": \"Nam is not as tall as Minh.\" (Nam không cao bằng Minh — nghĩa là Minh cao hơn). Ba lỗi rất hay gặp: \"as taller as\", \"as tallest as\", \"as more tall as\" — tất cả đều SAI, giữa hai chữ \"as\" chỉ được đặt tính từ gốc: as tall as, as good as, as heavy as. Mẹo nhớ: \"-er … than\" là hơn kém, còn \"as … as\" là bằng nhau; hai mẫu này không bao giờ trộn vào nhau."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "our-sports-day",
+      "title": "Our sports day",
+      "title_vi": "Ngày hội thể thao của chúng em",
+      "text": "Last Saturday was our sports day. The weather was good on Saturday, but on Sunday it was even better. Nam runs very fast, and he runs faster than me. Minh is not as fast as Nam, but he jumps well. My jump was the longest of the day! Lan draws carefully, so she made the nicest poster in our class.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Nam chạy nhanh hơn bạn kể chuyện, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "Nam runs faster than me."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Cú nhảy của bạn kể chuyện thì thế nào?",
+          "type": "mcq",
+          "choices": [
+            "It was the longest of the day.",
+            "It was the shortest of the day.",
+            "It was as short as Nam's jump."
+          ],
+          "answer": 0,
+          "audioText": "My jump was the longest of the day."
+        }
+      ]
+    }
+  ]
+};
   g.ContentData = C;
   if (typeof module !== 'undefined' && module.exports) module.exports = C;
 })(typeof window !== 'undefined' ? window : this);

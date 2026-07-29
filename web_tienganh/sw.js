@@ -19,7 +19,9 @@
  */
 'use strict';
 
-var CACHE = 'enkids-v6';
+// v7: thêm track "grammar3" (Ngữ pháp Tăng cường 20 bài) → app shell (app.js) đổi,
+// bump version để activate dọn cache cũ theo quy trình release ở đầu file.
+var CACHE = 'enkids-v7';
 
 // App shell precache lúc install. Đường dẫn tương đối theo scope.
 // (Nội dung cũng nhúng sẵn trong content-data.js để chạy file://; precache JSON

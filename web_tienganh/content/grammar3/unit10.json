@@ -1,0 +1,621 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 410,
+  "lesson": 10,
+  "topic": "Past Simple",
+  "topic_vi": "Quá khứ đơn",
+  "vocab": [
+    {
+      "word": "yesterday",
+      "vi": "hôm qua",
+      "icon": "📅",
+      "example": "I played football yesterday.",
+      "partOfSpeech": "adv",
+      "audio": ""
+    },
+    {
+      "word": "play",
+      "vi": "chơi",
+      "icon": "⚽",
+      "example": "We played in the park yesterday.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "study",
+      "vi": "học",
+      "icon": "📖",
+      "example": "She studied English last night.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "clean",
+      "vi": "dọn dẹp",
+      "icon": "🧹",
+      "example": "I cleaned my room yesterday.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "jog",
+      "vi": "chạy bộ",
+      "icon": "🏃",
+      "example": "My father jogged in the park.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "go",
+      "vi": "đi",
+      "icon": "🚶",
+      "example": "We went to the market yesterday.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "eat",
+      "vi": "ăn",
+      "icon": "🍜",
+      "example": "I ate noodles for lunch.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "see",
+      "vi": "thấy, nhìn thấy",
+      "icon": "👀",
+      "example": "I saw a big bird yesterday.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "buy",
+      "vi": "mua",
+      "icon": "🛒",
+      "example": "My mother bought some bread.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "write",
+      "vi": "viết",
+      "icon": "✍️",
+      "example": "He wrote a letter last week.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "sleep",
+      "vi": "ngủ",
+      "icon": "😴",
+      "example": "I slept at home last night.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "sing",
+      "vi": "hát",
+      "icon": "🎤",
+      "example": "Lan sang a nice song.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "market",
+      "vi": "cái chợ",
+      "icon": "🏪",
+      "example": "We went to the market yesterday.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "late",
+      "vi": "muộn, trễ",
+      "icon": "⏰",
+      "example": "Nam was late for school yesterday.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "ed-regular",
+      "title_vi": "Quá khứ có quy tắc: thêm -ed",
+      "explain_vi": "Việc đã xảy ra rồi thì thêm \"-ed\": play → played. Từ kết thúc bằng \"e\" chỉ thêm \"-d\"; phụ âm + y đổi thành \"-ied\"; nguyên âm ngắn + 1 phụ âm thì gấp đôi phụ âm.",
+      "examples": [
+        "I play every day. Yesterday I played, too.",
+        "I study every day. Yesterday I studied, too.",
+        "Today I do not jog, but yesterday I jogged."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "transform"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "ed-every-day",
+            "text": "I {base} every day. Yesterday I {past}, too.",
+            "blanks": [
+              "past"
+            ],
+            "context_vi": "Câu sau nói về HÔM QUA, nên động từ ở trước phải chuyển sang dạng quá khứ.",
+            "audioText": "I play every day. Yesterday I played, too."
+          },
+          {
+            "id": "ed-not-today",
+            "text": "Today I do not {base}, but yesterday I {past}.",
+            "blanks": [
+              "past"
+            ],
+            "context_vi": "Sau \"do not\" động từ giữ nguyên mẫu; phần nói về hôm qua phải ở quá khứ.",
+            "audioText": "Today I do not dance, but yesterday I danced."
+          }
+        ],
+        "slots": {
+          "base": [
+            "play",
+            "cook",
+            "clean",
+            "walk",
+            "dance",
+            "smile",
+            "study",
+            "hurry",
+            "jog",
+            "chat"
+          ],
+          "past": [
+            "played",
+            "cooked",
+            "cleaned",
+            "walked",
+            "danced",
+            "smiled",
+            "studied",
+            "hurried",
+            "jogged",
+            "chatted"
+          ]
+        },
+        "answerKey": {
+          "ed-every-day": {
+            "past": {
+              "__cond": "base",
+              "play": "played",
+              "cook": "cooked",
+              "clean": "cleaned",
+              "walk": "walked",
+              "dance": "danced",
+              "smile": "smiled",
+              "study": "studied",
+              "hurry": "hurried",
+              "jog": "jogged",
+              "chat": "chatted"
+            }
+          },
+          "ed-not-today": {
+            "past": {
+              "__cond": "base",
+              "play": "played",
+              "cook": "cooked",
+              "clean": "cleaned",
+              "walk": "walked",
+              "dance": "danced",
+              "smile": "smiled",
+              "study": "studied",
+              "hurry": "hurried",
+              "jog": "jogged",
+              "chat": "chatted"
+            }
+          },
+          "answer-pairs": {
+            "I played football yesterday.": "I did not play football yesterday.",
+            "I cooked dinner yesterday.": "I did not cook dinner yesterday.",
+            "I studied English yesterday.": "I did not study English yesterday.",
+            "I cleaned my room yesterday.": "I did not clean my room yesterday.",
+            "I walked to school yesterday.": "I did not walk to school yesterday.",
+            "I danced at the party yesterday.": "I did not dance at the party yesterday.",
+            "I jogged in the park yesterday.": "I did not jog in the park yesterday.",
+            "I chatted with my friend yesterday.": "I did not chat with my friend yesterday."
+          },
+          "transform-explain": {
+            "I played football yesterday.": "Phủ định ở quá khứ dùng \"did not\" + động từ NGUYÊN MẪU: played → did not play.",
+            "I cooked dinner yesterday.": "Phủ định ở quá khứ dùng \"did not\" + động từ NGUYÊN MẪU: cooked → did not cook.",
+            "I studied English yesterday.": "Phủ định ở quá khứ dùng \"did not\" + động từ NGUYÊN MẪU: studied → did not study.",
+            "I cleaned my room yesterday.": "Phủ định ở quá khứ dùng \"did not\" + động từ NGUYÊN MẪU: cleaned → did not clean.",
+            "I walked to school yesterday.": "Phủ định ở quá khứ dùng \"did not\" + động từ NGUYÊN MẪU: walked → did not walk.",
+            "I danced at the party yesterday.": "Phủ định ở quá khứ dùng \"did not\" + động từ NGUYÊN MẪU: danced → did not dance.",
+            "I jogged in the park yesterday.": "Phủ định ở quá khứ dùng \"did not\" + động từ NGUYÊN MẪU: jogged → did not jog.",
+            "I chatted with my friend yesterday.": "Phủ định ở quá khứ dùng \"did not\" + động từ NGUYÊN MẪU: chatted → did not chat."
+          }
+        },
+        "distractors": [
+          "I play every day. Yesterday I playd, too.",
+          "I study every day. Yesterday I studyed, too.",
+          "I dance every day. Yesterday I danceed, too.",
+          "I jog every day. Yesterday I joged, too.",
+          "Today I do not walk, but yesterday I walk.",
+          "Today I do not chat, but yesterday I chated.",
+          "Today I do not study, but yesterday I studyed.",
+          "Today I do not hurry, but yesterday I hurryed."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Khi kể một việc ĐÃ XONG trong quá khứ, em đổi động từ sang dạng quá khứ. Với động từ có quy tắc, em chỉ cần thêm \"-ed\": play → played, cook → cooked, walk → walked. Có bốn nhóm cần để ý: (1) từ đã kết thúc bằng \"e\" thì chỉ thêm \"-d\" — dance → danced, smile → smiled; (2) phụ âm + y thì đổi y thành \"-ied\" — study → studied, hurry → hurried; (3) từ ngắn có nguyên âm ngắn + một phụ âm cuối thì gấp đôi phụ âm rồi mới thêm \"-ed\" — jog → jogged, chat → chatted, stop → stopped; (4) nguyên âm + y thì chỉ thêm \"-ed\" — play → played. Dấu hiệu nhận ra quá khứ trong câu: yesterday, last night, last week, two days ago. Khi câu đã có \"did not\" thì động từ trở lại dạng NGUYÊN MẪU: I did not play (không phải \"did not played\")."
+    },
+    {
+      "id": "irregular-past",
+      "title_vi": "Động từ bất quy tắc ở quá khứ",
+      "explain_vi": "Nhiều động từ không thêm \"-ed\" mà đổi hẳn cả từ: see → saw, eat → ate, buy → bought, write → wrote. Những từ này phải học thuộc.",
+      "examples": [
+        "I see it every day. Yesterday I saw it, too.",
+        "I buy it every day. Yesterday I bought it, too.",
+        "Yesterday I wrote it, but today I do not write it."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "irr-every-day",
+            "text": "I {base} it every day. Yesterday I {past} it, too.",
+            "blanks": [
+              "past"
+            ],
+            "context_vi": "Đây là động từ bất quy tắc — không thêm \"-ed\", phải đổi cả từ.",
+            "audioText": "I see it every day. Yesterday I saw it, too."
+          },
+          {
+            "id": "irr-yesterday-but",
+            "text": "Yesterday I {past} it, but today I do not {base} it.",
+            "blanks": [
+              "past"
+            ],
+            "context_vi": "Động từ nguyên mẫu ở cuối câu là manh mối — hãy đổi nó sang dạng quá khứ bất quy tắc.",
+            "audioText": "Yesterday I ate it, but today I do not eat it."
+          }
+        ],
+        "slots": {
+          "base": [
+            "see",
+            "eat",
+            "buy",
+            "write",
+            "make",
+            "take",
+            "do",
+            "find",
+            "drink",
+            "get"
+          ],
+          "past": [
+            "saw",
+            "ate",
+            "bought",
+            "wrote",
+            "made",
+            "took",
+            "did",
+            "found",
+            "drank",
+            "got"
+          ]
+        },
+        "answerKey": {
+          "irr-every-day": {
+            "past": {
+              "__cond": "base",
+              "see": "saw",
+              "eat": "ate",
+              "buy": "bought",
+              "write": "wrote",
+              "make": "made",
+              "take": "took",
+              "do": "did",
+              "find": "found",
+              "drink": "drank",
+              "get": "got"
+            }
+          },
+          "irr-yesterday-but": {
+            "past": {
+              "__cond": "base",
+              "see": "saw",
+              "eat": "ate",
+              "buy": "bought",
+              "write": "wrote",
+              "make": "made",
+              "take": "took",
+              "do": "did",
+              "find": "found",
+              "drink": "drank",
+              "get": "got"
+            }
+          }
+        },
+        "distractors": [
+          "I see it every day. Yesterday I seed it, too.",
+          "I eat it every day. Yesterday I eated it, too.",
+          "I buy it every day. Yesterday I buyed it, too.",
+          "I write it every day. Yesterday I writed it, too.",
+          "Yesterday I taked it, but today I do not take it.",
+          "Yesterday I drinked it, but today I do not drink it.",
+          "Yesterday I seed it, but today I do not see it.",
+          "Yesterday I finded it, but today I do not find it."
+        ],
+        "irregulars": {
+          "see": "saw",
+          "eat": "ate",
+          "buy": "bought",
+          "write": "wrote",
+          "make": "made",
+          "take": "took",
+          "do": "did",
+          "find": "found",
+          "drink": "drank",
+          "get": "got",
+          "go": "went",
+          "have": "had",
+          "sing": "sang",
+          "sleep": "slept",
+          "read": "read"
+        }
+      },
+      "teach_vi": "Có một nhóm động từ rất hay dùng KHÔNG chịu thêm \"-ed\" — chúng đổi hẳn cả từ. Em cần học thuộc theo cặp: see → saw, eat → ate, buy → bought, write → wrote, make → made, take → took, do → did, find → found, drink → drank, get → got, go → went, have → had, sing → sang, sleep → slept. Vài từ đặc biệt giữ nguyên chữ viết: read → read (nhưng đọc khác nhau), cut → cut, put → put. Mẹo học: mỗi ngày học 3 cặp và tự đặt một câu với \"yesterday\". Lưu ý: khi câu đã có \"did not\" thì dùng lại NGUYÊN MẪU — I did not see it (không phải \"did not saw\")."
+    },
+    {
+      "id": "did-questions",
+      "title_vi": "Câu hỏi quá khứ với \"Did\"",
+      "explain_vi": "Hỏi về quá khứ: \"Did\" + chủ ngữ + động từ NGUYÊN MẪU. Vì \"did\" đã mang nghĩa quá khứ nên động từ chính không đổi. Khi trả lời mới dùng dạng quá khứ.",
+      "examples": [
+        "I stayed at home yesterday. Did you stay at home yesterday?",
+        "Did you cook at home last night? Yes, I cooked at home last night.",
+        "Did you sing at home last night? Yes, I sang at home last night."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "did-question",
+            "text": "I {pastQ} at home yesterday. Did you {baseQ} at home yesterday?",
+            "blanks": [
+              "baseQ"
+            ],
+            "context_vi": "Sau \"Did you\" động từ trở lại NGUYÊN MẪU, không thêm -ed và không đổi bất quy tắc.",
+            "audioText": "I stayed at home yesterday. Did you stay at home yesterday?"
+          },
+          {
+            "id": "did-short-answer",
+            "text": "Did you {baseQ} at home last night? Yes, I {pastQ} at home last night.",
+            "blanks": [
+              "pastQ"
+            ],
+            "context_vi": "Câu trả lời không còn \"did\" nữa, nên động từ phải chuyển sang dạng quá khứ.",
+            "audioText": "Did you cook at home last night? Yes, I cooked at home last night."
+          }
+        ],
+        "slots": {
+          "pastQ": [
+            "stayed",
+            "cooked",
+            "studied",
+            "worked",
+            "slept",
+            "played",
+            "ate",
+            "sang"
+          ],
+          "baseQ": [
+            "stay",
+            "cook",
+            "study",
+            "work",
+            "sleep",
+            "play",
+            "eat",
+            "sing"
+          ]
+        },
+        "answerKey": {
+          "did-question": {
+            "baseQ": {
+              "__cond": "pastQ",
+              "stayed": "stay",
+              "cooked": "cook",
+              "studied": "study",
+              "worked": "work",
+              "slept": "sleep",
+              "played": "play",
+              "ate": "eat",
+              "sang": "sing"
+            }
+          },
+          "did-short-answer": {
+            "pastQ": {
+              "__cond": "baseQ",
+              "stay": "stayed",
+              "cook": "cooked",
+              "study": "studied",
+              "work": "worked",
+              "sleep": "slept",
+              "play": "played",
+              "eat": "ate",
+              "sing": "sang"
+            }
+          }
+        },
+        "distractors": [
+          "I stayed at home yesterday. Did you stayed at home yesterday?",
+          "I played at home yesterday. Did you played at home yesterday?",
+          "I ate at home yesterday. Did you ate at home yesterday?",
+          "Did you cook at home last night? Yes, I cook at home last night.",
+          "Did you sing at home last night? Yes, I singed at home last night.",
+          "Did you study at home last night? Yes, I studyed at home last night."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Muốn hỏi về một việc trong quá khứ, em đặt \"Did\" lên đầu: Did you play football yesterday? Điều quan trọng nhất: \"did\" đã mang nghĩa quá khứ rồi, nên động từ chính TRỞ LẠI NGUYÊN MẪU — Did you play? (không phải \"Did you played?\"), Did you eat? (không phải \"Did you ate?\"). Trả lời ngắn: Yes, I did. / No, I did not (didn't). Nếu trả lời dài, câu không còn \"did\" nữa nên động từ phải quay lại dạng quá khứ: Yes, I played football yesterday. \"Did\" dùng cho mọi chủ ngữ: Did I…? Did he…? Did they…? — không bao giờ có \"Dids\"."
+    },
+    {
+      "id": "was-were",
+      "title_vi": "\"Was\" và \"were\": quá khứ của to be",
+      "explain_vi": "\"Was\" và \"were\" là dạng quá khứ của \"to be\": I / he / she / it và MỘT người → was; you / we / they và NHIỀU người → were. Phủ định thêm \"not\" ngay sau.",
+      "examples": [
+        "I was at school yesterday.",
+        "My parents were at school yesterday.",
+        "She was not at home last night."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose",
+        "order_words",
+        "transform"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "was-were-school",
+            "text": "{subj} {bw} at school yesterday.",
+            "blanks": [
+              "bw"
+            ],
+            "context_vi": "Nhìn chủ ngữ để chọn \"was\" hay \"were\".",
+            "audioText": "My sister was at school yesterday."
+          },
+          {
+            "id": "was-were-not-home",
+            "text": "{subj} {bw} not at home last night.",
+            "blanks": [
+              "bw"
+            ],
+            "context_vi": "Câu phủ định: \"not\" đứng ngay sau was/were, chủ ngữ vẫn quyết định chọn was hay were.",
+            "audioText": "They were not at home last night."
+          }
+        ],
+        "slots": {
+          "subj": [
+            "I",
+            "He",
+            "She",
+            "You",
+            "We",
+            "They",
+            "My brother",
+            "My sister",
+            "My parents",
+            "The children"
+          ],
+          "bw": [
+            "was",
+            "were"
+          ]
+        },
+        "answerKey": {
+          "was-were-school": {
+            "bw": {
+              "__cond": "subj",
+              "I": "was",
+              "He": "was",
+              "She": "was",
+              "You": "were",
+              "We": "were",
+              "They": "were",
+              "My brother": "was",
+              "My sister": "was",
+              "My parents": "were",
+              "The children": "were"
+            }
+          },
+          "was-were-not-home": {
+            "bw": {
+              "__cond": "subj",
+              "I": "was",
+              "He": "was",
+              "She": "was",
+              "You": "were",
+              "We": "were",
+              "They": "were",
+              "My brother": "was",
+              "My sister": "was",
+              "My parents": "were",
+              "The children": "were"
+            }
+          },
+          "answer-pairs": {
+            "I was at school yesterday.": "I was not at school yesterday.",
+            "He was at school yesterday.": "He was not at school yesterday.",
+            "She was at school yesterday.": "She was not at school yesterday.",
+            "You were at school yesterday.": "You were not at school yesterday.",
+            "We were at school yesterday.": "We were not at school yesterday.",
+            "They were at school yesterday.": "They were not at school yesterday.",
+            "My brother was at school yesterday.": "My brother was not at school yesterday.",
+            "My parents were at school yesterday.": "My parents were not at school yesterday."
+          },
+          "transform-explain": {
+            "I was at school yesterday.": "Câu có \"was\" thì phủ định chỉ cần thêm \"not\" ngay sau: was → was not (wasn't).",
+            "He was at school yesterday.": "Câu có \"was\" thì phủ định chỉ cần thêm \"not\" ngay sau: was → was not (wasn't).",
+            "She was at school yesterday.": "Câu có \"was\" thì phủ định chỉ cần thêm \"not\" ngay sau: was → was not (wasn't).",
+            "You were at school yesterday.": "Câu có \"were\" thì phủ định chỉ cần thêm \"not\" ngay sau: were → were not (weren't).",
+            "We were at school yesterday.": "Câu có \"were\" thì phủ định chỉ cần thêm \"not\" ngay sau: were → were not (weren't).",
+            "They were at school yesterday.": "Câu có \"were\" thì phủ định chỉ cần thêm \"not\" ngay sau: were → were not (weren't).",
+            "My brother was at school yesterday.": "\"My brother\" là MỘT người nên dùng \"was\"; phủ định là \"was not\".",
+            "My parents were at school yesterday.": "\"My parents\" là NHIỀU người nên dùng \"were\"; phủ định là \"were not\"."
+          }
+        },
+        "distractors": [
+          "They was at school yesterday.",
+          "I were at school yesterday.",
+          "My brother were at school yesterday.",
+          "The children was at school yesterday.",
+          "She were not at home last night.",
+          "We was not at home last night.",
+          "My parents was not at home last night.",
+          "I were not at home last night."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"To be\" ở quá khứ chỉ có hai dạng, dễ hơn hiện tại nhiều: \"was\" và \"were\". Dùng \"was\" với I, he, she, it và với MỘT người hay một vật (my brother was, the cat was). Dùng \"were\" với you, we, they và với NHIỀU người hay nhiều vật (my parents were, the children were). Câu phủ định chỉ cần thêm \"not\" ngay sau: I was not (wasn't) tired, they were not (weren't) at home. Câu hỏi thì đảo lên trước: Were you at school yesterday? — Yes, I was. / No, I wasn't. Lỗi hay gặp: \"They was…\" và \"I were…\" — nhớ was đi với MỘT, were đi với NHIỀU (và với you)."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "last-sunday",
+      "title": "Last Sunday",
+      "title_vi": "Chủ nhật tuần trước",
+      "text": "Last Sunday my family went to the market. My mother bought some bread and a big fish. I saw a small dog near the gate, so I played with it for ten minutes. Then we walked home together. My father cooked lunch and we ate noodles. In the evening I studied English for one hour. I did not watch TV, but I was very happy.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Mẹ của bạn ấy đã mua bánh mì, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "My mother bought some bread."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Buổi tối bạn ấy đã làm gì?",
+          "type": "mcq",
+          "choices": [
+            "studied English",
+            "watched TV",
+            "cooked lunch"
+          ],
+          "answer": 0,
+          "audioText": "What did the child do in the evening?"
+        }
+      ]
+    }
+  ]
+}

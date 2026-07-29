@@ -1,0 +1,458 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 401,
+  "lesson": 1,
+  "topic": "Plurals: countable and uncountable nouns",
+  "topic_vi": "Số nhiều & danh từ không đếm được",
+  "vocab": [
+    {
+      "word": "box",
+      "vi": "cái hộp",
+      "icon": "📦",
+      "example": "There are three boxes here.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "bus",
+      "vi": "xe buýt",
+      "icon": "🚌",
+      "example": "Two buses stop near my house.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "city",
+      "vi": "thành phố",
+      "icon": "🏙️",
+      "example": "Viet Nam has many cities.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "tomato",
+      "vi": "quả cà chua",
+      "icon": "🍅",
+      "example": "Mum needs four tomatoes.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "baby",
+      "vi": "em bé",
+      "icon": "👶",
+      "example": "The babies are asleep.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "child",
+      "vi": "đứa trẻ",
+      "icon": "🧒",
+      "example": "Six children are playing.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "tooth",
+      "vi": "cái răng",
+      "icon": "🦷",
+      "example": "Brush your teeth every day.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "water",
+      "vi": "nước",
+      "icon": "💧",
+      "example": "I drink some water.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "rice",
+      "vi": "gạo, cơm",
+      "icon": "🍚",
+      "example": "We eat some rice.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "bread",
+      "vi": "bánh mì",
+      "icon": "🍞",
+      "example": "She buys some bread.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "milk",
+      "vi": "sữa",
+      "icon": "🥛",
+      "example": "He drinks some milk.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "money",
+      "vi": "tiền",
+      "icon": "💰",
+      "example": "I have some money.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "plural-regular",
+      "title_vi": "Số nhiều thường: thêm -s / -es / y → ies / o → oes",
+      "explain_vi": "Thêm \"-s\" để nói nhiều thứ. Nhưng: kết thúc bằng s/x/ch/sh thì thêm \"-es\" (box → boxes); phụ âm + y thì đổi thành \"-ies\" (city → cities); vài từ kết thúc bằng o thì thêm \"-es\" (tomato → tomatoes).",
+      "examples": [
+        "One box, two boxes.",
+        "One city, two cities.",
+        "I have one key. My friend has two keys."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "one-two",
+            "text": "One {noun}, two {plural}.",
+            "blanks": [
+              "plural"
+            ],
+            "context_vi": "Đổi danh từ ở trước sang dạng số nhiều đúng.",
+            "audioText": "One box, two boxes."
+          },
+          {
+            "id": "have-one-two",
+            "text": "I have one {noun}. My friend has two {plural}.",
+            "blanks": [
+              "plural"
+            ],
+            "context_vi": "Câu sau nói về HAI thứ, nên danh từ phải ở dạng số nhiều.",
+            "audioText": "I have one key. My friend has two keys."
+          }
+        ],
+        "slots": {
+          "noun": [
+            "box",
+            "bus",
+            "city",
+            "tomato",
+            "baby",
+            "key",
+            "brush",
+            "book"
+          ],
+          "plural": [
+            "boxes",
+            "buses",
+            "cities",
+            "tomatoes",
+            "babies",
+            "keys",
+            "brushes",
+            "books"
+          ]
+        },
+        "answerKey": {
+          "one-two": {
+            "plural": {
+              "__cond": "noun",
+              "box": "boxes",
+              "bus": "buses",
+              "city": "cities",
+              "tomato": "tomatoes",
+              "baby": "babies",
+              "key": "keys",
+              "brush": "brushes",
+              "book": "books"
+            }
+          },
+          "have-one-two": {
+            "plural": {
+              "__cond": "noun",
+              "box": "boxes",
+              "bus": "buses",
+              "city": "cities",
+              "tomato": "tomatoes",
+              "baby": "babies",
+              "key": "keys",
+              "brush": "brushes",
+              "book": "books"
+            }
+          }
+        },
+        "distractors": [
+          "One box, two boxs.",
+          "One bus, two buss.",
+          "One city, two citys.",
+          "One tomato, two tomatos.",
+          "One baby, two babys.",
+          "One brush, two brushs."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Muốn nói NHIỀU thứ, em thêm \"-s\" vào sau danh từ: book → books. Nhưng có bốn nhóm đặc biệt: (1) từ kết thúc bằng s, x, ch, sh thì thêm \"-es\" — bus → buses, box → boxes, brush → brushes; (2) từ kết thúc bằng phụ âm + y thì đổi y thành \"-ies\" — city → cities, baby → babies; (3) vài từ kết thúc bằng o thì thêm \"-es\" — tomato → tomatoes, potato → potatoes; (4) từ kết thúc bằng nguyên âm + y thì chỉ thêm \"-s\" — key → keys, day → days."
+    },
+    {
+      "id": "plural-irregular",
+      "title_vi": "Số nhiều bất quy tắc: đổi hẳn cả từ",
+      "explain_vi": "Vài danh từ đổi hẳn cả từ, không thêm \"-s\": child → children, foot → feet, mouse → mice. Riêng sheep và fish giữ nguyên.",
+      "examples": [
+        "One child, two children.",
+        "One tooth, two teeth.",
+        "I have one fish. My friend has two fish."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "irr-one-two",
+            "text": "One {noun}, two {plural}.",
+            "blanks": [
+              "plural"
+            ],
+            "context_vi": "Đây là danh từ bất quy tắc — không thêm \"-s\".",
+            "audioText": "One child, two children."
+          },
+          {
+            "id": "irr-count",
+            "text": "I can see one {noun} and three {plural}.",
+            "blanks": [
+              "plural"
+            ],
+            "context_vi": "Sau số 3 phải dùng dạng số nhiều bất quy tắc của danh từ đó.",
+            "audioText": "I can see one child and three children."
+          }
+        ],
+        "slots": {
+          "noun": [
+            "child",
+            "man",
+            "woman",
+            "foot",
+            "tooth",
+            "mouse",
+            "goose",
+            "sheep",
+            "fish"
+          ],
+          "plural": [
+            "children",
+            "men",
+            "women",
+            "feet",
+            "teeth",
+            "mice",
+            "geese",
+            "sheep",
+            "fish"
+          ]
+        },
+        "answerKey": {
+          "irr-one-two": {
+            "plural": {
+              "__cond": "noun",
+              "child": "children",
+              "man": "men",
+              "woman": "women",
+              "foot": "feet",
+              "tooth": "teeth",
+              "mouse": "mice",
+              "goose": "geese",
+              "sheep": "sheep",
+              "fish": "fish"
+            }
+          },
+          "irr-count": {
+            "plural": {
+              "__cond": "noun",
+              "child": "children",
+              "man": "men",
+              "woman": "women",
+              "foot": "feet",
+              "tooth": "teeth",
+              "mouse": "mice",
+              "goose": "geese",
+              "sheep": "sheep",
+              "fish": "fish"
+            }
+          }
+        },
+        "distractors": [
+          "One child, two childs.",
+          "One man, two mans.",
+          "One woman, two womans.",
+          "One foot, two foots.",
+          "One tooth, two tooths.",
+          "One mouse, two mouses."
+        ],
+        "irregulars": {
+          "child": "children",
+          "man": "men",
+          "woman": "women",
+          "foot": "feet",
+          "tooth": "teeth",
+          "mouse": "mice",
+          "goose": "geese",
+          "sheep": "sheep",
+          "fish": "fish"
+        }
+      },
+      "teach_vi": "Một số danh từ KHÔNG thêm \"-s\" mà đổi hẳn: child → children, man → men, woman → women, foot → feet, tooth → teeth, mouse → mice, goose → geese. Vài từ giữ nguyên không đổi gì: sheep → sheep, fish → fish. Những từ này phải học thuộc, không suy ra được bằng quy tắc."
+    },
+    {
+      "id": "uncountable-some-much-many",
+      "title_vi": "Danh từ không đếm được: some · much · many",
+      "explain_vi": "Thứ không đếm được (water, rice, money) dùng \"some\", không dùng \"a\". Hỏi số lượng: không đếm được → \"much\", đếm được số nhiều → \"many\".",
+      "examples": [
+        "I need some rice.",
+        "I need a cake.",
+        "How much water do you need?",
+        "How many books do you need?"
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "need-det",
+            "text": "I need {det} {thing}.",
+            "blanks": [
+              "det"
+            ],
+            "context_vi": "Danh từ không đếm được đi với \"some\"; danh từ đếm được số ít đi với \"a\".",
+            "audioText": "I need some rice."
+          },
+          {
+            "id": "how-much-many",
+            "text": "How {mm} {thing2} do you need?",
+            "blanks": [
+              "mm"
+            ],
+            "context_vi": "Hỏi số lượng: không đếm được → \"much\"; đếm được số nhiều → \"many\".",
+            "audioText": "How much water do you need?"
+          }
+        ],
+        "slots": {
+          "det": [
+            "some",
+            "a"
+          ],
+          "thing": [
+            "water",
+            "milk",
+            "rice",
+            "bread",
+            "money",
+            "cake",
+            "book",
+            "pen",
+            "banana"
+          ],
+          "mm": [
+            "much",
+            "many"
+          ],
+          "thing2": [
+            "water",
+            "milk",
+            "rice",
+            "bread",
+            "money",
+            "cakes",
+            "books",
+            "pens",
+            "bananas"
+          ]
+        },
+        "answerKey": {
+          "need-det": {
+            "det": {
+              "__cond": "thing",
+              "water": "some",
+              "milk": "some",
+              "rice": "some",
+              "bread": "some",
+              "money": "some",
+              "cake": "a",
+              "book": "a",
+              "pen": "a",
+              "banana": "a"
+            }
+          },
+          "how-much-many": {
+            "mm": {
+              "__cond": "thing2",
+              "water": "much",
+              "milk": "much",
+              "rice": "much",
+              "bread": "much",
+              "money": "much",
+              "cakes": "many",
+              "books": "many",
+              "pens": "many",
+              "bananas": "many"
+            }
+          }
+        },
+        "distractors": [
+          "I need a rice.",
+          "I need a water.",
+          "I need some banana.",
+          "How many water do you need?",
+          "How much books do you need?",
+          "How many rice do you need?"
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Có những thứ em không đếm được từng cái một: water, milk, rice, bread, money. Chúng KHÔNG có dạng số nhiều và KHÔNG dùng \"a/an\" — em dùng \"some\": some water, some rice. Còn danh từ đếm được thì dùng \"a/an\" khi có một cái: a book, a cake. Khi hỏi số lượng: danh từ không đếm được đi với \"much\" (How much water?), danh từ đếm được số nhiều đi với \"many\" (How many books?)."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "at-the-market",
+      "title": "At the market",
+      "title_vi": "Ở chợ",
+      "text": "Mai and her mum are at the market. Mai has a list: four tomatoes, two boxes of eggs, some rice and some milk. \"We need some bread, too,\" says Mai. Her mum smiles. \"Good. Now we have everything.\"",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Trong danh sách có bốn quả cà chua, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "There are four tomatoes on the list."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Thứ nào trong danh sách là danh từ KHÔNG đếm được?",
+          "type": "mcq",
+          "choices": [
+            "rice",
+            "tomatoes",
+            "boxes"
+          ],
+          "answer": 0,
+          "audioText": "Which word is uncountable?"
+        }
+      ]
+    }
+  ]
+}

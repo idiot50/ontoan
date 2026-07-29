@@ -21,8 +21,9 @@ function read(p) { return readFileSync(p, 'utf8'); }
 
 const entries = []; // { key: 'level1/unit01.json', raw: '...' }
 
-// Tất cả level hiện có (bỏ qua level chưa tạo).
-const levels = ['level1', 'level2', 'level3'];
+// Tất cả THƯ MỤC nội dung hiện có (bỏ qua thư mục chưa tạo).
+// "grammar3" = track Ngữ pháp Tăng cường 20 bài — xem docs/ROUNDUP_GRAMMAR_MAP.md.
+const levels = ['level1', 'level2', 'level3', 'grammar3'];
 for (const lvl of levels) {
   const idxPath = join(CONTENT, lvl, 'index.json');
   if (!existsSync(idxPath)) continue;

@@ -1,0 +1,599 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 407,
+  "lesson": 7,
+  "topic": "Present Simple",
+  "topic_vi": "Hiện tại đơn",
+  "vocab": [
+    {
+      "word": "get up",
+      "vi": "thức dậy",
+      "icon": "🌅",
+      "example": "I get up at six every morning.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "walk",
+      "vi": "đi bộ",
+      "icon": "🚶",
+      "example": "My sister walks to school every day.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "study",
+      "vi": "học",
+      "icon": "📖",
+      "example": "They study English every week.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "watch",
+      "vi": "xem",
+      "icon": "📺",
+      "example": "We watch TV at night.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "drink",
+      "vi": "uống",
+      "icon": "🥛",
+      "example": "My brother drinks milk every day.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "breakfast",
+      "vi": "bữa sáng",
+      "icon": "🍳",
+      "example": "My mother eats noodles for breakfast.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "coffee",
+      "vi": "cà phê",
+      "icon": "☕",
+      "example": "My father likes coffee.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "football",
+      "vi": "bóng đá",
+      "icon": "⚽",
+      "example": "My brother plays football after school.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "always",
+      "vi": "luôn luôn",
+      "icon": "💯",
+      "example": "My sister always walks to school.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "usually",
+      "vi": "thường thường",
+      "icon": "🕐",
+      "example": "I usually get up at six.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "sometimes",
+      "vi": "thỉnh thoảng",
+      "icon": "🔄",
+      "example": "We sometimes play football after school.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "never",
+      "vi": "không bao giờ",
+      "icon": "🚫",
+      "example": "They never watch TV at night.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "third-person-s",
+      "title_vi": "Thêm \"-s\" cho He · She · It",
+      "explain_vi": "Với He / She / It hoặc MỘT người, động từ thêm \"-s\": goes, studies, plays. Với I / You / We / They hoặc nhiều người, động từ để nguyên: go, study, play.",
+      "examples": [
+        "My brother goes to school by bus.",
+        "They go to school by bus.",
+        "My sister studies English every week.",
+        "We play football after school."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "go-by-bus",
+            "text": "{subj} {goForm} to school by bus.",
+            "blanks": [
+              "goForm"
+            ],
+            "context_vi": "Chọn dạng đúng cho khớp chủ ngữ: \"go\" hay \"goes\"?",
+            "audioText": "My brother goes to school by bus."
+          },
+          {
+            "id": "study-english",
+            "text": "{subj} {studyForm} English every week.",
+            "blanks": [
+              "studyForm"
+            ],
+            "context_vi": "Chọn dạng đúng cho khớp chủ ngữ: \"study\" hay \"studies\"? Nhớ quy tắc y → ies.",
+            "audioText": "My sister studies English every week."
+          },
+          {
+            "id": "play-football",
+            "text": "{subj} {playForm} football after school.",
+            "blanks": [
+              "playForm"
+            ],
+            "context_vi": "Chọn dạng đúng cho khớp chủ ngữ: \"play\" hay \"plays\"?",
+            "audioText": "My brother plays football after school."
+          }
+        ],
+        "slots": {
+          "subj": [
+            "I",
+            "You",
+            "We",
+            "They",
+            "He",
+            "She",
+            "My brother",
+            "My sister",
+            "My friends"
+          ],
+          "goForm": [
+            "go",
+            "goes"
+          ],
+          "studyForm": [
+            "study",
+            "studies"
+          ],
+          "playForm": [
+            "play",
+            "plays"
+          ]
+        },
+        "answerKey": {
+          "go-by-bus": {
+            "goForm": {
+              "__cond": "subj",
+              "I": "go",
+              "You": "go",
+              "We": "go",
+              "They": "go",
+              "He": "goes",
+              "She": "goes",
+              "My brother": "goes",
+              "My sister": "goes",
+              "My friends": "go"
+            }
+          },
+          "study-english": {
+            "studyForm": {
+              "__cond": "subj",
+              "I": "study",
+              "You": "study",
+              "We": "study",
+              "They": "study",
+              "He": "studies",
+              "She": "studies",
+              "My brother": "studies",
+              "My sister": "studies",
+              "My friends": "study"
+            }
+          },
+          "play-football": {
+            "playForm": {
+              "__cond": "subj",
+              "I": "play",
+              "You": "play",
+              "We": "play",
+              "They": "play",
+              "He": "plays",
+              "She": "plays",
+              "My brother": "plays",
+              "My sister": "plays",
+              "My friends": "play"
+            }
+          }
+        },
+        "distractors": [
+          "My brother go to school by bus.",
+          "We goes to school by bus.",
+          "My sister studys English every week.",
+          "He study English every week.",
+          "They plays football after school.",
+          "My friends plays football after school."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Hiện tại đơn nói về việc làm THƯỜNG XUYÊN, quen thuộc: đi học, ăn sáng, chơi bóng. Động từ chỉ đổi khi chủ ngữ là He / She / It hoặc MỘT người, MỘT vật — lúc đó thêm \"-s\": He plays, My sister walks. Có ba kiểu thêm: (1) thường chỉ thêm \"-s\" — play → plays, walk → walks; (2) động từ kết thúc bằng s, x, ch, sh, o thì thêm \"-es\" — watch → watches, go → goes, do → does; (3) động từ kết thúc bằng phụ âm + y thì đổi y thành \"-ies\" — study → studies, fly → flies. Với I / You / We / They hoặc nhiều người, động từ để NGUYÊN: I play, They walk, My friends study."
+    },
+    {
+      "id": "do-does-questions",
+      "title_vi": "Câu hỏi với Do · Does",
+      "explain_vi": "Câu hỏi hiện tại đơn bắt đầu bằng Do hoặc Does. He / She / It và một người → Does; I / You / We / They và nhiều người → Do. Sau đó động từ để NGUYÊN.",
+      "examples": [
+        "Do you like ice cream?",
+        "Does your brother like ice cream?",
+        "Do your friends live in Ha Noi?",
+        "Does Lan live in Ha Noi?"
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "q-like-ice-cream",
+            "text": "{aux} {subjQ} like ice cream?",
+            "blanks": [
+              "aux"
+            ],
+            "context_vi": "Chủ ngữ một người thì mở đầu bằng \"Does\", còn lại là \"Do\".",
+            "audioText": "Does your brother like ice cream?"
+          },
+          {
+            "id": "q-live-in-hanoi",
+            "text": "{aux} {subjQ} live in Ha Noi?",
+            "blanks": [
+              "aux"
+            ],
+            "context_vi": "Nhớ: sau Do/Does, động từ để nguyên — \"live\", không phải \"lives\".",
+            "audioText": "Do your friends live in Ha Noi?"
+          }
+        ],
+        "slots": {
+          "subjQ": [
+            "you",
+            "they",
+            "we",
+            "he",
+            "she",
+            "your brother",
+            "your sister",
+            "your friends",
+            "Nam",
+            "Lan"
+          ],
+          "aux": [
+            "Do",
+            "Does"
+          ]
+        },
+        "answerKey": {
+          "q-like-ice-cream": {
+            "aux": {
+              "__cond": "subjQ",
+              "you": "Do",
+              "they": "Do",
+              "we": "Do",
+              "he": "Does",
+              "she": "Does",
+              "your brother": "Does",
+              "your sister": "Does",
+              "your friends": "Do",
+              "Nam": "Does",
+              "Lan": "Does"
+            }
+          },
+          "q-live-in-hanoi": {
+            "aux": {
+              "__cond": "subjQ",
+              "you": "Do",
+              "they": "Do",
+              "we": "Do",
+              "he": "Does",
+              "she": "Does",
+              "your brother": "Does",
+              "your sister": "Does",
+              "your friends": "Do",
+              "Nam": "Does",
+              "Lan": "Does"
+            }
+          }
+        },
+        "distractors": [
+          "Does you like ice cream?",
+          "Do your brother like ice cream?",
+          "Does they live in Ha Noi?",
+          "Do she live in Ha Noi?",
+          "Does your friends like ice cream?",
+          "Does Nam likes ice cream?"
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Muốn hỏi trong hiện tại đơn, em đặt \"Do\" hoặc \"Does\" lên đầu câu: Do you like ice cream? / Does your sister like ice cream? Cách chọn giống quy tắc thêm \"-s\": chủ ngữ là He / She / It hoặc MỘT người thì dùng \"Does\", còn I / You / We / They hoặc nhiều người thì dùng \"Do\". Điểm trẻ Việt hay sai nhất: sau \"Does\" thì động từ phải để NGUYÊN, vì chữ \"-s\" đã nhảy sang \"Does\" rồi — nói \"Does she like…?\" chứ KHÔNG nói \"Does she likes…?\". Trả lời ngắn: Yes, I do. / No, she doesn't."
+    },
+    {
+      "id": "dont-doesnt",
+      "title_vi": "Phủ định: don't · doesn't",
+      "explain_vi": "Phủ định hiện tại đơn: He / She / It và một người → doesn't; I / You / We / They và nhiều người → don't. Sau don't / doesn't, động từ để NGUYÊN, không thêm \"-s\".",
+      "examples": [
+        "I don't like coffee.",
+        "My brother doesn't like coffee.",
+        "My parents don't watch TV at night.",
+        "She doesn't watch TV at night."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words",
+        "transform",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "neg-like-coffee",
+            "text": "{subjN} {neg} like coffee.",
+            "blanks": [
+              "neg"
+            ],
+            "context_vi": "Chủ ngữ một người thì dùng \"doesn't\", còn lại dùng \"don't\".",
+            "audioText": "My brother doesn't like coffee."
+          },
+          {
+            "id": "neg-watch-tv",
+            "text": "{subjN} {neg} watch TV at night.",
+            "blanks": [
+              "neg"
+            ],
+            "context_vi": "Sau don't / doesn't, động từ để nguyên — \"watch\", không phải \"watches\".",
+            "audioText": "My parents don't watch TV at night."
+          }
+        ],
+        "slots": {
+          "subjN": [
+            "I",
+            "You",
+            "We",
+            "They",
+            "He",
+            "She",
+            "My brother",
+            "My sister",
+            "My parents"
+          ],
+          "neg": [
+            "don't",
+            "doesn't"
+          ]
+        },
+        "answerKey": {
+          "neg-like-coffee": {
+            "neg": {
+              "__cond": "subjN",
+              "I": "don't",
+              "You": "don't",
+              "We": "don't",
+              "They": "don't",
+              "He": "doesn't",
+              "She": "doesn't",
+              "My brother": "doesn't",
+              "My sister": "doesn't",
+              "My parents": "don't"
+            }
+          },
+          "neg-watch-tv": {
+            "neg": {
+              "__cond": "subjN",
+              "I": "don't",
+              "You": "don't",
+              "We": "don't",
+              "They": "don't",
+              "He": "doesn't",
+              "She": "doesn't",
+              "My brother": "doesn't",
+              "My sister": "doesn't",
+              "My parents": "don't"
+            }
+          },
+          "answer-pairs": {
+            "I like coffee.": "I don't like coffee.",
+            "You like coffee.": "You don't like coffee.",
+            "We like coffee.": "We don't like coffee.",
+            "They like coffee.": "They don't like coffee.",
+            "He likes coffee.": "He doesn't like coffee.",
+            "She likes coffee.": "She doesn't like coffee.",
+            "My brother likes coffee.": "My brother doesn't like coffee.",
+            "My parents watch TV at night.": "My parents don't watch TV at night.",
+            "My sister watches TV at night.": "My sister doesn't watch TV at night.",
+            "He watches TV at night.": "He doesn't watch TV at night."
+          }
+        },
+        "distractors": [
+          "He don't like coffee.",
+          "I doesn't like coffee.",
+          "She doesn't likes coffee.",
+          "My brother don't watch TV at night.",
+          "They doesn't watch TV at night.",
+          "We doesn't watch TV at night."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Để nói KHÔNG làm việc gì trong hiện tại đơn, em thêm \"don't\" hoặc \"doesn't\" trước động từ. Chủ ngữ He / She / It hoặc MỘT người → \"doesn't\"; I / You / We / They hoặc nhiều người → \"don't\". Rất quan trọng: sau don't / doesn't thì động từ để NGUYÊN, vì chữ \"-s\" đã chuyển sang \"doesn't\" — nói \"She doesn't like coffee\" chứ KHÔNG nói \"She doesn't likes coffee\". Muốn đổi từ câu khẳng định sang phủ định, em bỏ \"-s\" của động từ rồi thêm \"doesn't\": He watches TV → He doesn't watch TV."
+    },
+    {
+      "id": "frequency-adverbs",
+      "title_vi": "Trạng từ tần suất: always · usually · sometimes · never",
+      "explain_vi": "Trạng từ tần suất đứng TRƯỚC động từ thường: always (mọi ngày), usually (phần lớn các ngày), sometimes (thỉnh thoảng), never (không bao giờ).",
+      "examples": [
+        "My brother always walks to school, seven days a week.",
+        "My sister usually eats noodles for breakfast, five or six days a week.",
+        "We sometimes walk to school, one or two days a month.",
+        "They never eat noodles for breakfast, not even once a year."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "freq-walk",
+            "text": "{subjF} {freq} {walkForm} to school, {timePhrase}.",
+            "blanks": [
+              "freq"
+            ],
+            "context_vi": "Đọc phần sau dấu phẩy để biết bao nhiêu lần, rồi chọn trạng từ khớp.",
+            "audioText": "My brother always walks to school, seven days a week."
+          },
+          {
+            "id": "freq-breakfast",
+            "text": "{subjF} {freq} {eatForm} noodles for breakfast, {timePhrase}.",
+            "blanks": [
+              "freq"
+            ],
+            "context_vi": "Phần sau dấu phẩy cho biết số lần — chọn trạng từ tần suất khớp với nó.",
+            "audioText": "My sister usually eats noodles for breakfast, five or six days a week."
+          }
+        ],
+        "slots": {
+          "subjF": [
+            "I",
+            "You",
+            "We",
+            "They",
+            "He",
+            "She",
+            "My brother",
+            "My sister",
+            "My friends"
+          ],
+          "freq": [
+            "always",
+            "usually",
+            "sometimes",
+            "never"
+          ],
+          "timePhrase": [
+            "seven days a week",
+            "five or six days a week",
+            "one or two days a month",
+            "not even once a year"
+          ],
+          "walkForm": [
+            "walk",
+            "walks"
+          ],
+          "eatForm": [
+            "eat",
+            "eats"
+          ]
+        },
+        "answerKey": {
+          "freq-walk": {
+            "freq": {
+              "__cond": "timePhrase",
+              "seven days a week": "always",
+              "five or six days a week": "usually",
+              "one or two days a month": "sometimes",
+              "not even once a year": "never"
+            },
+            "walkForm": {
+              "__cond": "subjF",
+              "I": "walk",
+              "You": "walk",
+              "We": "walk",
+              "They": "walk",
+              "He": "walks",
+              "She": "walks",
+              "My brother": "walks",
+              "My sister": "walks",
+              "My friends": "walk"
+            }
+          },
+          "freq-breakfast": {
+            "freq": {
+              "__cond": "timePhrase",
+              "seven days a week": "always",
+              "five or six days a week": "usually",
+              "one or two days a month": "sometimes",
+              "not even once a year": "never"
+            },
+            "eatForm": {
+              "__cond": "subjF",
+              "I": "eat",
+              "You": "eat",
+              "We": "eat",
+              "They": "eat",
+              "He": "eats",
+              "She": "eats",
+              "My brother": "eats",
+              "My sister": "eats",
+              "My friends": "eat"
+            }
+          }
+        },
+        "distractors": [
+          "My brother walks always to school, seven days a week.",
+          "My sister eats always noodles for breakfast, seven days a week.",
+          "They never walks to school, not even once a year.",
+          "He usually walk to school, five or six days a week.",
+          "We sometimes eats noodles for breakfast, one or two days a month.",
+          "My friends always eats noodles for breakfast, seven days a week."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Trạng từ tần suất cho biết một việc xảy ra bao nhiêu lần: always (luôn luôn, gần như mọi lần) → usually (thường thường) → often (hay) → sometimes (thỉnh thoảng) → never (không bao giờ). Vị trí là điều trẻ Việt hay đặt sai: trạng từ tần suất đứng TRƯỚC động từ thường — \"She always walks to school\", KHÔNG nói \"She walks always to school\". Nhưng nếu câu có am / is / are thì trạng từ đứng SAU nó: \"He is always late\". Nhớ thêm: dù có trạng từ tần suất, động từ vẫn phải khớp chủ ngữ — She always walks, They always walk."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "nams-day",
+      "title": "Nam's day",
+      "title_vi": "Một ngày của Nam",
+      "text": "Nam is my classmate. He gets up at six every morning. He always walks to school with his sister. Nam does not like coffee, but he drinks milk every day. His sister usually reads a book after dinner. They never watch TV at night.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Nam luôn đi bộ đến trường cùng chị/em gái, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "Nam always walks to school with his sister."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Nam KHÔNG thích thứ nào?",
+          "type": "mcq",
+          "choices": [
+            "coffee",
+            "milk",
+            "noodles"
+          ],
+          "answer": 0,
+          "audioText": "What does Nam not like?"
+        }
+      ]
+    }
+  ]
+}

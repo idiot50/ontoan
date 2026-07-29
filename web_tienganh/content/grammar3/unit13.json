@@ -1,0 +1,436 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 413,
+  "lesson": 13,
+  "topic": "The future: be going to, will",
+  "topic_vi": "Tương lai: be going to · will",
+  "vocab": [
+    {
+      "word": "kite",
+      "vi": "cái diều",
+      "icon": "🪁",
+      "example": "I will bring a big kite to the field tomorrow.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "field",
+      "vi": "cánh đồng, sân bãi",
+      "icon": "🌾",
+      "example": "We will play football in the field.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "poster",
+      "vi": "tấm áp phích",
+      "icon": "🖼️",
+      "example": "Our class is going to paint a poster.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "guitar",
+      "vi": "đàn ghi-ta",
+      "icon": "🎸",
+      "example": "My cousin is going to learn the guitar.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "museum",
+      "vi": "viện bảo tàng",
+      "icon": "🏛️",
+      "example": "We are going to visit the science museum.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "ticket",
+      "vi": "vé",
+      "icon": "🎫",
+      "example": "I bought the tickets last week.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "club",
+      "vi": "câu lạc bộ",
+      "icon": "♟️",
+      "example": "Our class is going to join the chess club.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "heavy",
+      "vi": "nặng",
+      "icon": "🏋️",
+      "example": "That bag is very heavy.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "decide",
+      "vi": "quyết định",
+      "icon": "🤔",
+      "example": "First we decide, then we make a plan.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "bake",
+      "vi": "nướng bánh",
+      "icon": "🍰",
+      "example": "We are going to bake a cake.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "plant",
+      "vi": "trồng cây",
+      "icon": "🌱",
+      "example": "They are going to plant a tree.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "pack",
+      "vi": "xếp đồ vào túi",
+      "icon": "🎒",
+      "example": "My bag is already packed.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "be-going-to",
+      "title_vi": "\"be going to\": kế hoạch đã định trước",
+      "explain_vi": "Kế hoạch ĐÃ ĐỊNH trước thì dùng \"be going to + động từ nguyên mẫu\". Chọn am/is/are cho khớp chủ ngữ; phủ định thêm \"not\" ngay sau am/is/are.",
+      "examples": [
+        "I am going to bake a cake next Saturday.",
+        "My cousin is going to paint a poster next Saturday.",
+        "We are not going to plant a tree next Saturday."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose",
+        "transform"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "plan-affirm",
+            "text": "{planner} {be} going to {plan} next Saturday.",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "Nói kế hoạch đã định cho thứ Bảy tới. Chọn am/is/are cho khớp chủ ngữ.",
+            "audioText": "My cousin is going to paint a poster next Saturday."
+          },
+          {
+            "id": "plan-negative",
+            "text": "{planner} {be} not going to {plan} next Saturday.",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "Câu phủ định: \"not\" đứng ngay sau am/is/are, trước \"going to\".",
+            "audioText": "We are not going to plant a tree next Saturday."
+          }
+        ],
+        "slots": {
+          "planner": [
+            "I",
+            "You",
+            "We",
+            "My cousin",
+            "My neighbours",
+            "Our class"
+          ],
+          "be": [
+            "am",
+            "is",
+            "are"
+          ],
+          "plan": [
+            "bake a cake",
+            "paint a poster",
+            "plant a tree",
+            "learn the guitar",
+            "join the chess club"
+          ]
+        },
+        "answerKey": {
+          "plan-affirm": {
+            "be": {
+              "__cond": "planner",
+              "I": "am",
+              "You": "are",
+              "We": "are",
+              "My cousin": "is",
+              "My neighbours": "are",
+              "Our class": "is"
+            }
+          },
+          "plan-negative": {
+            "be": {
+              "__cond": "planner",
+              "I": "am",
+              "You": "are",
+              "We": "are",
+              "My cousin": "is",
+              "My neighbours": "are",
+              "Our class": "is"
+            }
+          },
+          "answer-pairs": {
+            "I am going to bake a cake next Saturday.": "I am not going to bake a cake next Saturday.",
+            "You are going to learn the guitar next Saturday.": "You are not going to learn the guitar next Saturday.",
+            "We are going to plant a tree next Saturday.": "We are not going to plant a tree next Saturday.",
+            "My cousin is going to paint a poster next Saturday.": "My cousin is not going to paint a poster next Saturday.",
+            "My neighbours are going to plant a tree next Saturday.": "My neighbours are not going to plant a tree next Saturday.",
+            "Our class is going to join the chess club next Saturday.": "Our class is not going to join the chess club next Saturday."
+          }
+        },
+        "distractors": [
+          "I is going to bake a cake next Saturday.",
+          "My cousin are going to paint a poster next Saturday.",
+          "We is going to plant a tree next Saturday.",
+          "My cousin going to learn the guitar next Saturday.",
+          "Our class is going to bakes a cake next Saturday.",
+          "You are going bake a cake next Saturday."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Khi em đã BÀN TRƯỚC, đã chuẩn bị, đã ghi vào sổ — nói bằng \"be going to\". Công thức: chủ ngữ + am/is/are + going to + động từ nguyên mẫu. Chọn \"to be\" theo chủ ngữ: I → am; He/She/It và MỘT người → is; You/We/They và NHIỀU người → are. Ví dụ: \"I am going to bake a cake next Saturday.\" (Thứ Bảy tới em định nướng bánh). Sau \"going to\" luôn là động từ nguyên mẫu, KHÔNG thêm \"-s\", KHÔNG chia thì: nói \"is going to bake\", không nói \"is going to bakes\" hay \"is going to baked\". Hai lỗi hay gặp nữa: bỏ mất \"to\" (\"is going bake\" ✗) và bỏ mất am/is/are (\"My cousin going to paint\" ✗). Muốn nói KHÔNG định làm, em chỉ cần thêm \"not\" ngay sau am/is/are: \"We are not going to plant a tree.\""
+    },
+    {
+      "id": "will",
+      "title_vi": "\"will\": quyết định tức thì & dự đoán",
+      "explain_vi": "\"will\" giữ nguyên với mọi chủ ngữ và sau nó là động từ nguyên mẫu (will bring — không \"wills\", không \"will to\"). Phủ định: will not = won't.",
+      "examples": [
+        "I will bring a big kite to the field tomorrow.",
+        "My cousin will play football tomorrow because the field is dry.",
+        "We won't play football tomorrow because the ball is broken."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose",
+        "transform"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "will-same-for-all",
+            "text": "{doer} {wl} bring a big kite to the field tomorrow.",
+            "blanks": [
+              "wl"
+            ],
+            "context_vi": "\"will\" giữ nguyên với mọi chủ ngữ, không bao giờ thêm \"-s\" — chọn \"will\" hay \"wills\"?",
+            "audioText": "My cousin will bring a big kite to the field tomorrow."
+          },
+          {
+            "id": "will-or-wont",
+            "text": "{doer} {wl2} play football tomorrow because {reason}.",
+            "blanks": [
+              "wl2"
+            ],
+            "context_vi": "Đọc lí do ở cuối câu: thuận lợi thì dùng \"will\", trở ngại thì dùng \"won't\".",
+            "audioText": "We won't play football tomorrow because the ball is broken."
+          }
+        ],
+        "slots": {
+          "doer": [
+            "I",
+            "You",
+            "We",
+            "My cousin",
+            "My neighbours",
+            "Our class"
+          ],
+          "wl": [
+            "will",
+            "wills"
+          ],
+          "wl2": [
+            "will",
+            "won't"
+          ],
+          "reason": [
+            "the field is dry",
+            "the field is closed",
+            "everyone is free",
+            "the ball is broken"
+          ]
+        },
+        "answerKey": {
+          "will-same-for-all": {
+            "wl": {
+              "__cond": "doer",
+              "I": "will",
+              "You": "will",
+              "We": "will",
+              "My cousin": "will",
+              "My neighbours": "will",
+              "Our class": "will"
+            }
+          },
+          "will-or-wont": {
+            "wl2": {
+              "__cond": "reason",
+              "the field is dry": "will",
+              "the field is closed": "won't",
+              "everyone is free": "will",
+              "the ball is broken": "won't"
+            }
+          },
+          "answer-pairs": {
+            "I will bring a big kite to the field tomorrow.": "I won't bring a big kite to the field tomorrow.",
+            "We will bring a big kite to the field tomorrow.": "We won't bring a big kite to the field tomorrow.",
+            "You will find the answer in this book.": "You won't find the answer in this book.",
+            "My cousin will play football tomorrow.": "My cousin won't play football tomorrow.",
+            "Our class will play football tomorrow.": "Our class won't play football tomorrow.",
+            "My neighbours will paint the old gate.": "My neighbours won't paint the old gate."
+          }
+        },
+        "distractors": [
+          "My cousin wills bring a big kite to the field tomorrow.",
+          "We will brings a big kite to the field tomorrow.",
+          "I will to bring a big kite to the field tomorrow.",
+          "Our class will played football tomorrow because the field is dry.",
+          "My neighbours won't plays football tomorrow because the ball is broken.",
+          "You will play football tomorrow because the ball is broken."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"will\" dùng cho hai việc: (1) điều em QUYẾT ĐỊNH NGAY lúc đang nói — \"That bag is heavy. I will carry it for you.\"; (2) điều em ĐOÁN sẽ xảy ra — \"Our class will win the match.\" Điểm dễ nhất của \"will\": nó giữ nguyên với MỌI chủ ngữ — I will, you will, she will, they will — không bao giờ có \"wills\". Sau \"will\" là động từ nguyên mẫu, KHÔNG thêm \"to\" và KHÔNG thêm \"-s\": \"He will play\" (đúng) — \"He will to play\", \"He will plays\", \"He will played\" (đều sai). Phủ định là \"will not\", nói gọn thành \"won't\": \"We won't play football tomorrow.\" Nhớ sau \"won't\" cũng là động từ nguyên mẫu, không phải \"won't plays\"."
+    },
+    {
+      "id": "will-vs-going-to",
+      "title_vi": "Phân biệt \"will\" và \"be going to\"",
+      "explain_vi": "Vừa nghĩ ra, quyết định ngay lúc nói → dùng \"will\". Kế hoạch đã bàn, đã chuẩn bị từ trước → dùng \"be going to\".",
+      "examples": [
+        "Look, that bag is very heavy. I will carry it for you right now.",
+        "My bag is already packed. I am going to travel to Da Lat next weekend.",
+        "I bought the tickets last week. I am going to visit the science museum next weekend."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "sudden-decision",
+            "text": "{cueNow} I {ff} {helpAct} right now.",
+            "blanks": [
+              "ff"
+            ],
+            "context_vi": "Đọc câu đầu: đây là việc vừa nghĩ ra hay kế hoạch đã định? Rồi chọn dạng tương lai đúng.",
+            "audioText": "Look, that bag is very heavy. I will carry it for you right now."
+          },
+          {
+            "id": "made-a-plan",
+            "text": "{cuePlan} I {ff} {planAct} next weekend.",
+            "blanks": [
+              "ff"
+            ],
+            "context_vi": "Đọc câu đầu: đây là việc vừa nghĩ ra hay kế hoạch đã định? Rồi chọn dạng tương lai đúng.",
+            "audioText": "My bag is already packed. I am going to travel to Da Lat next weekend."
+          }
+        ],
+        "slots": {
+          "cueNow": [
+            "Look, that bag is very heavy.",
+            "Oh no, the milk is on the floor.",
+            "Wait, the door is still open."
+          ],
+          "cuePlan": [
+            "I bought the tickets last week.",
+            "My bag is already packed.",
+            "I wrote my plan in my notebook on Monday."
+          ],
+          "ff": [
+            "will",
+            "am going to"
+          ],
+          "helpAct": [
+            "carry it for you",
+            "clean it up",
+            "close it"
+          ],
+          "planAct": [
+            "visit the science museum",
+            "travel to Da Lat",
+            "join the swimming class"
+          ]
+        },
+        "answerKey": {
+          "sudden-decision": {
+            "ff": "will",
+            "helpAct": {
+              "__cond": "cueNow",
+              "Look, that bag is very heavy.": "carry it for you",
+              "Oh no, the milk is on the floor.": "clean it up",
+              "Wait, the door is still open.": "close it"
+            }
+          },
+          "made-a-plan": {
+            "ff": "am going to",
+            "planAct": {
+              "__cond": "cuePlan",
+              "I bought the tickets last week.": "visit the science museum",
+              "My bag is already packed.": "travel to Da Lat",
+              "I wrote my plan in my notebook on Monday.": "join the swimming class"
+            }
+          }
+        },
+        "distractors": [
+          "Look, that bag is very heavy. I am going to carry it for you right now.",
+          "My bag is already packed. I will travel to Da Lat next weekend.",
+          "Look, that bag is very heavy. I will to carry it for you right now.",
+          "I bought the tickets last week. I going to visit the science museum next weekend.",
+          "Wait, the door is still open. I will closing it right now.",
+          "My bag is already packed. I am going travel to Da Lat next weekend."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Hai cách nói tương lai này KHÔNG thay thế nhau được. Em nhìn vào MANH MỐI trong câu trước: nếu việc đó VỪA XẢY RA và em phản ứng ngay — thấy cái túi nặng, thấy sữa đổ, thấy cửa còn mở — thì đó là quyết định tức thì, dùng \"will\": \"Oh no, the milk is on the floor. I will clean it up right now.\" Còn nếu câu trước cho thấy em ĐÃ CHUẨN BỊ TỪ TRƯỚC — đã mua vé, đã xếp xong túi, đã ghi kế hoạch vào sổ — thì đó là kế hoạch đã định, dùng \"be going to\": \"I bought the tickets last week. I am going to visit the science museum next weekend.\" Mẹo nhớ: \"will\" = nghĩ ra LÚC NÓI; \"be going to\" = nghĩ ra TRƯỚC KHI NÓI. Riêng khi đoán tương lai dựa vào cảm nhận của mình thì dùng \"will\" (\"I think our team will win\")."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "our-class-plan",
+      "title": "Our class plan",
+      "title_vi": "Kế hoạch của lớp em",
+      "text": "Our class has a big plan. Next Saturday we are going to visit the science museum in the city. Nam bought the tickets last week, so everything is ready. I am going to bring my camera, and Mai is going to bring her notebook. Our teacher thinks the weather will be fine. Oh, look at the sky! It is grey now. I will put my raincoat in my bag.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Bạn Nam đã mua vé từ tuần trước, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "Nam bought the tickets last week."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Vì sao bạn nhỏ nói \"I will put my raincoat in my bag\" chứ không nói \"I am going to\"?",
+          "type": "mcq",
+          "choices": [
+            "Vì bạn ấy vừa nhìn thấy trời xám và quyết định NGAY lúc đó",
+            "Vì bạn ấy đã lên kế hoạch mang áo mưa từ tuần trước",
+            "Vì cô giáo đã yêu cầu cả lớp mang áo mưa"
+          ],
+          "answer": 0,
+          "audioText": "Why does the child say \"I will put my raincoat in my bag\"?"
+        }
+      ]
+    }
+  ]
+}

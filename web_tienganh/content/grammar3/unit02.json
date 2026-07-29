@@ -1,0 +1,476 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 402,
+  "lesson": 2,
+  "topic": "Personal pronouns, be, have got, can",
+  "topic_vi": "Đại từ · to be · have got · can",
+  "vocab": [
+    {
+      "word": "brother",
+      "vi": "anh, em trai",
+      "icon": "👦",
+      "example": "My brother is ten years old.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "sister",
+      "vi": "chị, em gái",
+      "icon": "👧",
+      "example": "My sister can sing well.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "parents",
+      "vi": "bố mẹ",
+      "icon": "👨‍👩‍👦",
+      "example": "My parents are teachers.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "friend",
+      "vi": "người bạn",
+      "icon": "👫",
+      "example": "My friend has got a new bike.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "bike",
+      "vi": "xe đạp",
+      "icon": "🚲",
+      "example": "I have got a red bike.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "pet",
+      "vi": "vật nuôi",
+      "icon": "🐹",
+      "example": "They have got two pets.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "garden",
+      "vi": "khu vườn",
+      "icon": "🌳",
+      "example": "The children are in the garden.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "happy",
+      "vi": "vui, hạnh phúc",
+      "icon": "😀",
+      "example": "She is happy today.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "hungry",
+      "vi": "đói",
+      "icon": "🍽️",
+      "example": "We are hungry now.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "swim",
+      "vi": "bơi",
+      "icon": "🏊",
+      "example": "I can swim very well.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "draw",
+      "vi": "vẽ",
+      "icon": "🎨",
+      "example": "He can draw very well.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "cook",
+      "vi": "nấu ăn",
+      "icon": "🍳",
+      "example": "My mother can cook very well.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "subject-pronouns",
+      "title_vi": "Đại từ nhân xưng: He · She · We · They",
+      "explain_vi": "Thay danh từ bằng đại từ cho khỏi lặp: một người nam → He, một người nữ → She, nhiều người có mình ở trong → We, nhiều người không có mình → They.",
+      "examples": [
+        "My brother is at home. He is happy.",
+        "My sister is at home. She is happy.",
+        "My parents are at home. They are happy."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "one-person-pron",
+            "text": "{person} is at home. {pron} is happy.",
+            "blanks": [
+              "pron"
+            ],
+            "context_vi": "Câu nói về MỘT người — chọn đại từ khớp với người đó.",
+            "audioText": "My brother is at home. He is happy."
+          },
+          {
+            "id": "group-pron",
+            "text": "{group} are at home. {pronPl} are happy.",
+            "blanks": [
+              "pronPl"
+            ],
+            "context_vi": "Câu nói về NHIỀU người. Nếu có \"and I\" thì dùng \"We\", còn lại dùng \"They\".",
+            "audioText": "My parents are at home. They are happy."
+          }
+        ],
+        "slots": {
+          "person": [
+            "My brother",
+            "My father",
+            "My uncle",
+            "My sister",
+            "My mother",
+            "My aunt"
+          ],
+          "pron": [
+            "He",
+            "She"
+          ],
+          "group": [
+            "My brother and I",
+            "My friend and I",
+            "My parents",
+            "My sisters",
+            "The children"
+          ],
+          "pronPl": [
+            "We",
+            "They"
+          ]
+        },
+        "answerKey": {
+          "one-person-pron": {
+            "pron": {
+              "__cond": "person",
+              "My brother": "He",
+              "My father": "He",
+              "My uncle": "He",
+              "My sister": "She",
+              "My mother": "She",
+              "My aunt": "She"
+            }
+          },
+          "group-pron": {
+            "pronPl": {
+              "__cond": "group",
+              "My brother and I": "We",
+              "My friend and I": "We",
+              "My parents": "They",
+              "My sisters": "They",
+              "The children": "They"
+            }
+          }
+        },
+        "distractors": [
+          "My brother is at home. She is happy.",
+          "My sister is at home. He is happy.",
+          "My parents are at home. We are happy.",
+          "My brother and I are at home. They are happy.",
+          "The children are at home. It is happy.",
+          "My mother is at home. They is happy."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Để không phải nhắc lại tên hay danh từ hai lần, em thay nó bằng đại từ. Một người nam → \"He\"; một người nữ → \"She\"; một vật/con vật → \"It\"; nhiều người mà CÓ em ở trong đó → \"We\"; nhiều người mà KHÔNG có em → \"They\". Nhớ đại từ phải khớp với danh từ đứng trước, và đại từ số nhiều đi với \"are\"."
+    },
+    {
+      "id": "be-am-is-are",
+      "title_vi": "Động từ \"to be\": am · is · are",
+      "explain_vi": "\"I\" đi với am; \"He/She/It\" và một người đi với is; \"You/We/They\" và nhiều người đi với are. Phủ định thì thêm \"not\" ngay sau am/is/are.",
+      "examples": [
+        "I am happy today.",
+        "She is happy today.",
+        "They are not at school today."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words",
+        "listen_choose",
+        "transform"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "be-affirm",
+            "text": "{subj} {be} happy today.",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "Chọn dạng \"to be\" khớp với chủ ngữ.",
+            "audioText": "She is happy today."
+          },
+          {
+            "id": "be-negative",
+            "text": "{subj} {be} not at school today.",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "Câu phủ định: \"not\" đứng ngay sau am/is/are.",
+            "audioText": "They are not at school today."
+          }
+        ],
+        "slots": {
+          "subj": [
+            "I",
+            "He",
+            "She",
+            "You",
+            "We",
+            "They"
+          ],
+          "be": [
+            "am",
+            "is",
+            "are"
+          ]
+        },
+        "answerKey": {
+          "be-affirm": {
+            "be": {
+              "__cond": "subj",
+              "I": "am",
+              "He": "is",
+              "She": "is",
+              "You": "are",
+              "We": "are",
+              "They": "are"
+            }
+          },
+          "be-negative": {
+            "be": {
+              "__cond": "subj",
+              "I": "am",
+              "He": "is",
+              "She": "is",
+              "You": "are",
+              "We": "are",
+              "They": "are"
+            }
+          },
+          "answer-pairs": {
+            "I am happy today.": "I am not happy today.",
+            "He is happy today.": "He is not happy today.",
+            "She is happy today.": "She is not happy today.",
+            "You are happy today.": "You are not happy today.",
+            "We are happy today.": "We are not happy today.",
+            "They are happy today.": "They are not happy today."
+          }
+        },
+        "distractors": [
+          "I is happy today.",
+          "He are happy today.",
+          "They is happy today.",
+          "We am happy today.",
+          "She are not at school today.",
+          "You is not at school today."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"To be\" đổi theo chủ ngữ: \"I\" đi với \"am\"; \"He / She / It\" và một người/một vật đi với \"is\"; \"You / We / They\" và nhiều người/nhiều vật đi với \"are\". Câu phủ định chỉ cần thêm \"not\" ngay sau am/is/are: I am not, he is not (he isn't), they are not (they aren't)."
+    },
+    {
+      "id": "have-got",
+      "title_vi": "\"Have got\" / \"has got\": nói về cái mình có",
+      "explain_vi": "Nói về cái mình có: I/you/we/they + have got; he/she/it và một người + has got. Luôn có \"got\" đi kèm.",
+      "examples": [
+        "I have got a new bike.",
+        "My sister has got a new bike.",
+        "They have got two pets."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "have-got-bike",
+            "text": "{owner} {hg} got a new bike.",
+            "blanks": [
+              "hg"
+            ],
+            "context_vi": "Chọn \"have\" hay \"has\" cho khớp chủ ngữ.",
+            "audioText": "My sister has got a new bike."
+          },
+          {
+            "id": "have-got-pets",
+            "text": "{owner} {hg} got two pets at home.",
+            "blanks": [
+              "hg"
+            ],
+            "context_vi": "\"He / She\" và một người thì dùng \"has got\".",
+            "audioText": "My brother has got two pets at home."
+          }
+        ],
+        "slots": {
+          "owner": [
+            "I",
+            "You",
+            "We",
+            "They",
+            "He",
+            "She",
+            "My brother",
+            "My parents"
+          ],
+          "hg": [
+            "have",
+            "has"
+          ]
+        },
+        "answerKey": {
+          "have-got-bike": {
+            "hg": {
+              "__cond": "owner",
+              "I": "have",
+              "You": "have",
+              "We": "have",
+              "They": "have",
+              "He": "has",
+              "She": "has",
+              "My brother": "has",
+              "My parents": "have"
+            }
+          },
+          "have-got-pets": {
+            "hg": {
+              "__cond": "owner",
+              "I": "have",
+              "You": "have",
+              "We": "have",
+              "They": "have",
+              "He": "has",
+              "She": "has",
+              "My brother": "has",
+              "My parents": "have"
+            }
+          }
+        },
+        "distractors": [
+          "She have got a new bike.",
+          "I has got a new bike.",
+          "My brother have got two pets at home.",
+          "They has got two pets at home.",
+          "He have got a new bike.",
+          "We has got two pets at home."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Nói về thứ mình có, em dùng \"have got\". Với \"He / She / It\" hoặc một người thì đổi thành \"has got\": I have got a bike, my sister has got a bike. Câu phủ định thêm \"not\": I haven't got a bike, she hasn't got a bike. Lưu ý luôn có \"got\" đi kèm, và KHÔNG nói \"she have got\"."
+    },
+    {
+      "id": "can-bare-infinitive",
+      "title_vi": "\"Can\" + động từ nguyên mẫu",
+      "explain_vi": "Sau \"can\" là động từ nguyên mẫu — không thêm \"-s\", không thêm \"to\": She can swim (không phải \"cans swim\" hay \"can to swim\").",
+      "examples": [
+        "My sister can swim very well.",
+        "He can draw very well.",
+        "They can cook very well."
+      ],
+      "generators": [
+        "mcq",
+        "order_words",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "can-do-well",
+            "text": "{doer} can {verb} very well.",
+            "blanks": [],
+            "context_vi": "Sau \"can\" là động từ nguyên mẫu, không thêm gì.",
+            "audioText": "My sister can swim very well."
+          }
+        ],
+        "slots": {
+          "doer": [
+            "My sister",
+            "My brother",
+            "He",
+            "She",
+            "They",
+            "We"
+          ],
+          "verb": [
+            "swim",
+            "draw",
+            "cook",
+            "sing",
+            "dance"
+          ]
+        },
+        "answerKey": {},
+        "distractors": [
+          "My sister cans swim very well.",
+          "My sister can swims very well.",
+          "He can to draw very well.",
+          "They can cooks very well.",
+          "She cans dance very well.",
+          "We can to sing very well."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"Can\" nghĩa là có thể / biết làm gì. Sau \"can\" luôn là động từ ở dạng nguyên mẫu, KHÔNG thêm \"-s\", KHÔNG thêm \"to\": She can swim (đúng) — She cans swim, She can swims, She can to swim (đều sai). \"Can\" giữ nguyên với mọi chủ ngữ: I can, he can, they can."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "my-family-at-home",
+      "title": "At home",
+      "title_vi": "Ở nhà",
+      "text": "It is Sunday. My parents are in the garden. They have got a small dog. My sister is in the kitchen with my mother. She can cook noodles very well. I am in my room. I have got a new bike, but it is raining today.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Bố mẹ bạn ấy đang ở trong vườn, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "The parents are in the garden."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Người chị/em gái biết làm gì rất giỏi?",
+          "type": "mcq",
+          "choices": [
+            "cook noodles",
+            "ride a bike",
+            "swim in the river"
+          ],
+          "answer": 0,
+          "audioText": "What can the sister do very well?"
+        }
+      ]
+    }
+  ]
+}

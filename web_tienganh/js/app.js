@@ -35,10 +35,24 @@
     stagesThisSession: 0,  // đếm chặng để gợi nghỉ
     settings: loadSettings()
   };
-  function loadLevel() { try { var v = parseInt(localStorage.getItem('pi_level'), 10); return (v === 2 || v === 3) ? v : 1; } catch (e) { return 1; } }
+  function loadLevel() { try { var v = parseInt(localStorage.getItem('pi_level'), 10); return (v === 2 || v === 3 || v === 4) ? v : 1; } catch (e) { return 1; } }
   function saveLevel(lv) { try { localStorage.setItem('pi_level', String(lv)); } catch (e) {} }
-  // Suy FOLDER-LEVEL từ unit id: 0–15 & 101–105 = Level 1; 201–205 = L2; 301–305 = L3.
-  function levelOfUnit(u) { return u >= 300 ? 3 : u >= 200 ? 2 : 1; }
+  // Suy FOLDER-LEVEL từ unit id: 0–15 & 101–105 = Level 1; 201–205 = L2; 301–305 = L3;
+  // 401–420 = track "Ngữ pháp Tăng cường" (thư mục content/grammar3/, xem docs/ROUNDUP_GRAMMAR_MAP.md).
+  function levelOfUnit(u) { return u >= 400 ? 4 : u >= 300 ? 3 : u >= 200 ? 2 : 1; }
+  // Tên THƯ MỤC nội dung theo level. Track ngữ pháp không đặt tên "level4" vì nó là
+  // một MẠCH riêng (20 bài) chứ không phải cấp độ thứ tư của Family & Friends.
+  function folderOfLevel(lv) { return lv === 4 ? 'grammar3' : 'level' + lv; }
+  // Nhãn hiển thị: cấp 1–3 gọi là "Cấp N", track ngữ pháp có tên riêng.
+  function levelLabel(lv) { return lv === 4 ? 'Ngữ pháp' : 'Cấp ' + lv; }
+  // Số bài của một level (dùng cho thanh tiến độ ở màn chọn cấp).
+  function lessonCountOfLevel(lv) { return lv === 4 ? 20 : 5; }
+  // Id các bài lớn của một level.
+  function lessonIdsOfLevel(lv) {
+    var ids = [], n = lessonCountOfLevel(lv);
+    for (var i = 1; i <= n; i++) ids.push(lv * 100 + i);
+    return ids;
+  }
 
   /* ===================== DOM TIỆN ÍCH ===================== */
   function $(sel, root) { return (root || document).querySelector(sel); }
@@ -197,7 +211,7 @@
       if (lv === state.level) state.levelIndex = state.levelIndexCache[lv];
       return Promise.resolve(state.levelIndexCache[lv]);
     }
-    return loadJson('level' + lv + '/index.json').then(function (j) {
+    return loadJson(folderOfLevel(lv) + '/index.json').then(function (j) {
       state.levelIndexCache[lv] = j;
       if (lv === state.level) state.levelIndex = j;
       return j;
@@ -210,7 +224,7 @@
       var all = (idx.units || []).concat(idx.lessons || []);
       var meta = all.filter(function (u) { return u.unit === unitNo; })[0];
       if (!meta) throw new Error('Không có unit ' + unitNo);
-      return loadJson('level' + lv + '/' + meta.file).then(function (j) { state.units[unitNo] = j; return j; });
+      return loadJson(folderOfLevel(lv) + '/' + meta.file).then(function (j) { state.units[unitNo] = j; return j; });
     });
   }
   function lessonMetaByUnit(unitNo) {
@@ -218,19 +232,21 @@
     return (idx.lessons || []).filter(function (l) { return l.unit === unitNo; })[0] || null;
   }
   function isLessonUnit(unitNo) { return unitNo >= 100; }
-  // ===== ÔN TẬP CẤP ĐỘ: gộp 5 bài lớn của 1 cấp thành "unit ôn tập" (id = level*100+9) =====
-  function reviewUnitId(level) { return level * 100 + 9; }
+  // ===== ÔN TẬP CẤP ĐỘ: gộp các bài lớn của 1 cấp thành "unit ôn tập" =====
+  // Id unit ôn tập: level*100+9 cho cấp 1–3 (5 bài). Track ngữ pháp có 20 bài nên
+  // 409 đã là bài 9 → dùng 499 để không trùng.
+  function reviewUnitId(level) { return level === 4 ? 499 : level * 100 + 9; }
   function buildReviewUnit(level) {
     var rid = reviewUnitId(level);
     if (state.units[rid]) return Promise.resolve(state.units[rid]);
-    var ids = []; for (var i = 1; i <= 5; i++) ids.push(level * 100 + i);
+    var ids = lessonIdsOfLevel(level);
     return Promise.all(ids.map(loadUnit)).then(function (lessons) {
       var vocab = [], seen = {}, grammar = [];
       lessons.forEach(function (u) {
         (u.vocab || []).forEach(function (v) { if (v && v.word && !seen[v.word]) { seen[v.word] = 1; vocab.push(v); } });
         (u.grammar || []).forEach(function (g) { grammar.push(g); });
       });
-      var merged = { schemaVersion: 'v1', level: level, unit: rid, topic: 'Review', topic_vi: 'Ôn tập Cấp ' + level, vocab: vocab, grammar: grammar, reading: [], speaking: [] };
+      var merged = { schemaVersion: 'v1', level: level, unit: rid, topic: 'Review', topic_vi: 'Ôn tập ' + levelLabel(level), vocab: vocab, grammar: grammar, reading: [], speaking: [] };
       state.units[rid] = merged;
       return merged;
     });
@@ -403,7 +419,7 @@
   }
 
   /* =====================================================================
-     SLV — CHỌN CẤP ĐỘ (1/2/3)
+     SLV — CHỌN CẤP ĐỘ (1/2/3) + track NGỮ PHÁP TĂNG CƯỜNG (4)
      ===================================================================== */
   function screenLevelSelect() {
     if (!state.childId) { go('S1'); return; }
@@ -412,22 +428,24 @@
       var levels = [
         { n: 1, name: 'Cấp 1 — Khởi đầu', sub: 'Chào hỏi · đồ vật · gia đình · con vật · ăn uống', icon: '🌱', pal: 'mint' },
         { n: 2, name: 'Cấp 2 — Tiến bộ', sub: 'Thói quen · đang làm gì · số lượng · nơi chốn · quá khứ', icon: '🚀', pal: 'sky' },
-        { n: 3, name: 'Cấp 3 — Vững vàng', sub: 'So sánh · tần suất · tương lai · kể chuyện', icon: '🏆', pal: 'grape' }
+        { n: 3, name: 'Cấp 3 — Vững vàng', sub: 'So sánh · tần suất · tương lai · kể chuyện', icon: '🏆', pal: 'grape' },
+        { n: 4, name: 'Ngữ pháp Tăng cường', sub: '20 bài: số nhiều · thì · câu bị động · điều kiện · so sánh', icon: '📘', pal: 'coral' }
       ];
       var cards = levels.map(function (L) {
-        var done = state.mastery ? (state.mastery.units || []).filter(function (u) { return u.unit >= L.n * 100 + 1 && u.unit <= L.n * 100 + 5 && u.masteryPct >= 60; }).length : 0;
+        var total = lessonCountOfLevel(L.n);
+        var done = state.mastery ? (state.mastery.units || []).filter(function (u) { return u.unit >= L.n * 100 + 1 && u.unit <= L.n * 100 + total && u.masteryPct >= 60; }).length : 0;
         var card = el('button', {
           class: 'level-card' + (L.n === state.level ? ' is-current' : ''), type: 'button',
           style: '--pal:var(--c-' + L.pal + ');--pal-soft:var(--c-' + L.pal + '-soft)',
-          'aria-label': L.name + (L.n === state.level ? ' (đang chọn)' : '') + ' — ' + done + ' trên 5 bài'
+          'aria-label': L.name + (L.n === state.level ? ' (đang chọn)' : '') + ' — ' + done + ' trên ' + total + ' bài'
         }, [
           el('span', { class: 'level-card__icon', 'aria-hidden': 'true' }, L.icon),
           el('span', { class: 'grow' }, [
-            el('div', { class: 'level-card__name' }, 'Cấp ' + L.n + (L.n === state.level ? ' ✓' : '')),
+            el('div', { class: 'level-card__name' }, (L.n === 4 ? L.name : 'Cấp ' + L.n) + (L.n === state.level ? ' ✓' : '')),
             el('div', { class: 'level-card__sub' }, L.sub),
-            el('div', { class: 'jmap__bar', style: 'margin-top:8px' }, el('i', { style: 'width:' + (done / 5 * 100) + '%' }))
+            el('div', { class: 'jmap__bar', style: 'margin-top:8px' }, el('i', { style: 'width:' + (done / total * 100) + '%' }))
           ]),
-          el('span', { class: 'level-card__pct' }, done + '/5')
+          el('span', { class: 'level-card__pct' }, done + '/' + total)
         ]);
         card.addEventListener('click', function () {
           if (state.level !== L.n) { state.level = L.n; saveLevel(L.n); state.levelIndex = state.levelIndexCache[L.n] || null; }
@@ -462,7 +480,7 @@
 
       var weekLine = el('div', { class: 'chip chip--star' }, '🌱 Tuần này em đã học ' + (state.mastery ? state.mastery.weeklyDays : 0) + ' ngày');
       var starChip = el('div', { class: 'chip chip--star' }, '⭐ ' + totalStars);
-      var levelChip = el('button', { class: 'chip chip--level', type: 'button', 'aria-label': 'Đổi cấp độ (đang ở Cấp ' + state.level + ')', onclick: function () { go('SLV'); } }, '📚 Cấp ' + state.level + ' ▾');
+      var levelChip = el('button', { class: 'chip chip--level', type: 'button', 'aria-label': 'Đổi cấp độ (đang ở ' + levelLabel(state.level) + ')', onclick: function () { go('SLV'); } }, '📚 ' + levelLabel(state.level) + ' ▾');
 
       // ===== BẢN ĐỒ "CON ĐƯỜNG HỌC" — 5 BÀI LỚN =====
       var lessons = (idx.lessons || []).slice().sort(function (a, b) { return a.lesson - b.lesson; });
@@ -482,7 +500,7 @@
       }
       var doneCount = 0;
       lessons.forEach(function (l) { var um = unitMastery(l.unit); if (um && um.masteryPct >= 60) doneCount++; });
-      var lvl = el('div', { class: 'jmap-lvl' }, '★ TIẾNG ANH · CẤP ' + state.level + ' · ' + doneCount + '/' + lessons.length + ' bài ★');
+      var lvl = el('div', { class: 'jmap-lvl' }, '★ TIẾNG ANH · ' + levelLabel(state.level).toUpperCase() + ' · ' + doneCount + '/' + lessons.length + ' bài ★');
 
       var path = el('div', { class: 'jmap' }, el('div', { class: 'jmap__line', 'aria-hidden': 'true' }));
       lessons.forEach(function (l) {
@@ -511,10 +529,10 @@
 
       // ===== Chặng cuối: ÔN TẬP cấp độ (tóm tắt ngữ pháp + luyện tổng hợp) =====
       var rNode = el('span', { class: 'jmap__node jmap__node--review' }, el('span', { class: 'jmap__emoji', 'aria-hidden': 'true' }, '🏅'));
-      var rStop = el('button', { class: 'jmap__stop', type: 'button', 'aria-label': 'Ôn tập Cấp ' + state.level + ' — tóm tắt ngữ pháp và luyện tổng hợp' }, [
+      var rStop = el('button', { class: 'jmap__stop', type: 'button', 'aria-label': 'Ôn tập ' + levelLabel(state.level) + ' — tóm tắt ngữ pháp và luyện tổng hợp' }, [
         rNode,
         el('span', { class: 'jmap__card' }, [
-          el('div', { class: 'jmap__title' }, 'Ôn tập Cấp ' + state.level),
+          el('div', { class: 'jmap__title' }, 'Ôn tập ' + levelLabel(state.level)),
           el('div', { class: 'jmap__sub' }, 'Tóm tắt ngữ pháp + luyện tổng hợp'),
           el('span', { class: 'jmap__tag jmap__tag--cur' }, '🔁 Ôn mọi lúc')
         ])
@@ -576,7 +594,7 @@
     if (!state.childId) { go('S1'); return; }
     buildReviewUnit(state.level).then(function (merged) {
       var rid = merged.unit;
-      setHeader({ title: 'Ôn tập · Cấp ' + state.level, onBack: function () { go('S2'); } });
+      setHeader({ title: 'Ôn tập · ' + levelLabel(state.level), onBack: function () { go('S2'); } });
       var nG = (merged.grammar || []).length, nV = (merged.vocab || []).length;
       var acts = [
         reviewActCard('📝', 'Tóm tắt ngữ pháp', 'Xem lại ' + nG + ' điểm ngữ pháp của cả cấp', function () { go('SRG'); }),
@@ -593,14 +611,14 @@
   function screenGrammarSummary() {
     if (!state.childId) { go('S1'); return; }
     buildReviewUnit(state.level).then(function (merged) {
-      setHeader({ title: 'Tóm tắt ngữ pháp · Cấp ' + state.level, onBack: function () { go('SR'); } });
+      setHeader({ title: 'Tóm tắt ngữ pháp · ' + levelLabel(state.level), onBack: function () { go('SR'); } });
       var cards = (merged.grammar || []).map(function (g, i) {
         var ex = (g.examples || []).slice(0, 2).map(function (e) {
           return el('div', { class: 'read-line' }, [el('span', { class: 'read-line__text en grow' }, e), speakerBtn(e, 'Nghe: ' + e)]);
         });
         return el('div', { class: 'card stack', style: 'gap:var(--sp-2)' }, [
           el('div', { class: 'act-card__title' }, '📌 ' + (i + 1) + '. ' + g.title_vi),
-          g.explain_vi ? el('div', { class: 'muted', style: 'font-size:var(--fs-base);line-height:var(--lh-base)' }, g.explain_vi) : el('span')
+          (g.teach_vi || g.explain_vi) ? el('div', { class: 'muted', style: 'font-size:var(--fs-base);line-height:var(--lh-base)' }, g.teach_vi || g.explain_vi) : el('span')
         ].concat(ex));
       });
       render(el('div', { class: 'screen stack-lg' }, [

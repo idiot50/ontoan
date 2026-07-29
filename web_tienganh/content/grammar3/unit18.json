@@ -1,0 +1,447 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 418,
+  "lesson": 18,
+  "topic": "Infinitive, -ing form and too / enough",
+  "topic_vi": "To V · V-ing · too/enough",
+  "vocab": [
+    {
+      "word": "want",
+      "vi": "muốn",
+      "icon": "🙋",
+      "example": "I want to read a new book.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "need",
+      "vi": "cần",
+      "icon": "🆘",
+      "example": "My hands are dirty. I need to wash them.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "enjoy",
+      "vi": "thích thú, thấy vui khi làm",
+      "icon": "😊",
+      "example": "I enjoy riding my bike every day.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "swim",
+      "vi": "bơi",
+      "icon": "🏊",
+      "example": "I like swimming in the sea.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "draw",
+      "vi": "vẽ",
+      "icon": "🎨",
+      "example": "My sister likes drawing pictures.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "heavy",
+      "vi": "nặng",
+      "icon": "🪨",
+      "example": "This box is too heavy for me.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "light",
+      "vi": "nhẹ",
+      "icon": "🎈",
+      "example": "This bag is light enough for a child.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "hot",
+      "vi": "nóng",
+      "icon": "☕",
+      "example": "The tea is too hot to drink.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "high",
+      "vi": "cao",
+      "icon": "🗄️",
+      "example": "The shelf is too high for me.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "money",
+      "vi": "tiền",
+      "icon": "💰",
+      "example": "I have enough money to buy this book.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "egg",
+      "vi": "quả trứng",
+      "icon": "🥚",
+      "example": "I need six eggs to make a cake.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "guitar",
+      "vi": "đàn ghi-ta",
+      "icon": "🎸",
+      "example": "I enjoy playing the guitar.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "want-to-v",
+      "title_vi": "want / need + to + động từ",
+      "explain_vi": "Sau \"want\" và \"need\" phải có \"to\" rồi mới đến động từ nguyên mẫu: I want to read. Không nói \"I want read\" hay \"I want reading\".",
+      "examples": [
+        "I love books. I want to read now.",
+        "I am very hungry. I need to eat something.",
+        "My hands are dirty. I need to wash them."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "want-to-clue",
+            "text": "I love {hobby}. I want {toV} now.",
+            "blanks": [
+              "toV"
+            ],
+            "context_vi": "Câu đầu cho biết em thích gì. Sau \"want\" nhớ có \"to\" + động từ nguyên mẫu.",
+            "audioText": "I love books. I want to read now."
+          },
+          {
+            "id": "need-to-clue",
+            "text": "{problem} I need {toV2}.",
+            "blanks": [
+              "toV2"
+            ],
+            "context_vi": "Đọc vấn đề ở câu đầu để biết cần làm gì. Sau \"need\" cũng phải có \"to\".",
+            "audioText": "My hands are dirty. I need to wash them."
+          }
+        ],
+        "slots": {
+          "hobby": [
+            "books",
+            "football",
+            "music",
+            "cakes",
+            "the sea",
+            "pictures"
+          ],
+          "toV": [
+            "to read",
+            "to play football",
+            "to listen to music",
+            "to eat a cake",
+            "to swim",
+            "to draw"
+          ],
+          "problem": [
+            "My hands are dirty.",
+            "I am very hungry.",
+            "I am very tired.",
+            "My room is dirty.",
+            "My hair is too long."
+          ],
+          "toV2": [
+            "to wash them",
+            "to eat something",
+            "to sleep",
+            "to clean it",
+            "to cut it"
+          ]
+        },
+        "answerKey": {
+          "want-to-clue": {
+            "toV": {
+              "__cond": "hobby",
+              "books": "to read",
+              "football": "to play football",
+              "music": "to listen to music",
+              "cakes": "to eat a cake",
+              "the sea": "to swim",
+              "pictures": "to draw"
+            }
+          },
+          "need-to-clue": {
+            "toV2": {
+              "__cond": "problem",
+              "My hands are dirty.": "to wash them",
+              "I am very hungry.": "to eat something",
+              "I am very tired.": "to sleep",
+              "My room is dirty.": "to clean it",
+              "My hair is too long.": "to cut it"
+            }
+          }
+        },
+        "distractors": [
+          "I love books. I want read now.",
+          "I love books. I want reading now.",
+          "I love football. I want to playing football now.",
+          "I am very hungry. I need eat something.",
+          "I am very tired. I need to sleeping.",
+          "My room is dirty. I need clean it."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Có những động từ mà sau nó phải dùng \"to + động từ nguyên mẫu\". Hai từ em gặp nhiều nhất là want (muốn) và need (cần): \"I want to read a book.\", \"I need to wash my hands.\" Người Việt hay dịch từng chữ nên viết thành \"I want read\" (thiếu \"to\") hoặc \"I want reading\" (dùng sai dạng) — cả hai đều sai. Cùng nhóm này còn có: would like to, hope to, try to, decide to. Nếu câu có chủ ngữ khác thì chỉ đổi want/need cho khớp chủ ngữ, phần \"to + V\" giữ nguyên: \"She wants to read.\", \"They want to read.\""
+    },
+    {
+      "id": "like-ving",
+      "title_vi": "like / enjoy + động từ thêm -ing",
+      "explain_vi": "Sau \"like\", \"love\" và \"enjoy\" thì động từ thêm \"-ing\": I like swimming. Không nói \"I like to swimming\" hay \"I enjoy swim\".",
+      "examples": [
+        "I have a new bike. I enjoy riding it every day.",
+        "I am at the swimming pool. I like swimming here.",
+        "I have many books. I enjoy reading them every day."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "enjoy-ving-thing",
+            "text": "I have {thing}. I enjoy {ving} every day.",
+            "blanks": [
+              "ving"
+            ],
+            "context_vi": "Câu đầu cho biết em có gì. Sau \"enjoy\", động từ luôn thêm \"-ing\".",
+            "audioText": "I have a new bike. I enjoy riding it every day."
+          },
+          {
+            "id": "like-ving-place",
+            "text": "{place} I like {ving4} here.",
+            "blanks": [
+              "ving4"
+            ],
+            "context_vi": "Nơi em đang ở cho biết em làm gì. Sau \"like\", động từ thêm \"-ing\".",
+            "audioText": "I am at the swimming pool. I like swimming here."
+          }
+        ],
+        "slots": {
+          "thing": [
+            "a new bike",
+            "many books",
+            "a football",
+            "a guitar",
+            "a camera",
+            "a big garden"
+          ],
+          "ving": [
+            "riding it",
+            "reading them",
+            "playing football",
+            "playing it",
+            "taking photos",
+            "planting flowers"
+          ],
+          "place": [
+            "I am at the swimming pool.",
+            "I am in the library.",
+            "I am in the kitchen with my mother.",
+            "I am in the music room.",
+            "I am on the football field.",
+            "I am in the art room."
+          ],
+          "ving4": [
+            "swimming",
+            "reading books",
+            "cooking",
+            "singing",
+            "playing football",
+            "drawing"
+          ]
+        },
+        "answerKey": {
+          "enjoy-ving-thing": {
+            "ving": {
+              "__cond": "thing",
+              "a new bike": "riding it",
+              "many books": "reading them",
+              "a football": "playing football",
+              "a guitar": "playing it",
+              "a camera": "taking photos",
+              "a big garden": "planting flowers"
+            }
+          },
+          "like-ving-place": {
+            "ving4": {
+              "__cond": "place",
+              "I am at the swimming pool.": "swimming",
+              "I am in the library.": "reading books",
+              "I am in the kitchen with my mother.": "cooking",
+              "I am in the music room.": "singing",
+              "I am on the football field.": "playing football",
+              "I am in the art room.": "drawing"
+            }
+          }
+        },
+        "distractors": [
+          "I have a new bike. I enjoy to ride it every day.",
+          "I have many books. I enjoy read them every day.",
+          "I am at the swimming pool. I like to swimming here.",
+          "I am in the library. I like read books here.",
+          "I have a camera. I enjoy to taking photos every day.",
+          "I am in the art room. I like to drawing here."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Nhóm động từ nói về SỞ THÍCH — like, love, enjoy, hate — thì động từ đi sau phải thêm \"-ing\": \"I like swimming.\", \"I enjoy reading books.\", \"She loves drawing.\" Riêng \"enjoy\" thì BẮT BUỘC dùng \"-ing\", không bao giờ dùng \"to\": nói \"I enjoy to swim\" là sai. Quy tắc thêm \"-ing\": thường chỉ thêm \"-ing\" (read → reading); nếu từ kết thúc bằng \"e\" thì bỏ \"e\" (ride → riding, take → taking); nếu là một âm và kết thúc bằng nguyên âm + phụ âm thì gấp đôi phụ âm (swim → swimming, run → running). Lỗi hay gặp nhất của người Việt là trộn hai kiểu lại: \"I like to swimming\" — sai, phải chọn một là \"I like swimming\" hoặc \"I like to swim\"."
+    },
+    {
+      "id": "too-enough",
+      "title_vi": "too (quá) và enough (đủ)",
+      "explain_vi": "\"too\" đứng TRƯỚC tính từ và mang nghĩa quá mức nên KHÔNG làm được: too heavy. \"enough\" đứng SAU tính từ và nghĩa là đủ để làm được: light enough.",
+      "examples": [
+        "I can't lift this box. It is too heavy.",
+        "I can lift this box. It is light enough.",
+        "I need six eggs to make a cake. I have four eggs. That is not enough."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "too-or-enough",
+            "text": "{res} It is {te}.",
+            "blanks": [
+              "te"
+            ],
+            "context_vi": "KHÔNG làm được → too + tính từ. LÀM ĐƯỢC → tính từ + enough.",
+            "audioText": "I can't lift this box. It is too heavy."
+          },
+          {
+            "id": "enough-eggs",
+            "text": "I need six eggs to make a cake. I have {num} eggs. That is {teB}.",
+            "blanks": [
+              "teB"
+            ],
+            "context_vi": "So số trứng em có với số trứng em cần: bằng hoặc nhiều hơn → enough; ít hơn → not enough.",
+            "audioText": "I need six eggs to make a cake. I have four eggs. That is not enough."
+          }
+        ],
+        "slots": {
+          "res": [
+            "I can't lift this box.",
+            "I can lift this box.",
+            "I can't drink this tea.",
+            "I can drink this tea.",
+            "I can't reach the shelf.",
+            "I can reach the shelf."
+          ],
+          "te": [
+            "too heavy",
+            "light enough",
+            "too hot",
+            "cool enough",
+            "too high",
+            "low enough"
+          ],
+          "num": [
+            "ten",
+            "eight",
+            "six",
+            "four",
+            "three",
+            "two"
+          ],
+          "teB": [
+            "enough",
+            "not enough"
+          ]
+        },
+        "answerKey": {
+          "too-or-enough": {
+            "te": {
+              "__cond": "res",
+              "I can't lift this box.": "too heavy",
+              "I can lift this box.": "light enough",
+              "I can't drink this tea.": "too hot",
+              "I can drink this tea.": "cool enough",
+              "I can't reach the shelf.": "too high",
+              "I can reach the shelf.": "low enough"
+            }
+          },
+          "enough-eggs": {
+            "teB": {
+              "__cond": "num",
+              "ten": "enough",
+              "eight": "enough",
+              "six": "enough",
+              "four": "not enough",
+              "three": "not enough",
+              "two": "not enough"
+            }
+          }
+        },
+        "distractors": [
+          "I can't lift this box. It is enough heavy.",
+          "I can lift this box. It is enough light.",
+          "I can't drink this tea. It is hot too.",
+          "I can reach the shelf. It is enough low.",
+          "I need six eggs to make a cake. I have four eggs. That is enough not.",
+          "I can't lift this box. It is too heavy enough."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Hai từ này nói về mức độ nhưng đứng ở hai chỗ khác nhau. \"too\" nghĩa là QUÁ (quá mức nên không làm được) và đứng TRƯỚC tính từ: \"The box is too heavy. I can't lift it.\", \"The tea is too hot to drink.\" Còn \"enough\" nghĩa là ĐỦ (đủ nên làm được) và đứng SAU tính từ: \"The box is light enough. I can lift it.\", \"He is tall enough to reach the shelf.\" Lưu ý vị trí — nói \"enough heavy\" là sai, phải là \"heavy enough\". Khi \"enough\" đi với DANH TỪ thì nó lại đứng TRƯỚC danh từ: \"I have enough money.\", \"I don't have enough eggs.\" Muốn nói thiếu thì dùng \"not enough\": \"Four eggs is not enough.\""
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "mai-makes-a-cake",
+      "title": "Mai makes a cake",
+      "title_vi": "Mai làm bánh",
+      "text": "Mai wants to be a cook one day. She enjoys making cakes with her mother. Today she needs six eggs, but she has only two. That is not enough. \"Don't worry,\" says her mother. \"The shop is not too far. We can walk there together.\"",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Mai đã có đủ sáu quả trứng, đúng không?",
+          "type": "truefalse",
+          "answer": false,
+          "audioText": "Mai has only two eggs. That is not enough."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Mai thích làm việc gì cùng mẹ?",
+          "type": "mcq",
+          "choices": [
+            "making cakes",
+            "playing football",
+            "reading books"
+          ],
+          "answer": 0,
+          "audioText": "What does Mai enjoy doing with her mother?"
+        }
+      ]
+    }
+  ]
+}

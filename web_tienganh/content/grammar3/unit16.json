@@ -1,0 +1,494 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 416,
+  "lesson": 16,
+  "topic": "Questions: yes/no questions and wh-questions",
+  "topic_vi": "Câu hỏi",
+  "vocab": [
+    {
+      "word": "who",
+      "vi": "ai (hỏi về người)",
+      "icon": "🙋",
+      "example": "Who is your teacher?",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "what",
+      "vi": "cái gì (hỏi về vật, việc)",
+      "icon": "❓",
+      "example": "What is in your bag?",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "where",
+      "vi": "ở đâu (hỏi về nơi chốn)",
+      "icon": "📍",
+      "example": "Where is Mai now?",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "when",
+      "vi": "khi nào (hỏi về thời gian)",
+      "icon": "⏰",
+      "example": "When do you go to school?",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "why",
+      "vi": "vì sao (hỏi lí do)",
+      "icon": "🤔",
+      "example": "Why are you late?",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "how",
+      "vi": "bằng cách nào, thế nào",
+      "icon": "🧭",
+      "example": "How do you go to school?",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "how old",
+      "vi": "bao nhiêu tuổi",
+      "icon": "🎂",
+      "example": "How old is your brother?",
+      "partOfSpeech": "phrase",
+      "audio": ""
+    },
+    {
+      "word": "how many",
+      "vi": "bao nhiêu (đếm được)",
+      "icon": "🔢",
+      "example": "How many pens do you have?",
+      "partOfSpeech": "phrase",
+      "audio": ""
+    },
+    {
+      "word": "teacher",
+      "vi": "giáo viên",
+      "icon": "👩‍🏫",
+      "example": "Miss Lan is my teacher.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "football",
+      "vi": "môn bóng đá",
+      "icon": "⚽",
+      "example": "Do you play football?",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "apple",
+      "vi": "quả táo",
+      "icon": "🍎",
+      "example": "I eat an apple every day.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "late",
+      "vi": "muộn, trễ",
+      "icon": "⏱️",
+      "example": "Am I late today?",
+      "partOfSpeech": "adj",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "yes-no-questions",
+      "title_vi": "Câu hỏi Yes/No: Do · Does · Am · Is · Are",
+      "explain_vi": "Câu hỏi Yes/No mở đầu bằng trợ động từ: he/she và một người dùng \"Does\", còn I/you/we/they và nhiều người dùng \"Do\". Với \"to be\" thì đưa am/is/are lên trước chủ ngữ.",
+      "examples": [
+        "Does she read books?",
+        "Do you play football?",
+        "Is my brother happy today?",
+        "Am I late today?"
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose",
+        "transform"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "do-does-q",
+            "text": "{aux} {subj} {vp}?",
+            "blanks": [
+              "aux"
+            ],
+            "context_vi": "Nhìn chủ ngữ: he/she/một người → Does; I/you/we/they/nhiều người → Do.",
+            "audioText": "Does she read books?"
+          },
+          {
+            "id": "be-q",
+            "text": "{be} {subj2} {adj} today?",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "Câu hỏi với \"to be\": am/is/are đứng TRƯỚC chủ ngữ và phải khớp chủ ngữ.",
+            "audioText": "Is my brother happy today?"
+          }
+        ],
+        "slots": {
+          "aux": [
+            "Do",
+            "Does"
+          ],
+          "subj": [
+            "you",
+            "we",
+            "they",
+            "he",
+            "she",
+            "my brother",
+            "my sister",
+            "the children"
+          ],
+          "vp": [
+            "like apples",
+            "play football",
+            "read books",
+            "watch TV",
+            "eat rice",
+            "want a new bike"
+          ],
+          "be": [
+            "Am",
+            "Is",
+            "Are"
+          ],
+          "subj2": [
+            "I",
+            "you",
+            "we",
+            "they",
+            "he",
+            "she",
+            "my brother",
+            "my parents"
+          ],
+          "adj": [
+            "happy",
+            "hungry",
+            "tired",
+            "late",
+            "busy"
+          ]
+        },
+        "answerKey": {
+          "do-does-q": {
+            "aux": {
+              "__cond": "subj",
+              "you": "Do",
+              "we": "Do",
+              "they": "Do",
+              "he": "Does",
+              "she": "Does",
+              "my brother": "Does",
+              "my sister": "Does",
+              "the children": "Do"
+            }
+          },
+          "be-q": {
+            "be": {
+              "__cond": "subj2",
+              "I": "Am",
+              "you": "Are",
+              "we": "Are",
+              "they": "Are",
+              "he": "Is",
+              "she": "Is",
+              "my brother": "Is",
+              "my parents": "Are"
+            }
+          },
+          "answer-pairs": {
+            "Yes, he is.": "No, he isn't.",
+            "Yes, she is.": "No, she isn't.",
+            "Yes, they are.": "No, they aren't.",
+            "Yes, I am.": "No, I am not.",
+            "Yes, I do.": "No, I don't.",
+            "Yes, we do.": "No, we don't.",
+            "Yes, he does.": "No, he doesn't.",
+            "No, she isn't.": "Yes, she is.",
+            "No, they aren't.": "Yes, they are.",
+            "No, I don't.": "Yes, I do.",
+            "No, she doesn't.": "Yes, she does."
+          }
+        },
+        "distractors": [
+          "Does you like apples?",
+          "Do she read books?",
+          "Does he likes apples?",
+          "Is you happy today?",
+          "Are she tired today?",
+          "Do you are hungry today?"
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Câu hỏi Yes/No là câu hỏi mà người ta trả lời bằng \"Yes\" hoặc \"No\". Có hai kiểu. (1) Với động từ thường, em đặt Do/Does lên đầu câu, rồi đến chủ ngữ, rồi đến động từ nguyên mẫu: \"Do you play football?\", \"Does she read books?\". Chọn Does khi chủ ngữ là he/she/it hoặc MỘT người; chọn Do với I/you/we/they hoặc NHIỀU người. Nhớ: sau Do/Does, động từ KHÔNG thêm \"-s\" — nói \"Does she like...\", không nói \"Does she likes...\". (2) Với động từ \"to be\", em không cần Do/Does, chỉ cần đưa am/is/are lên trước chủ ngữ: \"Is my brother happy today?\", \"Are they hungry?\", \"Am I late?\". Câu trả lời ngắn thì lặp lại đúng trợ động từ đã dùng: \"Yes, I do.\" / \"No, I don't.\" / \"Yes, she is.\" / \"No, she isn't.\""
+    },
+    {
+      "id": "wh-questions",
+      "title_vi": "Câu hỏi với từ hỏi: Who · What · Where · When · Why · How",
+      "explain_vi": "Từ hỏi đứng đầu câu: người → Who, vật/việc → What, nơi → Where, lúc → When, lí do → Why, cách → How. Nhìn câu trả lời là biết phải hỏi bằng từ nào.",
+      "examples": [
+        "Who is your teacher? Miss Lan is my teacher.",
+        "Where is Mai now? She is in the garden.",
+        "How old is your brother? He is ten years old."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "wh-word-answer",
+            "text": "{wh} {tail}",
+            "blanks": [
+              "wh"
+            ],
+            "context_vi": "Đọc câu trả lời ở sau: nó cho em biết phải hỏi bằng từ hỏi nào.",
+            "audioText": "Who is your teacher? Miss Lan is my teacher."
+          },
+          {
+            "id": "wh-how-family",
+            "text": "{whHow} {tailHow}",
+            "blanks": [
+              "whHow"
+            ],
+            "context_vi": "Hỏi tuổi → How old; hỏi số lượng đếm được → How many; hỏi giá hoặc thứ không đếm được → How much.",
+            "audioText": "How old is your brother? He is ten years old."
+          }
+        ],
+        "slots": {
+          "wh": [
+            "Who",
+            "What",
+            "Where",
+            "When",
+            "Why",
+            "How"
+          ],
+          "tail": [
+            "is your teacher? Miss Lan is my teacher.",
+            "is that boy? He is my brother.",
+            "is in your bag? A new book is in my bag.",
+            "do you want? I want a red pen.",
+            "is Mai now? She is in the garden.",
+            "are my shoes? They are under the bed.",
+            "do you go to school? I go to school at seven o'clock.",
+            "does the film start? It starts at eight o'clock.",
+            "is she happy? Because she has a new bike.",
+            "are you late? Because my bike is broken.",
+            "do you go to school? I go to school by bike.",
+            "is your mother? She is fine, thank you."
+          ],
+          "whHow": [
+            "How old",
+            "How many",
+            "How much"
+          ],
+          "tailHow": [
+            "is your brother? He is ten years old.",
+            "are you? I am eleven years old.",
+            "pens do you have? I have five pens.",
+            "children are in your class? There are thirty children.",
+            "is this book? It is fifty thousand dong.",
+            "water do you drink every day? I drink two litres."
+          ]
+        },
+        "answerKey": {
+          "wh-word-answer": {
+            "wh": {
+              "__cond": "tail",
+              "is your teacher? Miss Lan is my teacher.": "Who",
+              "is that boy? He is my brother.": "Who",
+              "is in your bag? A new book is in my bag.": "What",
+              "do you want? I want a red pen.": "What",
+              "is Mai now? She is in the garden.": "Where",
+              "are my shoes? They are under the bed.": "Where",
+              "do you go to school? I go to school at seven o'clock.": "When",
+              "does the film start? It starts at eight o'clock.": "When",
+              "is she happy? Because she has a new bike.": "Why",
+              "are you late? Because my bike is broken.": "Why",
+              "do you go to school? I go to school by bike.": "How",
+              "is your mother? She is fine, thank you.": "How"
+            }
+          },
+          "wh-how-family": {
+            "whHow": {
+              "__cond": "tailHow",
+              "is your brother? He is ten years old.": "How old",
+              "are you? I am eleven years old.": "How old",
+              "pens do you have? I have five pens.": "How many",
+              "children are in your class? There are thirty children.": "How many",
+              "is this book? It is fifty thousand dong.": "How much",
+              "water do you drink every day? I drink two litres.": "How much"
+            }
+          }
+        },
+        "distractors": [
+          "What is your teacher? Miss Lan is my teacher.",
+          "Who is in your bag? A new book is in my bag.",
+          "Where do you go to school? I go to school at seven o'clock.",
+          "When is she happy? Because she has a new bike.",
+          "How many is your brother? He is ten years old.",
+          "How old pens do you have? I have five pens."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Khi em muốn biết một thông tin cụ thể, em dùng TỪ HỎI đặt ở ĐẦU câu. Who hỏi về người (\"Who is your teacher?\"), What hỏi về vật hoặc việc (\"What is in your bag?\"), Where hỏi về nơi chốn (\"Where is Mai?\"), When hỏi về thời gian (\"When do you go to school?\"), Why hỏi lí do — câu trả lời thường bắt đầu bằng \"Because…\", và How hỏi về cách thức (\"How do you go to school? I go by bike.\"). Ngoài ra có nhóm \"How + từ khác\": How old (bao nhiêu tuổi), How many (bao nhiêu — với danh từ đếm được số nhiều), How much (bao nhiêu tiền, hoặc với danh từ không đếm được). Mẹo làm bài: đọc CÂU TRẢ LỜI trước, thấy nói về người thì hỏi Who, nói về chỗ thì hỏi Where, nói về giờ thì hỏi When."
+    },
+    {
+      "id": "question-word-order",
+      "title_vi": "Trật tự từ trong câu hỏi",
+      "explain_vi": "Trong câu hỏi, trợ động từ (Do/Does/Is/Are) đứng TRƯỚC chủ ngữ, rồi mới đến phần còn lại. Không nói \"You do like apples?\" hay \"Where you are going?\".",
+      "examples": [
+        "Do you like apples?",
+        "Does my sister want a new bike?",
+        "Are they in the garden?"
+      ],
+      "generators": [
+        "order_words",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "wo-aux-q",
+            "text": "{aux} {subj} {vp}?",
+            "blanks": [],
+            "context_vi": "Thứ tự: Do/Does + chủ ngữ + động từ nguyên mẫu + phần còn lại + dấu hỏi.",
+            "audioText": "Do you like apples?"
+          },
+          {
+            "id": "wo-be-q",
+            "text": "{be} {subj2} {compl}?",
+            "blanks": [],
+            "context_vi": "Thứ tự: Is/Are + chủ ngữ + phần còn lại + dấu hỏi.",
+            "audioText": "Are they in the garden?"
+          }
+        ],
+        "slots": {
+          "aux": [
+            "Do",
+            "Does"
+          ],
+          "subj": [
+            "you",
+            "he",
+            "she",
+            "they",
+            "we",
+            "the children"
+          ],
+          "vp": [
+            "like apples",
+            "play football",
+            "read books",
+            "watch TV",
+            "eat rice",
+            "want a new bike"
+          ],
+          "be": [
+            "Is",
+            "Are"
+          ],
+          "subj2": [
+            "she",
+            "he",
+            "they",
+            "you",
+            "we"
+          ],
+          "compl": [
+            "at home",
+            "in the garden",
+            "hungry now",
+            "ready for school",
+            "in the classroom"
+          ]
+        },
+        "answerKey": {
+          "wo-aux-q": {
+            "aux": {
+              "__cond": "subj",
+              "you": "Do",
+              "he": "Does",
+              "she": "Does",
+              "they": "Do",
+              "we": "Do",
+              "the children": "Do"
+            }
+          },
+          "wo-be-q": {
+            "be": {
+              "__cond": "subj2",
+              "she": "Is",
+              "he": "Is",
+              "they": "Are",
+              "you": "Are",
+              "we": "Are"
+            }
+          }
+        },
+        "distractors": [
+          "Do like you apples?",
+          "Play you football?",
+          "You do watch TV?",
+          "Are hungry you now?",
+          "Is at home she?",
+          "Where you are going?"
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Tiếng Việt hỏi bằng cách thêm từ ở cuối câu (\"Bạn thích táo không?\"), nên nhiều bạn viết sai thành \"You like apples?\". Tiếng Anh thì phải ĐẢO trợ động từ lên trước chủ ngữ. Công thức 1: Do/Does + chủ ngữ + động từ nguyên mẫu + …? → \"Do you like apples?\", \"Does she read books?\". Công thức 2: Am/Is/Are + chủ ngữ + …? → \"Are they in the garden?\", \"Is she at home?\". Nếu câu có từ hỏi thì từ hỏi đứng trước cùng, rồi mới đến trợ động từ: \"Where are you going?\" (KHÔNG phải \"Where you are going?\"). Và đừng quên dấu hỏi \"?\" ở cuối câu."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "the-new-boy",
+      "title": "The new boy",
+      "title_vi": "Cậu bạn mới",
+      "text": "Nam is a new boy in my class. \"Where are you from?\" I ask him. \"I am from Hue,\" he says. \"How do you go to school?\" \"I go by bike. Do you play football?\" \"Yes, I do,\" I say. Now Nam is my new friend.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Nam đến trường bằng xe đạp, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "Nam goes to school by bike."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Nam đến từ thành phố nào?",
+          "type": "mcq",
+          "choices": [
+            "Hue",
+            "Ha Noi",
+            "Da Nang"
+          ],
+          "answer": 0,
+          "audioText": "Where is Nam from?"
+        }
+      ]
+    }
+  ]
+}

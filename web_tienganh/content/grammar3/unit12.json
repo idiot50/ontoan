@@ -1,0 +1,494 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 412,
+  "lesson": 12,
+  "topic": "Past Continuous",
+  "topic_vi": "Quá khứ tiếp diễn",
+  "vocab": [
+    {
+      "word": "while",
+      "vi": "trong khi",
+      "icon": "⏳",
+      "example": "While I was reading, the phone rang.",
+      "partOfSpeech": "conjunction",
+      "audio": ""
+    },
+    {
+      "word": "when",
+      "vi": "khi, lúc",
+      "icon": "🔔",
+      "example": "When the bell rang, we were playing.",
+      "partOfSpeech": "conjunction",
+      "audio": ""
+    },
+    {
+      "word": "ring",
+      "vi": "reo, rung",
+      "icon": "📞",
+      "example": "The phone rang at seven o'clock.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "watch",
+      "vi": "xem",
+      "icon": "📺",
+      "example": "I was watching TV last night.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "sleep",
+      "vi": "ngủ",
+      "icon": "😴",
+      "example": "She was not sleeping at nine o'clock.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "run",
+      "vi": "chạy",
+      "icon": "🏃",
+      "example": "The children were running in the yard.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "swim",
+      "vi": "bơi",
+      "icon": "🏊",
+      "example": "We were swimming in the river.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "read",
+      "vi": "đọc",
+      "icon": "📖",
+      "example": "I was reading in my room.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "dinner",
+      "vi": "bữa tối",
+      "icon": "🍽️",
+      "example": "Lan ate her dinner in ten minutes.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "homework",
+      "vi": "bài tập về nhà",
+      "icon": "📝",
+      "example": "I was doing my homework at eight.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "yard",
+      "vi": "cái sân",
+      "icon": "🏫",
+      "example": "We were playing in the yard.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "suddenly",
+      "vi": "bỗng nhiên",
+      "icon": "⚡",
+      "example": "Suddenly the lights went out.",
+      "partOfSpeech": "adv",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "was-were-ving",
+      "title_vi": "\"Was / were\" + V-ing",
+      "explain_vi": "Kể việc đang diễn ra tại một lúc trong quá khứ: was / were + V-ing. Dùng \"was\" với I, he, she, it và MỘT người; dùng \"were\" với you, we, they và NHIỀU người.",
+      "examples": [
+        "My brother was watching TV at seven o'clock last night.",
+        "My parents were watching TV at seven o'clock last night.",
+        "I like to swim, and yesterday at five I was swimming."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "cont-tv",
+            "text": "{subj} {bw} watching TV at seven o'clock last night.",
+            "blanks": [
+              "bw"
+            ],
+            "context_vi": "Nhìn chủ ngữ để chọn \"was\" hay \"were\".",
+            "audioText": "My brother was watching TV at seven o'clock last night."
+          },
+          {
+            "id": "cont-not-sleeping",
+            "text": "{subj} {bw} not sleeping at nine o'clock last night.",
+            "blanks": [
+              "bw"
+            ],
+            "context_vi": "Câu phủ định: \"not\" đứng giữa was/were và V-ing.",
+            "audioText": "They were not sleeping at nine o'clock last night."
+          },
+          {
+            "id": "ing-spelling",
+            "text": "I like to {base}, and yesterday at five I was {ving}.",
+            "blanks": [
+              "ving"
+            ],
+            "context_vi": "Động từ nguyên mẫu sau \"like to\" là manh mối — hãy thêm \"-ing\" cho đúng quy tắc.",
+            "audioText": "I like to swim, and yesterday at five I was swimming."
+          }
+        ],
+        "slots": {
+          "subj": [
+            "I",
+            "He",
+            "She",
+            "You",
+            "We",
+            "They",
+            "My brother",
+            "My sister",
+            "My parents",
+            "The children"
+          ],
+          "bw": [
+            "was",
+            "were"
+          ],
+          "base": [
+            "run",
+            "swim",
+            "jog",
+            "write",
+            "ride",
+            "dance",
+            "play",
+            "study",
+            "read",
+            "cook"
+          ],
+          "ving": [
+            "running",
+            "swimming",
+            "jogging",
+            "writing",
+            "riding",
+            "dancing",
+            "playing",
+            "studying",
+            "reading",
+            "cooking"
+          ]
+        },
+        "answerKey": {
+          "cont-tv": {
+            "bw": {
+              "__cond": "subj",
+              "I": "was",
+              "He": "was",
+              "She": "was",
+              "You": "were",
+              "We": "were",
+              "They": "were",
+              "My brother": "was",
+              "My sister": "was",
+              "My parents": "were",
+              "The children": "were"
+            }
+          },
+          "cont-not-sleeping": {
+            "bw": {
+              "__cond": "subj",
+              "I": "was",
+              "He": "was",
+              "She": "was",
+              "You": "were",
+              "We": "were",
+              "They": "were",
+              "My brother": "was",
+              "My sister": "was",
+              "My parents": "were",
+              "The children": "were"
+            }
+          },
+          "ing-spelling": {
+            "ving": {
+              "__cond": "base",
+              "run": "running",
+              "swim": "swimming",
+              "jog": "jogging",
+              "write": "writing",
+              "ride": "riding",
+              "dance": "dancing",
+              "play": "playing",
+              "study": "studying",
+              "read": "reading",
+              "cook": "cooking"
+            }
+          }
+        },
+        "distractors": [
+          "They was watching TV at seven o'clock last night.",
+          "I were watching TV at seven o'clock last night.",
+          "My brother were watching TV at seven o'clock last night.",
+          "The children was watching TV at seven o'clock last night.",
+          "She were not sleeping at nine o'clock last night.",
+          "We was not sleeping at nine o'clock last night.",
+          "I like to run, and yesterday at five I was runing.",
+          "I like to swim, and yesterday at five I was swiming.",
+          "I like to write, and yesterday at five I was writeing.",
+          "I like to dance, and yesterday at five I was danceing."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Quá khứ tiếp diễn kể một việc ĐANG diễn ra tại một thời điểm trong quá khứ. Công thức: was / were + V-ing. Chọn was hay were giống hệt như đã học ở bài Quá khứ đơn: \"was\" đi với I, he, she, it và MỘT người (my brother was playing); \"were\" đi với you, we, they và NHIỀU người (my parents were playing). Câu phủ định đặt \"not\" ở giữa: I was not (wasn't) sleeping, they were not (weren't) sleeping. Cách thêm \"-ing\": thường chỉ thêm \"-ing\" (play → playing, study → studying); nếu từ kết thúc bằng \"e\" thì bỏ \"e\" rồi thêm \"-ing\" (write → writing, ride → riding, dance → dancing); nếu từ ngắn có nguyên âm ngắn + một phụ âm cuối thì gấp đôi phụ âm (run → running, swim → swimming, jog → jogging). Dấu hiệu thường gặp: at seven o'clock last night, at that moment, all morning yesterday."
+    },
+    {
+      "id": "when-while",
+      "title_vi": "\"When\" và \"while\": nối hai việc trong quá khứ",
+      "explain_vi": "\"While\" đi với việc DÀI đang diễn ra (was/were + V-ing); \"when\" đi với việc NGẮN xảy ra và cắt ngang (quá khứ đơn). Hãy xem động từ ngay sau nó để chọn.",
+      "examples": [
+        "While I was reading in my room, the phone rang.",
+        "When the phone rang, I was reading in my room.",
+        "While I was studying in my room, the phone rang."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "while-long",
+            "text": "{ww} I was {ving} in my room, the phone rang.",
+            "blanks": [
+              "ww"
+            ],
+            "context_vi": "Ngay sau chỗ trống là việc DÀI (was + V-ing) — chọn \"When\" hay \"While\"?",
+            "audioText": "While I was reading in my room, the phone rang."
+          },
+          {
+            "id": "when-short",
+            "text": "{ww} the phone rang, I was {ving} in my room.",
+            "blanks": [
+              "ww"
+            ],
+            "context_vi": "Ngay sau chỗ trống là việc NGẮN ở quá khứ đơn — chọn \"When\" hay \"While\"?",
+            "audioText": "When the phone rang, I was reading in my room."
+          }
+        ],
+        "slots": {
+          "ww": [
+            "When",
+            "While"
+          ],
+          "ving": [
+            "reading",
+            "writing",
+            "studying",
+            "drawing",
+            "singing",
+            "sleeping"
+          ]
+        },
+        "answerKey": {
+          "while-long": {
+            "ww": "While"
+          },
+          "when-short": {
+            "ww": "When"
+          }
+        },
+        "distractors": [
+          "While I was read in my room, the phone rang.",
+          "While I reading in my room, the phone rang.",
+          "While I was studying in my room, the phone ringed.",
+          "When the phone rang, I was read in my room.",
+          "When the phone rang, I were reading in my room.",
+          "When the phone ringed, I was writing in my room."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Trong một câu kể quá khứ thường có hai việc: một việc DÀI đang diễn ra và một việc NGẮN xảy ra chen vào. Việc DÀI dùng quá khứ tiếp diễn (was / were + V-ing) và đi với \"while\"; việc NGẮN dùng quá khứ đơn và đi với \"when\". Ví dụ: While I was reading, the phone rang. — hoặc đảo lại: When the phone rang, I was reading. Hai câu này nghĩa giống nhau, chỉ khác thứ tự. Mẹo làm bài: em nhìn động từ đứng NGAY SAU chỗ trống. Nếu đó là \"was / were + V-ing\" thì điền \"While\"; nếu đó là một động từ quá khứ đơn ngắn (rang, came, went) thì điền \"When\". Khi mệnh đề phụ đứng trước thì có dấu phẩy ở giữa hai mệnh đề."
+    },
+    {
+      "id": "past-simple-vs-continuous",
+      "title_vi": "Quá khứ đơn hay quá khứ tiếp diễn?",
+      "explain_vi": "Việc đang diễn ra, bị cắt ngang hoặc đi sau \"while\" → quá khứ tiếp diễn. Việc xảy ra một cái rồi xong, hoặc làm hết trong khoảng thời gian → quá khứ đơn.",
+      "examples": [
+        "While I was doing my homework, my mother came in.",
+        "I was watching TV when the phone rang.",
+        "Yesterday Lan ate her dinner in ten minutes."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "while-doing",
+            "text": "While I {formDo} my homework, {who} came in.",
+            "blanks": [
+              "formDo"
+            ],
+            "context_vi": "Sau \"While\" là việc DÀI đang diễn ra, nên dùng quá khứ tiếp diễn.",
+            "audioText": "While I was doing my homework, my mother came in."
+          },
+          {
+            "id": "while-cooking",
+            "text": "While my mother {formCook} dinner, I set the table.",
+            "blanks": [
+              "formCook"
+            ],
+            "context_vi": "Sau \"While\" là việc DÀI (nấu bữa tối), nên dùng quá khứ tiếp diễn.",
+            "audioText": "While my mother was cooking dinner, I set the table."
+          },
+          {
+            "id": "when-rang",
+            "text": "I was {actVing} when the phone {formRing}.",
+            "blanks": [
+              "formRing"
+            ],
+            "context_vi": "Điện thoại reo là việc NGẮN cắt ngang việc đang làm, nên dùng quá khứ đơn.",
+            "audioText": "I was watching TV when the phone rang."
+          },
+          {
+            "id": "when-came",
+            "text": "We were playing in the yard when the teacher {formCome}.",
+            "blanks": [
+              "formCome"
+            ],
+            "context_vi": "Cô giáo đến là việc NGẮN cắt ngang việc đang chơi, nên dùng quá khứ đơn.",
+            "audioText": "We were playing in the yard when the teacher came."
+          },
+          {
+            "id": "in-ten-minutes",
+            "text": "Yesterday Lan {formEat} her {meal} in ten minutes.",
+            "blanks": [
+              "formEat"
+            ],
+            "context_vi": "\"In ten minutes\" cho biết việc đã LÀM XONG trong mười phút, nên dùng quá khứ đơn.",
+            "audioText": "Yesterday Lan ate her dinner in ten minutes."
+          }
+        ],
+        "slots": {
+          "formDo": [
+            "was doing",
+            "did"
+          ],
+          "formCook": [
+            "was cooking",
+            "cooked"
+          ],
+          "formRing": [
+            "rang",
+            "was ringing"
+          ],
+          "formCome": [
+            "came",
+            "was coming"
+          ],
+          "formEat": [
+            "ate",
+            "was eating"
+          ],
+          "who": [
+            "my mother",
+            "my father",
+            "my sister",
+            "my brother",
+            "my teacher"
+          ],
+          "actVing": [
+            "watching TV",
+            "reading a book",
+            "doing my homework",
+            "eating dinner",
+            "drawing a picture"
+          ],
+          "meal": [
+            "dinner",
+            "lunch",
+            "breakfast",
+            "soup",
+            "noodles"
+          ]
+        },
+        "answerKey": {
+          "while-doing": {
+            "formDo": "was doing"
+          },
+          "while-cooking": {
+            "formCook": "was cooking"
+          },
+          "when-rang": {
+            "formRing": "rang"
+          },
+          "when-came": {
+            "formCome": "came"
+          },
+          "in-ten-minutes": {
+            "formEat": "ate"
+          }
+        },
+        "distractors": [
+          "While I did my homework, my mother came in.",
+          "While I was do my homework, my mother came in.",
+          "While my mother cooked dinner, I set the table.",
+          "While my mother was cook dinner, I set the table.",
+          "I was watching TV when the phone was ringing.",
+          "I was reading a book when the phone was ringing.",
+          "We were playing in the yard when the teacher was coming.",
+          "We were playing in the yard when the teacher comed.",
+          "Yesterday Lan was eating her dinner in ten minutes.",
+          "Yesterday Lan was ate her soup in ten minutes."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Hai thì này hay đi cùng nhau trong một câu, nên em cần biết chọn thì nào. Dùng QUÁ KHỨ TIẾP DIỄN (was/were + V-ing) khi việc đó KÉO DÀI, đang giữa dòng, thường bị việc khác cắt ngang, hoặc đứng sau \"while\": While I was doing my homework, my mother came in. Dùng QUÁ KHỨ ĐƠN khi việc xảy ra MỘT CÁI rồi xong ngay, khi nó cắt ngang việc dài (thường đi với \"when\"), hoặc khi việc được làm hết trong một khoảng thời gian: The phone rang. / Lan ate her dinner in ten minutes. Mẹo nhớ: việc dài là \"cái nền\", việc ngắn là \"cái chen vào\". Cụm \"in ten minutes\" (làm xong trong mười phút) luôn đi với quá khứ đơn, còn \"at eight o'clock last night\" (đúng lúc đó đang làm) thì đi với quá khứ tiếp diễn."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "a-rainy-afternoon",
+      "title": "A rainy afternoon",
+      "title_vi": "Một buổi chiều mưa",
+      "text": "Yesterday afternoon it was raining. My sister was reading a book in her room and I was doing my homework at my desk. My mother was cooking in the kitchen. Suddenly the lights went out! While we were looking for a candle, my father came home. He was laughing, because he was very wet.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Lúc đó chị/em gái đang đọc sách, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "My sister was reading a book."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Bố về nhà lúc mọi người đang làm gì?",
+          "type": "mcq",
+          "choices": [
+            "looking for a candle",
+            "watching TV",
+            "eating dinner"
+          ],
+          "answer": 0,
+          "audioText": "What were they doing when father came home?"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,448 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 408,
+  "lesson": 8,
+  "topic": "Present Continuous",
+  "topic_vi": "Hiện tại tiếp diễn",
+  "vocab": [
+    {
+      "word": "read",
+      "vi": "đọc",
+      "icon": "📖",
+      "example": "My sister is reading a book now.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "run",
+      "vi": "chạy",
+      "icon": "🏃",
+      "example": "Look! My brother is running very fast.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "swim",
+      "vi": "bơi",
+      "icon": "🏊",
+      "example": "I am swimming in the river now.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "write",
+      "vi": "viết",
+      "icon": "✍️",
+      "example": "She is writing a letter now.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "dance",
+      "vi": "múa, nhảy",
+      "icon": "💃",
+      "example": "They are dancing in the garden.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "draw",
+      "vi": "vẽ",
+      "icon": "🎨",
+      "example": "My brother is drawing a picture.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "cook",
+      "vi": "nấu ăn",
+      "icon": "🍳",
+      "example": "My mother is cooking noodles now.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "music",
+      "vi": "âm nhạc",
+      "icon": "🎵",
+      "example": "We are listening to music now.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "homework",
+      "vi": "bài tập về nhà",
+      "icon": "📝",
+      "example": "He is doing his homework now.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "garden",
+      "vi": "khu vườn",
+      "icon": "🌳",
+      "example": "The children are playing in the garden.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "now",
+      "vi": "bây giờ",
+      "icon": "⏰",
+      "example": "My sister is singing now.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "at the moment",
+      "vi": "lúc này",
+      "icon": "⌚",
+      "example": "My father is reading at the moment.",
+      "partOfSpeech": "phrase",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "be-ving",
+      "title_vi": "am · is · are + động từ -ing",
+      "explain_vi": "Hiện tại tiếp diễn = am / is / are + động từ thêm \"-ing\". I → am; He / She / It và một người → is; You / We / They và nhiều người → are.",
+      "examples": [
+        "I am listening to music now.",
+        "My brother is listening to music now.",
+        "Look! They are running very fast.",
+        "My friends are running very fast."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words",
+        "transform",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "listen-music",
+            "text": "{subjC} {be} listening to music now.",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "Chọn am / is / are cho khớp chủ ngữ; động từ đã có \"-ing\" rồi.",
+            "audioText": "My brother is listening to music now."
+          },
+          {
+            "id": "run-fast",
+            "text": "Look! {subjC} {be} running very fast.",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "\"Look!\" cho biết việc đang xảy ra ngay lúc này — dùng hiện tại tiếp diễn.",
+            "audioText": "Look! My sister is running very fast."
+          }
+        ],
+        "slots": {
+          "subjC": [
+            "I",
+            "You",
+            "We",
+            "They",
+            "He",
+            "She",
+            "My brother",
+            "My sister",
+            "My friends"
+          ],
+          "be": [
+            "am",
+            "is",
+            "are"
+          ]
+        },
+        "answerKey": {
+          "listen-music": {
+            "be": {
+              "__cond": "subjC",
+              "I": "am",
+              "You": "are",
+              "We": "are",
+              "They": "are",
+              "He": "is",
+              "She": "is",
+              "My brother": "is",
+              "My sister": "is",
+              "My friends": "are"
+            }
+          },
+          "run-fast": {
+            "be": {
+              "__cond": "subjC",
+              "I": "am",
+              "You": "are",
+              "We": "are",
+              "They": "are",
+              "He": "is",
+              "She": "is",
+              "My brother": "is",
+              "My sister": "is",
+              "My friends": "are"
+            }
+          },
+          "answer-pairs": {
+            "I am listening to music now.": "I am not listening to music now.",
+            "You are listening to music now.": "You are not listening to music now.",
+            "We are listening to music now.": "We are not listening to music now.",
+            "They are listening to music now.": "They are not listening to music now.",
+            "He is listening to music now.": "He is not listening to music now.",
+            "My sister is listening to music now.": "My sister is not listening to music now.",
+            "She is running very fast.": "She is not running very fast.",
+            "My brother is running very fast.": "My brother is not running very fast.",
+            "My friends are running very fast.": "My friends are not running very fast.",
+            "I am running very fast.": "I am not running very fast."
+          }
+        },
+        "distractors": [
+          "My brother are listening to music now.",
+          "I is listening to music now.",
+          "My friends is listening to music now.",
+          "My brother is listen to music now.",
+          "Look! They is running very fast.",
+          "Look! He are running very fast."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Hiện tại tiếp diễn nói về việc ĐANG xảy ra ngay lúc này. Công thức: chủ ngữ + am / is / are + động từ thêm \"-ing\". Chọn \"to be\" như đã học: I → am; He / She / It hoặc MỘT người → is; You / We / They hoặc nhiều người → are. Hai lỗi trẻ Việt hay mắc: (1) bỏ mất am/is/are — nói \"I going to school\" thay vì \"I am going to school\"; (2) bỏ mất \"-ing\" — nói \"He is listen\" thay vì \"He is listening\". Phủ định chỉ cần thêm \"not\" ngay sau am/is/are: I am not listening, She is not running, They are not running. Những từ như now, at the moment, Look! là dấu hiệu của thì này."
+    },
+    {
+      "id": "ing-spelling",
+      "title_vi": "Cách thêm \"-ing\" cho động từ",
+      "explain_vi": "Thêm \"-ing\": thường giữ nguyên (read → reading); bỏ \"e\" cuối (write → writing); gấp đôi phụ âm cuối khi trước nó là một nguyên âm ngắn (run → running).",
+      "examples": [
+        "My sister can swim well. She is swimming now.",
+        "My sister can write well. She is writing now.",
+        "I like to read. Look, I am reading now!",
+        "I like to dance. Look, I am dancing now!"
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "can-well-now",
+            "text": "My sister can {verbBase} well. She is {verbIng} now.",
+            "blanks": [
+              "verbIng"
+            ],
+            "context_vi": "Đổi động từ ở câu trước sang dạng \"-ing\" cho đúng chính tả.",
+            "audioText": "My sister can swim well. She is swimming now."
+          },
+          {
+            "id": "like-to-now",
+            "text": "I like to {verbBase}. Look, I am {verbIng} now!",
+            "blanks": [
+              "verbIng"
+            ],
+            "context_vi": "Lấy đúng động từ ở câu trước rồi thêm \"-ing\" theo quy tắc chính tả.",
+            "audioText": "I like to run. Look, I am running now!"
+          }
+        ],
+        "slots": {
+          "verbBase": [
+            "swim",
+            "run",
+            "write",
+            "dance",
+            "draw",
+            "play",
+            "read",
+            "cook"
+          ],
+          "verbIng": [
+            "swimming",
+            "running",
+            "writing",
+            "dancing",
+            "drawing",
+            "playing",
+            "reading",
+            "cooking"
+          ]
+        },
+        "answerKey": {
+          "can-well-now": {
+            "verbIng": {
+              "__cond": "verbBase",
+              "swim": "swimming",
+              "run": "running",
+              "write": "writing",
+              "dance": "dancing",
+              "draw": "drawing",
+              "play": "playing",
+              "read": "reading",
+              "cook": "cooking"
+            }
+          },
+          "like-to-now": {
+            "verbIng": {
+              "__cond": "verbBase",
+              "swim": "swimming",
+              "run": "running",
+              "write": "writing",
+              "dance": "dancing",
+              "draw": "drawing",
+              "play": "playing",
+              "read": "reading",
+              "cook": "cooking"
+            }
+          }
+        },
+        "distractors": [
+          "My sister can swim well. She is swiming now.",
+          "My sister can run well. She is runing now.",
+          "My sister can write well. She is writeing now.",
+          "My sister can dance well. She is danceing now.",
+          "I like to swim. Look, I am swim now!",
+          "I like to run. Look, I am runing now!"
+        ],
+        "irregulars": {
+          "swim": "swimming",
+          "run": "running",
+          "sit": "sitting",
+          "put": "putting",
+          "write": "writing",
+          "dance": "dancing",
+          "make": "making",
+          "come": "coming"
+        }
+      },
+      "teach_vi": "Có ba quy tắc thêm \"-ing\". (1) Phần lớn động từ chỉ thêm \"-ing\" và không đổi gì: read → reading, play → playing, cook → cooking, draw → drawing. (2) Động từ kết thúc bằng chữ \"e\" câm thì BỎ \"e\" rồi thêm \"-ing\": write → writing, dance → dancing, make → making, come → coming. (3) Động từ một âm tiết kết thúc bằng một phụ âm mà ngay trước nó là một nguyên âm ngắn thì GẤP ĐÔI phụ âm cuối: run → running, swim → swimming, sit → sitting, put → putting. Đừng viết \"swiming\", \"runing\", \"writeing\" — đó là ba lỗi chính tả phổ biến nhất."
+    },
+    {
+      "id": "simple-vs-continuous",
+      "title_vi": "Hiện tại đơn hay hiện tại tiếp diễn?",
+      "explain_vi": "\"every day, every afternoon\" là việc làm thường xuyên → hiện tại đơn (plays). \"now, right now, at the moment\" là đang xảy ra → hiện tại tiếp diễn (is playing).",
+      "examples": [
+        "My brother plays football every day.",
+        "My brother is playing football right now.",
+        "Lan reads a book every afternoon.",
+        "Lan is reading a book at the moment."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "which-tense-football",
+            "text": "{subj3} {vfPlay} football {timeMark}.",
+            "blanks": [
+              "vfPlay"
+            ],
+            "context_vi": "Xem cụm chỉ thời gian ở cuối câu: thường xuyên → \"plays\"; đang xảy ra → \"is playing\".",
+            "audioText": "My brother is playing football right now."
+          },
+          {
+            "id": "which-tense-book",
+            "text": "{subj3} {vfRead} a book {timeMark}.",
+            "blanks": [
+              "vfRead"
+            ],
+            "context_vi": "Cụm thời gian ở cuối câu cho biết chọn \"reads\" hay \"is reading\".",
+            "audioText": "My sister reads a book every afternoon."
+          }
+        ],
+        "slots": {
+          "subj3": [
+            "My brother",
+            "My sister",
+            "He",
+            "She",
+            "Nam",
+            "Lan"
+          ],
+          "timeMark": [
+            "every day",
+            "every afternoon",
+            "right now",
+            "at the moment"
+          ],
+          "vfPlay": [
+            "plays",
+            "is playing"
+          ],
+          "vfRead": [
+            "reads",
+            "is reading"
+          ]
+        },
+        "answerKey": {
+          "which-tense-football": {
+            "vfPlay": {
+              "__cond": "timeMark",
+              "every day": "plays",
+              "every afternoon": "plays",
+              "right now": "is playing",
+              "at the moment": "is playing"
+            }
+          },
+          "which-tense-book": {
+            "vfRead": {
+              "__cond": "timeMark",
+              "every day": "reads",
+              "every afternoon": "reads",
+              "right now": "is reading",
+              "at the moment": "is reading"
+            }
+          }
+        },
+        "distractors": [
+          "My brother is play football every day.",
+          "My brother plays football right now.",
+          "My sister reading a book at the moment.",
+          "My sister is read a book at the moment.",
+          "Nam playing football at the moment.",
+          "Lan reads a book right now."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Hai thì này rất dễ lẫn, nên em hãy tìm DẤU HIỆU THỜI GIAN trong câu. Nếu câu có every day, every afternoon, every week, always, usually, sometimes, never — đó là việc làm thường xuyên, dùng HIỆN TẠI ĐƠN: My brother plays football every day. Nếu câu có now, right now, at the moment, today, Look!, Listen! — đó là việc đang xảy ra ngay lúc này, dùng HIỆN TẠI TIẾP DIỄN: My brother is playing football right now. Nhớ rằng hiện tại tiếp diễn LUÔN có am/is/are đi cùng động từ \"-ing\" — thiếu một trong hai là câu sai."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "saturday-morning",
+      "title": "Saturday morning",
+      "title_vi": "Buổi sáng thứ Bảy",
+      "text": "It is Saturday morning and my family is at home. My mother is cooking noodles in the kitchen. My father is reading a newspaper. My brother is doing his homework, but he is not writing — he is drawing a picture of a cat! I am listening to music in my room. Nobody is watching TV today.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Mẹ đang nấu mì trong nhà bếp, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "The mother is cooking noodles in the kitchen."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Người anh/em trai đang làm gì?",
+          "type": "mcq",
+          "choices": [
+            "He is drawing a picture.",
+            "He is watching TV.",
+            "He is cooking noodles."
+          ],
+          "answer": 0,
+          "audioText": "What is the brother doing?"
+        }
+      ]
+    }
+  ]
+}

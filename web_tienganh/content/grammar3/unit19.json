@@ -1,0 +1,430 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 419,
+  "lesson": 19,
+  "topic": "Relative pronouns: who, which, whose",
+  "topic_vi": "Đại từ quan hệ",
+  "vocab": [
+    {
+      "word": "who",
+      "vi": "người mà (dùng cho NGƯỜI)",
+      "icon": "🙋",
+      "example": "The man who helped me is my uncle.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "which",
+      "vi": "cái mà (dùng cho VẬT, CON VẬT)",
+      "icon": "📦",
+      "example": "The box which is red is mine.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "whose",
+      "vi": "của người mà (chỉ sự sở hữu)",
+      "icon": "🔑",
+      "example": "I know a girl whose bike is new.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "neighbour",
+      "vi": "người láng giềng",
+      "icon": "🏘️",
+      "example": "My neighbour has a big dog.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "doctor",
+      "vi": "bác sĩ",
+      "icon": "👩‍⚕️",
+      "example": "The doctor who helped me was very kind.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "nurse",
+      "vi": "điều dưỡng, y sĩ",
+      "icon": "🧑‍⚕️",
+      "example": "I know a nurse who works at night.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "robot",
+      "vi": "người máy",
+      "icon": "🤖",
+      "example": "This is the robot which cleans our house.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "photo",
+      "vi": "bức ảnh",
+      "icon": "📷",
+      "example": "Look at the photo which is on the wall.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "kite",
+      "vi": "con diều",
+      "icon": "🪁",
+      "example": "The kite which we made is very big.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "guitar",
+      "vi": "đàn ghi-ta",
+      "icon": "🎸",
+      "example": "I know a girl who plays the guitar.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "clock",
+      "vi": "cái đồng hồ",
+      "icon": "⏰",
+      "example": "The clock which is on the wall is new.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "race",
+      "vi": "cuộc thi chạy",
+      "icon": "🏁",
+      "example": "I saw the boy who won the race.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "famous",
+      "vi": "nổi tiếng",
+      "icon": "⭐",
+      "example": "I know a boy whose father is famous.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "who-person",
+      "title_vi": "\"who\" — nối lại khi nói về NGƯỜI",
+      "explain_vi": "Nói thêm về một NGƯỜI thì dùng \"who\"; nói thêm về con vật hay đồ vật thì dùng \"which\". Hãy nhìn danh từ đứng ngay TRƯỚC chỗ trống để chọn.",
+      "examples": [
+        "This is the woman who helped me yesterday.",
+        "This is the dog which helped me yesterday.",
+        "I saw the boy who won the race last week."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "person-helped",
+            "text": "This is the {being} {rel} helped me yesterday.",
+            "blanks": [
+              "rel"
+            ],
+            "context_vi": "Nhìn danh từ ngay trước chỗ trống: người → who, con vật hay đồ vật → which",
+            "audioText": "This is the woman who helped me yesterday."
+          },
+          {
+            "id": "person-won-race",
+            "text": "I saw the {being} {rel} won the race last week.",
+            "blanks": [
+              "rel"
+            ],
+            "context_vi": "Bài này chỉ dùng who hoặc which; người → who, con vật hay đồ vật → which",
+            "audioText": "I saw the boy who won the race last week."
+          }
+        ],
+        "slots": {
+          "being": [
+            "man",
+            "woman",
+            "boy",
+            "girl",
+            "teacher",
+            "nurse",
+            "dog",
+            "robot"
+          ],
+          "rel": [
+            "who",
+            "which"
+          ]
+        },
+        "answerKey": {
+          "person-helped": {
+            "rel": {
+              "__cond": "being",
+              "man": "who",
+              "woman": "who",
+              "boy": "who",
+              "girl": "who",
+              "teacher": "who",
+              "nurse": "who",
+              "dog": "which",
+              "robot": "which"
+            }
+          },
+          "person-won-race": {
+            "rel": {
+              "__cond": "being",
+              "man": "who",
+              "woman": "who",
+              "boy": "who",
+              "girl": "who",
+              "teacher": "who",
+              "nurse": "who",
+              "dog": "which",
+              "robot": "which"
+            }
+          }
+        },
+        "distractors": [
+          "This is the man which helped me yesterday.",
+          "This is the teacher which helped me yesterday.",
+          "I saw the girl which won the race last week.",
+          "I saw the nurse which won the race last week.",
+          "This is the woman who she helped me yesterday.",
+          "I saw the boy who he won the race last week."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Khi em muốn nói thêm về một người hay một vật mà không phải bắt đầu câu mới, em dùng đại từ quan hệ để NỐI hai câu lại. Ví dụ: \"This is the woman.\" + \"She helped me.\" → \"This is the woman who helped me.\" Cách chọn rất dễ: danh từ đứng ngay TRƯỚC chỗ nối là NGƯỜI thì dùng \"who\" (the boy who won the race), là CON VẬT hay ĐỒ VẬT thì dùng \"which\" (the dog which won the race). Đại từ quan hệ luôn đứng NGAY SAU danh từ nó nhắc lại, và nó đã thay cho \"he / she / it\" rồi nên em KHÔNG viết thêm chủ ngữ nữa: nói \"the woman who helped me\", không nói \"the woman who she helped me\". (Người lớn còn dùng \"that\" thay cho who/which, nhưng bài này em chỉ luyện who và which cho thật chắc.)"
+    },
+    {
+      "id": "which-thing",
+      "title_vi": "\"which\" — nối lại khi nói về ĐỒ VẬT",
+      "explain_vi": "Danh từ trước chỗ trống là đồ vật → dùng \"which\"; là người → dùng \"who\". Đại từ quan hệ luôn đứng ngay sau danh từ mà nó nhắc lại.",
+      "examples": [
+        "The bike which I saw at the shop was very nice.",
+        "The woman who I saw at the shop was very nice.",
+        "Look at the cake which is in this photo."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "thing-at-shop",
+            "text": "The {item} {rel2} I saw at the shop was very nice.",
+            "blanks": [
+              "rel2"
+            ],
+            "context_vi": "Đồ vật → which, người → who. Nhìn danh từ ngay trước chỗ trống",
+            "audioText": "The bike which I saw at the shop was very nice."
+          },
+          {
+            "id": "thing-in-photo",
+            "text": "Look at the {item} {rel2} is in this photo.",
+            "blanks": [
+              "rel2"
+            ],
+            "context_vi": "Chọn which cho đồ vật, who cho người; chỉ dùng hai từ này",
+            "audioText": "Look at the cake which is in this photo."
+          }
+        ],
+        "slots": {
+          "item": [
+            "bike",
+            "kite",
+            "dress",
+            "cake",
+            "clock",
+            "hat",
+            "man",
+            "woman",
+            "girl"
+          ],
+          "rel2": [
+            "which",
+            "who"
+          ]
+        },
+        "answerKey": {
+          "thing-at-shop": {
+            "rel2": {
+              "__cond": "item",
+              "bike": "which",
+              "kite": "which",
+              "dress": "which",
+              "cake": "which",
+              "clock": "which",
+              "hat": "which",
+              "man": "who",
+              "woman": "who",
+              "girl": "who"
+            }
+          },
+          "thing-in-photo": {
+            "rel2": {
+              "__cond": "item",
+              "bike": "which",
+              "kite": "which",
+              "dress": "which",
+              "cake": "which",
+              "clock": "which",
+              "hat": "which",
+              "man": "who",
+              "woman": "who",
+              "girl": "who"
+            }
+          }
+        },
+        "distractors": [
+          "The bike who I saw at the shop was very nice.",
+          "The clock who I saw at the shop was very nice.",
+          "Look at the kite who is in this photo.",
+          "Look at the hat who is in this photo.",
+          "The dress which I saw it at the shop was very nice.",
+          "Look at the girl who she is in this photo."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"which\" dùng để nói thêm về ĐỒ VẬT hoặc CON VẬT: \"The kite which we made is very big.\" Còn với NGƯỜI thì em đổi sang \"who\": \"The girl who made this kite is my sister.\" Hai lỗi các bạn hay mắc: (1) dùng \"who\" cho đồ vật — sai: \"the bike who I saw\", đúng: \"the bike which I saw\"; (2) viết thêm \"it / he / she\" sau đại từ quan hệ — sai: \"the dress which I saw it\", đúng: \"the dress which I saw\", vì \"which\" đã thay cho \"it\" rồi. Mẹo nhỏ: chỉ tay vào danh từ ngay trước chỗ trống rồi tự hỏi \"cái này là người hay là vật?\" — có câu trả lời là chọn được ngay."
+    },
+    {
+      "id": "whose-possession",
+      "title_vi": "\"whose\" — nói cái đó CỦA AI",
+      "explain_vi": "Sau \"whose\" là một DANH TỪ vì nó nói về cái thuộc về ai (a boy whose father...). Sau \"who\" là một ĐỘNG TỪ (a boy who plays...). Nhìn chữ ngay sau chỗ trống.",
+      "examples": [
+        "I know a boy whose father is famous.",
+        "I know a girl whose sister is famous.",
+        "I know a girl who plays the guitar very well."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "whose-family-famous",
+            "text": "I know a {person} {rel3} {family} is famous.",
+            "blanks": [
+              "rel3"
+            ],
+            "context_vi": "Ngay sau chỗ trống là một DANH TỪ chỉ người trong gia đình, nên đây là câu nói về sở hữu",
+            "audioText": "I know a boy whose father is famous."
+          },
+          {
+            "id": "who-does-talent",
+            "text": "I know a {person} {rel3} {talent}.",
+            "blanks": [
+              "rel3"
+            ],
+            "context_vi": "Ngay sau chỗ trống là một ĐỘNG TỪ chỉ việc bạn ấy làm, không phải danh từ sở hữu",
+            "audioText": "I know a girl who plays the guitar very well."
+          }
+        ],
+        "slots": {
+          "person": [
+            "boy",
+            "girl",
+            "man",
+            "woman",
+            "student",
+            "teacher"
+          ],
+          "family": [
+            "father",
+            "mother",
+            "brother",
+            "sister",
+            "uncle",
+            "aunt"
+          ],
+          "talent": [
+            "plays the guitar very well",
+            "draws beautiful pictures",
+            "swims every morning",
+            "sings in our school band"
+          ],
+          "rel3": [
+            "whose",
+            "who",
+            "which"
+          ]
+        },
+        "answerKey": {
+          "whose-family-famous": {
+            "rel3": {
+              "__cond": "family",
+              "father": "whose",
+              "mother": "whose",
+              "brother": "whose",
+              "sister": "whose",
+              "uncle": "whose",
+              "aunt": "whose"
+            }
+          },
+          "who-does-talent": {
+            "rel3": {
+              "__cond": "talent",
+              "plays the guitar very well": "who",
+              "draws beautiful pictures": "who",
+              "swims every morning": "who",
+              "sings in our school band": "who"
+            }
+          }
+        },
+        "distractors": [
+          "I know a boy who father is famous.",
+          "I know a girl who mother is famous.",
+          "I know a man which uncle is famous.",
+          "I know a boy whose plays the guitar very well.",
+          "I know a girl whose sings in our school band.",
+          "I know a boy whose his father is famous."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"whose\" nghĩa là \"của người ấy\". Em dùng nó khi muốn nói một thứ THUỘC VỀ ai: \"I know a girl. Her bike is new.\" → \"I know a girl whose bike is new.\" Dấu hiệu nhận ra rất rõ: ngay sau \"whose\" luôn là một DANH TỪ (whose father, whose bike, whose dog), còn ngay sau \"who\" luôn là một ĐỘNG TỪ (who swims, who plays, who won). Vì \"whose\" đã mang nghĩa sở hữu nên em KHÔNG viết thêm his / her nữa: nói \"a boy whose father is famous\", không nói \"a boy whose his father is famous\". Và đừng dùng \"who\" thay cho \"whose\": \"a boy who father is famous\" là sai."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "the-people-i-know",
+      "title": "The people I know",
+      "title_vi": "Những người mà em biết",
+      "text": "The woman who lives next door is a doctor. She has a big dog which barks every morning. My best friend is a boy whose father works at the same hospital. He has a new kite which we fly in the park on Sunday. The photo which is on my desk shows all of us together.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Người phụ nữ ở nhà bên cạnh là bác sĩ, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "The woman who lives next door is a doctor."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Con chó làm gì mỗi buổi sáng?",
+          "type": "mcq",
+          "choices": [
+            "It barks every morning.",
+            "It flies the kite every morning.",
+            "It sleeps in the park every morning."
+          ],
+          "answer": 0,
+          "audioText": "What does the dog do every morning?"
+        }
+      ]
+    }
+  ]
+}

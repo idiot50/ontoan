@@ -1,0 +1,503 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 409,
+  "lesson": 9,
+  "topic": "Prepositions of place, movement and time",
+  "topic_vi": "Giới từ nơi chốn · chuyển động · thời gian",
+  "vocab": [
+    {
+      "word": "box",
+      "vi": "cái hộp",
+      "icon": "📦",
+      "example": "The cat is in the box.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "kitchen",
+      "vi": "nhà bếp",
+      "icon": "🍽️",
+      "example": "My mother is in the kitchen.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "classroom",
+      "vi": "lớp học",
+      "icon": "🏫",
+      "example": "My brother is in the classroom.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "bus",
+      "vi": "xe buýt",
+      "icon": "🚌",
+      "example": "Nam is on the bus.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "hill",
+      "vi": "đồi",
+      "icon": "⛰️",
+      "example": "The dog runs up the hill.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "river",
+      "vi": "con sông",
+      "icon": "🌊",
+      "example": "The boy swims across the river.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "tunnel",
+      "vi": "đường hầm",
+      "icon": "🚇",
+      "example": "The train goes through the tunnel.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "under",
+      "vi": "ở dưới",
+      "icon": "⬇️",
+      "example": "The cat is under the table.",
+      "partOfSpeech": "preposition",
+      "audio": ""
+    },
+    {
+      "word": "behind",
+      "vi": "ở phía sau",
+      "icon": "🔙",
+      "example": "The cat is behind the box.",
+      "partOfSpeech": "preposition",
+      "audio": ""
+    },
+    {
+      "word": "next to",
+      "vi": "ở bên cạnh",
+      "icon": "↔️",
+      "example": "My desk is next to the door.",
+      "partOfSpeech": "preposition",
+      "audio": ""
+    },
+    {
+      "word": "into",
+      "vi": "vào trong",
+      "icon": "🚪",
+      "example": "Lan walks into the room.",
+      "partOfSpeech": "preposition",
+      "audio": ""
+    },
+    {
+      "word": "night",
+      "vi": "buổi tối, ban đêm",
+      "icon": "🌙",
+      "example": "We watch TV at night.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "prep-place",
+      "title_vi": "Giới từ nơi chốn: at · in · on · under · behind · next to",
+      "explain_vi": "at + home / school; in + phòng hoặc vườn (in the kitchen); on + xe buýt hoặc tàu (on the bus). Vị trí: in (trong), on (trên), under (dưới), next to (cạnh), behind (sau).",
+      "examples": [
+        "My brother is at home now.",
+        "My sister is in the kitchen now.",
+        "Nam is on the bus now.",
+        "The cat is below the box, so it is under the box."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "place-at-in-on",
+            "text": "{subjP} is {prepA} {placeA} now.",
+            "blanks": [
+              "prepA"
+            ],
+            "context_vi": "Ba giới từ at / in / on đi với những loại nơi khác nhau — chọn cụm đúng.",
+            "audioText": "My brother is at home now."
+          },
+          {
+            "id": "place-synonym",
+            "text": "The cat is {glossB}, so it is {prepB} the box.",
+            "blanks": [
+              "prepB"
+            ],
+            "context_vi": "Đọc phần đầu câu để biết vị trí, rồi chọn giới từ có nghĩa giống hệt.",
+            "audioText": "The cat is below the box, so it is under the box."
+          }
+        ],
+        "slots": {
+          "subjP": [
+            "My sister",
+            "My brother",
+            "My mother",
+            "My father",
+            "Nam",
+            "Lan"
+          ],
+          "placeA": [
+            "home",
+            "school",
+            "the kitchen",
+            "the garden",
+            "the classroom",
+            "the bus",
+            "the train"
+          ],
+          "prepA": [
+            "at",
+            "in",
+            "on"
+          ],
+          "glossB": [
+            "inside the box",
+            "on top of the box",
+            "below the box",
+            "beside the box",
+            "at the back of the box",
+            "at the front of the box"
+          ],
+          "prepB": [
+            "in",
+            "on",
+            "under",
+            "next to",
+            "behind",
+            "in front of"
+          ]
+        },
+        "answerKey": {
+          "place-at-in-on": {
+            "prepA": {
+              "__cond": "placeA",
+              "home": "at",
+              "school": "at",
+              "the kitchen": "in",
+              "the garden": "in",
+              "the classroom": "in",
+              "the bus": "on",
+              "the train": "on"
+            }
+          },
+          "place-synonym": {
+            "prepB": {
+              "__cond": "glossB",
+              "inside the box": "in",
+              "on top of the box": "on",
+              "below the box": "under",
+              "beside the box": "next to",
+              "at the back of the box": "behind",
+              "at the front of the box": "in front of"
+            }
+          }
+        },
+        "distractors": [
+          "My brother is in home now.",
+          "My sister is on school now.",
+          "Nam is at the kitchen now.",
+          "Lan is in the bus now.",
+          "The cat is below the box, so it is on the box.",
+          "The cat is inside the box, so it is under the box."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Giới từ nơi chốn cho biết một người hay một vật Ở ĐÂU. Nhóm thứ nhất là ba cụm cố định phải học thuộc: \"at\" đi với home, school, work (at home, at school); \"in\" đi với không gian có bao quanh — in the kitchen, in the garden, in the classroom, in Ha Noi; \"on\" đi với phương tiện công cộng và bề mặt — on the bus, on the train, on the wall, on the floor. Nhóm thứ hai là vị trí so với vật khác: in (ở trong), on (ở trên), under (ở dưới), next to (ở bên cạnh), behind (ở phía sau), in front of (ở phía trước), between (ở giữa hai vật). Trẻ Việt hay nói \"in home\" hoặc \"in the bus\" — hãy nhớ đúng là \"at home\" và \"on the bus\"."
+    },
+    {
+      "id": "prep-movement",
+      "title_vi": "Giới từ chuyển động: into · out of · up · down · across · through",
+      "explain_vi": "Giới từ chuyển động cho biết đi theo hướng nào: into (vào trong), out of (ra khỏi), up (lên), down (xuống), across (băng qua bề mặt), through (xuyên qua bên trong).",
+      "examples": [
+        "First Nam is outside the room. Then he walks into the room.",
+        "First Lan is inside the room. Then she walks out of the room.",
+        "The dog wants to reach the top of the hill. So it runs up the hill.",
+        "There is a long tunnel here. The boy goes through it to the other side."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "move-into",
+            "text": "First {mover} is outside the room. Then {pronK} walks {prepInto} the room.",
+            "blanks": [
+              "prepInto"
+            ],
+            "context_vi": "Lúc đầu ở NGOÀI phòng, sau đó đi vào trong — chọn giới từ chỉ đúng hướng đó.",
+            "audioText": "First Nam is outside the room. Then he walks into the room."
+          },
+          {
+            "id": "move-out-of",
+            "text": "First {mover} is inside the room. Then {pronK} walks {prepOut} the room.",
+            "blanks": [
+              "prepOut"
+            ],
+            "context_vi": "Lúc đầu ở TRONG phòng, sau đó đi ra ngoài — chọn giới từ chỉ đúng hướng đó.",
+            "audioText": "First Lan is inside the room. Then she walks out of the room."
+          },
+          {
+            "id": "move-up-down",
+            "text": "{clueUD} So it runs {prepUD} the hill.",
+            "blanks": [
+              "prepUD"
+            ],
+            "context_vi": "Con chó muốn tới đâu? Lên đỉnh đồi thì \"up\", xuống chân đồi thì \"down\".",
+            "audioText": "The dog wants to reach the top of the hill. So it runs up the hill."
+          },
+          {
+            "id": "move-across-through",
+            "text": "{clueAT} The boy goes {prepAT} it to the other side.",
+            "blanks": [
+              "prepAT"
+            ],
+            "context_vi": "Qua mặt sông rộng thì \"across\"; đi lọt vào bên trong đường hầm thì \"through\".",
+            "audioText": "There is a wide river here. The boy goes across it to the other side."
+          }
+        ],
+        "slots": {
+          "mover": [
+            "Nam",
+            "Lan",
+            "my brother",
+            "my sister",
+            "the cat",
+            "the dog"
+          ],
+          "pronK": [
+            "he",
+            "she",
+            "it"
+          ],
+          "prepInto": [
+            "into",
+            "out of",
+            "up",
+            "down"
+          ],
+          "prepOut": [
+            "into",
+            "out of",
+            "up",
+            "down"
+          ],
+          "clueUD": [
+            "The dog wants to reach the top of the hill.",
+            "The dog wants to reach the bottom of the hill."
+          ],
+          "prepUD": [
+            "up",
+            "down"
+          ],
+          "clueAT": [
+            "There is a wide river here.",
+            "There is a long tunnel here."
+          ],
+          "prepAT": [
+            "across",
+            "through"
+          ]
+        },
+        "answerKey": {
+          "move-into": {
+            "prepInto": "into",
+            "pronK": {
+              "__cond": "mover",
+              "Nam": "he",
+              "Lan": "she",
+              "my brother": "he",
+              "my sister": "she",
+              "the cat": "it",
+              "the dog": "it"
+            }
+          },
+          "move-out-of": {
+            "prepOut": "out of",
+            "pronK": {
+              "__cond": "mover",
+              "Nam": "he",
+              "Lan": "she",
+              "my brother": "he",
+              "my sister": "she",
+              "the cat": "it",
+              "the dog": "it"
+            }
+          },
+          "move-up-down": {
+            "prepUD": {
+              "__cond": "clueUD",
+              "The dog wants to reach the top of the hill.": "up",
+              "The dog wants to reach the bottom of the hill.": "down"
+            }
+          },
+          "move-across-through": {
+            "prepAT": {
+              "__cond": "clueAT",
+              "There is a wide river here.": "across",
+              "There is a long tunnel here.": "through"
+            }
+          }
+        },
+        "distractors": [
+          "First Nam is outside the room. Then he walks out of the room.",
+          "First Lan is inside the room. Then she walks into the room.",
+          "The dog wants to reach the top of the hill. So it runs down the hill.",
+          "The dog wants to reach the bottom of the hill. So it runs up the hill.",
+          "There is a wide river here. The boy goes through it to the other side.",
+          "There is a long tunnel here. The boy goes across it to the other side."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Giới từ nơi chốn nói VẬT Ở ĐÂU, còn giới từ chuyển động nói VẬT ĐI THEO HƯỚNG NÀO. Hãy nhớ từng cặp ngược nhau: into (đi vào trong) ↔ out of (đi ra khỏi); up (đi lên) ↔ down (đi xuống); to (đi tới) ↔ from (đi từ). Hai từ dễ lẫn nhất là across và through: \"across\" là băng qua BỀ MẶT của cái gì đó — swim across the river, walk across the street; còn \"through\" là xuyên qua BÊN TRONG của cái gì đó — go through the tunnel, walk through the forest. Ngoài ra còn \"along\" là đi dọc theo — walk along the river, và \"over\" là vượt qua phía trên — jump over the wall."
+    },
+    {
+      "id": "prep-time",
+      "title_vi": "Giới từ thời gian: at · on · in",
+      "explain_vi": "at + giờ và cụm \"at night\"; on + thứ hoặc ngày (on Monday); in + tháng, mùa, buổi trong ngày (in July, in the morning).",
+      "examples": [
+        "The film starts at seven o'clock.",
+        "The film starts on Monday evening.",
+        "We often go swimming in July.",
+        "We often go swimming at night."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "time-clock-day",
+            "text": "The film starts {prepT1} {timeT1}.",
+            "blanks": [
+              "prepT1"
+            ],
+            "context_vi": "Đọc cụm thời gian: đó là một GIỜ cụ thể hay một NGÀY trong tuần?",
+            "audioText": "The film starts at seven o'clock."
+          },
+          {
+            "id": "time-month-part",
+            "text": "We often go swimming {prepT2} {timeT2}.",
+            "blanks": [
+              "prepT2"
+            ],
+            "context_vi": "Đọc cụm thời gian: đó là tháng, mùa, một buổi trong ngày, hay là ban đêm?",
+            "audioText": "We often go swimming in the morning."
+          }
+        ],
+        "slots": {
+          "timeT1": [
+            "seven o'clock",
+            "half past eight",
+            "Monday",
+            "Friday",
+            "Sunday",
+            "Monday evening"
+          ],
+          "prepT1": [
+            "at",
+            "on",
+            "in"
+          ],
+          "timeT2": [
+            "July",
+            "August",
+            "summer",
+            "the morning",
+            "the afternoon",
+            "the evening",
+            "night"
+          ],
+          "prepT2": [
+            "at",
+            "on",
+            "in"
+          ]
+        },
+        "answerKey": {
+          "time-clock-day": {
+            "prepT1": {
+              "__cond": "timeT1",
+              "seven o'clock": "at",
+              "half past eight": "at",
+              "Monday": "on",
+              "Friday": "on",
+              "Sunday": "on",
+              "Monday evening": "on"
+            }
+          },
+          "time-month-part": {
+            "prepT2": {
+              "__cond": "timeT2",
+              "July": "in",
+              "August": "in",
+              "summer": "in",
+              "the morning": "in",
+              "the afternoon": "in",
+              "the evening": "in",
+              "night": "at"
+            }
+          }
+        },
+        "distractors": [
+          "The film starts in seven o'clock.",
+          "The film starts at Monday.",
+          "The film starts in Monday evening.",
+          "We often go swimming on July.",
+          "We often go swimming in night.",
+          "We often go swimming at the morning."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Ba giới từ thời gian đi từ hẹp đến rộng. \"at\" dùng cho một ĐIỂM thời gian: at seven o'clock, at half past eight, at midday — và hai cụm đặc biệt phải học thuộc là at night, at the weekend. \"on\" dùng cho một NGÀY cụ thể: on Monday, on Sunday morning, on 2 September, on my birthday. \"in\" dùng cho một KHOẢNG dài: in July, in summer, in 2026, và cho các buổi trong ngày — in the morning, in the afternoon, in the evening. Hãy để ý điểm bẫy: buổi sáng, trưa, chiều dùng \"in\" nhưng ban đêm lại dùng \"at\" — in the morning nhưng at night."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "the-way-to-school",
+      "title": "The way to school",
+      "title_vi": "Đường đến trường",
+      "text": "My school is on Nguyen Trai Street. Lessons start at seven o'clock in the morning. On Monday we always have English. My classroom is on the second floor, next to the library. After school I walk down the hill and across a small bridge to get home. In July we do not go to school.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Giờ học bắt đầu lúc bảy giờ sáng, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "Lessons start at seven o'clock in the morning."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Lớp học của bạn ấy ở đâu?",
+          "type": "mcq",
+          "choices": [
+            "on the second floor",
+            "under the library",
+            "in the garden"
+          ],
+          "answer": 0,
+          "audioText": "Where is the classroom?"
+        }
+      ]
+    }
+  ]
+}

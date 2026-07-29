@@ -1,0 +1,444 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 403,
+  "lesson": 3,
+  "topic": "Possessives and demonstratives",
+  "topic_vi": "Sở hữu & từ chỉ định",
+  "vocab": [
+    {
+      "word": "bag",
+      "vi": "cái cặp",
+      "icon": "🎒",
+      "example": "This bag is mine.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "book",
+      "vi": "quyển sách",
+      "icon": "📕",
+      "example": "That book is new.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "pen",
+      "vi": "cây bút",
+      "icon": "🖊️",
+      "example": "These pens are red.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "ruler",
+      "vi": "cái thước",
+      "icon": "📐",
+      "example": "Is this your ruler?",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "desk",
+      "vi": "cái bàn học",
+      "icon": "🪑",
+      "example": "Those desks are old.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "cat",
+      "vi": "con mèo",
+      "icon": "🐱",
+      "example": "Her cat is white.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "teacher",
+      "vi": "giáo viên",
+      "icon": "👩‍🏫",
+      "example": "The teacher's desk is big.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "parents",
+      "vi": "bố mẹ",
+      "icon": "👨‍👩‍👦",
+      "example": "Their parents are teachers.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "mine",
+      "vi": "của tôi",
+      "icon": "🙋",
+      "example": "This bag is mine.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "blue",
+      "vi": "màu xanh",
+      "icon": "🔵",
+      "example": "His bag is blue.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "possessive-adjectives",
+      "title_vi": "Tính từ sở hữu: my · your · his · her · our · their",
+      "explain_vi": "Tính từ sở hữu đứng trước danh từ và không đổi theo số nhiều: his bag, his bags. Một người nam → His, một người nữ → Her, nhiều người có mình → Our, còn lại → Their.",
+      "examples": [
+        "My brother has a new bag. His bag is blue.",
+        "My sister has a new bag. Her bag is blue.",
+        "My parents have new bags. Their bags are blue."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "one-owner-poss",
+            "text": "{person} has a new bag. {poss} bag is blue.",
+            "blanks": [
+              "poss"
+            ],
+            "context_vi": "Người chủ là MỘT người — chọn \"his\" hoặc \"her\" cho khớp.",
+            "audioText": "My sister has a new bag. Her bag is blue."
+          },
+          {
+            "id": "group-owner-poss",
+            "text": "{group} have new bags. {possPl} bags are blue.",
+            "blanks": [
+              "possPl"
+            ],
+            "context_vi": "Người chủ là NHIỀU người. Có \"and I\" thì dùng \"Our\", còn lại dùng \"Their\".",
+            "audioText": "My parents have new bags. Their bags are blue."
+          }
+        ],
+        "slots": {
+          "person": [
+            "My brother",
+            "My father",
+            "My uncle",
+            "My sister",
+            "My mother",
+            "My aunt"
+          ],
+          "poss": [
+            "His",
+            "Her"
+          ],
+          "group": [
+            "My parents",
+            "My sisters",
+            "The children",
+            "My friend and I",
+            "My brother and I"
+          ],
+          "possPl": [
+            "Their",
+            "Our"
+          ]
+        },
+        "answerKey": {
+          "one-owner-poss": {
+            "poss": {
+              "__cond": "person",
+              "My brother": "His",
+              "My father": "His",
+              "My uncle": "His",
+              "My sister": "Her",
+              "My mother": "Her",
+              "My aunt": "Her"
+            }
+          },
+          "group-owner-poss": {
+            "possPl": {
+              "__cond": "group",
+              "My parents": "Their",
+              "My sisters": "Their",
+              "The children": "Their",
+              "My friend and I": "Our",
+              "My brother and I": "Our"
+            }
+          }
+        },
+        "distractors": [
+          "My brother has a new bag. Her bag is blue.",
+          "My sister has a new bag. His bag is blue.",
+          "My parents have new bags. Our bags are blue.",
+          "My brother and I have new bags. Their bags are blue.",
+          "My mother has a new bag. Their bag is blue.",
+          "The children have new bags. Our bags are blue."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Tính từ sở hữu cho biết cái đó CỦA AI, và luôn đứng trước danh từ: my bag, his bag, their bags. Chọn theo người chủ: tôi → my; bạn → your; một người nam → his; một người nữ → her; chúng tôi (có tôi ở trong) → our; họ → their. Tính từ sở hữu KHÔNG đổi theo số nhiều: his bag và his bags đều dùng \"his\"."
+    },
+    {
+      "id": "possessive-s",
+      "title_vi": "Sở hữu cách với \"'s\"",
+      "explain_vi": "Thêm \"'s\" vào sau người chủ rồi mới đến vật: Lan's bag. Thứ tự luôn là NGƯỜI + 's + VẬT.",
+      "examples": [
+        "This bag belongs to Lan. It is Lan's bag.",
+        "I know my sister. This is my sister's cat.",
+        "This desk belongs to the teacher. It is the teacher's desk."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "belongs-to-s",
+            "text": "This bag belongs to {owner}. It is {ownerS} bag.",
+            "blanks": [
+              "ownerS"
+            ],
+            "context_vi": "Thêm \"'s\" vào sau người chủ.",
+            "audioText": "This bag belongs to Lan. It is Lan's bag."
+          },
+          {
+            "id": "know-owner-s",
+            "text": "I know {owner}. This is {ownerS} cat.",
+            "blanks": [
+              "ownerS"
+            ],
+            "context_vi": "Con mèo thuộc về ai thì thêm \"'s\" vào sau người đó.",
+            "audioText": "I know my sister. This is my sister's cat."
+          }
+        ],
+        "slots": {
+          "owner": [
+            "Lan",
+            "Minh",
+            "my sister",
+            "my brother",
+            "the teacher",
+            "my friend"
+          ],
+          "ownerS": [
+            "Lan's",
+            "Minh's",
+            "my sister's",
+            "my brother's",
+            "the teacher's",
+            "my friend's"
+          ]
+        },
+        "answerKey": {
+          "belongs-to-s": {
+            "ownerS": {
+              "__cond": "owner",
+              "Lan": "Lan's",
+              "Minh": "Minh's",
+              "my sister": "my sister's",
+              "my brother": "my brother's",
+              "the teacher": "the teacher's",
+              "my friend": "my friend's"
+            }
+          },
+          "know-owner-s": {
+            "ownerS": {
+              "__cond": "owner",
+              "Lan": "Lan's",
+              "Minh": "Minh's",
+              "my sister": "my sister's",
+              "my brother": "my brother's",
+              "the teacher": "the teacher's",
+              "my friend": "my friend's"
+            }
+          }
+        },
+        "distractors": [
+          "This bag belongs to Lan. It is Lan bag.",
+          "This bag belongs to Lan. It is bag of Lan.",
+          "I know my sister. This is my sister cat.",
+          "I know Minh. This is cat of Minh.",
+          "This bag belongs to Minh. It is Minhs bag.",
+          "I know the teacher. This is the teacher cat."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Muốn nói một vật thuộc về ai, em thêm \"'s\" vào sau tên người rồi mới đến vật: Lan's bag (cái cặp của Lan), my sister's cat (con mèo của chị tôi). Thứ tự luôn là NGƯỜI + 's + VẬT. Nếu người chủ ở số nhiều đã có \"-s\" thì chỉ thêm dấu nháy: my parents' car."
+    },
+    {
+      "id": "demonstratives",
+      "title_vi": "Từ chỉ định: this · these · that · those",
+      "explain_vi": "Gần + một → this, gần + nhiều → these, xa + một → that, xa + nhiều → those. \"here\" là gần, \"over there\" là xa; this/that đi với is, these/those đi với are.",
+      "examples": [
+        "This book here is mine.",
+        "These books here are mine.",
+        "That desk over there is new.",
+        "Those desks over there are new."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "near-this-these",
+            "text": "{demNear} {thing} here {beNear} mine.",
+            "blanks": [
+              "demNear"
+            ],
+            "context_vi": "\"here\" nghĩa là Ở ĐÂY (gần). Nhìn danh từ là số ít hay số nhiều để chọn this/these.",
+            "audioText": "This book here is mine."
+          },
+          {
+            "id": "far-that-those",
+            "text": "{demFar} {thing} over there {beFar} new.",
+            "blanks": [
+              "demFar"
+            ],
+            "context_vi": "\"over there\" nghĩa là Ở KIA (xa). Nhìn danh từ là số ít hay số nhiều để chọn that/those.",
+            "audioText": "That desk over there is new."
+          }
+        ],
+        "slots": {
+          "thing": [
+            "book",
+            "books",
+            "pen",
+            "pens",
+            "bag",
+            "bags",
+            "ruler",
+            "rulers",
+            "desk",
+            "desks"
+          ],
+          "demNear": [
+            "This",
+            "These"
+          ],
+          "demFar": [
+            "That",
+            "Those"
+          ],
+          "beNear": [
+            "is",
+            "are"
+          ],
+          "beFar": [
+            "is",
+            "are"
+          ]
+        },
+        "answerKey": {
+          "near-this-these": {
+            "demNear": {
+              "__cond": "thing",
+              "book": "This",
+              "books": "These",
+              "pen": "This",
+              "pens": "These",
+              "bag": "This",
+              "bags": "These",
+              "ruler": "This",
+              "rulers": "These",
+              "desk": "This",
+              "desks": "These"
+            },
+            "beNear": {
+              "__cond": "thing",
+              "book": "is",
+              "books": "are",
+              "pen": "is",
+              "pens": "are",
+              "bag": "is",
+              "bags": "are",
+              "ruler": "is",
+              "rulers": "are",
+              "desk": "is",
+              "desks": "are"
+            }
+          },
+          "far-that-those": {
+            "demFar": {
+              "__cond": "thing",
+              "book": "That",
+              "books": "Those",
+              "pen": "That",
+              "pens": "Those",
+              "bag": "That",
+              "bags": "Those",
+              "ruler": "That",
+              "rulers": "Those",
+              "desk": "That",
+              "desks": "Those"
+            },
+            "beFar": {
+              "__cond": "thing",
+              "book": "is",
+              "books": "are",
+              "pen": "is",
+              "pens": "are",
+              "bag": "is",
+              "bags": "are",
+              "ruler": "is",
+              "rulers": "are",
+              "desk": "is",
+              "desks": "are"
+            }
+          }
+        },
+        "distractors": [
+          "These book here is mine.",
+          "This books here are mine.",
+          "That books over there is new.",
+          "Those desk over there are new.",
+          "This pens here is mine.",
+          "Those ruler over there are new."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Chọn theo hai điều: GẦN hay XA, và MỘT hay NHIỀU. Gần + một → \"this\"; gần + nhiều → \"these\"; xa + một → \"that\"; xa + nhiều → \"those\". Nhớ đi kèm động từ cho đúng: this/that đi với \"is\", these/those đi với \"are\". Từ \"here\" (ở đây) báo hiệu GẦN, còn \"over there\" (ở kia) báo hiệu XA."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "in-the-classroom",
+      "title": "In the classroom",
+      "title_vi": "Trong lớp học",
+      "text": "Look at our classroom. This bag here is mine. That bag over there is Lan's. Her bag is blue and mine is green. Those desks near the window are new, but my desk is old. The teacher's desk is next to the door.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Cái cặp màu xanh dương là của Lan, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "Lan's bag is blue."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Những cái bàn ở gần cửa sổ thì thế nào?",
+          "type": "mcq",
+          "choices": [
+            "They are new.",
+            "They are old.",
+            "They are green."
+          ],
+          "answer": 0,
+          "audioText": "The desks near the window are new."
+        }
+      ]
+    }
+  ]
+}

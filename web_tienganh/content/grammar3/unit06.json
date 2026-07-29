@@ -1,0 +1,436 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 406,
+  "lesson": 6,
+  "topic": "Indefinite pronouns",
+  "topic_vi": "Đại từ bất định",
+  "vocab": [
+    {
+      "word": "somebody",
+      "vi": "ai đó, có người",
+      "icon": "🙋",
+      "example": "Somebody is at the door.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "anybody",
+      "vi": "ai (trong câu phủ định, câu hỏi)",
+      "icon": "🤷",
+      "example": "I cannot see anybody in the garden.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "nobody",
+      "vi": "không ai cả",
+      "icon": "🚷",
+      "example": "Nobody is in the kitchen.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "something",
+      "vi": "cái gì đó",
+      "icon": "🎁",
+      "example": "I want something to eat.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "anything",
+      "vi": "cái gì (trong câu phủ định, câu hỏi)",
+      "icon": "❔",
+      "example": "I cannot find anything in my bag.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "nothing",
+      "vi": "không có gì cả",
+      "icon": "⭕",
+      "example": "There is nothing in the box.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "everybody",
+      "vi": "mọi người",
+      "icon": "👨‍👩‍👧‍👦",
+      "example": "Everybody in my class is happy.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "everything",
+      "vi": "mọi thứ",
+      "icon": "🌈",
+      "example": "Everything in my bag is new.",
+      "partOfSpeech": "pronoun",
+      "audio": ""
+    },
+    {
+      "word": "everywhere",
+      "vi": "khắp mọi nơi",
+      "icon": "🗺️",
+      "example": "We looked for the cat everywhere.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "garden",
+      "vi": "khu vườn",
+      "icon": "🌳",
+      "example": "The garden is empty.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "noise",
+      "vi": "tiếng động",
+      "icon": "🔔",
+      "example": "I can hear a noise.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "empty",
+      "vi": "trống, rỗng",
+      "icon": "🕳️",
+      "example": "My bag is empty.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "some-any-no-body",
+      "title_vi": "Nói về NGƯỜI: somebody · anybody · nobody",
+      "explain_vi": "Câu khẳng định dùng \"somebody\" (có ai đó); câu phủ định có \"cannot / not\" dùng \"anybody\"; muốn nói \"không ai cả\" thì dùng \"nobody\" và bỏ \"not\" đi.",
+      "examples": [
+        "I can hear a noise. Somebody is knocking at the door.",
+        "I cannot see anybody in the garden.",
+        "The garden is empty. Nobody is there."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "cannot-see-anybody",
+            "text": "I cannot see {ip} in the {place}.",
+            "blanks": [
+              "ip"
+            ],
+            "context_vi": "Câu đã có \"cannot\" nên dùng \"anybody\"; thêm \"nobody\" nữa là phủ định hai lần, sai.",
+            "audioText": "I cannot see anybody in the garden."
+          },
+          {
+            "id": "empty-nobody",
+            "text": "The {place} is empty. {ipCap} is there.",
+            "blanks": [
+              "ipCap"
+            ],
+            "context_vi": "Phòng trống không — chọn \"Somebody\", \"Anybody\" hay \"Nobody\" cho đúng nghĩa?",
+            "audioText": "The garden is empty. Nobody is there."
+          },
+          {
+            "id": "noise-somebody",
+            "text": "I can hear a noise. {ipCap} is knocking at the {entrance}.",
+            "blanks": [
+              "ipCap"
+            ],
+            "context_vi": "Có tiếng động, và đây là câu khẳng định — chọn \"Somebody\", \"Anybody\" hay \"Nobody\"?",
+            "audioText": "I can hear a noise. Somebody is knocking at the door."
+          }
+        ],
+        "slots": {
+          "ip": [
+            "somebody",
+            "anybody",
+            "nobody"
+          ],
+          "ipCap": [
+            "Somebody",
+            "Anybody",
+            "Nobody"
+          ],
+          "place": [
+            "garden",
+            "kitchen",
+            "classroom",
+            "park"
+          ],
+          "entrance": [
+            "door",
+            "window",
+            "gate"
+          ]
+        },
+        "answerKey": {
+          "cannot-see-anybody": {
+            "ip": "anybody"
+          },
+          "empty-nobody": {
+            "ipCap": "Nobody"
+          },
+          "noise-somebody": {
+            "ipCap": "Somebody"
+          }
+        },
+        "distractors": [
+          "I cannot see nobody in the garden.",
+          "I cannot see nothing in the kitchen.",
+          "The garden is empty. Nobody are there.",
+          "The park is empty. Anybody is there.",
+          "I can hear a noise. Anybody is knocking at the door.",
+          "I can hear a noise. Somebody are knocking at the door."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Ba từ này đều nói về NGƯỜI mà ta không biết rõ là ai. \"Somebody\" (= someone) dùng trong câu khẳng định: Somebody is at the door — có ai đó ở ngoài cửa. \"Anybody\" (= anyone) dùng trong câu phủ định và câu hỏi: I cannot see anybody. / Can you see anybody? \"Nobody\" (= no one) tự nó đã mang nghĩa phủ định \"không ai cả\", nên câu KHÔNG được có \"not\" nữa: Nobody is there (đúng) — I cannot see nobody (sai, phủ định hai lần). Một điểm nữa rất hay quên: cả ba từ đều là SỐ ÍT, luôn đi với \"is\" chứ không phải \"are\" — Everybody is happy, Nobody is there."
+    },
+    {
+      "id": "thing-compounds",
+      "title_vi": "Nói về VẬT: something · anything · nothing",
+      "explain_vi": "Câu khẳng định dùng \"something\"; câu phủ định có \"cannot / not\" dùng \"anything\"; muốn nói \"không có gì cả\" thì dùng \"nothing\" và bỏ \"not\" đi.",
+      "examples": [
+        "I am hungry. I want something to eat.",
+        "I cannot find anything in my bag.",
+        "My bag is empty. There is nothing in it."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "cannot-find-anything",
+            "text": "I cannot find {th} in my {place2}.",
+            "blanks": [
+              "th"
+            ],
+            "context_vi": "Câu đã có \"cannot\" nên dùng \"anything\"; thêm \"nothing\" nữa là phủ định hai lần, sai.",
+            "audioText": "I cannot find anything in my bag."
+          },
+          {
+            "id": "empty-nothing",
+            "text": "My {container} is empty. There is {th} in it.",
+            "blanks": [
+              "th"
+            ],
+            "context_vi": "Chỗ đó trống không — chọn \"something\", \"anything\" hay \"nothing\"?",
+            "audioText": "My bag is empty. There is nothing in it."
+          },
+          {
+            "id": "hungry-something",
+            "text": "I am {state}. I want {th} to {eatdrink}.",
+            "blanks": [
+              "th"
+            ],
+            "context_vi": "Đang đói/khát và MUỐN có, câu khẳng định — chọn \"something\", \"anything\" hay \"nothing\"?",
+            "audioText": "I am hungry. I want something to eat."
+          }
+        ],
+        "slots": {
+          "th": [
+            "something",
+            "anything",
+            "nothing"
+          ],
+          "container": [
+            "bag",
+            "box",
+            "cup",
+            "basket"
+          ],
+          "place2": [
+            "bag",
+            "box",
+            "room",
+            "pocket"
+          ],
+          "state": [
+            "hungry",
+            "thirsty"
+          ],
+          "eatdrink": [
+            "eat",
+            "drink"
+          ]
+        },
+        "answerKey": {
+          "cannot-find-anything": {
+            "th": "anything"
+          },
+          "empty-nothing": {
+            "th": "nothing"
+          },
+          "hungry-something": {
+            "th": "something",
+            "eatdrink": {
+              "__cond": "state",
+              "hungry": "eat",
+              "thirsty": "drink"
+            }
+          }
+        },
+        "distractors": [
+          "I cannot find nothing in my bag.",
+          "I cannot find any thing in my bag.",
+          "My box is empty. There are nothing in it.",
+          "My bag is empty. There is no anything in it.",
+          "I am thirsty. I want something drink.",
+          "I am hungry. I want anything for eat."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Ba từ này nói về VẬT mà ta không nói rõ là cái gì, và chúng đi theo đúng luật của some / any / no. \"Something\" dùng trong câu khẳng định: I want something to eat. \"Anything\" dùng trong câu phủ định và câu hỏi: I cannot find anything. / Have you got anything for me? \"Nothing\" tự nó đã phủ định (= not anything), nên trong câu không có \"not\" nữa: There is nothing in it (đúng) — There is not nothing in it (sai). Nhớ viết LIỀN một từ: something, anything, nothing — viết tách thành \"some thing\", \"any thing\" là sai."
+    },
+    {
+      "id": "every-where",
+      "title_vi": "Nói về TẤT CẢ: everybody · everything · everywhere",
+      "explain_vi": "\"Everybody\" = tất cả mọi người, \"everything\" = tất cả mọi thứ, \"everywhere\" = khắp mọi nơi. Everybody và everything là SỐ ÍT, luôn đi với \"is\".",
+      "examples": [
+        "Everybody in my class is happy today.",
+        "Everything in my bag is new.",
+        "We looked for the cat everywhere."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "everybody-class",
+            "text": "{ev} in my {group} is happy today.",
+            "blanks": [
+              "ev"
+            ],
+            "context_vi": "Câu này nói về NGƯỜI — chọn \"Everybody\", \"Everything\" hay \"Everywhere\"?",
+            "audioText": "Everybody in my class is happy today."
+          },
+          {
+            "id": "everything-bag",
+            "text": "{ev} in my {container2} is new.",
+            "blanks": [
+              "ev"
+            ],
+            "context_vi": "Câu này nói về ĐỒ VẬT — chọn \"Everybody\", \"Everything\" hay \"Everywhere\"?",
+            "audioText": "Everything in my bag is new."
+          },
+          {
+            "id": "looked-everywhere",
+            "text": "We looked for the {lostthing} {ev2}.",
+            "blanks": [
+              "ev2"
+            ],
+            "context_vi": "Câu này nói về NƠI đã tìm — chọn \"everywhere\", \"everybody\" hay \"everything\"?",
+            "audioText": "We looked for the cat everywhere."
+          },
+          {
+            "id": "everybody-be",
+            "text": "Everybody in my family {be} at home now.",
+            "blanks": [
+              "be"
+            ],
+            "context_vi": "\"Everybody\" là số ít, nên đi với \"is\" chứ không phải \"are\".",
+            "audioText": "Everybody in my family is at home now."
+          }
+        ],
+        "slots": {
+          "ev": [
+            "Everybody",
+            "Everything",
+            "Everywhere"
+          ],
+          "ev2": [
+            "everywhere",
+            "everybody",
+            "everything"
+          ],
+          "be": [
+            "is",
+            "are"
+          ],
+          "lostthing": [
+            "cat",
+            "ball",
+            "key",
+            "dog"
+          ],
+          "group": [
+            "class",
+            "family",
+            "team"
+          ],
+          "container2": [
+            "bag",
+            "box",
+            "room"
+          ]
+        },
+        "answerKey": {
+          "everybody-class": {
+            "ev": "Everybody"
+          },
+          "everything-bag": {
+            "ev": "Everything"
+          },
+          "looked-everywhere": {
+            "ev2": "everywhere"
+          },
+          "everybody-be": {
+            "be": "is"
+          }
+        },
+        "distractors": [
+          "Everybody in my class are happy today.",
+          "Everything in my bag are new.",
+          "Everywhere in my class is happy today.",
+          "Everybody in my bag is new.",
+          "We looked for the cat everybody.",
+          "Everybody in my family are at home now."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Nhóm \"every-\" nói về TẤT CẢ: \"everybody\" (= everyone) là tất cả mọi người, \"everything\" là tất cả mọi thứ, \"everywhere\" là khắp mọi nơi. Chọn theo nội dung: nói về người thì everybody, nói về đồ vật thì everything, nói về địa điểm thì everywhere (và everywhere thường đứng ở cuối câu: We looked everywhere). Điều dễ sai nhất: dù nghĩa là \"tất cả\", everybody và everything vẫn là SỐ ÍT, nên đi với \"is\" và động từ thêm \"-s\": Everybody is happy (không phải \"are happy\"), Everything looks new."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "a-quiet-afternoon",
+      "title": "A quiet afternoon",
+      "title_vi": "Một buổi chiều yên tĩnh",
+      "text": "It is very quiet at home this afternoon. Nobody is in the living room. I look in the kitchen: there is nothing on the table. Then I hear a noise in the garden. Somebody is there! It is my little brother. He is looking for his ball. We look everywhere, and at last we find it under the tree. Now everybody is happy.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Trong phòng khách không có ai cả, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "Nobody is in the living room."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Ai đang ở trong vườn?",
+          "type": "mcq",
+          "choices": [
+            "my little brother",
+            "my mother",
+            "nobody"
+          ],
+          "answer": 0,
+          "audioText": "Who is in the garden?"
+        }
+      ]
+    }
+  ]
+}

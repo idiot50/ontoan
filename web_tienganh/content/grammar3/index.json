@@ -1,0 +1,210 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "title_vi": "Ngữ pháp Tăng cường — 20 bài",
+  "note_vi": "Mạch ngữ pháp tham chiếu syllabus ôn ngữ pháp phổ thông (xem docs/ROUNDUP_GRAMMAR_MAP.md). Toàn bộ câu, ví dụ, đáp án và câu nhiễu là nội dung GỐC do dự án tự soạn.",
+  "units": [],
+  "lessons": [
+    {
+      "lesson": 1,
+      "unit": 401,
+      "file": "unit01.json",
+      "topic_vi": "Số nhiều & danh từ không đếm được",
+      "icon": "🧺",
+      "pal": "sun",
+      "sub": "+s/+es · bất quy tắc · some/much/many",
+      "status": "ready"
+    },
+    {
+      "lesson": 2,
+      "unit": 402,
+      "file": "unit02.json",
+      "topic_vi": "Đại từ · to be · have got · can",
+      "icon": "🙋",
+      "pal": "sky",
+      "sub": "He/She/They · am/is/are · have/has got",
+      "status": "ready"
+    },
+    {
+      "lesson": 3,
+      "unit": 403,
+      "file": "unit03.json",
+      "topic_vi": "Sở hữu & từ chỉ định",
+      "icon": "👉",
+      "pal": "mint",
+      "sub": "my/his/her · 's · this/that/these/those",
+      "status": "ready"
+    },
+    {
+      "lesson": 4,
+      "unit": 404,
+      "file": "unit04.json",
+      "topic_vi": "Mạo từ a / an / the",
+      "icon": "🅰️",
+      "pal": "coral",
+      "sub": "a · an · the · không mạo từ",
+      "status": "ready"
+    },
+    {
+      "lesson": 5,
+      "unit": 405,
+      "file": "unit05.json",
+      "topic_vi": "Diễn tả số lượng",
+      "icon": "⚖️",
+      "pal": "grape",
+      "sub": "some/any · a lot of · a few/a little",
+      "status": "ready"
+    },
+    {
+      "lesson": 6,
+      "unit": 406,
+      "file": "unit06.json",
+      "topic_vi": "Đại từ bất định",
+      "icon": "🔍",
+      "pal": "sun",
+      "sub": "someone/anything/nobody/everywhere",
+      "status": "ready"
+    },
+    {
+      "lesson": 7,
+      "unit": 407,
+      "file": "unit07.json",
+      "topic_vi": "Hiện tại đơn",
+      "icon": "🔁",
+      "pal": "sky",
+      "sub": "thêm -s · do/does · trạng từ tần suất",
+      "status": "ready"
+    },
+    {
+      "lesson": 8,
+      "unit": 408,
+      "file": "unit08.json",
+      "topic_vi": "Hiện tại tiếp diễn",
+      "icon": "🏃",
+      "pal": "mint",
+      "sub": "am/is/are + V-ing · quy tắc thêm -ing",
+      "status": "ready"
+    },
+    {
+      "lesson": 9,
+      "unit": 409,
+      "file": "unit09.json",
+      "topic_vi": "Giới từ",
+      "icon": "📍",
+      "pal": "coral",
+      "sub": "nơi chốn · chuyển động · thời gian",
+      "status": "ready"
+    },
+    {
+      "lesson": 10,
+      "unit": 410,
+      "file": "unit10.json",
+      "topic_vi": "Quá khứ đơn",
+      "icon": "⏪",
+      "pal": "grape",
+      "sub": "-ed · động từ bất quy tắc · did",
+      "status": "ready"
+    },
+    {
+      "lesson": 11,
+      "unit": 411,
+      "file": "unit11.json",
+      "topic_vi": "Hiện tại hoàn thành",
+      "icon": "✅",
+      "pal": "sun",
+      "sub": "have/has + V3 · ever/never/just/yet",
+      "status": "ready"
+    },
+    {
+      "lesson": 12,
+      "unit": 412,
+      "file": "unit12.json",
+      "topic_vi": "Quá khứ tiếp diễn",
+      "icon": "⏳",
+      "pal": "sky",
+      "sub": "was/were + V-ing · when/while",
+      "status": "ready"
+    },
+    {
+      "lesson": 13,
+      "unit": 413,
+      "file": "unit13.json",
+      "topic_vi": "Tương lai",
+      "icon": "🔮",
+      "pal": "mint",
+      "sub": "be going to · will · phân biệt hai cách",
+      "status": "ready"
+    },
+    {
+      "lesson": 14,
+      "unit": 414,
+      "file": "unit14.json",
+      "topic_vi": "Động từ khiếm khuyết",
+      "icon": "🔑",
+      "pal": "coral",
+      "sub": "must/mustn't · should · may · have to",
+      "status": "ready"
+    },
+    {
+      "lesson": 15,
+      "unit": 415,
+      "file": "unit15.json",
+      "topic_vi": "Câu điều kiện",
+      "icon": "🌦️",
+      "pal": "grape",
+      "sub": "loại 0 · loại 1 · loại 2",
+      "status": "ready"
+    },
+    {
+      "lesson": 16,
+      "unit": 416,
+      "file": "unit16.json",
+      "topic_vi": "Câu hỏi",
+      "icon": "❓",
+      "pal": "sun",
+      "sub": "Yes/No · Wh- · trật tự từ",
+      "status": "ready"
+    },
+    {
+      "lesson": 17,
+      "unit": 417,
+      "file": "unit17.json",
+      "topic_vi": "Câu bị động",
+      "icon": "🔄",
+      "pal": "sky",
+      "sub": "be + V3 · by · hiện tại & quá khứ",
+      "status": "ready"
+    },
+    {
+      "lesson": 18,
+      "unit": 418,
+      "file": "unit18.json",
+      "topic_vi": "To V · V-ing · too/enough",
+      "icon": "🧩",
+      "pal": "mint",
+      "sub": "want to · like V-ing · too/enough",
+      "status": "ready"
+    },
+    {
+      "lesson": 19,
+      "unit": 419,
+      "file": "unit19.json",
+      "topic_vi": "Đại từ quan hệ",
+      "icon": "🔗",
+      "pal": "coral",
+      "sub": "who · which · that · whose",
+      "status": "ready"
+    },
+    {
+      "lesson": 20,
+      "unit": 420,
+      "file": "unit20.json",
+      "topic_vi": "Tính từ · trạng từ · so sánh",
+      "icon": "📊",
+      "pal": "grape",
+      "sub": "-ly · -er/-est · as…as",
+      "status": "ready"
+    }
+  ]
+}

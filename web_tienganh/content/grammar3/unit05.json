@@ -1,0 +1,433 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 405,
+  "lesson": 5,
+  "topic": "Expressing quantity",
+  "topic_vi": "Diễn tả số lượng",
+  "vocab": [
+    {
+      "word": "water",
+      "vi": "nước",
+      "icon": "💧",
+      "example": "I need a little water.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "milk",
+      "vi": "sữa",
+      "icon": "🥛",
+      "example": "There is some milk in the fridge.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "juice",
+      "vi": "nước ép",
+      "icon": "🧃",
+      "example": "I have got a lot of juice.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "bread",
+      "vi": "bánh mì",
+      "icon": "🍞",
+      "example": "We have only a little bread left.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "rice",
+      "vi": "gạo, cơm",
+      "icon": "🍚",
+      "example": "How much rice do you want?",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "money",
+      "vi": "tiền",
+      "icon": "💰",
+      "example": "I have not got much money.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "sweets",
+      "vi": "bánh kẹo",
+      "icon": "🍬",
+      "example": "I have got a few sweets in my bag.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "books",
+      "vi": "những quyển sách",
+      "icon": "📚",
+      "example": "How many books have you got?",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "apples",
+      "vi": "những quả táo",
+      "icon": "🍎",
+      "example": "There are some apples on the table.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "eggs",
+      "vi": "những quả trứng",
+      "icon": "🥚",
+      "example": "We need a few eggs.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "pens",
+      "vi": "những cây bút",
+      "icon": "🖊️",
+      "example": "I have got a lot of pens.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "fridge",
+      "vi": "tủ lạnh",
+      "icon": "🧊",
+      "example": "The fridge is empty.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "some-any",
+      "title_vi": "\"Some\" và \"any\": nói về một lượng nào đó",
+      "explain_vi": "Câu khẳng định dùng \"some\"; câu phủ định (có not) và câu hỏi dùng \"any\": I have got some milk. / I have not got any milk. / Have you got any milk?",
+      "examples": [
+        "I have got some books in my bag.",
+        "I have not got any books in my bag.",
+        "Have you got any books in your bag?"
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "some-affirm",
+            "text": "I have got {sa} {qnoun} in my bag.",
+            "blanks": [
+              "sa"
+            ],
+            "context_vi": "Đây là câu KHẲNG ĐỊNH (không có \"not\") — chọn \"some\" hay \"any\"?",
+            "audioText": "I have got some books in my bag."
+          },
+          {
+            "id": "any-negative",
+            "text": "I have not got {sa} {qnoun} in my bag.",
+            "blanks": [
+              "sa"
+            ],
+            "context_vi": "Câu có \"not\" nên là câu PHỦ ĐỊNH — chọn \"some\" hay \"any\"?",
+            "audioText": "I have not got any books in my bag."
+          },
+          {
+            "id": "any-question",
+            "text": "Have you got {sa} {qnoun} in your bag?",
+            "blanks": [
+              "sa"
+            ],
+            "context_vi": "Đây là câu HỎI (có dấu ?) — chọn \"some\" hay \"any\"?",
+            "audioText": "Have you got any books in your bag?"
+          }
+        ],
+        "slots": {
+          "sa": [
+            "some",
+            "any"
+          ],
+          "qnoun": [
+            "water",
+            "milk",
+            "bread",
+            "rice",
+            "sweets",
+            "books",
+            "apples",
+            "pens"
+          ]
+        },
+        "answerKey": {
+          "some-affirm": {
+            "sa": "some"
+          },
+          "any-negative": {
+            "sa": "any"
+          },
+          "any-question": {
+            "sa": "any"
+          }
+        },
+        "distractors": [
+          "I have got any water in my bag.",
+          "I have got any books in my bag.",
+          "I have not got some bread in my bag.",
+          "I have not got some pens in my bag.",
+          "Have you got some milk in your bag?",
+          "Have you got some sweets in your bag?"
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"Some\" và \"any\" đều nghĩa là \"một ít / một vài\", dùng trước danh từ số nhiều (some books) hoặc danh từ không đếm được (some milk). Cách chọn rất đơn giản: câu KHẲNG ĐỊNH dùng \"some\" — I have got some sweets; câu PHỦ ĐỊNH có \"not\" dùng \"any\" — I have not got any sweets; câu HỎI cũng dùng \"any\" — Have you got any sweets? Chỉ có một ngoại lệ nhỏ em sẽ gặp sau này: khi mời hoặc xin thì vẫn nói \"some\" trong câu hỏi — Would you like some juice?"
+    },
+    {
+      "id": "a-lot-of",
+      "title_vi": "\"A lot of\" · \"much\" · \"many\": nói về lượng nhiều",
+      "explain_vi": "Câu khẳng định dùng \"a lot of\" cho cả hai loại danh từ. Trong câu phủ định và câu hỏi: không đếm được → \"much\", đếm được số nhiều → \"many\".",
+      "examples": [
+        "I have got a lot of juice at home.",
+        "I have not got much juice at home.",
+        "How many books do you want?"
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "alot-affirm",
+            "text": "I have got {alot} {qn} at home.",
+            "blanks": [
+              "alot"
+            ],
+            "context_vi": "Câu khẳng định nói \"nhiều\" — chọn \"a lot of\", \"much\" hay \"many\"?",
+            "audioText": "I have got a lot of juice at home."
+          },
+          {
+            "id": "not-much-many",
+            "text": "I have not got {mm} {qn} at home.",
+            "blanks": [
+              "mm"
+            ],
+            "context_vi": "Câu phủ định: danh từ không đếm được → \"much\"; đếm được số nhiều → \"many\".",
+            "audioText": "I have not got much juice at home."
+          },
+          {
+            "id": "how-much-many",
+            "text": "How {mm} {qn} do you want?",
+            "blanks": [
+              "mm"
+            ],
+            "context_vi": "Hỏi số lượng: không đếm được → \"much\"; đếm được số nhiều → \"many\".",
+            "audioText": "How many books do you want?"
+          }
+        ],
+        "slots": {
+          "alot": [
+            "a lot of",
+            "much",
+            "many"
+          ],
+          "mm": [
+            "much",
+            "many"
+          ],
+          "qn": [
+            "water",
+            "milk",
+            "juice",
+            "rice",
+            "bread",
+            "money",
+            "books",
+            "apples",
+            "sweets",
+            "pens"
+          ]
+        },
+        "answerKey": {
+          "alot-affirm": {
+            "alot": "a lot of"
+          },
+          "not-much-many": {
+            "mm": {
+              "__cond": "qn",
+              "water": "much",
+              "milk": "much",
+              "juice": "much",
+              "rice": "much",
+              "bread": "much",
+              "money": "much",
+              "books": "many",
+              "apples": "many",
+              "sweets": "many",
+              "pens": "many"
+            }
+          },
+          "how-much-many": {
+            "mm": {
+              "__cond": "qn",
+              "water": "much",
+              "milk": "much",
+              "juice": "much",
+              "rice": "much",
+              "bread": "much",
+              "money": "much",
+              "books": "many",
+              "apples": "many",
+              "sweets": "many",
+              "pens": "many"
+            }
+          }
+        },
+        "distractors": [
+          "I have got a lot water at home.",
+          "I have got lot of milk at home.",
+          "I have not got much books at home.",
+          "I have not got many rice at home.",
+          "How much books do you want?",
+          "How many water do you want?"
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Muốn nói \"nhiều\", trong câu khẳng định em dùng \"a lot of\" — nó đi được với cả danh từ đếm được số nhiều (a lot of books) và danh từ không đếm được (a lot of water). Nhớ đủ ba chữ \"a lot of\", đừng bỏ \"a\" hay \"of\". Trong câu phủ định và câu hỏi, người ta thường dùng \"much\" với danh từ KHÔNG đếm được (How much water? / I have not got much water) và \"many\" với danh từ đếm được SỐ NHIỀU (How many books? / I have not got many books). Bí quyết: cứ hỏi \"thứ này đếm từng cái được không?\" — được thì many, không được thì much."
+    },
+    {
+      "id": "a-few-a-little",
+      "title_vi": "\"A few\" và \"a little\": nói về lượng ít",
+      "explain_vi": "\"A few\" đi với danh từ đếm được số nhiều (a few eggs); \"a little\" đi với danh từ không đếm được (a little milk). Cả hai đều nghĩa là \"một ít\".",
+      "examples": [
+        "I have got a few eggs in my bag.",
+        "I have got a little milk in my bag.",
+        "We have only a little bread left."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "few-little-bag",
+            "text": "I have got {fl} {qn2} in my bag.",
+            "blanks": [
+              "fl"
+            ],
+            "context_vi": "Đếm từng cái được → \"a few\"; không đếm được → \"a little\".",
+            "audioText": "I have got a few eggs in my bag."
+          },
+          {
+            "id": "only-few-little",
+            "text": "We have only {fl} {qn2} left.",
+            "blanks": [
+              "fl"
+            ],
+            "context_vi": "Nhìn danh từ: đếm được số nhiều → \"a few\"; không đếm được → \"a little\".",
+            "audioText": "We have only a little bread left."
+          }
+        ],
+        "slots": {
+          "fl": [
+            "a few",
+            "a little"
+          ],
+          "qn2": [
+            "water",
+            "milk",
+            "bread",
+            "rice",
+            "money",
+            "sweets",
+            "books",
+            "apples",
+            "eggs",
+            "pens"
+          ]
+        },
+        "answerKey": {
+          "few-little-bag": {
+            "fl": {
+              "__cond": "qn2",
+              "water": "a little",
+              "milk": "a little",
+              "bread": "a little",
+              "rice": "a little",
+              "money": "a little",
+              "sweets": "a few",
+              "books": "a few",
+              "apples": "a few",
+              "eggs": "a few",
+              "pens": "a few"
+            }
+          },
+          "only-few-little": {
+            "fl": {
+              "__cond": "qn2",
+              "water": "a little",
+              "milk": "a little",
+              "bread": "a little",
+              "rice": "a little",
+              "money": "a little",
+              "sweets": "a few",
+              "books": "a few",
+              "apples": "a few",
+              "eggs": "a few",
+              "pens": "a few"
+            }
+          }
+        },
+        "distractors": [
+          "I have got a few milk in my bag.",
+          "I have got a little eggs in my bag.",
+          "I have got a little books in my bag.",
+          "We have only a little sweets left.",
+          "We have only a few water left.",
+          "We have only few money left."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"A few\" và \"a little\" đều nghĩa là \"một ít\", nhưng dùng cho hai loại danh từ khác nhau. \"A few\" + danh từ ĐẾM ĐƯỢC SỐ NHIỀU: a few eggs, a few books, a few sweets. \"A little\" + danh từ KHÔNG ĐẾM ĐƯỢC: a little milk, a little water, a little money. Cách kiểm tra nhanh: nếu em nói được \"một quả, hai quả\" thì dùng a few; nếu phải đong bằng ly, bằng cân thì dùng a little. Đừng bỏ chữ \"a\": \"few books\" và \"little milk\" nghe như \"gần chẳng có gì\", nghĩa khác hẳn với \"a few books\" (có một ít)."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "picnic-basket",
+      "title": "The picnic basket",
+      "title_vi": "Giỏ đi chơi picnic",
+      "text": "We are going on a picnic today. Mum looks in the fridge. There is a lot of juice, but there is only a little bread. \"Have you got any apples?\" she asks me. \"Yes, I have got a few apples and some sweets,\" I say. Mum smiles. \"Good. We do not need much rice today.\"",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Trong tủ lạnh chỉ còn một ít bánh mì, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "There is only a little bread in the fridge."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Bạn ấy có bao nhiêu quả táo?",
+          "type": "mcq",
+          "choices": [
+            "a few apples",
+            "a lot of apples",
+            "no apples"
+          ],
+          "answer": 0,
+          "audioText": "How many apples has the child got?"
+        }
+      ]
+    }
+  ]
+}

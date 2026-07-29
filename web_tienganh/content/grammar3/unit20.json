@@ -1,0 +1,612 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 420,
+  "lesson": 20,
+  "topic": "Adjectives, adverbs and comparisons",
+  "topic_vi": "Tính từ · trạng từ · so sánh",
+  "vocab": [
+    {
+      "word": "quick",
+      "vi": "nhanh (tính từ)",
+      "icon": "⚡",
+      "example": "My brother is a quick runner.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "quickly",
+      "vi": "một cách nhanh nhẹn (trạng từ)",
+      "icon": "🏃",
+      "example": "He runs quickly.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "careful",
+      "vi": "cẩn thận (tính từ)",
+      "icon": "🧐",
+      "example": "Lan is a careful writer.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "carefully",
+      "vi": "một cách cẩn thận (trạng từ)",
+      "icon": "✍️",
+      "example": "She writes carefully.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "good",
+      "vi": "tốt, giỏi (tính từ)",
+      "icon": "👍",
+      "example": "This drawing is good.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "well",
+      "vi": "một cách giỏi (trạng từ của good)",
+      "icon": "🎶",
+      "example": "My sister sings well.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "fast",
+      "vi": "nhanh (tính từ và trạng từ viết giống nhau)",
+      "icon": "🚀",
+      "example": "Nam runs fast.",
+      "partOfSpeech": "adj/adverb",
+      "audio": ""
+    },
+    {
+      "word": "badly",
+      "vi": "một cách tệ (trạng từ của bad)",
+      "icon": "😖",
+      "example": "Our team played badly last week.",
+      "partOfSpeech": "adverb",
+      "audio": ""
+    },
+    {
+      "word": "better",
+      "vi": "tốt hơn (so sánh hơn của good)",
+      "icon": "⬆️",
+      "example": "Tomorrow will be better than today.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "worse",
+      "vi": "tệ hơn (so sánh hơn của bad)",
+      "icon": "⬇️",
+      "example": "My old bike is worse than my new one.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "the best",
+      "vi": "tốt nhất, giỏi nhất",
+      "icon": "🏆",
+      "example": "Nam is the best player in our class.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "the worst",
+      "vi": "tệ nhất",
+      "icon": "💥",
+      "example": "That was the worst test of the year.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "windy",
+      "vi": "có nhiều gió",
+      "icon": "🌬️",
+      "example": "Today is windy.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "funny",
+      "vi": "hài, vui nhộn",
+      "icon": "😂",
+      "example": "This book is funny.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "heavy",
+      "vi": "nặng",
+      "icon": "🧱",
+      "example": "My school bag is heavy.",
+      "partOfSpeech": "adj",
+      "audio": ""
+    },
+    {
+      "word": "as … as",
+      "vi": "bằng … như (so sánh bằng)",
+      "icon": "⚖️",
+      "example": "This pen is as long as that pen.",
+      "partOfSpeech": "phrase",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "adj-vs-adverb",
+      "title_vi": "Tính từ hay trạng từ: quick ↔ quickly · good ↔ well",
+      "explain_vi": "Tính từ tả người hay vật và đi sau \"be\" (is quick). Trạng từ tả hành động và đi sau động từ thường (runs quickly). Nhớ hai từ lạ: good → well, fast → fast.",
+      "examples": [
+        "My brother is a quick runner. He runs quickly.",
+        "My brother is a fast runner. He runs fast.",
+        "My sister sings well. Her voice is very good."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "runner-adv",
+            "text": "My brother is a {adj} runner. He runs {adv}.",
+            "blanks": [
+              "adv"
+            ],
+            "context_vi": "Chỗ trống đứng sau động từ thường \"runs\", nên cần TRẠNG TỪ của tính từ ở câu trước",
+            "audioText": "My brother is a quick runner. He runs quickly."
+          },
+          {
+            "id": "singer-adj",
+            "text": "My sister sings {adv2}. Her voice is very {adj2}.",
+            "blanks": [
+              "adj2"
+            ],
+            "context_vi": "Chỗ trống đứng sau \"is\", nên cần TÍNH TỪ ứng với trạng từ ở câu trước",
+            "audioText": "My sister sings well. Her voice is very good."
+          }
+        ],
+        "slots": {
+          "adj": [
+            "quick",
+            "slow",
+            "careful",
+            "good",
+            "bad",
+            "fast"
+          ],
+          "adv": [
+            "quickly",
+            "slowly",
+            "carefully",
+            "well",
+            "badly",
+            "fast"
+          ],
+          "adv2": [
+            "well",
+            "sadly",
+            "beautifully",
+            "quietly",
+            "loudly"
+          ],
+          "adj2": [
+            "good",
+            "sad",
+            "beautiful",
+            "quiet",
+            "loud"
+          ]
+        },
+        "answerKey": {
+          "runner-adv": {
+            "adv": {
+              "__cond": "adj",
+              "quick": "quickly",
+              "slow": "slowly",
+              "careful": "carefully",
+              "good": "well",
+              "bad": "badly",
+              "fast": "fast"
+            }
+          },
+          "singer-adj": {
+            "adj2": {
+              "__cond": "adv2",
+              "well": "good",
+              "sadly": "sad",
+              "beautifully": "beautiful",
+              "quietly": "quiet",
+              "loudly": "loud"
+            }
+          }
+        },
+        "distractors": [
+          "My brother is a quick runner. He runs quick.",
+          "My brother is a good runner. He runs good.",
+          "My brother is a fast runner. He runs fastly.",
+          "My sister sings good. Her voice is very good.",
+          "My sister sings beautifully. Her voice is very beautifully.",
+          "My sister sings quiet. Her voice is very quietly."
+        ],
+        "irregulars": {
+          "good": "well",
+          "bad": "badly",
+          "fast": "fast"
+        }
+      },
+      "teach_vi": "Tính từ (adjective) tả NGƯỜI hoặc VẬT, nên nó đứng trước danh từ (a quick runner) hoặc đứng sau \"be\" (He is quick). Trạng từ (adverb) tả HÀNH ĐỘNG, nên nó đứng sau động từ thường (He runs quickly). Cách tạo trạng từ: thường chỉ thêm \"-ly\" — quick → quickly, slow → slowly, careful → carefully, loud → loudly; nếu tính từ kết thúc bằng phụ âm + y thì đổi thành \"-ily\" — happy → happily, easy → easily. Có hai từ đặc biệt phải học thuộc: good → well (không có \"goodly\") và fast → fast (không có \"fastly\"). Mẹo kiểm tra: nhìn chữ ngay TRƯỚC chỗ trống — nếu là is / am / are thì điền tính từ, nếu là một động từ hành động (runs, sings, works) thì điền trạng từ."
+    },
+    {
+      "id": "comparative-er",
+      "title_vi": "So sánh hơn: \"-er\" + \"than\", chính tả và bất quy tắc better / worse",
+      "explain_vi": "So sánh hai thứ: thêm \"-er\" rồi dùng \"than\" (colder than). y → ier (windy → windier), gấp đôi phụ âm cuối (hot → hotter). Bất quy tắc: good → better, bad → worse.",
+      "examples": [
+        "My first drawing was good. My second drawing was better than my first one.",
+        "My first drawing was bad. My second drawing was worse than my first one.",
+        "Today is windy. Tomorrow will be windier than today."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "drawing-er",
+            "text": "My first drawing was {adj1}. My second drawing was {adj1er} than my first one.",
+            "blanks": [
+              "adj1er"
+            ],
+            "context_vi": "Đổi tính từ ở câu trước sang dạng so sánh hơn; sau nó đã có \"than\" sẵn",
+            "audioText": "My first drawing was good. My second drawing was better than my first one."
+          },
+          {
+            "id": "weather-er",
+            "text": "Today is {adj2w}. Tomorrow will be {adj2wer} than today.",
+            "blanks": [
+              "adj2wer"
+            ],
+            "context_vi": "Đổi tính từ chỉ thời tiết ở câu trước sang dạng so sánh hơn cho đúng chính tả",
+            "audioText": "Today is windy. Tomorrow will be windier than today."
+          }
+        ],
+        "slots": {
+          "adj1": [
+            "good",
+            "bad",
+            "big",
+            "small",
+            "pretty",
+            "funny"
+          ],
+          "adj1er": [
+            "better",
+            "worse",
+            "bigger",
+            "smaller",
+            "prettier",
+            "funnier"
+          ],
+          "adj2w": [
+            "hot",
+            "cold",
+            "wet",
+            "windy",
+            "sunny",
+            "good",
+            "bad"
+          ],
+          "adj2wer": [
+            "hotter",
+            "colder",
+            "wetter",
+            "windier",
+            "sunnier",
+            "better",
+            "worse"
+          ]
+        },
+        "answerKey": {
+          "drawing-er": {
+            "adj1er": {
+              "__cond": "adj1",
+              "good": "better",
+              "bad": "worse",
+              "big": "bigger",
+              "small": "smaller",
+              "pretty": "prettier",
+              "funny": "funnier"
+            }
+          },
+          "weather-er": {
+            "adj2wer": {
+              "__cond": "adj2w",
+              "hot": "hotter",
+              "cold": "colder",
+              "wet": "wetter",
+              "windy": "windier",
+              "sunny": "sunnier",
+              "good": "better",
+              "bad": "worse"
+            }
+          }
+        },
+        "distractors": [
+          "My first drawing was good. My second drawing was gooder than my first one.",
+          "My first drawing was pretty. My second drawing was prettyer than my first one.",
+          "My first drawing was big. My second drawing was more big than my first one.",
+          "Today is hot. Tomorrow will be more hot than today.",
+          "Today is good. Tomorrow will be more better than today.",
+          "Today is windy. Tomorrow will be windyer than today."
+        ],
+        "irregulars": {
+          "good": "better",
+          "bad": "worse",
+          "hot": "hotter",
+          "wet": "wetter",
+          "windy": "windier",
+          "sunny": "sunnier"
+        }
+      },
+      "teach_vi": "Khi so sánh HAI thứ, em thêm \"-er\" vào tính từ ngắn rồi dùng \"than\": cold → colder than, small → smaller than. Ba điều về chính tả: (1) tính từ kết thúc bằng phụ âm + y thì đổi y thành \"-ier\" — windy → windier, sunny → sunnier, pretty → prettier, funny → funnier; (2) tính từ một âm tiết kết thúc bằng một nguyên âm + một phụ âm thì gấp đôi phụ âm cuối — hot → hotter, wet → wetter, big → bigger; (3) hai tính từ bất quy tắc phải học thuộc — good → better, bad → worse. Lưu ý lỗi hay gặp: KHÔNG nói \"more cold\", \"more hot\" với tính từ ngắn, cũng KHÔNG nói \"gooder\", \"more better\" hay \"badder\". Và luôn nhớ có \"than\" khi so sánh với thứ kia."
+    },
+    {
+      "id": "superlative-est",
+      "title_vi": "So sánh nhất: \"the\" + \"-est\", và bất quy tắc the best / the worst",
+      "explain_vi": "Nhất trong cả nhóm thì dùng \"the\" + \"-est\" (the oldest). y → iest, gấp đôi phụ âm cuối. Bất quy tắc: good → the best, bad → the worst. Không nói \"the most old\".",
+      "examples": [
+        "This book is funny. It is the funniest book in our library.",
+        "This book is good. It is the best book in our library.",
+        "That test was bad. It was the worst test of the year."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "book-est",
+            "text": "This book is {adjB}. It is the {adjBest} book in our library.",
+            "blanks": [
+              "adjBest"
+            ],
+            "context_vi": "Đổi tính từ ở câu trước sang dạng so sánh nhất; chữ \"the\" đã có sẵn trước chỗ trống",
+            "audioText": "This book is funny. It is the funniest book in our library."
+          },
+          {
+            "id": "test-est",
+            "text": "That test was {adjT}. It was the {adjTest} test of the year.",
+            "blanks": [
+              "adjTest"
+            ],
+            "context_vi": "So sánh nhất trong cả năm — đổi tính từ ở câu trước sang dạng có \"-est\"",
+            "audioText": "That test was easy. It was the easiest test of the year."
+          }
+        ],
+        "slots": {
+          "adjB": [
+            "funny",
+            "good",
+            "bad",
+            "old",
+            "big",
+            "thin"
+          ],
+          "adjBest": [
+            "funniest",
+            "best",
+            "worst",
+            "oldest",
+            "biggest",
+            "thinnest"
+          ],
+          "adjT": [
+            "easy",
+            "hard",
+            "long",
+            "short",
+            "good",
+            "bad"
+          ],
+          "adjTest": [
+            "easiest",
+            "hardest",
+            "longest",
+            "shortest",
+            "best",
+            "worst"
+          ]
+        },
+        "answerKey": {
+          "book-est": {
+            "adjBest": {
+              "__cond": "adjB",
+              "funny": "funniest",
+              "good": "best",
+              "bad": "worst",
+              "old": "oldest",
+              "big": "biggest",
+              "thin": "thinnest"
+            }
+          },
+          "test-est": {
+            "adjTest": {
+              "__cond": "adjT",
+              "easy": "easiest",
+              "hard": "hardest",
+              "long": "longest",
+              "short": "shortest",
+              "good": "best",
+              "bad": "worst"
+            }
+          }
+        },
+        "distractors": [
+          "This book is funny. It is the funnyest book in our library.",
+          "This book is good. It is the goodest book in our library.",
+          "This book is old. It is the most old book in our library.",
+          "That test was easy. It was the most easy test of the year.",
+          "That test was bad. It was the baddest test of the year.",
+          "That test was long. It was longest test of the year."
+        ],
+        "irregulars": {
+          "good": "best",
+          "bad": "worst",
+          "big": "biggest",
+          "thin": "thinnest",
+          "funny": "funniest",
+          "easy": "easiest"
+        }
+      },
+      "teach_vi": "Khi một thứ là NHẤT trong cả nhóm (từ ba thứ trở lên), em dùng \"the\" + tính từ + \"-est\": old → the oldest, long → the longest. Chính tả giống bên so sánh hơn: phụ âm + y đổi thành \"-iest\" (funny → the funniest, easy → the easiest); một âm tiết có một nguyên âm + một phụ âm thì gấp đôi phụ âm cuối (big → the biggest, thin → the thinnest); bất quy tắc là good → the best và bad → the worst. Hai lỗi hay gặp: BỎ QUÊN chữ \"the\" (\"It was longest test\" — sai), và dùng \"the most\" với tính từ ngắn (\"the most old\", \"the most easy\" — sai). Sau tính từ so sánh nhất em thường nói rõ phạm vi: in our library, in our class, of the year."
+    },
+    {
+      "id": "as-as-equal",
+      "title_vi": "So sánh bằng: \"as … as\" và \"not as … as\"",
+      "explain_vi": "Bằng nhau thì dùng \"as + tính từ GỐC + as\" (as tall as). Không bằng thì thêm \"not\": not as tall as. Tuyệt đối không nói \"as taller as\" hay \"as tallest as\".",
+      "examples": [
+        "My red pen is not longer than my blue pen. It is exactly as long as my blue pen.",
+        "My red pen is not better than my blue pen. It is exactly as good as my blue pen.",
+        "Minh is taller than Nam. So Nam is not as tall as Minh."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "as-as-pen",
+            "text": "My red pen is not {adjC} than my blue pen. It is exactly as {adjCbase} as my blue pen.",
+            "blanks": [
+              "adjCbase"
+            ],
+            "context_vi": "Hai cây bút bằng nhau — giữa \"as … as\" phải là tính từ GỐC, không thêm \"-er\"",
+            "audioText": "My red pen is not longer than my blue pen. It is exactly as long as my blue pen."
+          },
+          {
+            "id": "not-as-as-friends",
+            "text": "Minh is {adjD} than Nam. So Nam is not as {adjDbase} as Minh.",
+            "blanks": [
+              "adjDbase"
+            ],
+            "context_vi": "Nam kém hơn nên dùng \"not as … as\"; giữa hai chữ \"as\" là tính từ GỐC",
+            "audioText": "Minh is taller than Nam. So Nam is not as tall as Minh."
+          }
+        ],
+        "slots": {
+          "adjC": [
+            "longer",
+            "bigger",
+            "heavier",
+            "better",
+            "newer",
+            "cheaper"
+          ],
+          "adjCbase": [
+            "long",
+            "big",
+            "heavy",
+            "good",
+            "new",
+            "cheap"
+          ],
+          "adjD": [
+            "taller",
+            "older",
+            "faster",
+            "stronger",
+            "younger",
+            "shorter"
+          ],
+          "adjDbase": [
+            "tall",
+            "old",
+            "fast",
+            "strong",
+            "young",
+            "short"
+          ]
+        },
+        "answerKey": {
+          "as-as-pen": {
+            "adjCbase": {
+              "__cond": "adjC",
+              "longer": "long",
+              "bigger": "big",
+              "heavier": "heavy",
+              "better": "good",
+              "newer": "new",
+              "cheaper": "cheap"
+            }
+          },
+          "not-as-as-friends": {
+            "adjDbase": {
+              "__cond": "adjD",
+              "taller": "tall",
+              "older": "old",
+              "faster": "fast",
+              "stronger": "strong",
+              "younger": "young",
+              "shorter": "short"
+            }
+          }
+        },
+        "distractors": [
+          "My red pen is not longer than my blue pen. It is exactly as longer as my blue pen.",
+          "My red pen is not bigger than my blue pen. It is exactly as bigger as my blue pen.",
+          "My red pen is not better than my blue pen. It is exactly as best as my blue pen.",
+          "Minh is taller than Nam. So Nam is not as taller as Minh.",
+          "Minh is faster than Nam. So Nam is not as fastest as Minh.",
+          "Minh is older than Nam. So Nam is not as older as Minh."
+        ],
+        "irregulars": {
+          "better": "good",
+          "worse": "bad"
+        }
+      },
+      "teach_vi": "Khi hai thứ BẰNG NHAU, em không dùng \"-er\" nữa mà dùng \"as … as\" với tính từ ở dạng GỐC: \"This pen is as long as that pen.\" (dài bằng nhau). Muốn nói KHÔNG bằng thì thêm \"not\": \"Nam is not as tall as Minh.\" (Nam không cao bằng Minh — nghĩa là Minh cao hơn). Ba lỗi rất hay gặp: \"as taller as\", \"as tallest as\", \"as more tall as\" — tất cả đều SAI, giữa hai chữ \"as\" chỉ được đặt tính từ gốc: as tall as, as good as, as heavy as. Mẹo nhớ: \"-er … than\" là hơn kém, còn \"as … as\" là bằng nhau; hai mẫu này không bao giờ trộn vào nhau."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "our-sports-day",
+      "title": "Our sports day",
+      "title_vi": "Ngày hội thể thao của chúng em",
+      "text": "Last Saturday was our sports day. The weather was good on Saturday, but on Sunday it was even better. Nam runs very fast, and he runs faster than me. Minh is not as fast as Nam, but he jumps well. My jump was the longest of the day! Lan draws carefully, so she made the nicest poster in our class.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Nam chạy nhanh hơn bạn kể chuyện, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "Nam runs faster than me."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Cú nhảy của bạn kể chuyện thì thế nào?",
+          "type": "mcq",
+          "choices": [
+            "It was the longest of the day.",
+            "It was the shortest of the day.",
+            "It was as short as Nam's jump."
+          ],
+          "answer": 0,
+          "audioText": "My jump was the longest of the day."
+        }
+      ]
+    }
+  ]
+}

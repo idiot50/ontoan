@@ -1,0 +1,418 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 404,
+  "lesson": 4,
+  "topic": "Articles: a, an, the",
+  "topic_vi": "Mạo từ a / an / the",
+  "vocab": [
+    {
+      "word": "apple",
+      "vi": "quả táo",
+      "icon": "🍎",
+      "example": "This is an apple.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "orange",
+      "vi": "quả cam",
+      "icon": "🍊",
+      "example": "I can see an orange.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "egg",
+      "vi": "quả trứng",
+      "icon": "🥚",
+      "example": "I can see an egg.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "umbrella",
+      "vi": "cái ô, cây dù",
+      "icon": "☂️",
+      "example": "I have got an umbrella.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "elephant",
+      "vi": "con voi",
+      "icon": "🐘",
+      "example": "An elephant is very big.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "book",
+      "vi": "quyển sách",
+      "icon": "📕",
+      "example": "This is a book.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "pen",
+      "vi": "cây bút",
+      "icon": "🖊️",
+      "example": "I can see a pen.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "dog",
+      "vi": "con chó",
+      "icon": "🐶",
+      "example": "I have got a dog.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "moon",
+      "vi": "mặt trăng",
+      "icon": "🌙",
+      "example": "Look at the moon!",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "door",
+      "vi": "cái cửa",
+      "icon": "🚪",
+      "example": "Please close the door.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "football",
+      "vi": "bóng đá",
+      "icon": "⚽",
+      "example": "We play football after school.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "breakfast",
+      "vi": "bữa sáng",
+      "icon": "🥣",
+      "example": "I have breakfast with my family every day.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "a-vs-an",
+      "title_vi": "Mạo từ \"a\" và \"an\": chọn theo chữ đầu của danh từ",
+      "explain_vi": "Danh từ đếm được số ít cần \"a\" hoặc \"an\". Từ bắt đầu bằng nguyên âm a, e, i, o, u thì dùng \"an\" (an apple); các từ còn lại dùng \"a\" (a book).",
+      "examples": [
+        "This is a book.",
+        "This is an apple.",
+        "I can see an umbrella."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "order_words"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "see-art-noun",
+            "text": "I can see {art} {noun}.",
+            "blanks": [
+              "art"
+            ],
+            "context_vi": "Nhìn chữ đầu của danh từ: nguyên âm thì \"an\", phụ âm thì \"a\".",
+            "audioText": "I can see an apple."
+          },
+          {
+            "id": "this-is-art-noun",
+            "text": "This is {art} {noun}.",
+            "blanks": [
+              "art"
+            ],
+            "context_vi": "Một cái thôi, nên phải có mạo từ \"a\" hoặc \"an\" trước danh từ.",
+            "audioText": "This is a book."
+          }
+        ],
+        "slots": {
+          "art": [
+            "a",
+            "an"
+          ],
+          "noun": [
+            "apple",
+            "orange",
+            "egg",
+            "umbrella",
+            "elephant",
+            "book",
+            "pen",
+            "dog",
+            "cat",
+            "table"
+          ]
+        },
+        "answerKey": {
+          "see-art-noun": {
+            "art": {
+              "__cond": "noun",
+              "apple": "an",
+              "orange": "an",
+              "egg": "an",
+              "umbrella": "an",
+              "elephant": "an",
+              "book": "a",
+              "pen": "a",
+              "dog": "a",
+              "cat": "a",
+              "table": "a"
+            }
+          },
+          "this-is-art-noun": {
+            "art": {
+              "__cond": "noun",
+              "apple": "an",
+              "orange": "an",
+              "egg": "an",
+              "umbrella": "an",
+              "elephant": "an",
+              "book": "a",
+              "pen": "a",
+              "dog": "a",
+              "cat": "a",
+              "table": "a"
+            }
+          }
+        },
+        "distractors": [
+          "I can see a apple.",
+          "I can see a egg.",
+          "I can see an pen.",
+          "This is a umbrella.",
+          "This is an book.",
+          "This is an dog."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Khi nói về MỘT thứ đếm được, tiếng Anh luôn cần mạo từ trước danh từ: a book, an apple. Chọn \"a\" hay \"an\" tuỳ chữ cái đầu của từ đi ngay sau: nếu là nguyên âm a, e, i, o, u thì dùng \"an\" — an apple, an orange, an egg, an umbrella, an elephant; nếu là phụ âm thì dùng \"a\" — a book, a pen, a dog, a table. Lý do là để hai nguyên âm không dính vào nhau, đọc cho dễ. Người Việt hay quên hẳn mạo từ (\"This is book\") hoặc dùng sai (\"a apple\") — hai lỗi này em cần để ý nhất."
+    },
+    {
+      "id": "the-definite",
+      "title_vi": "Mạo từ \"the\": khi cả hai đều đã biết thứ đó",
+      "explain_vi": "Dùng \"the\" khi người nghe đã biết rõ thứ đó: nhắc lại lần thứ hai (a book → the book), hoặc thứ chỉ có một duy nhất như the moon, the sky.",
+      "examples": [
+        "I have got a book. The book is new.",
+        "Look at the moon!",
+        "Please close the door."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "second-mention",
+            "text": "I have got {art} {noun}. {def} {noun} is new.",
+            "blanks": [
+              "def"
+            ],
+            "context_vi": "Câu sau nhắc lại đúng thứ vừa nói ở câu trước — nhắc lại lần hai thì dùng mạo từ nào?",
+            "audioText": "I have got a book. The book is new."
+          },
+          {
+            "id": "look-at-unique",
+            "text": "Look at {def2} {unique}!",
+            "blanks": [
+              "def2"
+            ],
+            "context_vi": "Trên trời chỉ có duy nhất một thứ đó — thứ duy nhất thì dùng mạo từ nào?",
+            "audioText": "Look at the moon!"
+          },
+          {
+            "id": "close-the-thing",
+            "text": "Please close {def2} {roomthing}.",
+            "blanks": [
+              "def2"
+            ],
+            "context_vi": "Cả hai người đều biết rõ là cái nào trong phòng này — chọn mạo từ cho đúng.",
+            "audioText": "Please close the door."
+          }
+        ],
+        "slots": {
+          "art": [
+            "a",
+            "an"
+          ],
+          "noun": [
+            "book",
+            "bike",
+            "pen",
+            "apple",
+            "egg",
+            "umbrella"
+          ],
+          "def": [
+            "The",
+            "A",
+            "An"
+          ],
+          "def2": [
+            "the",
+            "a",
+            "an"
+          ],
+          "unique": [
+            "moon",
+            "sky",
+            "stars",
+            "rainbow"
+          ],
+          "roomthing": [
+            "door",
+            "window",
+            "gate",
+            "fridge"
+          ]
+        },
+        "answerKey": {
+          "second-mention": {
+            "def": "The",
+            "art": {
+              "__cond": "noun",
+              "book": "a",
+              "bike": "a",
+              "pen": "a",
+              "apple": "an",
+              "egg": "an",
+              "umbrella": "an"
+            }
+          },
+          "look-at-unique": {
+            "def2": "the"
+          },
+          "close-the-thing": {
+            "def2": "the"
+          }
+        },
+        "distractors": [
+          "I have got a book. A book is new.",
+          "I have got an egg. An egg is new.",
+          "I have got a bike. Bike is new.",
+          "Look at a moon!",
+          "Look at moon!",
+          "Please close door."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "\"A / an\" dùng khi nói tới một thứ LẦN ĐẦU, người nghe chưa biết là cái nào. Sang lần thứ hai, cả hai đã biết rõ cái đó rồi thì đổi sang \"the\": I have got a book. The book is new. Ngoài ra em dùng \"the\" khi trên đời chỉ có một thứ như thế — the moon, the sun, the sky — và khi thứ đó rõ ràng trong hoàn cảnh đang nói: Please close the door (cái cửa của phòng này). Khác với \"a/an\", \"the\" dùng được cho cả số ít và số nhiều: the door, the doors."
+    },
+    {
+      "id": "no-article",
+      "title_vi": "Khi KHÔNG dùng mạo từ",
+      "explain_vi": "Không dùng mạo từ trước tên môn học, môn chơi, bữa ăn và ngôn ngữ: play football, study English, have breakfast — không nói \"a football\" hay \"the breakfast\".",
+      "examples": [
+        "We play football after school.",
+        "My brother studies English at school.",
+        "I have breakfast with my family every day."
+      ],
+      "generators": [
+        "mcq",
+        "order_words"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "play-game",
+            "text": "We play {game} after school.",
+            "blanks": [],
+            "context_vi": "Tên môn chơi đứng một mình, không có mạo từ.",
+            "audioText": "We play football after school."
+          },
+          {
+            "id": "study-subject",
+            "text": "My brother studies {subject} at school.",
+            "blanks": [],
+            "context_vi": "Tên môn học và tên ngôn ngữ không có mạo từ.",
+            "audioText": "My brother studies English at school."
+          },
+          {
+            "id": "have-meal",
+            "text": "I have {meal} with my family every day.",
+            "blanks": [],
+            "context_vi": "Tên bữa ăn không có mạo từ.",
+            "audioText": "I have breakfast with my family every day."
+          }
+        ],
+        "slots": {
+          "game": [
+            "football",
+            "chess",
+            "badminton",
+            "volleyball",
+            "tennis"
+          ],
+          "subject": [
+            "English",
+            "maths",
+            "music",
+            "art",
+            "history"
+          ],
+          "meal": [
+            "breakfast",
+            "lunch",
+            "dinner"
+          ]
+        },
+        "answerKey": {},
+        "distractors": [
+          "We play the football after school.",
+          "We play a chess after school.",
+          "My brother studies the maths at school.",
+          "My brother studies a English at school.",
+          "I have a breakfast with my family every day.",
+          "I have the dinner with my family every day."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Có những chỗ tiếng Anh KHÔNG dùng mạo từ, dù tiếng Việt vẫn nói \"môn bóng đá\", \"bữa sáng\". Bốn nhóm em cần nhớ: (1) môn chơi và môn thể thao — play football, play chess, play tennis; (2) môn học và ngôn ngữ — study English, study maths, learn music; (3) bữa ăn — have breakfast, have lunch, have dinner; (4) danh từ số nhiều hoặc không đếm được khi nói chung chung — I like apples, I drink milk. Vì vậy \"We play the football\" hay \"I have a breakfast\" đều sai."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "monday-morning",
+      "title": "Monday morning",
+      "title_vi": "Buổi sáng thứ Hai",
+      "text": "It is Monday morning. I have breakfast at six o'clock. Then I take an umbrella and a book, and I go to school. The umbrella is new. At school we study English and maths. After school my friends and I play football in the park near my house.",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Bạn ấy mang theo một cái ô, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "The child takes an umbrella."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Sau giờ học các bạn ấy làm gì?",
+          "type": "mcq",
+          "choices": [
+            "play football in the park",
+            "study maths at home",
+            "have breakfast at school"
+          ],
+          "answer": 0,
+          "audioText": "What do they do after school?"
+        }
+      ]
+    }
+  ]
+}

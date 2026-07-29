@@ -1,0 +1,471 @@
+{
+  "schemaVersion": "v1",
+  "track": "grammar3",
+  "level": 3,
+  "unit": 415,
+  "lesson": 15,
+  "topic": "Conditionals: zero, first and second",
+  "topic_vi": "Câu điều kiện: loại 0 · loại 1 · loại 2",
+  "vocab": [
+    {
+      "word": "ice",
+      "vi": "băng, đá lạnh",
+      "icon": "🧊",
+      "example": "If you heat ice, it melts.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "melt",
+      "vi": "tan chảy",
+      "icon": "💧",
+      "example": "Ice melts in the sun.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "sink",
+      "vi": "chìm xuống",
+      "icon": "⬇️",
+      "example": "A stone sinks in water.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "grow",
+      "vi": "trồng, mọc lên",
+      "icon": "🌱",
+      "example": "I would grow tomatoes if I had a garden.",
+      "partOfSpeech": "verb",
+      "audio": ""
+    },
+    {
+      "word": "island",
+      "vi": "hòn đảo",
+      "icon": "🏝️",
+      "example": "I would sail to that island.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "wing",
+      "vi": "cái cánh",
+      "icon": "🪽",
+      "example": "A bird has two wings.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "telescope",
+      "vi": "kính viễn vọng",
+      "icon": "🔭",
+      "example": "I would buy a big telescope.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "mountain",
+      "vi": "núi",
+      "icon": "⛰️",
+      "example": "I would fly over the mountains.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "snail",
+      "vi": "con ốc sên",
+      "icon": "🐌",
+      "example": "If you touch a snail, it hides.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "lamp",
+      "vi": "cái đèn",
+      "icon": "💡",
+      "example": "The lamp turns on if you press this button.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "dinosaur",
+      "vi": "con khủng long",
+      "icon": "🦕",
+      "example": "I would run away fast if I met a dinosaur.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    },
+    {
+      "word": "pilot",
+      "vi": "phi công",
+      "icon": "🧑‍✈️",
+      "example": "I would fly a big plane if I were a pilot.",
+      "partOfSpeech": "noun",
+      "audio": ""
+    }
+  ],
+  "grammar": [
+    {
+      "id": "zero-conditional",
+      "title_vi": "Điều kiện loại 0: điều LUÔN đúng",
+      "explain_vi": "Điều luôn đúng: If + hiện tại đơn, hiện tại đơn. Cả hai vế đều KHÔNG dùng \"will\". Chủ ngữ số ít thì động từ thêm \"-s\": it melts.",
+      "examples": [
+        "If you heat ice, it melts.",
+        "Plants die if you forget to water them.",
+        "The lamp turns on if you press this button."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "zero-if-result",
+            "text": "If you {action}, it {vb}.",
+            "blanks": [
+              "vb"
+            ],
+            "context_vi": "Điều luôn đúng — vế sau dùng hiện tại đơn. Chủ ngữ \"it\" nên động từ thêm \"-s\".",
+            "audioText": "If you heat ice, it melts."
+          },
+          {
+            "id": "zero-result-first",
+            "text": "{topic} {vb2} if you {action3}.",
+            "blanks": [
+              "vb2"
+            ],
+            "context_vi": "Vế chính đứng trước, vế \"if\" đứng sau (không cần dấu phẩy). Nhìn chủ ngữ số ít hay số nhiều để thêm \"-s\".",
+            "audioText": "The lamp turns on if you press this button."
+          }
+        ],
+        "slots": {
+          "action": [
+            "heat ice",
+            "drop a stone in water",
+            "put a plant in the dark",
+            "press the doorbell",
+            "leave milk in the sun",
+            "touch a snail"
+          ],
+          "vb": [
+            "melts",
+            "sinks",
+            "dies",
+            "rings",
+            "goes bad",
+            "hides"
+          ],
+          "topic": [
+            "The ice",
+            "The lamp",
+            "Plants",
+            "The salt",
+            "Snails"
+          ],
+          "vb2": [
+            "melts",
+            "turns on",
+            "die",
+            "disappears",
+            "hide"
+          ],
+          "action3": [
+            "put it in the sun",
+            "press this button",
+            "forget to water them",
+            "add it to warm water",
+            "touch them"
+          ]
+        },
+        "answerKey": {
+          "zero-if-result": {
+            "vb": {
+              "__cond": "action",
+              "heat ice": "melts",
+              "drop a stone in water": "sinks",
+              "put a plant in the dark": "dies",
+              "press the doorbell": "rings",
+              "leave milk in the sun": "goes bad",
+              "touch a snail": "hides"
+            }
+          },
+          "zero-result-first": {
+            "vb2": {
+              "__cond": "topic",
+              "The ice": "melts",
+              "The lamp": "turns on",
+              "Plants": "die",
+              "The salt": "disappears",
+              "Snails": "hide"
+            },
+            "action3": {
+              "__cond": "topic",
+              "The ice": "put it in the sun",
+              "The lamp": "press this button",
+              "Plants": "forget to water them",
+              "The salt": "add it to warm water",
+              "Snails": "touch them"
+            }
+          }
+        },
+        "distractors": [
+          "If you heat ice, it will melts.",
+          "If you heat ice, it melt.",
+          "If you will heat ice, it melts.",
+          "If you press the doorbell, it will rings.",
+          "Plants dies if you forget to water them.",
+          "The ice melt if you put it in the sun."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Điều kiện loại 0 nói về điều LÚC NÀO CŨNG ĐÚNG: quy luật tự nhiên, thói quen, cách một cái máy hoạt động. Công thức rất dễ: If + hiện tại đơn, hiện tại đơn. Ví dụ: \"If you heat ice, it melts.\" (Cứ làm nóng đá là nó tan). Hai vế có thể đổi chỗ; khi vế \"if\" đứng SAU thì không cần dấu phẩy: \"Plants die if you forget to water them.\" Điều quan trọng nhất phải nhớ: loại 0 KHÔNG dùng \"will\" ở vế nào cả — nói \"it melts\", không nói \"it will melt\" hay \"it will melts\". Và đừng quên quy tắc hiện tại đơn: chủ ngữ số ít thì động từ thêm \"-s\" (the lamp turns on, the salt disappears), chủ ngữ số nhiều thì giữ nguyên (plants die, snails hide)."
+    },
+    {
+      "id": "first-conditional",
+      "title_vi": "Điều kiện loại 1: việc CÓ THỂ xảy ra",
+      "explain_vi": "Việc có thể xảy ra: If + hiện tại đơn, will + động từ nguyên mẫu. Sau \"if\" KHÔNG dùng will; vế chính dùng will hoặc won't.",
+      "examples": [
+        "If you leave now, you will catch the early bus.",
+        "If the sun shines tomorrow, we will fly our kites in the field.",
+        "If the rain does not stop, we won't play outside today."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "first-if-present",
+            "text": "If you {vb} now, you will {act}.",
+            "blanks": [
+              "vb"
+            ],
+            "context_vi": "Sau \"if\" dùng HIỆN TẠI ĐƠN, không dùng \"will\". Chọn động từ khớp với kết quả ở vế sau.",
+            "audioText": "If you leave now, you will catch the early bus."
+          },
+          {
+            "id": "first-will-or-wont",
+            "text": "If {cond}, we {wl} {act2}.",
+            "blanks": [
+              "wl"
+            ],
+            "context_vi": "Đọc vế \"if\": thuận lợi thì vế chính dùng \"will\", trở ngại thì dùng \"won't\".",
+            "audioText": "If the rain does not stop, we won't play outside today."
+          }
+        ],
+        "slots": {
+          "vb": [
+            "leave",
+            "start",
+            "rest",
+            "listen"
+          ],
+          "act": [
+            "catch the early bus",
+            "finish before dinner",
+            "feel much better",
+            "hear the whole story"
+          ],
+          "cond": [
+            "the sun shines tomorrow",
+            "the rain does not stop",
+            "everyone comes early",
+            "the bus breaks down"
+          ],
+          "wl": [
+            "will",
+            "won't"
+          ],
+          "act2": [
+            "fly our kites in the field",
+            "play outside today",
+            "start the game at eight",
+            "arrive before ten"
+          ]
+        },
+        "answerKey": {
+          "first-if-present": {
+            "vb": {
+              "__cond": "act",
+              "catch the early bus": "leave",
+              "finish before dinner": "start",
+              "feel much better": "rest",
+              "hear the whole story": "listen"
+            }
+          },
+          "first-will-or-wont": {
+            "wl": {
+              "__cond": "cond",
+              "the sun shines tomorrow": "will",
+              "the rain does not stop": "won't",
+              "everyone comes early": "will",
+              "the bus breaks down": "won't"
+            },
+            "act2": {
+              "__cond": "cond",
+              "the sun shines tomorrow": "fly our kites in the field",
+              "the rain does not stop": "play outside today",
+              "everyone comes early": "start the game at eight",
+              "the bus breaks down": "arrive before ten"
+            }
+          }
+        },
+        "distractors": [
+          "If you will leave now, you will catch the early bus.",
+          "If you leave now, you catch the early bus.",
+          "If you rest now, you will feels much better.",
+          "If the sun shines tomorrow, we will flies our kites in the field.",
+          "If the rain will not stop, we won't play outside today.",
+          "If everyone comes early, we will to start the game at eight."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Điều kiện loại 1 nói về việc THẬT SỰ CÓ THỂ xảy ra trong tương lai: ngày mai có thể mưa, xe buýt có thể đến muộn. Công thức: If + hiện tại đơn, will + động từ nguyên mẫu. Ví dụ: \"If you leave now, you will catch the early bus.\" (Nếu em đi bây giờ, em sẽ kịp chuyến xe sớm). Lỗi số một của người Việt là đưa \"will\" vào sau \"if\" — vì tiếng Việt nói \"nếu trời SẼ mưa\". Tiếng Anh KHÔNG như vậy: \"If it rains tomorrow…\" (đúng) — \"If it will rain tomorrow…\" (sai). Vế chính thì bắt buộc phải có \"will\", hoặc \"won't\" nếu kết quả là điều không xảy ra: \"If the rain does not stop, we won't play outside today.\" Sau will/won't luôn là động từ nguyên mẫu, không thêm \"-s\", không thêm \"to\"."
+    },
+    {
+      "id": "second-conditional",
+      "title_vi": "Điều kiện loại 2: điều TƯỞNG TƯỢNG",
+      "explain_vi": "Điều tưởng tượng, không thật: If + quá khứ đơn, would + động từ nguyên mẫu. Với \"I\" thường dùng \"were\": If I were a bird, I would fly.",
+      "examples": [
+        "If I were a bird, I would fly over the mountains.",
+        "If I had one million dong, I would buy a big telescope.",
+        "I would grow tomatoes if I had a garden."
+      ],
+      "generators": [
+        "fill_blank",
+        "mcq",
+        "listen_choose"
+      ],
+      "safeZone": {
+        "templates": [
+          {
+            "id": "second-if-past",
+            "text": "If I {vb} {thing}, I would {act}.",
+            "blanks": [
+              "vb"
+            ],
+            "context_vi": "Điều tưởng tượng: sau \"if\" dùng QUÁ KHỨ ĐƠN. Có danh từ thì dùng \"had\", còn miêu tả \"là gì / thế nào\" thì dùng \"were\".",
+            "audioText": "If I were a bird, I would fly over the mountains."
+          },
+          {
+            "id": "second-would-first",
+            "text": "I would {vb4} if I {cond2}.",
+            "blanks": [
+              "vb4"
+            ],
+            "context_vi": "Sau \"would\" là động từ NGUYÊN MẪU. Chọn việc khớp với điều tưởng tượng ở vế \"if\".",
+            "audioText": "I would grow tomatoes if I had a garden."
+          }
+        ],
+        "slots": {
+          "vb": [
+            "had",
+            "were"
+          ],
+          "thing": [
+            "a small boat",
+            "a bird",
+            "one million dong",
+            "taller",
+            "wings"
+          ],
+          "act": [
+            "sail to that island",
+            "fly over the mountains",
+            "buy a big telescope",
+            "reach the top shelf",
+            "fly to school every day"
+          ],
+          "vb4": [
+            "grow tomatoes",
+            "fly a big plane",
+            "look at the moon",
+            "swim every morning",
+            "run away fast"
+          ],
+          "cond2": [
+            "had a garden",
+            "were a pilot",
+            "had a telescope",
+            "lived near the sea",
+            "met a dinosaur"
+          ]
+        },
+        "answerKey": {
+          "second-if-past": {
+            "vb": {
+              "__cond": "thing",
+              "a small boat": "had",
+              "a bird": "were",
+              "one million dong": "had",
+              "taller": "were",
+              "wings": "had"
+            },
+            "act": {
+              "__cond": "thing",
+              "a small boat": "sail to that island",
+              "a bird": "fly over the mountains",
+              "one million dong": "buy a big telescope",
+              "taller": "reach the top shelf",
+              "wings": "fly to school every day"
+            }
+          },
+          "second-would-first": {
+            "vb4": {
+              "__cond": "cond2",
+              "had a garden": "grow tomatoes",
+              "were a pilot": "fly a big plane",
+              "had a telescope": "look at the moon",
+              "lived near the sea": "swim every morning",
+              "met a dinosaur": "run away fast"
+            }
+          }
+        },
+        "distractors": [
+          "If I had a small boat, I will sail to that island.",
+          "If I have a small boat, I would sail to that island.",
+          "If I were a bird, I would to fly over the mountains.",
+          "If I had wings, I would flies to school every day.",
+          "I would grow tomatoes if I have a garden.",
+          "I would swimming every morning if I lived near the sea."
+        ],
+        "irregulars": {}
+      },
+      "teach_vi": "Điều kiện loại 2 dùng để MƠ MỘNG, tưởng tượng điều không có thật: em không phải con chim, em không có một triệu đồng. Công thức: If + quá khứ đơn, would + động từ nguyên mẫu. Ví dụ: \"If I had wings, I would fly to school every day.\" (Nếu em có cánh, em sẽ bay đến trường mỗi ngày). Dùng \"quá khứ\" ở đây KHÔNG có nghĩa là chuyện đã qua — nó chỉ là dấu hiệu cho biết \"đây là chuyện tưởng tượng\". Một điểm đặc biệt: với động từ \"to be\", câu tưởng tượng thường dùng \"were\" cho MỌI chủ ngữ, kể cả \"I\" và \"he\": \"If I were a bird…\", \"If he were taller…\" Vế chính dùng \"would\" (không phải \"will\") và sau \"would\" là động từ nguyên mẫu: \"I would fly\" (đúng) — \"I would to fly\", \"I would flies\" (sai). So sánh nhanh: \"If it rains, I will stay home.\" (có thể xảy ra thật) ≠ \"If I lived on the moon, I would see the Earth every night.\" (chỉ tưởng tượng)."
+    }
+  ],
+  "phonics": null,
+  "reading": [
+    {
+      "id": "if-i-had-wings",
+      "title": "If I had wings",
+      "title_vi": "Nếu em có cánh",
+      "text": "In our science lesson we talk about water. If you heat ice, it melts. If you heat water for a long time, steam comes out of the pot. Then our teacher asks a funny question: \"What will you do if it rains at the weekend?\" Mai says, \"If it rains, I will read my new book at home.\" Then she smiles and adds, \"But if I had wings, I would fly above the clouds and find the sun!\"",
+      "questions": [
+        {
+          "id": "q1",
+          "q_vi": "Nếu em làm nóng nước thật lâu thì có hơi nước bay ra khỏi nồi, đúng không?",
+          "type": "truefalse",
+          "answer": true,
+          "audioText": "If you heat water for a long time, steam comes out of the pot."
+        },
+        {
+          "id": "q2",
+          "q_vi": "Câu \"If I had wings, I would fly above the clouds\" của bạn Mai nói về điều gì?",
+          "type": "mcq",
+          "choices": [
+            "Một điều tưởng tượng, không có thật",
+            "Một việc chắc chắn sẽ xảy ra cuối tuần",
+            "Một quy luật khoa học luôn đúng"
+          ],
+          "answer": 0,
+          "audioText": "If I had wings, I would fly above the clouds."
+        }
+      ]
+    }
+  ]
+}
