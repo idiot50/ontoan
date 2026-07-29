@@ -502,8 +502,44 @@
       lessons.forEach(function (l) { var um = unitMastery(l.unit); if (um && um.masteryPct >= 60) doneCount++; });
       var lvl = el('div', { class: 'jmap-lvl' }, '★ TIẾNG ANH · ' + levelLabel(state.level).toUpperCase() + ' · ' + doneCount + '/' + lessons.length + ' bài ★');
 
+      // Track có NHIỀU bài (Ngữ pháp: 20) thì chia thành CHẶNG 5 bài, gấp lại cho đỡ dài.
+      // Cấp 1–3 (5 bài) giữ nguyên đường học một mạch như cũ.
+      var GROUP_SIZE = 5;
+      var grouped = lessons.length > 8;
       var path = el('div', { class: 'jmap' }, el('div', { class: 'jmap__line', 'aria-hidden': 'true' }));
-      lessons.forEach(function (l) {
+      var groupWrap = grouped ? el('div', { class: 'jgroups' }) : null;
+      var curGroup = null, curGroupPath = null, curGroupIdx = -1;
+      // Chặng nào chứa bài ĐANG học (bài đầu tiên chưa hoàn thành) thì mở sẵn.
+      var openIdx = 0;
+      for (var gi = 0; gi < lessons.length; gi++) {
+        var gm = unitMastery(lessons[gi].unit);
+        if (!(gm && gm.masteryPct >= 60)) { openIdx = Math.floor(gi / GROUP_SIZE); break; }
+        openIdx = Math.floor(gi / GROUP_SIZE);
+      }
+
+      lessons.forEach(function (l, li) {
+        if (grouped && Math.floor(li / GROUP_SIZE) !== curGroupIdx) {
+          curGroupIdx = Math.floor(li / GROUP_SIZE);
+          var from = curGroupIdx * GROUP_SIZE + 1;
+          var to = Math.min(lessons.length, from + GROUP_SIZE - 1);
+          var slice = lessons.slice(from - 1, to);
+          var gDone = slice.filter(function (x) { var m = unitMastery(x.unit); return m && m.masteryPct >= 60; }).length;
+          curGroupPath = el('div', { class: 'jmap' }, el('div', { class: 'jmap__line', 'aria-hidden': 'true' }));
+          curGroup = el('details', { class: 'jgroup' + (gDone === slice.length ? ' is-done' : '') }, [
+            el('summary', { class: 'jgroup__sum' }, [
+              el('span', { class: 'jgroup__n' }, String(curGroupIdx + 1)),
+              el('span', { class: 'grow' }, [
+                el('div', { class: 'jgroup__t' }, 'Chặng ' + (curGroupIdx + 1) + ' · Bài ' + from + '–' + to),
+                el('div', { class: 'jgroup__bar' }, el('i', { style: 'width:' + (gDone / slice.length * 100) + '%' }))
+              ]),
+              el('span', { class: 'jgroup__c' }, gDone + '/' + slice.length)
+            ]),
+            curGroupPath
+          ]);
+          if (curGroupIdx === openIdx) curGroup.open = true;
+          groupWrap.appendChild(curGroup);
+        }
+        var into = grouped ? curGroupPath : path;
         var um = unitMastery(l.unit);
         var pct = um ? um.masteryPct : 0;
         var stars = starsForUnit(um);
@@ -524,7 +560,7 @@
         var stop = el('button', { class: 'jmap__stop', type: 'button', 'aria-label': 'Bài ' + l.lesson + ' ' + l.topic_vi + ' — ' + statusTxt },
           [node, el('span', { class: 'jmap__card' }, cardKids)]);
         stop.addEventListener('click', function () { state.currentUnit = l.unit; state.returnLesson = null; go('S3'); });
-        path.appendChild(stop);
+        into.appendChild(stop);
       });
 
       // ===== Chặng cuối: ÔN TẬP cấp độ (tóm tắt ngữ pháp + luyện tổng hợp) =====
@@ -538,13 +574,16 @@
         ])
       ]);
       rStop.addEventListener('click', function () { go('SR'); });
-      path.appendChild(rStop);
+      // Khi chia chặng, nút Ôn tập đứng riêng SAU các chặng (không nằm trong chặng nào).
+      var reviewPath = grouped ? el('div', { class: 'jmap' }, rStop) : null;
+      if (!grouped) path.appendChild(rStop);
 
       render(el('div', { class: 'screen stack-lg' }, [
         topHeader,
         el('div', { class: 'row-wrap' }, [levelChip, weekLine, starChip]),
         lvl,
-        path
+        grouped ? groupWrap : path,
+        reviewPath
       ]));
     }).catch(function (e) { renderError(e); });
   }
