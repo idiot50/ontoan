@@ -37,14 +37,18 @@
     return a;
   }
 
+  // Điều khiển tầng độ khó từ ngoài (cho trình tạo đề). null = ngẫu nhiên như cũ.
+  var _forcedTier = null;   // 0/1/2 nếu generate(topicId,{tier}) ép; null = theo trọng số
+  var _lastTier = null;     // tầng thực tế của câu vừa sinh (để generate() gắn vào object)
+
   // Chọn tầng độ khó theo trọng số. tiers = ['co-ban','nang-vua','thu-thach'].
-  // Trọng số mặc định 45/40/15 theo spec lớp 3.
+  // Trọng số mặc định 45/40/15 theo spec lớp 3. Nếu _forcedTier != null thì ép theo nó.
   function tier(w0, w1, w2) {
+    if (_forcedTier !== null) { _lastTier = _forcedTier; return _forcedTier; }
     if (w0 === undefined) { w0 = 45; w1 = 40; w2 = 15; }
     var r = randInt(1, w0 + w1 + w2);
-    if (r <= w0) return 0;
-    if (r <= w0 + w1) return 1;
-    return 2;
+    _lastTier = (r <= w0) ? 0 : (r <= w0 + w1 ? 1 : 2);
+    return _lastTier;
   }
 
   // Định dạng số có dấu cách phân nhóm nghìn để bé dễ đọc: 12345 -> "12 345".
@@ -1839,10 +1843,18 @@
   var topicMap = {};
   topics.forEach(function (t) { topicMap[t.id] = t; });
 
-  function generate(topicId) {
+  // generate(topicId, opts?) — opts.tier (0/1/2) ép tầng độ khó để lắp đề theo ma trận.
+  // Không truyền opts => hành vi cũ (tầng ngẫu nhiên). Câu trả về được gắn thêm q.tier.
+  function generate(topicId, opts) {
     var t = topicMap[topicId];
     if (!t) throw new Error('Không tìm thấy chủ đề: ' + topicId);
-    return t.gen();
+    opts = opts || {};
+    _forcedTier = (opts.tier === 0 || opts.tier === 1 || opts.tier === 2) ? opts.tier : null;
+    _lastTier = null;
+    var q;
+    try { q = t.gen(); } finally { _forcedTier = null; }
+    if (q && q.tier === undefined) q.tier = _lastTier;
+    return q;
   }
 
   function generateMixed(n) {

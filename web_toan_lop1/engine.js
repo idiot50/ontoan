@@ -100,13 +100,17 @@
 
   /*
    * Chọn TẦNG độ khó theo trọng số lớp 1: ~60% Cơ bản / 30% Nâng vừa / 10% Thử thách.
-   * Trả về 'co-ban' | 'nang-vua' | 'thu-thach'.
+   * Trả về 'co-ban' | 'nang-vua' | 'thu-thach'. Nếu _forcedTier != null thì ép theo nó.
    */
+  var TIER_STR = ['co-ban', 'nang-vua', 'thu-thach'];
+  var _forcedTier = null;   // 0/1/2 ép từ ngoài (cho trình tạo đề); null = ngẫu nhiên
+  var _lastTier = null;     // tầng (0/1/2) thực tế của câu vừa sinh (generate() gắn vào object)
   function tier() {
+    if (_forcedTier !== null) { _lastTier = _forcedTier; return TIER_STR[_forcedTier]; }
     var r = randInt(1, 100);
-    if (r <= 60) return 'co-ban';
-    if (r <= 90) return 'nang-vua';
-    return 'thu-thach';
+    var n = (r <= 60) ? 0 : (r <= 90 ? 1 : 2);
+    _lastTier = n;
+    return TIER_STR[n];
   }
 
   /* ====================== ĐỌC SỐ TIẾNG VIỆT (0..100) ====================== */
@@ -1439,10 +1443,18 @@
   var topicMap = {};
   topics.forEach(function (t) { topicMap[t.id] = t; });
 
-  function generate(topicId) {
+  // generate(topicId, opts?) — opts.tier (0/1/2) ép tầng độ khó để lắp đề theo ma trận.
+  // Không truyền opts => hành vi cũ (tầng ngẫu nhiên). Câu trả về được gắn thêm q.tier (0/1/2).
+  function generate(topicId, opts) {
     var t = topicMap[topicId];
     if (!t) throw new Error('Không tìm thấy chủ đề: ' + topicId);
-    return t.gen();
+    opts = opts || {};
+    _forcedTier = (opts.tier === 0 || opts.tier === 1 || opts.tier === 2) ? opts.tier : null;
+    _lastTier = null;
+    var q;
+    try { q = t.gen(); } finally { _forcedTier = null; }
+    if (q && q.tier === undefined) q.tier = _lastTier;
+    return q;
   }
 
   function generateMixed(n) {
