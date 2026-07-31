@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ngữ Pháp Vui 3 — Luyện ngữ pháp tiếng Anh</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E📗%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/app.css">
+<!-- ===== MÀU SÁCH: tông xanh lá + banner & thẻ đẹp hơn (đè lên app.css) ===== -->
+<style id="book-theme">
+  :root{
+    --brand:#1f9d57; --brand-2:#e4f6ec; --bg:#eef6f1;
+    --ok:#0b7a3e; --ok-bg:#dcf4e4;
+    --book-grad:linear-gradient(120deg,#22a35c 0%,#159149 55%,#0f7d40 100%);
+  }
+  .top{background:var(--book-grad);border-bottom:0;box-shadow:0 3px 14px rgba(15,125,64,.28)}
+  .top-in{gap:12px}
+  .brand-logo{
+    flex:0 0 auto;width:46px;height:46px;border-radius:12px;
+    display:grid;place-items:center;font-size:26px;line-height:1;
+    background:rgba(255,255,255,.22);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35);
+  }
+  .top h1{color:#fff}
+  .top h1 .sub{color:rgba(255,255,255,.88)}
+  .copy{color:rgba(255,255,255,.82)}
+  .home-link{
+    flex:0 0 auto;margin-left:auto;display:inline-flex;align-items:center;gap:7px;
+    text-decoration:none;color:#0f7d40;font-weight:700;font-size:.9rem;
+    background:#fff;padding:8px 14px;border-radius:999px;
+    box-shadow:0 2px 8px rgba(15,125,64,.25);white-space:nowrap;
+    transition:transform .12s ease,box-shadow .12s ease;
+  }
+  .home-link:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(15,125,64,.32)}
+  .home-link:focus-visible{outline:3px solid #ffd54a;outline-offset:2px}
+  .home-link .home-ic{font-size:1.05rem;line-height:1}
+  .card{border-top:3px solid var(--brand);transition:transform .12s ease,box-shadow .14s ease}
+  .card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(15,125,64,.16)}
+  .card-h{background:linear-gradient(180deg,var(--brand-2),#fff)}
+  .guide summary{color:var(--brand)}
+  @media (max-width:520px){
+    .home-link .home-tx{display:none}
+    .home-link{padding:8px 11px}
+    .brand-logo{width:40px;height:40px;font-size:22px}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand-logo" aria-hidden="true">📗</div>
+    <div class="brand">
+      <h1>Ngữ Pháp Vui 3 <span class="sub">— Luyện ngữ pháp tiếng Anh</span></h1>
+      <p class="copy">Nội dung luyện tập gốc, biên soạn cho học sinh tiểu học — dùng tự do cho học tập, chạy được cả khi không có mạng.</p>
+    </div>
+    <a class="home-link" href="https://idiot50.github.io/ontoan/" title="Về trang chủ Toán Vui">
+      <span class="home-ic" aria-hidden="true">🏠</span>
+      <span class="home-tx">Toán Vui</span>
+    </a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ TRANG CHỦ ============ -->
+  <section class="view" id="view-home" hidden>
+    <div class="home-head">
+      <div class="home-head-t">
+        <h2>Chọn bài để làm</h2>
+        <p class="stat" id="stat">—</p>
+      </div>
+      <button type="button" class="btn ghost" id="btn-reset-all">Xoá tiến độ</button>
+    </div>
+
+    <details class="guide">
+      <summary>Cách làm từng dạng bài</summary>
+      <ul class="hint">
+        <li><b>Điền ô trống</b>: gõ trực tiếp vào ô; bài nào có kho từ thì bấm một từ rồi bấm vào ô trống (hoặc kéo-thả).</li>
+        <li><b>Chọn trong ô</b>: mở ô chọn rồi chọn phương án đúng.</li>
+        <li><b>Bấm chọn từ</b>: đọc kỹ đề rồi bấm vào từ đúng trong câu.</li>
+        <li><b>Phân nhóm</b>: bấm một từ ở kho rồi bấm vào nhóm muốn xếp vào.</li>
+        <li><b>Trắc nghiệm</b>: bấm phương án muốn chọn.</li>
+        <li><b>Nối câu (Game)</b>: bấm nửa câu bên trái rồi bấm nửa câu bên phải để nối, hoặc kéo một đường từ trái sang phải.</li>
+      </ul>
+      <p class="muted">Làm xong bấm <b>Kiểm tra</b> để chấm điểm. Điểm cao nhất của mỗi bài được lưu trong trình duyệt này (localStorage).</p>
+    </details>
+
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <!-- ============ MÀN LÀM BÀI ============ -->
+  <section class="view" id="view-ex" hidden>
+    <div class="ex-nav">
+      <button type="button" class="btn ghost nav-home" data-nav="home">← Trang chủ</button>
+      <span class="sp"></span>
+      <button type="button" class="btn ghost" data-nav="prev">← Bài trước</button>
+      <button type="button" class="btn ghost" data-nav="next">Bài sau →</button>
+    </div>
+
+    <div class="panel" id="panel" aria-live="polite"></div>
+
+    <div class="ex-nav bottom">
+      <button type="button" class="btn ghost nav-home" data-nav="home">← Trang chủ</button>
+      <span class="sp"></span>
+      <button type="button" class="btn ghost" data-nav="prev">← Bài trước</button>
+      <button type="button" class="btn ghost" data-nav="next">Bài sau →</button>
+    </div>
+  </section>
+
+</main>
+
+<script src="data/content.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
