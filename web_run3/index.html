@@ -37,10 +37,102 @@
   .card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(15,125,64,.16)}
   .card-h{background:linear-gradient(180deg,var(--brand-2),#fff)}
   .guide summary{color:var(--brand)}
+
+  /* ===== dải "Ôn hôm nay" ===== */
+  .review-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+    background:#fff;border:1.5px solid #bfe6d0;border-left:5px solid var(--brand);
+    border-radius:var(--r);padding:12px 14px;margin:0 0 14px;box-shadow:var(--shadow)}
+  .review-bar.is-empty{border-left-color:#cfd8e6;background:#fbfdfc}
+  .review-go{font-size:1.02rem;padding:11px 20px}
+  .review-note{font-size:.88rem;color:var(--ink-2);flex:1 1 220px}
+
+  /* ===== thẻ unit: hàng trên có nút Đọc theo nhịp ===== */
+  .card-top{display:flex;align-items:center;gap:8px}
+  .chant-link{margin-left:auto;flex:0 0 auto;border:1px solid #bfe6d0;background:#fff;
+    color:var(--brand);font-weight:600;font-size:.72rem;border-radius:999px;
+    padding:3px 9px;cursor:pointer;white-space:nowrap}
+  .chant-link:hover{background:var(--brand-2)}
+  .chant-link:focus-visible{outline:3px solid #ffd54a;outline-offset:2px}
+
+  /* ===== nút loa ===== */
+  .say-btn{border:1px solid #bfe6d0;background:#fff;color:var(--brand);
+    border-radius:999px;width:30px;height:30px;line-height:1;cursor:pointer;font-size:.9rem;
+    margin-left:6px;vertical-align:middle}
+  .say-btn:hover{background:var(--brand-2)}
+
+  /* ===== hộp gợi ý khi sai (phản hồi có giải thích) ===== */
+  .hintbox{background:#fff8e8;border:1.5px solid #f0cf87;border-left:5px solid #e0a92b;
+    border-radius:var(--r);padding:11px 14px;margin:14px 0 0}
+  .hint-t{font-size:.95rem;color:#7a5405;margin-bottom:4px}
+  .hint-b{margin:0;font-size:.95rem;color:#4a3a10;line-height:1.55}
+
+  /* ô đã chốt đáp án thì không cho sửa nữa */
+  .blank.locked{cursor:default;opacity:1}
+  /* câu trắc nghiệm chưa chọn gì -> phải nhìn thấy là còn thiếu */
+  .q.q-todo{background:#fff6ec;border-left:4px solid var(--bad);
+    border-radius:8px;padding-left:10px;margin-left:-4px}
+
+  /* ===== màn Ôn hôm nay ===== */
+  .rc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    box-shadow:var(--shadow);padding:18px 20px 22px}
+  .rc-prog{font-size:.76rem;font-weight:700;color:var(--brand);text-transform:uppercase;letter-spacing:.05em}
+  .rc-crumb{font-size:.8rem;color:var(--ink-2);margin:2px 0 12px}
+  .rc-q{font-size:1.25rem;line-height:1.7;margin:0 0 16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+  .rc-blank{display:inline-block;min-width:76px;border-bottom:3px solid var(--brand);
+    color:var(--brand);font-weight:700;text-align:center}
+  .rc-zone{margin:0 0 14px}
+  .rc-input{font:inherit;font-size:1.1rem;font-weight:600;color:var(--brand);
+    padding:9px 14px;border:1px solid #c9d1e6;border-radius:10px;background:#f6fbf8;min-width:220px}
+  .rc-input:focus{outline:3px solid #ffd54a;outline-offset:1px}
+  .rc-built{font-size:1.4rem;font-weight:700;letter-spacing:.06em;color:var(--brand);
+    min-height:2rem;margin:6px 0 10px;padding:6px 12px;background:#f6fbf8;
+    border:1px dashed #bfe6d0;border-radius:10px;display:inline-block;min-width:160px;text-align:center}
+  .rc-letters{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 10px}
+  .rc-letter{width:42px;height:44px;font-size:1.15rem;font-weight:700;
+    border:1px solid #c9d1e6;background:#fff;border-radius:10px;cursor:pointer;color:var(--ink)}
+  .rc-letter:hover:not(:disabled){border-color:var(--brand);color:var(--brand)}
+  .rc-letter:disabled{opacity:.28;cursor:default}
+  .rc-fb{margin:12px 0 0;padding:12px 14px;border-radius:var(--r);border:1.5px solid}
+  .rc-fb.good{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+  .rc-fb.bad{background:var(--bad-bg);border-color:var(--bad);color:#7a3c08}
+  .rc-fb-t{font-weight:700;margin-bottom:4px;font-size:1.05rem}
+  .rc-act{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .rc-done{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    box-shadow:var(--shadow);padding:26px 22px;text-align:center}
+  .rc-done h2{margin:0 0 8px;font-size:1.4rem;color:var(--brand)}
+  .rc-done .btn{margin-top:14px}
+
+  /* ===== màn Đọc theo nhịp ===== */
+  .chant-list{margin:14px 0}
+  .chant-row{font-size:1.16rem;line-height:1.6;padding:10px 14px;margin:7px 0;
+    border:1px solid var(--line);border-radius:10px;background:#fff;transition:all .15s ease}
+  .chant-row.on{background:var(--brand-2);border-color:var(--brand);
+    transform:scale(1.015);font-weight:600;box-shadow:0 3px 12px rgba(15,125,64,.15)}
+  .chant-mask{display:inline-block;color:var(--bad);font-weight:700;letter-spacing:.08em}
+
+  /* ===== linh vật Pi (cáo) — chỉ phản ứng ở ranh giới, không nhảy múa khi trẻ đang nghĩ ===== */
+  .pi{position:fixed;right:14px;bottom:14px;width:76px;height:76px;z-index:30;
+    pointer-events:none;filter:drop-shadow(0 4px 10px rgba(15,125,64,.28));
+    transition:transform .25s ease}
+  .pi svg{width:100%;height:100%;display:block}
+  .pi .m{display:none}
+  .pi.is-happy .m-happy{display:block}
+  .pi.is-cheer .m-cheer{display:block}
+  .pi.is-think .m-think{display:block}
+  .pi.is-oops  .m-oops{display:block}
+  .pi.is-cheer{animation:pi-jump .5s ease 2}
+  .pi.is-think{transform:rotate(-6deg)}
+  @keyframes pi-jump{0%,100%{transform:translateY(0)}45%{transform:translateY(-12px)}}
+  @media (prefers-reduced-motion: reduce){
+    .pi,.pi.is-cheer{animation:none;transition:none}
+    .chant-row{transition:none}
+  }
   @media (max-width:520px){
     .home-link .home-tx{display:none}
     .home-link{padding:8px 11px}
     .brand-logo{width:40px;height:40px;font-size:22px}
+    .pi{width:56px;height:56px;right:8px;bottom:8px}
+    .rc-q{font-size:1.1rem}
   }
 </style>
 </head>
@@ -64,6 +156,8 @@
 
   <!-- ============ TRANG CHỦ ============ -->
   <section class="view" id="view-home" hidden>
+    <div id="review-bar" class="review-bar" role="region" aria-label="Ôn tập hôm nay"></div>
+
     <div class="home-head">
       <div class="home-head-t">
         <h2>Chọn bài để làm</h2>
@@ -82,7 +176,7 @@
         <li><b>Trắc nghiệm</b>: bấm phương án muốn chọn.</li>
         <li><b>Nối câu (Game)</b>: bấm nửa câu bên trái rồi bấm nửa câu bên phải để nối, hoặc kéo một đường từ trái sang phải.</li>
       </ul>
-      <p class="muted">Làm xong bấm <b>Kiểm tra</b> để chấm điểm. Điểm cao nhất của mỗi bài được lưu trong trình duyệt này (localStorage).</p>
+      <p class="muted">Bấm <b>Kiểm tra</b> để chấm. Nếu có chỗ chưa đúng, Pi sẽ <b>mách nhỏ</b> rồi cho em <b>sửa lại</b> — sai lần nữa mới hiện đáp án. Hôm sau Pi nhắc em <b>ôn lại</b> đúng những câu cần ôn.</p>
     </details>
 
     <div class="cards" id="cards"></div>
@@ -107,9 +201,75 @@
     </div>
   </section>
 
+  <!-- ============ ÔN HÔM NAY ============ -->
+  <section class="view" id="view-review" hidden>
+    <div class="ex-nav">
+      <button type="button" class="btn ghost nav-home" data-nav="review-home">← Trang chủ</button>
+      <span class="sp"></span>
+      <span class="muted">🎯 Ôn tập giãn cách — ôn đúng lúc sắp quên</span>
+    </div>
+    <div id="review-panel" aria-live="polite"></div>
+  </section>
+
+  <!-- ============ ĐỌC THEO NHỊP ============ -->
+  <section class="view" id="view-chant" hidden>
+    <div class="ex-nav">
+      <button type="button" class="btn ghost nav-home" data-nav="review-home">← Trang chủ</button>
+      <span class="sp"></span>
+      <span class="muted">🥁 Đọc to theo nhịp giúp nhớ lâu hơn</span>
+    </div>
+    <div class="panel" id="chant-panel" aria-live="polite"></div>
+  </section>
+
 </main>
 
+<!-- Linh vật Pi (cáo) — 4 biểu cảm, đổi bằng class trên .pi -->
+<div class="pi is-happy" id="pi" aria-hidden="true">
+  <svg viewBox="0 0 100 100">
+    <!-- tai -->
+    <path d="M18 34 L26 8 L44 24 Z" fill="#e8722c"/>
+    <path d="M82 34 L74 8 L56 24 Z" fill="#e8722c"/>
+    <path d="M24 30 L28 16 L38 25 Z" fill="#ffd3b0"/>
+    <path d="M76 30 L72 16 L62 25 Z" fill="#ffd3b0"/>
+    <!-- đầu -->
+    <ellipse cx="50" cy="56" rx="34" ry="30" fill="#f5883c"/>
+    <!-- mõm -->
+    <ellipse cx="50" cy="68" rx="20" ry="15" fill="#fff6ee"/>
+    <ellipse cx="50" cy="60" rx="4" ry="3" fill="#3a2418"/>
+    <!-- vui (mặc định) -->
+    <g class="m m-happy">
+      <circle cx="37" cy="50" r="4" fill="#3a2418"/>
+      <circle cx="63" cy="50" r="4" fill="#3a2418"/>
+      <path d="M43 70 Q50 76 57 70" stroke="#3a2418" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    </g>
+    <!-- reo mừng -->
+    <g class="m m-cheer">
+      <path d="M32 51 Q37 44 42 51" stroke="#3a2418" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M58 51 Q63 44 68 51" stroke="#3a2418" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M41 68 Q50 79 59 68 Z" fill="#3a2418"/>
+      <circle cx="24" cy="44" r="3" fill="#ffd54a"/>
+      <circle cx="78" cy="42" r="2.6" fill="#ffd54a"/>
+    </g>
+    <!-- đang nghĩ -->
+    <g class="m m-think">
+      <circle cx="37" cy="50" r="4" fill="#3a2418"/>
+      <circle cx="63" cy="49" r="2.4" fill="#3a2418"/>
+      <path d="M56 44 Q63 41 70 45" stroke="#3a2418" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M43 71 Q50 68 57 72" stroke="#3a2418" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    </g>
+    <!-- tiếc -->
+    <g class="m m-oops">
+      <circle cx="37" cy="50" r="4" fill="#3a2418"/>
+      <circle cx="63" cy="50" r="4" fill="#3a2418"/>
+      <path d="M43 74 Q50 68 57 74" stroke="#3a2418" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    </g>
+  </svg>
+</div>
+
 <script src="data/content.js"></script>
+<script src="data/audio-manifest.js"></script>
+<script src="js/srs.js"></script>
+<script src="js/say.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

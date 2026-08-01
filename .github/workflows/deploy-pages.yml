@@ -47,8 +47,9 @@ jobs:
           # Trình tạo đề: chỉ giữ runtime (index.html + de_*.js + engines/), bỏ test & script sync dev
           rm -rf _site/tao-de/tests
           rm -f  _site/tao-de/sync_engines.mjs
-          # Ngữ Pháp Vui 3: chỉ giữ runtime (index.html + css + js + data/content.js), bỏ nguồn build
-          rm -rf _site/run3/build
+          # Ngữ Pháp Vui 3: chỉ giữ runtime (index.html + css + js + data + audio),
+          # bỏ nguồn build và bộ test cho gọn.
+          rm -rf _site/run3/build _site/run3/tests
           rm -f  _site/run3/data/content.json
           # Web Tiếng Anh: chỉ giữ runtime (index/manifest/sw/css/js/content/assets),
           # bỏ tests, build scripts, docs nội bộ và README cho gọn & không lộ tài liệu nội bộ.

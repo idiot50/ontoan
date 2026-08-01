@@ -242,7 +242,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Nhìn số lượng đứng trước danh từ. Thêm <b>-s</b>; thêm <b>-es</b> sau s, x, ch, sh, o; phụ âm + <b>y</b> → <b>-ies</b>; <b>f/fe</b> → <b>-ves</b>. Vài từ đổi hẳn: man, foot, child, mouse, woman. Danh từ không đếm được (water, rice…) không thêm -s."
     },
     {
       "unit": 2,
@@ -460,7 +461,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Chủ ngữ là ai? <b>I</b> → am; <b>he/she/it</b> → is; <b>we/you/they</b> → are. Với <b>have got</b>: he/she/it dùng <b>has got</b>, còn lại <b>have got</b>. Sau <b>can</b> luôn là động từ nguyên mẫu (không -s, không to)."
     },
     {
       "unit": 3,
@@ -688,7 +690,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Của ai thì dùng tính từ sở hữu (my / your / his / her / its / our / their). Tên người + <b>’s</b> = của người đó. Gần: <b>this</b> (một) / <b>these</b> (nhiều); Xa: <b>that</b> (một) / <b>those</b> (nhiều)."
     },
     {
       "unit": 4,
@@ -890,7 +893,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Nghe <b>ÂM</b> đầu của từ đứng sau, đừng nhìn chữ cái: âm nguyên âm → <b>an</b>, âm phụ âm → <b>a</b>. Nhắc tới lần đầu dùng a/an; khi đã rõ là cái nào hoặc chỉ có một → <b>the</b>."
     },
     {
       "unit": 5,
@@ -1118,7 +1122,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Câu khẳng định dùng <b>some</b>; câu hỏi và câu phủ định dùng <b>any</b>. Đếm được (nhiều cái riêng lẻ) → <b>many / a few</b>; không đếm được (nước, gạo, tiền…) → <b>much / a little</b>."
     },
     {
       "unit": 6,
@@ -1373,7 +1378,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Người → <b>-body / -one</b>; vật → <b>-thing</b>; nơi chốn → <b>-where</b>. Câu khẳng định dùng <b>some-</b>, câu hỏi/phủ định dùng <b>any-</b>; riêng <b>no-</b> đã mang nghĩa phủ định nên động từ giữ thể khẳng định."
     },
     {
       "unit": 7,
@@ -1639,7 +1645,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Chủ ngữ <b>he / she / it</b> (hoặc một người, một vật) → động từ thêm <b>-s/-es</b>; các chủ ngữ khác giữ nguyên. Câu hỏi và phủ định dùng <b>does/doesn’t</b> với he/she/it, <b>do/don’t</b> với I/you/we/they — và khi đã có do/does thì động từ chính KHÔNG thêm -s."
     },
     {
       "unit": 8,
@@ -1898,7 +1905,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Việc đang xảy ra lúc nói (now, at the moment) → <b>am/is/are + V-ing</b>. Nhớ cách thêm -ing: bỏ <b>e</b> cuối (make → making); gấp đôi phụ âm cuối khi trước nó là một nguyên âm ngắn (run → running, sit → sitting)."
     },
     {
       "unit": 9,
@@ -2111,7 +2119,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Hình dung vị trí: <b>in</b> (bên trong), <b>on</b> (trên bề mặt), <b>under</b> (bên dưới), <b>behind</b> (phía sau), <b>between</b> (ở giữa hai), <b>next to</b> (bên cạnh). Thời gian: <b>in</b> + tháng/năm, <b>on</b> + thứ/ngày, <b>at</b> + giờ."
     },
     {
       "unit": 10,
@@ -2364,7 +2373,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Việc đã xong trong quá khứ (yesterday, last week…) → động từ thêm <b>-ed</b>, nhưng nhiều từ bất quy tắc: go → went, see → saw, eat → ate, have → had, come → came. Sau <b>did/didn’t</b> động từ trở về NGUYÊN MẪU. Chủ ngữ số ít → <b>was</b>, số nhiều và you → <b>were</b>."
     },
     {
       "unit": 11,
@@ -2631,7 +2641,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Thấy <b>just, already, yet, ever, never</b> → dùng <b>have/has + V3</b> (cột 3). he/she/it → <b>has</b>, còn lại → <b>have</b>. Nhớ V3 bất quy tắc: see → seen, do → done, eat → eaten, break → broken, go → gone."
     },
     {
       "unit": 12,
@@ -2880,7 +2891,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Việc đang diễn ra tại một thời điểm trong quá khứ → <b>was/were + V-ing</b>. Hành động kéo dài dùng tiếp diễn; hành động ngắn cắt ngang nó (thường đi sau <b>when</b>) dùng quá khứ đơn."
     },
     {
       "unit": 13,
@@ -3147,7 +3159,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Có kế hoạch từ trước, hoặc có dấu hiệu nhìn thấy được (Look! / Watch out!) → <b>be going to</b>. Quyết định ngay lúc nói, lời hứa, hoặc dự đoán (I think…) → <b>will</b>. Sau will và sau to đều là động từ nguyên mẫu."
     },
     {
       "unit": 14,
@@ -3414,7 +3427,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Bắt buộc / nội quy → <b>must</b>; cấm → <b>mustn’t</b>; lời khuyên → <b>should / shouldn’t</b>; xin phép → <b>may</b>; nghĩa vụ đến từ bên ngoài → <b>have to</b> (he/she/it → <b>has to</b>). Sau tất cả những từ này là động từ NGUYÊN MẪU."
     },
     {
       "unit": 15,
@@ -3681,7 +3695,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Nói điều luôn đúng (có <i>always / usually</i>) → cả hai vế đều dùng hiện tại đơn. Nói việc có thể xảy ra trong tương lai → <b>If + hiện tại đơn, … will + nguyên mẫu</b>. Lưu ý: ngay sau <b>if</b> KHÔNG dùng will."
     },
     {
       "unit": 16,
@@ -3864,7 +3879,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Câu hỏi Yes/No bắt đầu bằng trợ động từ (Do / Does / Did / Is / Are / Can). Hỏi thông tin thì chọn từ để hỏi theo thứ mình cần biết: <b>what</b> (cái gì), <b>where</b> (ở đâu), <b>when</b> (khi nào), <b>who</b> (ai), <b>why</b> (tại sao), <b>how</b> (thế nào / bao nhiêu)."
     },
     {
       "unit": 17,
@@ -4113,7 +4129,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Câu bị động = <b>be + V3</b>. Chia <b>be</b> theo chủ ngữ và theo thì: hiện tại → is/are, quá khứ → was/were; chủ ngữ số ít → is/was, số nhiều → are/were. Người hoặc vật thực hiện hành động đi sau <b>by</b>."
     },
     {
       "unit": 18,
@@ -4352,7 +4369,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Sau <b>want, would like, need</b> → <b>to + động từ</b>. Sau <b>enjoy, like, love, hate</b> (nói về sở thích) → <b>V-ing</b>. <b>too</b> + tính từ = quá… (ý xấu, không làm được); tính từ + <b>enough</b> = đủ… (ý tốt, làm được)."
     },
     {
       "unit": 19,
@@ -4607,7 +4625,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Nhìn DANH TỪ đứng ngay trước chỗ trống: là người → <b>who</b>; là vật hoặc con vật → <b>which</b>; chỉ sự sở hữu (cái gì đó <i>của</i> ai) → <b>whose</b>."
     },
     {
       "unit": 20,
@@ -4785,7 +4804,8 @@
             ]
           }
         }
-      ]
+      ],
+      "hint_vi": "Bổ nghĩa cho danh từ → dùng tính từ; nói việc làm <i>như thế nào</i> (bổ nghĩa cho động từ) → dùng trạng từ, thường thêm <b>-ly</b> (quick → quickly), riêng good → <b>well</b>. So sánh hai thứ → <b>-er / more … than</b>; nhất trong nhóm → <b>the -est / the most</b>; bằng nhau → <b>as … as</b>."
     }
   ]
 }
