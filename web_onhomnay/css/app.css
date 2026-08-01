@@ -176,6 +176,10 @@ h2{margin:0 0 8px;font-size:1.2rem}
   background:#fdfcff;font-size:.9rem}
 .pvi:focus,.pex:focus{outline:3px solid #ffd54a;outline-offset:1px;border-color:var(--brand)}
 .pvi:disabled,.pex:disabled{background:#f4f3f8;color:var(--ink-2)}
+.ow{display:flex;gap:9px;align-items:flex-start;margin-top:14px;padding:10px 13px;
+  background:#fff8e8;border:1px solid #f0cf87;border-radius:10px;font-size:.9rem;
+  color:#6b4a05;cursor:pointer}
+.ow input{margin-top:3px;width:18px;height:18px;flex:0 0 auto;cursor:pointer}
 .preview-act{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;padding-top:14px;
   border-top:1px solid var(--line)}
 .preview-act .btn + .btn{margin-left:0}

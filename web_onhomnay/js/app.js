@@ -414,6 +414,7 @@
 
   /* --- dán danh sách -> máy tra nghĩa -> cho xem lại rồi mới thêm --- */
   var scanned = [];
+  var overwrite = false;      // có ghi đè từ đã có trong sổ không
 
   function renderPreview() {
     var host = $('#preview-list');
@@ -475,13 +476,20 @@
       host.appendChild(row);
     });
 
-    var parts = [];
-    if (nOk) parts.push('✓ ' + nOk + ' từ đã có nghĩa');
-    if (nMiss) parts.push('✎ ' + nMiss + ' từ cần em điền nghĩa');
-    if (nDup) parts.push('• ' + nDup + ' từ đã có trong sổ (sẽ bỏ qua)');
-    $('#preview-sum').textContent = parts.join(' · ') || 'Không có từ nào.';
+    var parts = ['Đọc được <b>' + scanned.length + '</b> từ'];
+    if (nOk) parts.push('✓ ' + nOk + ' sẵn sàng thêm');
+    if (nMiss) parts.push('✎ ' + nMiss + ' cần em điền nghĩa');
+    if (nDup) parts.push('• ' + nDup + ' đã có trong sổ' + (overwrite ? ' (sẽ cập nhật)' : ' (sẽ bỏ qua)'));
+    $('#preview-sum').innerHTML = parts.join(' · ');
 
-    var addable = scanned.filter(function (r) { return r.status !== 'dup' && r.vi; }).length;
+    // Có từ trùng thì cho chọn: bỏ qua hay ghi đè. Nhập lại cùng một file mà lần
+    // nào cũng "bỏ qua hết" thì người dùng tưởng app hỏng.
+    var ow = $('#ow-wrap');
+    if (ow) ow.hidden = (nDup === 0);
+
+    var addable = scanned.filter(function (r) {
+      return r.vi && (overwrite || r.status !== 'dup');
+    }).length;
     var b = $('#btn-commit');
     b.textContent = addable ? '➕ Thêm ' + addable + ' từ vào sổ' : '➕ Thêm vào sổ';
     b.disabled = addable === 0;
@@ -570,14 +578,37 @@
     $('#preview').scrollIntoView({ block: 'nearest' });
   });
 
+  $('#ow').addEventListener('change', function (e) {
+    overwrite = !!e.target.checked;
+    renderPreview();
+  });
+
   $('#btn-commit').addEventListener('click', function () {
+    var total = scanned.length;
+    var noMean = scanned.filter(function (r) { return !r.vi; }).length;
+    var dups = scanned.filter(function (r) { return r.status === 'dup'; }).length;
+
+    if (overwrite) {                       // ghi đè: xoá bản cũ rồi thêm lại
+      scanned.forEach(function (r) {
+        if (r.status === 'dup' && r.vi) V.remove(r.id);
+      });
+    }
     var n = V.addRows(scanned);
-    var skipped = scanned.filter(function (r) { return r.status !== 'dup' && !r.vi; }).length;
+
     scanned = [];
+    overwrite = false;
+    var owBox = $('#ow'); if (owBox) owBox.checked = false;
     $('#preview').hidden = true;
     $('#f-bulk').value = '';
-    flash('✓ Đã thêm ' + n + ' từ vào sổ.' + (skipped ? ' Bỏ qua ' + skipped + ' từ chưa có nghĩa.' : '')
-      + ' Các từ mới sẽ được ôn ngay hôm nay.', 'ok');
+
+    // Báo ĐẦY ĐỦ số liệu: đọc bao nhiêu, vào bao nhiêu, vì sao phần còn lại không vào.
+    var msg = '✓ Đã thêm ' + n + '/' + total + ' từ vào sổ.';
+    var why = [];
+    if (!overwrite && dups) why.push(dups + ' từ đã có sẵn');
+    if (noMean) why.push(noMean + ' từ chưa có nghĩa');
+    if (why.length) msg += ' Không thêm: ' + why.join(', ') + '.';
+    if (n) msg += ' Từ mới sẽ được ôn ngay hôm nay.';
+    flash(msg, n ? 'ok' : 'warn');
     updateCounts();
   });
 

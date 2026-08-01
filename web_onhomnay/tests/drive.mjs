@@ -328,15 +328,75 @@ const TEST = `
     localStorage.removeItem('onhomnay.words.v1');
   });
 
+  /* ---------- 7. FILE THẬT 48 DÒNG (nhập lần đầu + nhập lại) ---------- */
+  step(function(){
+    localStorage.removeItem('onhomnay.words.v1');
+    window.Vocab.reload();
+    tab('them');
+    putFile('f-csv','tu-vung-2026-part2.csv', window.__CSV48, 'application/vnd.ms-excel');
+  });
+  waitFor(function(){ return !q('#preview').hidden && qa('#preview .prow').length>40; },
+          'đọc xong file 48 dòng');
+  step(function(){
+    ok(qa('#preview .prow').length===47,'file 48 dòng -> 47 từ (1 dòng là tiêu đề)',
+       {n:qa('#preview .prow').length});
+    ok(txt('#preview-sum').indexOf('Đọc được 47')>=0,'báo rõ đọc được bao nhiêu từ',
+       {t:txt('#preview-sum')});
+    ok(txt('#btn-commit').indexOf('47 từ')>=0,'nút Thêm đếm đủ 47',{t:txt('#btn-commit')});
+    ok(q('#ow-wrap').hidden,'lần đầu không có từ trùng -> ẩn ô cập nhật');
+    q('#btn-commit').click();
+  });
+  step(function(){
+    ok(window.Vocab.count()===47,'đã thêm ĐỦ 47 từ vào sổ',{n:window.Vocab.count()});
+    ok(txt('#flash').indexOf('47/47')>=0,'báo rõ 47/47',{t:txt('#flash')});
+    var w=window.Vocab.get('short-staffed');
+    ok(!!w,'giữ được từ có gạch nối');
+    ok(!!window.Vocab.get('public relations'),'giữ được từ hai tiếng');
+    ok(window.Vocab.get('appreciate').vi.indexOf('cảm kích')>=0,'nghĩa có dấu phẩy trong ô vẫn đúng');
+    ok(window.Vocab.get('retreat').vi.indexOf('[nghĩa thường')>=0,'ô có dấu ngoặc vuông vẫn đủ');
+  });
+  step(function(){
+    // nhập LẠI đúng file đó -> phải báo trùng, không im lặng bỏ qua
+    putFile('f-csv','tu-vung-2026-part2.csv', window.__CSV48, 'text/csv');
+  });
+  waitFor(function(){ return !q('#preview').hidden && qa('#preview .tag.dup').length>40; },
+          'đọc lại file lần hai');
+  step(function(){
+    ok(qa('#preview .tag.dup').length===47,'nhập lại -> 47 từ đều báo đã có trong sổ',
+       {n:qa('#preview .tag.dup').length});
+    ok(!q('#ow-wrap').hidden,'hiện ô "Cập nhật lại những từ đã có"');
+    ok(txt('#preview-sum').indexOf('47 đã có trong sổ')>=0,'tóm tắt nêu rõ vì sao không thêm',
+       {t:txt('#preview-sum')});
+    ok(q('#btn-commit').disabled,'không có gì để thêm -> khoá nút');
+    q('#ow').checked=true;
+    q('#ow').dispatchEvent(new Event('change',{bubbles:true}));
+  });
+  step(function(){
+    ok(!q('#btn-commit').disabled,'bật cập nhật -> mở lại nút Thêm');
+    ok(txt('#btn-commit').indexOf('47 từ')>=0,'cập nhật được cả 47 từ',{t:txt('#btn-commit')});
+    q('#btn-commit').click();
+  });
+  step(function(){
+    ok(window.Vocab.count()===47,'sau khi cập nhật vẫn đúng 47 từ (không nhân đôi)',
+       {n:window.Vocab.count()});
+    localStorage.removeItem('onhomnay.words.v1');
+  });
+
   setTimeout(run,260);
 })();
 <\/script>
 `;
 
+// nạp sẵn file mẫu 48 dòng (đúng định dạng người dùng) cho phần test cuối
+const CSV48 = fs.readFileSync(path.join(HERE, 'sample-toeic48.csv'), 'utf8');
+// Đây là chuỗi thường trong file .mjs (không nằm trong <script>) nên viết
+// thẳng '</script>'; escape thành '<\/script>' sẽ tạo thẻ đóng KHÔNG hợp lệ.
+const CSV48_STUB = '<script>window.__CSV48 = ' + JSON.stringify(CSV48) + ';</script>';
+
 let html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
 // replacer FUNCTION: chuỗi thay thế sẽ nuốt "$$"/"$&" trong kịch bản test.
 html = html.replace('<script src="data/dict.js"></script>',
-  function () { return VOICE_STUB + '\n<script src="data/dict.js"><\/script>'; });
+  function () { return VOICE_STUB + '\n' + CSV48_STUB + '\n<script src="data/dict.js"><\/script>'; });
 html = html.replace('</body>', function () { return TEST + '</body>'; });
 fs.writeFileSync(OUT, html, 'utf8');
 
