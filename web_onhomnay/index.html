@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ôn Hôm Nay — Sổ từ vựng của em</title>
+<meta name="theme-color" content="#7c3aed">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E🎯%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <div class="logo" aria-hidden="true">🎯</div>
+    <div class="brand">
+      <h1>Ôn Hôm Nay <span class="sub">— sổ từ vựng của em</span></h1>
+      <p>Em tự nhập từ muốn nhớ. Máy sẽ nhắc ôn đúng lúc sắp quên — nhớ lâu mà không phải học vẹt.</p>
+    </div>
+    <a class="home-link" href="../" title="Về trang chủ Toán Vui">
+      <span aria-hidden="true">🏠</span><span>Trang chủ</span>
+    </a>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Chuyển màn hình">
+  <button type="button" class="tab" data-go="on">🎯 Ôn hôm nay<span class="badge" id="badge-due" hidden></span></button>
+  <button type="button" class="tab" data-go="them">➕ Thêm từ</button>
+  <button type="button" class="tab" data-go="so">📒 Sổ từ<span class="badge" id="badge-count" hidden></span></button>
+</nav>
+
+<main class="wrap">
+  <p class="stat-line" id="stat-line"></p>
+
+  <p class="flash" id="flash" hidden role="status"></p>
+
+  <div class="hint-box" id="no-voice" hidden>
+    🔇 Máy này chưa có giọng đọc tiếng Anh nên nút 🔊 sẽ không kêu. Em vẫn học bình thường,
+    chỉ là không nghe được máy đọc thôi.
+  </div>
+
+  <!-- ============ ÔN HÔM NAY ============ -->
+  <section id="view-on" hidden>
+    <div id="review" aria-live="polite"></div>
+  </section>
+
+  <!-- ============ THÊM TỪ ============ -->
+  <section id="view-them" hidden>
+    <div class="card">
+      <h2>➕ Thêm một từ</h2>
+      <form id="form-add">
+        <div class="row2">
+          <div class="field">
+            <label for="f-word">Từ tiếng Anh</label>
+            <input id="f-word" type="text" autocomplete="off" spellcheck="false" placeholder="apple" required>
+          </div>
+          <div class="field">
+            <label for="f-mean">Nghĩa tiếng Việt</label>
+            <input id="f-mean" type="text" autocomplete="off" placeholder="quả táo" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-ex">Câu ví dụ (không bắt buộc)</label>
+          <input id="f-ex" type="text" autocomplete="off" spellcheck="false" placeholder="I eat an apple every day.">
+        </div>
+        <button class="btn" type="submit">Thêm vào sổ</button>
+      </form>
+      <p class="tip">💡 Nhớ tắt bộ gõ tiếng Việt khi gõ ô tiếng Anh. Từ mới sẽ được đưa vào ôn ngay hôm nay.</p>
+    </div>
+
+    <div class="card">
+      <h2>📋 Dán cả danh sách</h2>
+      <div class="hint-box">
+        Mỗi dòng một từ, ngăn cách bằng <code>=</code> (hoặc <code>-</code>, <code>:</code>, <code>|</code>, hay phím Tab).
+        Cột thứ ba là câu ví dụ, có thể bỏ trống.<br>
+        <b>Ví dụ:</b><br>
+        <code>apple = quả táo</code><br>
+        <code>rainy - trời mưa - It is rainy today.</code>
+      </div>
+      <div class="field">
+        <label for="f-bulk">Danh sách từ</label>
+        <textarea id="f-bulk" spellcheck="false" placeholder="apple = quả táo&#10;book = quyển sách&#10;happy = vui vẻ"></textarea>
+      </div>
+      <button class="btn" type="button" id="btn-bulk">Thêm tất cả vào sổ</button>
+    </div>
+  </section>
+
+  <!-- ============ SỔ TỪ ============ -->
+  <section id="view-so" hidden>
+    <div class="card">
+      <h2>📒 Sổ từ của em</h2>
+      <div class="toolbar">
+        <input type="search" id="f-search" placeholder="Tìm từ hoặc nghĩa…" aria-label="Tìm trong sổ từ">
+      </div>
+      <div id="list"></div>
+
+      <div class="backup">
+        <span class="muted">Sổ từ chỉ nằm trên máy này. Thỉnh thoảng nên lưu một bản dự phòng.</span>
+        <button class="btn ghost" type="button" id="btn-export">💾 Lưu ra file</button>
+        <label class="file-lbl">📂 Nhập từ file<input type="file" id="f-import" accept="application/json,.json"></label>
+        <button class="btn ghost" type="button" id="btn-clear">🗑️ Xoá hết</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="js/vocab.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

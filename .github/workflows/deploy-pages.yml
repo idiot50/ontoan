@@ -41,6 +41,7 @@ jobs:
           cp -r web_tienganh  _site/tienganh
           cp -r tao_de        _site/tao-de
           cp -r web_run3      _site/run3
+          cp -r web_onhomnay  _site/on-hom-nay
           # Bỏ phần test/dev khỏi bản xuất bản cho gọn (giữ manifest/sw/icons của mỗi app)
           rm -rf _site/lop1/tests _site/lop3/tests
           rm -f  _site/lop1/engine.test.mjs _site/lop3/engine.test.mjs
@@ -51,6 +52,8 @@ jobs:
           # bỏ nguồn build và bộ test cho gọn.
           rm -rf _site/run3/build _site/run3/tests
           rm -f  _site/run3/data/content.json
+          # Ôn Hôm Nay: bỏ bộ test khỏi bản xuất bản
+          rm -rf _site/on-hom-nay/tests
           # Web Tiếng Anh: chỉ giữ runtime (index/manifest/sw/css/js/content/assets),
           # bỏ tests, build scripts, docs nội bộ và README cho gọn & không lộ tài liệu nội bộ.
           rm -rf _site/tienganh/tests _site/tienganh/build _site/tienganh/docs
