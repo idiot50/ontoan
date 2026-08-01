@@ -162,6 +162,15 @@ h2{margin:0 0 8px;font-size:1.2rem}
 .tag.miss{background:var(--bad-bg);color:#8a4008}
 .tag.dup{background:#eceaf5;color:var(--ink-2)}
 .tag.base{background:var(--brand-2);color:#4c2a91}
+.tag.pos{background:#eef2ff;color:#3730a3}
+.ipa{font-family:ui-monospace,Consolas,monospace;font-size:.84rem;color:var(--ink-2);margin-left:6px}
+.wmain .col{font-size:.82rem;color:#4c2a91;margin-top:2px}
+.fb-ans .ipa{color:inherit;opacity:.75}
+
+/* nút chọn file to, dễ bấm */
+.file-lbl.big{display:flex;justify-content:center;font-size:1.05rem;padding:16px 20px;
+  border:2px dashed #cbb8ff;background:var(--brand-2);color:var(--brand-d);font-weight:700}
+.file-lbl.big:hover{background:#e7dcff;border-color:var(--brand)}
 .pvi{flex:1 1 170px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:#fdfcff}
 .pex{flex:1 1 210px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;
   background:#fdfcff;font-size:.9rem}

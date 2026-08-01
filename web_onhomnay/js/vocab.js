@@ -38,18 +38,30 @@
     catch (e) { return false; }
   }
 
-  /* word = { w:từ tiếng Anh, vi:nghĩa, ex:ví dụ, b:hộp, d:ngày đến hạn, s:số lần gặp, wr:số lần sai, at:ngày thêm } */
+  /* word = { w:từ, vi:nghĩa, ex:ví dụ, b:hộp, d:ngày đến hạn, s:số lần gặp, wr:số lần sai, at:ngày thêm
+              + tuỳ chọn: ipa:phiên âm, pos:loại từ, col:cụm đi kèm, src:nguồn, fq:tần suất } */
 
-  function add(w, vi, ex) {
+  var EXTRA_KEYS = ['ipa', 'pos', 'col', 'src'];
+
+  function add(w, vi, ex, extra) {
     var word = String(w == null ? '' : w).trim();
     var mean = String(vi == null ? '' : vi).trim();
     if (!word || !mean) return { ok: false, reason: 'thiếu' };
     var id = normId(word);
     if (db.words[id]) return { ok: false, reason: 'trùng', id: id };
-    db.words[id] = {
+    var rec = {
       w: word, vi: mean, ex: String(ex == null ? '' : ex).trim(),
       b: 0, d: today(), s: 0, wr: 0, at: today()
     };
+    if (extra) {
+      EXTRA_KEYS.forEach(function (k) {
+        var v = String(extra[k] == null ? '' : extra[k]).trim();
+        if (v) rec[k] = v;
+      });
+      var f = parseInt(extra.fq, 10);
+      if (f > 0) rec.fq = f;
+    }
+    db.words[id] = rec;
     save();
     return { ok: true, id: id };
   }
@@ -164,9 +176,160 @@
     for (i = 0; i < rows.length; i++) {
       var r = rows[i];
       if (!r || !r.word || !r.vi) continue;
-      if (add(r.word, r.vi, r.ex).ok) n++;
+      if (add(r.word, r.vi, r.ex, r).ok) n++;
     }
     return n;
+  }
+
+  /* ================= NHẬP FILE CSV / TSV =================
+     Nhận file xuất từ Excel / Google Sheets. Nhận diện cột theo TÊN TIÊU ĐỀ nên
+     thứ tự cột thế nào cũng được, thiếu cột cũng không sao. */
+
+  // bỏ dấu tiếng Việt để so tên cột ("Nghĩa tiếng Việt" -> "nghiatiengviet")
+  function slug(s) {
+    var t = String(s == null ? '' : s).replace(/^﻿/, '');
+    if (t.normalize) t = t.normalize('NFD').replace(/[̀-ͯ]/g, '');
+    return t.replace(/đ/g, 'd').replace(/Đ/g, 'd').toLowerCase().replace(/[^a-z0-9]/g, '');
+  }
+
+  var COLS = {
+    word: ['tuvung', 'tu', 'word', 'words', 'vocabulary', 'vocab', 'english', 'tienganh', 'term'],
+    vi: ['nghiatiengviet', 'nghia', 'nghiatv', 'meaning', 'vietnamese', 'tiengviet', 'dich', 'definition'],
+    ex: ['vidu', 'cauvidu', 'example', 'examplesentence', 'sample', 'sentence'],
+    ipa: ['phienam', 'ipa', 'pronunciation', 'phatam', 'phonetic'],
+    pos: ['loaitu', 'tuloai', 'pos', 'wordclass', 'partofspeech', 'type'],
+    col: ['cumdikem', 'collocation', 'collocations', 'cumtu', 'phrase'],
+    fq: ['tansuat', 'frequency', 'freq', 'count', 'solan'],
+    src: ['nguon', 'source', 'ref', 'reference', 'ghichu', 'note']
+  };
+
+  // Bộ đọc CSV đúng chuẩn: chịu được dấu ngăn trong ngoặc kép, "" thoát, xuống dòng trong ô.
+  function parseDelimited(text, delim) {
+    var rows = [], row = [], cell = '', i = 0, inQ = false, c, n;
+    var s = String(text || '').replace(/^﻿/, '');
+    while (i < s.length) {
+      c = s.charAt(i);
+      if (inQ) {
+        if (c === '"') {
+          n = s.charAt(i + 1);
+          if (n === '"') { cell += '"'; i += 2; continue; }
+          inQ = false; i++; continue;
+        }
+        cell += c; i++; continue;
+      }
+      if (c === '"') { inQ = true; i++; continue; }
+      if (c === delim) { row.push(cell); cell = ''; i++; continue; }
+      if (c === '\r') { i++; continue; }
+      if (c === '\n') { row.push(cell); rows.push(row); row = []; cell = ''; i++; continue; }
+      cell += c; i++;
+    }
+    if (cell !== '' || row.length) { row.push(cell); rows.push(row); }
+    return rows.filter(function (r) { return r.some(function (x) { return String(x).trim() !== ''; }); });
+  }
+
+  function guessDelim(text) {
+    var head = String(text || '').split(/\r?\n/)[0] || '';
+    var counts = { ',': 0, '\t': 0, ';': 0 }, i, ch, inQ = false;
+    for (i = 0; i < head.length; i++) {
+      ch = head.charAt(i);
+      if (ch === '"') { inQ = !inQ; continue; }
+      if (!inQ && counts[ch] !== undefined) counts[ch]++;
+    }
+    var best = ',', k;
+    for (k in counts) if (counts[k] > counts[best]) best = k;
+    return counts[best] > 0 ? best : ',';
+  }
+
+  // Có phải bảng CSV/TSV không (để textarea cũng nhận được nếu người dùng dán thẳng vào)
+  function looksTabular(text) {
+    var head = String(text || '').split(/\r?\n/)[0] || '';
+    if (!head) return false;
+    var d = guessDelim(text);
+    var cells = parseDelimited(head, d)[0] || [];
+    if (cells.length < 2) return false;
+    var hit = 0;
+    cells.forEach(function (c) {
+      var sl = slug(c);
+      for (var k in COLS) if (COLS[k].indexOf(sl) >= 0) hit++;
+    });
+    return hit >= 2;
+  }
+
+  /* parseTable(text) -> mảng row giống parseList, kèm ipa/pos/col/src nếu file có.
+     Nhận diện cột theo tiêu đề; không có tiêu đề thì coi cột 1 = từ, cột 2 = nghĩa. */
+  function parseTable(text) {
+    var d = guessDelim(text);
+    var grid = parseDelimited(text, d);
+    if (!grid.length) return [];
+
+    var head = grid[0].map(slug);
+    var idx = {}, k, j;
+    for (k in COLS) {
+      idx[k] = -1;
+      for (j = 0; j < head.length; j++) {
+        if (COLS[k].indexOf(head[j]) >= 0) { idx[k] = j; break; }
+      }
+    }
+    var hasHeader = idx.word >= 0 || idx.vi >= 0;
+    if (!hasHeader) { idx.word = 0; idx.vi = 1; idx.ex = 2; }   // không có tiêu đề
+
+    var body = hasHeader ? grid.slice(1) : grid;
+    var rows = [], seen = {};
+    body.forEach(function (r) {
+      function cell(key) {
+        var i2 = idx[key];
+        return (i2 >= 0 && r[i2] !== undefined) ? String(r[i2]).trim() : '';
+      }
+      var word = cell('word').replace(/[.,;!?]+$/, '').trim();
+      if (!word) return;
+      var id = normId(word);
+      if (seen[id]) return;
+      seen[id] = 1;
+
+      var row = {
+        word: word, id: id,
+        vi: cell('vi'), ex: cell('ex'),
+        ipa: cell('ipa'), pos: cell('pos'), col: cell('col'), src: cell('src'), fq: cell('fq'),
+        from: 'tệp'
+      };
+      if (db.words[id]) { row.status = 'dup'; row.vi = row.vi || db.words[id].vi; }
+      else if (row.vi) row.status = 'ok';
+      else {
+        var f = lookup(word);
+        if (f) { row.vi = f.vi; row.ex = row.ex || f.ex; row.ic = f.ic; row.base = f.base; row.status = 'ok'; row.from = 'từ điển'; }
+        else row.status = 'miss';
+      }
+      rows.push(row);
+    });
+    return rows;
+  }
+
+  /* Giải mã nội dung tệp: ưu tiên UTF-8; hỏng thì thử windows-1252;
+     và sửa trường hợp file UTF-8 bị lưu nhầm thành latin1 ("Tá»« vá»±ng" -> "Từ vựng"). */
+  function decodeBuffer(buf) {
+    var txt;
+    try {
+      txt = new TextDecoder('utf-8', { fatal: true }).decode(buf);
+    } catch (e) {
+      try { txt = new TextDecoder('windows-1252').decode(buf); }
+      catch (e2) { txt = ''; }
+    }
+    return repairMojibake(txt);
+  }
+
+  function repairMojibake(t) {
+    if (!t || !/Ã|Æ°|á»|Ä‘|â€/.test(t)) return t;
+    try {
+      var bytes = new Uint8Array(t.length), i, ok = true;
+      for (i = 0; i < t.length; i++) {
+        var c = t.charCodeAt(i);
+        if (c > 255) { ok = false; break; }
+        bytes[i] = c;
+      }
+      if (!ok) return t;
+      var fixed = new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+      return fixed;
+    } catch (e) { return t; }
   }
 
   function remove(id) { if (db.words[id]) { delete db.words[id]; save(); return true; } return false; }
@@ -289,6 +452,8 @@
     lookup: lookup, dictSize: dictSize, parseList: parseList, addRows: addRows,
     all: all, count: count, due: due, countDue: countDue, todayCount: todayCount,
     grade: grade, stats: stats,
-    exportJson: exportJson, importJson: importJson, reset: reset, reload: reload
+    exportJson: exportJson, importJson: importJson, reset: reset, reload: reload,
+    parseTable: parseTable, looksTabular: looksTabular, decodeBuffer: decodeBuffer,
+    parseDelimited: parseDelimited, slug: slug
   };
 })(typeof window !== 'undefined' ? window : this);

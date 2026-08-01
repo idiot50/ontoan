@@ -252,11 +252,13 @@
       fb.appendChild(t);
       var ansLine = el('div', 'fb-ans');
       ansLine.appendChild(el('b', null, it.w));
+      if (it.ipa) ansLine.appendChild(el('span', 'ipa', it.ipa));
       ansLine.appendChild(document.createTextNode(' — ' + it.vi));
       var s2 = sayBtn(it.w);
       if (s2) ansLine.appendChild(s2);
       fb.appendChild(ansLine);
       if (it.ex) fb.appendChild(el('div', 'fb-ex', '“' + it.ex + '”'));
+      if (it.col) fb.appendChild(el('div', 'fb-ex', '🔗 Cụm hay đi kèm: ' + it.col));
       var nb = V.get(cur.id);
       if (ok && nb) {
         fb.appendChild(el('div', 'muted', 'Lên hộp ' + (nb.b + 1) + ' — gặp lại sau ' + V.DELAYS[Math.min(nb.b, V.MAX_BOX)] + ' ngày.'));
@@ -428,12 +430,22 @@
       var wcell = el('div', 'pw');
       wcell.appendChild(el('span', 'w', r.word));
       if (r.ic) wcell.appendChild(el('span', 'ic', r.ic));
+      if (r.ipa) wcell.appendChild(el('span', 'ipa', r.ipa));
+      if (r.pos) wcell.appendChild(el('span', 'tag pos', r.pos));
       var sb = sayBtn(r.word);
       if (sb) wcell.appendChild(sb);
-      if (r.status === 'dup') wcell.appendChild(el('span', 'tag dup', 'đã có trong sổ'));
-      else if (r.from === 'từ điển') wcell.appendChild(el('span', 'tag ok', 'tìm thấy nghĩa'));
-      else if (r.from === 'nhập') wcell.appendChild(el('span', 'tag ok', 'em tự cho nghĩa'));
-      else wcell.appendChild(el('span', 'tag miss', 'chưa có nghĩa — em điền giúp'));
+      // Nhãn xét theo CÓ NGHĨA HAY CHƯA, không xét theo nguồn — nếu không thì
+      // từ lấy từ tệp CSV (đã có sẵn nghĩa) vẫn bị báo nhầm là "chưa có nghĩa".
+      if (r.status === 'dup') {
+        wcell.appendChild(el('span', 'tag dup', 'đã có trong sổ'));
+      } else if (!r.vi) {
+        wcell.appendChild(el('span', 'tag miss', 'chưa có nghĩa — em điền giúp'));
+      } else {
+        wcell.appendChild(el('span', 'tag ok',
+          r.from === 'từ điển' ? 'tra được nghĩa'
+            : r.from === 'tệp' ? 'lấy từ tệp'
+              : 'em tự cho nghĩa'));
+      }
       if (r.base && r.base !== r.id) wcell.appendChild(el('span', 'tag base', 'gốc: ' + r.base));
       row.appendChild(wcell);
 
@@ -476,10 +488,39 @@
     $('#preview').hidden = scanned.length === 0;
   }
 
+  /* --- nhập từ FILE CSV / TSV --- */
+  $('#f-csv').addEventListener('change', function (e) {
+    var f = e.target.files && e.target.files[0];
+    e.target.value = '';
+    if (!f) return;
+    $('#csv-name').textContent = 'Đang đọc “' + f.name + '”…';
+    var rd = new FileReader();
+    rd.onerror = function () { flash('Không đọc được file.', 'warn'); $('#csv-name').textContent = ''; };
+    rd.onload = function () {
+      var text = V.decodeBuffer(rd.result);       // tự dò UTF-8 / windows-1252, sửa cả lỗi phông
+      if (!text || !text.trim()) { flash('File rỗng.', 'warn'); $('#csv-name').textContent = ''; return; }
+      scanned = V.parseTable(text);
+      if (!scanned.length) {
+        flash('Không tìm thấy cột từ vựng trong file. Cần một cột tên "Từ vựng" (hoặc Word).', 'warn');
+        $('#csv-name').textContent = '';
+        return;
+      }
+      $('#csv-name').textContent = '📄 ' + f.name + ' — nhận ra ' + scanned.length + ' từ.';
+      renderPreview();
+      var nMiss = scanned.filter(function (r) { return r.status !== 'dup' && !r.vi; }).length;
+      flash(nMiss
+        ? 'Đã đọc xong file. Còn ' + nMiss + ' từ chưa có nghĩa — em xem lại rồi bấm Thêm.'
+        : '✓ Đã đọc xong file: ' + scanned.length + ' từ. Em xem lại rồi bấm Thêm.', nMiss ? 'warn' : 'ok');
+      $('#preview').scrollIntoView({ block: 'nearest' });
+    };
+    rd.readAsArrayBuffer(f);
+  });
+
   $('#btn-scan').addEventListener('click', function () {
     var t = $('#f-bulk').value;
     if (!t.trim()) { flash('Em dán danh sách từ vào ô đã nhé.', 'warn'); return; }
-    scanned = V.parseList(t);
+    // dán thẳng cả bảng từ Excel (có dòng tiêu đề) thì cũng hiểu được
+    scanned = V.looksTabular(t) ? V.parseTable(t) : V.parseList(t);
     if (!scanned.length) { flash('Chưa nhận ra từ nào trong danh sách.', 'warn'); return; }
     renderPreview();
     var nMiss = scanned.filter(function (r) { return r.status !== 'dup' && !r.vi; }).length;
@@ -531,10 +572,13 @@
       var main = el('div', 'wmain');
       var w = el('span', 'w', it.w);
       main.appendChild(w);
+      if (it.ipa) main.appendChild(el('span', 'ipa', it.ipa));
       var sb = sayBtn(it.w);
       if (sb) main.appendChild(sb);
       main.appendChild(el('span', 'vi', '— ' + it.vi));
+      if (it.pos) main.appendChild(el('span', 'tag pos', it.pos));
       if (it.ex) main.appendChild(el('div', 'ex', '“' + it.ex + '”'));
+      if (it.col) main.appendChild(el('div', 'col', '🔗 ' + it.col));
       row.appendChild(main);
 
       var meta = el('div', 'wmeta');

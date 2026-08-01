@@ -47,6 +47,21 @@
   <!-- ============ THÊM TỪ ============ -->
   <section id="view-them" hidden>
     <div class="card">
+      <h2>📥 Nhập từ file (CSV / Excel)</h2>
+      <div class="hint-box">
+        Chọn file <code>.csv</code> xuất từ Excel hoặc Google Sheets. Máy tự nhận cột theo
+        <b>tên tiêu đề</b> — thiếu cột nào cũng được, thứ tự tuỳ ý:<br>
+        <b>Từ vựng · Nghĩa tiếng Việt · Ví dụ · Phiên âm · Loại từ · Cụm đi kèm · Tần suất · Nguồn</b><br>
+        Dòng nào bỏ trống nghĩa thì máy tự tra từ điển giúp.
+      </div>
+      <label class="file-lbl big">
+        <span>📥 Chọn file để nhập</span>
+        <input type="file" id="f-csv" accept=".csv,.tsv,.txt,text/csv,text/tab-separated-values">
+      </label>
+      <p class="tip" id="csv-name"></p>
+    </div>
+
+    <div class="card">
       <h2>➕ Thêm một từ</h2>
       <form id="form-add">
         <div class="row2">

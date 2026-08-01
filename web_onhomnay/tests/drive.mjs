@@ -111,6 +111,52 @@ const TEST = `
     ok(q('#f-bulk').value==='','ô dán được xoá sạch');
   });
 
+  /* ---------- 2b. NHẬP BẢNG CSV (đúng định dạng file người dùng) ---------- */
+  step(function(){
+    var CSV = [
+      '"Từ vựng","Loại từ","Phiên âm","Nghĩa tiếng Việt","Tần suất","Cụm đi kèm","Ví dụ","Nguồn"',
+      '"deadline","(n) danh từ","/ˈdedlaɪn/","hạn chót nộp","3","meet a deadline; extend a deadline","Isn\\'t the registration deadline tomorrow?","2026 • Đề 5 • Part 2"',
+      '"public relations","(phr) cụm từ","/ˈpʌblɪk rɪˈleɪʃnz/","quan hệ công chúng (PR)","1","","Are you considering hiring a public relations firm?","2026 • Đề 3 • Part 2"',
+      '"convention","(n) danh từ","/kənˈvenʃn/","hội nghị/triển lãm lớn của ngành","3","convention center; attend a convention","A much larger convention center.","2026 • Đề 6 • Part 2"'
+    ].join('\\n');
+
+    ok(window.Vocab.looksTabular(CSV),'nhận ra đây là bảng CSV');
+    var rows=window.Vocab.parseTable(CSV);
+    ok(rows.length===3,'đọc được 3 dòng',{n:rows.length});
+    var r0=rows[0];
+    ok(r0.word==='deadline','lấy đúng cột Từ vựng',{w:r0.word});
+    ok(r0.vi==='hạn chót nộp','lấy đúng cột Nghĩa tiếng Việt',{vi:r0.vi});
+    ok(r0.ipa.indexOf('ded')>=0,'lấy được Phiên âm',{ipa:r0.ipa});
+    ok(r0.pos.indexOf('danh từ')>=0,'lấy được Loại từ',{pos:r0.pos});
+    ok(r0.col.indexOf('meet a deadline')>=0,'lấy được Cụm đi kèm',{col:r0.col});
+    ok(r0.ex.indexOf('registration')>=0,'lấy được Ví dụ (có dấu nháy trong câu)',{ex:r0.ex});
+    ok(r0.src.indexOf('Đề 5')>=0,'lấy được Nguồn',{src:r0.src});
+    ok(rows[1].word==='public relations','giữ nguyên từ có 2 tiếng');
+    ok(rows[2].vi.indexOf('triển lãm')>=0,'ô có dấu / vẫn đúng');
+
+    // đi đúng đường người dùng: dán cả bảng vào ô rồi bấm "Nhận dạng"
+    q('#f-bulk').value = CSV;
+    q('#btn-scan').click();
+  });
+  step(function(){
+    ok(qa('#preview .prow').length===3,'bảng xem lại hiện 3 dòng CSV',{n:qa('#preview .prow').length});
+    ok(qa('#preview .ipa').length===3,'hiện phiên âm trong bảng xem lại',{n:qa('#preview .ipa').length});
+    ok(qa('#preview .tag.pos').length===3,'hiện loại từ trong bảng xem lại');
+    ok(qa('#preview .tag.miss').length===0,'từ CSV đã có nghĩa thì KHÔNG bị báo "chưa có nghĩa"',
+       {n:qa('#preview .tag.miss').length});
+    ok(qa('#preview .tag.ok').length===3,'cả 3 dòng được đánh dấu đã có nghĩa');
+    q('#btn-commit').click();
+  });
+  step(function(){
+    ok(window.Vocab.count()===10,'sổ có thêm 3 từ từ CSV (7+3)',{n:window.Vocab.count()});
+    var d=window.Vocab.get('deadline');
+    ok(d && d.ipa && d.pos && d.col && d.src,'lưu đủ phiên âm / loại từ / cụm đi kèm / nguồn',{d:d});
+    ok(d.fq===3,'lưu cả tần suất',{fq:d.fq});
+    // xoá 3 từ CSV để phần ôn phía sau vẫn đúng như cũ
+    ['deadline','public relations','convention'].forEach(function(id){ window.Vocab.remove(id); });
+    ok(window.Vocab.count()===7,'dọn lại còn 7 từ',{n:window.Vocab.count()});
+  });
+
   /* ---------- 3. ÔN: nghe trước, KHÔNG lộ từ lẫn nghĩa ---------- */
   step(function(){ tab('on'); });
   step(function(){
