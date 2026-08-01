@@ -15,7 +15,8 @@ import { fileURLToPath } from 'node:url';
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, '..');
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
-const OUT = path.join(ROOT, '_drive.html');
+// tên riêng theo tiến trình: chạy hai lượt cùng lúc không ghi đè file của nhau
+const OUT = path.join(ROOT, '_drive_' + process.pid + '.html');
 
 // Giả lập Web Speech: app coi như máy CÓ giọng tiếng Anh.
 // LƯU Ý: window.speechSynthesis là thuộc tính CHỈ ĐỌC trên Window -> gán thẳng
@@ -51,6 +52,16 @@ const TEST = `
   function run(){ if(si>=steps.length){ fin(); return; } var f=steps[si++]; try{ f(); }catch(e){ F++; L.push('FAIL bước '+si+' ném lỗi: '+e.message); } setTimeout(run,70); }
   function fin(){ document.getElementById('TESTOUT').textContent='@@'+JSON.stringify({pass:P,fail:F,lines:L})+'@@'; }
   function tab(n){ qa('.tab').filter(function(t){return t.dataset.go===n;})[0].click(); }
+  // Chờ tới khi điều kiện đúng (FileReader là bất đồng bộ, chờ cứng theo số bước không đáng tin).
+  function waitFor(cond, label){
+    var tries=0;
+    function s(){
+      try { if (cond()) return; } catch(e) {}
+      if (++tries>40){ F++; L.push('FAIL quá hạn chờ: '+label); return; }
+      steps.splice(si, 0, s);          // chèn lại chính nó để chạy ở lượt kế tiếp
+    }
+    step(s);
+  }
 
   step(function(){
     localStorage.removeItem('onhomnay.words.v1');
@@ -155,6 +166,70 @@ const TEST = `
     // xoá 3 từ CSV để phần ôn phía sau vẫn đúng như cũ
     ['deadline','public relations','convention'].forEach(function(id){ window.Vocab.remove(id); });
     ok(window.Vocab.count()===7,'dọn lại còn 7 từ',{n:window.Vocab.count()});
+  });
+
+  /* ---------- 2c. NHẬP THẬT QUA Ô CHỌN FILE (không lọc đuôi) ---------- */
+  function putFile(inputId, name, content, mime){
+    var dt = new DataTransfer();
+    dt.items.add(new File([content], name, { type: mime || '' }));
+    var inp = document.getElementById(inputId);
+    inp.files = dt.files;
+    inp.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+
+  step(function(){
+    ok(!document.getElementById('f-csv').getAttribute('accept'),
+       'ô chọn file KHÔNG lọc đuôi (tránh máy báo "không hỗ trợ")');
+    ok(!document.getElementById('f-import').getAttribute('accept'),
+       'ô nhập ở Sổ từ cũng không lọc đuôi');
+  });
+
+  step(function(){
+    var CSV='"Từ vựng","Loại từ","Phiên âm","Nghĩa tiếng Việt","Tần suất","Cụm đi kèm","Ví dụ","Nguồn"\\n'
+      +'"warehouse","(n) danh từ","/ˈwerhaʊs/","nhà kho, kho hàng","2","","Aren\\'t the windows in the warehouse supposed to be replaced?","2026 • Đề 3 • Part 2"\\n'
+      +'"voucher","(n) danh từ","/ˈvaʊtʃər/","phiếu (hoàn tiền, ăn uống)","1","travel voucher; meal voucher","Would you like me to process your travel voucher?","2026 • Đề 6 • Part 2"';
+    putFile('f-csv','tu-vung-2026.csv', CSV, 'application/vnd.ms-excel');   // đúng MIME Excel hay gán
+  });
+  waitFor(function(){ return !q('#preview').hidden && qa('#preview .prow').length===2; },
+          'đọc xong file CSV');
+  step(function(){
+    ok(!q('#preview').hidden,'chọn file .csv -> hiện bảng xem lại');
+    ok(qa('#preview .prow').length===2,'đọc được 2 dòng từ file',{n:qa('#preview .prow').length});
+    ok(txt('#csv-name').indexOf('tu-vung-2026.csv')>=0,'hiện tên file đã đọc',{t:txt('#csv-name')});
+    // nghĩa nằm trong input.value -> phải đọc value, textContent không thấy
+    var vals=qa('#preview .pvi').map(function(i){return i.value;}).join(' | ');
+    ok(vals.indexOf('nhà kho')>=0,'lấy đúng nghĩa tiếng Việt từ file',{vals:vals});
+    q('#btn-commit').click();
+  });
+  step(function(){
+    ok(window.Vocab.count()===9,'đã thêm 2 từ từ file (7+2)',{n:window.Vocab.count()});
+    ok(window.Vocab.get('warehouse').ipa.indexOf('werha')>=0,'giữ được phiên âm khi nhập qua file');
+    ['warehouse','voucher'].forEach(function(id){ window.Vocab.remove(id); });
+  });
+
+  step(function(){
+    // file danh sách từ thường (.txt) — cũng phải nhận
+    putFile('f-csv','danhsach.txt','elephant\\nmonkey');
+  });
+  waitFor(function(){ return !q('#preview').hidden && qa('#preview .prow').length===2; },
+          'đọc xong file .txt');
+  step(function(){
+    ok(qa('#preview .prow').length===2,'file .txt danh sách từ cũng nhận',{n:qa('#preview .prow').length});
+    var v2=qa('#preview .pvi').map(function(i){return i.value;}).join(' | ');
+    ok(v2.indexOf('con voi')>=0,'tự tra nghĩa cho từ trong file .txt',{vals:v2});
+    q('#btn-cancel').click();
+  });
+
+  step(function(){
+    // bản sao lưu .json thả vào ô CSV -> phải tự nhận ra là sao lưu
+    var backup=window.Vocab.exportJson();
+    window.Vocab.remove('apple');
+    putFile('f-csv','sao-luu.json', backup, 'application/json');
+  });
+  waitFor(function(){ return window.Vocab.count()===7; }, 'khôi phục xong bản sao lưu');
+  step(function(){
+    ok(window.Vocab.count()===7,'thả file .json vào ô CSV vẫn khôi phục được sổ',{n:window.Vocab.count()});
+    ok(txt('#csv-name').indexOf('sao lưu')>=0,'báo rõ đây là bản sao lưu',{t:txt('#csv-name')});
   });
 
   /* ---------- 3. ÔN: nghe trước, KHÔNG lộ từ lẫn nghĩa ---------- */

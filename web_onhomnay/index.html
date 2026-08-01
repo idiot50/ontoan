@@ -54,11 +54,13 @@
         <b>Từ vựng · Nghĩa tiếng Việt · Ví dụ · Phiên âm · Loại từ · Cụm đi kèm · Tần suất · Nguồn</b><br>
         Dòng nào bỏ trống nghĩa thì máy tự tra từ điển giúp.
       </div>
+      <!-- KHÔNG đặt accept: Windows/iOS hay báo "không hỗ trợ" vì file .csv được
+           đăng ký MIME của Excel. Cứ cho chọn mọi file rồi tự nhận dạng nội dung. -->
       <label class="file-lbl big">
         <span>📥 Chọn file để nhập</span>
-        <input type="file" id="f-csv" accept=".csv,.tsv,.txt,text/csv,text/tab-separated-values">
+        <input type="file" id="f-csv">
       </label>
-      <p class="tip" id="csv-name"></p>
+      <p class="tip" id="csv-name">Nhận file <b>.csv</b>, <b>.tsv</b>, <b>.txt</b> — và cả file sao lưu <b>.json</b> của app.</p>
     </div>
 
     <div class="card">
@@ -119,9 +121,10 @@
       <div id="list"></div>
 
       <div class="backup">
-        <span class="muted">Sổ từ chỉ nằm trên máy này. Thỉnh thoảng nên lưu một bản dự phòng.</span>
+        <span class="muted">Sổ từ chỉ nằm trên máy này. Thỉnh thoảng nên lưu một bản dự phòng.
+          Nút “Nhập từ file” nhận cả <b>bản sao lưu .json</b> lẫn <b>danh sách .csv</b>.</span>
         <button class="btn ghost" type="button" id="btn-export">💾 Lưu ra file</button>
-        <label class="file-lbl">📂 Nhập từ file<input type="file" id="f-import" accept="application/json,.json"></label>
+        <label class="file-lbl">📂 Nhập từ file<input type="file" id="f-import"></label>
         <button class="btn ghost" type="button" id="btn-clear">🗑️ Xoá hết</button>
       </div>
     </div>

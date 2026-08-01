@@ -488,32 +488,72 @@
     $('#preview').hidden = scanned.length === 0;
   }
 
-  /* --- nhập từ FILE CSV / TSV --- */
-  $('#f-csv').addEventListener('change', function (e) {
-    var f = e.target.files && e.target.files[0];
-    e.target.value = '';
+  /* --- NHẬP FILE: một cửa duy nhất, tự nhận dạng nội dung ---
+     Cố tình KHÔNG lọc theo đuôi file: trên Windows (.csv gắn với Excel) và trên
+     iOS, bộ lọc accept hay làm máy báo "không hỗ trợ định dạng" và không cho chọn.
+     Cứ nhận mọi file rồi nhìn NỘI DUNG mà quyết định:
+       (1) bản sao lưu .json của app  -> khôi phục sổ từ
+       (2) bảng CSV/TSV (có tiêu đề)  -> nhập theo cột
+       (3) danh sách từ mỗi dòng một  -> tra từ điển như khi dán tay          */
+  function importFromFile(f) {
     if (!f) return;
-    $('#csv-name').textContent = 'Đang đọc “' + f.name + '”…';
+    var note = $('#csv-name');
+    if (note) note.textContent = 'Đang đọc “' + f.name + '”…';
+
     var rd = new FileReader();
-    rd.onerror = function () { flash('Không đọc được file.', 'warn'); $('#csv-name').textContent = ''; };
+    rd.onerror = function () {
+      flash('Không đọc được file “' + f.name + '”. Em thử lưu lại dạng CSV rồi chọn lần nữa nhé.', 'warn');
+      if (note) note.textContent = '';
+    };
     rd.onload = function () {
-      var text = V.decodeBuffer(rd.result);       // tự dò UTF-8 / windows-1252, sửa cả lỗi phông
-      if (!text || !text.trim()) { flash('File rỗng.', 'warn'); $('#csv-name').textContent = ''; return; }
-      scanned = V.parseTable(text);
-      if (!scanned.length) {
-        flash('Không tìm thấy cột từ vựng trong file. Cần một cột tên "Từ vựng" (hoặc Word).', 'warn');
-        $('#csv-name').textContent = '';
+      var text = V.decodeBuffer(rd.result);     // tự dò UTF-8 / windows-1252 + sửa lỗi phông
+      if (!text || !text.trim()) {
+        flash('File “' + f.name + '” không có nội dung.', 'warn');
+        if (note) note.textContent = '';
         return;
       }
-      $('#csv-name').textContent = '📄 ' + f.name + ' — nhận ra ' + scanned.length + ' từ.';
+
+      // (1) bản sao lưu JSON của chính app
+      var t = text.replace(/^\s+/, '');
+      if (t.charAt(0) === '{' && t.indexOf('"words"') > 0) {
+        var r = V.importJson(text, true);
+        if (r.ok) {
+          flash('✓ Đã khôi phục ' + r.n + ' từ từ bản sao lưu.', 'ok');
+          if (note) note.textContent = '📄 ' + f.name + ' — bản sao lưu, đã nhập ' + r.n + ' từ.';
+          renderList(); updateCounts();
+        } else {
+          flash('File JSON này không phải bản sao lưu sổ từ (' + r.reason + ').', 'warn');
+          if (note) note.textContent = '';
+        }
+        return;
+      }
+
+      // (2) bảng CSV/TSV  |  (3) danh sách từ thường
+      scanned = V.looksTabular(text) ? V.parseTable(text) : V.parseList(text);
+      if (!scanned.length) {
+        flash('Không nhận ra từ nào trong “' + f.name + '”. File cần có cột "Từ vựng" '
+          + '(hoặc Word), hoặc mỗi dòng một từ.', 'warn');
+        if (note) note.textContent = '';
+        return;
+      }
+
+      window.location.hash = 'them';            // bảng xem lại nằm ở tab Thêm từ
       renderPreview();
+      if (note) note.textContent = '📄 ' + f.name + ' — nhận ra ' + scanned.length + ' từ.';
       var nMiss = scanned.filter(function (r) { return r.status !== 'dup' && !r.vi; }).length;
       flash(nMiss
         ? 'Đã đọc xong file. Còn ' + nMiss + ' từ chưa có nghĩa — em xem lại rồi bấm Thêm.'
         : '✓ Đã đọc xong file: ' + scanned.length + ' từ. Em xem lại rồi bấm Thêm.', nMiss ? 'warn' : 'ok');
-      $('#preview').scrollIntoView({ block: 'nearest' });
+      var pv = $('#preview');
+      if (pv && pv.scrollIntoView) pv.scrollIntoView({ block: 'nearest' });
     };
     rd.readAsArrayBuffer(f);
+  }
+
+  $('#f-csv').addEventListener('change', function (e) {
+    var f = e.target.files && e.target.files[0];
+    e.target.value = '';
+    importFromFile(f);
   });
 
   $('#btn-scan').addEventListener('click', function () {
@@ -629,17 +669,12 @@
     flash('✓ Đã tải file sao lưu về máy.', 'ok');
   });
 
+  // Nút nhập ở tab Sổ từ dùng CHUNG một cửa với nút ở tab Thêm từ:
+  // người dùng bấm nút nào, thả file gì vào cũng chạy.
   $('#f-import').addEventListener('change', function (e) {
     var f = e.target.files && e.target.files[0];
-    if (!f) return;
-    var rd = new FileReader();
-    rd.onload = function () {
-      var r = V.importJson(String(rd.result), true);
-      if (r.ok) { flash('✓ Đã nhập thêm ' + r.n + ' từ từ file sao lưu.', 'ok'); renderList(); updateCounts(); }
-      else flash('Không nhập được: ' + r.reason, 'warn');
-    };
-    rd.readAsText(f);
     e.target.value = '';
+    importFromFile(f);
   });
 
   $('#btn-clear').addEventListener('click', function () {
