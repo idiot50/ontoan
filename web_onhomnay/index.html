@@ -69,19 +69,28 @@
     </div>
 
     <div class="card">
-      <h2>📋 Dán cả danh sách</h2>
+      <h2>📋 Dán danh sách từ — máy tự tìm nghĩa</h2>
       <div class="hint-box">
-        Mỗi dòng một từ, ngăn cách bằng <code>=</code> (hoặc <code>-</code>, <code>:</code>, <code>|</code>, hay phím Tab).
-        Cột thứ ba là câu ví dụ, có thể bỏ trống.<br>
-        <b>Ví dụ:</b><br>
-        <code>apple = quả táo</code><br>
-        <code>rainy - trời mưa - It is rainy today.</code>
+        Chỉ cần dán <b>danh sách từ tiếng Anh</b> (mỗi dòng một từ, hoặc ngăn nhau bằng dấu phẩy).
+        Máy tự tra <b>nghĩa</b> và lấy <b>câu ví dụ</b> từ từ điển có sẵn trong máy
+        (<b id="dict-size">…</b> từ, không cần mạng). Từ nào chưa có, em tự điền nghĩa là xong.<br>
+        Nếu muốn tự cho nghĩa luôn thì viết <code>apple = quả táo</code>.
       </div>
       <div class="field">
         <label for="f-bulk">Danh sách từ</label>
-        <textarea id="f-bulk" spellcheck="false" placeholder="apple = quả táo&#10;book = quyển sách&#10;happy = vui vẻ"></textarea>
+        <textarea id="f-bulk" spellcheck="false" placeholder="apple&#10;book&#10;happy, rainy, chair&#10;kite = con diều"></textarea>
       </div>
-      <button class="btn" type="button" id="btn-bulk">Thêm tất cả vào sổ</button>
+      <button class="btn" type="button" id="btn-scan">🔎 Nhận dạng &amp; tìm nghĩa</button>
+    </div>
+
+    <div class="card" id="preview" hidden>
+      <h2>👀 Xem lại trước khi thêm</h2>
+      <p class="muted" id="preview-sum"></p>
+      <div id="preview-list"></div>
+      <div class="preview-act">
+        <button class="btn" type="button" id="btn-commit">➕ Thêm vào sổ</button>
+        <button class="btn ghost" type="button" id="btn-cancel">Huỷ</button>
+      </div>
     </div>
   </section>
 
@@ -104,6 +113,7 @@
   </section>
 </main>
 
+<script src="data/dict.js"></script>
 <script src="js/vocab.js"></script>
 <script src="js/app.js"></script>
 </body>

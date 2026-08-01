@@ -1,8 +1,11 @@
 /*
- * drive.mjs — Test tự động cho "Ôn Hôm Nay" (sổ từ vựng + ôn giãn cách).
+ * drive.mjs — Test tự động cho "Ôn Hôm Nay" (sổ từ + tra nghĩa + ôn nghe-trước).
  * Chạy:  node tests/drive.mjs
- * Chèn kịch bản test vào index.html -> _drive.html ở THƯ MỤC GỐC app (index.html
- * dùng đường dẫn tương đối), mở bằng Chrome headless --dump-dom rồi đọc kết quả.
+ *
+ * Hai chỗ chèn:
+ *   1) TRƯỚC các script của app: giả lập giọng đọc (headless không có giọng EN thật)
+ *      -> test được đường chính "nghe trước, giấu từ và nghĩa".
+ *   2) TRƯỚC </body>: kịch bản test, kết quả đọc lại bằng --dump-dom.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -14,136 +17,167 @@ const ROOT = path.resolve(HERE, '..');
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const OUT = path.join(ROOT, '_drive.html');
 
+// Giả lập Web Speech: app coi như máy CÓ giọng tiếng Anh.
+// LƯU Ý: window.speechSynthesis là thuộc tính CHỈ ĐỌC trên Window -> gán thẳng
+// (window.speechSynthesis = ...) sẽ bị bỏ qua âm thầm. Phải defineProperty.
+const VOICE_STUB = `<script>
+  window.__spoke = [];
+  Object.defineProperty(window, 'speechSynthesis', {
+    configurable: true,
+    value: {
+      getVoices: function(){ return [{lang:'en-GB', name:'Test EN', voiceURI:'test'}]; },
+      speak: function(u){ window.__spoke.push(u && u.text); if(u && u.onend) setTimeout(u.onend, 0); },
+      cancel: function(){},
+      addEventListener: function(){}
+    }
+  });
+  Object.defineProperty(window, 'SpeechSynthesisUtterance', {
+    configurable: true,
+    value: function(t){ this.text = t; }
+  });
+<\/script>`;
+
 const TEST = `
 <div id="TESTOUT" style="display:none"></div>
 <script>
 (function(){
   var L=[],P=0,F=0;
-  function ok(c,m,x){ if(c){P++;L.push('PASS '+m);} else {F++;L.push('FAIL '+m+(x!==undefined?' | '+JSON.stringify(x).slice(0,150):''));} }
+  function ok(c,m,x){ if(c){P++;L.push('PASS '+m);} else {F++;L.push('FAIL '+m+(x!==undefined?' | '+JSON.stringify(x).slice(0,160):''));} }
   function q(s){ return document.querySelector(s); }
   function qa(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); }
   function txt(s){ var n=q(s); return n?(n.textContent||'').trim():''; }
   var steps=[],si=0;
   function step(f){ steps.push(f); }
-  function run(){ if(si>=steps.length){ fin(); return; } var f=steps[si++]; try{ f(); }catch(e){ F++; L.push('FAIL bước '+si+' ném lỗi: '+e.message); } setTimeout(run,80); }
+  function run(){ if(si>=steps.length){ fin(); return; } var f=steps[si++]; try{ f(); }catch(e){ F++; L.push('FAIL bước '+si+' ném lỗi: '+e.message); } setTimeout(run,70); }
   function fin(){ document.getElementById('TESTOUT').textContent='@@'+JSON.stringify({pass:P,fail:F,lines:L})+'@@'; }
+  function tab(n){ qa('.tab').filter(function(t){return t.dataset.go===n;})[0].click(); }
 
-  /* --- 0. dọn sạch để test từ trạng thái trắng --- */
   step(function(){
     localStorage.removeItem('onhomnay.words.v1');
     window.Vocab.reload();
-    location.hash='on';
+    tab('on');
   });
 
-  /* --- 1. trạng thái rỗng --- */
+  /* ---------- 1. từ điển nhúng ---------- */
   step(function(){
-    ok(!!window.Vocab,'vocab.js đã nạp');
-    ok(qa('.tab').length===3,'có 3 tab',{n:qa('.tab').length});
-    ok(txt('#review').indexOf('Sổ từ còn trống')>=0,'sổ rỗng -> mời thêm từ',{t:txt('#review').slice(0,60)});
-    ok(txt('#stat-line').indexOf('còn trống')>=0,'dòng thống kê báo sổ trống');
+    ok(!!window.DICT,'từ điển đã nhúng');
+    ok(window.Vocab.dictSize()>300,'từ điển có >300 từ',{n:window.Vocab.dictSize()});
+    var f=window.Vocab.lookup('apple');
+    ok(f && f.vi,'tra được "apple"',{f:f});
+    ok(f && f.ex,'tra kèm câu ví dụ',{ex:f?f.ex:''});
+    // dạng biến đổi
+    ok(!!window.Vocab.lookup('apples'),'tra được số nhiều "apples"');
+    ok(!!window.Vocab.lookup('running'),'tra được "running" -> run');
+    ok(!!window.Vocab.lookup('cities'),'tra được "cities" -> city');
+    ok(window.Vocab.lookup('zzzqqq')===null,'từ không có thì trả null');
   });
 
-  /* --- 2. thêm 1 từ bằng form --- */
+  /* ---------- 2. dán DANH SÁCH TỪ (không kèm nghĩa) -> máy tự tra ---------- */
+  step(function(){ tab('them'); });
   step(function(){
-    location.hash='them';
+    ok(txt('#dict-size').length>0,'có hiện số từ trong từ điển',{t:txt('#dict-size')});
+    q('#f-bulk').value='apple\\nbook\\nhappy, rainy, chair\\nzzzqqq\\nkite = con diều';
+    q('#btn-scan').click();
   });
   step(function(){
-    q('#f-word').value='apple';
-    q('#f-mean').value='quả táo';
-    q('#f-ex').value='I eat an apple.';
-    q('#form-add').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
+    ok(!q('#preview').hidden,'hiện bảng xem lại');
+    var rows=qa('#preview .prow');
+    ok(rows.length===7,'nhận ra 7 từ (kể cả dòng ngăn bằng dấu phẩy)',{n:rows.length});
+    var found=qa('#preview .tag.ok').length;
+    ok(found>=5,'tự tìm được nghĩa cho ít nhất 5 từ',{n:found});
+    ok(qa('#preview .tag.miss').length===1,'đúng 1 từ lạ bị đánh dấu chưa có nghĩa',
+       {n:qa('#preview .tag.miss').length});
+    var inputs=qa('#preview .pvi');
+    ok(inputs[0].value.length>0,'ô nghĩa được điền sẵn từ từ điển',{v:inputs[0].value});
+    ok(qa('#preview .pex')[0].value.length>0,'ô ví dụ cũng được điền sẵn');
+    ok(txt('#btn-commit').indexOf('6 từ')>=0,'nút Thêm đếm đúng 6 từ đã có nghĩa',{t:txt('#btn-commit')});
   });
   step(function(){
-    ok(window.Vocab.count()===1,'đã thêm 1 từ',{n:window.Vocab.count()});
-    ok(!q('#flash').hidden && txt('#flash').indexOf('Đã thêm')>=0,'có báo thêm thành công',{t:txt('#flash')});
-    ok(q('#f-word').value==='','ô nhập được xoá để gõ từ tiếp theo');
-    var w=window.Vocab.get('apple');
-    ok(!!w && w.vi==='quả táo' && w.ex==='I eat an apple.','lưu đúng nghĩa + ví dụ');
-    ok(w.b===0 && w.d===window.Vocab.today(),'từ mới đến hạn ôn NGAY hôm nay',{b:w.b});
-  });
-
-  /* --- 3. thêm trùng --- */
-  step(function(){
-    q('#f-word').value='Apple';    // khác hoa/thường -> vẫn phải coi là trùng
-    q('#f-mean').value='quả táo';
-    q('#form-add').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
+    // điền nghĩa cho từ lạ rồi thêm tất cả
+    var rows=qa('#preview .prow');
+    var missRow=rows.filter(function(r){return r.querySelector('.tag.miss');})[0];
+    var inp=missRow.querySelector('.pvi');
+    inp.value='từ thử nghiệm';
+    inp.dispatchEvent(new Event('input',{bubbles:true}));
+    q('#btn-commit').click();
   });
   step(function(){
-    ok(window.Vocab.count()===1,'không thêm từ trùng (không phân biệt hoa/thường)',{n:window.Vocab.count()});
-    ok(txt('#flash').indexOf('đã có')>=0,'báo từ đã có',{t:txt('#flash')});
-  });
-
-  /* --- 4. dán hàng loạt, nhiều kiểu dấu ngăn --- */
-  step(function(){
-    q('#f-word').value=''; q('#f-mean').value='';
-    q('#f-bulk').value='book = quyển sách\\nhappy - vui vẻ\\nrainy : trời mưa - It is rainy today.\\nchair\\tcái ghế\\nDÒNG SAI KHÔNG CÓ NGHĨA';
-    q('#btn-bulk').click();
-  });
-  step(function(){
-    ok(window.Vocab.count()===5,'dán hàng loạt thêm được 4 từ (tổng 5)',{n:window.Vocab.count()});
-    ok(!!window.Vocab.get('book') && !!window.Vocab.get('happy'),'nhận dấu = và -');
-    ok(!!window.Vocab.get('rainy') && !!window.Vocab.get('chair'),'nhận dấu : và TAB');
-    var r=window.Vocab.get('rainy');
-    ok(r && r.ex.indexOf('rainy today')>=0,'lấy được cột ví dụ thứ 3',{ex:r?r.ex:''});
-    ok(txt('#flash').indexOf('chưa đúng mẫu')>=0,'báo dòng sai mẫu',{t:txt('#flash')});
+    ok(window.Vocab.count()===7,'đã thêm đủ 7 từ vào sổ',{n:window.Vocab.count()});
+    var a=window.Vocab.get('apple');
+    ok(a && a.vi.length>0 && a.ex.length>0,'từ lấy từ từ điển có cả nghĩa lẫn ví dụ',{a:a});
+    ok(window.Vocab.get('kite').vi==='con diều','dòng tự cho nghĩa vẫn dùng nghĩa của người dùng');
+    ok(window.Vocab.get('zzzqqq').vi==='từ thử nghiệm','từ lạ dùng nghĩa em vừa điền');
+    ok(q('#preview').hidden,'thêm xong thì đóng bảng xem lại');
+    ok(q('#f-bulk').value==='','ô dán được xoá sạch');
   });
 
-  /* --- 5. sổ từ: liệt kê + tìm kiếm --- */
-  step(function(){ location.hash='so'; });
+  /* ---------- 3. ÔN: nghe trước, KHÔNG lộ từ lẫn nghĩa ---------- */
+  step(function(){ tab('on'); });
   step(function(){
-    ok(qa('#list .wrow').length===5,'sổ từ liệt kê đủ 5 từ',{n:qa('#list .wrow').length});
-    ok(qa('#list .wrow .boxes').length===5,'mỗi từ có chỉ báo 5 hộp');
-    ok(txt('#list').indexOf('cần ôn hôm nay')>=0,'có từ được đánh dấu cần ôn hôm nay');
-    q('#f-search').value='táo';
-    q('#f-search').dispatchEvent(new Event('input',{bubbles:true}));
+    ok(!!q('#review .hear'),'thẻ ôn có nút NGHE lớn');
+    ok(txt('#review .hear-lbl').indexOf('Nghe rồi')>=0,'có lời dẫn "Nghe rồi…"',{t:txt('#review .hear-lbl')});
+    ok(!q('#review .word-big'),'KHÔNG hiện từ tiếng Anh khi đang hỏi');
+    ok(!q('#review .mean-big'),'KHÔNG hiện nghĩa khi đang hỏi');
+    ok(window.__spoke.length>0,'tự đọc từ một lần khi thẻ hiện ra',{n:window.__spoke.length});
+    // từ đang hỏi phải nằm trong sổ và KHÔNG được lộ ra text của thẻ
+    var spoken=window.__spoke[window.__spoke.length-1];
+    ok(txt('#review').toLowerCase().indexOf(String(spoken).toLowerCase())<0,
+       'chữ của từ đang hỏi không xuất hiện trên màn hình',{w:spoken});
   });
   step(function(){
-    ok(qa('#list .wrow').length===1,'tìm theo NGHĨA tiếng Việt ra 1 kết quả',{n:qa('#list .wrow').length});
-    q('#f-search').value='';
-    q('#f-search').dispatchEvent(new Event('input',{bubbles:true}));
+    var n=window.__spoke.length;
+    q('#review .hear').click();
+    ok(window.__spoke.length===n+1,'bấm nút NGHE thì đọc lại');
+    var slow=qa('#review .rc-q .btn').filter(function(b){return b.textContent.indexOf('chậm')>=0;})[0];
+    ok(!!slow,'có nút nghe chậm');
+  });
+  step(function(){
+    var peek=qa('#review .rc-q .btn').filter(function(b){return b.textContent.indexOf('Gợi ý nghĩa')>=0;})[0];
+    if(peek){
+      peek.click();
+      ok(!!q('#review .peek'),'bấm "Gợi ý nghĩa" thì hé NGHĨA');
+      ok(!q('#review .word-big'),'gợi ý nghĩa vẫn KHÔNG lộ từ cần trả lời');
+    } else {
+      // thẻ dạng chọn nghĩa thì không có nút này
+      ok(qa('#review .opt').length>0,'thẻ chọn nghĩa: có các phương án để chọn');
+    }
   });
 
-  /* --- 6. ôn hôm nay: thang leo + chấm + lên hộp --- */
-  step(function(){ location.hash='on'; });
+  /* ---------- 4. làm xong mới hiện đủ từ + nghĩa ---------- */
   step(function(){
-    ok(txt('#review').indexOf('Thẻ 1/5')>=0,'màn ôn có 5 thẻ đến hạn',{t:txt('.rc-prog')});
-    ok(qa('#review .opt').length===4,'hộp 0 (≥4 từ) -> hỏi kiểu chọn nghĩa, 4 phương án',{n:qa('#review .opt').length});
-    ok(!!q('#review .word-big'),'hộp 0 hiện TỪ tiếng Anh để chọn nghĩa');
-  });
-  step(function(){
-    // chọn đúng nghĩa của từ đang hỏi
-    var w=txt('#review .word-big');
-    var want=window.Vocab.get(window.Vocab.normId(w)).vi;
-    var hit=qa('#review .opt').filter(function(b){return b.textContent.trim()===want;})[0];
-    ok(!!hit,'tìm được phương án đúng trong danh sách',{w:w,want:want});
-    if(hit) hit.click();
+    var spoken=String(window.__spoke[window.__spoke.length-1]||'');
+    var opt=qa('#review .opt');
+    if(opt.length){
+      var want=window.Vocab.get(window.Vocab.normId(spoken)).vi;
+      var hit=opt.filter(function(b){return b.textContent.trim()===want;})[0];
+      if(hit) hit.click(); else opt[0].click();
+    } else {
+      var letters=qa('#review .letter');
+      if(letters.length){
+        // xếp đúng thứ tự chữ cái của từ đã nghe
+        spoken.split('').forEach(function(ch){
+          var b=qa('#review .letter').filter(function(x){return !x.disabled && x.textContent===ch;})[0];
+          if(b) b.click();
+        });
+      } else if(q('#review .inp')){
+        q('#review .inp').value=spoken;
+      }
+      var ck=qa('#review .rc-act .btn').filter(function(b){return b.textContent.indexOf('Kiểm tra')>=0;})[0];
+      if(ck) ck.click();
+    }
   });
   step(function(){
     var fb=q('#review .rc-fb');
-    ok(fb && !fb.hidden,'trả lời xong -> phản hồi ngay');
-    ok(fb.className.indexOf('good')>=0,'chọn đúng -> phản hồi xanh',{c:fb.className});
-    ok(txt('#review .fb-ans').length>3,'phản hồi hiện lại từ + nghĩa');
-    ok(txt('#review').indexOf('Lên hộp 2')>=0,'đúng -> lên hộp 2',{t:txt('#review .rc-fb')});
-    q('#review .rc-act .btn').click();
-  });
-  step(function(){
-    ok(txt('#review .rc-prog').indexOf('Thẻ 2/5')>=0,'sang được thẻ 2',{t:txt('#review .rc-prog')});
-    // thẻ 2: cố tình bấm "Chưa nhớ, xem đáp án"
-    var sk=qa('#review .rc-act .btn').filter(function(b){return b.textContent.indexOf('Chưa nhớ')>=0;})[0];
-    var op=q('#review .opt');
-    if(sk) sk.click(); else if(op) op.click();
-  });
-  step(function(){
-    ok(!q('#review .rc-fb').hidden,'thẻ 2 cũng có phản hồi');
-    q('#review .rc-act .btn').click();
+    ok(fb && !fb.hidden,'làm xong -> hiện phản hồi');
+    var t=txt('#review .fb-ans');
+    ok(t.length>3,'phản hồi hiện CẢ từ và nghĩa',{t:t});
+    ok(t.indexOf('—')>=0,'định dạng "từ — nghĩa"',{t:t});
   });
 
-  /* --- 7. chạy hết phiên --- */
+  /* ---------- 5. chạy hết phiên + lịch ôn ---------- */
   step(function(){
-    // LƯU Ý: thẻ dạng "chọn nghĩa" khi CHƯA trả lời thì .rc-act rỗng,
-    // nên không được lấy sự tồn tại của .rc-act .btn làm điều kiện lặp.
     var guard=0;
-    while(guard++<40){
+    while(guard++<60){
       if(txt('#review').indexOf('Xong rồi')>=0) break;
       var nx=qa('#review .rc-act .btn').filter(function(b){return b.textContent.indexOf('→')>=0;})[0];
       if(nx){ nx.click(); continue; }
@@ -153,55 +187,35 @@ const TEST = `
       if(op){ op.click(); continue; }
       break;
     }
-  });
-  step(function(){
-    ok(txt('#review').indexOf('Xong rồi')>=0,'chạy hết phiên -> màn tổng kết',{t:txt('#review').slice(0,80)});
-    ok(txt('#review').indexOf('Em vừa ôn')>=0,'tổng kết báo số từ đã ôn');
+    ok(txt('#review').indexOf('Xong rồi')>=0,'chạy hết phiên -> màn tổng kết',{t:txt('#review').slice(0,70)});
+    ok(window.Vocab.countDue()===0,'hết từ đến hạn hôm nay',{n:window.Vocab.countDue()});
   });
 
-  /* --- 8. lịch ôn đã được cập nhật --- */
+  /* ---------- 6. sổ từ + sao lưu ---------- */
+  step(function(){ tab('so'); });
   step(function(){
-    var a=window.Vocab.all();
-    var moved=a.filter(function(r){return r.it.d>window.Vocab.today();});
-    ok(moved.length===5,'cả 5 từ đã được hẹn ngày ôn sau',{n:moved.length});
-    var app=window.Vocab.get('apple');
-    ok(app.s>=1,'có ghi số lần gặp',{s:app.s});
-    ok(window.Vocab.countDue()===0,'hôm nay không còn từ đến hạn',{n:window.Vocab.countDue()});
-    // bấm lại tab đang mở — phải render lại (không được đứng ở màn tổng kết)
-    qa('.tab').filter(function(t){return t.dataset.go==='on';})[0].click();
+    ok(qa('#list .wrow').length===7,'sổ từ liệt kê đủ 7 từ',{n:qa('#list .wrow').length});
+    q('#f-search').value='diều';
+    q('#f-search').dispatchEvent(new Event('input',{bubbles:true}));
   });
   step(function(){
-    ok(txt('#review').indexOf('không có từ nào cần ôn')>=0,'màn ôn báo hết thẻ, không ép học thêm',
-       {t:txt('#review').slice(0,80)});
-    ok(txt('#review').indexOf('nghỉ ngơi')>=0 || txt('#review').indexOf('Mai Pi nhắc')>=0,'lời nhắn nhẹ nhàng, không tạo áp lực');
-  });
-
-  /* --- 9. sao lưu + xoá --- */
-  step(function(){
+    ok(qa('#list .wrow').length===1,'tìm theo nghĩa tiếng Việt được',{n:qa('#list .wrow').length});
     var js=window.Vocab.exportJson();
-    ok(js.indexOf('apple')>=0,'xuất được JSON sao lưu');
-    var before=window.Vocab.count();
     window.Vocab.remove('apple');
-    ok(window.Vocab.count()===before-1,'xoá được một từ',{n:window.Vocab.count()});
     var r=window.Vocab.importJson(js,true);
-    ok(r.ok && window.Vocab.count()===before,'nhập lại từ file sao lưu khôi phục đủ từ',{n:window.Vocab.count()});
-  });
-
-  /* --- 10. sạch sẽ --- */
-  step(function(){
-    ok(txt('#badge-count').length>0,'tab Sổ từ hiện số lượng',{t:txt('#badge-count')});
-    var html=document.getElementById('view-them').innerHTML.toLowerCase();
-    ok(html.indexOf('streak')<0 && html.indexOf('đếm ngược')<0,'không có streak / đếm ngược');
+    ok(r.ok && window.Vocab.count()===7,'sao lưu & khôi phục đủ từ',{n:window.Vocab.count()});
     localStorage.removeItem('onhomnay.words.v1');
   });
 
-  setTimeout(run,250);
+  setTimeout(run,260);
 })();
 <\/script>
 `;
 
 let html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-// replacer FUNCTION: nếu truyền chuỗi, "$$"/"$&" trong test sẽ bị String.replace diễn giải.
+// replacer FUNCTION: chuỗi thay thế sẽ nuốt "$$"/"$&" trong kịch bản test.
+html = html.replace('<script src="data/dict.js"></script>',
+  function () { return VOICE_STUB + '\n<script src="data/dict.js"><\/script>'; });
 html = html.replace('</body>', function () { return TEST + '</body>'; });
 fs.writeFileSync(OUT, html, 'utf8');
 

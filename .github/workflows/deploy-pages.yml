@@ -52,8 +52,8 @@ jobs:
           # bỏ nguồn build và bộ test cho gọn.
           rm -rf _site/run3/build _site/run3/tests
           rm -f  _site/run3/data/content.json
-          # Ôn Hôm Nay: bỏ bộ test khỏi bản xuất bản
-          rm -rf _site/on-hom-nay/tests
+          # Ôn Hôm Nay: bỏ bộ test và nguồn dựng từ điển (giữ data/dict.js đã sinh)
+          rm -rf _site/on-hom-nay/tests _site/on-hom-nay/build
           # Web Tiếng Anh: chỉ giữ runtime (index/manifest/sw/css/js/content/assets),
           # bỏ tests, build scripts, docs nội bộ và README cho gọn & không lộ tài liệu nội bộ.
           rm -rf _site/tienganh/tests _site/tienganh/build _site/tienganh/docs

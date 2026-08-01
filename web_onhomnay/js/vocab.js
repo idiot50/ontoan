@@ -73,6 +73,102 @@
     return res;
   }
 
+  /* ---------- TRA TỪ ĐIỂN NHÚNG (window.DICT) ----------
+     Không gọi mạng: từ điển đã nhúng sẵn nên tra được cả khi offline / file://.
+     Có dò dạng biến đổi đơn giản để "apples", "running", "bigger" vẫn ra gốc. */
+  function variants(w) {
+    var s = w, out = [s], i;
+    function add(x) { if (x && x.length > 1 && out.indexOf(x) < 0) out.push(x); }
+    if (/ies$/.test(s)) add(s.slice(0, -3) + 'y');
+    if (/ves$/.test(s)) { add(s.slice(0, -3) + 'f'); add(s.slice(0, -3) + 'fe'); }
+    if (/(ch|sh|s|x|z|o)es$/.test(s)) add(s.slice(0, -2));
+    if (/s$/.test(s)) add(s.slice(0, -1));
+    if (/ing$/.test(s)) {
+      add(s.slice(0, -3));
+      add(s.slice(0, -3) + 'e');
+      if (/(.)\1ing$/.test(s)) add(s.slice(0, -4));      // running -> run
+    }
+    if (/ed$/.test(s)) {
+      add(s.slice(0, -2));
+      add(s.slice(0, -1));
+      if (/ied$/.test(s)) add(s.slice(0, -3) + 'y');
+      if (/(.)\1ed$/.test(s)) add(s.slice(0, -3));       // stopped -> stop
+    }
+    if (/est$/.test(s)) { add(s.slice(0, -3)); add(s.slice(0, -2)); }
+    if (/er$/.test(s)) { add(s.slice(0, -2)); add(s.slice(0, -1)); }
+    return out;
+  }
+
+  // lookup('apples') -> { vi, ex, ic, base:'apple' }  hoặc null
+  function lookup(word) {
+    var D = global.DICT;
+    if (!D) return null;
+    var k = normId(word), i, v, e;
+    var cands = variants(k);
+    for (i = 0; i < cands.length; i++) {
+      e = D[cands[i]];
+      if (e) return { vi: e[0], ex: e[1] || '', ic: e[2] || '', base: cands[i] };
+    }
+    return null;
+  }
+
+  function dictSize() { return global.DICT ? Object.keys(global.DICT).length : 0; }
+
+  /* ---------- PHÂN TÍCH DANH SÁCH DÁN VÀO ----------
+     Chấp nhận cả hai kiểu:
+       (a) chỉ danh sách TỪ  ->  tự tra nghĩa + ví dụ trong từ điển
+       (b) "từ = nghĩa"      ->  dùng nghĩa người dùng cho
+     Bỏ được số thứ tự "1." / "1)" / "- " ở đầu dòng. Một dòng nhiều từ ngăn bằng dấu phẩy. */
+  var SEP = /\t|\s+[=|:]\s+|\s+[-–—]\s+|=|\||:/;
+
+  function parseList(text) {
+    var rows = [], seen = {};
+    String(text || '').split(/\r?\n/).forEach(function (line) {
+      var s = line.trim().replace(/^\s*[-*•]\s+/, '').replace(/^\s*\d+\s*[.)]\s*/, '');
+      if (!s) return;
+      var chunks;
+      if (SEP.test(s)) chunks = [s];                    // có nghĩa kèm theo -> giữ nguyên dòng
+      else chunks = s.split(/\s*[,;]\s*/);              // chỉ toàn từ -> tách theo dấu phẩy
+      chunks.forEach(function (c) {
+        var t = c.trim();
+        if (!t) return;
+        var word = t, vi = '', ex = '', given = false;
+        if (SEP.test(t)) {
+          var p = t.split(SEP).map(function (x) { return x.trim(); }).filter(function (x) { return x; });
+          if (p.length >= 2) { word = p[0]; vi = p[1]; ex = p[2] || ''; given = true; }
+          else word = p[0] || t;
+        }
+        word = word.replace(/[.,;!?]+$/, '').trim();
+        if (!word) return;
+        var id = normId(word);
+        if (seen[id]) return;
+        seen[id] = 1;
+
+        var row = { word: word, id: id, vi: vi, ex: ex, from: given ? 'nhập' : '' };
+        if (db.words[id]) { row.status = 'dup'; row.vi = row.vi || db.words[id].vi; }
+        else if (given) row.status = 'ok';
+        else {
+          var f = lookup(word);
+          if (f) { row.vi = f.vi; row.ex = f.ex; row.ic = f.ic; row.base = f.base; row.status = 'ok'; row.from = 'từ điển'; }
+          else { row.status = 'miss'; }
+        }
+        rows.push(row);
+      });
+    });
+    return rows;
+  }
+
+  // Thêm hàng loạt từ danh sách đã phân tích (và người dùng có thể đã sửa nghĩa).
+  function addRows(rows) {
+    var n = 0, i;
+    for (i = 0; i < rows.length; i++) {
+      var r = rows[i];
+      if (!r || !r.word || !r.vi) continue;
+      if (add(r.word, r.vi, r.ex).ok) n++;
+    }
+    return n;
+  }
+
   function remove(id) { if (db.words[id]) { delete db.words[id]; save(); return true; } return false; }
 
   function update(id, fields) {
@@ -190,6 +286,7 @@
     DELAYS: DELAYS, MAX_BOX: MAX_BOX, SESSION_CAP: SESSION_CAP, KEY: KEY,
     today: today, normId: normId,
     add: add, addBulk: addBulk, remove: remove, update: update, get: get,
+    lookup: lookup, dictSize: dictSize, parseList: parseList, addRows: addRows,
     all: all, count: count, due: due, countDue: countDue, todayCount: todayCount,
     grade: grade, stats: stats,
     exportJson: exportJson, importJson: importJson, reset: reset, reload: reload

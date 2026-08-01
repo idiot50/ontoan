@@ -188,16 +188,41 @@
     top.appendChild(boxTag);
     card.appendChild(top);
 
+    /* ---- Vùng câu hỏi: NGHE TRƯỚC, giấu cả từ lẫn nghĩa ----
+       Trẻ nghe từ rồi xếp chữ / gõ lại; chỉ khi làm xong mới hiện đầy đủ từ + nghĩa.
+       Nghe rồi tự viết ra buộc trẻ nối ÂM với MẶT CHỮ — khắc sâu hơn nhìn rồi chép.
+       Máy không có giọng đọc thì rơi về hỏi bằng chữ, nếu không thẻ sẽ không giải được. */
+    var listen = canSpeak();
     var qWrap = el('div', 'rc-q');
-    if (tier === 'choose') {
-      // Nhận diện: thấy từ tiếng Anh -> chọn nghĩa
-      var w = el('div', 'word-big', it.w);
-      qWrap.appendChild(w);
-      var sb = sayBtn(it.w);
-      if (sb) qWrap.appendChild(sb);
+
+    if (listen) {
+      var hear = el('button', 'hear', '🔊');
+      hear.type = 'button';
+      hear.setAttribute('aria-label', 'Nghe lại từ');
+      hear.addEventListener('click', function () { speak(it.w); });
+      qWrap.appendChild(hear);
+      qWrap.appendChild(el('p', 'hear-lbl', 'Nghe rồi ' + (
+        tier === 'choose' ? 'chọn nghĩa đúng' :
+        tier === 'letters' ? 'xếp chữ thành từ' : 'gõ lại từ') + '.'));
+      var slow = el('button', 'btn ghost tiny', '🐢 Nghe chậm');
+      slow.type = 'button';
+      slow.addEventListener('click', function () { speak(it.w, true); });
+      qWrap.appendChild(slow);
+      if (tier !== 'choose') {
+        // Cứu cánh khi trẻ không nghe rõ: chỉ hé NGHĨA, KHÔNG lộ từ cần trả lời.
+        var peek = el('button', 'btn ghost tiny', '💡 Gợi ý nghĩa');
+        peek.type = 'button';
+        peek.addEventListener('click', function () {
+          peek.remove();
+          qWrap.appendChild(el('div', 'peek', 'Nghĩa: ' + it.vi));
+        });
+        qWrap.appendChild(peek);
+      }
+      speak(it.w);                       // tự đọc một lần khi thẻ hiện ra
+    } else if (tier === 'choose') {
+      qWrap.appendChild(el('div', 'word-big', it.w));
       qWrap.appendChild(el('p', 'muted', 'Từ này nghĩa là gì?'));
     } else {
-      // Nhớ lại chủ động: thấy nghĩa tiếng Việt -> tự bật ra từ tiếng Anh
       qWrap.appendChild(el('div', 'mean-big', it.vi));
       qWrap.appendChild(el('p', 'muted', 'Tiếng Anh là gì?'));
     }
@@ -385,16 +410,99 @@
     }
   });
 
-  $('#btn-bulk').addEventListener('click', function () {
+  /* --- dán danh sách -> máy tra nghĩa -> cho xem lại rồi mới thêm --- */
+  var scanned = [];
+
+  function renderPreview() {
+    var host = $('#preview-list');
+    host.textContent = '';
+    var nOk = 0, nMiss = 0, nDup = 0;
+
+    scanned.forEach(function (r, i) {
+      if (r.status === 'dup') nDup++;
+      else if (r.vi) nOk++;
+      else nMiss++;
+
+      var row = el('div', 'prow' + (r.status === 'dup' ? ' is-dup' : ''));
+
+      var wcell = el('div', 'pw');
+      wcell.appendChild(el('span', 'w', r.word));
+      if (r.ic) wcell.appendChild(el('span', 'ic', r.ic));
+      var sb = sayBtn(r.word);
+      if (sb) wcell.appendChild(sb);
+      if (r.status === 'dup') wcell.appendChild(el('span', 'tag dup', 'đã có trong sổ'));
+      else if (r.from === 'từ điển') wcell.appendChild(el('span', 'tag ok', 'tìm thấy nghĩa'));
+      else if (r.from === 'nhập') wcell.appendChild(el('span', 'tag ok', 'em tự cho nghĩa'));
+      else wcell.appendChild(el('span', 'tag miss', 'chưa có nghĩa — em điền giúp'));
+      if (r.base && r.base !== r.id) wcell.appendChild(el('span', 'tag base', 'gốc: ' + r.base));
+      row.appendChild(wcell);
+
+      var inp = el('input', 'pvi');
+      inp.type = 'text';
+      inp.value = r.vi || '';
+      inp.placeholder = 'Nghĩa tiếng Việt…';
+      inp.disabled = (r.status === 'dup');
+      inp.addEventListener('input', function () { scanned[i].vi = inp.value; });
+      row.appendChild(inp);
+
+      var ex = el('input', 'pex');
+      ex.type = 'text';
+      ex.value = r.ex || '';
+      ex.placeholder = 'Câu ví dụ (không bắt buộc)';
+      ex.spellcheck = false;
+      ex.disabled = (r.status === 'dup');
+      ex.addEventListener('input', function () { scanned[i].ex = ex.value; });
+      row.appendChild(ex);
+
+      var del = el('button', 'mini danger', '✕');
+      del.type = 'button';
+      del.title = 'Bỏ từ này';
+      del.addEventListener('click', function () { scanned.splice(i, 1); renderPreview(); });
+      row.appendChild(del);
+
+      host.appendChild(row);
+    });
+
+    var parts = [];
+    if (nOk) parts.push('✓ ' + nOk + ' từ đã có nghĩa');
+    if (nMiss) parts.push('✎ ' + nMiss + ' từ cần em điền nghĩa');
+    if (nDup) parts.push('• ' + nDup + ' từ đã có trong sổ (sẽ bỏ qua)');
+    $('#preview-sum').textContent = parts.join(' · ') || 'Không có từ nào.';
+
+    var addable = scanned.filter(function (r) { return r.status !== 'dup' && r.vi; }).length;
+    var b = $('#btn-commit');
+    b.textContent = addable ? '➕ Thêm ' + addable + ' từ vào sổ' : '➕ Thêm vào sổ';
+    b.disabled = addable === 0;
+    $('#preview').hidden = scanned.length === 0;
+  }
+
+  $('#btn-scan').addEventListener('click', function () {
     var t = $('#f-bulk').value;
     if (!t.trim()) { flash('Em dán danh sách từ vào ô đã nhé.', 'warn'); return; }
-    var r = V.addBulk(t);
-    var msg = '✓ Đã thêm ' + r.added + ' từ.';
-    if (r.dup) msg += ' Bỏ qua ' + r.dup + ' từ đã có.';
-    if (r.bad) msg += ' Có ' + r.bad + ' dòng chưa đúng mẫu (cần: từ = nghĩa).';
-    flash(msg, r.added ? 'ok' : 'warn');
-    if (r.added) $('#f-bulk').value = '';
+    scanned = V.parseList(t);
+    if (!scanned.length) { flash('Chưa nhận ra từ nào trong danh sách.', 'warn'); return; }
+    renderPreview();
+    var nMiss = scanned.filter(function (r) { return r.status !== 'dup' && !r.vi; }).length;
+    flash(nMiss
+      ? 'Đã tra xong. Còn ' + nMiss + ' từ chưa có nghĩa — em điền vào rồi bấm Thêm nhé.'
+      : '✓ Đã tra xong nghĩa cho tất cả các từ. Em xem lại rồi bấm Thêm.', nMiss ? 'warn' : 'ok');
+    $('#preview').scrollIntoView({ block: 'nearest' });
+  });
+
+  $('#btn-commit').addEventListener('click', function () {
+    var n = V.addRows(scanned);
+    var skipped = scanned.filter(function (r) { return r.status !== 'dup' && !r.vi; }).length;
+    scanned = [];
+    $('#preview').hidden = true;
+    $('#f-bulk').value = '';
+    flash('✓ Đã thêm ' + n + ' từ vào sổ.' + (skipped ? ' Bỏ qua ' + skipped + ' từ chưa có nghĩa.' : '')
+      + ' Các từ mới sẽ được ôn ngay hôm nay.', 'ok');
     updateCounts();
+  });
+
+  $('#btn-cancel').addEventListener('click', function () {
+    scanned = [];
+    $('#preview').hidden = true;
   });
 
   /* ================= MÀN 3: SỔ TỪ ================= */
@@ -502,6 +610,8 @@
     var w = $('#no-voice');
     if (w) w.hidden = false;
   }
+  var ds = $('#dict-size');
+  if (ds) ds.textContent = V.dictSize().toLocaleString('vi-VN');
   updateCounts();
   route();
 })();
