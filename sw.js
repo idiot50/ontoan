@@ -8,8 +8,9 @@
    cache thì trình duyệt cài lại service worker, nạp lại shell mới và dọn cache cũ —
    nhờ vậy thẻ app mới thêm chắc chắn hiện ra, kể cả khi mở lúc không có mạng.
    v2 (2026-08-09): thêm thẻ "Ôn Thi".
-   v3 (2026-08-09): thẻ đổi tên "Thi Lớp 5" -> "Ôn Thi" và đổi đích ./thi-lop5/ -> ./on-thi/. */
-const CACHE = 'toanvui-hub-v3';
+   v3 (2026-08-09): thẻ đổi tên "Thi Lớp 5" -> "Ôn Thi" và đổi đích ./thi-lop5/ -> ./on-thi/.
+   v4 (2026-08-09): dựng lại bố cục cho vừa đúng MỘT màn, không phải kéo. */
+const CACHE = 'toanvui-hub-v4';
 
 // App shell precache (đường dẫn TƯƠNG ĐỐI theo scope của SW).
 const SHELL = [
