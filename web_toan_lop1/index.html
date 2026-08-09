@@ -320,6 +320,19 @@
   .topic.t5 .chip { background:#E9F6FE; } .topic.t6 .chip { background:#EAF7EC; }
   .topic.t7 .chip { background:#FFEFE6; } .topic.t8 .chip { background:#FCEFFB; }
 
+
+  /* Dải liên kết rời khỏi app (chỉ hiện ở trang chủ của app): về trang chọn ứng dụng
+     và sang trình tạo đề. Cố ý làm nhạt và nhỏ hơn nút học để không tranh sự chú ý
+     của trẻ với nút "Ôn tập tổng hợp". */
+  .site-nav { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:20px 0 4px; }
+  .site-nav a { display:inline-flex; align-items:center; gap:7px; min-height:44px;
+    padding:10px 16px; border-radius: var(--r-pill); border:1px solid var(--line);
+    background: var(--card); color: var(--ink-2); text-decoration:none;
+    font-size:15px; font-weight:700; box-shadow: var(--sh-sm);
+    transition: background .15s ease, border-color .15s ease, color .15s ease; }
+  .site-nav a:hover { background: var(--brand-soft); border-color: var(--brand); color: var(--brand-ink); }
+  .site-nav a:focus-visible { outline:3px solid #ffd54a; outline-offset:2px; }
+
   .mixed-wrap { margin: 26px 0 8px; display:flex; flex-direction:column; gap:16px; }
 
   /* ============================== MÀN LÀM BÀI ============================== */
@@ -761,6 +774,13 @@
         <button class="btn big" id="mixedBtn">▶ Ôn tập vui — 10 câu</button>
         <button class="btn ghost big" id="badgesBtn">🏅 Huy hiệu của bé</button>
       </div>
+
+      <!-- Lối ra ngoài app: về trang chọn ứng dụng, hoặc sang trình tạo đề in giấy.
+           Tham số ?mon= để trang tạo đề chọn sẵn đúng lớp đang học. -->
+      <nav class="site-nav" aria-label="Chuyển sang phần khác của Toán Vui">
+        <a href="../">🧮 Tất cả ứng dụng</a>
+        <a href="../tao-de/?mon=toan1">🖨️ Tạo đề để in</a>
+      </nav>
 
       <p class="creator-contact" style="text-align:center; margin:20px 0 4px; color:#5b6478; font-size:16px">
         💬 Liên hệ nhà sáng tạo:

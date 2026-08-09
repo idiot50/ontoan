@@ -2,7 +2,10 @@
  * Chiến lược: network-first, fallback cache (chạy offline ngay sau lần mở đầu).
  * CHỈ xử lý request same-origin + GET. Tất cả tài nguyên đều cùng-origin (offline thật).
  */
-const CACHE = 'toanvui-lop1-v1';
+/* Nâng phiên bản mỗi khi index.html đổi nội dung: máy đã "Lưu về máy" (PWA) giữ
+   bản cũ trong cache theo tên này, không đổi tên thì mở offline vẫn ra giao diện cũ.
+   v2 (2026-08-09): thêm dải liên kết "Tất cả ứng dụng" / "Tạo đề để in". */
+const CACHE = 'toanvui-lop1-v2';
 
 // App shell precache (đường dẫn TƯƠNG ĐỐI theo scope của SW).
 const SHELL = [

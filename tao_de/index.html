@@ -106,6 +106,15 @@
     monSel.appendChild(o);
   });
 
+  /* Cho phép chọn sẵn môn/lớp qua tham số URL: /tao-de/?mon=thi5
+     Các app học (lớp 1, lớp 3, Thi lớp 5) có nút "Tạo đề" trỏ sang đây kèm tham số
+     này, để thầy cô / ba mẹ đang ôn lớp nào thì ra thẳng đề đúng lớp đó, khỏi phải
+     chọn lại. Tham số lạ thì bỏ qua, giữ nguyên mặc định. */
+  try {
+    var monURL = new URLSearchParams(location.search).get('mon');
+    if (monURL && CFG[monURL] && ORDER.indexOf(monURL) >= 0) monSel.value = monURL;
+  } catch (e) { /* trình duyệt cũ không có URLSearchParams -> dùng mặc định */ }
+
   // Nạp danh sách mức độ; mặc định là mức DỄ như trước đây.
   (DC.LEVEL_ORDER || ['de']).forEach(function (k) {
     if (!LEVELS[k]) return;
