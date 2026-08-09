@@ -1,5 +1,5 @@
 /*
- * engine.js — Động cơ sinh câu hỏi "Thi Lớp 5" (ôn thi vào lớp 6)
+ * engine.js — Động cơ sinh câu hỏi "Ôn Thi" (luyện thi vào lớp 6)
  * Nguồn kiến thức: KIEN_THUC.md (tổng hợp từ 49 đề thi vào lớp 6 + đề cương lớp 4–5).
  *
  * Classic script: chạy được qua <script src> (file://) lẫn node (require).

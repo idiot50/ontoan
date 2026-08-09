@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đã đổi tên thành "Ôn Thi" — Toán Vui</title>
+<!-- Chuyển hướng ngay cả khi JavaScript bị tắt. Đặt 0 giây nhưng vẫn hiển thị nội
+     dung bên dưới phòng khi trình duyệt không tự chuyển. -->
+<meta http-equiv="refresh" content="0; url=../on-thi/">
+<link rel="canonical" href="../on-thi/">
+<meta name="robots" content="noindex">
+<style>
+  body{font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+       background:radial-gradient(1200px 600px at 50% -10%, #fff, #f6f7fc);
+       color:#1b2138; margin:0; min-height:100vh; display:flex; align-items:center;
+       justify-content:center; padding:24px; text-align:center}
+  .box{max-width:520px}
+  .emo{font-size:56px; line-height:1; margin-bottom:12px}
+  h1{font-size:clamp(22px,5vw,30px); margin:0 0 10px}
+  p{color:#5b6478; font-size:17px; line-height:1.6; margin:0 0 22px}
+  a.go{display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+       background:#e11d48; color:#fff; font-weight:700; font-size:17px;
+       padding:14px 24px; border-radius:12px; min-height:44px}
+  a.go:hover{filter:brightness(1.06)}
+  a.go:focus-visible{outline:3px solid #ffd54a; outline-offset:2px}
+  .hub{display:block; margin-top:16px; color:#5b6478; font-size:15px}
+</style>
+</head>
+<body>
+  <main class="box">
+    <div class="emo" aria-hidden="true">🎓</div>
+    <h1>Mục này nay tên là <span style="color:#e11d48">Ôn Thi</span></h1>
+    <p>Nội dung không đổi — vẫn là luyện thi vào lớp 6. Đang chuyển bạn sang địa chỉ mới…</p>
+    <a class="go" href="../on-thi/">Vào Ôn Thi →</a>
+    <a class="hub" href="../">← Về trang chủ Toán Vui</a>
+  </main>
+
+<script>
+/* =====================================================================
+ *  DỌN DẤU VẾT CỦA BẢN CŨ rồi mới chuyển sang địa chỉ mới.
+ *
+ *  Máy nào từng mở /thi-lop5/ sẽ có một service worker đăng ký ở ĐÚNG phạm vi
+ *  đường dẫn đó, kèm bộ nhớ đệm riêng. Nếu chỉ chuyển hướng mà không gỡ, cái
+ *  service worker ấy nằm lại vĩnh viễn: vẫn chiếm dung lượng, và khi máy không có
+ *  mạng nó còn phục vụ lại bản app CŨ từ cache thay vì trang chuyển hướng này.
+ *
+ *  Tiến độ học KHÔNG nằm ở đây nên gỡ hoàn toàn an toàn: localStorage tính theo
+ *  origin chứ không theo đường dẫn, app ở địa chỉ mới đọc lại được và tự chuyển
+ *  sang khoá mới ngay lần mở đầu.
+ * ===================================================================== */
+(function () {
+  'use strict';
+  var DICH = '../on-thi/';
+
+  function di() { location.replace(DICH); }
+
+  // Không có Service Worker API (hoặc mở bằng file://) thì chuyển luôn.
+  if (!('serviceWorker' in navigator)) { di(); return; }
+
+  var xong = false;
+  function chuyenMotLan() { if (!xong) { xong = true; di(); } }
+
+  // Không để việc dọn dẹp giữ chân người dùng: chậm nhất 1,5 giây là đi.
+  setTimeout(chuyenMotLan, 1500);
+
+  var viecCanLam = [];
+
+  viecCanLam.push(
+    navigator.serviceWorker.getRegistrations()
+      .then(function (dsDangKy) {
+        return Promise.all(dsDangKy.map(function (r) {
+          // CHỈ gỡ service worker của chính đường dẫn cũ này — không đụng
+          // service worker của trang chủ hay của các app khác chung origin.
+          return (r.scope.indexOf('/thi-lop5/') >= 0) ? r.unregister() : null;
+        }));
+      })
+      .catch(function () { /* gỡ không được thì thôi, vẫn chuyển hướng */ })
+  );
+
+  if (window.caches && caches.keys) {
+    viecCanLam.push(
+      caches.keys()
+        .then(function (ten) {
+          return Promise.all(ten.map(function (k) {
+            return k.indexOf('thilop5') === 0 ? caches.delete(k) : null;
+          }));
+        })
+        .catch(function () {})
+    );
+  }
+
+  Promise.all(viecCanLam).then(chuyenMotLan, chuyenMotLan);
+})();
+</script>
+</body>
+</html>

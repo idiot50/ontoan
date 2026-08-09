@@ -23,8 +23,8 @@ build/log_*.txt
 # === Artifact sinh ra khi chạy test ===
 web_toan_lop3/tests/.chrome-profile/
 web_toan_lop3/tests/ui.run.html
-web_thi_lop5/tests/.chrome-profile/
-web_thi_lop5/tests/ui.run.html
+web_on_thi/tests/.chrome-profile/
+web_on_thi/tests/ui.run.html
 
 # === Ảnh preview tạm (đặt tên _*.png) ===
 **/_*.png

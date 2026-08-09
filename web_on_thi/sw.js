@@ -1,11 +1,11 @@
-/* sw.js — Service Worker cho "Thi Lớp 5".
+/* sw.js — Service Worker cho "Ôn Thi".
  * Chiến lược: network-first, fallback cache (chạy offline ngay sau lần mở đầu).
  * CHỈ xử lý request same-origin + GET. Tất cả tài nguyên đều cùng-origin (offline thật).
  */
 /* Nâng phiên bản mỗi khi index.html đổi nội dung: máy đã "Lưu về máy" (PWA) giữ
    bản cũ trong cache theo tên này, không đổi tên thì mở offline vẫn ra giao diện cũ.
    v2 (2026-08-09): thêm dải liên kết "Tất cả ứng dụng" / "Tạo đề để in". */
-const CACHE = 'thilop5-v2';
+const CACHE = 'onthi-v1';
 
 // App shell precache (đường dẫn TƯƠNG ĐỐI theo scope của SW).
 const SHELL = [
@@ -31,7 +31,12 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((keys) =>
       // Chỉ dọn cache CŨ của CHÍNH app này (cùng tiền tố, khác version) — KHÔNG đụng
       // cache của app khác chung origin (hub/lop1/lop3/tienganh) để không phá offline của nhau.
-      Promise.all(keys.filter((k) => k.indexOf(CACHE.replace(/-v\d+$/, '')) === 0 && k !== CACHE).map((k) => caches.delete(k)))
+      // Kèm tiền tố CŨ 'thilop5': app này từng tên "Thi Lớp 5"; đổi tên cache sang
+      // 'onthi-*' thì quy tắc cùng-tiền-tố ở trên không dọn được bản cũ, để lại rác
+      // vĩnh viễn trên máy người đã dùng bản trước.
+      Promise.all(keys
+        .filter((k) => (k.indexOf(CACHE.replace(/-v\d+$/, '')) === 0 || k.indexOf('thilop5') === 0) && k !== CACHE)
+        .map((k) => caches.delete(k)))
     ).then(() => self.clients.claim())
   );
 });

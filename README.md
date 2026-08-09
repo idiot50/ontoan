@@ -26,20 +26,20 @@ cd web_toan_lop3
 node tests/run.mjs      # hoặc: npm test
 ```
 
-## 🎓 Website "Thi Lớp 5" — ôn thi vào lớp 6
+## 🎓 Website "Ôn Thi" — luyện thi vào lớp 6
 
 Ứng dụng web **chạy offline** dành cho học sinh lớp 5 (~10–11 tuổi) luyện thi vào lớp 6:
 tổng hợp kiến thức **lớp 4 – lớp 5 ở mức nâng cao**, sinh câu hỏi ngẫu nhiên kèm **lời giải từng bước**
 theo cách trình bày tiểu học (sơ đồ đoạn thẳng, rút về đơn vị, giả thiết tạm…).
 
-**Cách dùng:** mở [`web_thi_lop5/index.html`](web_thi_lop5/index.html) bằng trình duyệt (giữ `engine.js` cùng thư mục).
+**Cách dùng:** mở [`web_on_thi/index.html`](web_on_thi/index.html) bằng trình duyệt (giữ `engine.js` cùng thư mục).
 
 | Thư mục/Tệp | Nội dung |
 |---|---|
-| `web_thi_lop5/index.html` | Giao diện ứng dụng |
-| `web_thi_lop5/engine.js` | Động cơ sinh câu hỏi 10 chủ đề kèm đáp án & lời giải |
-| `web_thi_lop5/KIEN_THUC.md` | **Đặc tả nội dung** — tổng hợp từ 49 đề thi vào lớp 6 + đề cương lớp 4–5 |
-| `web_thi_lop5/tests/` | Bộ test tự động (`node tests/run.mjs` → ~53k phép kiểm, gồm cả test giao diện headless) |
+| `web_on_thi/index.html` | Giao diện ứng dụng |
+| `web_on_thi/engine.js` | Động cơ sinh câu hỏi 10 chủ đề kèm đáp án & lời giải |
+| `web_on_thi/KIEN_THUC.md` | **Đặc tả nội dung** — tổng hợp từ 49 đề thi vào lớp 6 + đề cương lớp 4–5 |
+| `web_on_thi/tests/` | Bộ test tự động (`node tests/run.mjs` → ~53k phép kiểm, gồm cả test giao diện headless) |
 
 ### 10 chủ đề
 Số tự nhiên & tính nhanh · Phân số · Số thập phân · Đại lượng & đo lường · Tỉ số & phần trăm ·
@@ -50,7 +50,7 @@ Ba **tầng độ khó**: tầng 0 ≈ mức lớp 4, tầng 1 ≈ mức lớp 5
 
 ### Chạy test
 ```bash
-cd web_thi_lop5
+cd web_on_thi
 node tests/run.mjs      # hoặc: npm test
 ```
 

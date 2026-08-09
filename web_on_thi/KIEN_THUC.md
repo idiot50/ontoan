@@ -1,5 +1,5 @@
 <!-- Nguồn: dự án D:lop6 — tổng hợp từ 49 đề thi vào lớp 6 (MathExpress) + đề cương lớp 4–5.
-     Nhập vào toanlop3 ngày 2026-08-09 làm ĐẶC TẢ NỘI DUNG cho app web_thi_lop5/ (engine.js).
+     Nhập vào toanlop3 ngày 2026-08-09 làm ĐẶC TẢ NỘI DUNG cho app web_on_thi/ (engine.js).
      Mỗi mục lớn dưới đây ánh xạ tới một chủ đề (topic) của engine — xem bảng ở cuối file. -->
 
 # Tổng hợp kiến thức — Nhóm đề "Thi vào lớp 6" & "Lớp 4–5"
@@ -128,7 +128,7 @@
 
 ---
 
-## 10. ÁNH XẠ SANG CHỦ ĐỀ CỦA ENGINE (web_thi_lop5/engine.js)
+## 10. ÁNH XẠ SANG CHỦ ĐỀ CỦA ENGINE (web_on_thi/engine.js)
 
 | Mục kiến thức ở trên | topic trong engine | Tên hiển thị |
 |---|---|---|

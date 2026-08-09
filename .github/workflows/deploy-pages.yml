@@ -1,7 +1,7 @@
 name: Deploy web Toán + Tiếng Anh lên GitHub Pages
 
-# Xuất bản trang chủ chọn lớp + các ứng dụng học (Toán lớp 1, lớp 3, Thi lớp 5, Tiếng Anh) làm website tĩnh.
-# Cấu trúc site:  /  (hub)  •  /lop1/  •  /lop3/  •  /thi-lop5/  •  /tienganh/
+# Xuất bản trang chủ chọn lớp + các ứng dụng học (Toán lớp 1, lớp 3, Ôn Thi, Tiếng Anh) làm website tĩnh.
+# Cấu trúc site:  /  (hub)  •  /lop1/  •  /lop3/  •  /on-thi/  •  /tienganh/
 # Mỗi lần push lên main sẽ tự động deploy lại.
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Dựng thư mục site (hub + lớp 1 + lớp 3 + thi lớp 5 + các app khác)
+      - name: Dựng thư mục site (hub + lớp 1 + lớp 3 + ôn thi + các app khác)
         run: |
           mkdir -p _site
           cp index.html _site/index.html
@@ -38,16 +38,20 @@ jobs:
           cp -r icons _site/icons
           cp -r web_toan_lop1 _site/lop1
           cp -r web_toan_lop3 _site/lop3
-          cp -r web_thi_lop5  _site/thi-lop5
+          cp -r web_on_thi    _site/on-thi
           cp -r web_tienganh  _site/tienganh
           cp -r tao_de        _site/tao-de
           cp -r web_run3      _site/run3
           cp -r web_onhomnay  _site/on-hom-nay
+          # Đường dẫn CŨ của app Ôn Thi (trước đây là /thi-lop5/): giữ một trang chuyển
+          # hướng để ai đã lưu link hoặc cài PWA từ bản trước vẫn vào được, đồng thời gỡ
+          # service worker cũ còn đăng ký ở phạm vi đường dẫn đó.
+          cp -r redirects/thi-lop5 _site/thi-lop5
           # Bỏ phần test/dev khỏi bản xuất bản cho gọn (giữ manifest/sw/icons của mỗi app)
-          rm -rf _site/lop1/tests _site/lop3/tests _site/thi-lop5/tests
+          rm -rf _site/lop1/tests _site/lop3/tests _site/on-thi/tests
           rm -f  _site/lop1/engine.test.mjs _site/lop3/engine.test.mjs
-          # Thi lớp 5: bỏ package.json + tài liệu kiến thức nội bộ khỏi bản xuất bản
-          rm -f  _site/thi-lop5/package.json _site/thi-lop5/KIEN_THUC.md
+          # Ôn Thi: bỏ package.json + tài liệu kiến thức nội bộ khỏi bản xuất bản
+          rm -f  _site/on-thi/package.json _site/on-thi/KIEN_THUC.md
           # Trình tạo đề: chỉ giữ runtime (index.html + de_*.js + engines/), bỏ test & script sync dev
           rm -rf _site/tao-de/tests
           rm -f  _site/tao-de/sync_engines.mjs _site/tao-de/GHI_CHU_DE_THI.md

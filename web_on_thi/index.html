@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thi Lớp 5 — Ôn thi vào lớp 6</title>
+<title>Ôn Thi — luyện thi vào lớp 6</title>
 <!-- ===== PWA: cài được & dùng offline (tất cả tài nguyên cùng-origin) ===== -->
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#e11d48">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Thi Lớp 5">
+<meta name="apple-mobile-web-app-title" content="Ôn Thi">
 <style>
   /* ============================ DESIGN TOKENS (REDESIGN.md §2) ============================ */
   :root {
@@ -679,7 +679,7 @@
   <div class="app">
     <!-- ========================= HEADER (luôn hiển thị) ========================= -->
     <header class="bar">
-      <button class="logo" id="homeBtn" aria-label="Về trang chủ Thi Lớp 5">
+      <button class="logo" id="homeBtn" aria-label="Về trang chủ Ôn Thi">
         <span class="mark" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -695,7 +695,7 @@
             <circle cx="18" cy="18" r="2" fill="#EC4899"/>
           </svg>
         </span>
-        <span class="word">Thi Lớp 5</span>
+        <span class="word">Ôn Thi</span>
       </button>
       <span class="spacer"></span>
       <span class="pill count hidden" id="qnumPill" aria-live="off"></span>
@@ -745,7 +745,7 @@
            Tham số ?mon= để trang tạo đề chọn sẵn đúng lớp đang học. -->
       <nav class="site-nav" aria-label="Chuyển sang phần khác của Toán Vui">
         <a href="../">🧮 Tất cả ứng dụng</a>
-        <a href="../tao-de/?mon=thi5">🖨️ Tạo đề để in</a>
+        <a href="../tao-de/?mon=onthi">🖨️ Tạo đề để in</a>
       </nav>
 
       <p class="creator-contact" style="text-align:center; margin:20px 0 4px; color:#5b6478; font-size:14px">
@@ -854,7 +854,26 @@
     /* ======================================================================
      *  LƯU TRỮ (localStorage chịu lỗi) — nếu hỏng/trống thì dùng mặc định
      * ==================================================================== */
-    var STORE_KEY = 'thilop5_v1';
+    var STORE_KEY = 'onthi_v1';
+
+    /* CHUYỂN DỮ LIỆU CŨ — app này từng tên là "Thi Lớp 5" với khoá 'thilop5_*'.
+       localStorage tính theo ORIGIN chứ không theo đường dẫn, nên dữ liệu cũ vẫn đọc
+       được sau khi app dời từ /thi-lop5/ sang /on-thi/. Chép sang khoá mới ĐÚNG MỘT LẦN
+       (chỉ khi khoá mới còn trống) để bé không mất sao, chuỗi đúng và huy hiệu đã đạt.
+       Giữ lại bản cũ, không xoá: lỡ có gì sai còn lấy lại được. */
+    (function chuyenKhoaCu() {
+      var CU = [['thilop5_v1', 'onthi_v1'], ['thilop5_sound', 'onthi_sound'],
+                ['thilop5_install_dismissed', 'onthi_install_dismissed']];
+      try {
+        for (var i = 0; i < CU.length; i++) {
+          var cu = CU[i][0], moi = CU[i][1];
+          if (localStorage.getItem(moi) === null) {
+            var v = localStorage.getItem(cu);
+            if (v !== null) localStorage.setItem(moi, v);
+          }
+        }
+      } catch (e) { /* localStorage bị chặn -> bắt đầu lại từ đầu, không vỡ app */ }
+    })();
 
     function defaultState() {
       return {
@@ -964,7 +983,7 @@
      * ==================================================================== */
     var soundOn = true;
     try {
-      var sv = localStorage.getItem('thilop5_sound');
+      var sv = localStorage.getItem('onthi_sound');
       if (sv === 'off') soundOn = false;
     } catch (e) {}
     var audioCtx = null;
@@ -1010,7 +1029,7 @@
     }
     $('soundBtn').addEventListener('click', function () {
       soundOn = !soundOn;
-      try { localStorage.setItem('thilop5_sound', soundOn ? 'on' : 'off'); } catch (e) {}
+      try { localStorage.setItem('onthi_sound', soundOn ? 'on' : 'off'); } catch (e) {}
       if (soundOn) { ensureAudio(); soundCorrect(); }
       updateSoundBtn();
     });
@@ -1875,7 +1894,7 @@
     var msgEl = document.getElementById('installMsg');
     if (!bar || !goBtn || !closeBtn) return;
 
-    var DISMISS_KEY = 'thilop5_install_dismissed';
+    var DISMISS_KEY = 'onthi_install_dismissed';
     function dismissed() {
       try { return localStorage.getItem(DISMISS_KEY) === '1'; } catch (e) { return false; }
     }

@@ -17,7 +17,7 @@ const DeConfig = require('../de_config.js');
 const ENGINES = {
   toan1: require('../engines/toan1.engine.js'),
   toan3: require('../engines/toan3.engine.js'),
-  thi5: require('../engines/thi5.engine.js')
+  onthi: require('../engines/onthi.engine.js')
 };
 
 let pass = 0, fail = 0;
@@ -26,14 +26,14 @@ function ok(cond, msg, ctx) {
 }
 
 // 1) Bản copy engine == bản gốc (chống lệch)
-for (const [k, srcRel] of [['toan1', 'web_toan_lop1/engine.js'], ['toan3', 'web_toan_lop3/engine.js'], ['thi5', 'web_thi_lop5/engine.js']]) {
+for (const [k, srcRel] of [['toan1', 'web_toan_lop1/engine.js'], ['toan3', 'web_toan_lop3/engine.js'], ['onthi', 'web_on_thi/engine.js']]) {
   const orig = fs.readFileSync(path.join(ROOT, srcRel), 'utf8');
   const copy = fs.readFileSync(path.join(__dirname, '..', 'engines', k + '.engine.js'), 'utf8');
   ok(orig === copy, 'copy engine ' + k + ' khớp bản gốc (chạy lại sync_engines.mjs nếu lệch)');
 }
 
 // 2) Build & kiểm cho từng môn/lớp, lặp nhiều lần để bắt ngẫu nhiên
-for (const key of ['toan1', 'toan3', 'thi5']) {
+for (const key of ['toan1', 'toan3', 'onthi']) {
   const cfg = DeConfig.CONFIG[key];
   const engine = ENGINES[key];
   for (let iter = 0; iter < 25; iter++) {
@@ -124,7 +124,7 @@ function measure(key, muc, runs) {
 const SO_DE_DO = 250;
 
 console.log(`\n--- Độ khó đo được (trung bình ${SO_DE_DO} đề mỗi mức) ---`);
-for (const key of ['toan1', 'toan3', 'thi5']) {
+for (const key of ['toan1', 'toan3', 'onthi']) {
   const de = measure(key, 'de', SO_DE_DO);
   const tb = measure(key, 'tb', SO_DE_DO);
   const tyLe = tb.doKho / de.doKho;
@@ -140,9 +140,9 @@ for (const key of ['toan1', 'toan3', 'thi5']) {
      lớp 3 đạt được ~2 lần như yêu cầu; còn lớp 1 thì ngân hàng câu khó nhất cũng chỉ
      2 bước tính nên TRẦN đo được chỉ ~1,64 lần (đã thử dồn hết vào các mạch nặng nhất).
      Muốn lớp 1 lên 2 lần thì phải viết thêm dạng câu mới, mà làm vậy dễ quá sức trẻ. */
-  // Ngưỡng riêng cho thi5: ngân hàng câu lớp 5 vốn đã nhiều bước ngay ở mức DỄ
+  // Ngưỡng riêng cho onthi: ngân hàng câu lớp 5 vốn đã nhiều bước ngay ở mức DỄ
   // (phân số, phần trăm, chuyển động), nên khoảng cách tương đối giữa hai mức hẹp hơn lớp 3.
-  const nguong = (key === 'toan1') ? 1.55 : (key === 'thi5' ? 1.25 : 1.9);
+  const nguong = (key === 'toan1') ? 1.55 : (key === 'onthi' ? 1.25 : 1.9);
   ok(tyLe >= nguong, key + ': mức trung bình khó gấp ≥' + nguong + ' lần mức dễ',
     { tyLe: +tyLe.toFixed(2) });
   ok(tb.tuDuy >= de.tuDuy * 1.3, key + ': số câu tư duy tăng rõ rệt',
@@ -154,7 +154,7 @@ for (const key of ['toan1', 'toan3', 'thi5']) {
 }
 
 // đề mức trung bình vẫn phải HỢP LỆ y như mức dễ
-for (const key of ['toan1', 'toan3', 'thi5']) {
+for (const key of ['toan1', 'toan3', 'onthi']) {
   const cfg = DeConfig.CONFIG[key], engine = ENGINES[key];
   for (let iter = 0; iter < 15; iter++) {
     const de = DeBuilder.build(cfg, engine, { muc: 'tb' });
@@ -176,10 +176,10 @@ for (const key of ['toan1', 'toan3', 'thi5']) {
   const de = DeBuilder.build(cfg, engine, { muc: 'tb' });
   const html = DeBuilder.renderDoc(de);
   ok(html.indexOf('TRUNG BÌNH') !== -1, key + '/tb: đề in ra có ghi mức độ');
-  const phutTb = { toan1: 40, toan3: 50, thi5: 70 }[key];
-  ok(de.phut === phutTb, key + '/tb: thời gian riêng theo lớp (L1 40′, L3 50′, Thi L5 70′)', { phut: de.phut });
+  const phutTb = { toan1: 40, toan3: 50, onthi: 70 }[key];
+  ok(de.phut === phutTb, key + '/tb: thời gian riêng theo lớp (L1 40′, L3 50′, Ôn Thi 70′)', { phut: de.phut });
   const deDe = DeBuilder.build(cfg, engine, { muc: 'de' });
-  const phutDe = { toan1: 40, toan3: 40, thi5: 60 }[key];
+  const phutDe = { toan1: 40, toan3: 40, onthi: 60 }[key];
   ok(deDe.phut === phutDe, key + '/de: thời gian mức dễ đúng theo lớp', { phut: deDe.phut });
   ok(DeBuilder.renderDoc(deDe).indexOf('DỄ') !== -1, key + '/de: đề in ra ghi mức Dễ');
 }

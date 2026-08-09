@@ -1,5 +1,5 @@
 /*
- * engine.spec.mjs — kiểm ĐỘC LẬP engine "Thi Lớp 5".
+ * engine.spec.mjs — kiểm ĐỘC LẬP engine "Ôn Thi".
  *
  * Nguyên tắc: KHÔNG tin đáp án engine đưa ra. Với mỗi câu, test tự đọc lại ĐỀ BÀI
  * (stem), tự giải bằng công thức viết riêng trong file này, rồi đối chiếu với

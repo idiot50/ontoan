@@ -36,11 +36,11 @@
       ],
       soCauChuan: { 'so-100': 3, 'cong': 3, 'tru': 3, 'tinh-day': 3, 'do-dai': 2, 'gio-tuan': 2, 'loi-van': 2, 'tu-duy': 2 }
     },
-    // THI LỚP 5 — ôn thi vào lớp 6: kiến thức lớp 4–5 ở mức tổng hợp/nâng cao.
+    // ÔN THI — luyện thi vào lớp 6: kiến thức lớp 4–5 ở mức tổng hợp/nâng cao.
     // `lop: 5` để tiêu đề đề in ra đọc đúng "MÔN: TOÁN – LỚP 5".
-    thi5: {
-      key: 'thi5', mon: 'TOÁN', lop: 5, ten: 'Thi lớp 5 (ôn vào lớp 6)',
-      engineGlobal: 'QE_THI5', engineFile: 'engines/thi5.engine.js',
+    onthi: {
+      key: 'onthi', mon: 'TOÁN', lop: 5, ten: 'Ôn thi vào lớp 6 (lớp 5)',
+      engineGlobal: 'QE_ONTHI', engineFile: 'engines/onthi.engine.js',
       mach: [
         { topic: 'so-tu-nhien', ten: 'Số tự nhiên & tính nhanh' },
         { topic: 'phan-so', ten: 'Phân số' },
@@ -78,8 +78,8 @@
     de: {
       key: 'de', ten: 'Dễ', nhan: 'Mức DỄ',
       moTa: 'Bám sát chương trình, phần lớn là câu cơ bản và nâng vừa. Hợp để ôn tập thường ngày.',
-      // Đề thi lớp 5 (ôn vào lớp 6) dài hơi hơn: nhiều câu nhiều bước nên cho 60 phút.
-      phut: { toan1: 40, toan3: 40, thi5: 60 },
+      // Đề ôn thi vào lớp 6 dài hơi hơn: nhiều câu nhiều bước nên cho 60 phút.
+      phut: { toan1: 40, toan3: 40, onthi: 60 },
       tierWeights: [30, 45, 25],
       preferInput: false,
       soCau: null                       // null => dùng cơ cấu chuẩn của từng lớp
@@ -89,8 +89,8 @@
       moTa: 'Nặng về tư duy: bỏ hẳn câu cơ bản, phần lớn là câu thử thách, dồn câu sang '
         + 'toán có lời văn / tìm x / dãy số quy luật, và ưu tiên câu tự luận (không đoán được đáp án).',
       // Lớp 1 làm bài chậm hơn (đọc đề còn khó) nên cho ít thời gian hơn lớp 3.
-      // Thi lớp 5 mức này gần sát đề thi vào lớp 6 thật nên cho 70 phút.
-      phut: { toan1: 40, toan3: 50, thi5: 70 },
+      // Mức này gần sát đề thi vào lớp 6 thật nên cho 70 phút.
+      phut: { toan1: 40, toan3: 50, onthi: 70 },
       tierWeights: [0, 10, 90],
       preferInput: true,
       soCau: {
@@ -108,10 +108,10 @@
           'so-100': 1, 'cong': 2, 'tru': 2, 'tinh-day': 2,
           'do-dai': 3, 'gio-tuan': 1, 'loi-van': 5, 'tu-duy': 4
         },
-        // THI LỚP 5 — dồn câu sang các mạch phải suy luận nhiều bước của đề thi vào
+        // ÔN THI — dồn câu sang các mạch phải suy luận nhiều bước của đề thi vào
         // lớp 6 (toán điển hình, tỉ số phần trăm, chuyển động, tư duy); bớt câu tính
         // máy móc (số tự nhiên, đo lường) nhưng vẫn giữ đủ 10 mạch để không lệch đề.
-        thi5: {
+        onthi: {
           'so-tu-nhien': 1, 'phan-so': 2, 'so-thap-phan': 2, 'do-luong': 1, 'ti-so-phan-tram': 3,
           'toan-dien-hinh': 4, 'hinh-phang': 2, 'hinh-khoi': 1, 'chuyen-dong': 2, 'tu-duy': 2
         }

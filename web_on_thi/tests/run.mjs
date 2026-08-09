@@ -1,5 +1,5 @@
 /*
- * run.mjs — chạy toàn bộ test của app "Thi Lớp 5", in PASS/FAIL.
+ * run.mjs — chạy toàn bộ test của app "Ôn Thi", in PASS/FAIL.
  * Chạy:  node tests/run.mjs   (hoặc: npm test)
  */
 import { run as runEngine } from './engine.spec.mjs';
@@ -19,7 +19,7 @@ function add(fn, label) {
   groups.push(state);
 }
 
-console.log('============== BỘ TEST WEB "THI LỚP 5" ==============\n');
+console.log('============== BỘ TEST WEB "ÔN THI" ==============\n');
 
 add(runEngine, 'ENGINE');
 add(runCheck, 'CHECK');

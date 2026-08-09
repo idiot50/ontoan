@@ -7,8 +7,9 @@
    Máy đã "Lưu về máy" (PWA) giữ bản index.html cũ trong cache theo tên này; đổi tên
    cache thì trình duyệt cài lại service worker, nạp lại shell mới và dọn cache cũ —
    nhờ vậy thẻ app mới thêm chắc chắn hiện ra, kể cả khi mở lúc không có mạng.
-   v2 (2026-08-09): thêm thẻ "Thi Lớp 5". */
-const CACHE = 'toanvui-hub-v2';
+   v2 (2026-08-09): thêm thẻ "Ôn Thi".
+   v3 (2026-08-09): thẻ đổi tên "Thi Lớp 5" -> "Ôn Thi" và đổi đích ./thi-lop5/ -> ./on-thi/. */
+const CACHE = 'toanvui-hub-v3';
 
 // App shell precache (đường dẫn TƯƠNG ĐỐI theo scope của SW).
 const SHELL = [

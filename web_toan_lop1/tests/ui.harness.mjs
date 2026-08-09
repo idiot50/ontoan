@@ -377,7 +377,10 @@ function runChromeDump(chrome) {
     '--no-sandbox',
     '--no-first-run',
     '--disable-extensions',
-    '--virtual-time-budget=16000',
+    // 30s thời gian ẢO (không phải 30s thật): driver bấm qua nhiều câu nên chuỗi
+    // setTimeout khá dài. Để sát quá thì lúc máy bận (chạy nhiều bộ test liên tiếp)
+    // driver bị cắt ngay ở ca kiểm cuối và test FAIL oan mấy assert cuối cùng.
+    '--virtual-time-budget=30000',
     '--user-data-dir=' + userDir,
     '--dump-dom',
     fileUrl(RUN_HTML)

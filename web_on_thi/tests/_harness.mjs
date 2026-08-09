@@ -1,5 +1,5 @@
 /*
- * _harness.mjs — tiện ích test dùng chung cho engine "Thi Lớp 5".
+ * _harness.mjs — tiện ích test dùng chung cho engine "Ôn Thi".
  * Không phụ thuộc thư viện ngoài; chạy bằng node thuần.
  */
 import { createRequire } from 'module';
