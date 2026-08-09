@@ -1261,7 +1261,80 @@
     } else if (t === 'nang-vua') {
       kind = pick(['timso', 'day-otrong', 'lapso3-max', 'lapso3-min']);
     } else {
-      kind = 'do-tuoi';
+      // Tầng thử thách: trước đây CHỈ có 'do-tuoi' — mà câu đố tuổi chỉ một phép cộng,
+      // nên mạch "tư duy" hoá ra lại dễ nhất đề và lặp một khuôn duy nhất.
+      // Bổ sung 3 dạng bắt SUY LUẬN thật, tất cả đều KHÔNG NHỚ cho chắc chương trình.
+      kind = pick(['do-tuoi', 'nguoc', 'otrong', 'thu-tu']);
+    }
+
+    /* BÀI TOÁN NGƯỢC: biết kết quả sau khi bớt/thêm, tìm số LÚC ĐẦU.
+       Bắt trẻ làm ngược phép tính chứ không cộng trừ xuôi theo lời kể. */
+    if (kind === 'nguoc') {
+      var nameN = pick(PROPER_NAMES);
+      var thing = pick(['cái kẹo', 'quyển vở', 'con tem', 'viên bi', 'cái bút']);
+      var choN = randInt(11, 40);                       // số đã cho đi
+      var conN = randInt(11, 90 - choN);                // số còn lại
+      // ép KHÔNG NHỚ khi cộng lại: hàng đơn vị cộng không quá 9
+      conN = conN - ((conN % 10) + (choN % 10) > 9 ? ((conN % 10) + (choN % 10) - 9) : 0);
+      if (conN < 10) conN = 10 + (choN % 10 === 0 ? 1 : 0);
+      var dauN = conN + choN;
+      return {
+        type: 'input', topic: topic,
+        stem: nameN + ' có một số ' + thing + '. Sau khi cho bạn <b>' + choN + '</b> ' + thing +
+              ', ' + nameN + ' còn lại <b>' + conN + '</b> ' + thing +
+              '. Hỏi lúc đầu ' + nameN + ' có bao nhiêu ' + thing + '? (gõ số)',
+        answer: String(dauN),
+        explain: 'Làm ngược lại: lúc đầu = còn lại + đã cho = ' + conN + ' + ' + choN + ' = ' + dauN + '.',
+        say: nameN + ' cho bạn ' + readNumberVi(choN) + ' ' + thing + ' thì còn ' +
+             readNumberVi(conN) + ', hỏi lúc đầu có bao nhiêu?'
+      };
+    }
+
+    /* Ô TRỐNG TRONG PHÉP TÍNH: 23 + ? = 45. Phải nghĩ ngược để tìm số hạng. */
+    if (kind === 'otrong') {
+      var aO = randInt(11, 40);
+      var bO = randInt(11, 50);
+      // không nhớ cả khi cộng lẫn khi trừ ngược
+      bO = bO - (((aO % 10) + (bO % 10) > 9) ? ((aO % 10) + (bO % 10) - 9) : 0);
+      if (bO < 10) bO = 10;
+      var tongO = aO + bO;
+      var truocO = Math.random() < 0.5;                 // ô trống ở số hạng thứ nhất hay thứ hai
+      return {
+        type: 'input', topic: topic,
+        stem: 'Số nào điền vào ô trống? <b>' +
+              (truocO ? '? + ' + bO : aO + ' + ?') + ' = ' + tongO + '</b> (gõ số)',
+        answer: String(truocO ? aO : bO),
+        explain: 'Muốn tìm số còn thiếu thì lấy tổng trừ đi số đã biết: ' +
+                 tongO + ' − ' + (truocO ? bO : aO) + ' = ' + (truocO ? aO : bO) + '.',
+        say: 'số nào cộng với ' + readNumberVi(truocO ? bO : aO) + ' thì bằng ' + readNumberVi(tongO) + '?'
+      };
+    }
+
+    /* SUY LUẬN THỨ TỰ: bắc cầu qua hai dữ kiện, KHÔNG cần phép tính nào. */
+    if (kind === 'thu-tu') {
+      var ns = PROPER_NAMES.slice();
+      var n1 = ns.splice(randInt(0, ns.length - 1), 1)[0];
+      var n2 = ns.splice(randInt(0, ns.length - 1), 1)[0];
+      var n3 = ns.splice(randInt(0, ns.length - 1), 1)[0];
+      var props = [
+        { t: 'cao hơn', hoi: 'cao nhất', dao: 'thấp nhất' },
+        { t: 'nhiều tuổi hơn', hoi: 'nhiều tuổi nhất', dao: 'ít tuổi nhất' },
+        { t: 'nặng hơn', hoi: 'nặng nhất', dao: 'nhẹ nhất' }
+      ];
+      var pr = pick(props);
+      var hoiMax = Math.random() < 0.5;
+      // thứ tự thật: n1 > n2 > n3
+      return {
+        type: 'mc', topic: topic,
+        stem: n1 + ' ' + pr.t + ' ' + n2 + '. ' + n2 + ' ' + pr.t + ' ' + n3 +
+              '. Hỏi bạn nào <b>' + (hoiMax ? pr.hoi : pr.dao) + '</b>?',
+        choices: [n1, n2, n3],
+        answer: hoiMax ? 0 : 2,
+        explain: 'Xếp theo thứ tự: ' + n1 + ' → ' + n2 + ' → ' + n3 + '. Vậy ' +
+                 (hoiMax ? n1 + ' ' + pr.hoi : n3 + ' ' + pr.dao) + '.',
+        say: n1 + ' ' + pr.t + ' ' + n2 + ', ' + n2 + ' ' + pr.t + ' ' + n3 +
+             ', hỏi bạn nào ' + (hoiMax ? pr.hoi : pr.dao) + '?'
+      };
     }
 
     // CÂU ĐỐ TUỔI / LOGIC (thử thách): chỉ một phép + −, đặt dạng "đố" để bé suy nghĩ.
@@ -1275,6 +1348,12 @@
       var rel = pick(rels);
       var ageL = randInt(5, 10);
       var older = randInt(rel.lo, Math.min(rel.hi, 100 - ageL));
+      // ép KHÔNG NHỚ: hàng đơn vị cộng lại không được quá 9 (lớp 1 chỉ cộng không nhớ
+      // trong phạm vi 100; cộng qua 10 chỉ dùng trong phạm vi 20).
+      if ((ageL % 10) + (older % 10) > 9) {
+        older = older - ((ageL % 10) + (older % 10) - 9);
+        if (older < rel.lo) older = rel.lo + (9 - (ageL % 10) - (rel.lo % 10) + 10) % 10;
+      }
       var ansT = ageL + older;
       return {
         type: 'input', topic: topic,

@@ -537,11 +537,31 @@ function topicTuDuy(R) {
     } else if (/trừ đi/.test(s)) {
       const a = I[0], res = I[1];
       R.eq(Number(q.answer) - a, res, 'tìm số: x-a=res', q);
+    } else if (/lúc đầu/.test(s)) {
+      // Bài toán NGƯỢC: cho đi X, còn lại Y -> lúc đầu = Y + X.
+      const cho = I[0], con = I[1];
+      R.eq(Number(q.answer), cho + con, 'toán ngược: lúc đầu = còn lại + đã cho', q);
+      R.ok(cho + con <= MAX, 'toán ngược: lúc đầu <= 100', q);
+      R.ok(((cho % 10) + (con % 10)) <= 9, 'toán ngược: cộng KHÔNG NHỚ', q);
+    } else if (/ô trống/.test(s)) {
+      // Ô trống trong phép cộng: "a + ? = tổng" hoặc "? + b = tổng".
+      const a = I[0], tong = I[1];
+      R.eq(Number(q.answer) + a, tong, 'ô trống: số thiếu + số đã biết = tổng', q);
+      R.ok(tong <= MAX, 'ô trống: tổng <= 100', q);
+      R.ok(((a % 10) + (Number(q.answer) % 10)) <= 9, 'ô trống: cộng KHÔNG NHỚ', q);
+    } else if (/bạn nào/.test(s)) {
+      // Suy luận thứ tự bắc cầu: A hơn B, B hơn C -> A đứng đầu, C đứng cuối.
+      R.eq(q.type, 'mc', 'suy luận thứ tự: là câu trắc nghiệm', q);
+      R.eq(q.choices.length, 3, 'suy luận thứ tự: đúng 3 phương án', q);
+      const hoiMin = /thấp nhất|ít tuổi nhất|nhẹ nhất/.test(s);
+      R.eq(q.answer, hoiMin ? 2 : 0, 'suy luận thứ tự: chọn đúng đầu/cuối dãy', q);
+      R.ok(new Set(q.choices).size === 3, 'suy luận thứ tự: 3 tên khác nhau', q);
     } else if (/tuổi/.test(s)) {
       // Câu đố tuổi: name X tuổi, người thân hơn X là m -> tuổi = X + m.
       const a = I[0], m = I[1];
       R.eq(Number(q.answer), a + m, 'đố tuổi: a + hơn', q);
       R.ok(a + m <= MAX, 'đố tuổi: tổng <= 100', q);
+      R.ok(((a % 10) + (m % 10)) <= 9, 'đố tuổi: cộng KHÔNG NHỚ', q);
     } else {
       R.ok(false, 'tu-duy: dạng câu không nhận diện: ' + s, q);
     }

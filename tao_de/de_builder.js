@@ -42,17 +42,22 @@
   }
 
   // Sinh các câu theo số câu mỗi mạch + trọng số tầng; tránh trùng stem trong cùng đề.
-  function buildItems(cfg, engine, soCauByMach, tierWeights) {
+  // preferInput: ưu tiên câu TỰ LUẬN (gõ đáp án) — trắc nghiệm còn đoán mò được nên
+  // dễ hơn hẳn. Có trần thử lại để mạch nào chỉ sinh trắc nghiệm thì vẫn lấy được câu.
+  function buildItems(cfg, engine, soCauByMach, tierWeights, preferInput) {
     var items = [];
     cfg.mach.forEach(function (m) {
       var n = soCauByMach[m.topic] || 0;
       var seen = {}, made = 0, attempts = 0, cap = n * 14 + 25;
+      var wantInput = !!preferInput;
       while (made < n && attempts < cap) {
         attempts++;
         var tr = sampleTier(tierWeights);
         var q;
         try { q = engine.generate(m.topic, { tier: tr }); } catch (e) { continue; }
         if (!q || !q.stem) continue;
+        // nửa số lượt đầu chỉ nhận câu tự luận; hết nửa đó thì nhận cả trắc nghiệm
+        if (wantInput && q.type !== 'input' && attempts < cap * 0.6) continue;
         var keyStem = String(q.stem).replace(/\s+/g, ' ').trim();
         if (seen[keyStem]) continue;
         seen[keyStem] = 1;
@@ -66,13 +71,20 @@
     return items;
   }
 
-  // build(cfg, engine, opts) -> de. opts: { soCauByMach, tierWeights, phut, viSao }
+  // build(cfg, engine, opts) -> de.
+  // opts: { muc:'de'|'tb', soCauByMach, tierWeights, preferInput, phut, viSao }
+  // Truyền `muc` là lấy hết cấu hình của mức đó; các trường lẻ vẫn ghi đè được.
   function build(cfg, engine, opts) {
     opts = opts || {};
-    var DC = (typeof DeConfig !== 'undefined') ? DeConfig : (typeof require !== 'undefined' ? require('./de_config.js') : { TONG_CAU: 20, TIER_WEIGHTS: [30, 45, 25] });
-    var soCau = opts.soCauByMach || cfg.soCauChuan;
-    var tw = opts.tierWeights || DC.TIER_WEIGHTS;
-    var items = buildItems(cfg, engine, soCau, tw);
+    var DC = (typeof DeConfig !== 'undefined') ? DeConfig : (typeof require !== 'undefined' ? require('./de_config.js') : { TONG_CAU: 20, TIER_WEIGHTS: [30, 45, 25], LEVELS: {} });
+    var lv = (DC.LEVELS && DC.LEVELS[opts.muc]) || (DC.LEVELS && DC.LEVELS.de) || null;
+
+    var soCau = opts.soCauByMach
+      || (lv && lv.soCau && lv.soCau[cfg.key])
+      || cfg.soCauChuan;
+    var tw = opts.tierWeights || (lv && lv.tierWeights) || DC.TIER_WEIGHTS;
+    var preferInput = (opts.preferInput !== undefined) ? opts.preferInput : !!(lv && lv.preferInput);
+    var items = buildItems(cfg, engine, soCau, tw, preferInput);
 
     var phanI = [], phanII = [];
     items.forEach(function (it) { (it.type === 'mc' ? phanI : phanII).push(it); });
@@ -90,13 +102,32 @@
 
     return {
       key: cfg.key, mon: cfg.mon, lop: cfg.lop,
-      phut: opts.phut || 40, viSao: opts.viSao || '',
+      muc: lv ? lv.key : 'de',
+      mucTen: lv ? lv.ten : 'Dễ',
+      mucNhan: lv ? lv.nhan : '',
+      mucMoTa: lv ? lv.moTa : '',
+      phut: opts.phut
+        || (lv && lv.phut && (typeof lv.phut === 'object' ? lv.phut[cfg.key] : lv.phut))
+        || 40,
+      viSao: opts.viSao || '',
       tongCau: total, tongDiem: 10, diemMoiCau: diemMoiCau,
       matran: matran, items: items, phanI: phanI, phanII: phanII
     };
   }
 
   function fmtDiem(x) { return String(Math.round(x * 100) / 100).replace('.', ','); }
+
+  /* Bỏ các chỉ dẫn CHỈ dành cho app web ra khỏi bản IN GIẤY.
+     Engine dùng chung với app học nên câu hỏi có kèm "(gõ số)", "(chỉ gõ chữ số)"…
+     In ra giấy thì học sinh cầm bút, không "gõ" gì cả. */
+  function forPrint(s) {
+    return String(s == null ? '' : s)
+      .replace(/\s*\((?:chỉ\s*)?gõ[^)]*\)/gi, '')
+      .replace(/\s*\(cách nhau bởi[^)]*\)/gi, '')
+      .replace(/\s*\(viết theo thứ tự[^)]*gõ[^)]*\)/gi, '')
+      .replace(/\s+([.,;:?!])/g, '$1')
+      .trim();
+  }
 
   function renderDoc(de, opts) {
     opts = opts || {};
@@ -109,9 +140,12 @@
 
     // ----- MA TRẬN -----
     H.push('<table class="hdr"><tr><td class="l">PHÒNG GD&amp;ĐT ………………<br>TRƯỜNG TIỂU HỌC ………………</td>');
-    H.push('<td class="r"><b>MA TRẬN ĐỀ ÔN TẬP</b><br>MÔN: ' + de.mon + ' – LỚP ' + de.lop + '<br><span class="small">(Tạo tự động — ôn tập)</span></td></tr></table>');
+    H.push('<td class="r"><b>MA TRẬN ĐỀ ÔN TẬP</b><br>MÔN: ' + de.mon + ' – LỚP ' + de.lop
+      + (de.mucNhan ? '<br>' + de.mucNhan : '')
+      + '<br><span class="small">(Tạo tự động — ôn tập)</span></td></tr></table>');
     H.push('<hr class="rule">');
     H.push('<p class="small muted">Tổng điểm 10 · ' + de.tongCau + ' câu × ' + fmtDiem(de.diemMoiCau) + 'đ · Thời gian: ' + de.phut + ' phút.</p>');
+    if (de.mucMoTa) H.push('<p class="note"><b>Mức độ: ' + de.mucTen + '.</b> ' + de.mucMoTa + '</p>');
     if (de.viSao) H.push('<p class="note">' + de.viSao + '</p>');
     H.push('<table class="matrix"><tr><th style="width:64%">Mạch kiến thức</th><th>Số câu</th><th>Điểm</th></tr>');
     de.matran.forEach(function (r) {
@@ -121,23 +155,31 @@
 
     // ----- ĐỀ BÀI -----
     H.push('<div class="sec"><table class="hdr"><tr><td class="l">PHÒNG GD&amp;ĐT ………………<br>TRƯỜNG TIỂU HỌC ………………</td>');
-    H.push('<td class="r"><b>ĐỀ ÔN TẬP</b><br>MÔN: ' + de.mon + ' – LỚP ' + de.lop + '<br><span class="small">Thời gian làm bài: ' + de.phut + ' phút</span></td></tr></table>');
+    H.push('<td class="r"><b>ĐỀ ÔN TẬP</b><br>MÔN: ' + de.mon + ' – LỚP ' + de.lop
+      + (de.mucNhan ? '<br>' + de.mucNhan : '')
+      + '<br><span class="small">Thời gian làm bài: ' + de.phut + ' phút</span></td></tr></table>');
     H.push('<div class="scorebox"><b>Điểm</b> …………<br><span class="small">Lời phê của thầy/cô:</span></div>');
     H.push('<div class="info">Họ và tên: <span class="dots"></span> Lớp: ' + de.lop + '……</div><hr class="rule">');
 
+    // Chỉ đánh số "PHẦN I / PHẦN II" khi đề THỰC SỰ có cả hai phần. Đề toàn tự luận
+    // mà vẫn ghi "PHẦN II" thì người in tưởng bị thiếu trang.
+    var caHaiPhan = de.phanI.length > 0 && de.phanII.length > 0;
     if (de.phanI.length) {
-      H.push('<h3>PHẦN I. TRẮC NGHIỆM (' + fmtDiem(diemPhanI) + ' điểm)</h3>');
+      H.push('<h3>' + (caHaiPhan ? 'PHẦN I. TRẮC NGHIỆM' : 'PHẦN TRẮC NGHIỆM')
+        + ' (' + fmtDiem(diemPhanI) + ' điểm)</h3>');
       H.push('<p class="small muted">Khoanh tròn vào chữ đặt trước câu trả lời đúng (mỗi câu ' + fmtDiem(de.diemMoiCau) + ' điểm).</p>');
       de.phanI.forEach(function (it) {
-        H.push('<div class="q"><div class="stem">Câu ' + it.soCau + '. ' + it.stem + '</div><ol class="choices">');
+        H.push('<div class="q"><div class="stem">Câu ' + it.soCau + '. ' + forPrint(it.stem) + '</div><ol class="choices">');
         (it.choices || []).forEach(function (c, i) { H.push('<li>' + LETTERS[i] + '. ' + c + '</li>'); });
         H.push('</ol></div>');
       });
     }
     if (de.phanII.length) {
-      H.push('<h3>PHẦN II. TỰ LUẬN (' + fmtDiem(diemPhanII) + ' điểm)</h3>');
+      H.push('<h3>' + (caHaiPhan ? 'PHẦN II. TỰ LUẬN' : 'PHẦN TỰ LUẬN')
+        + ' (' + fmtDiem(diemPhanII) + ' điểm)</h3>');
+      H.push('<p class="small muted">Viết đáp số vào chỗ trống (mỗi bài ' + fmtDiem(de.diemMoiCau) + ' điểm).</p>');
       de.phanII.forEach(function (it) {
-        H.push('<div class="q"><div class="stem">Bài ' + it.soCau + '. (' + fmtDiem(de.diemMoiCau) + 'đ) ' + it.stem + '</div><div class="line"></div><div class="line"></div></div>');
+        H.push('<div class="q"><div class="stem">Bài ' + it.soCau + '. (' + fmtDiem(de.diemMoiCau) + 'đ) ' + forPrint(it.stem) + '</div><div class="line"></div><div class="line"></div></div>');
       });
     }
     H.push('<p class="center small muted">— Hết —</p></div>');

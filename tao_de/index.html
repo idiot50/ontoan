@@ -57,6 +57,10 @@
         <select id="mon" aria-label="Chọn môn và lớp"></select>
       </div>
       <div class="field">
+        <label for="muc">Mức độ</label>
+        <select id="muc" aria-label="Chọn mức độ đề"></select>
+      </div>
+      <div class="field">
         <label for="phut">Thời gian (phút)</label>
         <input id="phut" type="number" min="15" max="90" step="5" value="40" style="width:120px">
       </div>
@@ -64,6 +68,7 @@
       <button class="btn-ghost" id="btnIn" type="button" disabled>🖨️ In / Lưu PDF</button>
     </div>
     <div class="status" id="status" role="status"></div>
+    <p class="hint" id="muc-mota"></p>
     <p class="hint">Mẹo: bấm <b>Tạo đề</b> nhiều lần để có nhiều phiên bản khác nhau. Khi in, chọn “Lưu dưới dạng PDF / Save as PDF” trong hộp thoại in để lưu thành file.</p>
   </div>
 
@@ -78,8 +83,12 @@
 <script>
 (function () {
   'use strict';
-  var CFG = (window.DeConfig && window.DeConfig.CONFIG) || {};
+  var DC = window.DeConfig || {};
+  var CFG = DC.CONFIG || {};
+  var LEVELS = DC.LEVELS || {};
   var monSel = document.getElementById('mon');
+  var mucSel = document.getElementById('muc');
+  var mucMoTa = document.getElementById('muc-mota');
   var phutEl = document.getElementById('phut');
   var btnTao = document.getElementById('btnTao');
   var btnIn  = document.getElementById('btnIn');
@@ -96,6 +105,27 @@
     o.textContent = 'Toán lớp ' + CFG[k].lop;
     monSel.appendChild(o);
   });
+
+  // Nạp danh sách mức độ; mặc định là mức DỄ như trước đây.
+  (DC.LEVEL_ORDER || ['de']).forEach(function (k) {
+    if (!LEVELS[k]) return;
+    var o = document.createElement('option');
+    o.value = k;
+    o.textContent = LEVELS[k].ten;
+    mucSel.appendChild(o);
+  });
+
+  function syncMuc() {
+    var lv = LEVELS[mucSel.value];
+    if (!lv) return;
+    if (mucMoTa) mucMoTa.innerHTML = '<b>' + lv.ten + ':</b> ' + lv.moTa;
+    // mỗi mức có thời gian gợi ý riêng, và có thể khác nhau theo lớp
+    var p = (typeof lv.phut === 'object') ? lv.phut[monSel.value] : lv.phut;
+    phutEl.value = String(p || 40);
+  }
+  mucSel.addEventListener('change', syncMuc);
+  monSel.addEventListener('change', syncMuc);
+  syncMuc();
 
   function setStatus(msg) { statusEl.textContent = msg || ''; }
 
@@ -125,10 +155,18 @@
     btnTao.disabled = true;
     setStatus('Đang tạo đề…');
     ensureEngine(cfg).then(function (engine) {
-      var de = window.DeBuilder.build(cfg, engine, { phut: phut });
+      var de = window.DeBuilder.build(cfg, engine, { muc: mucSel.value, phut: phut });
       iframe.srcdoc = window.DeBuilder.renderDoc(de);
       btnIn.disabled = false;
-      setStatus('✅ Đã tạo đề: ' + de.tongCau + ' câu · ' + de.matran.length + ' mạch kiến thức · 10 điểm · ' + phut + ' phút.');
+      var tuDuy = de.items.filter(function (it) {
+        return it.topic === 'tu-duy' || it.topic === 'loi-van'
+          || it.topic === 'bieu-thuc' || it.topic === 'tinh-day';
+      }).length;
+      var thuThach = de.items.filter(function (it) { return it.tier === 2; }).length;
+      var tuLuan = de.items.filter(function (it) { return it.type === 'input'; }).length;
+      setStatus('✅ Đã tạo đề mức ' + de.mucTen.toUpperCase() + ': ' + de.tongCau + ' câu · 10 điểm · '
+        + phut + ' phút — trong đó ' + tuDuy + ' câu tư duy/suy luận, '
+        + thuThach + ' câu ở tầng thử thách, ' + tuLuan + ' câu tự luận.');
     }).catch(function (err) {
       setStatus('⚠️ Lỗi tạo đề: ' + err.message);
     }).finally(function () {
