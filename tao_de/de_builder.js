@@ -125,7 +125,12 @@
       .replace(/\s*\((?:chỉ\s*)?gõ[^)]*\)/gi, '')
       .replace(/\s*\(cách nhau bởi[^)]*\)/gi, '')
       .replace(/\s*\(viết theo thứ tự[^)]*gõ[^)]*\)/gi, '')
-      .replace(/\s+([.,;:?!])/g, '$1')
+      // Dọn khoảng trắng thừa do vừa cắt phần chỉ dẫn, nhưng CHỈ khi dấu câu đứng
+      // ngay trước một dấu câu khác hoặc ở cuối chuỗi. KHÔNG đụng dấu ":" và "?" có
+      // khoảng trắng hai bên — trong đề toán lớp 5, " : " là DẤU CHIA (9/5 : 2/5)
+      // và " = ? " là chỗ để trống, xoá khoảng trắng sẽ thành "9/5: 2/5" rất khó đọc.
+      .replace(/\s+([.,;!])(?=\s*$|\s*[.,;!])/g, '$1')
+      .replace(/[ \t]{2,}/g, ' ')
       .trim();
   }
 

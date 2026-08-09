@@ -35,6 +35,28 @@
         { topic: 'tu-duy', ten: 'Phát triển tư duy' }
       ],
       soCauChuan: { 'so-100': 3, 'cong': 3, 'tru': 3, 'tinh-day': 3, 'do-dai': 2, 'gio-tuan': 2, 'loi-van': 2, 'tu-duy': 2 }
+    },
+    // THI LỚP 5 — ôn thi vào lớp 6: kiến thức lớp 4–5 ở mức tổng hợp/nâng cao.
+    // `lop: 5` để tiêu đề đề in ra đọc đúng "MÔN: TOÁN – LỚP 5".
+    thi5: {
+      key: 'thi5', mon: 'TOÁN', lop: 5, ten: 'Thi lớp 5 (ôn vào lớp 6)',
+      engineGlobal: 'QE_THI5', engineFile: 'engines/thi5.engine.js',
+      mach: [
+        { topic: 'so-tu-nhien', ten: 'Số tự nhiên & tính nhanh' },
+        { topic: 'phan-so', ten: 'Phân số' },
+        { topic: 'so-thap-phan', ten: 'Số thập phân' },
+        { topic: 'do-luong', ten: 'Đại lượng & đo lường' },
+        { topic: 'ti-so-phan-tram', ten: 'Tỉ số & tỉ số phần trăm' },
+        { topic: 'toan-dien-hinh', ten: 'Toán điển hình' },
+        { topic: 'hinh-phang', ten: 'Hình phẳng' },
+        { topic: 'hinh-khoi', ten: 'Hình khối & thể tích' },
+        { topic: 'chuyen-dong', ten: 'Toán chuyển động' },
+        { topic: 'tu-duy', ten: 'Tư duy & suy luận' }
+      ],
+      soCauChuan: {
+        'so-tu-nhien': 2, 'phan-so': 2, 'so-thap-phan': 3, 'do-luong': 2, 'ti-so-phan-tram': 2,
+        'toan-dien-hinh': 3, 'hinh-phang': 2, 'hinh-khoi': 1, 'chuyen-dong': 1, 'tu-duy': 2
+      }
     }
   };
 
@@ -56,7 +78,8 @@
     de: {
       key: 'de', ten: 'Dễ', nhan: 'Mức DỄ',
       moTa: 'Bám sát chương trình, phần lớn là câu cơ bản và nâng vừa. Hợp để ôn tập thường ngày.',
-      phut: 40,
+      // Đề thi lớp 5 (ôn vào lớp 6) dài hơi hơn: nhiều câu nhiều bước nên cho 60 phút.
+      phut: { toan1: 40, toan3: 40, thi5: 60 },
       tierWeights: [30, 45, 25],
       preferInput: false,
       soCau: null                       // null => dùng cơ cấu chuẩn của từng lớp
@@ -66,7 +89,8 @@
       moTa: 'Nặng về tư duy: bỏ hẳn câu cơ bản, phần lớn là câu thử thách, dồn câu sang '
         + 'toán có lời văn / tìm x / dãy số quy luật, và ưu tiên câu tự luận (không đoán được đáp án).',
       // Lớp 1 làm bài chậm hơn (đọc đề còn khó) nên cho ít thời gian hơn lớp 3.
-      phut: { toan1: 40, toan3: 50 },
+      // Thi lớp 5 mức này gần sát đề thi vào lớp 6 thật nên cho 70 phút.
+      phut: { toan1: 40, toan3: 50, thi5: 70 },
       tierWeights: [0, 10, 90],
       preferInput: true,
       soCau: {
@@ -83,6 +107,13 @@
         toan1: {
           'so-100': 1, 'cong': 2, 'tru': 2, 'tinh-day': 2,
           'do-dai': 3, 'gio-tuan': 1, 'loi-van': 5, 'tu-duy': 4
+        },
+        // THI LỚP 5 — dồn câu sang các mạch phải suy luận nhiều bước của đề thi vào
+        // lớp 6 (toán điển hình, tỉ số phần trăm, chuyển động, tư duy); bớt câu tính
+        // máy móc (số tự nhiên, đo lường) nhưng vẫn giữ đủ 10 mạch để không lệch đề.
+        thi5: {
+          'so-tu-nhien': 1, 'phan-so': 2, 'so-thap-phan': 2, 'do-luong': 1, 'ti-so-phan-tram': 3,
+          'toan-dien-hinh': 4, 'hinh-phang': 2, 'hinh-khoi': 1, 'chuyen-dong': 2, 'tu-duy': 2
         }
       }
     }

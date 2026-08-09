@@ -1907,6 +1907,12 @@
   function check(question, userInput) {
     if (!question) return false;
     if (question.type === 'mc') {
+      // Chặn giá trị "rỗng" trước khi ép kiểu: Number('') , Number(null), Number([])
+      // và Number(false) đều bằng 0 -> câu có đáp án đúng ở vị trí 0 sẽ bị chấm ĐÚNG
+      // khi bé chưa chọn gì.
+      if (userInput === null || userInput === undefined || typeof userInput === 'boolean') return false;
+      if (typeof userInput === 'string' && userInput.trim() === '') return false;
+      if (typeof userInput !== 'number' && typeof userInput !== 'string') return false;
       var idx = Number(userInput);
       return Number.isInteger(idx) && idx === question.answer;
     }

@@ -48,7 +48,7 @@
     <h1>🖨️ Tạo đề ôn tập tự động</h1>
     <a class="home" href="../">← Trang chủ</a>
   </div>
-  <p class="sub">Sinh đề Toán kèm <b>ma trận</b>, <b>đề bài</b> và <b>hướng dẫn chấm (đáp án)</b> — mỗi lần một đề khác nhau. Dành cho thầy cô &amp; phụ huynh in cho con luyện tập.</p>
+  <p class="sub">Sinh đề Toán <b>lớp 1</b>, <b>lớp 3</b> và <b>ôn thi vào lớp 6</b> kèm <b>ma trận</b>, <b>đề bài</b> và <b>hướng dẫn chấm (đáp án)</b> — mỗi lần một đề khác nhau. Dành cho thầy cô &amp; phụ huynh in cho con luyện tập.</p>
 
   <div class="panel">
     <div class="row">
@@ -95,14 +95,14 @@
   var statusEl = document.getElementById('status');
   var iframe = document.getElementById('preview');
   var engineCache = {};
-  var ORDER = ['toan1', 'toan3'];
+  var ORDER = ['toan1', 'toan3', 'thi5'];
 
   // Nạp danh sách môn vào ô chọn.
   ORDER.forEach(function (k) {
     if (!CFG[k]) return;
     var o = document.createElement('option');
     o.value = k;
-    o.textContent = 'Toán lớp ' + CFG[k].lop;
+    o.textContent = CFG[k].ten || ('Toán lớp ' + CFG[k].lop);
     monSel.appendChild(o);
   });
 
@@ -158,9 +158,10 @@
       var de = window.DeBuilder.build(cfg, engine, { muc: mucSel.value, phut: phut });
       iframe.srcdoc = window.DeBuilder.renderDoc(de);
       btnIn.disabled = false;
+      var MACH_SUY_LUAN = ['tu-duy', 'loi-van', 'bieu-thuc', 'tinh-day',
+                           'toan-dien-hinh', 'chuyen-dong', 'ti-so-phan-tram'];
       var tuDuy = de.items.filter(function (it) {
-        return it.topic === 'tu-duy' || it.topic === 'loi-van'
-          || it.topic === 'bieu-thuc' || it.topic === 'tinh-day';
+        return MACH_SUY_LUAN.indexOf(it.topic) >= 0;
       }).length;
       var thuThach = de.items.filter(function (it) { return it.tier === 2; }).length;
       var tuLuan = de.items.filter(function (it) { return it.type === 'input'; }).length;

@@ -19,6 +19,7 @@
     --l1:#f59e0b; --l1soft:#fff7e6; --l3:#4f46e5; --l3soft:#eef0ff;
     --en:#0d9488; --ensoft:#d6f5ef; --td:#db2777; --tdsoft:#fce7f3;
     --r3:#1f9d57; --r3soft:#e4f6ec; --ohn:#7c3aed; --ohnsoft:#f0eaff;
+    --t5:#e11d48; --t5soft:#ffe9ee;
     --shadow:0 10px 30px rgba(27,33,56,.12), 0 2px 8px rgba(27,33,56,.06);
   }
   *{box-sizing:border-box}
@@ -41,12 +42,12 @@
   .card:focus-visible{box-shadow:0 0 0 4px #ffd54a, var(--shadow)}
   .badge{width:96px; height:96px; border-radius:24px; display:grid; place-items:center;
          font-size:52px; line-height:1}
-  .c1 .badge{background:var(--l1soft)} .c3 .badge{background:var(--l3soft)} .cen .badge{background:var(--ensoft)} .ctd .badge{background:var(--tdsoft)} .cr3 .badge{background:var(--r3soft)} .cohn .badge{background:var(--ohnsoft)}
+  .c1 .badge{background:var(--l1soft)} .c3 .badge{background:var(--l3soft)} .cen .badge{background:var(--ensoft)} .ctd .badge{background:var(--tdsoft)} .cr3 .badge{background:var(--r3soft)} .cohn .badge{background:var(--ohnsoft)} .ct5 .badge{background:var(--t5soft)}
   .card h2{margin:6px 0 0; font-size:clamp(22px,4vw,28px)}
-  .c1 h2{color:var(--l1)} .c3 h2{color:var(--l3)} .cen h2{color:var(--en)} .ctd h2{color:var(--td)} .cr3 h2{color:var(--r3)} .cohn h2{color:var(--ohn)}
+  .c1 h2{color:var(--l1)} .c3 h2{color:var(--l3)} .cen h2{color:var(--en)} .ctd h2{color:var(--td)} .cr3 h2{color:var(--r3)} .cohn h2{color:var(--ohn)} .ct5 h2{color:var(--t5)}
   .card p{margin:0; color:var(--muted); font-size:15px}
   .go{margin-top:8px; font-weight:700; font-size:17px}
-  .c1 .go{color:var(--l1)} .c3 .go{color:var(--l3)} .cen .go{color:var(--en)} .ctd .go{color:var(--td)} .cr3 .go{color:var(--r3)} .cohn .go{color:var(--ohn)}
+  .c1 .go{color:var(--l1)} .c3 .go{color:var(--l3)} .cen .go{color:var(--en)} .ctd .go{color:var(--td)} .cr3 .go{color:var(--r3)} .cohn .go{color:var(--ohn)} .ct5 .go{color:var(--t5)}
   /* huy hiệu "còn N từ cần ôn hôm nay" trên thẻ Ôn Hôm Nay */
   .card{position:relative}
   .due-pill{position:absolute; top:12px; right:12px; background:#ef4444; color:#fff;
@@ -107,6 +108,12 @@
         <p>Số đến 100 000, nhân chia, hình học, toán đố…</p>
         <span class="go">Vào học →</span>
       </a>
+      <a class="card ct5" href="./thi-lop5/" aria-label="Vào ôn Thi lớp 5 — luyện thi vào lớp 6">
+        <div class="badge" aria-hidden="true">🎓</div>
+        <h2>Thi Lớp 5</h2>
+        <p>Ôn thi vào lớp 6: phân số, phần trăm, toán điển hình, chuyển động…</p>
+        <span class="go">Vào ôn →</span>
+      </a>
       <a class="card cen" href="./tienganh/" aria-label="Vào học Tiếng Anh cùng cáo Pi">
         <div class="badge" aria-hidden="true">🦊</div>
         <h2>Tiếng Anh</h2>
@@ -116,7 +123,7 @@
       <a class="card ctd" href="./tao-de/" aria-label="Tạo đề ôn tập tự động để in">
         <div class="badge" aria-hidden="true">🖨️</div>
         <h2>Tạo đề ôn tập</h2>
-        <p>Tự sinh đề Toán lớp 1 &amp; lớp 3 kèm đáp án — in hoặc lưu PDF</p>
+        <p>Tự sinh đề Toán lớp 1, lớp 3 &amp; ôn thi lớp 6 kèm đáp án — in hoặc lưu PDF</p>
         <span class="go">Tạo đề →</span>
       </a>
       <a class="card cr3" href="./run3/" aria-label="Luyện ngữ pháp tiếng Anh — Ngữ Pháp Vui 3">

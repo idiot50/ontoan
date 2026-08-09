@@ -16,6 +16,7 @@ const OUT = path.join(__dirname, 'engines');
 const MAP = [
   { src: path.join(ROOT, 'web_toan_lop1', 'engine.js'), dst: path.join(OUT, 'toan1.engine.js') },
   { src: path.join(ROOT, 'web_toan_lop3', 'engine.js'), dst: path.join(OUT, 'toan3.engine.js') },
+  { src: path.join(ROOT, 'web_thi_lop5', 'engine.js'), dst: path.join(OUT, 'thi5.engine.js') },
 ];
 
 fs.mkdirSync(OUT, { recursive: true });
