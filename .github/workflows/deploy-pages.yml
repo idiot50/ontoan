@@ -47,7 +47,7 @@ jobs:
           rm -f  _site/lop1/engine.test.mjs _site/lop3/engine.test.mjs
           # Trình tạo đề: chỉ giữ runtime (index.html + de_*.js + engines/), bỏ test & script sync dev
           rm -rf _site/tao-de/tests
-          rm -f  _site/tao-de/sync_engines.mjs
+          rm -f  _site/tao-de/sync_engines.mjs _site/tao-de/GHI_CHU_DE_THI.md
           # Ngữ Pháp Vui 3: chỉ giữ runtime (index.html + css + js + data + audio),
           # bỏ nguồn build và bộ test cho gọn.
           rm -rf _site/run3/build _site/run3/tests
