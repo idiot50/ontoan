@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Từ Vựng Anh 4 — Unit 1–6 (Global Success)</title>
+<meta name="description" content="102 từ và cụm từ Unit 1–6 sách Tiếng Anh 4 Global Success: tra nhanh, ẩn nghĩa để tự kiểm tra, nghe phát âm, đánh dấu đã thuộc.">
+<meta name="theme-color" content="#0369a1">
+<style>
+/* =========================================================================
+   Từ Vựng Anh 4 — sổ từ vựng Unit 1–6 (SGK Tiếng Anh 4, Global Success)
+   Một trang tĩnh, KHÔNG phụ thuộc mạng: font hệ thống, không CDN, không ảnh.
+   Giọng đọc dùng SpeechSynthesis của trình duyệt (có thì đọc, không có thì thôi).
+   Tiến độ "đã thuộc" lưu ở localStorage của chính máy đang mở.
+   ========================================================================= */
+:root{
+  --paper:#f6f9fc;
+  --surface:#ffffff;
+  --ink:#16243b;
+  --ink-soft:#55637a;
+  --ink-faint:#8a96a8;
+  --rule:#dfe7f0;
+  --rule-strong:#c3d2e2;
+  --blue:#0369a1;
+  --blue-wash:#e0f2fe;
+  --red:#be3a2b;
+  --green:#2c7a58;
+  --green-wash:#e7f3ed;
+  --shadow:0 6px 18px rgba(27,33,56,.08), 0 1px 4px rgba(27,33,56,.05);
+  --sans:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  --serif:Georgia,"Times New Roman",serif;
+  --mono:"Segoe UI","DejaVu Sans",ui-monospace,monospace;
+  --on-accent:#ffffff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.5;
+  -webkit-text-size-adjust:100%;
+}
+
+/* ------------------------------- ĐẦU TRANG ------------------------------ */
+header{
+  background:var(--surface);
+  border-bottom:1px solid var(--rule);
+}
+.head-in{
+  max-width:880px;margin:0 auto;padding-inline:20px;padding-block:18px;
+  display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;
+}
+.logo{font-size:30px;line-height:1;flex:0 0 auto}
+.brand{flex:1 1 260px;min-width:0}
+h1{
+  font-family:var(--serif);font-weight:700;font-size:clamp(21px,4.6vw,29px);
+  line-height:1.15;margin:0;letter-spacing:-.01em;text-wrap:balance;
+}
+h1 .sub{font-family:var(--sans);font-weight:600;font-size:.62em;color:var(--ink-soft)}
+.brand p{margin:6px 0 0;color:var(--ink-soft);font-size:14px;max-width:60ch}
+.brand p b{color:var(--ink)}
+.home-link{
+  flex:0 0 auto;margin-left:auto;display:inline-flex;align-items:center;gap:7px;
+  text-decoration:none;font-weight:700;font-size:14px;color:var(--blue);
+  background:var(--blue-wash);border-radius:999px;padding:8px 14px;
+}
+.home-link:hover{filter:brightness(1.03)}
+
+.wrap{max-width:880px;margin:0 auto;padding-inline:20px;padding-block:0 56px}
+
+/* -------------------------------- TIẾN ĐỘ ------------------------------- */
+.meter{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  margin-top:18px;padding:13px 16px;
+  background:var(--surface);border:1px solid var(--rule);border-radius:10px;
+  box-shadow:var(--shadow);
+}
+.meter-label{font-size:13.5px;color:var(--ink-soft);white-space:nowrap}
+.meter-label strong{color:var(--green);font-variant-numeric:tabular-nums;font-weight:700}
+.track{flex:1 1 150px;height:8px;border-radius:99px;background:var(--rule);overflow:hidden}
+.fill{height:100%;width:0;background:var(--green);border-radius:99px;transition:width .25s ease}
+@media (prefers-reduced-motion:reduce){.fill{transition:none}}
+
+/* ------------------------------- THANH LỌC ------------------------------ */
+.toolbar{
+  position:sticky;top:0;z-index:5;
+  margin-top:20px;padding-block:12px;
+  background:var(--paper);
+  border-bottom:1px solid var(--rule);
+}
+.search{
+  display:flex;align-items:center;gap:9px;
+  background:var(--surface);border:1px solid var(--rule-strong);border-radius:8px;
+  padding:9px 12px;
+}
+.search svg{flex:none;color:var(--ink-faint)}
+.search input{flex:1;min-width:0;border:0;background:none;outline:none;font:inherit;color:var(--ink)}
+.search input::placeholder{color:var(--ink-faint)}
+.search kbd{
+  font-family:var(--mono);font-size:11px;color:var(--ink-faint);
+  border:1px solid var(--rule-strong);border-radius:4px;padding:1px 5px;
+}
+.controls{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px;align-items:center}
+button{font:inherit;cursor:pointer}
+.chip{
+  border:1px solid var(--rule-strong);background:var(--surface);color:var(--ink-soft);
+  border-radius:999px;padding:6px 13px;font-size:13px;line-height:1.3;
+}
+.chip:hover{border-color:var(--blue);color:var(--blue)}
+.chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--on-accent);font-weight:600}
+.chip.mode[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:var(--on-accent)}
+.sep{width:1px;align-self:stretch;background:var(--rule);margin-inline:4px}
+
+/* ------------------------------ DANH SÁCH TỪ ---------------------------- */
+.count{margin:16px 0 4px;font-size:13px;color:var(--ink-faint)}
+ol.list{list-style:none;margin:0;padding:0}
+li.row{
+  display:grid;
+  grid-template-columns:2.1rem minmax(0,1fr) auto;
+  align-items:start;column-gap:12px;
+  padding:11px 4px 11px 0;
+  border-bottom:1px solid var(--rule);
+}
+li.row.known .num{color:var(--green);font-weight:700}
+.num{
+  font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums;
+  color:var(--ink-faint);padding-top:6px;text-align:right;
+}
+.head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
+.en{font-family:var(--serif);font-size:21px;font-weight:700;line-height:1.2}
+.ipa{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);white-space:nowrap}
+.pos{
+  font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;
+  color:var(--blue);background:var(--blue-wash);border-radius:4px;padding:2px 6px;
+}
+.tag{
+  font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);
+  border:1px solid var(--rule-strong);border-radius:4px;padding:1px 5px;
+}
+.vi{margin-top:3px;color:var(--ink-soft);font-size:14.5px}
+.vi.masked{
+  color:transparent;background:var(--rule);border-radius:4px;
+  cursor:pointer;user-select:none;display:inline-block;max-width:100%;
+}
+.vi.masked:hover{background:var(--rule-strong)}
+.tools{display:flex;gap:4px;padding-top:3px}
+.icon{
+  border:1px solid transparent;background:none;color:var(--ink-faint);
+  border-radius:8px;width:34px;height:34px;display:grid;place-items:center;line-height:0;
+}
+.icon:hover{background:var(--blue-wash);color:var(--blue)}
+li.row.known .icon.check{color:var(--green);background:var(--green-wash)}
+:focus-visible{outline:3px solid #ffd54a;outline-offset:2px;border-radius:6px}
+
+.empty{padding:40px 0;text-align:center;color:var(--ink-faint)}
+footer{
+  margin-top:30px;padding-top:16px;border-top:1px solid var(--rule);
+  font-size:12.5px;color:var(--ink-faint);line-height:1.65;
+}
+footer b{color:var(--ink-soft)}
+
+@media (max-width:460px){
+  li.row{grid-template-columns:1.7rem minmax(0,1fr) auto;column-gap:8px}
+  .en{font-size:19px}
+  .home-link{margin-left:0}
+}
+@media print{
+  header .home-link,.toolbar,.tools,.meter,.count{display:none}
+  body{background:#fff;color:#000;font-size:11pt}
+  li.row{break-inside:avoid;border-color:#ccc}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-in">
+    <div class="logo" aria-hidden="true">📘</div>
+    <div class="brand">
+      <h1>Từ Vựng Anh 4 <span class="sub">— Unit 1–6</span></h1>
+      <p>Toàn bộ <b>102 từ và cụm từ</b> sáu unit đầu sách Global Success, gộp chung một danh sách. Bấm <b>Ẩn nghĩa</b> để tự kiểm tra, bấm loa để nghe đọc, tích dấu khi đã thuộc.</p>
+    </div>
+    <a class="home-link" href="../" title="Về trang chủ Toán Vui">
+      <span aria-hidden="true">🏠</span><span>Trang chủ</span>
+    </a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="meter">
+    <span class="meter-label">Đã thuộc <strong id="done">0</strong> / 102 từ</span>
+    <div class="track"><div class="fill" id="fill"></div></div>
+    <button class="chip" id="reset" type="button">Xóa hết đánh dấu</button>
+  </div>
+
+  <div class="toolbar">
+    <label class="search" for="q">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="7" cy="7" r="4.5"></circle><path d="M10.5 10.5 14 14"></path></svg>
+      <input id="q" type="search" placeholder="Tìm từ tiếng Anh hoặc nghĩa tiếng Việt…" autocomplete="off">
+      <kbd>/</kbd>
+    </label>
+    <div class="controls" id="controls">
+      <button class="chip" type="button" data-unit="all" aria-pressed="true">Tất cả</button>
+      <button class="chip" type="button" data-unit="1" aria-pressed="false">U1</button>
+      <button class="chip" type="button" data-unit="2" aria-pressed="false">U2</button>
+      <button class="chip" type="button" data-unit="3" aria-pressed="false">U3</button>
+      <button class="chip" type="button" data-unit="4" aria-pressed="false">U4</button>
+      <button class="chip" type="button" data-unit="5" aria-pressed="false">U5</button>
+      <button class="chip" type="button" data-unit="6" aria-pressed="false">U6</button>
+      <span class="sep"></span>
+      <button class="chip mode" type="button" id="mask" aria-pressed="false">Ẩn nghĩa</button>
+      <button class="chip mode" type="button" id="onlyNew" aria-pressed="false">Chỉ từ chưa thuộc</button>
+      <button class="chip" type="button" id="shuffle">Xáo trộn</button>
+    </div>
+  </div>
+
+  <p class="count" id="count"></p>
+  <ol class="list" id="list"></ol>
+  <p class="empty" id="empty" hidden>Không có từ nào khớp.</p>
+
+  <footer>
+    Từ vựng theo SGK <b>Tiếng Anh 4 – Global Success</b>: Unit 1 <i>My friends</i> · Unit 2 <i>Time and daily routines</i> · Unit 3 <i>My week</i> · Unit 4 <i>My birthday party</i> · Unit 5 <i>Things we can do</i> · Unit 6 <i>Our school facilities</i>. Phiên âm theo giọng Anh–Anh. Đánh dấu "đã thuộc" chỉ lưu trên máy đang mở trang này.
+  </footer>
+</main>
+
+<script>
+/* Mỗi từ: [unit, tiếng Anh, phiên âm, từ loại, nghĩa tiếng Việt] */
+var DATA=[
+[1,"friend","/frend/","n","bạn, bạn bè"],
+[1,"friendly","/ˈfrendli/","adj","thân thiện"],
+[1,"new","/njuː/","adj","mới"],
+[1,"country","/ˈkʌntri/","n","quốc gia, đất nước"],
+[1,"from","/frəm/","giới từ","đến từ"],
+[1,"where","/weə(r)/","trạng từ","ở đâu"],
+[1,"who","/huː/","đại từ","ai"],
+[1,"age","/eɪdʒ/","n","tuổi"],
+[1,"years old","/jɪəz əʊld/","cụm","… tuổi"],
+[1,"America","/əˈmerɪkə/","n","nước Mỹ"],
+[1,"Australia","/ɒˈstreɪliə/","n","nước Úc"],
+[1,"Britain","/ˈbrɪtn/","n","nước Anh"],
+[1,"Japan","/dʒəˈpæn/","n","nước Nhật Bản"],
+[1,"Malaysia","/məˈleɪziə/","n","nước Ma-lai-xi-a"],
+[1,"Singapore","/ˌsɪŋəˈpɔː(r)/","n","nước Xin-ga-po"],
+[1,"Thailand","/ˈtaɪlænd/","n","nước Thái Lan"],
+[1,"Viet Nam","/ˌviːetˈnɑːm/","n","nước Việt Nam"],
+[2,"time","/taɪm/","n","thời gian, giờ"],
+[2,"o’clock","/əˈklɒk/","trạng từ","giờ đúng"],
+[2,"a.m.","/ˌeɪ ˈem/","viết tắt","buổi sáng (0h–12h)"],
+[2,"p.m.","/ˌpiː ˈem/","viết tắt","buổi chiều, tối (12h–24h)"],
+[2,"fifteen","/ˌfɪfˈtiːn/","số","mười lăm"],
+[2,"thirty","/ˈθɜːti/","số","ba mươi"],
+[2,"forty-five","/ˌfɔːti ˈfaɪv/","số","bốn mươi lăm"],
+[2,"daily","/ˈdeɪli/","adj","hằng ngày"],
+[2,"routine","/ruːˈtiːn/","n","thói quen hằng ngày"],
+[2,"get up","/ˌɡet ˈʌp/","cụm ĐT","thức dậy"],
+[2,"have breakfast","/hæv ˈbrekfəst/","cụm ĐT","ăn sáng"],
+[2,"have lunch","/hæv lʌntʃ/","cụm ĐT","ăn trưa"],
+[2,"have dinner","/hæv ˈdɪnə(r)/","cụm ĐT","ăn tối"],
+[2,"go to school","/ˌɡəʊ tə ˈskuːl/","cụm ĐT","đi học"],
+[2,"go to bed","/ˌɡəʊ tə ˈbed/","cụm ĐT","đi ngủ"],
+[2,"do homework","/duː ˈhəʊmwɜːk/","cụm ĐT","làm bài tập về nhà"],
+[2,"break","/breɪk/","n","giờ ra chơi"],
+[2,"classroom","/ˈklɑːsruːm/","n","lớp học"],
+[2,"primary school","/ˈpraɪməri skuːl/","n","trường tiểu học"],
+[2,"pupil","/ˈpjuːpl/","n","học sinh"],
+[2,"at","/ət/","giới từ","vào lúc"],
+[3,"day","/deɪ/","n","ngày"],
+[3,"weekend","/ˌwiːkˈend/","n","cuối tuần"],
+[3,"Monday","/ˈmʌndeɪ/","n","thứ Hai"],
+[3,"Tuesday","/ˈtjuːzdeɪ/","n","thứ Ba"],
+[3,"Wednesday","/ˈwenzdeɪ/","n","thứ Tư"],
+[3,"Thursday","/ˈθɜːzdeɪ/","n","thứ Năm"],
+[3,"Friday","/ˈfraɪdeɪ/","n","thứ Sáu"],
+[3,"Saturday","/ˈsætədeɪ/","n","thứ Bảy"],
+[3,"Sunday","/ˈsʌndeɪ/","n","Chủ nhật"],
+[3,"study at school","/ˈstʌdi ət skuːl/","cụm ĐT","học ở trường"],
+[3,"listen to music","/ˈlɪsn tə ˈmjuːzɪk/","cụm ĐT","nghe nhạc"],
+[3,"do housework","/duː ˈhaʊswɜːk/","cụm ĐT","làm việc nhà"],
+[4,"birthday","/ˈbɜːθdeɪ/","n","sinh nhật"],
+[4,"party","/ˈpɑːti/","n","bữa tiệc"],
+[4,"invitation","/ˌɪnvɪˈteɪʃn/","n","lời mời"],
+[4,"when","/wen/","trạng từ","khi nào"],
+[4,"want","/wɒnt/","v","muốn"],
+[4,"eat","/iːt/","v","ăn"],
+[4,"drink","/drɪŋk/","v, n","uống; đồ uống"],
+[4,"some","/sʌm/","từ hạn định","một ít, một vài"],
+[4,"chips","/tʃɪps/","n","khoai tây chiên"],
+[4,"grapes","/ɡreɪps/","n","quả nho"],
+[4,"jam","/dʒæm/","n","mứt"],
+[4,"juice","/dʒuːs/","n","nước ép"],
+[4,"lemonade","/ˌleməˈneɪd/","n","nước chanh"],
+[4,"water","/ˈwɔːtə(r)/","n","nước"],
+[4,"January","/ˈdʒænjuəri/","n","tháng Một"],
+[4,"February","/ˈfebruəri/","n","tháng Hai"],
+[4,"March","/mɑːtʃ/","n","tháng Ba"],
+[4,"April","/ˈeɪprəl/","n","tháng Tư"],
+[4,"May","/meɪ/","n","tháng Năm"],
+[5,"can","/kæn/","ĐT khuyết thiếu","có thể, biết (làm gì)"],
+[5,"but","/bʌt/","liên từ","nhưng"],
+[5,"cook","/kʊk/","v","nấu ăn"],
+[5,"dance","/dɑːns/","v","nhảy, múa"],
+[5,"draw","/drɔː/","v","vẽ"],
+[5,"sing","/sɪŋ/","v","hát"],
+[5,"swim","/swɪm/","v","bơi"],
+[5,"roller skate","/ˈrəʊlə skeɪt/","v","trượt pa-tanh"],
+[5,"bike","/baɪk/","n","xe đạp"],
+[5,"ride a bike","/raɪd ə baɪk/","cụm ĐT","đi xe đạp"],
+[5,"ride a horse","/raɪd ə hɔːs/","cụm ĐT","cưỡi ngựa"],
+[5,"play the piano","/pleɪ ðə piˈænəʊ/","cụm ĐT","chơi đàn pi-a-nô"],
+[5,"play the guitar","/pleɪ ðə ɡɪˈtɑː(r)/","cụm ĐT","chơi đàn ghi-ta"],
+[5,"play badminton","/pleɪ ˈbædmɪntən/","cụm ĐT","chơi cầu lông"],
+[5,"play football","/pleɪ ˈfʊtbɔːl/","cụm ĐT","chơi bóng đá"],
+[6,"facilities","/fəˈsɪlətiz/","n","cơ sở vật chất"],
+[6,"computer room","/kəmˈpjuːtə ruːm/","n","phòng máy tính"],
+[6,"library","/ˈlaɪbrəri/","n","thư viện"],
+[6,"playground","/ˈpleɪɡraʊnd/","n","sân chơi"],
+[6,"garden","/ˈɡɑːdn/","n","vườn"],
+[6,"building","/ˈbɪldɪŋ/","n","tòa nhà"],
+[6,"floor","/flɔː(r)/","n","tầng"],
+[6,"tree","/triː/","n","cây"],
+[6,"flower","/ˈflaʊə(r)/","n","bông hoa"],
+[6,"city","/ˈsɪti/","n","thành phố"],
+[6,"town","/taʊn/","n","thị trấn"],
+[6,"village","/ˈvɪlɪdʒ/","n","ngôi làng"],
+[6,"mountains","/ˈmaʊntənz/","n","vùng núi"],
+[6,"near","/nɪə(r)/","giới từ","gần"],
+[6,"far","/fɑː(r)/","adj","xa"],
+[6,"sports","/spɔːts/","n","thể thao"],
+[6,"volleyball","/ˈvɒlibɔːl/","n","bóng chuyền"],
+[6,"basketball","/ˈbɑːskɪtbɔːl/","n","bóng rổ"]
+];
+
+var KEY="tuvung-anh4-u1-6-known";
+var known={};
+try{known=JSON.parse(localStorage.getItem(KEY)||"{}")||{};}catch(e){known={};}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(known));}catch(e){}}
+
+var order=DATA.map(function(_,i){return i;});
+var unit="all", masked=false, onlyNew=false, q="";
+
+var listEl=document.getElementById("list");
+var emptyEl=document.getElementById("empty");
+var countEl=document.getElementById("count");
+var doneEl=document.getElementById("done");
+var fillEl=document.getElementById("fill");
+
+/* Bỏ dấu tiếng Việt để gõ "cau long" vẫn tìm ra "chơi cầu lông". */
+function norm(s){
+  return s.toLowerCase().normalize("NFD")
+    .replace(/[̀-ͯ]/g,"").replace(/đ/g,"d");
+}
+function tally(){var n=0;for(var k in known){if(known[k])n++;}return n;}
+function paintMeter(){
+  var n=tally();
+  doneEl.textContent=n;
+  fillEl.style.width=(n/DATA.length*100)+"%";
+}
+
+var SPK='<svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 3 5 6H2.5v4H5l3.5 3z"></path><path d="M11 6a3 3 0 0 1 0 4"></path></svg>';
+var CHK='<svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.3 12 13 4.5"></path></svg>';
+
+function render(){
+  var nq=norm(q.trim());
+  var html="", shown=0;
+  for(var k=0;k<order.length;k++){
+    var i=order[k], w=DATA[i];
+    if(unit!=="all" && String(w[0])!==unit) continue;
+    if(onlyNew && known[i]) continue;
+    if(nq && norm(w[1]).indexOf(nq)<0 && norm(w[4]).indexOf(nq)<0) continue;
+    shown++;
+    html+='<li class="row'+(known[i]?" known":"")+'" data-i="'+i+'">'
+      +'<span class="num">'+shown+'</span>'
+      +'<div>'
+        +'<div class="head">'
+          +'<span class="en">'+w[1]+'</span>'
+          +'<span class="ipa">'+w[2]+'</span>'
+          +'<span class="pos">'+w[3]+'</span>'
+          +'<span class="tag">U'+w[0]+'</span>'
+        +'</div>'
+        +'<div class="vi'+(masked?" masked":"")+'"'+(masked?' role="button" tabindex="0" title="Bấm để hiện nghĩa"':'')+'>'+w[4]+'</div>'
+      +'</div>'
+      +'<div class="tools">'
+        +'<button class="icon speak" type="button" title="Nghe đọc" aria-label="Nghe đọc '+w[1]+'">'+SPK+'</button>'
+        +'<button class="icon check" type="button" title="Đánh dấu đã thuộc" aria-pressed="'+(known[i]?"true":"false")+'" aria-label="Đã thuộc '+w[1]+'">'+CHK+'</button>'
+      +'</div>'
+    +'</li>';
+  }
+  listEl.innerHTML=html;
+  emptyEl.hidden=shown>0;
+  countEl.textContent="Đang hiện "+shown+" / "+DATA.length+" từ";
+  paintMeter();
+}
+
+function reveal(el){
+  el.classList.remove("masked");
+  el.removeAttribute("role");
+  el.removeAttribute("tabindex");
+  el.removeAttribute("title");
+}
+
+listEl.addEventListener("click",function(e){
+  var row=e.target.closest("li.row"); if(!row) return;
+  var i=row.dataset.i;
+  if(e.target.closest(".speak")){
+    try{
+      var u=new SpeechSynthesisUtterance(DATA[i][1].replace(/\./g,""));
+      u.lang="en-GB"; u.rate=0.85;
+      speechSynthesis.cancel(); speechSynthesis.speak(u);
+    }catch(err){}
+    return;
+  }
+  if(e.target.closest(".check")){
+    known[i]=!known[i]; save();
+    if(onlyNew){render();}
+    else{
+      row.classList.toggle("known",!!known[i]);
+      row.querySelector(".check").setAttribute("aria-pressed",known[i]?"true":"false");
+      paintMeter();
+    }
+    return;
+  }
+  var vi=e.target.closest(".vi.masked");
+  if(vi) reveal(vi);
+});
+
+listEl.addEventListener("keydown",function(e){
+  if(e.key!=="Enter"&&e.key!==" ") return;
+  var vi=e.target.closest(".vi.masked");
+  if(vi){e.preventDefault();reveal(vi);}
+});
+
+document.getElementById("q").addEventListener("input",function(e){q=e.target.value;render();});
+
+document.getElementById("controls").addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b) return;
+  if(b.dataset.unit){
+    unit=b.dataset.unit;
+    var all=this.querySelectorAll("[data-unit]");
+    for(var i=0;i<all.length;i++){
+      all[i].setAttribute("aria-pressed",all[i].dataset.unit===unit?"true":"false");
+    }
+    render(); return;
+  }
+  if(b.id==="mask"){
+    masked=!masked;
+    b.setAttribute("aria-pressed",masked?"true":"false");
+    b.textContent=masked?"Hiện nghĩa":"Ẩn nghĩa";
+    render(); return;
+  }
+  if(b.id==="onlyNew"){
+    onlyNew=!onlyNew;
+    b.setAttribute("aria-pressed",onlyNew?"true":"false");
+    render(); return;
+  }
+  if(b.id==="shuffle"){
+    for(var j=order.length-1;j>0;j--){
+      var r=Math.floor(Math.random()*(j+1)), t=order[j];
+      order[j]=order[r]; order[r]=t;
+    }
+    render(); return;
+  }
+});
+
+document.getElementById("reset").addEventListener("click",function(){
+  known={}; save(); render();
+});
+
+document.addEventListener("keydown",function(e){
+  if(e.key==="/"&&document.activeElement.id!=="q"){
+    e.preventDefault();
+    document.getElementById("q").focus();
+  }
+});
+
+render();
+</script>
+</body>
+</html>

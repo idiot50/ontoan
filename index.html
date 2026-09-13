@@ -38,6 +38,7 @@
     --en:#0d9488; --ensoft:#d6f5ef; --td:#db2777; --tdsoft:#fce7f3;
     --r3:#1f9d57; --r3soft:#e4f6ec; --ohn:#7c3aed; --ohnsoft:#f0eaff;
     --ot:#e11d48; --otsoft:#ffe9ee;
+    --tv:#0369a1; --tvsoft:#e0f2fe;
     --shadow:0 6px 18px rgba(27,33,56,.10), 0 1px 4px rgba(27,33,56,.05);
     --khe: clamp(6px, 1.2vh, 14px);          /* khoảng cách giữa các thẻ */
   }
@@ -132,11 +133,11 @@
   .c1 .badge{background:var(--l1soft)} .c3 .badge{background:var(--l3soft)}
   .cot .badge{background:var(--otsoft)} .cen .badge{background:var(--ensoft)}
   .ctd .badge{background:var(--tdsoft)} .cr3 .badge{background:var(--r3soft)}
-  .cohn .badge{background:var(--ohnsoft)}
+  .cohn .badge{background:var(--ohnsoft)} .ctv .badge{background:var(--tvsoft)}
   .c1 h2,.c1 .go{color:var(--l1)} .c3 h2,.c3 .go{color:var(--l3)}
   .cot h2,.cot .go{color:var(--ot)} .cen h2,.cen .go{color:var(--en)}
   .ctd h2,.ctd .go{color:var(--td)} .cr3 h2,.cr3 .go{color:var(--r3)}
-  .cohn h2,.cohn .go{color:var(--ohn)}
+  .cohn h2,.cohn .go{color:var(--ohn)} .ctv h2,.ctv .go{color:var(--tv)}
 
   /* huy hiệu "còn N từ cần ôn hôm nay" trên thẻ Ôn Hôm Nay */
   .due-pill{position:absolute; top:6px; right:6px; background:#ef4444; color:#fff;
@@ -209,6 +210,12 @@
         <h2>Ngữ Pháp Vui 3</h2>
         <p>Luyện ngữ pháp tiếng Anh: điền từ, nối câu, phân nhóm… có chấm điểm</p>
         <span class="go">Vào học →</span>
+      </a>
+      <a class="card ctv" href="./tu-vung-anh4/" aria-label="Từ vựng Tiếng Anh 4 — Unit 1 đến Unit 6">
+        <div class="badge" aria-hidden="true">📘</div>
+        <h2>Từ Vựng Anh 4</h2>
+        <p>102 từ Unit 1–6 sách Global Success — ẩn nghĩa để tự kiểm tra, có đọc phát âm</p>
+        <span class="go">Học từ →</span>
       </a>
       <a class="card cohn" href="./on-hom-nay/" aria-label="Ôn hôm nay — sổ từ vựng tự nhập, ôn tập giãn cách">
         <span class="due-pill" id="duePill" hidden></span>

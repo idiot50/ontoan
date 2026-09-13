@@ -43,6 +43,7 @@ jobs:
           cp -r tao_de        _site/tao-de
           cp -r web_run3      _site/run3
           cp -r web_onhomnay  _site/on-hom-nay
+          cp -r web_tuvung_anh4 _site/tu-vung-anh4
           # Đường dẫn CŨ của app Ôn Thi (trước đây là /thi-lop5/): giữ một trang chuyển
           # hướng để ai đã lưu link hoặc cài PWA từ bản trước vẫn vào được, đồng thời gỡ
           # service worker cũ còn đăng ký ở phạm vi đường dẫn đó.
