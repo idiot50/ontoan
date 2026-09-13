@@ -170,6 +170,107 @@ footer{
 }
 footer b{color:var(--ink-soft)}
 
+/* ================= HAI MÀN: TRA TỪ  /  NGHE – VIẾT ====================== */
+.tabs{display:flex;gap:8px;margin-top:18px}
+.tab{
+  flex:1 1 0;border:1px solid var(--rule-strong);background:var(--surface);
+  color:var(--ink-soft);border-radius:10px;padding:11px 12px;
+  font-size:14.5px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+}
+.tab:hover{border-color:var(--blue);color:var(--blue)}
+.tab[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:var(--on-accent)}
+
+.box{
+  background:var(--surface);border:1px solid var(--rule);border-radius:12px;
+  box-shadow:var(--shadow);padding:18px;margin-top:18px;
+}
+.box h2{font-family:var(--serif);font-size:22px;margin:0 0 6px;line-height:1.2}
+.box .desc{margin:0 0 16px;color:var(--ink-soft);font-size:14px;max-width:58ch}
+fieldset{border:0;padding:0;margin:0 0 15px;min-width:0}
+legend{
+  padding:0;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;
+  font-weight:700;color:var(--ink-faint);margin-bottom:8px;
+}
+.opt-row{display:flex;flex-wrap:wrap;gap:7px}
+.check-line{
+  display:flex;align-items:center;gap:9px;margin:0 0 17px;
+  font-size:14px;color:var(--ink-soft);
+}
+.check-line input{width:18px;height:18px;accent-color:var(--blue);flex:none}
+.btn{
+  border:1px solid var(--blue);background:var(--blue);color:var(--on-accent);
+  border-radius:10px;padding:11px 20px;font-size:15px;font-weight:700;
+}
+.btn:hover{filter:brightness(1.07)}
+.btn.ghost{background:var(--surface);color:var(--blue)}
+.btn-row{display:flex;flex-wrap:wrap;gap:8px}
+
+/* ----- thanh tiến độ của lượt luyện ----- */
+.drill-top{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.drill-pos{font-size:13px;color:var(--ink-faint);font-variant-numeric:tabular-nums;white-space:nowrap}
+.drill-track{flex:1;height:6px;border-radius:99px;background:var(--rule);overflow:hidden}
+.drill-track i{display:block;height:100%;width:0;background:var(--blue);border-radius:99px;transition:width .2s ease}
+@media (prefers-reduced-motion:reduce){.drill-track i{transition:none}}
+
+/* ----- nút nghe to, là trọng tâm của màn này ----- */
+.big-speak{
+  width:100%;border:2px dashed var(--rule-strong);background:var(--blue-wash);
+  color:var(--blue);border-radius:14px;padding:24px 16px;
+  font-size:17px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;gap:11px;
+}
+.big-speak:hover{border-color:var(--blue)}
+.big-speak .ico{font-size:27px;line-height:1}
+.big-speak.on{border-style:solid;border-color:var(--blue)}
+
+.hints{display:flex;flex-wrap:wrap;gap:7px;margin-top:15px}
+.hint-out{
+  margin:10px 0 0;padding:10px 13px;border-radius:9px;
+  background:var(--paper);border:1px solid var(--rule);font-size:15.5px;color:var(--ink);
+}
+.hint-out.mono{font-family:var(--mono);font-size:14.5px}
+
+#answerForm{display:flex;gap:8px;margin-top:17px;flex-wrap:wrap}
+#answer{
+  flex:1 1 190px;min-width:0;font-family:var(--serif);font-size:22px;
+  padding:12px 14px;border:2px solid var(--rule-strong);border-radius:10px;
+  background:var(--surface);color:var(--ink);
+}
+#answer:focus{border-color:var(--blue);outline:none}
+#answer:disabled{background:var(--paper);color:var(--ink-soft)}
+
+/* ----- ô chấm bài: chỉ ra từng ký tự sai ----- */
+.verdict{margin-top:17px;padding:14px 15px;border-radius:10px;border:1px solid}
+.verdict.ok{background:var(--green-wash);border-color:var(--green)}
+.verdict.no{background:#fdeeec;border-color:var(--red)}
+.vtitle{font-weight:700;font-size:15.5px;margin:0}
+.verdict.ok .vtitle{color:var(--green)}
+.verdict.no .vtitle{color:var(--red)}
+.diff-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;margin-top:11px}
+.diff-label{font-size:12px;color:var(--ink-soft);min-width:58px}
+.diff{
+  font-family:var(--serif);font-size:22px;line-height:1.35;letter-spacing:.4px;
+  color:var(--ink);word-break:break-word;
+}
+.diff b{font-weight:inherit;border-radius:3px;padding:0 1px}
+.diff .bad{background:#f6c4bc;color:#7a1f14}
+.diff .extra{background:#f6c4bc;color:#7a1f14;text-decoration:line-through}
+.diff .good{background:#b9e4cf;color:#0f4a34}
+.diff .miss{background:#b9e4cf;color:#0f4a34;text-decoration:underline}
+.vnote{margin:12px 0 0;font-size:13.5px;color:var(--ink-soft)}
+.vnote b{color:var(--ink)}
+
+/* ----- bảng kết quả cuối lượt ----- */
+.score{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap}
+.score .big{font-family:var(--serif);font-size:38px;font-weight:700;color:var(--blue);line-height:1}
+.score .cap{font-size:14px;color:var(--ink-soft)}
+.retry-list{display:flex;flex-wrap:wrap;gap:7px;margin:13px 0 18px}
+.retry-list span{
+  font-family:var(--serif);font-size:17px;background:var(--paper);
+  border:1px solid var(--rule-strong);border-radius:7px;padding:4px 11px;
+}
+
 @media (max-width:460px){
   li.row{grid-template-columns:1.7rem minmax(0,1fr) auto;column-gap:8px}
   .en{font-size:19px}
@@ -198,6 +299,17 @@ footer b{color:var(--ink-soft)}
 </header>
 
 <main class="wrap">
+
+  <nav class="tabs" aria-label="Chọn cách học">
+    <button class="tab" type="button" id="tabTra" role="tab" aria-selected="true" aria-controls="view-tra">
+      <span aria-hidden="true">📒</span><span>Tra từ</span>
+    </button>
+    <button class="tab" type="button" id="tabViet" role="tab" aria-selected="false" aria-controls="view-viet">
+      <span aria-hidden="true">✍️</span><span>Nghe – Viết</span>
+    </button>
+  </nav>
+
+  <section id="view-tra" role="tabpanel" aria-labelledby="tabTra">
   <div class="meter">
     <span class="meter-label">Đã thuộc <strong id="done">0</strong> / 102 từ</span>
     <div class="track"><div class="fill" id="fill"></div></div>
@@ -228,6 +340,77 @@ footer b{color:var(--ink-soft)}
   <p class="count" id="count"></p>
   <ol class="list" id="list"></ol>
   <p class="empty" id="empty" hidden>Không có từ nào khớp.</p>
+  </section>
+
+  <section id="view-viet" role="tabpanel" aria-labelledby="tabViet" hidden>
+
+    <!-- 1. Màn chuẩn bị: chọn phạm vi rồi bắt đầu -->
+    <div class="box" id="setup">
+      <h2>Nghe rồi viết lại</h2>
+      <p class="desc">Máy đọc một từ, em gõ lại cho đúng <b>từng chữ cái</b>. Bí thì xin gợi ý: xem nghĩa tiếng Việt, hoặc xem phiên âm. Gõ xong bấm <b>Kiểm tra</b> — máy sẽ chỉ ra chữ nào sai, chữ nào thiếu.</p>
+
+      <fieldset>
+        <legend>Luyện từ của unit nào</legend>
+        <div class="opt-row" id="dUnits">
+          <button class="chip" type="button" data-du="all" aria-pressed="true">Tất cả</button>
+          <button class="chip" type="button" data-du="1" aria-pressed="false">U1</button>
+          <button class="chip" type="button" data-du="2" aria-pressed="false">U2</button>
+          <button class="chip" type="button" data-du="3" aria-pressed="false">U3</button>
+          <button class="chip" type="button" data-du="4" aria-pressed="false">U4</button>
+          <button class="chip" type="button" data-du="5" aria-pressed="false">U5</button>
+          <button class="chip" type="button" data-du="6" aria-pressed="false">U6</button>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Mỗi lượt bao nhiêu từ</legend>
+        <div class="opt-row" id="dLens">
+          <button class="chip" type="button" data-dl="10" aria-pressed="true">10 từ</button>
+          <button class="chip" type="button" data-dl="20" aria-pressed="false">20 từ</button>
+          <button class="chip" type="button" data-dl="0" aria-pressed="false">Tất cả</button>
+        </div>
+      </fieldset>
+
+      <label class="check-line" for="dOnlyWrong">
+        <input type="checkbox" id="dOnlyWrong">
+        <span>Chỉ luyện những từ em từng viết sai <span id="wrongCount"></span></span>
+      </label>
+
+      <button class="btn" type="button" id="start">Bắt đầu nghe – viết</button>
+    </div>
+
+    <!-- 2. Màn luyện -->
+    <div class="box" id="drill" hidden>
+      <div class="drill-top">
+        <span class="drill-pos" id="drillPos">Từ 1 / 10</span>
+        <div class="drill-track"><i id="drillFill"></i></div>
+        <button class="chip" type="button" id="quit">Dừng</button>
+      </div>
+
+      <button class="big-speak" type="button" id="bigSpeak">
+        <span class="ico" aria-hidden="true">🔊</span><span id="bigSpeakText">Nghe lại</span>
+      </button>
+
+      <div class="hints">
+        <button class="chip" type="button" id="hintViBtn">💡 Xem nghĩa tiếng Việt</button>
+        <button class="chip" type="button" id="hintIpaBtn">🔤 Xem phiên âm</button>
+      </div>
+      <p class="hint-out" id="hintVi" hidden></p>
+      <p class="hint-out mono" id="hintIpa" hidden></p>
+
+      <form id="answerForm" autocomplete="off">
+        <input id="answer" type="text" placeholder="Gõ từ em vừa nghe…"
+               autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+               aria-label="Gõ từ em vừa nghe">
+        <button class="btn" type="submit" id="check">Kiểm tra</button>
+      </form>
+
+      <div class="verdict" id="verdict" hidden></div>
+    </div>
+
+    <!-- 3. Bảng kết quả -->
+    <div class="box" id="summary" hidden></div>
+  </section>
 
   <footer>
     Từ vựng theo SGK <b>Tiếng Anh 4 – Global Success</b>: Unit 1 <i>My friends</i> · Unit 2 <i>Time and daily routines</i> · Unit 3 <i>My week</i> · Unit 4 <i>My birthday party</i> · Unit 5 <i>Things we can do</i> · Unit 6 <i>Our school facilities</i>. Phiên âm theo giọng Anh–Anh. Đánh dấu "đã thuộc" chỉ lưu trên máy đang mở trang này.
@@ -550,13 +733,297 @@ document.getElementById("reset").addEventListener("click",function(){
 });
 
 document.addEventListener("keydown",function(e){
-  if(e.key==="/"&&document.activeElement.id!=="q"){
+  if(e.key==="/"&&document.activeElement.id!=="q"&&document.activeElement.id!=="answer"){
     e.preventDefault();
     document.getElementById("q").focus();
   }
 });
 
 render();
+
+/* =======================================================================
+   MÀN "NGHE – VIẾT": nghe máy đọc rồi gõ lại, có gợi ý và chấm từng ký tự.
+   ======================================================================= */
+
+/* Sổ ghi từ nào em hay viết sai — để lần sau luyện đúng chỗ yếu. */
+var SKEY="tuvung-anh4-u1-6-stats";
+var stats={};
+try{stats=JSON.parse(localStorage.getItem(SKEY)||"{}")||{};}catch(e){stats={};}
+function saveStats(){try{localStorage.setItem(SKEY,JSON.stringify(stats));}catch(e){}}
+function everWrong(i){return !!(stats[i]&&stats[i].w);}
+
+var $=function(id){return document.getElementById(id);};
+var elTabTra=$("tabTra"), elTabViet=$("tabViet");
+var viewTra=$("view-tra"), viewViet=$("view-viet");
+var elSetup=$("setup"), elDrill=$("drill"), elSummary=$("summary");
+var elAnswer=$("answer"), elVerdict=$("verdict"), elCheck=$("check");
+var elHintVi=$("hintVi"), elHintIpa=$("hintIpa");
+var elPos=$("drillPos"), elFill=$("drillFill"), elSpeakText=$("bigSpeakText");
+var elBigSpeak=$("bigSpeak");
+
+var dUnit="all", dLen=10;
+var queue=[], qi=0, answered=false, usedHint=false;
+var planned=0, cleanFirstTry=0, needWork={};
+
+/* ---- chuyển màn ---- */
+function showTab(which){
+  var viet = which==="viet";
+  elTabTra.setAttribute("aria-selected", viet?"false":"true");
+  elTabViet.setAttribute("aria-selected", viet?"true":"false");
+  viewTra.hidden = viet;
+  viewViet.hidden = !viet;
+  if(viet) refreshWrongCount();
+}
+elTabTra.addEventListener("click",function(){showTab("tra");});
+elTabViet.addEventListener("click",function(){showTab("viet");});
+
+function refreshWrongCount(){
+  var n=0;
+  for(var k in stats){ if(stats[k]&&stats[k].w) n++; }
+  $("wrongCount").textContent = n ? "("+n+" từ)" : "(chưa có từ nào)";
+  $("dOnlyWrong").disabled = n===0;
+}
+
+/* ---- chọn phạm vi ---- */
+$("dUnits").addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b) return;
+  dUnit=b.dataset.du;
+  var all=this.querySelectorAll("[data-du]");
+  for(var i=0;i<all.length;i++){
+    all[i].setAttribute("aria-pressed", all[i].dataset.du===dUnit ? "true":"false");
+  }
+});
+$("dLens").addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b) return;
+  dLen=parseInt(b.dataset.dl,10);
+  var all=this.querySelectorAll("[data-dl]");
+  for(var i=0;i<all.length;i++){
+    all[i].setAttribute("aria-pressed", parseInt(all[i].dataset.dl,10)===dLen ? "true":"false");
+  }
+});
+
+/* ---- bắt đầu một lượt ---- */
+function startDrill(pool){
+  if(!pool){
+    pool=[];
+    var onlyWrong=$("dOnlyWrong").checked;
+    for(var i=0;i<DATA.length;i++){
+      if(dUnit!=="all" && String(DATA[i][0])!==dUnit) continue;
+      if(onlyWrong && !everWrong(i)) continue;
+      pool.push(i);
+    }
+    for(var j=pool.length-1;j>0;j--){
+      var r=Math.floor(Math.random()*(j+1)), t=pool[j];
+      pool[j]=pool[r]; pool[r]=t;
+    }
+    if(dLen>0) pool=pool.slice(0,dLen);
+  }
+  if(!pool.length){
+    toast("Chưa có từ nào hợp với lựa chọn này. Thử bỏ dấu tích hoặc chọn unit khác nhé.");
+    return;
+  }
+  queue=pool.slice(); qi=0;
+  planned=pool.length; cleanFirstTry=0; needWork={};
+  elSetup.hidden=true; elSummary.hidden=true; elDrill.hidden=false;
+  showWord();
+}
+$("start").addEventListener("click",function(){startDrill(null);});
+$("quit").addEventListener("click",function(){finish();});
+
+/* ---- hiện một từ ---- */
+function showWord(){
+  answered=false; usedHint=false;
+  elVerdict.hidden=true; elVerdict.innerHTML="";
+  elHintVi.hidden=true; elHintIpa.hidden=true;
+  elAnswer.value=""; elAnswer.disabled=false;
+  elCheck.textContent="Kiểm tra";
+  elSpeakText.textContent="Nghe lại";
+  elPos.textContent="Từ "+(qi+1)+" / "+queue.length;
+  elFill.style.width=(qi/queue.length*100)+"%";
+  elAnswer.focus();
+  setTimeout(speakCurrent,250);
+}
+function speakCurrent(){
+  var w=DATA[queue[qi]];
+  elBigSpeak.classList.add("on");
+  setTimeout(function(){elBigSpeak.classList.remove("on");},700);
+  say(w[1].replace(/\./g," ").trim(), null);
+}
+elBigSpeak.addEventListener("click",speakCurrent);
+
+/* ---- gợi ý ---- */
+$("hintViBtn").addEventListener("click",function(){
+  usedHint=true;
+  elHintVi.textContent="Nghĩa: "+DATA[queue[qi]][4];
+  elHintVi.hidden=false;
+  elAnswer.focus();
+});
+$("hintIpaBtn").addEventListener("click",function(){
+  usedHint=true;
+  elHintIpa.textContent="Phiên âm: "+DATA[queue[qi]][2];
+  elHintIpa.hidden=false;
+  elAnswer.focus();
+});
+
+/* ---- so khớp từng ký tự (khoảng cách Levenshtein có truy vết) ----
+   Không so thẳng theo vị trí, vì chỉ cần thiếu MỘT chữ là mọi chữ phía sau
+   lệch hết và bài chấm sẽ báo sai tuốt. Truy vết cho biết đúng chỗ nào em
+   gõ nhầm chữ, thừa chữ hay thiếu chữ. */
+function align(a,b){
+  var n=a.length, m=b.length, i, j, dp=[];
+  for(i=0;i<=n;i++){ dp[i]=[]; dp[i][0]=i; }
+  for(j=0;j<=m;j++) dp[0][j]=j;
+  for(i=1;i<=n;i++) for(j=1;j<=m;j++){
+    var c = a.charAt(i-1)===b.charAt(j-1) ? 0 : 1;
+    dp[i][j]=Math.min(dp[i-1][j-1]+c, dp[i-1][j]+1, dp[i][j-1]+1);
+  }
+  var ops=[]; i=n; j=m;
+  while(i>0||j>0){
+    var same = i>0 && j>0 && a.charAt(i-1)===b.charAt(j-1);
+    if(i>0 && j>0 && dp[i][j]===dp[i-1][j-1]+(same?0:1)){
+      ops.unshift({op: same?"eq":"sub", a:i-1, b:j-1}); i--; j--;
+    } else if(i>0 && dp[i][j]===dp[i-1][j]+1){
+      ops.unshift({op:"extra", a:i-1, b:-1}); i--;
+    } else {
+      ops.unshift({op:"miss", a:-1, b:j-1}); j--;
+    }
+  }
+  return ops;
+}
+function esc(ch){
+  if(ch===" ") return "&nbsp;";
+  return ch.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+function escMark(ch){ return ch===" " ? "␣" : esc(ch); }
+
+/* Dòng "Em viết": chữ sai và chữ thừa tô đỏ, chỗ thiếu là gạch dưới đỏ. */
+function lineTyped(ops, typed){
+  var out="";
+  for(var k=0;k<ops.length;k++){
+    var o=ops[k];
+    if(o.op==="eq")        out+=esc(typed.charAt(o.a));
+    else if(o.op==="sub")  out+='<b class="bad">'+escMark(typed.charAt(o.a))+'</b>';
+    else if(o.op==="extra")out+='<b class="extra">'+escMark(typed.charAt(o.a))+'</b>';
+    else                   out+='<b class="bad">_</b>';
+  }
+  return out || '<b class="bad">(bỏ trống)</b>';
+}
+/* Dòng "Đúng là": những chữ em gõ nhầm hoặc bỏ sót được tô xanh. */
+function lineRight(ops, right){
+  var out="";
+  for(var k=0;k<ops.length;k++){
+    var o=ops[k];
+    if(o.op==="eq")       out+=esc(right.charAt(o.b));
+    else if(o.op==="sub") out+='<b class="good">'+escMark(right.charAt(o.b))+'</b>';
+    else if(o.op==="miss")out+='<b class="miss">'+escMark(right.charAt(o.b))+'</b>';
+  }
+  return out;
+}
+
+/* Gõ dấu nháy cong hay thẳng đều chấp nhận; thừa khoảng trắng thì bỏ qua. */
+function tidy(s){
+  return s.replace(/[‘’ʼ´`]/g,"'").replace(/\s+/g," ").trim();
+}
+
+/* ---- chấm bài ---- */
+$("answerForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  if(answered){ nextWord(); return; }
+
+  var idx=queue[qi], w=DATA[idx];
+  var typed=tidy(elAnswer.value);
+  var right=tidy(w[1]);
+  if(!typed && !elAnswer.value.length){ elAnswer.focus(); return; }
+
+  var exact = typed===right;
+  var sameLetters = typed.toLowerCase()===right.toLowerCase();
+
+  answered=true;
+  elAnswer.disabled=true;
+  elCheck.textContent="Từ tiếp theo →";
+  elVerdict.hidden=false;
+
+  if(exact){
+    stats[idx]=stats[idx]||{w:0,r:0}; stats[idx].r++; saveStats();
+    /* Chỉ tính điểm cho từ viết đúng ngay LẦN ĐẦU: từ đã sai một lần thì lúc
+       luyện lại có đúng cũng không cộng điểm nữa. */
+    if(!usedHint && !needWork[idx]) cleanFirstTry++;
+    elVerdict.className="verdict ok";
+    elVerdict.innerHTML='<p class="vtitle">✅ Chính xác!'
+      + (usedHint ? ' <span style="font-weight:400">(có dùng gợi ý)</span>' : '')
+      + '</p><p class="vnote">'+w[2]+' — '+w[4]+'</p>';
+    setTimeout(function(){ if(answered) nextWord(); }, 1100);
+    return;
+  }
+
+  /* Sai: ghi sổ, xếp lại vào cuối hàng để luyện lại. */
+  stats[idx]=stats[idx]||{w:0,r:0}; stats[idx].w++; saveStats();
+  needWork[idx]=true;
+  queue.push(idx);
+
+  elVerdict.className="verdict no";
+  if(sameLetters){
+    /* Đúng hết chữ cái, chỉ sai viết hoa — thứ Hai, tháng Một, tên nước đều
+       phải viết hoa trong tiếng Anh, nên vẫn tính là chưa đạt. */
+    elVerdict.innerHTML='<p class="vtitle">Gần đúng — chỉ sai chữ hoa</p>'
+      +'<div class="diff-line"><span class="diff-label">Em viết</span><span class="diff">'+esc(typed)+'</span></div>'
+      +'<div class="diff-line"><span class="diff-label">Đúng là</span><span class="diff"><b class="good">'+esc(right)+'</b></span></div>'
+      +'<p class="vnote">Trong tiếng Anh, thứ, tháng và tên nước luôn viết hoa chữ đầu.</p>';
+  }else{
+    var ops=align(typed.toLowerCase(), right.toLowerCase());
+    var nerr=0;
+    for(var k=0;k<ops.length;k++){ if(ops[k].op!=="eq") nerr++; }
+    elVerdict.innerHTML='<p class="vtitle">❌ Sai '+nerr+' chỗ</p>'
+      +'<div class="diff-line"><span class="diff-label">Em viết</span><span class="diff">'+lineTyped(ops,typed)+'</span></div>'
+      +'<div class="diff-line"><span class="diff-label">Đúng là</span><span class="diff">'+lineRight(ops,right)+'</span></div>'
+      +'<p class="vnote">'+w[2]+' — '+w[4]+'. Từ này sẽ quay lại cuối lượt để em viết lại.</p>';
+  }
+  elCheck.focus();
+});
+
+function nextWord(){
+  qi++;
+  if(qi>=queue.length){ finish(); return; }
+  showWord();
+}
+
+/* ---- kết thúc lượt ---- */
+function finish(){
+  elDrill.hidden=true; elSetup.hidden=true; elSummary.hidden=false;
+  var again=[];
+  for(var k in needWork){ again.push(DATA[k][1]); }
+
+  var html='<h2>Xong lượt này rồi</h2>'
+    +'<div class="score"><span class="big">'+cleanFirstTry+' / '+planned+'</span>'
+    +'<span class="cap">từ viết đúng ngay lần đầu, không cần gợi ý</span></div>';
+
+  if(again.length){
+    html+='<p class="desc" style="margin:16px 0 0">Còn <b>'+again.length+' từ</b> cần luyện thêm:</p>'
+      +'<div class="retry-list"><span>'+again.join('</span><span>')+'</span></div>';
+  }else{
+    html+='<p class="desc" style="margin:16px 0 18px">Không sai từ nào. Giỏi lắm!</p>';
+  }
+
+  html+='<div class="btn-row">'
+    + (again.length ? '<button class="btn" type="button" id="againBtn">Luyện lại '+again.length+' từ sai</button>' : '')
+    + '<button class="btn ghost" type="button" id="newBtn">Lượt mới</button>'
+    + '<button class="btn ghost" type="button" id="backBtn">Về tra từ</button>'
+    + '</div>';
+  elSummary.innerHTML=html;
+
+  if(again.length){
+    $("againBtn").addEventListener("click",function(){
+      var pool=[]; for(var k in needWork){ pool.push(parseInt(k,10)); }
+      startDrill(pool);
+    });
+  }
+  $("newBtn").addEventListener("click",function(){
+    elSummary.hidden=true; elSetup.hidden=false; refreshWrongCount();
+  });
+  $("backBtn").addEventListener("click",function(){ showTab("tra"); });
+}
+
+refreshWrongCount();
 </script>
 </body>
 </html>
