@@ -152,7 +152,16 @@ li.row.known .num{color:var(--green);font-weight:700}
 }
 .icon:hover{background:var(--blue-wash);color:var(--blue)}
 li.row.known .icon.check{color:var(--green);background:var(--green-wash)}
+li.row.speaking .icon.speak{color:var(--blue);background:var(--blue-wash)}
 :focus-visible{outline:3px solid #ffd54a;outline-offset:2px;border-radius:6px}
+
+/* Báo cho người dùng biết vì sao không nghe thấy tiếng, thay vì im lặng. */
+.toast{
+  position:fixed;left:50%;transform:translateX(-50%);bottom:16px;
+  background:#1b2138;color:#fff;padding:11px 15px;border-radius:12px;
+  font-size:13.5px;line-height:1.45;text-align:center;max-width:92vw;
+  box-shadow:var(--shadow);z-index:50;
+}
 
 .empty{padding:40px 0;text-align:center;color:var(--ink-faint)}
 footer{
@@ -224,6 +233,8 @@ footer b{color:var(--ink-soft)}
     Từ vựng theo SGK <b>Tiếng Anh 4 – Global Success</b>: Unit 1 <i>My friends</i> · Unit 2 <i>Time and daily routines</i> · Unit 3 <i>My week</i> · Unit 4 <i>My birthday party</i> · Unit 5 <i>Things we can do</i> · Unit 6 <i>Our school facilities</i>. Phiên âm theo giọng Anh–Anh. Đánh dấu "đã thuộc" chỉ lưu trên máy đang mở trang này.
   </footer>
 </main>
+
+<p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
 
 <script>
 /* Mỗi từ: [unit, tiếng Anh, phiên âm, từ loại, nghĩa tiếng Việt] */
@@ -358,6 +369,80 @@ function paintMeter(){
   fillEl.style.width=(n/DATA.length*100)+"%";
 }
 
+/* ------------------------------- ĐỌC TỪ --------------------------------
+   Ba cái bẫy của SpeechSynthesis, xử lý hết ở đây:
+   1. getVoices() thường TRẢ VỀ RỖNG ngay khi trang vừa mở — phải đợi sự kiện
+      "voiceschanged" rồi chọn lại giọng.
+   2. Chỉ đặt u.lang mà máy không có giọng tiếng Anh nào thì Chrome im lặng,
+      không báo lỗi — nên phải chọn hẳn một voice cụ thể.
+   3. cancel() rồi speak() ngay trong cùng một nhịp đôi khi nuốt mất câu đọc —
+      nên có kiểm tra lại sau 300ms và đọc lần nữa nếu chưa chạy.
+   Nếu máy thật sự không có giọng tiếng Anh thì hiện lời nhắc, KHÔNG im lặng. */
+var SP = ("speechSynthesis" in window) ? window.speechSynthesis : null;
+var voices = [], enVoice = null;
+
+function pickVoice(){
+  try{ voices = SP.getVoices() || []; }catch(e){ voices = []; }
+  var pref = ["en-gb","en-us","en-au","en-"];
+  for (var p = 0; p < pref.length; p++){
+    for (var i = 0; i < voices.length; i++){
+      var lg = String(voices[i].lang || "").replace("_","-").toLowerCase();
+      if (lg.indexOf(pref[p]) === 0) return (enVoice = voices[i]);
+    }
+  }
+  return (enVoice = null);
+}
+if (SP){
+  pickVoice();
+  /* Chrome nạp danh sách giọng chậm hơn trang -> chọn lại khi có. */
+  SP.addEventListener ? SP.addEventListener("voiceschanged", pickVoice)
+                      : (SP.onvoiceschanged = pickVoice);
+}
+
+var toastEl = document.getElementById("toast"), toastTimer = 0;
+function toast(msg){
+  toastEl.textContent = msg;
+  toastEl.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ toastEl.hidden = true; }, 6000);
+}
+
+function say(text, row){
+  if (!SP){
+    toast("Trình duyệt này không có chức năng đọc. Thử mở bằng Chrome hoặc Safari nhé.");
+    return;
+  }
+  if (!voices.length) pickVoice();
+
+  var spoken = false;
+  function build(){
+    var u = new SpeechSynthesisUtterance(text);
+    if (enVoice){ u.voice = enVoice; u.lang = enVoice.lang; }
+    else { u.lang = "en-GB"; }
+    u.rate = 0.85; u.pitch = 1; u.volume = 1;
+    u.onstart = function(){ spoken = true; if (row) row.classList.add("speaking"); };
+    u.onend = u.onerror = function(){ if (row) row.classList.remove("speaking"); };
+    return u;
+  }
+
+  try{ if (SP.speaking || SP.pending) SP.cancel(); }catch(e){}
+  try{ SP.resume(); SP.speak(build()); }catch(e){}
+
+  /* Bẫy 3: chưa kêu sau 300ms -> đọc lại một lần. */
+  setTimeout(function(){
+    if (!spoken && !SP.speaking){ try{ SP.resume(); SP.speak(build()); }catch(e){} }
+  }, 300);
+
+  /* Vẫn im sau 1,4 giây -> gần như chắc chắn máy thiếu giọng tiếng Anh. */
+  setTimeout(function(){
+    if (spoken || SP.speaking) return;
+    if (row) row.classList.remove("speaking");
+    toast(enVoice
+      ? "Máy chưa phát được tiếng. Kiểm tra loa và nút tắt tiếng, rồi bấm lại."
+      : "Máy chưa có giọng đọc tiếng Anh. Android: Cài đặt → Ngôn ngữ → Văn bản thành giọng nói → bật “Giọng nói của Google” và tải gói English.");
+  }, 1400);
+}
+
 var SPK='<svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 3 5 6H2.5v4H5l3.5 3z"></path><path d="M11 6a3 3 0 0 1 0 4"></path></svg>';
 var CHK='<svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.3 12 13 4.5"></path></svg>';
 
@@ -404,11 +489,8 @@ listEl.addEventListener("click",function(e){
   var row=e.target.closest("li.row"); if(!row) return;
   var i=row.dataset.i;
   if(e.target.closest(".speak")){
-    try{
-      var u=new SpeechSynthesisUtterance(DATA[i][1].replace(/\./g,""));
-      u.lang="en-GB"; u.rate=0.85;
-      speechSynthesis.cancel(); speechSynthesis.speak(u);
-    }catch(err){}
+    /* "a.m." đọc thành "am" nghe sai -> bỏ dấu chấm cho máy đọc từng chữ cái. */
+    say(DATA[i][1].replace(/\./g," ").trim(), row);
     return;
   }
   if(e.target.closest(".check")){
