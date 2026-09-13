@@ -347,7 +347,7 @@ legend{
     <!-- 1. Màn chuẩn bị: chọn phạm vi rồi bắt đầu -->
     <div class="box" id="setup">
       <h2>Nghe rồi viết lại</h2>
-      <p class="desc">Máy đọc một từ, em gõ lại cho đúng <b>từng chữ cái</b>. Bí thì xin gợi ý: xem nghĩa tiếng Việt, hoặc xem phiên âm. Gõ xong bấm <b>Kiểm tra</b> — máy sẽ chỉ ra chữ nào sai, chữ nào thiếu.</p>
+      <p class="desc">Máy đọc một từ, em gõ lại cho đúng <b>từng chữ cái</b>. Bí thì xin gợi ý: xem nghĩa tiếng Việt, hoặc xem phiên âm. Gõ xong bấm <b>Kiểm tra</b> — máy sẽ chỉ ra chữ nào sai, chữ nào thiếu. Viết hoa hay viết thường đều được.</p>
 
       <fieldset>
         <legend>Luyện từ của unit nào</legend>
@@ -935,15 +935,16 @@ $("answerForm").addEventListener("submit",function(e){
   var right=tidy(w[1]);
   if(!typed && !elAnswer.value.length){ elAnswer.focus(); return; }
 
-  var exact = typed===right;
-  var sameLetters = typed.toLowerCase()===right.toLowerCase();
+  /* KHÔNG phân biệt hoa thường khi chấm: gõ "monday" tính đúng như "Monday". */
+  var ok = typed.toLowerCase()===right.toLowerCase();
+  var caseDiff = ok && typed!==right;
 
   answered=true;
   elAnswer.disabled=true;
   elCheck.textContent="Từ tiếp theo →";
   elVerdict.hidden=false;
 
-  if(exact){
+  if(ok){
     stats[idx]=stats[idx]||{w:0,r:0}; stats[idx].r++; saveStats();
     /* Chỉ tính điểm cho từ viết đúng ngay LẦN ĐẦU: từ đã sai một lần thì lúc
        luyện lại có đúng cũng không cộng điểm nữa. */
@@ -951,8 +952,11 @@ $("answerForm").addEventListener("submit",function(e){
     elVerdict.className="verdict ok";
     elVerdict.innerHTML='<p class="vtitle">✅ Chính xác!'
       + (usedHint ? ' <span style="font-weight:400">(có dùng gợi ý)</span>' : '')
-      + '</p><p class="vnote">'+w[2]+' — '+w[4]+'</p>';
-    setTimeout(function(){ if(answered) nextWord(); }, 1100);
+      + '</p>'
+      /* Viết hoa không bị tính sai, chỉ nhắc nhẹ cho quen mắt. */
+      + (caseDiff ? '<p class="vnote">Sách viết là <b>'+esc(right)+'</b> — chữ hoa không bị tính sai đâu.</p>' : '')
+      + '<p class="vnote">'+w[2]+' — '+w[4]+'</p>';
+    setTimeout(function(){ if(answered) nextWord(); }, caseDiff ? 1600 : 1100);
     return;
   }
 
@@ -962,22 +966,13 @@ $("answerForm").addEventListener("submit",function(e){
   queue.push(idx);
 
   elVerdict.className="verdict no";
-  if(sameLetters){
-    /* Đúng hết chữ cái, chỉ sai viết hoa — thứ Hai, tháng Một, tên nước đều
-       phải viết hoa trong tiếng Anh, nên vẫn tính là chưa đạt. */
-    elVerdict.innerHTML='<p class="vtitle">Gần đúng — chỉ sai chữ hoa</p>'
-      +'<div class="diff-line"><span class="diff-label">Em viết</span><span class="diff">'+esc(typed)+'</span></div>'
-      +'<div class="diff-line"><span class="diff-label">Đúng là</span><span class="diff"><b class="good">'+esc(right)+'</b></span></div>'
-      +'<p class="vnote">Trong tiếng Anh, thứ, tháng và tên nước luôn viết hoa chữ đầu.</p>';
-  }else{
-    var ops=align(typed.toLowerCase(), right.toLowerCase());
-    var nerr=0;
-    for(var k=0;k<ops.length;k++){ if(ops[k].op!=="eq") nerr++; }
-    elVerdict.innerHTML='<p class="vtitle">❌ Sai '+nerr+' chỗ</p>'
-      +'<div class="diff-line"><span class="diff-label">Em viết</span><span class="diff">'+lineTyped(ops,typed)+'</span></div>'
-      +'<div class="diff-line"><span class="diff-label">Đúng là</span><span class="diff">'+lineRight(ops,right)+'</span></div>'
-      +'<p class="vnote">'+w[2]+' — '+w[4]+'. Từ này sẽ quay lại cuối lượt để em viết lại.</p>';
-  }
+  var ops=align(typed.toLowerCase(), right.toLowerCase());
+  var nerr=0;
+  for(var k=0;k<ops.length;k++){ if(ops[k].op!=="eq") nerr++; }
+  elVerdict.innerHTML='<p class="vtitle">❌ Sai '+nerr+' chỗ</p>'
+    +'<div class="diff-line"><span class="diff-label">Em viết</span><span class="diff">'+lineTyped(ops,typed)+'</span></div>'
+    +'<div class="diff-line"><span class="diff-label">Đúng là</span><span class="diff">'+lineRight(ops,right)+'</span></div>'
+    +'<p class="vnote">'+w[2]+' — '+w[4]+'. Từ này sẽ quay lại cuối lượt để em viết lại.</p>';
   elCheck.focus();
 });
 
