@@ -12,8 +12,9 @@
    v4 (2026-08-09): dựng lại bố cục cho vừa đúng MỘT màn, không phải kéo.
    v5 (2026-09-13): thêm thẻ "Từ Vựng Anh 4" (/tu-vung-anh4/).
    v6 (2026-09-14): thẻ đó đổi mô tả sang 117 từ Unit 1-7.
-   v7 (2026-09-14): bổ sung trọng tâm ngữ pháp Unit 7 -> 155 từ. */
-const CACHE = 'toanvui-hub-v7';
+   v7 (2026-09-14): bổ sung trọng tâm ngữ pháp Unit 7 -> 155 từ.
+   v8 (2026-09-14): thêm 3 trạng từ tần suất -> 158 từ. */
+const CACHE = 'toanvui-hub-v8';
 
 // App shell precache (đường dẫn TƯƠNG ĐỐI theo scope của SW).
 const SHELL = [
