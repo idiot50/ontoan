@@ -112,6 +112,17 @@ button{font:inherit;cursor:pointer}
 .chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--on-accent);font-weight:600}
 .chip.mode[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:var(--on-accent)}
 .sep{width:1px;align-self:stretch;background:var(--rule);margin-inline:4px}
+.speed{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:13px;color:var(--ink-soft);white-space:nowrap;
+}
+.speed select{
+  font:inherit;font-size:13px;font-weight:600;color:var(--ink);
+  background:var(--surface);border:1px solid var(--rule-strong);
+  border-radius:999px;padding:5px 9px;cursor:pointer;
+}
+.speed select:hover{border-color:var(--blue);color:var(--blue)}
+.speed-drill{margin-top:13px;justify-content:center;width:100%}
 
 /* ------------------------------ DANH SÁCH TỪ ---------------------------- */
 .count{margin:16px 0 4px;font-size:13px;color:var(--ink-faint)}
@@ -331,10 +342,22 @@ legend{
       <button class="chip" type="button" data-unit="5" aria-pressed="false">U5</button>
       <button class="chip" type="button" data-unit="6" aria-pressed="false">U6</button>
       <button class="chip" type="button" data-unit="7" aria-pressed="false">U7</button>
+      <button class="chip" type="button" data-unit="7.1" aria-pressed="false" title="Unit 7 phần 1 — bộ thẻ của lớp (15 từ)">U7·1</button>
+      <button class="chip" type="button" data-unit="7.2" aria-pressed="false" title="Unit 7 phần 2 — trọng tâm ngữ pháp Present Simple (38 mục)">U7·2</button>
       <span class="sep"></span>
       <button class="chip mode" type="button" id="mask" aria-pressed="false">Ẩn nghĩa</button>
       <button class="chip mode" type="button" id="onlyNew" aria-pressed="false">Chỉ từ chưa thuộc</button>
       <button class="chip" type="button" id="shuffle">Xáo trộn</button>
+      <span class="sep"></span>
+      <label class="speed" for="speedA">Tốc độ đọc
+        <select id="speedA">
+          <option value="0.8">0,8×</option>
+          <option value="0.9">0,9×</option>
+          <option value="1">1× (thường)</option>
+          <option value="1.1">1,1×</option>
+          <option value="1.2">1,2×</option>
+        </select>
+      </label>
     </div>
   </div>
 
@@ -361,6 +384,8 @@ legend{
           <button class="chip" type="button" data-du="5" aria-pressed="false">U5</button>
           <button class="chip" type="button" data-du="6" aria-pressed="false">U6</button>
           <button class="chip" type="button" data-du="7" aria-pressed="false">U7</button>
+          <button class="chip" type="button" data-du="7.1" aria-pressed="false" title="Unit 7 phần 1 — bộ thẻ của lớp (15 từ)">U7·1</button>
+          <button class="chip" type="button" data-du="7.2" aria-pressed="false" title="Unit 7 phần 2 — trọng tâm ngữ pháp Present Simple (38 mục)">U7·2</button>
         </div>
       </fieldset>
 
@@ -393,6 +418,16 @@ legend{
         <span class="ico" aria-hidden="true">🔊</span><span id="bigSpeakText">Nghe lại</span>
       </button>
 
+      <label class="speed speed-drill" for="speedB">Tốc độ đọc
+        <select id="speedB">
+          <option value="0.8">0,8×</option>
+          <option value="0.9">0,9×</option>
+          <option value="1">1× (thường)</option>
+          <option value="1.1">1,1×</option>
+          <option value="1.2">1,2×</option>
+        </select>
+      </label>
+
       <div class="hints">
         <button class="chip" type="button" id="hintViBtn">💡 Xem nghĩa tiếng Việt</button>
         <button class="chip" type="button" id="hintIpaBtn">🔤 Xem phiên âm</button>
@@ -415,7 +450,7 @@ legend{
   </section>
 
   <footer>
-    Từ vựng theo SGK <b>Tiếng Anh 4 – Global Success</b>: Unit 1 <i>My friends</i> · Unit 2 <i>Time and daily routines</i> · Unit 3 <i>My week</i> · Unit 4 <i>My birthday party</i> · Unit 5 <i>Things we can do</i> · Unit 6 <i>Our school facilities</i>. Unit 7 lấy từ bộ thẻ <b>New Round Up 3</b>. Phiên âm theo giọng Anh–Anh. Đánh dấu "đã thuộc" chỉ lưu trên máy đang mở trang này.
+    Từ vựng theo SGK <b>Tiếng Anh 4 – Global Success</b>: Unit 1 <i>My friends</i> · Unit 2 <i>Time and daily routines</i> · Unit 3 <i>My week</i> · Unit 4 <i>My birthday party</i> · Unit 5 <i>Things we can do</i> · Unit 6 <i>Our school facilities</i>. Unit 7 lấy từ <b>New Round Up 3</b> (Present Simple), tách hai phần: <b>U7·1</b> là bộ thẻ của lớp, <b>U7·2</b> là trọng tâm ngữ pháp của unit. Phiên âm theo giọng Anh–Anh. Đánh dấu "đã thuộc" chỉ lưu trên máy đang mở trang này.
   </footer>
 </main>
 
@@ -526,60 +561,60 @@ var DATA=[
 [6,"sports","/spɔːts/","n","thể thao"],
 [6,"volleyball","/ˈvɒlibɔːl/","n","bóng chuyền"],
 [6,"basketball","/ˈbɑːskɪtbɔːl/","n","bóng rổ"],
-[7,"on windy days","/ɒn ˈwɪndi deɪz/","trạng ngữ","vào những ngày trời gió"],
-[7,"wear a uniform to work","/weə(r) ə ˈjuːnɪfɔːm tə wɜːk/","cụm ĐT","mặc đồng phục đi làm"],
-[7,"stable","/ˈsteɪbl/","n","chuồng ngựa"],
-[7,"traffic","/ˈtræfɪk/","n không đếm được","phương tiện giao thông"],
-[7,"look after","/lʊk ˈɑːftə(r)/","cụm ĐT","chăm sóc"],
-[7,"rock star","/ˈrɒk stɑː(r)/","n","ngôi sao nhạc rốc"],
-[7,"concert","/ˈkɒnsət/","n","buổi biểu diễn ca nhạc"],
-[7,"can't wait to do something","/kɑːnt weɪt tə duː ˈsʌmθɪŋ/","cụm ĐT","rất nóng lòng được làm gì"],
-[7,"perform live","/pəˈfɔːm laɪv/","cụm ĐT","biểu diễn trực tiếp"],
-[7,"get dressed","/ˌɡet ˈdrest/","cụm ĐT","thay đồ để ra ngoài"],
-[7,"do housework","/duː ˈhaʊswɜːk/","cụm ĐT","làm việc nhà"],
-[7,"come home from school","/kʌm həʊm frəm ˈskuːl/","cụm ĐT","đi học về"],
-[7,"adverb of frequency","/ˈædvɜːb əv ˈfriːkwənsi/","n","trạng từ chỉ tần suất"],
-[7,"rarely","/ˈreəli/","trạng từ","hiếm khi"],
-[7,"be late for school","/biː leɪt fə ˈskuːl/","cụm ĐT","đi học muộn"],
+[7.1,"on windy days","/ɒn ˈwɪndi deɪz/","trạng ngữ","vào những ngày trời gió"],
+[7.1,"wear a uniform to work","/weə(r) ə ˈjuːnɪfɔːm tə wɜːk/","cụm ĐT","mặc đồng phục đi làm"],
+[7.1,"stable","/ˈsteɪbl/","n","chuồng ngựa"],
+[7.1,"traffic","/ˈtræfɪk/","n không đếm được","phương tiện giao thông"],
+[7.1,"look after","/lʊk ˈɑːftə(r)/","cụm ĐT","chăm sóc"],
+[7.1,"rock star","/ˈrɒk stɑː(r)/","n","ngôi sao nhạc rốc"],
+[7.1,"concert","/ˈkɒnsət/","n","buổi biểu diễn ca nhạc"],
+[7.1,"can't wait to do something","/kɑːnt weɪt tə duː ˈsʌmθɪŋ/","cụm ĐT","rất nóng lòng được làm gì"],
+[7.1,"perform live","/pəˈfɔːm laɪv/","cụm ĐT","biểu diễn trực tiếp"],
+[7.1,"get dressed","/ˌɡet ˈdrest/","cụm ĐT","thay đồ để ra ngoài"],
+[7.1,"do housework","/duː ˈhaʊswɜːk/","cụm ĐT","làm việc nhà"],
+[7.1,"come home from school","/kʌm həʊm frəm ˈskuːl/","cụm ĐT","đi học về"],
+[7.1,"adverb of frequency","/ˈædvɜːb əv ˈfriːkwənsi/","n","trạng từ chỉ tần suất"],
+[7.1,"rarely","/ˈreəli/","trạng từ","hiếm khi"],
+[7.1,"be late for school","/biː leɪt fə ˈskuːl/","cụm ĐT","đi học muộn"],
 /* --- Unit 7 bổ sung: trọng tâm ngữ pháp Present Simple của sách --- */
-[7,"always","/ˈɔːlweɪz/","trạng từ","luôn luôn (100%)"],
-[7,"usually","/ˈjuːʒuəli/","trạng từ","thường xuyên (khoảng 80%)"],
-[7,"often","/ˈɒfn/","trạng từ","thường (khoảng 60%)"],
-[7,"sometimes","/ˈsʌmtaɪmz/","trạng từ","thỉnh thoảng (khoảng 30%)"],
-[7,"never","/ˈnevə(r)/","trạng từ","không bao giờ (0%)"],
-[7,"every day","/ˈevri deɪ/","trạng ngữ","mỗi ngày"],
-[7,"every morning","/ˈevri ˈmɔːnɪŋ/","trạng ngữ","mỗi buổi sáng"],
-[7,"in the afternoon","/ɪn ði ˌɑːftəˈnuːn/","trạng ngữ","vào buổi chiều"],
-[7,"in the evening","/ɪn ði ˈiːvnɪŋ/","trạng ngữ","vào buổi tối"],
-[7,"at night","/ət ˈnaɪt/","trạng ngữ","vào ban đêm"],
-[7,"at the weekend","/ət ðə ˌwiːkˈend/","trạng ngữ","vào cuối tuần"],
-[7,"on Sundays","/ɒn ˈsʌndeɪz/","trạng ngữ","vào các ngày Chủ nhật"],
-[7,"She watches TV every day","/ʃi ˈwɒtʃɪz ˌtiː ˈviː ˈevri deɪ/","mẫu câu","Cô ấy xem TV mỗi ngày — ngôi 3 số ít thì động từ thêm -s/-es"],
-[7,"He doesn't like apples","/hi ˈdʌznt laɪk ˈæplz/","mẫu câu","Cậu ấy không thích táo — sau doesn't, động từ trở về nguyên thể (KHÔNG phải likes)"],
-[7,"Does she like cherries?","/dʌz ʃi laɪk ˈtʃeriz/","mẫu câu","Cô ấy có thích quả anh đào không? — sau Does, động từ nguyên thể"],
-[7,"Yes, he does","/jes hi dʌz/","mẫu câu","Có, cậu ấy có — trả lời ngắn; phủ định là No, he doesn't"],
-[7,"wake up","/ˌweɪk ˈʌp/","cụm ĐT","thức giấc"],
-[7,"wash","/wɒʃ/","v","rửa mặt, tắm rửa (ngôi 3: washes)"],
-[7,"put on","/ˌpʊt ˈɒn/","cụm ĐT","mặc vào, khoác vào"],
-[7,"tidy my room","/ˈtaɪdi maɪ ruːm/","cụm ĐT","dọn dẹp phòng"],
-[7,"watch TV","/wɒtʃ ˌtiː ˈviː/","cụm ĐT","xem TV (ngôi 3: watches)"],
-[7,"go shopping","/ɡəʊ ˈʃɒpɪŋ/","cụm ĐT","đi mua sắm"],
-[7,"stay at home","/steɪ ət ˈhəʊm/","cụm ĐT","ở nhà"],
-[7,"take the bus","/teɪk ðə ˈbʌs/","cụm ĐT","đi xe buýt"],
-[7,"go to the cinema","/ɡəʊ tə ðə ˈsɪnəmə/","cụm ĐT","đi xem phim"],
-[7,"study","/ˈstʌdi/","v","học (ngôi 3: studies — phụ âm + y đổi thành ies)"],
-[7,"hurry","/ˈhʌri/","v","vội vàng (ngôi 3: hurries)"],
-[7,"fly","/flaɪ/","v","bay (ngôi 3: flies)"],
-[7,"catch","/kætʃ/","v","bắt, chụp (ngôi 3: catches — tận cùng ch thêm es)"],
-[7,"teach","/tiːtʃ/","v","dạy (ngôi 3: teaches)"],
-[7,"buy","/baɪ/","v","mua (ngôi 3: buys — trước y là nguyên âm nên chỉ thêm s)"],
-[7,"farmer","/ˈfɑːmə(r)/","n","nông dân"],
-[7,"cow","/kaʊ/","n","con bò"],
-[7,"uniform","/ˈjuːnɪfɔːm/","n","đồng phục"],
-[7,"famous","/ˈfeɪməs/","adj","nổi tiếng"],
-[7,"busy","/ˈbɪzi/","adj","bận rộn"],
-[7,"free time","/ˈfriː taɪm/","n","thời gian rảnh"],
-[7,"expensive","/ɪkˈspensɪv/","adj","đắt tiền"]
+[7.2,"always","/ˈɔːlweɪz/","trạng từ","luôn luôn (100%)"],
+[7.2,"usually","/ˈjuːʒuəli/","trạng từ","thường xuyên (khoảng 80%)"],
+[7.2,"often","/ˈɒfn/","trạng từ","thường (khoảng 60%)"],
+[7.2,"sometimes","/ˈsʌmtaɪmz/","trạng từ","thỉnh thoảng (khoảng 30%)"],
+[7.2,"never","/ˈnevə(r)/","trạng từ","không bao giờ (0%)"],
+[7.2,"every day","/ˈevri deɪ/","trạng ngữ","mỗi ngày"],
+[7.2,"every morning","/ˈevri ˈmɔːnɪŋ/","trạng ngữ","mỗi buổi sáng"],
+[7.2,"in the afternoon","/ɪn ði ˌɑːftəˈnuːn/","trạng ngữ","vào buổi chiều"],
+[7.2,"in the evening","/ɪn ði ˈiːvnɪŋ/","trạng ngữ","vào buổi tối"],
+[7.2,"at night","/ət ˈnaɪt/","trạng ngữ","vào ban đêm"],
+[7.2,"at the weekend","/ət ðə ˌwiːkˈend/","trạng ngữ","vào cuối tuần"],
+[7.2,"on Sundays","/ɒn ˈsʌndeɪz/","trạng ngữ","vào các ngày Chủ nhật"],
+[7.2,"She watches TV every day","/ʃi ˈwɒtʃɪz ˌtiː ˈviː ˈevri deɪ/","mẫu câu","Cô ấy xem TV mỗi ngày — ngôi 3 số ít thì động từ thêm -s/-es"],
+[7.2,"He doesn't like apples","/hi ˈdʌznt laɪk ˈæplz/","mẫu câu","Cậu ấy không thích táo — sau doesn't, động từ trở về nguyên thể (KHÔNG phải likes)"],
+[7.2,"Does she like cherries?","/dʌz ʃi laɪk ˈtʃeriz/","mẫu câu","Cô ấy có thích quả anh đào không? — sau Does, động từ nguyên thể"],
+[7.2,"Yes, he does","/jes hi dʌz/","mẫu câu","Có, cậu ấy có — trả lời ngắn; phủ định là No, he doesn't"],
+[7.2,"wake up","/ˌweɪk ˈʌp/","cụm ĐT","thức giấc"],
+[7.2,"wash","/wɒʃ/","v","rửa mặt, tắm rửa (ngôi 3: washes)"],
+[7.2,"put on","/ˌpʊt ˈɒn/","cụm ĐT","mặc vào, khoác vào"],
+[7.2,"tidy my room","/ˈtaɪdi maɪ ruːm/","cụm ĐT","dọn dẹp phòng"],
+[7.2,"watch TV","/wɒtʃ ˌtiː ˈviː/","cụm ĐT","xem TV (ngôi 3: watches)"],
+[7.2,"go shopping","/ɡəʊ ˈʃɒpɪŋ/","cụm ĐT","đi mua sắm"],
+[7.2,"stay at home","/steɪ ət ˈhəʊm/","cụm ĐT","ở nhà"],
+[7.2,"take the bus","/teɪk ðə ˈbʌs/","cụm ĐT","đi xe buýt"],
+[7.2,"go to the cinema","/ɡəʊ tə ðə ˈsɪnəmə/","cụm ĐT","đi xem phim"],
+[7.2,"study","/ˈstʌdi/","v","học (ngôi 3: studies — phụ âm + y đổi thành ies)"],
+[7.2,"hurry","/ˈhʌri/","v","vội vàng (ngôi 3: hurries)"],
+[7.2,"fly","/flaɪ/","v","bay (ngôi 3: flies)"],
+[7.2,"catch","/kætʃ/","v","bắt, chụp (ngôi 3: catches — tận cùng ch thêm es)"],
+[7.2,"teach","/tiːtʃ/","v","dạy (ngôi 3: teaches)"],
+[7.2,"buy","/baɪ/","v","mua (ngôi 3: buys — trước y là nguyên âm nên chỉ thêm s)"],
+[7.2,"farmer","/ˈfɑːmə(r)/","n","nông dân"],
+[7.2,"cow","/kaʊ/","n","con bò"],
+[7.2,"uniform","/ˈjuːnɪfɔːm/","n","đồng phục"],
+[7.2,"famous","/ˈfeɪməs/","adj","nổi tiếng"],
+[7.2,"busy","/ˈbɪzi/","adj","bận rộn"],
+[7.2,"free time","/ˈfriː taɪm/","n","thời gian rảnh"],
+[7.2,"expensive","/ɪkˈspensɪv/","adj","đắt tiền"]
 ];
 
 var KEY="tuvung-anh4-u1-6-known";
@@ -601,6 +636,16 @@ function norm(s){
   return s.toLowerCase().normalize("NFD")
     .replace(/[̀-ͯ]/g,"").replace(/đ/g,"d");
 }
+/* Unit 7 tách đôi: 7.1 là bộ thẻ của lớp, 7.2 là phần ngữ pháp bổ sung.
+   Chọn "U7" lấy cả hai; chọn "U7·1" hay "U7·2" thì lấy đúng nửa đó. */
+function unitOk(w, sel){
+  if(sel==="all") return true;
+  var u=String(w[0]);
+  if(sel.indexOf(".")>0) return u===sel;
+  return u===sel || u.indexOf(sel+".")===0;
+}
+function unitTag(w){ return "U"+String(w[0]).replace(".","·"); }
+
 function tally(){var n=0;for(var k in known){if(known[k])n++;}return n;}
 function paintMeter(){
   var n=tally();
@@ -638,6 +683,14 @@ if (SP){
                       : (SP.onvoiceschanged = pickVoice);
 }
 
+/* Tốc độ đọc: 0.8 chậm nhất, 1.2 nhanh nhất; mặc định 1 (tốc độ thường). */
+var RKEY = "tuvung-anh4-rate";
+var rate = 1;
+try{
+  var _r = parseFloat(localStorage.getItem(RKEY));
+  if(_r >= 0.8 && _r <= 1.2) rate = _r;
+}catch(e){}
+
 var toastEl = document.getElementById("toast"), toastTimer = 0;
 function toast(msg){
   toastEl.textContent = msg;
@@ -658,7 +711,7 @@ function say(text, row){
     var u = new SpeechSynthesisUtterance(text);
     if (enVoice){ u.voice = enVoice; u.lang = enVoice.lang; }
     else { u.lang = "en-GB"; }
-    u.rate = 0.85; u.pitch = 1; u.volume = 1;
+    u.rate = rate; u.pitch = 1; u.volume = 1;
     u.onstart = function(){ spoken = true; if (row) row.classList.add("speaking"); };
     u.onend = u.onerror = function(){ if (row) row.classList.remove("speaking"); };
     return u;
@@ -690,7 +743,7 @@ function render(){
   var html="", shown=0;
   for(var k=0;k<order.length;k++){
     var i=order[k], w=DATA[i];
-    if(unit!=="all" && String(w[0])!==unit) continue;
+    if(!unitOk(w,unit)) continue;
     if(onlyNew && known[i]) continue;
     if(nq && norm(w[1]).indexOf(nq)<0 && norm(w[4]).indexOf(nq)<0) continue;
     shown++;
@@ -701,7 +754,7 @@ function render(){
           +'<span class="en">'+w[1]+'</span>'
           +'<span class="ipa">'+w[2]+'</span>'
           +'<span class="pos">'+w[3]+'</span>'
-          +'<span class="tag">U'+w[0]+'</span>'
+          +'<span class="tag">'+unitTag(w)+'</span>'
         +'</div>'
         +'<div class="vi'+(masked?" masked":"")+'"'+(masked?' role="button" tabindex="0" title="Bấm để hiện nghĩa"':'')+'>'+w[4]+'</div>'
       +'</div>'
@@ -788,6 +841,20 @@ document.getElementById("reset").addEventListener("click",function(){
   known={}; save(); render();
 });
 
+/* Hai ô chọn tốc độ (mỗi màn một ô) luôn khớp nhau và nhớ lựa chọn lần sau. */
+function bindSpeed(id){
+  var el=document.getElementById(id);
+  if(!el) return;
+  el.value=String(rate);
+  el.addEventListener("change",function(){
+    rate=parseFloat(el.value)||1;
+    try{ localStorage.setItem(RKEY,String(rate)); }catch(e){}
+    var other=document.getElementById(id==="speedA"?"speedB":"speedA");
+    if(other) other.value=String(rate);
+  });
+}
+bindSpeed("speedA"); bindSpeed("speedB");
+
 document.addEventListener("keydown",function(e){
   if(e.key==="/"&&document.activeElement.id!=="q"&&document.activeElement.id!=="answer"){
     e.preventDefault();
@@ -864,7 +931,7 @@ function startDrill(pool){
     pool=[];
     var onlyWrong=$("dOnlyWrong").checked;
     for(var i=0;i<DATA.length;i++){
-      if(dUnit!=="all" && String(DATA[i][0])!==dUnit) continue;
+      if(!unitOk(DATA[i],dUnit)) continue;
       if(onlyWrong && !everWrong(i)) continue;
       pool.push(i);
     }
