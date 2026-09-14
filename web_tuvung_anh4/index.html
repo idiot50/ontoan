@@ -282,6 +282,43 @@ legend{
   border:1px solid var(--rule-strong);border-radius:7px;padding:4px 11px;
 }
 
+/* ================== MÀN LUYỆN TRẠNG TỪ TẦN SUẤT ======================== */
+.q-type{
+  font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;font-weight:700;
+  color:var(--ink-faint);margin:0 0 11px;
+}
+.q-adv{
+  display:inline-block;font-family:var(--serif);font-size:20px;font-weight:700;
+  background:var(--blue-wash);color:var(--blue);border-radius:8px;padding:4px 13px;
+  margin:0 0 15px;
+}
+.q-ask{margin:0 0 12px;font-size:14px;color:var(--ink-soft)}
+.sent{font-family:var(--serif);font-size:21px;line-height:2.2;color:var(--ink)}
+.sent .w{white-space:nowrap}
+.slot{
+  display:inline-block;width:28px;height:26px;vertical-align:middle;margin:0 3px;
+  border:2px dashed var(--rule-strong);border-radius:6px;background:var(--surface);
+  cursor:pointer;padding:0;line-height:0;
+}
+.slot:hover:enabled{border-color:var(--blue);background:var(--blue-wash)}
+.slot:disabled{cursor:default}
+.slot.right{border-style:solid;border-color:var(--green);background:var(--green-wash)}
+.slot.wrong{border-style:solid;border-color:var(--red);background:#fdeeec}
+.slot.filled{
+  width:auto;height:auto;padding:2px 9px;line-height:1.3;
+  font-family:var(--serif);font-size:19px;font-weight:700;
+}
+.opts{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.opt{
+  text-align:left;border:1px solid var(--rule-strong);background:var(--surface);
+  color:var(--ink);border-radius:10px;padding:11px 14px;
+  font-family:var(--serif);font-size:18px;line-height:1.4;
+}
+.opt:hover:enabled{border-color:var(--blue);background:var(--blue-wash)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--green);background:var(--green-wash);font-weight:700}
+.opt.wrong{border-color:var(--red);background:#fdeeec}
+
 @media (max-width:460px){
   li.row{grid-template-columns:1.7rem minmax(0,1fr) auto;column-gap:8px}
   .en{font-size:19px}
@@ -317,6 +354,9 @@ legend{
     </button>
     <button class="tab" type="button" id="tabViet" role="tab" aria-selected="false" aria-controls="view-viet">
       <span aria-hidden="true">✍️</span><span>Nghe – Viết</span>
+    </button>
+    <button class="tab" type="button" id="tabAdv" role="tab" aria-selected="false" aria-controls="view-adv">
+      <span aria-hidden="true">🎯</span><span>Trạng từ</span>
     </button>
   </nav>
 
@@ -447,6 +487,32 @@ legend{
 
     <!-- 3. Bảng kết quả -->
     <div class="box" id="summary" hidden></div>
+  </section>
+
+  <section id="view-adv" role="tabpanel" aria-labelledby="tabAdv" hidden>
+
+    <div class="box" id="advIntro">
+      <h2>Luyện trạng từ tần suất</h2>
+      <p class="desc"><b>18 câu</b> theo đúng bốn dạng bài của Unit 7: đặt trạng từ vào đúng chỗ, chọn dạng đúng của động từ, và chọn câu viết đúng. Sai câu nào máy giải thích ngay câu đó, rồi xếp lại cuối hàng để làm lại.</p>
+      <div class="box" style="box-shadow:none;margin-top:0;background:var(--paper)">
+        <p class="q-type" style="margin-bottom:8px">Nhớ trước khi làm</p>
+        <p style="margin:0;font-size:15px">Trạng từ tần suất đứng <b>sau</b> động từ <i>be</i> và <i>can</i>, nhưng <b>trước</b> động từ thường.</p>
+      </div>
+      <button class="btn" type="button" id="advStart" style="margin-top:16px">Bắt đầu làm bài</button>
+    </div>
+
+    <div class="box" id="advCard" hidden>
+      <div class="drill-top">
+        <span class="drill-pos" id="advPos">Câu 1 / 18</span>
+        <div class="drill-track"><i id="advFill"></i></div>
+        <button class="chip" type="button" id="advQuit">Dừng</button>
+      </div>
+      <div id="advBody"></div>
+      <div class="verdict" id="advVerdict" hidden></div>
+      <button class="btn" type="button" id="advNext" hidden style="margin-top:15px">Câu tiếp theo →</button>
+    </div>
+
+    <div class="box" id="advSummary" hidden></div>
   </section>
 
   <footer>
@@ -858,6 +924,228 @@ function bindSpeed(id){
 }
 bindSpeed("speedA"); bindSpeed("speedB");
 
+/* =======================================================================
+   MÀN "TRẠNG TỪ TẦN SUẤT": 18 câu theo các dạng bài của Unit 7.
+   Câu do soạn mới, không chép lại câu trong sách.
+   - pos : bấm vào khe để đặt trạng từ. Mọi khe đưa ra đều là chỗ học sinh
+           hay đặt nhầm, nên mỗi khe sai có lời giải thích riêng.
+   - mcq : chọn dạng đúng của động từ.
+   - pick: chọn câu viết đúng trong hai câu chỉ khác nhau vị trí trạng từ.
+   ======================================================================= */
+var ADVQ = [
+ {t:"pos", adv:"always", w:["My sister","is","busy","on Mondays"], gaps:[1,2,3], ans:2,
+  why:{1:"Chưa đúng. \"is\" là động từ be, trạng từ phải đứng SAU nó, không chen vào giữa chủ ngữ và \"is\".",
+       3:"Chưa đúng. \"always\" không đứng cuối câu được, nó phải đứng ngay sau \"is\"."},
+  ok:"\"is\" là động từ be, nên trạng từ đứng ngay sau nó."},
+
+ {t:"pos", adv:"never", w:["Tom","drinks","coffee"], gaps:[1,2], ans:1,
+  why:{2:"Chưa đúng. \"drinks\" là động từ thường, trạng từ phải đứng TRƯỚC nó."},
+  ok:"\"drinks\" là động từ thường, nên trạng từ đứng trước nó."},
+
+ {t:"pos", adv:"usually", w:["We","don't","watch","TV","after dinner"], gaps:[1,2,3], ans:2,
+  why:{1:"Chưa đúng. Trạng từ đứng SAU trợ động từ \"don't\".",
+       3:"Chưa đúng. Trạng từ chui vào giữa \"don't\" và động từ chính \"watch\"."},
+  ok:"Có trợ động từ thì trạng từ nằm giữa trợ động từ và động từ chính."},
+
+ {t:"pos", adv:"often", w:["Does","your brother","play","football"], gaps:[1,2,3], ans:2,
+  why:{1:"Chưa đúng. Ngay sau \"Does\" phải là chủ ngữ.",
+       3:"Chưa đúng. Trạng từ đứng trước động từ chính \"play\"."},
+  ok:"Trong câu hỏi: Does + chủ ngữ + trạng từ + động từ nguyên thể."},
+
+ {t:"pos", adv:"rarely", w:["You","can","see","snow","in Viet Nam"], gaps:[1,2,3], ans:2,
+  why:{1:"Chưa đúng. \"can\" xử lý giống \"be\": trạng từ đứng SAU nó.",
+       3:"Chưa đúng. Trạng từ đứng ngay sau \"can\", trước \"see\"."},
+  ok:"\"can\" giống \"be\": trạng từ đứng sau nó."},
+
+ {t:"pos", adv:"hardly ever", w:["My parents","are","late","for work"], gaps:[1,2,3], ans:2,
+  why:{1:"Chưa đúng. \"are\" là động từ be, trạng từ đứng SAU.",
+       3:"Chưa đúng. \"hardly ever\" phải đứng ngay sau \"are\"."},
+  ok:"\"are\" là động từ be, nên trạng từ đứng sau nó."},
+
+ {t:"pos", adv:"sometimes", w:["The children","tidy","their rooms"], gaps:[1,2], ans:1,
+  why:{2:"Chưa đúng. \"tidy\" là động từ thường, trạng từ đứng TRƯỚC."},
+  ok:"\"tidy\" là động từ thường, nên trạng từ đứng trước nó."},
+
+ {t:"mcq", ask:"My dad never ___ the bus to work.", opts:["take","takes","doesn't take"], ans:1,
+  why:{0:"Thiếu đuôi -s. \"My dad\" là ngôi 3 số ít nên động từ phải là \"takes\". Chữ \"never\" không làm mất đuôi -s.",
+       2:"Phủ định hai lần. \"never\" đã mang nghĩa phủ định rồi, thêm \"doesn't\" nữa là thừa."},
+  ok:"Câu có \"never\" vẫn là câu khẳng định về hình thức, nên ngôi 3 số ít vẫn thêm -s."},
+
+ {t:"mcq", ask:"She doesn't often ___ to the cinema.", opts:["goes","go","going"], ans:1,
+  why:{0:"Sau \"doesn't\", động từ trở về nguyên thể. Phần chia ngôi đã nằm ở \"doesn't\" rồi.",
+       2:"Dạng -ing dùng cho thì hiện tại tiếp diễn, không dùng ở đây."},
+  ok:"Sau doesn't / don't / Does / Do, động từ luôn ở dạng nguyên thể."},
+
+ {t:"mcq", ask:"___ your sister usually walk to school?", opts:["Do","Does","Is"], ans:1,
+  why:{0:"\"Your sister\" là ngôi 3 số ít nên dùng \"Does\", không dùng \"Do\".",
+       2:"\"walk\" là động từ thường nên câu hỏi dùng Do/Does, không dùng \"Is\"."},
+  ok:"Ngôi 3 số ít + động từ thường thì câu hỏi mở đầu bằng \"Does\"."},
+
+ {t:"mcq", ask:"Lan rarely ___ late for class.", opts:["is","isn't","doesn't"], ans:0,
+  why:{1:"Phủ định hai lần. \"rarely\" đã mang nghĩa phủ định rồi.",
+       2:"Ở đây \"late\" là tính từ nên phải dùng động từ \"be\", không dùng \"doesn't\"."},
+  ok:"\"late\" là tính từ nên đi với động từ be; \"rarely\" tự nó đã đủ nghĩa phủ định."},
+
+ {t:"mcq", ask:"My friends hardly ever ___ computer games.", opts:["plays","play","playing"], ans:1,
+  why:{0:"\"My friends\" là số nhiều nên động từ giữ nguyên \"play\", không thêm -s.",
+       2:"Dạng -ing không dùng ở thì hiện tại đơn."},
+  ok:"Chủ ngữ số nhiều thì động từ không thêm -s."},
+
+ {t:"mcq", ask:"He always ___ his room at the weekend.", opts:["tidys","tidies","tidy"], ans:1,
+  why:{0:"Sai chính tả. \"tidy\" tận cùng là phụ âm + y nên đổi y thành ies: \"tidies\".",
+       2:"Thiếu đuôi. \"He\" là ngôi 3 số ít nên động từ phải đổi dạng."},
+  ok:"Phụ âm + y thì đổi y thành ies: tidy thành tidies, study thành studies."},
+
+ {t:"pick", ask:"Câu nào viết đúng?", opts:["He never is angry.","He is never angry."], ans:1,
+  why:{0:"\"is\" là động từ be nên trạng từ phải đứng SAU nó."},
+  ok:"Sau be, trước động từ thường."},
+
+ {t:"pick", ask:"Câu nào viết đúng?", opts:["I sometimes get up at 6 o'clock.","I get sometimes up at 6 o'clock."], ans:0,
+  why:{1:"\"get up\" là một cụm động từ, không chen trạng từ vào giữa. Trạng từ đứng trước cả cụm."},
+  ok:"Với cụm động từ như get up, wake up, trạng từ đứng trước cả cụm."},
+
+ {t:"pick", ask:"Câu nào viết đúng?", opts:["Never I eat fast food.","I never eat fast food."], ans:1,
+  why:{0:"\"never\" không đứng đầu câu được. Nhóm always, never, rarely, hardly ever chỉ đứng giữa câu."},
+  ok:"always, never, rarely, hardly ever chỉ đứng giữa câu; còn sometimes, usually, often thì linh hoạt hơn."},
+
+ {t:"pick", ask:"Câu nào viết đúng?", opts:["She goes to the library every day.","She every day goes to the library."], ans:0,
+  why:{1:"\"every day\" là CỤM chỉ thời gian, không phải trạng từ tần suất một chữ, nên nó đứng cuối câu."},
+  ok:"Cụm như every day, on Sundays, at the weekend đứng cuối câu."},
+
+ {t:"pick", ask:"Câu nào viết đúng?", opts:["Do often you visit your grandparents?","Do you often visit your grandparents?"], ans:1,
+  why:{0:"Ngay sau \"Do\" phải là chủ ngữ; trạng từ đứng sau chủ ngữ, trước động từ chính."},
+  ok:"Do + chủ ngữ + trạng từ + động từ."}
+];
+
+var TYPE_LABEL = {pos:"Đặt trạng từ vào đúng chỗ", mcq:"Chọn dạng đúng của động từ", pick:"Chọn câu viết đúng"};
+
+var advQ=[], advI=0, advFirst=0, advPlanned=0, advNeed={}, advDone=false;
+var elAdvBody=$("advBody"), elAdvVerdict=$("advVerdict"), elAdvNext=$("advNext");
+var elAdvPos=$("advPos"), elAdvFill=$("advFill");
+
+function escHtml(t){
+  return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function advStart(pool){
+  advQ = pool ? pool.slice() : ADVQ.map(function(_,i){return i;});
+  if(!pool){
+    for(var j=advQ.length-1;j>0;j--){
+      var r=Math.floor(Math.random()*(j+1)), t=advQ[j];
+      advQ[j]=advQ[r]; advQ[r]=t;
+    }
+  }
+  advI=0; advFirst=0; advPlanned=advQ.length; advNeed={};
+  $("advIntro").hidden=true; $("advSummary").hidden=true; $("advCard").hidden=false;
+  advShow();
+}
+
+function advShow(){
+  advDone=false;
+  elAdvVerdict.hidden=true; elAdvVerdict.innerHTML="";
+  elAdvNext.hidden=true;
+  elAdvPos.textContent="Câu "+(advI+1)+" / "+advQ.length;
+  elAdvFill.style.width=(advI/advQ.length*100)+"%";
+
+  var q=ADVQ[advQ[advI]], html='<p class="q-type">'+TYPE_LABEL[q.t]+'</p>';
+
+  if(q.t==="pos"){
+    html+='<span class="q-adv">'+escHtml(q.adv)+'</span>';
+    html+='<p class="q-ask">Bấm vào khe em muốn đặt trạng từ trên vào.</p>';
+    html+='<p class="sent">';
+    for(var i=0;i<=q.w.length;i++){
+      if(q.gaps.indexOf(i)>=0){
+        html+='<button class="slot" type="button" data-g="'+i+'" aria-label="Đặt vào vị trí thứ '+(i+1)+'"></button>';
+      }
+      if(i<q.w.length) html+='<span class="w">'+escHtml(q.w[i])+'</span> ';
+    }
+    html+='</p>';
+  }else{
+    html+='<p class="sent">'+escHtml(q.ask)+'</p><div class="opts">';
+    for(var k=0;k<q.opts.length;k++){
+      html+='<button class="opt" type="button" data-o="'+k+'">'+escHtml(q.opts[k])+'</button>';
+    }
+    html+='</div>';
+  }
+  elAdvBody.innerHTML=html;
+}
+
+function advAnswer(chosen){
+  if(advDone) return;
+  advDone=true;
+  var qi=advQ[advI], q=ADVQ[qi], right=(chosen===q.ans);
+
+  var btns=elAdvBody.querySelectorAll("button");
+  for(var i=0;i<btns.length;i++){
+    btns[i].disabled=true;
+    var raw = btns[i].dataset.g!==undefined ? btns[i].dataset.g : btns[i].dataset.o;
+    var v = parseInt(raw,10);
+    if(v===q.ans){
+      btns[i].classList.add("right");
+      if(q.t==="pos"){ btns[i].classList.add("filled"); btns[i].textContent=q.adv; }
+    }else if(v===chosen){
+      btns[i].classList.add("wrong");
+    }
+  }
+
+  elAdvVerdict.hidden=false;
+  if(right){
+    /* Chỉ tính điểm cho câu đúng ngay lần đầu. */
+    if(!advNeed[qi]) advFirst++;
+    elAdvVerdict.className="verdict ok";
+    elAdvVerdict.innerHTML='<p class="vtitle">✅ Đúng rồi!</p><p class="vnote">'+q.ok+'</p>';
+  }else{
+    advNeed[qi]=true;
+    advQ.push(qi);
+    elAdvVerdict.className="verdict no";
+    var lyDo=(q.why && q.why[chosen]) ? q.why[chosen] : "Chưa đúng.";
+    elAdvVerdict.innerHTML='<p class="vtitle">❌ Chưa đúng</p>'
+      +'<p class="vnote">'+lyDo+'</p>'
+      +'<p class="vnote"><b>Quy tắc:</b> '+q.ok+'</p>'
+      +'<p class="vnote">Câu này sẽ quay lại cuối bài để em làm lại.</p>';
+  }
+  elAdvNext.hidden=false;
+  elAdvNext.textContent = (advI+1>=advQ.length) ? "Xem kết quả →" : "Câu tiếp theo →";
+  elAdvNext.focus();
+}
+
+elAdvBody.addEventListener("click",function(e){
+  var b=e.target.closest("button[data-g],button[data-o]");
+  if(!b || b.disabled) return;
+  var raw = b.dataset.g!==undefined ? b.dataset.g : b.dataset.o;
+  advAnswer(parseInt(raw,10));
+});
+
+elAdvNext.addEventListener("click",function(){
+  advI++;
+  if(advI>=advQ.length){ advFinish(); return; }
+  advShow();
+});
+$("advStart").addEventListener("click",function(){ advStart(null); });
+$("advQuit").addEventListener("click",function(){ advFinish(); });
+
+function advFinish(){
+  $("advCard").hidden=true; $("advIntro").hidden=true; $("advSummary").hidden=false;
+  var again=[]; for(var k in advNeed){ again.push(parseInt(k,10)); }
+  var html='<h2>Xong bài rồi</h2>'
+    +'<div class="score"><span class="big">'+advFirst+' / '+advPlanned+'</span>'
+    +'<span class="cap">câu đúng ngay lần đầu</span></div>';
+  if(again.length){
+    html+='<p class="desc" style="margin:16px 0 0">Còn <b>'+again.length+' câu</b> em từng làm sai. Làm lại riêng những câu đó sẽ nhanh vào hơn.</p>';
+  }else{
+    html+='<p class="desc" style="margin:16px 0 18px">Không sai câu nào. Nắm chắc quy tắc rồi đấy!</p>';
+  }
+  html+='<div class="btn-row" style="margin-top:16px">'
+    +(again.length?'<button class="btn" type="button" id="advAgain">Làm lại '+again.length+' câu sai</button>':'')
+    +'<button class="btn ghost" type="button" id="advNew">Làm lại cả bài</button>'
+    +'<button class="btn ghost" type="button" id="advBack">Về tra từ</button></div>';
+  $("advSummary").innerHTML=html;
+  if(again.length){ $("advAgain").addEventListener("click",function(){ advStart(again); }); }
+  $("advNew").addEventListener("click",function(){ advStart(null); });
+  $("advBack").addEventListener("click",function(){ showTab("tra"); });
+}
+
+
 document.addEventListener("keydown",function(e){
   if(e.key==="/"&&document.activeElement.id!=="q"&&document.activeElement.id!=="answer"){
     e.preventDefault();
@@ -892,16 +1180,19 @@ var queue=[], qi=0, answered=false, usedHint=false;
 var planned=0, cleanFirstTry=0, needWork={};
 
 /* ---- chuyển màn ---- */
+var elTabAdv = $("tabAdv"), viewAdv = $("view-adv");
 function showTab(which){
-  var viet = which==="viet";
-  elTabTra.setAttribute("aria-selected", viet?"false":"true");
-  elTabViet.setAttribute("aria-selected", viet?"true":"false");
-  viewTra.hidden = viet;
-  viewViet.hidden = !viet;
-  if(viet) refreshWrongCount();
+  var tabs = {tra:[elTabTra,viewTra], viet:[elTabViet,viewViet], adv:[elTabAdv,viewAdv]};
+  for(var k in tabs){
+    var on = (k===which);
+    tabs[k][0].setAttribute("aria-selected", on?"true":"false");
+    tabs[k][1].hidden = !on;
+  }
+  if(which==="viet") refreshWrongCount();
 }
 elTabTra.addEventListener("click",function(){showTab("tra");});
 elTabViet.addEventListener("click",function(){showTab("viet");});
+elTabAdv.addEventListener("click",function(){showTab("adv");});
 
 function refreshWrongCount(){
   var n=0;
