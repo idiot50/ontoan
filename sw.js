@@ -10,8 +10,9 @@
    v2 (2026-08-09): thêm thẻ "Ôn Thi".
    v3 (2026-08-09): thẻ đổi tên "Thi Lớp 5" -> "Ôn Thi" và đổi đích ./thi-lop5/ -> ./on-thi/.
    v4 (2026-08-09): dựng lại bố cục cho vừa đúng MỘT màn, không phải kéo.
-   v5 (2026-09-13): thêm thẻ "Từ Vựng Anh 4" (/tu-vung-anh4/). */
-const CACHE = 'toanvui-hub-v5';
+   v5 (2026-09-13): thêm thẻ "Từ Vựng Anh 4" (/tu-vung-anh4/).
+   v6 (2026-09-14): thẻ đó đổi mô tả sang 117 từ Unit 1-7. */
+const CACHE = 'toanvui-hub-v6';
 
 // App shell precache (đường dẫn TƯƠNG ĐỐI theo scope của SW).
 const SHELL = [
