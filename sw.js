@@ -15,8 +15,9 @@
    v7 (2026-09-14): bổ sung trọng tâm ngữ pháp Unit 7 -> 155 từ.
    v8 (2026-09-14): thêm 3 trạng từ tần suất -> 158 từ.
    v9 (2026-09-14): thẻ đổi mô tả, app có thêm màn luyện trạng từ tần suất.
-   v10 (2026-09-22): thêm Unit 8 -> 175 từ, có giọng đọc tiếng Việt. */
-const CACHE = 'toanvui-hub-v10';
+   v10 (2026-09-22): thêm Unit 8 -> 175 từ, có giọng đọc tiếng Việt.
+   v11 (2026-09-22): màn Nghe - Viết chọn được ngôn ngữ đọc. */
+const CACHE = 'toanvui-hub-v11';
 
 // App shell precache (đường dẫn TƯƠNG ĐỐI theo scope của SW).
 const SHELL = [

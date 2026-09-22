@@ -122,7 +122,11 @@ button{font:inherit;cursor:pointer}
   border-radius:999px;padding:5px 9px;cursor:pointer;
 }
 .speed select:hover{border-color:var(--blue);color:var(--blue)}
-.speed-drill{margin-top:13px;justify-content:center;width:100%}
+.under-speak{
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;
+  margin-top:13px;
+}
+.lang-note{margin:9px 0 0;font-size:13px;color:var(--ink-soft)}
 
 /* ------------------------------ DANH SÁCH TỪ ---------------------------- */
 .count{margin:16px 0 4px;font-size:13px;color:var(--ink-faint)}
@@ -422,7 +426,7 @@ legend{
     <!-- 1. Màn chuẩn bị: chọn phạm vi rồi bắt đầu -->
     <div class="box" id="setup">
       <h2>Nghe rồi viết lại</h2>
-      <p class="desc">Máy đọc một từ, em gõ lại cho đúng <b>từng chữ cái</b>. Bí thì xin gợi ý: xem nghĩa tiếng Việt, hoặc xem phiên âm. Gõ xong bấm <b>Kiểm tra</b> — máy sẽ chỉ ra chữ nào sai, chữ nào thiếu. Viết hoa hay viết thường đều được.</p>
+      <p class="desc">Máy đọc một từ, em gõ lại cho đúng <b>từng chữ cái</b>. Chọn được máy đọc bằng tiếng Anh hay tiếng Việt. Bí thì xin gợi ý: xem nghĩa tiếng Việt, hoặc xem phiên âm. Gõ xong bấm <b>Kiểm tra</b> — máy sẽ chỉ ra chữ nào sai, chữ nào thiếu. Viết hoa hay viết thường đều được.</p>
 
       <fieldset>
         <legend>Luyện từ của unit nào</legend>
@@ -450,6 +454,15 @@ legend{
         </div>
       </fieldset>
 
+      <fieldset>
+        <legend>Vào bài máy đọc bằng</legend>
+        <div class="opt-row" id="dLangs">
+          <button class="chip" type="button" data-dg="en" aria-pressed="true">🔊 Tiếng Anh</button>
+          <button class="chip" type="button" data-dg="vi" aria-pressed="false">🔊 Tiếng Việt</button>
+        </div>
+        <p class="lang-note" id="langNote">Máy đọc từ tiếng Anh, em viết lại đúng từ đó.</p>
+      </fieldset>
+
       <label class="check-line" for="dOnlyWrong">
         <input type="checkbox" id="dOnlyWrong">
         <span>Chỉ luyện những từ em từng viết sai <span id="wrongCount"></span></span>
@@ -470,7 +483,9 @@ legend{
         <span class="ico" aria-hidden="true">🔊</span><span id="bigSpeakText">Nghe lại</span>
       </button>
 
-      <label class="speed speed-drill" for="speedB">Tốc độ đọc
+      <div class="under-speak">
+        <button class="chip" type="button" id="speakOther">Nghe nghĩa tiếng Việt</button>
+        <label class="speed" for="speedB">Tốc độ đọc
         <select id="speedB">
           <option value="0.8">0,8×</option>
           <option value="0.9">0,9×</option>
@@ -478,7 +493,8 @@ legend{
           <option value="1.1">1,1×</option>
           <option value="1.2">1,2×</option>
         </select>
-      </label>
+        </label>
+      </div>
 
       <div class="hints">
         <button class="chip" type="button" id="hintViBtn">💡 Xem nghĩa tiếng Việt</button>
@@ -1009,6 +1025,13 @@ var elPos=$("drillPos"), elFill=$("drillFill"), elSpeakText=$("bigSpeakText");
 var elBigSpeak=$("bigSpeak");
 
 var dUnit="all", dLen=10;
+
+/* Ngôn ngữ máy đọc khi vào từ mới. "en": đọc từ tiếng Anh (chép chính tả).
+   "vi": đọc nghĩa tiếng Việt (em phải nhớ ra từ tiếng Anh rồi viết).
+   Nút "nghe bằng tiếng kia" chỉ đọc MỘT lần, không đổi lựa chọn này. */
+var LKEY="tuvung-anh4-drill-lang";
+var drillLang="en";
+try{ var _dl=localStorage.getItem(LKEY); if(_dl==="en"||_dl==="vi") drillLang=_dl; }catch(e){}
 var queue=[], qi=0, answered=false, usedHint=false;
 var planned=0, cleanFirstTry=0, needWork={};
 
@@ -1043,6 +1066,23 @@ $("dUnits").addEventListener("click",function(e){
     all[i].setAttribute("aria-pressed", all[i].dataset.du===dUnit ? "true":"false");
   }
 });
+function paintLang(){
+  var all=$("dLangs").querySelectorAll("[data-dg]");
+  for(var i=0;i<all.length;i++){
+    all[i].setAttribute("aria-pressed", all[i].dataset.dg===drillLang ? "true":"false");
+  }
+  $("langNote").textContent = drillLang==="vi"
+    ? "Máy đọc nghĩa tiếng Việt, em viết lại từ tiếng Anh tương ứng."
+    : "Máy đọc từ tiếng Anh, em viết lại đúng từ đó.";
+}
+$("dLangs").addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b) return;
+  drillLang=b.dataset.dg;
+  try{ localStorage.setItem(LKEY,drillLang); }catch(err){}
+  paintLang();
+});
+paintLang();
+
 $("dLens").addEventListener("click",function(e){
   var b=e.target.closest("button"); if(!b) return;
   dLen=parseInt(b.dataset.dl,10);
@@ -1087,19 +1127,31 @@ function showWord(){
   elHintVi.hidden=true; elHintIpa.hidden=true;
   elAnswer.value=""; elAnswer.disabled=false;
   elCheck.textContent="Kiểm tra";
-  elSpeakText.textContent="Nghe lại";
+  elSpeakText.textContent = drillLang==="vi" ? "Nghe lại nghĩa tiếng Việt" : "Nghe lại từ tiếng Anh";
+  $("speakOther").textContent = drillLang==="vi" ? "Nghe từ tiếng Anh" : "Nghe nghĩa tiếng Việt";
+  $("speakOther").title = "Nghe một lần bằng tiếng kia — không đổi lựa chọn của cả bài";
   elPos.textContent="Từ "+(qi+1)+" / "+queue.length;
   elFill.style.width=(qi/queue.length*100)+"%";
   elAnswer.focus();
   setTimeout(speakCurrent,250);
 }
-function speakCurrent(){
+function speakWord(lang){
   var w=DATA[queue[qi]];
   elBigSpeak.classList.add("on");
   setTimeout(function(){elBigSpeak.classList.remove("on");},700);
-  say(w[1].replace(/\./g," ").trim(), null);
+  if(lang==="vi") say(viSpeech(w[4]), null, "vi");
+  /* "a.m." đọc thành "am" nghe sai -> bỏ dấu chấm cho máy đọc từng chữ cái. */
+  else say(w[1].replace(/\./g," ").trim(), null);
 }
+function speakCurrent(){ speakWord(drillLang); }
 elBigSpeak.addEventListener("click",speakCurrent);
+
+/* Nghe tạm bằng tiếng kia: chỉ một lần, KHÔNG đổi lựa chọn của cả bài.
+   Tính là đã dùng gợi ý, vì nghe tiếng kia gần như cho biết đáp án. */
+$("speakOther").addEventListener("click",function(){
+  usedHint=true;
+  speakWord(drillLang==="vi" ? "en" : "vi");
+});
 
 /* ---- gợi ý ---- */
 $("hintViBtn").addEventListener("click",function(){
