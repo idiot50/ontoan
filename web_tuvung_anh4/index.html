@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Từ Vựng Anh 4 — Unit 1–7</title>
-<meta name="description" content="158 từ và cụm từ Unit 1–7: tra nhanh, ẩn nghĩa để tự kiểm tra, nghe phát âm, luyện chép chính tả có chấm từng ký tự.">
+<title>Từ Vựng Anh 4 — Unit 1–8</title>
+<meta name="description" content="175 từ và cụm từ Unit 1–7: tra nhanh, ẩn nghĩa để tự kiểm tra, nghe phát âm, luyện chép chính tả có chấm từng ký tự.">
 <meta name="theme-color" content="#0369a1">
 <style>
 /* =========================================================================
@@ -164,6 +164,13 @@ li.row.known .num{color:var(--green);font-weight:700}
 .icon:hover{background:var(--blue-wash);color:var(--blue)}
 li.row.known .icon.check{color:var(--green);background:var(--green-wash)}
 li.row.speaking .icon.speak{color:var(--blue);background:var(--blue-wash)}
+.icon.speakvi{
+  font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;
+  line-height:1;color:var(--ink-faint);
+}
+.icon.speakvi:hover{background:var(--blue-wash);color:var(--blue)}
+.hint-out .icon.speakvi{width:28px;height:24px;vertical-align:middle;margin-left:4px;
+  border:1px solid var(--rule-strong)}
 :focus-visible{outline:3px solid #ffd54a;outline-offset:2px;border-radius:6px}
 
 /* Báo cho người dùng biết vì sao không nghe thấy tiếng, thay vì im lặng. */
@@ -323,6 +330,9 @@ legend{
   li.row{grid-template-columns:1.7rem minmax(0,1fr) auto;column-gap:8px}
   .en{font-size:19px}
   .home-link{margin-left:0}
+  /* Ba nút trên một dòng: thu nhỏ lại cho vừa màn hình hẹp. */
+  .tools{gap:2px}
+  .icon{width:30px;height:30px}
 }
 @media print{
   header .home-link,.toolbar,.tools,.meter,.count{display:none}
@@ -337,8 +347,8 @@ legend{
   <div class="head-in">
     <div class="logo" aria-hidden="true">📘</div>
     <div class="brand">
-      <h1>Từ Vựng Anh 4 <span class="sub">— Unit 1–7</span></h1>
-      <p>Toàn bộ <b>158 từ và cụm từ</b> của bảy unit, gộp chung một danh sách. Bấm <b>Ẩn nghĩa</b> để tự kiểm tra, bấm loa để nghe đọc, tích dấu khi đã thuộc.</p>
+      <h1>Từ Vựng Anh 4 <span class="sub">— Unit 1–8</span></h1>
+      <p>Toàn bộ <b>175 từ và cụm từ</b> của tám unit, gộp chung một danh sách. Bấm <b>Ẩn nghĩa</b> để tự kiểm tra, bấm loa để nghe đọc, tích dấu khi đã thuộc.</p>
     </div>
     <a class="home-link" href="../" title="Về trang chủ Toán Vui">
       <span aria-hidden="true">🏠</span><span>Trang chủ</span>
@@ -362,7 +372,7 @@ legend{
 
   <section id="view-tra" role="tabpanel" aria-labelledby="tabTra">
   <div class="meter">
-    <span class="meter-label">Đã thuộc <strong id="done">0</strong> / 158 từ</span>
+    <span class="meter-label">Đã thuộc <strong id="done">0</strong> / 175 từ</span>
     <div class="track"><div class="fill" id="fill"></div></div>
     <button class="chip" id="reset" type="button">Xóa hết đánh dấu</button>
   </div>
@@ -384,6 +394,7 @@ legend{
       <button class="chip" type="button" data-unit="7" aria-pressed="false">U7</button>
       <button class="chip" type="button" data-unit="7.1" aria-pressed="false" title="Unit 7 phần 1 — bộ thẻ của lớp (15 từ)">U7·1</button>
       <button class="chip" type="button" data-unit="7.2" aria-pressed="false" title="Unit 7 phần 2 — trọng tâm ngữ pháp Present Simple (41 mục)">U7·2</button>
+      <button class="chip" type="button" data-unit="8" aria-pressed="false" title="Unit 8 — Present Continuous (17 mục)">U8</button>
       <span class="sep"></span>
       <button class="chip mode" type="button" id="mask" aria-pressed="false">Ẩn nghĩa</button>
       <button class="chip mode" type="button" id="onlyNew" aria-pressed="false">Chỉ từ chưa thuộc</button>
@@ -426,6 +437,7 @@ legend{
           <button class="chip" type="button" data-du="7" aria-pressed="false">U7</button>
           <button class="chip" type="button" data-du="7.1" aria-pressed="false" title="Unit 7 phần 1 — bộ thẻ của lớp (15 từ)">U7·1</button>
           <button class="chip" type="button" data-du="7.2" aria-pressed="false" title="Unit 7 phần 2 — trọng tâm ngữ pháp Present Simple (41 mục)">U7·2</button>
+          <button class="chip" type="button" data-du="8" aria-pressed="false" title="Unit 8 — Present Continuous (17 mục)">U8</button>
         </div>
       </fieldset>
 
@@ -516,7 +528,7 @@ legend{
   </section>
 
   <footer>
-    Từ vựng theo SGK <b>Tiếng Anh 4 – Global Success</b>: Unit 1 <i>My friends</i> · Unit 2 <i>Time and daily routines</i> · Unit 3 <i>My week</i> · Unit 4 <i>My birthday party</i> · Unit 5 <i>Things we can do</i> · Unit 6 <i>Our school facilities</i>. Unit 7 lấy từ <b>New Round Up 3</b> (Present Simple), tách hai phần: <b>U7·1</b> là bộ thẻ của lớp, <b>U7·2</b> là trọng tâm ngữ pháp của unit. Phiên âm theo giọng Anh–Anh. Đánh dấu "đã thuộc" chỉ lưu trên máy đang mở trang này.
+    Từ vựng theo SGK <b>Tiếng Anh 4 – Global Success</b>: Unit 1 <i>My friends</i> · Unit 2 <i>Time and daily routines</i> · Unit 3 <i>My week</i> · Unit 4 <i>My birthday party</i> · Unit 5 <i>Things we can do</i> · Unit 6 <i>Our school facilities</i>. Unit 7 lấy từ <b>New Round Up 3</b> (Present Simple), tách hai phần: <b>U7·1</b> là bộ thẻ của lớp, <b>U7·2</b> là trọng tâm ngữ pháp của unit. Unit 8 (Present Continuous) cũng lấy từ New Round Up 3. Phiên âm theo giọng Anh–Anh. Đánh dấu "đã thuộc" chỉ lưu trên máy đang mở trang này.
   </footer>
 </main>
 
@@ -683,7 +695,25 @@ var DATA=[
 [7.2,"famous","/ˈfeɪməs/","adj","nổi tiếng"],
 [7.2,"busy","/ˈbɪzi/","adj","bận rộn"],
 [7.2,"free time","/ˈfriː taɪm/","n","thời gian rảnh"],
-[7.2,"expensive","/ɪkˈspensɪv/","adj","đắt tiền"]
+[7.2,"expensive","/ɪkˈspensɪv/","adj","đắt tiền"],
+/* --- Unit 8 (New Round Up 3, Present Continuous): bộ thẻ của lớp --- */
+[8,"feed the dog","/fiːd ðə ˈdɒɡ/","cụm ĐT","cho chó ăn"],
+[8,"clean the floor","/kliːn ðə ˈflɔː(r)/","cụm ĐT","lau dọn sàn nhà"],
+[8,"karaoke machine","/ˌkærəˈəʊki məˈʃiːn/","n","máy hát karaoke"],
+[8,"play a board game","/pleɪ ə ˈbɔːd ɡeɪm/","cụm ĐT","chơi trò chơi cờ bàn"],
+[8,"laugh","/lɑːf/","v","cười lớn (gh đọc là /f/)"],
+[8,"clean the snow off the car","/kliːn ðə ˈsnəʊ ɒf ðə kɑː(r)/","cụm ĐT","dọn sạch tuyết phủ trên ô tô"],
+[8,"these days","/ˌðiːz ˈdeɪz/","trạng ngữ","hiện nay, dạo này"],
+[8,"belong to somebody","/bɪˈlɒŋ tə/","cụm ĐT","thuộc về ai đó"],
+[8,"fly a plane","/flaɪ ə ˈpleɪn/","cụm ĐT","lái máy bay"],
+[8,"at the moment","/ət ðə ˈməʊmənt/","trạng ngữ","lúc này, bây giờ"],
+[8,"at present","/ət ˈpreznt/","trạng ngữ","hiện tại, bây giờ"],
+[8,"tonight","/təˈnaɪt/","trạng ngữ","tối nay"],
+[8,"sunbathe","/ˈsʌnbeɪð/","v","tắm nắng"],
+[8,"disco","/ˈdɪskəʊ/","n","vũ trường, sàn nhảy"],
+[8,"on the island","/ɒn ði ˈaɪlənd/","trạng ngữ","trên hòn đảo (s câm)"],
+[8,"in the sea","/ɪn ðə ˈsiː/","trạng ngữ","ở biển, dưới biển"],
+[8,"leave","/liːv/","v","rời đi"]
 ];
 
 var KEY="tuvung-anh4-u1-6-known";
@@ -732,18 +762,22 @@ function paintMeter(){
       nên có kiểm tra lại sau 300ms và đọc lần nữa nếu chưa chạy.
    Nếu máy thật sự không có giọng tiếng Anh thì hiện lời nhắc, KHÔNG im lặng. */
 var SP = ("speechSynthesis" in window) ? window.speechSynthesis : null;
-var voices = [], enVoice = null;
+var voices = [], enVoice = null, viVoice = null;
 
-function pickVoice(){
-  try{ voices = SP.getVoices() || []; }catch(e){ voices = []; }
-  var pref = ["en-gb","en-us","en-au","en-"];
+function findVoice(pref){
   for (var p = 0; p < pref.length; p++){
     for (var i = 0; i < voices.length; i++){
       var lg = String(voices[i].lang || "").replace("_","-").toLowerCase();
-      if (lg.indexOf(pref[p]) === 0) return (enVoice = voices[i]);
+      if (lg.indexOf(pref[p]) === 0) return voices[i];
     }
   }
-  return (enVoice = null);
+  return null;
+}
+function pickVoice(){
+  try{ voices = SP.getVoices() || []; }catch(e){ voices = []; }
+  enVoice = findVoice(["en-gb","en-us","en-au","en-"]);
+  viVoice = findVoice(["vi-vn","vi-"]);
+  return enVoice;
 }
 if (SP){
   pickVoice();
@@ -768,7 +802,15 @@ function toast(msg){
   toastTimer = setTimeout(function(){ toastEl.hidden = true; }, 6000);
 }
 
-function say(text, row){
+/* Đọc nghĩa tiếng Việt thì bỏ phần trong ngoặc và phần ghi chú sau dấu gạch
+   ngang, vì "thường xuyên (khoảng 70%) — trang trọng hơn often" đọc lên nghe
+   rất kỳ. Chỉ giữ lại nghĩa chính. */
+function viSpeech(t){
+  return String(t).split("—")[0].replace(/\([^)]*\)/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function say(text, row, lang){
+  var vi = (lang === "vi");
   if (!SP){
     toast("Trình duyệt này không có chức năng đọc. Thử mở bằng Chrome hoặc Safari nhé.");
     return;
@@ -778,8 +820,9 @@ function say(text, row){
   var spoken = false;
   function build(){
     var u = new SpeechSynthesisUtterance(text);
-    if (enVoice){ u.voice = enVoice; u.lang = enVoice.lang; }
-    else { u.lang = "en-GB"; }
+    var v = vi ? viVoice : enVoice;
+    if (v){ u.voice = v; u.lang = v.lang; }
+    else { u.lang = vi ? "vi-VN" : "en-GB"; }
     u.rate = rate; u.pitch = 1; u.volume = 1;
     u.onstart = function(){ spoken = true; if (row) row.classList.add("speaking"); };
     u.onend = u.onerror = function(){ if (row) row.classList.remove("speaking"); };
@@ -798,9 +841,14 @@ function say(text, row){
   setTimeout(function(){
     if (spoken || SP.speaking) return;
     if (row) row.classList.remove("speaking");
-    toast(enVoice
-      ? "Máy chưa phát được tiếng. Kiểm tra loa và nút tắt tiếng, rồi bấm lại."
-      : "Máy chưa có giọng đọc tiếng Anh. Android: Cài đặt → Ngôn ngữ → Văn bản thành giọng nói → bật “Giọng nói của Google” và tải gói English.");
+    var have = vi ? viVoice : enVoice;
+    if (have){
+      toast("Máy chưa phát được tiếng. Kiểm tra loa và nút tắt tiếng, rồi bấm lại.");
+    }else if (vi){
+      toast("Máy chưa có giọng đọc tiếng Việt. Android: Cài đặt → Ngôn ngữ → Văn bản thành giọng nói → tải gói Tiếng Việt. Windows: Cài đặt → Thời gian & ngôn ngữ → Giọng nói → Thêm giọng nói → Tiếng Việt.");
+    }else{
+      toast("Máy chưa có giọng đọc tiếng Anh. Android: Cài đặt → Ngôn ngữ → Văn bản thành giọng nói → bật “Giọng nói của Google” và tải gói English.");
+    }
   }, 1400);
 }
 
@@ -828,7 +876,8 @@ function render(){
         +'<div class="vi'+(masked?" masked":"")+'"'+(masked?' role="button" tabindex="0" title="Bấm để hiện nghĩa"':'')+'>'+w[4]+'</div>'
       +'</div>'
       +'<div class="tools">'
-        +'<button class="icon speak" type="button" title="Nghe đọc" aria-label="Nghe đọc '+w[1]+'">'+SPK+'</button>'
+        +'<button class="icon speak" type="button" title="Nghe đọc tiếng Anh" aria-label="Nghe đọc '+w[1]+'">'+SPK+'</button>'
+        +'<button class="icon speakvi" type="button" title="Nghe nghĩa tiếng Việt" aria-label="Nghe nghĩa tiếng Việt của '+w[1]+'">VI</button>'
         +'<button class="icon check" type="button" title="Đánh dấu đã thuộc" aria-pressed="'+(known[i]?"true":"false")+'" aria-label="Đã thuộc '+w[1]+'">'+CHK+'</button>'
       +'</div>'
     +'</li>';
@@ -849,6 +898,10 @@ function reveal(el){
 listEl.addEventListener("click",function(e){
   var row=e.target.closest("li.row"); if(!row) return;
   var i=row.dataset.i;
+  if(e.target.closest(".speakvi")){
+    say(viSpeech(DATA[i][4]), null, "vi");
+    return;
+  }
   if(e.target.closest(".speak")){
     /* "a.m." đọc thành "am" nghe sai -> bỏ dấu chấm cho máy đọc từng chữ cái. */
     say(DATA[i][1].replace(/\./g," ").trim(), row);
@@ -1051,9 +1104,14 @@ elBigSpeak.addEventListener("click",speakCurrent);
 /* ---- gợi ý ---- */
 $("hintViBtn").addEventListener("click",function(){
   usedHint=true;
-  elHintVi.textContent="Nghĩa: "+DATA[queue[qi]][4];
+  var vi=DATA[queue[qi]][4];
+  elHintVi.innerHTML='Nghĩa: '+vi.replace(/&/g,"&amp;").replace(/</g,"&lt;")
+    +' <button class="icon speakvi" type="button" id="hintViSpeak" title="Nghe nghĩa tiếng Việt" aria-label="Nghe nghĩa tiếng Việt">VI</button>';
   elHintVi.hidden=false;
   elAnswer.focus();
+});
+elHintVi.addEventListener("click",function(e){
+  if(e.target.closest("#hintViSpeak")) say(viSpeech(DATA[queue[qi]][4]), null, "vi");
 });
 $("hintIpaBtn").addEventListener("click",function(){
   usedHint=true;
