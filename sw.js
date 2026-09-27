@@ -17,8 +17,9 @@
    v9 (2026-09-14): thẻ đổi mô tả, app có thêm màn luyện trạng từ tần suất.
    v10 (2026-09-22): thêm Unit 8 -> 175 từ, có giọng đọc tiếng Việt.
    v11 (2026-09-22): màn Nghe - Viết chọn được ngôn ngữ đọc.
-   v12 (2026-09-26): thêm Unit 8 phần 3 -> 188 từ. */
-const CACHE = 'toanvui-hub-v12';
+   v12 (2026-09-26): thêm Unit 8 phần 3 -> 188 từ.
+   v13 (2026-09-27): màn Tra từ có thêm nút chép từ. */
+const CACHE = 'toanvui-hub-v13';
 
 // App shell precache (đường dẫn TƯƠNG ĐỐI theo scope của SW).
 const SHELL = [

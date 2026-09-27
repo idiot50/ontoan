@@ -167,6 +167,7 @@ li.row.known .num{color:var(--green);font-weight:700}
 }
 .icon:hover{background:var(--blue-wash);color:var(--blue)}
 li.row.known .icon.check{color:var(--green);background:var(--green-wash)}
+.icon.copy.copied{color:var(--green);background:var(--green-wash)}
 li.row.speaking .icon.speak{color:var(--blue);background:var(--blue-wash)}
 .icon.speakvi{
   font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;
@@ -334,9 +335,9 @@ legend{
   li.row{grid-template-columns:1.7rem minmax(0,1fr) auto;column-gap:8px}
   .en{font-size:19px}
   .home-link{margin-left:0}
-  /* Ba nút trên một dòng: thu nhỏ lại cho vừa màn hình hẹp. */
-  .tools{gap:2px}
-  .icon{width:30px;height:30px}
+  /* Bốn nút trên một dòng: thu nhỏ lại cho vừa màn hình hẹp. */
+  .tools{gap:0}
+  .icon{width:28px;height:28px}
 }
 @media print{
   header .home-link,.toolbar,.tools,.meter,.count{display:none}
@@ -887,6 +888,7 @@ function say(text, row, lang){
 }
 
 var SPK='<svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 3 5 6H2.5v4H5l3.5 3z"></path><path d="M11 6a3 3 0 0 1 0 4"></path></svg>';
+var CPY='<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="9" rx="1.5"></rect><path d="M10.5 3.5a1.5 1.5 0 0 0-1.5-1.5H4a1.5 1.5 0 0 0-1.5 1.5V10a1.5 1.5 0 0 0 1.5 1.5h.5"></path></svg>';
 var CHK='<svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 6.3 12 13 4.5"></path></svg>';
 
 function render(){
@@ -912,6 +914,7 @@ function render(){
       +'<div class="tools">'
         +'<button class="icon speak" type="button" title="Nghe đọc tiếng Anh" aria-label="Nghe đọc '+w[1]+'">'+SPK+'</button>'
         +'<button class="icon speakvi" type="button" title="Nghe nghĩa tiếng Việt" aria-label="Nghe nghĩa tiếng Việt của '+w[1]+'">VI</button>'
+        +'<button class="icon copy" type="button" title="Chép từ này" aria-label="Chép từ '+w[1]+'">'+CPY+'</button>'
         +'<button class="icon check" type="button" title="Đánh dấu đã thuộc" aria-pressed="'+(known[i]?"true":"false")+'" aria-label="Đã thuộc '+w[1]+'">'+CHK+'</button>'
       +'</div>'
     +'</li>';
@@ -920,6 +923,41 @@ function render(){
   emptyEl.hidden=shown>0;
   countEl.textContent="Đang hiện "+shown+" / "+DATA.length+" từ";
   paintMeter();
+}
+
+/* navigator.clipboard chỉ chạy trên https (hoặc localhost). Mở trang bằng
+   file:// hay http thì phải lui về cách cũ, nếu vẫn không được thì nói rõ
+   cho người dùng biết phải tự bấm giữ để chép. */
+function copyText(t, btn){
+  function done(){
+    if(btn){
+      btn.classList.add("copied");
+      setTimeout(function(){ btn.classList.remove("copied"); }, 900);
+    }
+    toast('Đã chép: ' + t);
+  }
+  function fallback(){
+    try{
+      var ta=document.createElement("textarea");
+      ta.value=t;
+      ta.setAttribute("readonly","");
+      ta.style.position="fixed";
+      ta.style.top="-1000px";
+      document.body.appendChild(ta);
+      ta.select();
+      var okCopy=document.execCommand("copy");
+      document.body.removeChild(ta);
+      if(okCopy) done();
+      else toast("Máy không cho chép tự động. Em bấm giữ vào từ rồi chọn Sao chép nhé.");
+    }catch(e){
+      toast("Máy không cho chép tự động. Em bấm giữ vào từ rồi chọn Sao chép nhé.");
+    }
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(t).then(done, fallback);
+  }else{
+    fallback();
+  }
 }
 
 function reveal(el){
@@ -934,6 +972,11 @@ listEl.addEventListener("click",function(e){
   var i=row.dataset.i;
   if(e.target.closest(".speakvi")){
     say(viSpeech(DATA[i][4]), null, "vi");
+    return;
+  }
+  var cp=e.target.closest(".copy");
+  if(cp){
+    copyText(DATA[i][1], cp);
     return;
   }
   if(e.target.closest(".speak")){

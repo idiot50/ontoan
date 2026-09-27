@@ -73,6 +73,32 @@ window.__RUN_TEST__ = (async () => {
     ok('bỏ ngoặc và ghi chú trước khi đọc', cleaned.indexOf('(') < 0 && cleaned.indexOf('—') < 0 && cleaned.length > 0, cleaned);
   }
 
+  /* --------- Nút chép từ --------- */
+  let copied = null;
+  try {
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText: t => { copied = t; return Promise.resolve(); } }
+    });
+  } catch (e) { /* không ghi đè được thì kiểm qua đường lui execCommand */ }
+  const origExec = document.execCommand ? document.execCommand.bind(document) : null;
+  document.execCommand = function (cmd) {
+    if (cmd === 'copy') {
+      const ta = document.querySelector('textarea[readonly]');
+      if (ta) copied = ta.value;
+      return true;
+    }
+    return origExec ? origExec.apply(document, arguments) : false;
+  };
+
+  const cpBtn = document.querySelector('#list .copy');
+  ok('mỗi dòng có nút chép từ', !!cpBtn);
+  if (cpBtn) cpBtn.click();
+  await sleep(90);
+  ok('bấm nút chép thì chép đúng từ tiếng Anh', copied === DATA[0][1], String(copied));
+  ok('có báo đã chép', !$('toast').hidden && ($('toast').textContent || '').indexOf('Đã chép') >= 0,
+     ($('toast').textContent || '').slice(0, 40));
+
   /* ===================== MÀN NGHE – VIẾT ===================== */
   $('tabViet').click();
   ok('mở được màn Nghe – Viết', !$('view-viet').hidden);
