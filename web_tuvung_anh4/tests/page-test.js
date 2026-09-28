@@ -19,7 +19,7 @@ window.__RUN_TEST__ = (async () => {
 
   const firstSpeak = document.querySelector('#list .speak');
   ok('màn Tra từ có nút loa', !!firstSpeak);
-  ok('danh sách render đủ 188 dòng', document.querySelectorAll('#list li.row').length === 188,
+  ok('danh sách render đủ 228 dòng', document.querySelectorAll('#list li.row').length === 228,
      document.querySelectorAll('#list li.row').length);
   ok('Unit 8 phần 1 có 17 mục', DATA.filter(r => String(r[0]) === '8.1').length === 17,
      DATA.filter(r => String(r[0]) === '8.1').length);
@@ -31,6 +31,14 @@ window.__RUN_TEST__ = (async () => {
      DATA.filter(r => unitOk(r,'8')).length);
   ok('lọc U8·3 chỉ lấy phần 3', DATA.filter(r => unitOk(r,'8.3')).length === 13,
      DATA.filter(r => unitOk(r,'8.3')).length);
+  ok('Unit 9 phần 1 có 22 mục', DATA.filter(r => String(r[0]) === '9.1').length === 22,
+     DATA.filter(r => String(r[0]) === '9.1').length);
+  ok('Unit 9 phần 2 có 18 mục', DATA.filter(r => String(r[0]) === '9.2').length === 18,
+     DATA.filter(r => String(r[0]) === '9.2').length);
+  ok('có đủ nút lọc U9, U9·1, U9·2 ở cả hai màn',
+     ['9','9.1','9.2'].every(v => document.querySelector('[data-unit="'+v+'"]') && document.querySelector('[data-du="'+v+'"]')));
+  ok('lọc U9 gộp cả hai phần', DATA.filter(r => unitOk(r,'9')).length === 40,
+     DATA.filter(r => unitOk(r,'9')).length);
 
   let n0 = spoken.length;
   if (firstSpeak) firstSpeak.click();
