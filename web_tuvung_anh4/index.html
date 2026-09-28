@@ -313,6 +313,11 @@ legend{
 .res-q{font-size:14px;color:var(--ink-soft)}
 .res-a{font-family:var(--serif);font-size:19px;font-weight:700;margin-top:2px;color:var(--green)}
 .res-sum{margin:14px 0 0;font-size:14px;color:var(--ink-soft)}
+.res-help{
+  display:inline-block;font-size:11px;color:var(--ink-faint);
+  border:1px solid var(--rule-strong);border-radius:4px;
+  padding:1px 6px;margin-left:7px;white-space:nowrap;
+}
 
 .score{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap}
 .score .big{font-family:var(--serif);font-size:38px;font-weight:700;color:var(--blue);line-height:1}
@@ -492,6 +497,7 @@ legend{
       <fieldset>
         <legend>Mỗi lượt bao nhiêu từ</legend>
         <div class="opt-row" id="dLens">
+          <button class="chip" type="button" data-dl="5" aria-pressed="false">5 từ</button>
           <button class="chip" type="button" data-dl="10" aria-pressed="true">10 từ</button>
           <button class="chip" type="button" data-dl="20" aria-pressed="false">20 từ</button>
           <button class="chip" type="button" data-dl="0" aria-pressed="false">Tất cả</button>
@@ -618,6 +624,7 @@ legend{
       <fieldset>
         <legend>Bài kiểm tra mấy câu</legend>
         <div class="opt-row" id="tLens">
+          <button class="chip" type="button" data-tl="5" aria-pressed="false">5 câu</button>
           <button class="chip" type="button" data-tl="10" aria-pressed="true">10 câu</button>
           <button class="chip" type="button" data-tl="20" aria-pressed="false">20 câu</button>
           <button class="chip" type="button" data-tl="0" aria-pressed="false">Tất cả</button>
@@ -641,6 +648,11 @@ legend{
 
       <p class="q-type">Viết từ tiếng Anh có nghĩa là</p>
       <p class="t-mean" id="tMean"></p>
+
+      <div class="hints">
+        <button class="chip" type="button" id="tHintIpa">🔤 Xem phiên âm</button>
+      </div>
+      <p class="hint-out mono" id="tIpa" hidden></p>
 
       <form id="tForm" autocomplete="off">
         <input id="tAnswer" type="text" placeholder="Gõ từ tiếng Anh…"
@@ -1766,7 +1778,7 @@ function advFinish(){
 $("tabTest").addEventListener("click", function(){ showTab("test"); });
 
 var tUnit = "all", tLen = 10;
-var tQ = [], tI = 0, tTyped = [];
+var tQ = [], tI = 0, tTyped = [], tHinted = [];
 
 /* Bỏ ghi chú chính tả / phát âm trong ngoặc vì chúng mách đáp án
    ("nhà văn (w câm)" là cho không). Nhưng GIỮ các ngoặc còn lại, vì có chỗ
@@ -1821,7 +1833,7 @@ function tStart(pool){
     toast("Chưa có từ nào hợp với lựa chọn này. Thử bỏ dấu tích hoặc chọn unit khác nhé.");
     return;
   }
-  tQ = pool.slice(); tI = 0; tTyped = [];
+  tQ = pool.slice(); tI = 0; tTyped = []; tHinted = [];
   $("tSetup").hidden = true; $("tResult").hidden = true; $("tCard").hidden = false;
   tShow();
 }
@@ -1831,6 +1843,7 @@ function tShow(){
   $("tPos").textContent = "Câu " + (tI + 1) + " / " + tQ.length;
   $("tFill").style.width = (tI / tQ.length * 100) + "%";
   $("tMean").textContent = testPrompt(w[4]);
+  $("tIpa").hidden = true;
   $("tAnswer").value = "";
   $("tNext").textContent = (tI + 1 >= tQ.length) ? "Nộp bài →" : "Câu tiếp theo →";
   $("tAnswer").focus();
@@ -1843,6 +1856,15 @@ $("tForm").addEventListener("submit", function(e){
   if (tI >= tQ.length){ tFinish(); return; }
   tShow();
 });
+/* Xem phiên âm là hỗ trợ, KHÔNG bị trừ điểm. Nhưng bảng kết quả có ghi lại
+   câu nào đã dùng, để biết chỗ nào còn chưa thuộc chắc. */
+$("tHintIpa").addEventListener("click", function(){
+  tHinted[tI] = true;
+  $("tIpa").textContent = "Phiên âm: " + DATA[tQ[tI]][2];
+  $("tIpa").hidden = false;
+  $("tAnswer").focus();
+});
+
 $("tStart").addEventListener("click", function(){ tStart(null); });
 $("tQuit").addEventListener("click", function(){ tFinish(); });
 
@@ -1875,7 +1897,7 @@ function tFinish(){
     return;
   }
 
-  var right = 0, wrongIdx = [], rows = "";
+  var right = 0, wrongIdx = [], rows = "", helped = 0;
   for (var k = 0; k < n; k++){
     var qi = tQ[k], w = DATA[qi];
     var typed = tidy(tTyped[k] || ""), correct = tidy(w[1]);
@@ -1888,7 +1910,10 @@ function tFinish(){
     rows += '<li class="' + (good ? "ok" : "no") + '">'
       + '<span class="res-n">' + (k + 1) + '</span>'
       + '<div>'
-      + '<div class="res-q">' + escHtml(testPrompt(w[4])) + '</div>';
+      + '<div class="res-q">' + escHtml(testPrompt(w[4]))
+      + (tHinted[k] ? '<span class="res-help">có xem phiên âm</span>' : '')
+      + '</div>';
+    if (tHinted[k]) helped++;
 
     if (good){
       rows += '<div class="res-a">' + escHtml(w[1]) + '</div>';
@@ -1915,6 +1940,7 @@ function tFinish(){
     + '<span class="cap">câu đúng' + (wrong ? ' — ' + wrong + ' câu sai' : '') + '</span></div>'
     + '<p class="res-sum">Đúng ' + pct + '%. '
     + (wrong ? 'Xem chi tiết bên dưới để biết sai ở chữ nào.' : 'Không sai câu nào. Giỏi lắm!')
+    + (helped ? ' Có xem phiên âm ở ' + helped + ' câu — mấy từ đó nên luyện thêm.' : '')
     + '</p>'
     + '<ol class="res-list">' + rows + '</ol>'
     + '<div class="btn-row" style="margin-top:18px">'

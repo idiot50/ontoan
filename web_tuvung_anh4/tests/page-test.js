@@ -268,8 +268,11 @@ window.__RUN_TEST__ = (async () => {
   ok('mở được màn Kiểm tra', !$('view-test').hidden);
   ok('màn Kiểm tra có đủ lựa chọn unit', document.querySelectorAll('#tUnits [data-tu]').length >= 10,
      document.querySelectorAll('#tUnits [data-tu]').length);
-  ok('màn Kiểm tra có lựa chọn số câu', document.querySelectorAll('#tLens [data-tl]').length === 3,
+  ok('màn Kiểm tra có 4 mức số câu (5/10/20/tất cả)', document.querySelectorAll('#tLens [data-tl]').length === 4,
      document.querySelectorAll('#tLens [data-tl]').length);
+  ok('có mức 5 câu ở màn Kiểm tra', !!document.querySelector('#tLens [data-tl="5"]'));
+  ok('có mức 5 từ ở màn Nghe – Viết', !!document.querySelector('#dLens [data-dl="5"]'));
+  ok('màn Kiểm tra có nút xem phiên âm', !!$('tHintIpa'));
 
   $('tStart').click();
   await sleep(50);
@@ -282,6 +285,12 @@ window.__RUN_TEST__ = (async () => {
   let gradedEarly = false;
   for (let k = 0; k < 10; k++) {
     const w = DATA[tQ[tI]];
+    if (k === 0) {
+      $('tHintIpa').click();
+      await sleep(25);
+      ok('bấm xem phiên âm thì hiện phiên âm', !$('tIpa').hidden && ($('tIpa').textContent || '').indexOf(w[2]) >= 0,
+         ($('tIpa').textContent || '').slice(0, 45));
+    }
     $('tAnswer').value = (k === 0) ? (w[1] + 'zz') : w[1];
     $('tNext').click();
     await sleep(30);
@@ -300,6 +309,13 @@ window.__RUN_TEST__ = (async () => {
   ok('câu sai chỉ rõ sai ở chữ nào', $('tResult').querySelectorAll('.res-list li.no .diff b').length > 0,
      $('tResult').querySelectorAll('.res-list li.no .diff b').length);
   ok('có nút kiểm tra lại câu sai', !!document.getElementById('tRetry'));
+  ok('bảng kết quả đánh dấu câu đã xem phiên âm',
+     $('tResult').querySelectorAll('.res-help').length === 1,
+     $('tResult').querySelectorAll('.res-help').length);
+  ok('phần tổng hợp có nhắc số câu dùng hỗ trợ',
+     ($('tResult').textContent || '').indexOf('xem phiên âm ở 1 câu') >= 0,
+     ($('tResult').textContent || '').slice(0, 130));
+  ok('xem phiên âm KHÔNG bị trừ điểm', ($('tResult').textContent || '').indexOf('9 / 10') >= 0);
 
   /* Ba mục gộp giữ nguyên dấu phẩy đúng như bộ thẻ gốc của lớp. */
   const gop = ['over, above', 'around, round', 'towards, to, in the direction of'];
