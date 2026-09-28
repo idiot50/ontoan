@@ -285,6 +285,35 @@ legend{
 .vnote b{color:var(--ink)}
 
 /* ----- bảng kết quả cuối lượt ----- */
+.t-mean{
+  font-size:clamp(20px,5vw,26px);font-weight:600;line-height:1.3;
+  margin:4px 0 0;color:var(--ink);
+}
+.t-hint{margin:11px 0 0;font-size:13px;color:var(--ink-faint)}
+#tForm{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+#tAnswer{
+  flex:1 1 190px;min-width:0;font-family:var(--serif);font-size:22px;
+  padding:12px 14px;border:2px solid var(--rule-strong);border-radius:10px;
+  background:var(--surface);color:var(--ink);
+}
+#tAnswer:focus{border-color:var(--blue);outline:none}
+
+/* Bảng chi tiết từng câu sau khi nộp bài */
+.res-list{list-style:none;margin:18px 0 0;padding:0}
+.res-list li{
+  padding:11px 0;border-bottom:1px solid var(--rule);
+  display:grid;grid-template-columns:1.9rem minmax(0,1fr);column-gap:10px;align-items:start;
+}
+.res-n{
+  font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums;
+  color:var(--ink-faint);padding-top:4px;text-align:right;
+}
+.res-list li.ok .res-n{color:var(--green);font-weight:700}
+.res-list li.no .res-n{color:var(--red);font-weight:700}
+.res-q{font-size:14px;color:var(--ink-soft)}
+.res-a{font-family:var(--serif);font-size:19px;font-weight:700;margin-top:2px;color:var(--green)}
+.res-sum{margin:14px 0 0;font-size:14px;color:var(--ink-soft)}
+
 .score{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap}
 .score .big{font-family:var(--serif);font-size:38px;font-weight:700;color:var(--blue);line-height:1}
 .score .cap{font-size:14px;color:var(--ink-soft)}
@@ -332,6 +361,7 @@ legend{
 .opt.wrong{border-color:var(--red);background:#fdeeec}
 
 @media (max-width:460px){
+  .tab{font-size:12.5px;padding:10px 6px;gap:4px}
   li.row{grid-template-columns:1.7rem minmax(0,1fr) auto;column-gap:8px}
   .en{font-size:19px}
   .home-link{margin-left:0}
@@ -372,6 +402,9 @@ legend{
     </button>
     <button class="tab" type="button" id="tabAdv" role="tab" aria-selected="false" aria-controls="view-adv">
       <span aria-hidden="true">🎯</span><span>Trạng từ</span>
+    </button>
+    <button class="tab" type="button" id="tabTest" role="tab" aria-selected="false" aria-controls="view-test">
+      <span aria-hidden="true">📝</span><span>Kiểm tra</span>
     </button>
   </nav>
 
@@ -552,6 +585,73 @@ legend{
     </div>
 
     <div class="box" id="advSummary" hidden></div>
+  </section>
+
+  <section id="view-test" role="tabpanel" aria-labelledby="tabTest" hidden>
+
+    <div class="box" id="tSetup">
+      <h2>Làm bài kiểm tra</h2>
+      <p class="desc">Máy hiện <b>nghĩa tiếng Việt</b>, em gõ từ tiếng Anh tương ứng. Không gợi ý, không chấm từng câu — <b>làm hết bài mới biết điểm</b>, rồi xem chi tiết câu nào sai và sai ở chữ nào.</p>
+
+      <fieldset>
+        <legend>Kiểm tra unit nào</legend>
+        <div class="opt-row" id="tUnits">
+<button class="chip" type="button" data-tu="all" aria-pressed="true">Tất cả</button>
+          <button class="chip" type="button" data-tu="1" aria-pressed="false">U1</button>
+          <button class="chip" type="button" data-tu="2" aria-pressed="false">U2</button>
+          <button class="chip" type="button" data-tu="3" aria-pressed="false">U3</button>
+          <button class="chip" type="button" data-tu="4" aria-pressed="false">U4</button>
+          <button class="chip" type="button" data-tu="5" aria-pressed="false">U5</button>
+          <button class="chip" type="button" data-tu="6" aria-pressed="false">U6</button>
+          <button class="chip" type="button" data-tu="7" aria-pressed="false">U7</button>
+          <button class="chip" type="button" data-tu="7.1" aria-pressed="false" title="Unit 7 phần 1 — bộ thẻ của lớp (15 từ)">U7·1</button>
+          <button class="chip" type="button" data-tu="7.2" aria-pressed="false" title="Unit 7 phần 2 — trọng tâm ngữ pháp Present Simple (41 mục)">U7·2</button>
+          <button class="chip" type="button" data-tu="8" aria-pressed="false" title="Cả Unit 8 (30 mục)">U8</button>
+          <button class="chip" type="button" data-tu="8.1" aria-pressed="false" title="Unit 8 phần 1 — New Round Up 3, Present Continuous (17 mục)">U8·1</button>
+          <button class="chip" type="button" data-tu="8.3" aria-pressed="false" title="Unit 8 phần 3 — bộ thẻ lớp E4.1, My favourite subjects (13 mục)">U8·3</button>
+          <button class="chip" type="button" data-tu="9" aria-pressed="false" title="Cả Unit 9 (37 mục)">U9</button>
+          <button class="chip" type="button" data-tu="9.1" aria-pressed="false" title="Unit 9 phần 1 — giới từ chỉ vị trí và chuyển động (19 mục)">U9·1</button>
+          <button class="chip" type="button" data-tu="9.2" aria-pressed="false" title="Unit 9 phần 2 (18 mục)">U9·2</button>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Bài kiểm tra mấy câu</legend>
+        <div class="opt-row" id="tLens">
+          <button class="chip" type="button" data-tl="10" aria-pressed="true">10 câu</button>
+          <button class="chip" type="button" data-tl="20" aria-pressed="false">20 câu</button>
+          <button class="chip" type="button" data-tl="0" aria-pressed="false">Tất cả</button>
+        </div>
+      </fieldset>
+
+      <label class="check-line" for="tOnlyWrong">
+        <input type="checkbox" id="tOnlyWrong">
+        <span>Chỉ kiểm tra những từ em từng viết sai <span id="tWrongCount"></span></span>
+      </label>
+
+      <button class="btn" type="button" id="tStart">Bắt đầu làm bài</button>
+    </div>
+
+    <div class="box" id="tCard" hidden>
+      <div class="drill-top">
+        <span class="drill-pos" id="tPos">Câu 1 / 10</span>
+        <div class="drill-track"><i id="tFill"></i></div>
+        <button class="chip" type="button" id="tQuit">Dừng</button>
+      </div>
+
+      <p class="q-type">Viết từ tiếng Anh có nghĩa là</p>
+      <p class="t-mean" id="tMean"></p>
+
+      <form id="tForm" autocomplete="off">
+        <input id="tAnswer" type="text" placeholder="Gõ từ tiếng Anh…"
+               autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+               aria-label="Gõ từ tiếng Anh">
+        <button class="btn" type="submit" id="tNext">Câu tiếp theo →</button>
+      </form>
+      <p class="t-hint">Chưa nhớ ra thì để trống rồi sang câu sau — cuối bài vẫn xem được đáp án.</p>
+    </div>
+
+    <div class="box" id="tResult" hidden></div>
   </section>
 
   <footer>
@@ -1143,14 +1243,16 @@ var planned=0, cleanFirstTry=0, needWork={};
 
 /* ---- chuyển màn ---- */
 var elTabAdv = $("tabAdv"), viewAdv = $("view-adv");
+var elTabTest = $("tabTest"), viewTest = $("view-test");
 function showTab(which){
-  var tabs = {tra:[elTabTra,viewTra], viet:[elTabViet,viewViet], adv:[elTabAdv,viewAdv]};
+  var tabs = {tra:[elTabTra,viewTra], viet:[elTabViet,viewViet], adv:[elTabAdv,viewAdv], test:[elTabTest,viewTest]};
   for(var k in tabs){
     var on = (k===which);
     tabs[k][0].setAttribute("aria-selected", on?"true":"false");
     tabs[k][1].hidden = !on;
   }
   if(which==="viet") refreshWrongCount();
+  if(which==="test") tRefreshWrong();
 }
 elTabTra.addEventListener("click",function(){showTab("tra");});
 elTabViet.addEventListener("click",function(){showTab("viet");});
@@ -1655,6 +1757,175 @@ function advFinish(){
   $("advNew").addEventListener("click",function(){ advStart(null); });
   $("advBack").addEventListener("click",function(){ showTab("tra"); });
 }
+
+/* =======================================================================
+   MÀN "KIỂM TRA": hiện nghĩa tiếng Việt, em gõ từ tiếng Anh.
+   Khác màn Nghe - Viết ở chỗ: không gợi ý, KHÔNG chấm từng câu. Làm hết bài
+   mới chấm, rồi liệt kê từng câu — câu sai chỉ rõ sai ở chữ nào.
+   ======================================================================= */
+$("tabTest").addEventListener("click", function(){ showTab("test"); });
+
+var tUnit = "all", tLen = 10;
+var tQ = [], tI = 0, tTyped = [];
+
+/* Bỏ ghi chú chính tả / phát âm trong ngoặc vì chúng mách đáp án
+   ("nhà văn (w câm)" là cho không). Nhưng GIỮ các ngoặc còn lại, vì có chỗ
+   chúng mới phân biệt được nghĩa: usually và frequently đều là "thường
+   xuyên", chỉ khác nhau ở mức phần trăm ghi trong ngoặc. */
+function testPrompt(t){
+  return String(t).replace(/\(([^)]*)\)/g, function(mm, inner){
+    return /câm|đọc là|ngôi 3|\//.test(inner) ? "" : mm;
+  }).replace(/\s+/g, " ").replace(/\s+,/g, ",").trim();
+}
+
+function tRefreshWrong(){
+  var n = 0;
+  for (var k in stats){ if (stats[k] && stats[k].w) n++; }
+  $("tWrongCount").textContent = n ? "(" + n + " từ)" : "(chưa có từ nào)";
+  $("tOnlyWrong").disabled = n === 0;
+}
+
+$("tUnits").addEventListener("click", function(e){
+  var b = e.target.closest("button"); if (!b) return;
+  tUnit = b.dataset.tu;
+  var all = this.querySelectorAll("[data-tu]");
+  for (var i = 0; i < all.length; i++){
+    all[i].setAttribute("aria-pressed", all[i].dataset.tu === tUnit ? "true" : "false");
+  }
+});
+$("tLens").addEventListener("click", function(e){
+  var b = e.target.closest("button"); if (!b) return;
+  tLen = parseInt(b.dataset.tl, 10);
+  var all = this.querySelectorAll("[data-tl]");
+  for (var i = 0; i < all.length; i++){
+    all[i].setAttribute("aria-pressed", parseInt(all[i].dataset.tl, 10) === tLen ? "true" : "false");
+  }
+});
+
+function tStart(pool){
+  if (!pool){
+    pool = [];
+    var onlyWrong = $("tOnlyWrong").checked;
+    for (var i = 0; i < DATA.length; i++){
+      if (!unitOk(DATA[i], tUnit)) continue;
+      if (onlyWrong && !everWrong(i)) continue;
+      pool.push(i);
+    }
+    for (var j = pool.length - 1; j > 0; j--){
+      var r = Math.floor(Math.random() * (j + 1)), t = pool[j];
+      pool[j] = pool[r]; pool[r] = t;
+    }
+    if (tLen > 0) pool = pool.slice(0, tLen);
+  }
+  if (!pool.length){
+    toast("Chưa có từ nào hợp với lựa chọn này. Thử bỏ dấu tích hoặc chọn unit khác nhé.");
+    return;
+  }
+  tQ = pool.slice(); tI = 0; tTyped = [];
+  $("tSetup").hidden = true; $("tResult").hidden = true; $("tCard").hidden = false;
+  tShow();
+}
+
+function tShow(){
+  var w = DATA[tQ[tI]];
+  $("tPos").textContent = "Câu " + (tI + 1) + " / " + tQ.length;
+  $("tFill").style.width = (tI / tQ.length * 100) + "%";
+  $("tMean").textContent = testPrompt(w[4]);
+  $("tAnswer").value = "";
+  $("tNext").textContent = (tI + 1 >= tQ.length) ? "Nộp bài →" : "Câu tiếp theo →";
+  $("tAnswer").focus();
+}
+
+$("tForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  tTyped[tI] = $("tAnswer").value;
+  tI++;
+  if (tI >= tQ.length){ tFinish(); return; }
+  tShow();
+});
+$("tStart").addEventListener("click", function(){ tStart(null); });
+$("tQuit").addEventListener("click", function(){ tFinish(); });
+
+function tButtons(wrongIdx){
+  var el;
+  if (wrongIdx && wrongIdx.length){
+    el = $("tRetry");
+    if (el) el.addEventListener("click", function(){ tStart(wrongIdx); });
+  }
+  el = $("tAgainNew");
+  if (el) el.addEventListener("click", function(){
+    $("tResult").hidden = true; $("tSetup").hidden = false; tRefreshWrong();
+  });
+  el = $("tBack");
+  if (el) el.addEventListener("click", function(){ showTab("tra"); });
+}
+
+function tFinish(){
+  $("tCard").hidden = true; $("tSetup").hidden = true; $("tResult").hidden = false;
+
+  /* Bấm Dừng giữa chừng thì chỉ chấm những câu đã làm. */
+  var n = Math.min(tI, tQ.length);
+  if (n === 0){
+    $("tResult").innerHTML = '<h2>Chưa làm câu nào</h2>'
+      + '<p class="desc" style="margin:10px 0 16px">Bấm Làm bài mới để bắt đầu lại nhé.</p>'
+      + '<div class="btn-row">'
+      + '<button class="btn" type="button" id="tAgainNew">Làm bài mới</button>'
+      + '<button class="btn ghost" type="button" id="tBack">Về tra từ</button></div>';
+    tButtons(null);
+    return;
+  }
+
+  var right = 0, wrongIdx = [], rows = "";
+  for (var k = 0; k < n; k++){
+    var qi = tQ[k], w = DATA[qi];
+    var typed = tidy(tTyped[k] || ""), correct = tidy(w[1]);
+    var good = typed.length > 0 && typed.toLowerCase() === correct.toLowerCase();
+
+    stats[qi] = stats[qi] || {w: 0, r: 0};
+    if (good){ right++; stats[qi].r++; }
+    else { stats[qi].w++; wrongIdx.push(qi); }
+
+    rows += '<li class="' + (good ? "ok" : "no") + '">'
+      + '<span class="res-n">' + (k + 1) + '</span>'
+      + '<div>'
+      + '<div class="res-q">' + escHtml(testPrompt(w[4])) + '</div>';
+
+    if (good){
+      rows += '<div class="res-a">' + escHtml(w[1]) + '</div>';
+    } else if (!typed){
+      rows += '<div class="diff-line"><span class="diff-label">Em viết</span>'
+        + '<span class="diff"><b class="bad">(bỏ trống)</b></span></div>'
+        + '<div class="diff-line"><span class="diff-label">Đúng là</span>'
+        + '<span class="diff"><b class="miss">' + escHtml(correct) + '</b></span></div>';
+    } else {
+      var ops = align(typed.toLowerCase(), correct.toLowerCase());
+      rows += '<div class="diff-line"><span class="diff-label">Em viết</span>'
+        + '<span class="diff">' + lineTyped(ops, typed) + '</span></div>'
+        + '<div class="diff-line"><span class="diff-label">Đúng là</span>'
+        + '<span class="diff">' + lineRight(ops, correct) + '</span></div>';
+    }
+    rows += '</div></li>';
+  }
+  saveStats();
+
+  var wrong = n - right;
+  var pct = Math.round(right / n * 100);
+  $("tResult").innerHTML = '<h2>Kết quả bài kiểm tra</h2>'
+    + '<div class="score"><span class="big">' + right + ' / ' + n + '</span>'
+    + '<span class="cap">câu đúng' + (wrong ? ' — ' + wrong + ' câu sai' : '') + '</span></div>'
+    + '<p class="res-sum">Đúng ' + pct + '%. '
+    + (wrong ? 'Xem chi tiết bên dưới để biết sai ở chữ nào.' : 'Không sai câu nào. Giỏi lắm!')
+    + '</p>'
+    + '<ol class="res-list">' + rows + '</ol>'
+    + '<div class="btn-row" style="margin-top:18px">'
+    + (wrongIdx.length ? '<button class="btn" type="button" id="tRetry">Kiểm tra lại ' + wrongIdx.length + ' câu sai</button>' : '')
+    + '<button class="btn ghost" type="button" id="tAgainNew">Làm bài mới</button>'
+    + '<button class="btn ghost" type="button" id="tBack">Về tra từ</button></div>';
+  tButtons(wrongIdx);
+}
+
+tRefreshWrong();
+
 </script>
 </body>
 </html>

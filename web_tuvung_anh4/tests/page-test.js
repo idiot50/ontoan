@@ -263,6 +263,44 @@ window.__RUN_TEST__ = (async () => {
   }
   ok('18 phương án sai đều có lời giải riêng + tô màu đúng/sai', whyOk === 18, whyBad.join(', '));
 
+  /* ===================== MÀN KIỂM TRA ===================== */
+  $('tabTest').click();
+  ok('mở được màn Kiểm tra', !$('view-test').hidden);
+  ok('màn Kiểm tra có đủ lựa chọn unit', document.querySelectorAll('#tUnits [data-tu]').length >= 10,
+     document.querySelectorAll('#tUnits [data-tu]').length);
+  ok('màn Kiểm tra có lựa chọn số câu', document.querySelectorAll('#tLens [data-tl]').length === 3,
+     document.querySelectorAll('#tLens [data-tl]').length);
+
+  $('tStart').click();
+  await sleep(50);
+  ok('bắt đầu thì hiện nghĩa tiếng Việt', ($('tMean').textContent || '').length > 0, $('tMean').textContent);
+  ok('đề bài KHÔNG lộ từ tiếng Anh',
+     ($('tMean').textContent || '').toLowerCase().indexOf(String(DATA[tQ[tI]][1]).toLowerCase()) < 0,
+     $('tMean').textContent);
+
+  /* Làm 10 câu: cố tình sai câu đầu, đúng 9 câu sau. */
+  let gradedEarly = false;
+  for (let k = 0; k < 10; k++) {
+    const w = DATA[tQ[tI]];
+    $('tAnswer').value = (k === 0) ? (w[1] + 'zz') : w[1];
+    $('tNext').click();
+    await sleep(30);
+    if (k < 9 && !$('tResult').hidden) gradedEarly = true;
+  }
+  await sleep(70);
+  ok('không chấm từng câu, chỉ chấm khi nộp bài', !gradedEarly);
+  ok('nộp bài xong hiện bảng kết quả', !$('tResult').hidden);
+
+  const rtxt = $('tResult').textContent || '';
+  ok('tổng hợp đúng sai: 9 / 10', rtxt.indexOf('9 / 10') >= 0, rtxt.slice(0, 50));
+  ok('liệt kê chi tiết đủ 10 câu', $('tResult').querySelectorAll('.res-list li').length === 10,
+     $('tResult').querySelectorAll('.res-list li').length);
+  ok('đánh dấu đúng 1 câu sai', $('tResult').querySelectorAll('.res-list li.no').length === 1,
+     $('tResult').querySelectorAll('.res-list li.no').length);
+  ok('câu sai chỉ rõ sai ở chữ nào', $('tResult').querySelectorAll('.res-list li.no .diff b').length > 0,
+     $('tResult').querySelectorAll('.res-list li.no .diff b').length);
+  ok('có nút kiểm tra lại câu sai', !!document.getElementById('tRetry'));
+
   /* Ba mục gộp giữ nguyên dấu phẩy đúng như bộ thẻ gốc của lớp. */
   const gop = ['over, above', 'around, round', 'towards, to, in the direction of'];
   ok('ba mục gộp giữ nguyên một dòng như bản gốc',
