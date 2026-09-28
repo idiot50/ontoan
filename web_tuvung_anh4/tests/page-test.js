@@ -19,7 +19,7 @@ window.__RUN_TEST__ = (async () => {
 
   const firstSpeak = document.querySelector('#list .speak');
   ok('màn Tra từ có nút loa', !!firstSpeak);
-  ok('danh sách render đủ 228 dòng', document.querySelectorAll('#list li.row').length === 228,
+  ok('danh sách render đủ 225 dòng', document.querySelectorAll('#list li.row').length === 225,
      document.querySelectorAll('#list li.row').length);
   ok('Unit 8 phần 1 có 17 mục', DATA.filter(r => String(r[0]) === '8.1').length === 17,
      DATA.filter(r => String(r[0]) === '8.1').length);
@@ -31,13 +31,13 @@ window.__RUN_TEST__ = (async () => {
      DATA.filter(r => unitOk(r,'8')).length);
   ok('lọc U8·3 chỉ lấy phần 3', DATA.filter(r => unitOk(r,'8.3')).length === 13,
      DATA.filter(r => unitOk(r,'8.3')).length);
-  ok('Unit 9 phần 1 có 22 mục', DATA.filter(r => String(r[0]) === '9.1').length === 22,
+  ok('Unit 9 phần 1 có 19 mục', DATA.filter(r => String(r[0]) === '9.1').length === 19,
      DATA.filter(r => String(r[0]) === '9.1').length);
   ok('Unit 9 phần 2 có 18 mục', DATA.filter(r => String(r[0]) === '9.2').length === 18,
      DATA.filter(r => String(r[0]) === '9.2').length);
   ok('có đủ nút lọc U9, U9·1, U9·2 ở cả hai màn',
      ['9','9.1','9.2'].every(v => document.querySelector('[data-unit="'+v+'"]') && document.querySelector('[data-du="'+v+'"]')));
-  ok('lọc U9 gộp cả hai phần', DATA.filter(r => unitOk(r,'9')).length === 40,
+  ok('lọc U9 gộp cả hai phần', DATA.filter(r => unitOk(r,'9')).length === 37,
      DATA.filter(r => unitOk(r,'9')).length);
 
   let n0 = spoken.length;
@@ -262,6 +262,12 @@ window.__RUN_TEST__ = (async () => {
     await sleep(15);
   }
   ok('18 phương án sai đều có lời giải riêng + tô màu đúng/sai', whyOk === 18, whyBad.join(', '));
+
+  /* Ba mục gộp giữ nguyên dấu phẩy đúng như bộ thẻ gốc của lớp. */
+  const gop = ['over, above', 'around, round', 'towards, to, in the direction of'];
+  ok('ba mục gộp giữ nguyên một dòng như bản gốc',
+     gop.every(g => DATA.some(r => r[1] === g)),
+     gop.filter(g => !DATA.some(r => r[1] === g)).join(' | ') || 'đủ cả ba');
 
   ok('không có lỗi JavaScript nào', errs.length === 0, errs.join(' | '));
   return log;

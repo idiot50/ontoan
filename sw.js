@@ -19,8 +19,9 @@
    v11 (2026-09-22): màn Nghe - Viết chọn được ngôn ngữ đọc.
    v12 (2026-09-26): thêm Unit 8 phần 3 -> 188 từ.
    v13 (2026-09-27): màn Tra từ có thêm nút chép từ.
-   v14 (2026-09-28): thêm Unit 9 (hai phần) -> 228 từ. */
-const CACHE = 'toanvui-hub-v14';
+   v14 (2026-09-28): thêm Unit 9 (hai phần).
+   v15 (2026-09-28): Unit 9 giữ nguyên mục gộp như bản gốc -> 225 từ. */
+const CACHE = 'toanvui-hub-v15';
 
 // App shell precache (đường dẫn TƯƠNG ĐỐI theo scope của SW).
 const SHELL = [
