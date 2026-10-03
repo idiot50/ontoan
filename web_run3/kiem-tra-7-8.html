@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kiểm tra Unit 7–8</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,700;0,800;1,400&family=Literata:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: một cột đọc 760px — đề bài → nộp → bảng điểm → chữa từng câu; hướng dẫn "3 bước thám tử" ở đầu (thu gọn) và cuối (mở). */
+:root{
+  --bg:#F5F7F3; --surface:#FFFFFF; --ink:#203028; --muted:#5B6B62;
+  --line:#DCE4DD; --accent:#2F7D4F; --accent-ink:#FFFFFF; --blue:#2C6E9E;
+  --ok:#256B41; --ok-bg:#E5F2E8; --bad:#B3402F; --bad-bg:#F9E7E4;
+  --warn:#9A6B14; --warn-bg:#F7EFDC; --chip:#EAF0EA; --en:#274B63;
+  --simple:#2C6E9E; --cont:#9A5B14;
+  --f-body:"Be Vietnam Pro",system-ui,"Segoe UI",Arial,sans-serif;
+  --f-en:"Literata",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141917; --surface:#1D2420; --ink:#E7EDE8; --muted:#9DAAA2;
+    --line:#2E3833; --accent:#5FB57F; --accent-ink:#102016; --blue:#7DB8DE;
+    --ok:#8AD3A4; --ok-bg:#1E3327; --bad:#E5907F; --bad-bg:#3A211D;
+    --warn:#D9A84E; --warn-bg:#332A18; --chip:#242D28; --en:#A9C8DC;
+    --simple:#7DB8DE; --cont:#E0AE68; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141917; --surface:#1D2420; --ink:#E7EDE8; --muted:#9DAAA2;
+  --line:#2E3833; --accent:#5FB57F; --accent-ink:#102016; --blue:#7DB8DE;
+  --ok:#8AD3A4; --ok-bg:#1E3327; --bad:#E5907F; --bad-bg:#3A211D;
+  --warn:#D9A84E; --warn-bg:#332A18; --chip:#242D28; --en:#A9C8DC;
+  --simple:#7DB8DE; --cont:#E0AE68; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink); margin:0; font-family:var(--f-body); font-size:16px; line-height:1.6}
+.wrap{max-width:760px; margin:0 auto; padding-inline:16px; padding-block:28px 90px}
+.kicker{font-size:.76rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700}
+h1{font-size:1.65rem; font-weight:800; margin:.15em 0 .25em; line-height:1.25; text-wrap:balance}
+h2{font-size:1.25rem; font-weight:800; margin:1.8em 0 .5em; text-wrap:balance}
+h3{font-size:1.02rem; font-weight:700; margin:1.3em 0 .4em}
+p{margin:.45em 0}
+.sub{color:var(--muted); margin:0}
+.meta{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 4px}
+.pill{display:inline-flex; align-items:center; gap:6px; border:1px solid var(--line); background:var(--surface); border-radius:999px; padding:3px 12px; font-size:.84rem; color:var(--muted)}
+.pill b{color:var(--ink)}
+.en{font-family:var(--f-en); color:var(--en)}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px 20px}
+details.guide{margin:18px 0 8px}
+details.guide > summary{cursor:pointer; font-weight:700; list-style:none; display:flex; align-items:center; gap:10px}
+details.guide > summary::-webkit-details-marker{display:none}
+details.guide > summary::before{content:"▸"; color:var(--accent); transition:transform .15s}
+details.guide[open] > summary::before{transform:rotate(90deg)}
+details.guide > summary .hint{font-weight:400; color:var(--muted); font-size:.88rem}
+
+/* sticky progress */
+.bar{position:sticky; top:env(safe-area-inset-top,0px); z-index:5; background:var(--bg); padding-block:10px; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:12px; margin-top:18px}
+.track{flex:1; height:8px; background:var(--chip); border-radius:99px; overflow:hidden}
+.track > i{display:block; height:100%; width:0; background:var(--accent); transition:width .2s}
+.bar .count{font-variant-numeric:tabular-nums; font-size:.9rem; color:var(--muted); white-space:nowrap}
+
+/* questions */
+ol.qs{list-style:none; padding:0; margin:18px 0 0; display:grid; gap:14px}
+.q{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px 18px}
+.q.missing{border-color:var(--warn); box-shadow:0 0 0 2px var(--warn-bg)}
+.qhead{display:flex; gap:10px; align-items:baseline}
+.qnum{font-weight:800; color:var(--accent); font-variant-numeric:tabular-nums; min-width:1.8em}
+.stem{font-family:var(--f-en); font-size:1.08rem; color:var(--ink); min-width:0}
+.stem .gap{display:inline-block; min-width:3.2em; border-bottom:2px solid var(--muted); margin:0 2px}
+.stem .fill{font-weight:600; border-radius:5px; padding:0 4px}
+.stem .verb{color:var(--muted); font-family:var(--f-body); font-size:.9rem}
+.opts{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin:12px 0 0 2.6em}
+@media (max-width:520px){.opts{grid-template-columns:1fr; margin-left:0}}
+.opt{position:relative}
+.opt input{position:absolute; opacity:0; pointer-events:none}
+.opt label{display:flex; gap:10px; align-items:center; border:1.5px solid var(--line); border-radius:10px; padding:8px 12px; cursor:pointer; font-family:var(--f-en); font-size:1rem; min-height:44px}
+.opt label .k{font-family:var(--f-body); font-weight:700; font-size:.8rem; color:var(--muted); border:1px solid var(--line); border-radius:6px; width:1.7em; height:1.7em; display:grid; place-items:center; flex:none}
+.opt label:hover{border-color:var(--accent)}
+.opt input:checked + label{border-color:var(--accent); background:var(--ok-bg)}
+.opt input:checked + label .k{background:var(--accent); color:var(--accent-ink); border-color:var(--accent)}
+.opt input:focus-visible + label{outline:2px solid var(--blue); outline-offset:2px}
+
+.actions{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:22px}
+button.btn{font:inherit; font-weight:700; border-radius:10px; padding:11px 20px; cursor:pointer; border:1.5px solid var(--accent); background:var(--accent); color:var(--accent-ink)}
+button.btn.ghost{background:transparent; color:var(--accent)}
+button.btn:focus-visible{outline:2px solid var(--blue); outline-offset:2px}
+.warnbox{background:var(--warn-bg); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:10px 14px; flex-basis:100%}
+.warnbox a{color:var(--warn); font-weight:700}
+
+/* results */
+.score{display:grid; grid-template-columns:auto minmax(0,1fr); gap:6px 22px; align-items:center}
+.big{font-size:3rem; font-weight:800; line-height:1; font-variant-numeric:tabular-nums}
+.big small{font-size:1.2rem; color:var(--muted); font-weight:600}
+.verdict{font-weight:700}
+.verdict.good{color:var(--ok)} .verdict.mid{color:var(--warn)} .verdict.low{color:var(--bad)}
+.breakdown{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; margin-top:16px}
+.brow{border:1px solid var(--line); border-radius:10px; padding:10px 12px; background:var(--bg); min-width:0}
+.brow .lab{font-size:.85rem; color:var(--muted)}
+.brow .val{font-weight:700; font-variant-numeric:tabular-nums}
+.meter{height:6px; background:var(--chip); border-radius:99px; overflow:hidden; margin-top:6px}
+.meter > i{display:block; height:100%; border-radius:99px}
+.tag{display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; border-radius:6px; padding:1px 7px; border:1px solid currentColor}
+.tag.simple{color:var(--simple)} .tag.continuous{color:var(--cont)} .tag.mixed{color:var(--accent)}
+.filters{display:flex; gap:8px; flex-wrap:wrap; margin:6px 0 14px}
+.chipbtn{font:inherit; font-size:.88rem; border:1px solid var(--line); background:var(--surface); color:var(--ink); border-radius:999px; padding:6px 14px; cursor:pointer}
+.chipbtn[aria-pressed="true"]{background:var(--accent); color:var(--accent-ink); border-color:var(--accent); font-weight:700}
+
+.rv{border-left:4px solid var(--line)}
+.rv.right{border-left-color:var(--ok)} .rv.wrong{border-left-color:var(--bad)}
+.rv .status{margin-left:auto; font-weight:700; font-size:.85rem; white-space:nowrap}
+.rv.right .status{color:var(--ok)} .rv.wrong .status{color:var(--bad)}
+.rv .subj{font-size:.84rem; color:var(--muted); margin:6px 0 0 2.6em; display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+.clue{margin:10px 0 0 2.6em; background:var(--chip); border-radius:10px; padding:8px 12px; font-size:.93rem}
+.clue b{color:var(--accent)}
+ul.why{list-style:none; padding:0; margin:10px 0 0 2.6em; display:grid; gap:6px}
+@media (max-width:520px){.rv .subj,.clue,ul.why{margin-left:0}}
+ul.why li{display:grid; grid-template-columns:auto minmax(0,1fr); gap:10px; font-size:.93rem; padding:6px 10px; border-radius:8px}
+ul.why li .o{font-family:var(--f-en); font-weight:600; white-space:nowrap}
+ul.why li.is-correct{background:var(--ok-bg)}
+ul.why li.is-correct .o{color:var(--ok)}
+ul.why li.is-picked{background:var(--bad-bg)}
+ul.why li.is-picked .o{color:var(--bad); text-decoration:line-through}
+ul.why li .who{font-size:.75rem; font-weight:700; display:block; color:var(--muted)}
+ul.why li:not(.is-correct):not(.is-picked) .o{color:var(--muted)}
+
+/* guide */
+.steps{display:grid; gap:12px; counter-reset:s; margin-top:10px}
+.step{display:grid; grid-template-columns:2.4em minmax(0,1fr); gap:12px; align-items:start}
+.step .n{width:2.2em; height:2.2em; border-radius:50%; background:var(--accent); color:var(--accent-ink); display:grid; place-items:center; font-weight:800}
+.step h3{margin:.2em 0 .25em}
+.tblwrap{overflow-x:auto; margin:10px 0}
+table{border-collapse:collapse; width:100%; font-size:.94rem}
+th,td{border:1px solid var(--line); padding:7px 10px; text-align:left; vertical-align:top}
+th{background:var(--chip); font-weight:700}
+td .en, td.en{font-weight:600}
+.col-s{color:var(--simple); font-weight:700} .col-c{color:var(--cont); font-weight:700}
+.note{background:var(--warn-bg); border-radius:10px; padding:10px 14px; margin:12px 0}
+.example{border:1px dashed var(--line); border-radius:10px; padding:10px 14px; margin:12px 0}
+.example ol{margin:.3em 0; padding-left:1.3em}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+.back{display:inline-block;margin-bottom:14px;color:var(--accent);font-weight:700;text-decoration:none}
+.back:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="./">← Về Ngữ Pháp Vui 3</a>
+  <header>
+    <div class="kicker">New Round Up 3 · Unit 7–8</div>
+    <h1>Kiểm tra: Hiện tại đơn &amp; Hiện tại tiếp diễn</h1>
+    <p class="sub"><b>Hiện tại đơn</b> = việc thường làm, thói quen. <b>Hiện tại tiếp diễn</b> = việc đang làm ngay lúc này. Chọn 1 đáp án đúng cho mỗi câu. Làm hết rồi bấm <b>Nộp bài</b> để xem điểm và chữa từng câu.</p>
+    <div class="meta">
+      <span class="pill"><b>25</b> câu</span>
+      <span class="pill">khoảng <b>20</b> phút</span>
+      <span class="pill">mức <b>trung bình</b></span>
+      <span class="pill">không gợi ý khi làm</span>
+    </div>
+  </header>
+
+  <details class="guide card" id="guideTop">
+    <summary>Đọc cách làm trước khi bắt đầu <span class="hint">(1 phút)</span></summary>
+    <div class="guide-body"></div>
+  </details>
+
+  <section id="quiz">
+    <div class="bar" aria-hidden="false">
+      <div class="track"><i id="prog"></i></div>
+      <span class="count" id="count">0/25 câu</span>
+    </div>
+    <form id="form" novalidate>
+      <ol class="qs" id="qs"></ol>
+      <div class="actions">
+        <button type="submit" class="btn" id="submit">Nộp bài</button>
+        <div class="warnbox" id="warn" hidden></div>
+      </div>
+    </form>
+  </section>
+
+  <section id="result" hidden>
+    <h2 id="resultTop">Kết quả</h2>
+    <div class="card">
+      <div class="score">
+        <div class="big" id="big"></div>
+        <div>
+          <div class="verdict" id="verdict"></div>
+          <div class="sub" id="timeInfo"></div>
+        </div>
+      </div>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+
+    <h2>Chữa bài</h2>
+    <p class="sub">Mỗi câu ghi rõ <b>từ báo hiệu</b>, đáp án đúng, và vì sao từng phương án còn lại sai.</p>
+    <div class="filters" role="group" aria-label="Lọc câu">
+      <button type="button" class="chipbtn" data-f="all" aria-pressed="true">Tất cả</button>
+      <button type="button" class="chipbtn" data-f="wrong" aria-pressed="false">Chỉ câu sai</button>
+      <button type="button" class="chipbtn" data-f="simple" aria-pressed="false">Hiện tại đơn</button>
+      <button type="button" class="chipbtn" data-f="continuous" aria-pressed="false">Tiếp diễn</button>
+    </div>
+    <ol class="qs" id="review"></ol>
+
+    <h2>Cách làm loại bài này (giải thích cho bạn 10 tuổi)</h2>
+    <div class="card guide-body" id="guideEnd"></div>
+
+    <div class="actions">
+      <button type="button" class="btn" id="again">Làm lại (đổi thứ tự câu)</button>
+      <button type="button" class="btn ghost" id="toTop">Lên đầu trang</button>
+    </div>
+  </section>
+</div>
+
+<template id="guideTpl">
+  <p>Làm bài chia động từ giống như làm <b>thám tử</b>: tìm manh mối trong câu rồi mới chọn. Đừng chọn theo cảm giác "nghe quen quen". Mỗi câu, em đi đủ 4 bước:</p>
+  <div class="steps">
+    <div class="step"><span class="n">1</span><div>
+      <h3>Tìm từ báo hiệu → chọn thì</h3>
+      <div class="tblwrap"><table>
+        <tr><th class="col-s">Hiện tại ĐƠN: việc lặp lại, thói quen, sự thật</th><th class="col-c">Hiện tại TIẾP DIỄN: việc ĐANG xảy ra</th></tr>
+        <tr><td class="en">every day / every Saturday, usually, often, always, never, sometimes, on Fridays, How often…?</td><td class="en">now, right now, at the moment, Look!, Listen!, today (khác ngày thường)</td></tr>
+      </table></div>
+      <p><b>Vị trí của always / often / usually / never:</b> đứng <b>sau</b> am/is/are (<span class="en">She is never late.</span>) nhưng đứng <b>trước</b> động từ khác (<span class="en">She never walks to school.</span>).</p>
+      <p>Không có từ báo hiệu? Hãy tự hỏi: <i>"Việc này lúc nào cũng vậy, hay chỉ đang diễn ra lúc này?"</i> Ví dụ hỏi <span class="en">"Where's Dad?"</span> là hỏi bố đang ở đâu <b>bây giờ</b>.</p>
+    </div></div>
+    <div class="step"><span class="n">2</span><div>
+      <h3>Tìm chủ ngữ → xếp vào đội</h3>
+      <div class="tblwrap"><table>
+        <tr><th>Đội "1 người / 1 vật" (he, she, it)</th><th>Đội "I, you, we, they"</th></tr>
+        <tr>
+          <td><span class="en">he, she, it, Tom, my mum, the shop, our dog</span><br>Đặc biệt: <span class="en">water, milk</span> (không đếm được), <span class="en">everybody, somebody, nobody</span> → vẫn là đội 1 người!</td>
+          <td><span class="en">I, you, we, they, Sam and Jim, my friends</span><br>Đặc biệt: <span class="en">children, people</span> (không có -s nhưng là nhiều người), <span class="en">My sister and I</span> = we</td>
+        </tr>
+      </table></div>
+    </div></div>
+    <div class="step"><span class="n">3</span><div>
+      <h3>Lắp công thức, rồi soát chính tả</h3>
+      <div class="tblwrap"><table>
+        <tr><th></th><th class="col-s">Hiện tại đơn</th><th class="col-c">Hiện tại tiếp diễn</th></tr>
+        <tr><td>Khẳng định</td><td>I/you/we/they <span class="en">play</span><br>he/she/it <span class="en">plays</span></td><td>I <span class="en">am playing</span><br>he/she/it <span class="en">is playing</span><br>you/we/they <span class="en">are playing</span></td></tr>
+        <tr><td>Phủ định</td><td><span class="en">don't play</span> / <span class="en">doesn't play</span></td><td><span class="en">'m not / isn't / aren't playing</span></td></tr>
+        <tr><td>Câu hỏi</td><td><span class="en">Do you play…? / Does she play…?</span></td><td><span class="en">Are you playing…? / Is she playing…?</span></td></tr>
+      </table></div>
+      <div class="note"><b>Luật "chữ -s chỉ có 1":</b> khi đã có <span class="en">does / doesn't</span> thì động từ phía sau trở về nguyên mẫu: <span class="en">Does she <u>play</u>?</span> (không phải <s>plays</s>). Còn <span class="en">am/is/are</span> thì động từ sau luôn có <b>-ing</b>.</div>
+      <div class="tblwrap"><table>
+        <tr><th>Động từ "biến hình" với he/she/it</th><th>Thêm -ing</th></tr>
+        <tr><td><span class="en">watch → watches, wash → washes, go → goes, do → does</span> (-ch, -sh, -s, -x, -o thêm -es)<br><span class="en">study → studies, fly → flies</span> (trước y không phải a, e, o → đổi y thành i + es)<br><span class="en">play → plays</span> (trước y là a, e, o → chỉ thêm -s)<br><span class="en">have → has</span> (từ đặc biệt, phải học thuộc)</td>
+            <td><span class="en">make → making, write → writing</span> (e cuối không đọc → bỏ e)<br><span class="en">swim → swimming, sit → sitting, run → running</span> (từ ngắn, cuối là 1 nguyên âm + 1 phụ âm → viết phụ âm 2 lần)<br><span class="en">lie → lying, die → dying</span> (ie → y)</td></tr>
+      </table></div>
+      <p><b>Động từ "không thích -ing"</b> (chỉ cảm xúc, suy nghĩ, sở hữu): <span class="en">like, love, hate, want, know, need, have</span> (= có). Dù đang xảy ra vẫn dùng Hiện tại đơn: <span class="en">I know the answer.</span></p>
+    </div></div>
+    <div class="step"><span class="n">4</span><div>
+      <h3>Gạch từng phương án sai và nói lý do</h3>
+      <p>Mỗi phương án sai thường mắc đúng 1 trong 3 lỗi: <b>sai thì</b>, <b>sai am/is/are hoặc do/does</b>, hoặc <b>sai chính tả</b>. Gạch được 3 phương án sai thì phương án còn lại là đáp án. Cuối cùng đọc lại cả câu xem có xuôi không.</p>
+    </div></div>
+  </div>
+  <div class="example">
+    <b>Làm mẫu 1 câu:</b> <span class="en">Listen! The baby ___ in her room. (cry)</span> &nbsp;A. cries &nbsp;B. are crying &nbsp;C. is crying &nbsp;D. is criing
+    <ol>
+      <li>Có <span class="en">Listen!</span> → việc đang xảy ra → <b>tiếp diễn</b>. Gạch A (sai thì).</li>
+      <li>Chủ ngữ <span class="en">the baby</span> = 1 em bé = <span class="en">she</span> → đội he/she/it → <span class="en">is</span>. Gạch B (sai am/is/are).</li>
+      <li>cry + ing = <span class="en">crying</span> (giữ y khi thêm -ing). Gạch D (sai chính tả). Còn lại <b>C. is crying</b>. Xong!</li>
+    </ol>
+  </div>
+  <p><b>Mẹo bẫy:</b> đề hay cho 2 phương án <i>đúng thì nhưng sai chủ ngữ</i> (is/are) hoặc <i>đúng chủ ngữ nhưng sai chính tả</i> (studys, swiming). Chọn xong, đọc lại cả câu một lần để soát.</p>
+</template>
+
+<script>
+const DATA = {
+  "title": "Kiểm tra Unit 7–8: Present Simple & Present Continuous",
+  "source": "New Round Up 3 – Unit 7 (Present Simple), Unit 8 (Present Continuous); CD-ROM xml 7_1–7_4, 8_1–8_3",
+  "reviewed": "2026-10-03 – 2 subagent review (ngữ pháp/đáp án + độ phủ/lời giải thích), đã sửa theo góp ý",
+  "questions": [
+    {
+      "id": 1, "tense": "simple", "group": "sing", "subject": "My brother = he",
+      "q": "My brother ___ cartoons every Saturday morning. (watch)",
+      "options": ["watchs", "watches", "watch", "is watching"],
+      "answer": "watches",
+      "clue": "every Saturday morning → việc thường làm → Hiện tại đơn",
+      "explain": "Thói quen + chủ ngữ he → thêm đuôi. watch tận cùng -ch → thêm -es: watches.",
+      "why": {
+        "watchs": "Sai chính tả: từ tận cùng -ch phải thêm -es, không thêm -s.",
+        "watch": "My brother = 1 người (he) → động từ phải thêm đuôi, không để nguyên.",
+        "is watching": "\"every Saturday\" là việc lặp lại mỗi tuần, không phải đang xảy ra lúc này."
+      }
+    },
+    {
+      "id": 2, "tense": "continuous", "group": "plur", "subject": "The children = they (số nhiều đặc biệt, không có -s)",
+      "q": "Look! The children ___ in the garden. (play)",
+      "options": ["play", "plays", "are playing", "is playing"],
+      "answer": "are playing",
+      "clue": "Look! → việc đang làm → Hiện tại tiếp diễn",
+      "explain": "Look! báo hiệu đang xảy ra → am/is/are + V-ing. children = nhiều đứa trẻ = they → are playing.",
+      "why": {
+        "play": "Đây là thì việc thường làm, nhưng \"Look!\" báo hiệu việc đang xảy ra.",
+        "plays": "Sai 2 lần: sai thì, và children là nhiều người nên không thêm -s.",
+        "is playing": "Đúng thì nhưng sai am/is/are: children (những đứa trẻ) là nhiều người → are."
+      }
+    },
+    {
+      "id": 3, "tense": "simple", "group": "sing", "subject": "She",
+      "q": "She ___ to school by bus every day. (go)",
+      "options": ["gos", "goes", "go", "is going"],
+      "answer": "goes",
+      "clue": "every day → việc thường làm → Hiện tại đơn",
+      "explain": "Thói quen + she → thêm đuôi. Từ tận cùng bằng o thì thêm -es: goes.",
+      "why": {
+        "gos": "Từ tận cùng bằng o thì thêm -es: go → goes (giống do → does).",
+        "go": "Chủ ngữ she → động từ phải thêm đuôi.",
+        "is going": "\"every day\" là thói quen hằng ngày, không phải đang xảy ra lúc này."
+      }
+    },
+    {
+      "id": 4, "tense": "simple", "group": "sing", "subject": "My mum = she",
+      "q": "My mum ___ two cats and a dog. (have)",
+      "options": ["haves", "have", "has", "is having"],
+      "answer": "has",
+      "clue": "have = \"có\" (sở hữu) → không dùng -ing",
+      "explain": "have là từ đặc biệt: với he/she/it phải đổi thành has. Mẹ CÓ mèo là sở hữu → không dùng -ing.",
+      "why": {
+        "haves": "have là từ đặc biệt: với he/she/it phải đổi hẳn thành has, không thêm -s.",
+        "have": "My mum = she → phải dùng has.",
+        "is having": "have nghĩa là \"có\" thì không thêm -ing. (Chỉ nói is having khi have = ăn, uống, tắm: is having lunch.)"
+      }
+    },
+    {
+      "id": 5, "tense": "continuous", "group": "plur", "subject": "I",
+      "q": "I can't come to the phone. I ___ a bath right now, Mum! (have)",
+      "options": ["have", "am having", "am haveing", "is having"],
+      "answer": "am having",
+      "clue": "right now → việc đang làm → Hiện tại tiếp diễn",
+      "explain": "Ở đây have = tắm (một hành động), nên được thêm -ing. I → am; have bỏ e → having: am having.",
+      "why": {
+        "have": "Thì việc thường làm; \"right now\" báo hiệu đang tắm ngay lúc này.",
+        "am haveing": "Sai chính tả: chữ e cuối không đọc → bỏ e rồi thêm -ing: having.",
+        "is having": "Đúng thì nhưng sai am/is/are: I luôn đi với am."
+      }
+    },
+    {
+      "id": 6, "tense": "simple", "group": "sing", "subject": "Your father = he – câu hỏi",
+      "q": "___ your father ___ in a bank?",
+      "options": ["Do … work", "Does … works", "Does … work", "Is … work"],
+      "answer": "Does … work",
+      "clue": "Hỏi về công việc hằng ngày → Hiện tại đơn; your father = he → Does",
+      "explain": "Câu hỏi thì việc thường làm: Does + he/she/it + động từ nguyên mẫu → Does your father work…?",
+      "why": {
+        "Do … work": "Do dùng cho I/you/we/they. Your father = he → Does.",
+        "Does … works": "Đã có Does thì động từ sau về nguyên mẫu: work (chữ -s đã \"chạy\" sang does rồi).",
+        "Is … work": "Muốn hỏi việc thường làm phải dùng Does … work. Nếu dùng Is thì động từ phải có -ing (Is … working)."
+      }
+    },
+    {
+      "id": 7, "tense": "simple", "group": "plur", "subject": "We – phủ định",
+      "q": "We ___ TV in the mornings. (not watch)",
+      "options": ["doesn't watch", "don't watch", "aren't watch", "not watch"],
+      "answer": "don't watch",
+      "clue": "in the mornings (các buổi sáng) → việc thường làm → Hiện tại đơn",
+      "explain": "Câu \"không\" ở thì việc thường làm: we + don't + động từ nguyên mẫu.",
+      "why": {
+        "doesn't watch": "doesn't chỉ đi với he/she/it. We → don't.",
+        "aren't watch": "aren't phải đi với V-ing (aren't watching), không đi với động từ nguyên mẫu.",
+        "not watch": "Câu \"không\" ở thì việc thường làm phải có don't hoặc doesn't."
+      }
+    },
+    {
+      "id": 8, "tense": "simple", "group": "sing", "subject": "My best friend = she – phủ định",
+      "q": "My best friend ___ fish. She says it smells bad. (not like)",
+      "options": ["don't like", "isn't liking", "doesn't likes", "doesn't like"],
+      "answer": "doesn't like",
+      "clue": "like (thích) là từ chỉ cảm xúc → không dùng -ing",
+      "explain": "My best friend = she → doesn't + động từ nguyên mẫu: doesn't like.",
+      "why": {
+        "don't like": "My best friend = 1 người (she) → doesn't.",
+        "isn't liking": "like (thích) là từ chỉ cảm xúc, không thêm -ing.",
+        "doesn't likes": "Sau doesn't động từ về nguyên mẫu: like, không thêm -s."
+      }
+    },
+    {
+      "id": 9, "tense": "simple", "group": "sing", "subject": "Mr Brown = he",
+      "q": "Mr Brown ___ the shopping on Fridays. (do)",
+      "options": ["dos", "does", "do", "is doing"],
+      "answer": "does",
+      "clue": "on Fridays (thứ Sáu nào cũng vậy) → việc thường làm → Hiện tại đơn",
+      "explain": "Thói quen + he → thêm đuôi. Từ tận cùng bằng o thêm -es: does.",
+      "why": {
+        "dos": "Từ tận cùng bằng o thì thêm -es: do → does.",
+        "do": "Mr Brown = he → phải thêm đuôi: does.",
+        "is doing": "\"on Fridays\" (có -s) nghĩa là thứ Sáu nào cũng vậy → thói quen, không phải đang xảy ra."
+      }
+    },
+    {
+      "id": 10, "tense": "continuous", "group": "sing", "subject": "Somebody (= 1 người, đã học ở Unit 6)",
+      "q": "Listen! Somebody ___ at the door. (knock)",
+      "options": ["knocks", "is knocking", "are knocking", "knock"],
+      "answer": "is knocking",
+      "clue": "Listen! → việc đang làm → Hiện tại tiếp diễn",
+      "explain": "Listen! báo hiệu đang xảy ra. Somebody (một ai đó) chia như he → is knocking.",
+      "why": {
+        "knocks": "Thì việc thường làm; \"Listen!\" báo hiệu đang xảy ra ngay lúc này.",
+        "are knocking": "Đúng thì nhưng sai am/is/are: somebody (một ai đó) luôn chia như 1 người → is.",
+        "knock": "Sai thì, và somebody là 1 người nên dù ở thì thường làm cũng phải là knocks."
+      }
+    },
+    {
+      "id": 11, "tense": "simple", "group": "sing", "subject": "He",
+      "q": "He ___ his hands before every meal. (wash)",
+      "options": ["washs", "washes", "wash", "is washing"],
+      "answer": "washes",
+      "clue": "before every meal (trước mỗi bữa ăn) → việc thường làm → Hiện tại đơn",
+      "explain": "Thói quen + he → thêm đuôi. wash tận cùng -sh → thêm -es: washes.",
+      "why": {
+        "washs": "Sai chính tả: từ tận cùng -sh thêm -es (giống -ch, -s, -x, -o).",
+        "wash": "Chủ ngữ he → động từ phải thêm đuôi.",
+        "is washing": "\"every meal\" = bữa nào cũng rửa → thói quen, không phải đang rửa lúc này."
+      }
+    },
+    {
+      "id": 12, "tense": "continuous", "group": "plur", "subject": "Sam and Jim = they",
+      "q": "Sam and Jim ___ in the pool at the moment. (swim)",
+      "options": ["are swiming", "are swimming", "swim", "is swimming"],
+      "answer": "are swimming",
+      "clue": "at the moment → việc đang làm → Hiện tại tiếp diễn",
+      "explain": "Sam and Jim = 2 người = they → are + V-ing. swim viết m hai lần: swimming.",
+      "why": {
+        "are swiming": "Sai chính tả: swim là từ ngắn, cuối là i rồi m → viết m hai lần: swimming (giống run → running, sit → sitting).",
+        "swim": "Thì việc thường làm; \"at the moment\" = ngay lúc này.",
+        "is swimming": "Sam and Jim là 2 người (they) → are, không phải is."
+      }
+    },
+    {
+      "id": 13, "tense": "simple", "group": "sing", "subject": "He (Tom) + be + never",
+      "q": "Tom is a good student. He ___ late for school. (never / be)",
+      "options": ["is never", "never is", "are never", "never be"],
+      "answer": "is never",
+      "clue": "never → việc thường làm → Hiện tại đơn; never đứng SAU am/is/are",
+      "explain": "Với am/is/are, từ chỉ tần suất (always, often, never…) đứng SAU: He is never late. Với động từ khác thì đứng TRƯỚC: She never walks.",
+      "why": {
+        "never is": "Sai vị trí: never đứng SAU is (He is never late), chỉ đứng TRƯỚC các động từ khác (He never eats…).",
+        "are never": "He đi với is, không đi với are.",
+        "never be": "be phải đổi thành am/is/are theo chủ ngữ; He → is."
+      }
+    },
+    {
+      "id": 14, "tense": "continuous", "group": "plur", "subject": "My sister and I = we",
+      "q": "Don't come into the kitchen! My sister and I ___ a cake for Mum. It's a surprise. (make)",
+      "options": ["am making", "are making", "is making", "are makeing"],
+      "answer": "are making",
+      "clue": "Đang làm ngay lúc nói (vì thế không cho vào bếp) → Hiện tại tiếp diễn",
+      "explain": "My sister and I = 2 người = we → are + V-ing. make bỏ e → making.",
+      "why": {
+        "am making": "Thấy chữ I đứng gần nên dễ chọn am, nhưng chủ ngữ là \"My sister and I\" = 2 người = we → are.",
+        "is making": "Chủ ngữ có 2 người → không dùng is.",
+        "are makeing": "Sai chính tả: chữ e cuối không đọc → bỏ e rồi thêm -ing: making."
+      }
+    },
+    {
+      "id": 15, "tense": "continuous", "group": "plur", "subject": "You – câu hỏi",
+      "q": "___ you ___ to music at the moment?",
+      "options": ["Do … listen", "Are … listening", "Is … listening", "Are … listen"],
+      "answer": "Are … listening",
+      "clue": "at the moment → việc đang làm → Hiện tại tiếp diễn; câu hỏi: đưa Are lên đầu",
+      "explain": "Câu hỏi thì tiếp diễn: Are + you + V-ing → Are you listening…?",
+      "why": {
+        "Do … listen": "Câu hỏi về việc thường làm; \"at the moment\" báo hiệu đang làm.",
+        "Is … listening": "you luôn đi với are, không đi với is.",
+        "Are … listen": "Có Are thì động từ phải thêm -ing: listening."
+      }
+    },
+    {
+      "id": 16, "tense": "continuous", "group": "sing", "subject": "Our dog = it",
+      "q": "Our dog ___ under the table at the moment. (lie)",
+      "options": ["is lying", "is lieing", "lies", "are lying"],
+      "answer": "is lying",
+      "clue": "at the moment → việc đang làm → Hiện tại tiếp diễn",
+      "explain": "Our dog = it → is + V-ing. lie đổi ie thành y rồi thêm -ing: lying.",
+      "why": {
+        "is lieing": "Sai chính tả: từ tận cùng -ie → đổi ie thành y rồi thêm -ing: lying (die → dying cũng vậy).",
+        "lies": "Thì việc thường làm; \"at the moment\" = ngay lúc này.",
+        "are lying": "Our dog = 1 con = it → is."
+      }
+    },
+    {
+      "id": 17, "tense": "simple", "group": "plur", "subject": "We",
+      "q": "We often ___ games after school. (play)",
+      "options": ["play", "plays", "plaies", "are playing"],
+      "answer": "play",
+      "clue": "often (thường xuyên) → việc thường làm → Hiện tại đơn",
+      "explain": "Thói quen + we → giữ nguyên động từ: play. often đứng trước động từ thường.",
+      "why": {
+        "plays": "Chỉ thêm -s với he/she/it; chủ ngữ là we.",
+        "plaies": "Sai 2 lần: we không thêm đuôi; và trước y là a nên dù có thêm cũng chỉ thêm -s (plays), không đổi thành -ies.",
+        "are playing": "\"often\" nói về việc hay làm, không phải đang làm lúc này."
+      }
+    },
+    {
+      "id": 18, "tense": "continuous", "group": "sing", "subject": "He (Dad)",
+      "q": "\"Where's Dad?\" – \"He's in the kitchen. He ___ dinner.\" (cook)",
+      "options": ["cooks", "is cooking", "cook", "are cooking"],
+      "answer": "is cooking",
+      "clue": "Không có từ báo hiệu, nhưng câu hỏi \"Where's Dad?\" hỏi về NGAY BÂY GIỜ",
+      "explain": "Người hỏi muốn biết bố đang làm gì lúc này → is + V-ing: is cooking.",
+      "why": {
+        "cooks": "\"He cooks dinner\" = bố thường nấu bữa tối (thói quen). Nhưng người hỏi muốn biết bố đang làm gì lúc này.",
+        "cook": "He → nếu là thói quen cũng phải là cooks; và ở đây cần tiếp diễn.",
+        "are cooking": "He đi với is, không đi với are."
+      }
+    },
+    {
+      "id": 19, "tense": "mixed", "group": "sing", "subject": "She (Helen) – hai vế",
+      "q": "Helen is a pilot. She usually ___ planes, but today she ___ tennis.",
+      "options": ["flys / is playing", "flies / plays", "flies / is playing", "is flying / plays"],
+      "answer": "flies / is playing",
+      "clue": "usually → Hiện tại đơn; but today (hôm nay khác ngày thường) → Hiện tại tiếp diễn",
+      "explain": "Vế 1: thói quen → flies. Vế 2: hôm nay khác thường lệ → is playing.",
+      "why": {
+        "flys / is playing": "Đúng thì nhưng sai chính tả: trước y là l (không phải a, e, o) → đổi y thành i rồi thêm -es: flies.",
+        "flies / plays": "Vế sau có \"but today\": hôm nay khác thường lệ → phải dùng tiếp diễn.",
+        "is flying / plays": "Đảo ngược 2 thì: usually đi với Hiện tại đơn, today đi với tiếp diễn."
+      }
+    },
+    {
+      "id": 20, "tense": "simple", "group": "sing", "subject": "It (thời tiết)",
+      "q": "It ___ a lot here every winter. (snow)",
+      "options": ["snow", "snows", "is snowing", "snowing"],
+      "answer": "snows",
+      "clue": "every winter (mùa đông nào cũng vậy) → việc thường xảy ra → Hiện tại đơn",
+      "explain": "Thói quen của thời tiết + it → thêm -s: snows.",
+      "why": {
+        "snow": "Chủ ngữ it → động từ phải thêm -s.",
+        "is snowing": "\"every winter\" = năm nào cũng vậy, không phải tuyết đang rơi lúc này.",
+        "snowing": "Có -ing mà thiếu am/is/are thì câu bị thiếu."
+      }
+    },
+    {
+      "id": 21, "tense": "continuous", "group": "plur", "subject": "You – phủ định",
+      "q": "Tom, you ___ to me right now! Put your phone away. (not listen)",
+      "options": ["don't listen", "aren't listening", "isn't listening", "not listening"],
+      "answer": "aren't listening",
+      "clue": "right now → việc đang làm → Hiện tại tiếp diễn",
+      "explain": "Câu \"không\" thì tiếp diễn: you + aren't + V-ing.",
+      "why": {
+        "don't listen": "Thì việc thường làm; \"right now\" nói về ngay lúc này.",
+        "isn't listening": "you đi với are → aren't.",
+        "not listening": "Thiếu am/is/are: phải là aren't listening."
+      }
+    },
+    {
+      "id": 22, "tense": "simple", "group": "sing", "subject": "Your sister = she – câu hỏi Wh-",
+      "q": "How often ___ your sister ___ her room?",
+      "options": ["does … tidy", "do … tidy", "does … tidies", "is … tidying"],
+      "answer": "does … tidy",
+      "clue": "How often (bao lâu một lần) → hỏi thói quen → Hiện tại đơn",
+      "explain": "How often + does + she + động từ nguyên mẫu → How often does your sister tidy…?",
+      "why": {
+        "do … tidy": "your sister = she → does.",
+        "does … tidies": "Đã có does thì động từ sau về nguyên mẫu: tidy.",
+        "is … tidying": "\"How often\" hỏi bao lâu làm một lần → chỉ dùng Hiện tại đơn."
+      }
+    },
+    {
+      "id": 23, "tense": "continuous", "group": "sing", "subject": "Anna = she – câu hỏi Wh-",
+      "q": "What ___ Anna ___ right now?",
+      "options": ["is … doing", "does … do", "are … doing", "is … do"],
+      "answer": "is … doing",
+      "clue": "right now → việc đang làm → Hiện tại tiếp diễn",
+      "explain": "Câu hỏi Wh- thì tiếp diễn: What + is + she + V-ing → What is Anna doing?",
+      "why": {
+        "does … do": "\"What does Anna do?\" hỏi về nghề / việc thường làm; \"right now\" hỏi việc đang làm.",
+        "are … doing": "Anna = 1 người (she) → is.",
+        "is … do": "Có is thì động từ phải thêm -ing: doing."
+      }
+    },
+    {
+      "id": 24, "tense": "simple", "group": "plur", "subject": "People = they (số nhiều đặc biệt, không có -s)",
+      "q": "People in Japan ___ with chopsticks. (eat)",
+      "options": ["eats", "eat", "is eating", "are eat"],
+      "answer": "eat",
+      "clue": "Thói quen chung của người một nước → Hiện tại đơn",
+      "explain": "people = nhiều người = they → giữ nguyên động từ: eat.",
+      "why": {
+        "eats": "people không có -s nhưng là nhiều người (1 người = person) → they → không thêm -s.",
+        "is eating": "people là nhiều người nên không đi với is; và đây là thói quen chung, không phải đang ăn.",
+        "are eat": "are không đi với động từ nguyên mẫu; và đây là thói quen nên không cần are."
+      }
+    },
+    {
+      "id": 25, "tense": "continuous", "group": "plur", "subject": "They + it (thời tiết) – hai vế",
+      "q": "They ___ football now because it ___. (not play / rain)",
+      "options": ["don't play / rains", "aren't playing / is raining", "aren't playing / rains", "isn't playing / is raining"],
+      "answer": "aren't playing / is raining",
+      "clue": "now → cả hai việc đều đang xảy ra → Hiện tại tiếp diễn",
+      "explain": "Vế 1: they → aren't playing. Vế 2: mưa đang rơi, it → is raining.",
+      "why": {
+        "don't play / rains": "Cả 2 vế đều là thì việc thường làm, nhưng \"now\" báo hiệu đang xảy ra.",
+        "aren't playing / rains": "Vế 1 đúng, vế 2 sai: mưa đang rơi lúc này → is raining.",
+        "isn't playing / is raining": "They đi với are → aren't, không phải isn't."
+      }
+    }
+  ]
+};
+const LETTERS = ["A","B","C","D"];
+const TENSE_LABEL = {simple:"Hiện tại đơn", continuous:"Tiếp diễn", mixed:"Kết hợp 2 thì"};
+const GROUP_LABEL = {sing:"Chủ ngữ he / she / it (số ít)", plur:"Chủ ngữ I / you / we / they"};
+let order = [], startedAt = Date.now(), confirmedBlank = false;
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function shuffle(a){a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a;}
+
+// Tách đề: phần câu và gợi ý động từ "(watch)" ở cuối
+function splitStem(q){
+  const m = q.match(/^(.*?)(\s*\(([^()]*)\))\s*$/);
+  return m ? {text:m[1], verb:m[3]} : {text:q, verb:""};
+}
+function renderStem(q, fillWith){
+  const {text, verb} = splitStem(q.q);
+  const parts = fillWith ? fillWith.split(/ … | \/ /) : [];
+  let i = 0;
+  let html = esc(text).replace(/___/g, () => fillWith
+    ? `<span class="fill" style="background:var(--ok-bg);color:var(--ok)">${esc(parts[i++] ?? "")}</span>`
+    : `<span class="gap"></span>`);
+  if (verb && !fillWith) html += ` <span class="verb">(${esc(verb)})</span>`;
+  return html;
+}
+
+function build(){
+  order = shuffle(DATA.questions).map(q => ({q, opts: shuffle(q.options)}));
+  const ol = $("#qs");
+  ol.innerHTML = order.map((it, n) => `
+    <li class="q" id="q${n}">
+      <div class="qhead"><span class="qnum">${n+1}.</span><div class="stem">${renderStem(it.q)}</div></div>
+      <div class="opts" role="radiogroup" aria-label="Câu ${n+1}">
+        ${it.opts.map((o,k) => `
+          <div class="opt">
+            <input type="radio" name="a${n}" id="a${n}_${k}" value="${esc(o)}">
+            <label for="a${n}_${k}"><span class="k">${LETTERS[k]}</span><span>${esc(o)}</span></label>
+          </div>`).join("")}
+      </div>
+    </li>`).join("");
+  confirmedBlank = false; startedAt = Date.now();
+  $("#warn").hidden = true; updateProgress();
+}
+
+function answers(){ return order.map((_, n) => { const r = document.querySelector(`input[name="a${n}"]:checked`); return r ? r.value : null; }); }
+function updateProgress(){
+  const done = answers().filter(Boolean).length;
+  $("#prog").style.width = (done/order.length*100)+"%";
+  $("#count").textContent = `${done}/${order.length} câu`;
+  document.querySelectorAll(".q.missing").forEach(el => { if (el.querySelector("input:checked")) el.classList.remove("missing"); });
+}
+
+function submit(e){
+  e.preventDefault();
+  const ans = answers();
+  const blanks = ans.map((a,n) => a ? null : n).filter(n => n !== null);
+  document.querySelectorAll(".q").forEach(el => el.classList.remove("missing"));
+  if (blanks.length && !confirmedBlank){
+    blanks.forEach(n => $("#q"+n).classList.add("missing"));
+    $("#warn").innerHTML = `Em còn bỏ trống <b>${blanks.length}</b> câu: ${blanks.map(n => `<a href="#q${n}">câu ${n+1}</a>`).join(", ")}. Làm nốt nhé — hoặc bấm <b>Nộp bài</b> lần nữa để nộp luôn (câu trống tính là sai).`;
+    $("#warn").hidden = false; confirmedBlank = true; return;
+  }
+  showResult(ans);
+}
+
+function bucket(label, right, total){
+  const pct = total ? Math.round(right/total*100) : 0;
+  const color = pct >= 80 ? "var(--ok)" : pct >= 60 ? "var(--warn)" : "var(--bad)";
+  return `<div class="brow"><div class="lab">${label}</div><div class="val">${right}/${total} · ${pct}%</div><div class="meter"><i style="width:${pct}%;background:${color}"></i></div></div>`;
+}
+
+function showResult(ans){
+  const res = order.map((it, n) => ({...it, n, picked: ans[n], ok: ans[n] === it.q.answer}));
+  const score = res.filter(r => r.ok).length, total = res.length, pct = Math.round(score/total*100);
+  const mins = Math.max(1, Math.round((Date.now()-startedAt)/60000));
+  $("#big").innerHTML = `${score}<small>/${total}</small>`;
+  const v = $("#verdict");
+  v.className = "verdict " + (pct >= 80 ? "good" : pct >= 60 ? "mid" : "low");
+  v.textContent = pct >= 80 ? `${pct}% — Đạt! Em đã nắm chắc 2 thì này.` : pct >= 60 ? `${pct}% — Khá rồi, ôn lại các câu sai bên dưới.` : `${pct}% — Cần học lại: đọc phần "Cách làm" ở cuối trang rồi làm lại.`;
+  $("#timeInfo").textContent = `Thời gian làm: khoảng ${mins} phút`;
+
+  const by = (key, val) => { const g = res.filter(r => r.q[key] === val); return [g.filter(r=>r.ok).length, g.length]; };
+  $("#breakdown").innerHTML =
+    ["simple","continuous","mixed"].map(t => bucket(TENSE_LABEL[t], ...by("tense", t))).join("") +
+    ["sing","plur"].map(g => bucket(GROUP_LABEL[g], ...by("group", g))).join("");
+
+  $("#review").innerHTML = res.map(r => {
+    const q = r.q;
+    const rows = [q.answer, ...q.options.filter(o => o !== q.answer)].map(o => {
+      const isC = o === q.answer, isP = o === r.picked && !isC;
+      const who = isC ? (r.ok ? "Đáp án đúng · em chọn" : "Đáp án đúng") : isP ? "Em chọn" : "";
+      const txt = isC ? q.explain : q.why[o];
+      return `<li class="${isC ? "is-correct" : ""} ${isP ? "is-picked" : ""}"><span class="o">${esc(o)}</span><span>${who ? `<span class="who">${who}</span>` : ""}${esc(txt)}</span></li>`;
+    }).join("");
+    return `<li class="q rv ${r.ok ? "right" : "wrong"}" data-ok="${r.ok}" data-tense="${q.tense}">
+      <div class="qhead"><span class="qnum">${r.n+1}.</span><div class="stem">${renderStem(q, q.answer)}</div>
+        <span class="status">${r.ok ? "✓ Đúng" : r.picked ? "✗ Sai" : "✗ Bỏ trống"}</span></div>
+      <div class="subj"><span class="tag ${q.tense}">${TENSE_LABEL[q.tense]}</span> Chủ ngữ: ${esc(q.subject)}</div>
+      <div class="clue"><b>Từ báo hiệu:</b> ${esc(q.clue)}</div>
+      <ul class="why">${rows}</ul>
+    </li>`;
+  }).join("");
+  setFilter("all");
+
+  $("#quiz").hidden = true; $("#result").hidden = false; $("#guideTop").hidden = true;
+  $("#resultTop").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+  try { localStorage.setItem("kt78-last", JSON.stringify({pct, score, total, at: new Date().toISOString()})); } catch(_){}
+}
+
+function setFilter(f){
+  document.querySelectorAll(".chipbtn").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.f === f)));
+  document.querySelectorAll("#review > li").forEach(li => {
+    li.hidden = f === "wrong" ? li.dataset.ok === "true" : (f === "simple" || f === "continuous") ? li.dataset.tense !== f : false;
+  });
+}
+
+document.querySelectorAll(".guide-body").forEach(el => el.appendChild($("#guideTpl").content.cloneNode(true)));
+$("#form").addEventListener("change", updateProgress);
+$("#form").addEventListener("submit", submit);
+document.querySelectorAll(".chipbtn").forEach(b => b.addEventListener("click", () => setFilter(b.dataset.f)));
+$("#again").addEventListener("click", () => { build(); $("#result").hidden = true; $("#quiz").hidden = false; $("#guideTop").hidden = false; window.scrollTo(0,0); });
+$("#toTop").addEventListener("click", () => window.scrollTo(0,0));
+build();
+</script>
+</body>
+</html>
