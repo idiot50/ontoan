@@ -215,13 +215,25 @@ function norm(s) {
   s = s.replace(/[’‘`´]/g, "'").replace(/[“”]/g, '"').replace(/[–—]/g, '-');
   s = s.replace(/[.,!?;:"]/g, ' ');
   s = s.replace(/\s+/g, ' ').trim();
-  s = s.replace(/^'s\b/, 'is').replace(/^'m\b/, 'am').replace(/^'re\b/, 'are');
-  s = s.replace(/\bi'm\b/g, 'i am').replace(/\b(they|we|you)'re\b/g, '$1 are')
-       .replace(/\b(it|he|she|that|there|what|who|where|how)'s\b/g, '$1 is')
+  // Viết tắt hay viết đầy đủ đều chấm như nhau: quy mọi dạng rút gọn về dạng đầy đủ trước khi so sánh.
+  s = s.replace(/^'s\b/, 'is').replace(/^'m\b/, 'am').replace(/^'re\b/, 'are').replace(/^'ve\b/, 'have').replace(/^'ll\b/, 'will');
+  s = s.replace(/\bi'm\b/g, 'i am').replace(/\b([a-z]+)'re\b/g, '$1 are')
+       .replace(/\b(it|he|she|that|this|there|here|what|who|where|how)'s\b/g, '$1 is')
        .replace(/\bisn't\b/g, 'is not').replace(/\baren't\b/g, 'are not')
        .replace(/\bdon't\b/g, 'do not').replace(/\bdoesn't\b/g, 'does not')
-       .replace(/\bcan't\b/g, 'cannot').replace(/\bhaven't\b/g, 'have not').replace(/\bhasn't\b/g, 'has not')
-       .replace(/\b(i|you|we|they)'ve\b/g, '$1 have');
+       .replace(/\bcan't\b/g, 'cannot').replace(/\bcan not\b/g, 'cannot')
+       .replace(/\bhaven't\b/g, 'have not').replace(/\bhasn't\b/g, 'has not')
+       .replace(/\b([a-z]+)'ve\b/g, '$1 have').replace(/\b([a-z]+)'ll\b/g, '$1 will')
+       .replace(/\bdidn't\b/g, 'did not').replace(/\bwasn't\b/g, 'was not').replace(/\bweren't\b/g, 'were not')
+       .replace(/\bwon't\b/g, 'will not').replace(/\bwouldn't\b/g, 'would not').replace(/\bcouldn't\b/g, 'could not')
+       .replace(/\bshouldn't\b/g, 'should not').replace(/\bmustn't\b/g, 'must not');
+  // Gõ thiếu dấu nháy (hay gặp trên máy tính bảng): chỉ các dạng không nhầm với từ khác.
+  s = s.replace(/\bim\b/g, 'i am').replace(/\bdont\b/g, 'do not').replace(/\bdoesnt\b/g, 'does not')
+       .replace(/\bisnt\b/g, 'is not').replace(/\barent\b/g, 'are not').replace(/\bcant\b/g, 'cannot')
+       .replace(/\bhavent\b/g, 'have not').replace(/\bhasnt\b/g, 'has not').replace(/\bdidnt\b/g, 'did not')
+       .replace(/\btheyre\b/g, 'they are').replace(/\byoure\b/g, 'you are')
+       .replace(/\bthats\b/g, 'that is').replace(/\btheres\b/g, 'there is').replace(/\bwhats\b/g, 'what is')
+       .replace(/\bhes\b/g, 'he is').replace(/\bshes\b/g, 'she is');
   s = s.replace(/\bno-one\b/g, 'no one').replace(/\bnoone\b/g, 'no one');
   return s.replace(/\s+/g, ' ').trim();
 }
@@ -415,7 +427,7 @@ function renderExercise(t, ex) {
 function startTest(id) {
   const t = DATA.tests.find(x => x.id === id);
   cur = { t, started: Date.now(), graded: false, flags: new Set() };
-  byId('test-head').innerHTML = '<h1>' + esc(t.name) + '</h1><p class="muted small">10 bài, 100 điểm. Gõ câu trả lời vào từng ô. Xong thì bấm <b>Nộp bài</b> ở thanh dưới.</p>';
+  byId('test-head').innerHTML = '<h1>' + esc(t.name) + '</h1><p class="muted small">10 bài, 100 điểm. Gõ câu trả lời vào từng ô. Không phân biệt chữ hoa / chữ thường; viết tắt (<i>They\'re, don\'t</i>) hay viết đầy đủ (<i>They are, do not</i>) đều được chấm đúng. Xong thì bấm <b>Nộp bài</b> ở thanh dưới.</p>';
   byId('result').innerHTML = '';
   byId('exercises').innerHTML = t.exercises.map(ex => renderExercise(t, ex)).join('');
   for (const el of fieldEls()) { el.addEventListener('input', updateBar); el.addEventListener('change', updateBar); }
