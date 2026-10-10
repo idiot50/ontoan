@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1f6f5c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E%F0%9F%93%98%3C/text%3E%3C/svg%3E">
+<title>Revision Units 1–9</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+  /* standalone page only: body ground + font. The module itself is scoped under #rv (see embed block). */
+  html, body { margin: 0; }
+  body { background: #f4f6f3; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body { background: #131916; color-scheme: dark; } }
+  :root[data-theme="dark"] body { background: #131916; color-scheme: dark; }
+  #rv.rv-standalone { --rv-font: "Nunito", "Segoe UI", system-ui, sans-serif; }
+</style>
+<!--RV:EMBED-START-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap">
+<style>
+  /* Revision Units 1–9 module. Every rule is scoped under #rv so it can live inside another page.
+     Layout: one reading column; a test is a stack of exercise cards; after grading the summary sits on top. */
+  #rv {
+    --rv-bg: #f4f6f3; --rv-surface: #ffffff; --rv-fg: #1d2924; --rv-muted: #5d6c65; --rv-line: #d7ded8; --rv-line-strong: #b9c4bd;
+    --rv-accent: #1f6f5c; --rv-accent-ink: #ffffff; --rv-accent-soft: #e2f1ea;
+    --rv-ok: #2c7a39; --rv-ok-soft: #e4f4e6; --rv-bad: #b9312f; --rv-bad-soft: #fbe7e5; --rv-warn: #9a5b00; --rv-warn-soft: #fff1d6;
+    --rv-sample: #2a4ea3; --rv-shadow: 0 1px 2px rgba(20,40,30,.06);
+    --scene-bg: #eef4ee; --scene-floor: #d9cdb8; --scene-grass: #cfe6c4; --scene-wood: #a9794a; --scene-soft: #f5efe2;
+    --scene-water: #bcdcf0; --scene-dark: #4a5059; --scene-line: #3a4a42; --scene-ink: #2b3a33;
+    --rv-font: inherit; --rv-hand: "Caveat", "Segoe Script", cursive;
+    font-family: var(--rv-font); color: var(--rv-fg); font-size: 16px; line-height: 1.5; min-width: 0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) #rv {
+      --rv-bg: #131916; --rv-surface: #1b2420; --rv-fg: #e5ebe6; --rv-muted: #9db0a5; --rv-line: #2c3a33; --rv-line-strong: #41534a;
+      --rv-accent: #6fcfb0; --rv-accent-ink: #0f1f19; --rv-accent-soft: #1d3a31;
+      --rv-ok: #7bd389; --rv-ok-soft: #1e3525; --rv-bad: #ff8f85; --rv-bad-soft: #3d2321; --rv-warn: #ffc46b; --rv-warn-soft: #3a2c14;
+      --rv-sample: #a3bdff; --rv-shadow: none;
+      --scene-bg: #1f2a25; --scene-floor: #4a4034; --scene-grass: #28402a; --scene-wood: #8a6238; --scene-soft: #3a3a33;
+      --scene-water: #27455c; --scene-dark: #6b7280; --scene-line: #c9d4cd; --scene-ink: #e5ebe6;
+    }
+  }
+  :root[data-theme="dark"] #rv {
+    --rv-bg: #131916; --rv-surface: #1b2420; --rv-fg: #e5ebe6; --rv-muted: #9db0a5; --rv-line: #2c3a33; --rv-line-strong: #41534a;
+    --rv-accent: #6fcfb0; --rv-accent-ink: #0f1f19; --rv-accent-soft: #1d3a31;
+    --rv-ok: #7bd389; --rv-ok-soft: #1e3525; --rv-bad: #ff8f85; --rv-bad-soft: #3d2321; --rv-warn: #ffc46b; --rv-warn-soft: #3a2c14;
+    --rv-sample: #a3bdff; --rv-shadow: none;
+    --scene-bg: #1f2a25; --scene-floor: #4a4034; --scene-grass: #28402a; --scene-wood: #8a6238; --scene-soft: #3a3a33;
+    --scene-water: #27455c; --scene-dark: #6b7280; --scene-line: #c9d4cd; --scene-ink: #e5ebe6;
+  }
+  #rv *, #rv *::before, #rv *::after { box-sizing: border-box; }
+  #rv [hidden] { display: none !important; }
+  #rv button, #rv input, #rv select { font: inherit; }
+  #rv a { color: var(--rv-accent); }
+  #rv p { margin: 6px 0; }
+  #rv h1 { font-size: 1.45rem; font-weight: 800; margin: 6px 0 4px; text-wrap: balance; line-height: 1.25; }
+  #rv h2 { font-size: 1.15rem; font-weight: 800; margin: 20px 0 8px; }
+  #rv h3 { font-size: 1rem; font-weight: 800; margin: 14px 0 6px; }
+  #rv .muted { color: var(--rv-muted); }
+  #rv .small { font-size: .88rem; }
+  #rv .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--rv-surface); border-bottom: 1px solid var(--rv-line); }
+  #rv .top .in-wrap { max-width: 860px; margin: 0 auto; padding: 10px 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+  #rv .brand { font-weight: 800; font-size: 1.05rem; }
+  #rv .brand small { font-weight: 600; color: var(--rv-muted); font-size: .8rem; margin-left: 6px; }
+  #rv .rv-nav { display: flex; gap: 6px; flex-wrap: wrap; }
+  #rv .rv-nav button { border: 1px solid var(--rv-line); background: transparent; color: var(--rv-fg); border-radius: 999px; padding: 5px 12px; cursor: pointer; font-weight: 700; }
+  #rv .rv-nav button.active { background: var(--rv-accent); color: var(--rv-accent-ink); border-color: var(--rv-accent); }
+  #rv .sync { margin-left: auto; font-size: .78rem; color: var(--rv-muted); }
+  #rv .back { font-size: .88rem; font-weight: 700; color: var(--rv-accent); text-decoration: none; border: 1px solid var(--rv-line); border-radius: 999px; padding: 4px 11px; }
+  #rv .backup { display: flex; gap: 8px 10px; flex-wrap: wrap; align-items: center; }
+  #rv .backup .small { flex: 1 1 100%; }
+  #rv label.btn { display: inline-block; }
+  #rv .backup input[type="file"] { display: none; }
+  #rv .wrap { max-width: 860px; margin: 0 auto; padding-block: 16px 110px; padding-inline: 16px; }
+  #rv.rv-embedded .top { position: static; background: transparent; border-bottom: 0; }
+  #rv.rv-embedded .top .in-wrap, #rv.rv-embedded .wrap { max-width: none; padding-inline: 0; }
+  #rv.rv-embedded .top .in-wrap { padding-block: 4px 10px; border-bottom: 1px dashed var(--rv-line); }
+  #rv.rv-embedded .brand { display: none; }
+  #rv.rv-embedded .wrap { padding-block: 10px 40px; }
+  #rv .card { background: var(--rv-surface); border: 1px solid var(--rv-line); border-radius: 14px; padding: 14px 16px; margin: 0; box-shadow: var(--rv-shadow); animation: none; }
+  #rv .btn { border: 1px solid var(--rv-line-strong); background: var(--rv-surface); color: var(--rv-fg); border-radius: 10px; padding: 9px 14px; cursor: pointer; font-weight: 700; font-size: 1rem; }
+  #rv .btn.primary { background: var(--rv-accent); color: var(--rv-accent-ink); border-color: var(--rv-accent); }
+  #rv .btn.big { font-size: 1.05rem; padding: 11px 20px; }
+  #rv .btn:disabled { opacity: .5; cursor: default; }
+  #rv .btn:focus-visible, #rv .rv-nav button:focus-visible, #rv .in:focus-visible, #rv .sel:focus-visible, #rv .flag:focus-visible { outline: 3px solid var(--rv-accent); outline-offset: 2px; }
+
+  /* home */
+  #rv .strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 10px 0 16px; }
+  #rv .tile { background: var(--rv-surface); border: 1px solid var(--rv-line); border-radius: 12px; padding: 10px 12px; }
+  #rv .tile .v { font-size: 1.5rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+  #rv .tile .l { font-size: .8rem; color: var(--rv-muted); }
+  #rv .tests { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+  #rv .test { display: flex; flex-direction: column; gap: 8px; }
+  #rv .test .nm { font-weight: 800; font-size: 1.1rem; }
+  #rv .lvl { display: inline-block; font-size: .75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--rv-accent-soft); color: var(--rv-accent); }
+  #rv .lvl.hard { background: var(--rv-warn-soft); color: var(--rv-warn); }
+  #rv .test .st { font-size: .88rem; color: var(--rv-muted); font-variant-numeric: tabular-nums; }
+  #rv .test .st b { color: var(--rv-fg); }
+  #rv .remind { border-left: 4px solid var(--rv-warn); background: var(--rv-warn-soft); padding: 8px 12px; border-radius: 8px; margin: 10px 0; }
+  #rv .remind ul { margin: 4px 0 0; padding-left: 18px; }
+  #rv .remind li { margin: 2px 0; }
+
+  /* exercise */
+  #rv .ex { margin-top: 14px; }
+  #rv .exh { display: flex; gap: 10px; align-items: flex-start; }
+  #rv .num { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%; background: var(--rv-accent); color: var(--rv-accent-ink); font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  #rv .ttl { flex: 1 1 auto; min-width: 0; }
+  #rv .ttl b { font-size: 1.02rem; }
+  #rv .ttl .vi { display: block; color: var(--rv-muted); font-size: .9rem; }
+  #rv .pts { flex: 0 0 auto; font-size: .8rem; color: var(--rv-muted); border: 1px solid var(--rv-line); border-radius: 999px; padding: 2px 9px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  #rv .pts.done { color: var(--rv-fg); font-weight: 800; border-color: var(--rv-line-strong); }
+  #rv .bank { display: flex; flex-wrap: wrap; gap: 6px 10px; background: var(--rv-accent-soft); color: var(--rv-fg); padding: 8px 12px; border-radius: 10px; margin: 10px 0; font-weight: 700; }
+  #rv .eg { margin: 10px 0 2px; color: var(--rv-muted); }
+  #rv .sample { font-family: var(--rv-hand); color: var(--rv-sample); font-size: 1.25em; font-weight: 600; }
+  #rv .item { display: grid; grid-template-columns: 1.6em minmax(0, 1fr) auto; gap: 6px 8px; align-items: start; padding: 9px 0; border-top: 1px dashed var(--rv-line); }
+  #rv .item .n { font-weight: 800; color: var(--rv-muted); padding-top: 8px; }
+  #rv .item .body { min-width: 0; }
+  #rv .item .q { margin-bottom: 6px; }
+  #rv .in { padding: 8px 10px; border: 1.5px solid var(--rv-line-strong); border-radius: 8px; background: var(--rv-surface); color: var(--rv-fg); min-width: 0; font-size: 1rem; }
+  #rv .in.wide { width: 100%; }
+  #rv .in.gap { width: 9.5em; max-width: 100%; display: inline-block; vertical-align: baseline; margin: 2px 2px; }
+  #rv .sel { padding: 7px 8px; border: 1.5px solid var(--rv-line-strong); border-radius: 8px; background: var(--rv-surface); color: var(--rv-fg); display: inline-block; vertical-align: baseline; margin: 2px 2px; max-width: 100%; font-size: 1rem; }
+  #rv .in.ok, #rv .sel.ok { border-color: var(--rv-ok); background: var(--rv-ok-soft); }
+  #rv .in.bad, #rv .sel.bad { border-color: var(--rv-bad); background: var(--rv-bad-soft); }
+  #rv .line { display: block; white-space: pre-wrap; }
+  #rv .qa { display: grid; gap: 6px; }
+  #rv .qa label { display: grid; grid-template-columns: 7.5em minmax(0, 1fr); gap: 6px; align-items: center; font-size: .9rem; color: var(--rv-muted); }
+  @media (max-width: 480px) { #rv .qa label { grid-template-columns: 1fr; gap: 2px; } }
+  #rv .mark { display: inline-block; margin: 0 4px; font-weight: 800; color: var(--rv-ok); font-size: .95rem; background: transparent; }
+  #rv .mark.bad { color: var(--rv-bad); }
+  #rv .mark b { color: var(--rv-fg); background: var(--rv-ok-soft); padding: 0 5px; border-radius: 5px; }
+  #rv .fb { font-size: .9rem; color: var(--rv-muted); margin-top: 4px; }
+  #rv .fb b { color: var(--rv-fg); }
+  #rv .flag { border: 1px solid var(--rv-line); background: transparent; color: var(--rv-muted); border-radius: 8px; padding: 5px 8px; cursor: pointer; font-size: .85rem; white-space: nowrap; }
+  #rv .flag.on { color: var(--rv-warn); border-color: var(--rv-warn); background: var(--rv-warn-soft); }
+  #rv .para { line-height: 2.35; margin-top: 8px; }
+  #rv .para .flag { padding: 2px 6px; vertical-align: baseline; }
+  #rv .gapno { font-weight: 800; color: var(--rv-muted); margin-right: 2px; }
+  #rv .fblist { margin: 8px 0 0; padding-left: 18px; list-style: disc; }
+  #rv .fblist li { margin: 3px 0; font-size: .92rem; }
+  #rv table.freq { border-collapse: collapse; margin: 10px 0; font-size: .95rem; width: 100%; max-width: 520px; }
+  #rv table.freq th, #rv table.freq td { border: 1px solid var(--rv-line-strong); padding: 5px 8px; text-align: center; vertical-align: middle; background: transparent; }
+  #rv table.freq th { background: var(--rv-accent-soft); font-weight: 700; }
+  #rv table.freq td.rh { font-weight: 700; text-align: left; background: var(--rv-bg); }
+  #rv .scene { margin: 10px 0; }
+  #rv .scene svg { width: 100%; max-width: 470px; height: auto; display: block; border: 1px solid var(--rv-line); border-radius: 10px; }
+
+  /* bottom bar */
+  #rv .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; background: var(--rv-surface); border-top: 1px solid var(--rv-line); padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); }
+  #rv .bar .in-wrap { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  #rv .bar .prog { font-variant-numeric: tabular-nums; color: var(--rv-muted); }
+  #rv .bar .prog b { color: var(--rv-fg); }
+  #rv .confirm { background: var(--rv-warn-soft); border: 1px solid var(--rv-warn); border-radius: 10px; padding: 8px 12px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+  /* results */
+  #rv .result { border: 2px solid var(--rv-accent); text-align: left; padding: 14px 16px; }
+  #rv .score { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  #rv .score .big { font-size: 2.6rem; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1; color: var(--rv-fg); }
+  #rv .score .of { color: var(--rv-muted); }
+  #rv .delta { font-weight: 700; }
+  #rv .delta.up { color: var(--rv-ok); } #rv .delta.down { color: var(--rv-bad); }
+  #rv table.ex { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: .93rem; }
+  #rv table.ex th, #rv table.ex td { border: 0; border-bottom: 1px solid var(--rv-line); padding: 5px 6px; text-align: left; background: transparent; vertical-align: middle; }
+  #rv table.ex th { font-weight: 700; }
+  #rv table.ex td.r, #rv table.ex th.r { text-align: right; font-variant-numeric: tabular-nums; }
+  #rv .pbar { height: 8px; background: var(--rv-line); border-radius: 999px; overflow: hidden; min-width: 70px; }
+  #rv .pbar i { display: block; height: 100%; background: var(--rv-accent); border-radius: 999px; }
+  #rv .pbar i.low { background: var(--rv-bad); } #rv .pbar i.mid { background: var(--rv-warn); }
+  #rv .rules { margin: 6px 0 0; padding-left: 0; list-style: none; display: grid; gap: 8px; }
+  #rv .rules li { border-left: 4px solid var(--rv-warn); background: var(--rv-warn-soft); padding: 8px 12px; border-radius: 8px; margin: 0; }
+  #rv .rules li b { display: block; }
+  #rv .rules li .rep { font-size: .78rem; font-weight: 800; color: var(--rv-bad); margin-left: 6px; }
+  #rv .wrongs { margin: 6px 0 0; padding-left: 0; list-style: none; display: grid; gap: 6px; }
+  #rv .wrongs li { padding: 6px 10px; border: 1px solid var(--rv-line); border-radius: 8px; font-size: .93rem; margin: 0; }
+  #rv .wrongs .u { color: var(--rv-bad); text-decoration: line-through; }
+  #rv .a { color: var(--rv-ok); font-weight: 800; }
+  #rv .chip { display: inline-block; font-size: .75rem; font-weight: 700; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--rv-line); color: var(--rv-muted); margin-left: 4px; }
+  #rv .chip.bad { color: var(--rv-bad); border-color: var(--rv-bad); }
+  #rv .chip.ok { color: var(--rv-ok); border-color: var(--rv-ok); }
+  #rv .chip.flag { color: var(--rv-warn); border-color: var(--rv-warn); }
+
+  /* error log */
+  #rv .filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 12px; }
+  #rv .filters button { border: 1px solid var(--rv-line); background: var(--rv-surface); color: var(--rv-fg); border-radius: 999px; padding: 4px 11px; cursor: pointer; font-size: .88rem; }
+  #rv .filters button.active { background: var(--rv-accent-soft); border-color: var(--rv-accent); color: var(--rv-accent); font-weight: 800; }
+  #rv .group { margin-top: 14px; }
+  #rv .group h3 { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  #rv .group .tipline { font-size: .9rem; color: var(--rv-muted); margin: 0 0 6px; }
+  #rv .log { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  #rv .log li { background: var(--rv-surface); border: 1px solid var(--rv-line); border-radius: 10px; padding: 8px 12px; font-size: .95rem; margin: 0; }
+  #rv .log .meta { font-size: .8rem; color: var(--rv-muted); }
+  #rv .log .u { color: var(--rv-bad); }
+
+  /* progress */
+  #rv .chart { width: 100%; height: auto; display: block; }
+  #rv .chart .grid { stroke: var(--rv-line); stroke-width: 1; }
+  #rv .chart .axis { fill: var(--rv-muted); font-size: 11px; font-family: var(--rv-font); }
+  #rv .chart .ln { fill: none; stroke: var(--rv-accent); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+  #rv .chart .area { fill: var(--rv-accent); opacity: .12; }
+  #rv .chart .pt { fill: var(--rv-accent); stroke: var(--rv-surface); stroke-width: 2; }
+  #rv .chart .pt.hard { fill: var(--rv-surface); stroke: var(--rv-accent); stroke-width: 2.5; }
+  #rv .chart .target { stroke: var(--rv-warn); stroke-width: 1.5; stroke-dasharray: 5 5; }
+  #rv .chart .lbl { fill: var(--rv-fg); font-size: 11px; font-weight: 700; font-family: var(--rv-font); }
+  #rv .chart .hit { fill: transparent; cursor: pointer; }
+  #rv .tip { position: absolute; pointer-events: none; background: var(--rv-surface); border: 1px solid var(--rv-line-strong); border-radius: 8px; padding: 6px 9px; font-size: .85rem; box-shadow: var(--rv-shadow); z-index: 4; }
+  #rv .legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: .85rem; color: var(--rv-muted); margin: 4px 0 10px; }
+  #rv .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--rv-accent); margin-right: 5px; vertical-align: middle; }
+  #rv .legend i.hard { background: var(--rv-surface); border: 2px solid var(--rv-accent); }
+  #rv .legend i.target { width: 16px; height: 0; border-top: 2px dashed var(--rv-warn); border-radius: 0; }
+  #rv .trend.up { color: var(--rv-ok); font-weight: 800; } #rv .trend.down { color: var(--rv-bad); font-weight: 800; }
+  #rv .empty { color: var(--rv-muted); padding: 14px; text-align: center; border: 1px dashed var(--rv-line-strong); border-radius: 10px; }
+  @media (prefers-reduced-motion: no-preference) { #rv .pbar i { transition: width .4s ease; } }
+</style>
+</head>
+<body>
+<script>
+window.RV19 = (function () {
+const DATA = {"title":"Revision Units 1–9","source":"Soạn theo khung 10 bài của Revision 3 (Units 1–9), New Round Up 3 trang 158–160. Đề 1–2 tương đương sách, đề 3–5 khó hơn khoảng 40%.","rules":{"plural-s":{"name":"Số nhiều của danh từ","tip":"Thêm -s; tận cùng -s/-sh/-ch/-x/-o → -es; phụ âm + y → -ies; -f/-fe → -ves (knife → knives, leaf → leaves). Bất quy tắc: man → men, woman → women, child → children, tooth → teeth, foot → feet, mouse → mice, goose → geese, person → people; fish, sheep, deer giữ nguyên. Ngoại lệ -o: photos, pianos, radios."},"plural-demo":{"name":"Đổi cả câu sang số nhiều","tip":"This → These, That → Those; It's / He's / She's → They're; is → are, has → have; động từ mất -s (hurts → hurt); bỏ a / an. Với 'a glass of water' chỉ đổi glass → glasses."},"poss-adj":{"name":"Tính từ sở hữu: my, your, his, her, its, our, their","tip":"Luôn đứng TRƯỚC danh từ: my house, your mum, its bowl. Không dùng một mình."},"poss-pron":{"name":"Đại từ sở hữu: mine, yours, his, hers, ours, theirs","tip":"Đứng MỘT MÌNH, không có danh từ theo sau: That coat is hers (= her coat). Sau chỗ trống mà không có danh từ → dùng nhóm này."},"obj-pron":{"name":"Đại từ tân ngữ: me, you, him, her, it, us, them","tip":"Đứng SAU động từ hoặc giới từ: Look at him. Can you see them? Give it to us. Help me!"},"art-a-an":{"name":"a / an","tip":"Chọn theo ÂM đầu, không phải chữ cái: a + âm phụ âm (a red bike, a university, a uniform); an + âm nguyên âm (an orange, an hour vì h câm, an honest girl)."},"art-the":{"name":"the","tip":"the với vật duy nhất (the sun), công trình / sông / biển / dãy núi có tên (the Eiffel Tower, the Nile, the Alps, the Pacific), tên dân tộc chỉ cả dân tộc (the Chinese), nhạc cụ (play the piano)."},"art-zero":{"name":"Không mạo từ (–)","tip":"Không dùng mạo từ trước tên người, nước, thành phố (– Amy, – Italy, – London), bữa ăn (have – breakfast), môn thể thao (play – football), ngôn ngữ (speak – English), ngọn núi đơn (– Mount Everest)."},"much-many":{"name":"much / many","tip":"much + danh từ KHÔNG đếm được (milk, water, money, homework, time, news, furniture); many + danh từ đếm được số nhiều (apples, brothers, people, children, hours)."},"some-any":{"name":"some / any","tip":"some: câu khẳng định và câu xin / mời (Can I have some…? Would you like some…?); any: câu phủ định và câu hỏi thường (There isn't any… Have you got any…?)."},"no-compounds":{"name":"something / anything / nothing, someone / anyone / no one, somewhere / anywhere / nowhere","tip":"some- trong câu khẳng định; any- trong phủ định và câu hỏi; no- (nothing, no one / nobody, nowhere) mang nghĩa phủ định nên động từ để KHẲNG ĐỊNH (There is nothing = There isn't anything). Viết LIỀN: anything, nothing, someone (riêng 'no one' viết rời)."},"verb-s":{"name":"Thêm -s / -es với he, she, it","tip":"Hiện tại đơn, chủ ngữ he / she / it (Tony, my dad, the baby, the sun): drinks, watches, goes, studies, brushes. Với I / you / we / they: giữ nguyên động từ."},"do-does":{"name":"do / does trong câu hỏi và phủ định","tip":"Câu hỏi: Do + I / you / we / they…? Does + he / she / it…? Phủ định: don't / doesn't + động từ NGUYÊN MẪU (she doesn't like, không phải 'doesn't likes'). Không được bỏ do / does: 'Where do you live?' chứ không phải 'Where you live?'"},"freq-adv":{"name":"Trạng từ tần suất: always, usually, often, sometimes, never","tip":"Đứng TRƯỚC động từ thường (He always watches…), SAU động từ be (She is never late). 'never' là phủ định → trả lời ngắn là No, nhưng động từ vẫn khẳng định (He never goes…)."},"present-cont":{"name":"Hiện tại tiếp diễn: am / is / are + V-ing","tip":"Dùng khi việc ĐANG xảy ra: now, at the moment, right now, Look!, Listen!, Sh!, Hurry up! Chính tả: swim → swimming, run → running, make → making, lie → lying. Câu hỏi đảo be lên trước: Is it raining?"},"present-simple":{"name":"Hiện tại đơn: thói quen, sự thật","tip":"Dấu hiệu: every day, usually, always, often, on Saturdays, twice a day, sự thật (The sun rises in the east). Nhớ -s / -es với he / she / it."},"stative":{"name":"Động từ KHÔNG dùng tiếp diễn","tip":"like, love, hate, want, need, know, understand, remember, think (= cho rằng), have got → luôn dùng hiện tại đơn, kể cả khi có 'now' hay 'at the moment'."},"prep-place":{"name":"Giới từ chỉ nơi chốn","tip":"in = trong; on = trên (chạm mặt); under = dưới; beside / next to = bên cạnh; in front of = phía trước; behind = phía sau; between = ở giữa hai vật; opposite = đối diện (bên kia đường); above = phía trên (không chạm)."},"prep-time":{"name":"Giới từ chỉ thời gian","tip":"at + giờ (at 7 o'clock, at half past six), at night, at noon, at midnight, at the weekend / at weekends, at Christmas; on + thứ, ngày (on Monday, on Saturdays, on 5th May, on Monday morning); in + buổi, tháng, mùa, năm (in the morning, in May, in summer, in 2026)."}},"tests":[{"id":1,"name":"Đề 1","level":"Tương đương sách","levelKey":"eq","exercises":[{"n":1,"type":"rewrite","title":"Write the sentences in the plural.","vi":"Viết lại các câu ở dạng số nhiều.","pts":2,"example":{"q":"She's a happy girl.","a":"They're happy girls."},"items":[{"q":"This is a box of chocolates.","a":["These are boxes of chocolates."],"why":"This → These; box tận cùng -x → boxes; bỏ 'a'. 'chocolates' giữ nguyên.","rule":"plural-s"},{"q":"That's a red bus.","a":["Those are red buses."],"why":"That's → Those are; bus tận cùng -s → buses.","rule":"plural-demo"},{"q":"Look at that child.","a":["Look at those children."],"why":"that → those; child → children (bất quy tắc).","rule":"plural-s"},{"q":"It's a brown mouse.","a":["They're brown mice."],"why":"It's → They're; mouse → mice (bất quy tắc); bỏ 'a'.","rule":"plural-demo"},{"q":"He's a good teacher.","a":["They're good teachers."],"why":"He's → They're; teacher → teachers; bỏ 'a'.","rule":"plural-demo"}]},{"n":2,"type":"gap","title":"Complete the sentences with the words in the list.","vi":"Điền vào chỗ trống bằng các từ trong khung (mỗi từ dùng một lần).","pts":2,"bank":["me","his","your","us","her","mine","their"],"example":{"text":"The girls are with ___ mum.","a":"their"},"items":[{"text":"Tom has got a new bike. That bike is ___.","a":[["his"]],"why":"Sau chỗ trống không có danh từ → đại từ sở hữu. Của Tom → his.","rule":"poss-pron"},{"text":"Hello, Mr Brown. Is this ___ car?","a":[["your"]],"why":"Đứng trước danh từ 'car', nói với Mr Brown → your.","rule":"poss-adj"},{"text":"We are in the garden. Can you see ___?","a":[["us"]],"why":"Tân ngữ sau động từ see, thay cho 'we' → us.","rule":"obj-pron"},{"text":"This is my mum. ___ name is Anna.","a":[["her"]],"why":"Đứng trước danh từ 'name', của mẹ (she) → Her.","rule":"poss-adj"},{"text":"That pencil is ___. Give it to me, please.","a":[["mine"]],"why":"Không có danh từ theo sau, của tôi → mine (= my pencil).","rule":"poss-pron"},{"text":"Listen to ___! I can sing.","a":[["me"]],"why":"Sau giới từ to, người nói (I) → me.","rule":"obj-pron"}]},{"n":3,"type":"gap","title":"Fill in the gaps with a, an, the or –.","vi":"Điền a / an / the, hoặc – nếu không cần mạo từ.","pts":2,"opts":["a","an","the","–"],"example":{"text":"___ Mary is my sister.","a":"–"},"items":[{"text":"My mum is ___ actress.","a":[["an"]],"why":"actress bắt đầu bằng nguyên âm a → an.","rule":"art-a-an"},{"text":"I've got ___ blue pen.","a":[["a"]],"why":"blue bắt đầu bằng phụ âm b → a.","rule":"art-a-an"},{"text":"Can I have ___ apple?","a":[["an"]],"why":"apple bắt đầu bằng nguyên âm a → an.","rule":"art-a-an"},{"text":"Is ___ Nile in Egypt?","a":[["the"]],"why":"Tên sông luôn đi với the: the Nile.","rule":"art-the"},{"text":"___ English drink a lot of tea.","a":[["the"]],"why":"The English = người Anh (cả dân tộc) → the.","rule":"art-the"}]},{"n":4,"type":"gap","title":"Fill in the gaps with much, many, some or any.","vi":"Điền much / many / some / any (mỗi chỗ trống 1 điểm).","pts":2,"opts":["much","many","some","any"],"example":{"text":"A: How ___ sugar is there?  B: Not ___.","a":"much / much"},"items":[{"text":"A: Can I have ___ water, please?\nB: Sorry, there isn't ___ left.","a":[["some"],["any","much"]],"why":"Câu xin 'Can I have…?' → some; câu phủ định 'there isn't' → any (hoặc much = không còn nhiều).","rule":"some-any"},{"text":"A: How ___ apples do you want?\nB: I don't want ___.","a":[["many"],["any","many"]],"why":"apples đếm được → How many; phủ định 'don't want' → any (hoặc many = không muốn nhiều).","rule":"much-many"},{"text":"A: I need ___ eggs for the cake.\nB: How ___?","a":[["some"],["many"]],"why":"Câu khẳng định → some; eggs đếm được → How many.","rule":"much-many"},{"text":"A: How ___ milk do you drink every day?\nB: Not ___.","a":[["much"],["much"]],"why":"milk không đếm được → How much? Not much.","rule":"much-many"}]},{"n":5,"type":"gap","para":true,"title":"Fill in the gaps with some, any, no or their derivatives.","vi":"Điền some / any / no hoặc các từ ghép (someone, anything, nothing, no one…).","pts":2,"lead":"*Someone* is in the kitchen. ","items":[{"text":"There isn't ___ bread ","a":[["any"]],"why":"'There isn't' là phủ định → any.","rule":"some-any"},{"text":"and there's ___ to eat. ","a":[["nothing"]],"why":"'there's' khẳng định nhưng nghĩa 'không có gì' → nothing (= there isn't anything).","rule":"no-compounds"},{"text":"Is there ___ else in the fridge? ","a":[["anything"]],"why":"Câu hỏi → anything; 'anything else' = thứ gì khác.","rule":"no-compounds"},{"text":"No, there isn't ___ there. ","a":[["anything","any"]],"why":"Phủ định 'there isn't' → anything (hoặc any = không còn bánh mì).","rule":"no-compounds"},{"text":"Mum isn't at home, so there's ___ to ask. ","a":[["no one","nobody"]],"why":"Không có ai để hỏi, động từ khẳng định 'there's' → no one / nobody.","rule":"no-compounds"},{"text":"Let's go and buy ___ for dinner.","a":[["something"]],"why":"Câu khẳng định (đề nghị) → something.","rule":"no-compounds"}]},{"n":6,"type":"qa","title":"Look at the table. What do these people do on Sundays? Write the questions and answers.","vi":"Nhìn bảng. Viết câu hỏi, câu trả lời ngắn và câu trả lời đầy đủ như mẫu.","pts":2,"when":"on Sundays","table":{"cols":["go swimming","play football","read books"],"rows":[{"who":"Sam","vals":["always","never","sometimes"]},{"who":"Ann and Kate","vals":["never","sometimes","always"]}]},"example":{"prompt":"Ann and Kate / play football","q":"Do Ann and Kate play football on Sundays?","s":"Yes, they do.","f":"They sometimes play football on Sundays."},"items":[{"prompt":"Sam / go swimming","subj":"Sam","pron":"he","a":{"q":"Does Sam go swimming on Sundays?","s":"Yes, he does.","f":"He always goes swimming on Sundays."},"why":"Sam = he → Does…? / Yes, he does. always đứng trước động từ, go → goes.","rule":"verb-s"},{"prompt":"Sam / play football","subj":"Sam","pron":"he","a":{"q":"Does Sam play football on Sundays?","s":"No, he doesn't.","f":"He never plays football on Sundays."},"why":"never → trả lời No, he doesn't. Câu đầy đủ: He never plays (vẫn thêm -s).","rule":"freq-adv"},{"prompt":"Ann and Kate / read books","subj":"Ann and Kate","pron":"they","a":{"q":"Do Ann and Kate read books on Sundays?","s":"Yes, they do.","f":"They always read books on Sundays."},"why":"Hai người = they → Do…? / Yes, they do. Động từ không thêm -s.","rule":"do-does"},{"prompt":"Ann and Kate / go swimming","subj":"Ann and Kate","pron":"they","a":{"q":"Do Ann and Kate go swimming on Sundays?","s":"No, they don't.","f":"They never go swimming on Sundays."},"why":"never → No, they don't. They never go (không -s).","rule":"freq-adv"},{"prompt":"Sam / read books","subj":"Sam","pron":"he","a":{"q":"Does Sam read books on Sundays?","s":"Yes, he does.","f":"He sometimes reads books on Sundays."},"why":"sometimes → Yes, he does. He sometimes reads (thêm -s).","rule":"verb-s"}]},{"n":7,"type":"gap","title":"Put the verbs in brackets into the present simple or the present continuous.","vi":"Chia động từ trong ngoặc ở thì hiện tại đơn hoặc hiện tại tiếp diễn.","pts":2,"example":{"text":"She ___ (play) tennis every Sunday.","a":"plays"},"items":[{"text":"Every day, she ___ (go) to school by bus.","a":[["goes"]],"why":"Every day → thói quen; she → go + es = goes.","rule":"verb-s"},{"text":"Listen! The birds ___ (sing).","a":[["are singing"]],"why":"Listen! → đang xảy ra; the birds (they) → are singing.","rule":"present-cont"},{"text":"My dad ___ (read) a newspaper at the moment.","a":[["is reading"]],"why":"at the moment → hiện tại tiếp diễn; my dad (he) → is reading.","rule":"present-cont"},{"text":"We usually ___ (have) dinner at 7 o'clock.","a":[["have"]],"why":"usually → thói quen; chủ ngữ we → giữ nguyên have.","rule":"present-simple"},{"text":"Look! The children ___ (play) in the park.","a":[["are playing"]],"why":"Look! → đang xảy ra; the children (they) → are playing.","rule":"present-cont"},{"text":"He always ___ (wash) his car on Saturdays.","a":[["washes"]],"why":"always, on Saturdays → thói quen; he + wash tận cùng -sh → washes.","rule":"verb-s"}]},{"n":8,"type":"gap","para":true,"title":"Put the verbs in brackets into the present simple or the present continuous.","vi":"Chia động từ trong ngoặc (đoạn hội thoại).","pts":2,"lead":"**a** **Ann:** What *are you doing* (you/do) now?\n**Ben:** ","items":[{"text":"I ___ (make) a cake.\n**b** **Kim:** ","a":[["am making","'m making"]],"why":"Đang làm lúc này (now) → I am making.","rule":"present-cont"},{"text":"Where ___ (you/work)?\n**Lee:** ","a":[["do you work"]],"why":"Câu hỏi hiện tại đơn với you → do you work (không được bỏ do).","rule":"do-does"},{"text":"I ___ (work) in a shop ","a":[["work"]],"why":"Công việc lâu dài → hiện tại đơn; chủ ngữ I → work.","rule":"present-simple"},{"text":"but I ___ (not/like) it, ","a":[["don't like","do not like"]],"why":"Phủ định hiện tại đơn: don't + like. 'like' không dùng tiếp diễn.","rule":"do-does"},{"text":"so I ___ (look) for a new job now.","a":[["am looking","'m looking"]],"why":"now → đang diễn ra → am looking.","rule":"present-cont"}]},{"n":9,"type":"gap","para":true,"title":"Look at the picture and fill in the gaps with on, in, under, beside or in front of.","vi":"Nhìn tranh và điền on / in / under / beside / in front of.","pts":2,"opts":["on","in","under","beside","in front of"],"scene":"<svg viewBox='0 0 400 220' xmlns='http://www.w3.org/2000/svg' font-family='sans-serif'><rect x='0' y='0' width='400' height='220' fill='var(--scene-bg)'/><rect x='0' y='185' width='400' height='35' fill='var(--scene-floor)'/><rect x='180' y='35' width='80' height='55' rx='4' fill='var(--scene-water)' stroke='var(--scene-line)' stroke-width='2'/><text x='205' y='72' font-size='22'>🐟<\/text><text x='232' y='60' font-size='18'>🐟<\/text><text x='220' y='104' font-size='10' text-anchor='middle' fill='var(--scene-ink)'>fish tank<\/text><rect x='40' y='120' width='110' height='10' rx='2' fill='var(--scene-wood)'/><rect x='46' y='130' width='8' height='55' fill='var(--scene-wood)'/><rect x='136' y='130' width='8' height='55' fill='var(--scene-wood)'/><text x='95' y='116' font-size='26' text-anchor='middle'>📚<\/text><text x='95' y='176' font-size='28' text-anchor='middle'>🐱<\/text><text x='95' y='200' font-size='10' text-anchor='middle' fill='var(--scene-ink)'>table<\/text><rect x='200' y='130' width='90' height='22' rx='4' fill='var(--scene-wood)'/><rect x='200' y='150' width='90' height='35' rx='6' fill='var(--scene-soft)' stroke='var(--scene-line)' stroke-width='2'/><text x='245' y='200' font-size='10' text-anchor='middle' fill='var(--scene-ink)'>sofa<\/text><line x1='312' y1='185' x2='312' y2='150' stroke='var(--scene-line)' stroke-width='3'/><text x='312' y='150' font-size='26' text-anchor='middle'>💡<\/text><text x='312' y='200' font-size='10' text-anchor='middle' fill='var(--scene-ink)'>lamp<\/text><line x1='356' y1='155' x2='356' y2='185' stroke='var(--scene-line)' stroke-width='4'/><rect x='320' y='100' width='72' height='55' rx='4' fill='var(--scene-dark)' stroke='var(--scene-line)' stroke-width='2'/><text x='356' y='134' font-size='16' text-anchor='middle' fill='#fff' font-weight='bold'>TV<\/text><text x='356' y='172' font-size='30' text-anchor='middle'>🐶<\/text><\/svg>","lead":"This is our living room. There's a cat *under* the table. ","items":[{"text":"There are some books ___ the table. ","a":[["on"]],"why":"Sách đặt trên mặt bàn → on.","rule":"prep-place"},{"text":"There's a lamp ___ the sofa. ","a":[["beside"]],"why":"Đèn ở bên cạnh ghế sofa → beside.","rule":"prep-place"},{"text":"A dog is ___ the TV. ","a":[["in front of"]],"why":"Chó đứng phía trước ti vi → in front of.","rule":"prep-place"},{"text":"There are some fish ___ the fish tank.","a":[["in"]],"why":"Cá ở trong bể → in.","rule":"prep-place"}]},{"n":10,"type":"gap","para":true,"title":"Fill in the gaps with on, in or at.","vi":"Điền on / in / at (giới từ chỉ thời gian).","pts":2,"opts":["on","in","at"],"lead":"*At* the weekend, I get up ","items":[{"text":"___ nine o'clock. ","a":[["at"]],"why":"at + giờ: at nine o'clock.","rule":"prep-time"},{"text":"___ Saturdays, I play football with my friends. ","a":[["on"]],"why":"on + thứ: On Saturdays.","rule":"prep-time"},{"text":"___ the afternoon, we go to the cinema. ","a":[["in"]],"why":"in + buổi: In the afternoon.","rule":"prep-time"},{"text":"___ Sunday evening, I do my homework.","a":[["on"]],"why":"Thứ + buổi → on: On Sunday evening.","rule":"prep-time"}]}]},{"id":2,"name":"Đề 2","level":"Tương đương sách","levelKey":"eq","exercises":[{"n":1,"type":"rewrite","title":"Write the sentences in the plural.","vi":"Viết lại các câu ở dạng số nhiều.","pts":2,"example":{"q":"It's a big dog.","a":"They're big dogs."},"items":[{"q":"This is a photo of my family.","a":["These are photos of my family."],"why":"This → These; photo là ngoại lệ chỉ thêm -s: photos (không phải photoes).","rule":"plural-s"},{"q":"That's a sandwich.","a":["Those are sandwiches."],"why":"That's → Those are; sandwich tận cùng -ch → sandwiches.","rule":"plural-demo"},{"q":"Look at this strawberry.","a":["Look at these strawberries."],"why":"this → these; phụ âm + y → strawberries.","rule":"plural-s"},{"q":"She's a tall woman.","a":["They're tall women."],"why":"She's → They're; woman → women.","rule":"plural-demo"},{"q":"It's a sheep.","a":["They're sheep."],"why":"It's → They're; sheep số nhiều vẫn là sheep; bỏ 'a'.","rule":"plural-s"}]},{"n":2,"type":"gap","title":"Complete the sentences with the words in the list.","vi":"Điền vào chỗ trống bằng các từ trong khung (mỗi từ dùng một lần).","pts":2,"bank":["them","our","hers","him","yours","my","her"],"example":{"text":"This is Mrs Lee and this is ___ dog.","a":"her"},"items":[{"text":"Is this bag ___? It's got your name on it.","a":[["yours"]],"why":"Không có danh từ theo sau, của bạn → yours.","rule":"poss-pron"},{"text":"We've got a new house. ___ house is big.","a":[["our"]],"why":"Đứng trước danh từ 'house', của chúng tôi (we) → Our.","rule":"poss-adj"},{"text":"I can't find my keys. Can you see ___?","a":[["them"]],"why":"Tân ngữ sau see, thay cho 'my keys' (số nhiều) → them.","rule":"obj-pron"},{"text":"That's Jenny's hat. The hat is ___.","a":[["hers"]],"why":"Không có danh từ theo sau, của Jenny → hers.","rule":"poss-pron"},{"text":"Peter is in the garden. Look at ___.","a":[["him"]],"why":"Sau 'Look at', thay cho Peter → him.","rule":"obj-pron"},{"text":"I'm Kate and this is ___ brother.","a":[["my"]],"why":"Đứng trước danh từ 'brother', của tôi → my.","rule":"poss-adj"}]},{"n":3,"type":"gap","title":"Fill in the gaps with a, an, the or –.","vi":"Điền a / an / the, hoặc – nếu không cần mạo từ.","pts":2,"opts":["a","an","the","–"],"example":{"text":"I live in ___ London.","a":"–"},"items":[{"text":"He's got ___ umbrella.","a":[["an"]],"why":"umbrella bắt đầu bằng nguyên âm u (đọc /ʌ/) → an.","rule":"art-a-an"},{"text":"She's ___ doctor.","a":[["a"]],"why":"doctor bắt đầu bằng phụ âm d → a.","rule":"art-a-an"},{"text":"___ sun is very hot today.","a":[["the"]],"why":"Mặt trời là vật duy nhất → The sun.","rule":"art-the"},{"text":"Do you want ___ egg?","a":[["an"]],"why":"egg bắt đầu bằng nguyên âm e → an.","rule":"art-a-an"},{"text":"___ Peter is my best friend.","a":[["–"]],"why":"Tên người không dùng mạo từ → –.","rule":"art-zero"}]},{"n":4,"type":"gap","title":"Fill in the gaps with much, many, some or any.","vi":"Điền much / many / some / any (mỗi chỗ trống 1 điểm).","pts":2,"opts":["much","many","some","any"],"example":{"text":"A: Have you got ___ money?  B: Yes, I've got ___.","a":"any / some"},"items":[{"text":"A: How ___ children are there in the class?\nB: Not ___.","a":[["many"],["many"]],"why":"children đếm được (số nhiều bất quy tắc) → How many? Not many.","rule":"much-many"},{"text":"A: Is there ___ cheese?\nB: Yes, there's ___ in the fridge.","a":[["any","much"],["some"]],"why":"Câu hỏi → any (hoặc much với danh từ không đếm được); câu khẳng định → some.","rule":"some-any"},{"text":"A: How ___ homework have you got?\nB: Not ___.","a":[["much"],["much"]],"why":"homework không đếm được → How much? Not much.","rule":"much-many"},{"text":"A: Can I have ___ biscuits?\nB: Sorry, there aren't ___.","a":[["some"],["any","many"]],"why":"Câu xin → some; phủ định 'there aren't' → any (hoặc many = không còn nhiều).","rule":"some-any"}]},{"n":5,"type":"gap","para":true,"title":"Fill in the gaps with some, any, no or their derivatives.","vi":"Điền some / any / no hoặc các từ ghép (someone, anything, nothing, no one…).","pts":2,"lead":"*Someone* is at the door. Who is it? ","items":[{"text":"I can't see ___. ","a":[["anyone","anybody","anything"]],"why":"Phủ định 'can't see' → anyone / anybody (không thấy ai) hoặc anything (không thấy gì).","rule":"no-compounds"},{"text":"Is ___ in the garden? ","a":[["anyone","anybody"]],"why":"Câu hỏi về người → anyone / anybody.","rule":"no-compounds"},{"text":"Is there ___ on the table? ","a":[["anything"]],"why":"Câu hỏi về vật → anything.","rule":"no-compounds"},{"text":"Yes, there's ___ in a small box. ","a":[["something"]],"why":"Câu khẳng định → something.","rule":"no-compounds"},{"text":"___ knows what it is, ","a":[["no one","nobody"]],"why":"Không ai biết → No one / Nobody + knows (động từ khẳng định, số ít).","rule":"no-compounds"},{"text":"so let's ask ___ in the house.","a":[["someone","somebody"]],"why":"Câu khẳng định (đề nghị) → someone / somebody.","rule":"no-compounds"}]},{"n":6,"type":"qa","title":"Look at the table. What do these people do on Saturdays? Write the questions and answers.","vi":"Nhìn bảng. Viết câu hỏi, câu trả lời ngắn và câu trả lời đầy đủ như mẫu.","pts":2,"when":"on Saturdays","table":{"cols":["watch TV","play the piano","go to the beach"],"rows":[{"who":"Lucy","vals":["sometimes","always","never"]},{"who":"Tom and Ben","vals":["always","never","sometimes"]}]},"example":{"prompt":"Lucy / watch TV","q":"Does Lucy watch TV on Saturdays?","s":"Yes, she does.","f":"She sometimes watches TV on Saturdays."},"items":[{"prompt":"Tom and Ben / play the piano","subj":"Tom and Ben","pron":"they","a":{"q":"Do Tom and Ben play the piano on Saturdays?","s":"No, they don't.","f":"They never play the piano on Saturdays."},"why":"Hai người = they → Do…? never → No, they don't. They never play.","rule":"freq-adv"},{"prompt":"Lucy / go to the beach","subj":"Lucy","pron":"she","a":{"q":"Does Lucy go to the beach on Saturdays?","s":"No, she doesn't.","f":"She never goes to the beach on Saturdays."},"why":"Lucy = she → Does…? never → No, she doesn't. She never goes (vẫn -es).","rule":"freq-adv"},{"prompt":"Tom and Ben / watch TV","subj":"Tom and Ben","pron":"they","a":{"q":"Do Tom and Ben watch TV on Saturdays?","s":"Yes, they do.","f":"They always watch TV on Saturdays."},"why":"they → Do…? Yes, they do. Động từ không thêm -es với they.","rule":"do-does"},{"prompt":"Lucy / play the piano","subj":"Lucy","pron":"she","a":{"q":"Does Lucy play the piano on Saturdays?","s":"Yes, she does.","f":"She always plays the piano on Saturdays."},"why":"she → Does…? Yes, she does. She always plays (thêm -s).","rule":"verb-s"},{"prompt":"Tom and Ben / go to the beach","subj":"Tom and Ben","pron":"they","a":{"q":"Do Tom and Ben go to the beach on Saturdays?","s":"Yes, they do.","f":"They sometimes go to the beach on Saturdays."},"why":"they → Do…? sometimes → Yes, they do. They sometimes go.","rule":"do-does"}]},{"n":7,"type":"gap","title":"Put the verbs in brackets into the present simple or the present continuous.","vi":"Chia động từ trong ngoặc ở thì hiện tại đơn hoặc hiện tại tiếp diễn.","pts":2,"example":{"text":"I ___ (get) up at 7 every day.","a":"get"},"items":[{"text":"My sister ___ (study) English every evening.","a":[["studies"]],"why":"every evening → thói quen; she + study (phụ âm + y) → studies.","rule":"verb-s"},{"text":"Be quiet! The baby ___ (sleep).","a":[["is sleeping"]],"why":"Be quiet! → đang xảy ra; the baby (it) → is sleeping.","rule":"present-cont"},{"text":"They ___ (not/watch) TV now.","a":[["aren't watching","are not watching"]],"why":"now → tiếp diễn; phủ định: aren't watching.","rule":"present-cont"},{"text":"___ (she/like) ice cream?","a":[["does she like"]],"why":"like là động từ trạng thái → hiện tại đơn; câu hỏi với she → Does she like…?","rule":"do-does"},{"text":"We ___ (visit) Grandma every Sunday.","a":[["visit"]],"why":"every Sunday → thói quen; we → visit (không -s).","rule":"present-simple"},{"text":"Look! Dad ___ (cook) dinner.","a":[["is cooking"]],"why":"Look! → đang xảy ra; Dad (he) → is cooking.","rule":"present-cont"}]},{"n":8,"type":"gap","para":true,"title":"Put the verbs in brackets into the present simple or the present continuous.","vi":"Chia động từ trong ngoặc (đoạn hội thoại).","pts":2,"lead":"**a** **Mum:** What *are you eating* (you/eat)?\n**Tim:** ","items":[{"text":"I ___ (eat) a sandwich.\n**b** **Sue:** ","a":[["am eating","'m eating"]],"why":"Đang ăn lúc này → I am eating.","rule":"present-cont"},{"text":"Where ___ (your dad/work)?\n**Ann:** ","a":[["does your dad work"]],"why":"Câu hỏi hiện tại đơn, your dad = he → Does your dad work…?","rule":"do-does"},{"text":"He ___ (work) in a bank. ","a":[["works"]],"why":"Công việc lâu dài → hiện tại đơn; he → works.","rule":"verb-s"},{"text":"He ___ (not/work) on Sundays. ","a":[["doesn't work","does not work"]],"why":"on Sundays → thói quen; phủ định với he: doesn't + work (nguyên mẫu).","rule":"do-does"},{"text":"He ___ (sleep) at the moment.","a":[["is sleeping","'s sleeping"]],"why":"at the moment → đang diễn ra → is sleeping.","rule":"present-cont"}]},{"n":9,"type":"gap","para":true,"title":"Look at the picture and fill in the gaps with on, in, under, beside or in front of.","vi":"Nhìn tranh và điền on / in / under / beside / in front of.","pts":2,"opts":["on","in","under","beside","in front of"],"scene":"<svg viewBox='0 0 400 220' xmlns='http://www.w3.org/2000/svg' font-family='sans-serif'><rect x='0' y='0' width='400' height='220' fill='var(--scene-bg)'/><rect x='0' y='185' width='400' height='35' fill='var(--scene-floor)'/><rect x='40' y='75' width='7' height='55' fill='var(--scene-wood)'/><rect x='40' y='125' width='50' height='8' rx='2' fill='var(--scene-wood)'/><rect x='44' y='133' width='6' height='52' fill='var(--scene-wood)'/><rect x='80' y='133' width='6' height='52' fill='var(--scene-wood)'/><text x='65' y='176' font-size='28' text-anchor='middle'>🐱<\/text><text x='65' y='200' font-size='10' text-anchor='middle' fill='var(--scene-ink)'>chair<\/text><rect x='120' y='112' width='120' height='10' rx='2' fill='var(--scene-wood)'/><rect x='126' y='122' width='8' height='63' fill='var(--scene-wood)'/><rect x='226' y='122' width='8' height='63' fill='var(--scene-wood)'/><ellipse cx='180' cy='108' rx='32' ry='10' fill='var(--scene-soft)' stroke='var(--scene-line)' stroke-width='2'/><text x='168' y='106' font-size='16'>🍎<\/text><text x='184' y='104' font-size='16'>🍎<\/text><text x='180' y='200' font-size='10' text-anchor='middle' fill='var(--scene-ink)'>table + bowl<\/text><rect x='262' y='40' width='48' height='145' rx='4' fill='var(--scene-soft)' stroke='var(--scene-line)' stroke-width='2'/><line x1='262' y1='85' x2='310' y2='85' stroke='var(--scene-line)' stroke-width='2'/><text x='286' y='36' font-size='10' text-anchor='middle' fill='var(--scene-ink)'>fridge<\/text><text x='286' y='182' font-size='30' text-anchor='middle'>👦<\/text><rect x='335' y='40' width='50' height='145' rx='3' fill='var(--scene-wood)' stroke='var(--scene-line)' stroke-width='2'/><circle cx='377' cy='115' r='3' fill='var(--scene-ink)'/><text x='360' y='36' font-size='10' text-anchor='middle' fill='var(--scene-ink)'>door<\/text><text x='322' y='182' font-size='24' text-anchor='middle'>🎒<\/text><\/svg>","lead":"This is our kitchen. There's a cat *under* the chair. ","items":[{"text":"There are some apples ___ the bowl. ","a":[["in"]],"why":"Táo nằm trong bát → in.","rule":"prep-place"},{"text":"The bowl is ___ the table. ","a":[["on"]],"why":"Bát đặt trên mặt bàn → on.","rule":"prep-place"},{"text":"There's a bag ___ the door. ","a":[["beside"]],"why":"Cặp để bên cạnh cửa → beside.","rule":"prep-place"},{"text":"A boy is ___ the fridge.","a":[["in front of"]],"why":"Cậu bé đứng phía trước tủ lạnh → in front of.","rule":"prep-place"}]},{"n":10,"type":"gap","para":true,"title":"Fill in the gaps with on, in or at.","vi":"Điền on / in / at (giới từ chỉ thời gian).","pts":2,"opts":["on","in","at"],"lead":"*In* the morning I have breakfast ","items":[{"text":"___ half past seven. ","a":[["at"]],"why":"at + giờ: at half past seven.","rule":"prep-time"},{"text":"___ Mondays I have a music lesson. ","a":[["on"]],"why":"on + thứ: On Mondays.","rule":"prep-time"},{"text":"My birthday is ___ May. ","a":[["in"]],"why":"in + tháng: in May.","rule":"prep-time"},{"text":"We go to the park ___ the weekend.","a":[["at"]],"why":"at the weekend (cụm cố định).","rule":"prep-time"}]}]},{"id":3,"name":"Đề 3","level":"Khó hơn ~40%","levelKey":"hard","exercises":[{"n":1,"type":"rewrite","title":"Write the sentences in the plural.","vi":"Viết lại các câu ở dạng số nhiều (có danh từ bất quy tắc và câu có 2 danh từ).","pts":2,"example":{"q":"That's a tooth.","a":"Those are teeth."},"items":[{"q":"This is a knife.","a":["These are knives."],"why":"This → These; knife tận cùng -fe → knives.","rule":"plural-s"},{"q":"That's a leaf.","a":["Those are leaves."],"why":"That's → Those are; leaf tận cùng -f → leaves.","rule":"plural-s"},{"q":"Look at that person.","a":["Look at those people."],"why":"that → those; person → people (bất quy tắc).","rule":"plural-s"},{"q":"It's a tomato.","a":["They're tomatoes."],"why":"It's → They're; tomato tận cùng -o → tomatoes.","rule":"plural-s"},{"q":"It's a mouse in a box.","a":["They're mice in boxes.","They're mice in a box."],"why":"It's → They're; mouse → mice; 'in a box' có thể giữ nguyên (nhiều chuột trong một hộp) hoặc đổi thành boxes.","rule":"plural-demo"}]},{"n":2,"type":"gap","title":"Complete the sentences with the words in the list. Two words are extra.","vi":"Điền từ trong khung. Khung có 2 từ thừa không dùng đến.","pts":2,"bank":["it","theirs","ours","her","us","yours","hers","his","mine"],"example":{"text":"This isn't your pen. It's ___.","a":"mine"},"items":[{"text":"The dog is hungry. Give ___ some food.","a":[["it"]],"why":"Tân ngữ sau give, thay cho 'the dog' (con vật) → it.","rule":"obj-pron"},{"text":"Is this your classroom, children? Yes, it's ___.","a":[["ours"]],"why":"Không có danh từ theo sau, của chúng tôi → ours.","rule":"poss-pron"},{"text":"Those are Tom and Ben's bikes. They're ___.","a":[["theirs"]],"why":"Của Tom và Ben (they), đứng một mình → theirs.","rule":"poss-pron"},{"text":"Mrs Green is our teacher. We like ___ very much.","a":[["her"]],"why":"Tân ngữ sau like, thay cho Mrs Green → her.","rule":"obj-pron"},{"text":"Come with ___! We're going to the zoo.","a":[["us"]],"why":"Sau giới từ with, thay cho 'we' → us.","rule":"obj-pron"},{"text":"Excuse me, is this umbrella ___?","a":[["yours"]],"why":"Không có danh từ theo sau, của bạn → yours.","rule":"poss-pron"}]},{"n":3,"type":"gap","title":"Fill in the gaps with a, an, the or –.","vi":"Điền a / an / the, hoặc – nếu không cần mạo từ. Chú ý âm đầu của từ, không phải chữ cái.","pts":2,"opts":["a","an","the","–"],"example":{"text":"She plays ___ tennis on Sundays.","a":"–"},"items":[{"text":"We have ___ hour for lunch.","a":[["an"]],"why":"hour có h câm, đọc bắt đầu bằng nguyên âm → an hour.","rule":"art-a-an"},{"text":"There's ___ university in my town.","a":[["a"]],"why":"university đọc /ju:/ (âm phụ âm y) → a university.","rule":"art-a-an"},{"text":"___ Alps are in Europe.","a":[["the"]],"why":"Dãy núi đi với the: the Alps.","rule":"art-the"},{"text":"Do you speak ___ French?","a":[["–"]],"why":"Tên ngôn ngữ không dùng mạo từ → –.","rule":"art-zero"},{"text":"I play ___ guitar every day.","a":[["the"]],"why":"Nhạc cụ đi với the: play the guitar.","rule":"art-the"}]},{"n":4,"type":"gap","title":"Fill in the gaps with much, many, some or any.","vi":"Điền much / many / some / any (mỗi chỗ trống 1 điểm). Có danh từ bẫy: homework, money, people.","pts":2,"opts":["much","many","some","any"],"example":{"text":"A: How ___ people are coming?  B: Not ___.","a":"many / many"},"items":[{"text":"A: How ___ homework have you got?\nB: Not ___, only two exercises.","a":[["much"],["much"]],"why":"homework KHÔNG đếm được (dù có nhiều bài) → much / much.","rule":"much-many"},{"text":"A: Would you like ___ orange juice?\nB: Yes, please. I haven't got ___ at home.","a":[["some"],["any","much"]],"why":"Lời mời 'Would you like…?' → some; phủ định 'haven't got' → any (hoặc much).","rule":"some-any"},{"text":"A: How ___ people live in your house?\nB: Five. We haven't got ___ pets.","a":[["many"],["any","many"]],"why":"people là số nhiều đếm được → many; phủ định → any (hoặc many).","rule":"much-many"},{"text":"A: I need ___ money for the bus.\nB: How ___?","a":[["some"],["much"]],"why":"Câu khẳng định → some; money không đếm được → How much?","rule":"much-many"}]},{"n":5,"type":"gap","para":true,"title":"Fill in the gaps with some, any, no or their derivatives.","vi":"Điền some / any / no hoặc các từ ghép, kể cả somewhere / anywhere / nowhere.","pts":2,"lead":"*Nobody* is at the beach today. ","items":[{"text":"There isn't ___ swimming in the water ","a":[["anyone","anybody"]],"why":"Phủ định 'there isn't' + người đang bơi → anyone / anybody.","rule":"no-compounds"},{"text":"and there's ___ to do. ","a":[["nothing"]],"why":"'there's' khẳng định, nghĩa 'không có gì để làm' → nothing.","rule":"no-compounds"},{"text":"Is there ___ to buy ice cream? ","a":[["anywhere"]],"why":"Câu hỏi về nơi chốn → anywhere.","rule":"no-compounds"},{"text":"No, there's ___ open. ","a":[["nowhere","nothing"]],"why":"'there's' + nghĩa phủ định → nowhere (không có chỗ nào) hoặc nothing (không có gì mở cửa).","rule":"no-compounds"},{"text":"Wait! ___ is coming! It's Dad. ","a":[["someone","somebody"]],"why":"Câu khẳng định về người → Someone / Somebody.","rule":"no-compounds"},{"text":"He's got ___ for us.","a":[["something"]],"why":"Câu khẳng định về vật → something.","rule":"no-compounds"}]},{"n":6,"type":"qa","title":"Look at the table. What do these people do on Fridays? Write the questions and answers.","vi":"Bảng có 3 người, thêm trạng từ often. Viết câu hỏi, câu trả lời ngắn và câu đầy đủ như mẫu.","pts":2,"when":"on Fridays","table":{"cols":["go jogging","cook dinner","visit friends"],"rows":[{"who":"Mark","vals":["often","never","sometimes"]},{"who":"Lisa","vals":["never","always","often"]},{"who":"Tom and Ann","vals":["sometimes","never","always"]}]},"example":{"prompt":"Lisa / cook dinner","q":"Does Lisa cook dinner on Fridays?","s":"Yes, she does.","f":"She always cooks dinner on Fridays."},"items":[{"prompt":"Mark / go jogging","subj":"Mark","pron":"he","a":{"q":"Does Mark go jogging on Fridays?","s":"Yes, he does.","f":"He often goes jogging on Fridays."},"why":"Mark = he → Does…? often → Yes, he does. He often goes (thêm -es).","rule":"verb-s"},{"prompt":"Tom and Ann / cook dinner","subj":"Tom and Ann","pron":"they","a":{"q":"Do Tom and Ann cook dinner on Fridays?","s":"No, they don't.","f":"They never cook dinner on Fridays."},"why":"they → Do…? never → No, they don't. They never cook.","rule":"freq-adv"},{"prompt":"Lisa / visit friends","subj":"Lisa","pron":"she","a":{"q":"Does Lisa visit friends on Fridays?","s":"Yes, she does.","f":"She often visits friends on Fridays."},"why":"she → Does…? Yes, she does. She often visits (thêm -s).","rule":"verb-s"},{"prompt":"Mark / cook dinner","subj":"Mark","pron":"he","a":{"q":"Does Mark cook dinner on Fridays?","s":"No, he doesn't.","f":"He never cooks dinner on Fridays."},"why":"never → No, he doesn't. He never cooks (vẫn thêm -s).","rule":"freq-adv"},{"prompt":"Tom and Ann / visit friends","subj":"Tom and Ann","pron":"they","a":{"q":"Do Tom and Ann visit friends on Fridays?","s":"Yes, they do.","f":"They always visit friends on Fridays."},"why":"they → Do…? always → Yes, they do. They always visit.","rule":"do-does"}]},{"n":7,"type":"gap","title":"Put the verbs in brackets into the present simple or the present continuous.","vi":"Chia động từ, có câu phủ định, câu hỏi và động từ trạng thái.","pts":2,"example":{"text":"Tom ___ (not/eat) meat.","a":"doesn't eat"},"items":[{"text":"The students ___ (not/study) now. They're having a break.","a":[["aren't studying","are not studying"]],"why":"now → tiếp diễn; phủ định: aren't studying.","rule":"present-cont"},{"text":"My cat ___ (lie) on the sofa at the moment.","a":[["is lying"]],"why":"at the moment → tiếp diễn; lie → lying (ie → y).","rule":"present-cont"},{"text":"___ (your mum/work) on Saturdays?","a":[["does your mum work"]],"why":"on Saturdays → thói quen; câu hỏi với she → Does your mum work…?","rule":"do-does"},{"text":"I ___ (not/understand) this question.","a":[["don't understand","do not understand"]],"why":"understand là động từ trạng thái → hiện tại đơn: don't understand.","rule":"stative"},{"text":"Hurry up! The bus ___ (come).","a":[["is coming"]],"why":"Hurry up! → đang xảy ra → is coming.","rule":"present-cont"},{"text":"Jim ___ (swim) in the lake every summer.","a":[["swims"]],"why":"every summer → thói quen; Jim (he) → swims.","rule":"verb-s"}]},{"n":8,"type":"gap","para":true,"title":"Put the verbs in brackets into the present simple or the present continuous.","vi":"Chia động từ trong ngoặc (đoạn hội thoại).","pts":2,"lead":"**a** **Ann:** Why *are you running* (you/run)?\n**Ben:** ","items":[{"text":"I ___ (not/want) to be late for school!\n**b** **Pat:** ","a":[["don't want","do not want"]],"why":"want là động từ trạng thái → hiện tại đơn; phủ định với I: don't want.","rule":"stative"},{"text":"___ (you/know) that girl?\n**Sam:** ","a":[["do you know"]],"why":"know là động từ trạng thái → hiện tại đơn; câu hỏi với you → Do you know…?","rule":"stative"},{"text":"Yes, she ___ (sit) next to me in class every day. ","a":[["sits"]],"why":"every day → thói quen; she → sits.","rule":"verb-s"},{"text":"She ___ (not/talk) much ","a":[["doesn't talk","does not talk"]],"why":"Thói quen, phủ định với she: doesn't + talk.","rule":"do-does"},{"text":"but she ___ (want) to be my friend.","a":[["wants"]],"why":"want là động từ trạng thái → hiện tại đơn; she → wants.","rule":"stative"}]},{"n":9,"type":"gap","para":true,"title":"Look at the picture and fill in the gaps with in front of, behind, between, next to, opposite or under.","vi":"Nhìn tranh và điền giới từ. Thêm các giới từ mới: behind, between, next to, opposite.","pts":2,"opts":["in front of","behind","between","next to","opposite","under"],"scene":"<svg viewBox='0 0 400 220' xmlns='http://www.w3.org/2000/svg' font-family='sans-serif'><rect x='0' y='0' width='400' height='220' fill='var(--scene-bg)'/><text x='130' y='68' font-size='44' text-anchor='middle'>🌳<\/text><rect x='55' y='60' width='150' height='70' rx='3' fill='var(--scene-soft)' stroke='var(--scene-line)' stroke-width='2'/><rect x='118' y='100' width='24' height='30' fill='var(--scene-wood)'/><rect x='70' y='75' width='22' height='18' fill='var(--scene-water)'/><rect x='168' y='75' width='22' height='18' fill='var(--scene-water)'/><text x='130' y='93' font-size='13' text-anchor='middle' font-weight='bold' fill='var(--scene-ink)'>SCHOOL<\/text><text x='130' y='150' font-size='32' text-anchor='middle'>🚌<\/text><text x='178' y='150' font-size='28' text-anchor='middle'>👧<\/text><text x='280' y='128' font-size='40' text-anchor='middle'>🌳<\/text><text x='370' y='128' font-size='40' text-anchor='middle'>🌳<\/text><text x='325' y='132' font-size='28' text-anchor='middle'>🚲<\/text><rect x='0' y='158' width='400' height='26' fill='var(--scene-dark)'/><line x1='0' y1='171' x2='400' y2='171' stroke='#fff' stroke-width='2' stroke-dasharray='14 10'/><rect x='60' y='190' width='110' height='28' rx='3' fill='var(--scene-soft)' stroke='var(--scene-line)' stroke-width='2'/><text x='115' y='209' font-size='13' text-anchor='middle' font-weight='bold' fill='var(--scene-ink)'>SHOP<\/text><\/svg>","lead":"This is my school. There's a big tree *behind* the school. ","items":[{"text":"A yellow bus is ___ the school. ","a":[["in front of"]],"why":"Xe buýt đỗ phía trước trường → in front of.","rule":"prep-place"},{"text":"My bike is ___ the two trees. ","a":[["between"]],"why":"Xe đạp ở giữa hai cái cây → between.","rule":"prep-place"},{"text":"The shop is ___ the school, across the road. ","a":[["opposite"]],"why":"Cửa hàng ở bên kia đường, đối diện trường → opposite.","rule":"prep-place"},{"text":"A girl is standing ___ the bus.","a":[["next to"]],"why":"Cô bé đứng ngay cạnh xe buýt → next to.","rule":"prep-place"}]},{"n":10,"type":"gap","para":true,"title":"Fill in the gaps with on, in or at.","vi":"Điền on / in / at. Có các cụm bẫy: at night, in winter, on 3rd June.","pts":2,"opts":["on","in","at"],"lead":"*On* Monday mornings I have maths. School starts ","items":[{"text":"___ half past eight. ","a":[["at"]],"why":"at + giờ: at half past eight.","rule":"prep-time"},{"text":"___ winter it's dark ","a":[["in"]],"why":"in + mùa: In winter.","rule":"prep-time"},{"text":"___ night. ","a":[["at"]],"why":"at night (cụm cố định).","rule":"prep-time"},{"text":"My mum's birthday is ___ 3rd June.","a":[["on"]],"why":"on + ngày cụ thể: on 3rd June.","rule":"prep-time"}]}]},{"id":4,"name":"Đề 4","level":"Khó hơn ~40%","levelKey":"hard","exercises":[{"n":1,"type":"rewrite","title":"Write the sentences in the plural.","vi":"Viết lại các câu ở dạng số nhiều (có câu phải đổi 2 danh từ).","pts":2,"example":{"q":"This is a wolf.","a":"These are wolves."},"items":[{"q":"That's a baby with a toy.","a":["Those are babies with toys."],"why":"That's → Those are; baby → babies; toy (nguyên âm + y) → toys.","rule":"plural-s"},{"q":"This is a box of matches.","a":["These are boxes of matches."],"why":"This → These; box → boxes; 'matches' đã là số nhiều.","rule":"plural-s"},{"q":"It's a goose.","a":["They're geese."],"why":"It's → They're; goose → geese (bất quy tắc).","rule":"plural-s"},{"q":"Look at this bus and that lorry.","a":["Look at these buses and those lorries."],"why":"this → these, that → those; bus → buses; lorry → lorries.","rule":"plural-demo"},{"q":"He's a man from Wales.","a":["They're men from Wales."],"why":"He's → They're; man → men; bỏ 'a'. 'Wales' là tên nước, giữ nguyên.","rule":"plural-demo"}]},{"n":2,"type":"gap","title":"Complete the sentences with the words in the list. Two words are extra.","vi":"Điền từ trong khung. Khung có 2 từ thừa không dùng đến.","pts":2,"bank":["him","hers","ours","its","me","theirs","your","them","my"],"example":{"text":"Mum, where are ___ shoes?","a":"my"},"items":[{"text":"The boy is crying. Give ___ the teddy bear.","a":[["him"]],"why":"Tân ngữ sau give, thay cho the boy → him.","rule":"obj-pron"},{"text":"Those aren't our seats. These are ___.","a":[["ours"]],"why":"Không có danh từ theo sau, của chúng tôi → ours.","rule":"poss-pron"},{"text":"Can you help ___? I can't do this exercise.","a":[["me"]],"why":"Tân ngữ sau help, người nói → me.","rule":"obj-pron"},{"text":"Sara has got a new phone. The phone is ___.","a":[["hers"]],"why":"Đứng một mình, của Sara → hers.","rule":"poss-pron"},{"text":"The cat is hungry. ___ bowl is empty.","a":[["its"]],"why":"Đứng trước danh từ 'bowl', của con mèo → Its (không có dấu nháy).","rule":"poss-adj"},{"text":"Those are Tom and Jim's books. They're ___.","a":[["theirs"]],"why":"Đứng một mình, của Tom và Jim → theirs.","rule":"poss-pron"}]},{"n":3,"type":"gap","title":"Fill in the gaps with a, an, the or –.","vi":"Điền a / an / the hoặc –. Một số câu có 2 chỗ trống (mỗi chỗ 1 điểm).","pts":2,"opts":["a","an","the","–"],"example":{"text":"___ Mount Everest is very high.","a":"–"},"items":[{"text":"She's ___ honest girl.","a":[["an"]],"why":"honest có h câm, đọc bắt đầu bằng nguyên âm → an.","rule":"art-a-an"},{"text":"We have ___ breakfast at 8.","a":[["–"]],"why":"Bữa ăn không dùng mạo từ: have – breakfast.","rule":"art-zero"},{"text":"I'd like ___ sandwich and ___ orange.","a":[["a"],["an"]],"why":"sandwich bắt đầu bằng phụ âm → a; orange bắt đầu bằng nguyên âm → an.","rule":"art-a-an"},{"text":"___ Pacific is the biggest ocean.","a":[["the"]],"why":"Tên đại dương đi với the: the Pacific.","rule":"art-the"},{"text":"___ Chinese speak ___ Chinese.","a":[["the"],["–"]],"why":"The Chinese = người Trung Quốc (dân tộc) → the; Chinese = tiếng Trung (ngôn ngữ) → –.","rule":"art-the"}]},{"n":4,"type":"gap","title":"Fill in the gaps with much, many, some or any.","vi":"Điền much / many / some / any (mỗi chỗ trống 1 điểm). Bẫy: time, news, mice.","pts":2,"opts":["much","many","some","any"],"example":{"text":"A: Have we got ___ bread?  B: Yes, but not ___.","a":"any / much"},"items":[{"text":"A: How ___ time have we got?\nB: Not ___. The bus leaves in five minutes.","a":[["much"],["much"]],"why":"time (thời gian) không đếm được → much / much.","rule":"much-many"},{"text":"A: There are ___ letters for you.\nB: How ___?","a":[["some"],["many"]],"why":"Khẳng định → some; letters đếm được → How many?","rule":"much-many"},{"text":"A: Is there ___ news?\nB: No, there isn't ___ news today.","a":[["any","much"],["any","much"]],"why":"Câu hỏi / phủ định → any; news không đếm được nên much cũng đúng (không có nhiều tin).","rule":"some-any"},{"text":"A: How ___ mice are there in the garden?\nB: Too ___!","a":[["many"],["many"]],"why":"mice là số nhiều (của mouse) đếm được → many / many.","rule":"much-many"}]},{"n":5,"type":"gap","para":true,"title":"Fill in the gaps with some, any, no or their derivatives.","vi":"Điền some / any / no hoặc các từ ghép.","pts":2,"lead":"*Nobody* is in the classroom. ","items":[{"text":"The teacher isn't ___ in the school. ","a":[["anywhere"]],"why":"Phủ định 'isn't' + nơi chốn → anywhere.","rule":"no-compounds"},{"text":"There's ___ strange on the board. ","a":[["something"]],"why":"Câu khẳng định → something (strange đứng sau).","rule":"no-compounds"},{"text":"___ is writing 'Happy Birthday!' on it. ","a":[["someone","somebody"]],"why":"Câu khẳng định về người → Someone / Somebody + is (số ít).","rule":"no-compounds"},{"text":"Does ___ know whose birthday it is? ","a":[["anyone","anybody"]],"why":"Câu hỏi về người → anyone / anybody.","rule":"no-compounds"},{"text":"There's ___ on the calendar. ","a":[["nothing"]],"why":"'There's' + nghĩa không có gì → nothing.","rule":"no-compounds"},{"text":"Let's ask ___ in the office.","a":[["someone","somebody"]],"why":"Đề nghị (khẳng định) → someone / somebody.","rule":"no-compounds"}]},{"n":6,"type":"qa","title":"Look at the table. How often do these people do these things? Write the questions and answers.","vi":"Bảng 3 người, có usually và often. Viết câu hỏi, trả lời ngắn và câu đầy đủ như mẫu (không cần cụm thời gian).","pts":2,"when":"","table":{"cols":["get up early","eat fast food","do sport"],"rows":[{"who":"Emma","vals":["always","never","often"]},{"who":"Jack","vals":["never","often","sometimes"]},{"who":"Mr and Mrs Lee","vals":["usually","never","always"]}]},"example":{"prompt":"Emma / eat fast food","q":"Does Emma eat fast food?","s":"No, she doesn't.","f":"She never eats fast food."},"items":[{"prompt":"Jack / get up early","subj":"Jack","pron":"he","a":{"q":"Does Jack get up early?","s":"No, he doesn't.","f":"He never gets up early."},"why":"Jack = he → Does…? never → No, he doesn't. He never gets up (thêm -s).","rule":"freq-adv"},{"prompt":"Mr and Mrs Lee / do sport","subj":"Mr and Mrs Lee","pron":"they","a":{"q":"Do Mr and Mrs Lee do sport?","s":"Yes, they do.","f":"They always do sport."},"why":"Hai người = they → Do…? Yes, they do. They always do sport.","rule":"do-does"},{"prompt":"Emma / do sport","subj":"Emma","pron":"she","a":{"q":"Does Emma do sport?","s":"Yes, she does.","f":"She often does sport."},"why":"she → Does…? Yes, she does. She often does sport (do → does).","rule":"verb-s"},{"prompt":"Jack / eat fast food","subj":"Jack","pron":"he","a":{"q":"Does Jack eat fast food?","s":"Yes, he does.","f":"He often eats fast food."},"why":"he → Does…? Yes, he does. He often eats (thêm -s).","rule":"verb-s"},{"prompt":"Mr and Mrs Lee / get up early","subj":"Mr and Mrs Lee","pron":"they","a":{"q":"Do Mr and Mrs Lee get up early?","s":"Yes, they do.","f":"They usually get up early."},"why":"they → Do…? usually → Yes, they do. They usually get up.","rule":"do-does"}]},{"n":7,"type":"gap","title":"Put the verbs in brackets into the present simple or the present continuous.","vi":"Chia động từ, có câu hỏi, phủ định, động từ trạng thái và chính tả -ing.","pts":2,"example":{"text":"Water ___ (boil) at 100 degrees.","a":"boils"},"items":[{"text":"Sh! Grandpa ___ (sleep) now.","a":[["is sleeping","'s sleeping"]],"why":"Sh! + now → đang xảy ra; Grandpa (he) → is sleeping.","rule":"present-cont"},{"text":"___ (your parents/go) to work by car?","a":[["do your parents go"]],"why":"Thói quen; your parents = they → Do your parents go…?","rule":"do-does"},{"text":"She ___ (not/wear) her glasses at the moment.","a":[["isn't wearing","is not wearing"]],"why":"at the moment → tiếp diễn; phủ định: isn't wearing.","rule":"present-cont"},{"text":"I ___ (want) a new bike.","a":[["want"]],"why":"want là động từ trạng thái → hiện tại đơn; I → want.","rule":"stative"},{"text":"The sun ___ (rise) in the east.","a":[["rises"]],"why":"Sự thật hiển nhiên → hiện tại đơn; the sun (it) → rises.","rule":"verb-s"},{"text":"The kids ___ (run) in the garden right now.","a":[["are running"]],"why":"right now → tiếp diễn; run → running (gấp đôi n).","rule":"present-cont"}]},{"n":8,"type":"gap","para":true,"title":"Put the verbs in brackets into the present simple or the present continuous.","vi":"Chia động từ trong ngoặc (đoạn hội thoại).","pts":2,"lead":"**a** **Kim:** Who *are you talking* (you/talk) to?\n**Dan:** ","items":[{"text":"I ___ (talk) to my cousin. ","a":[["am talking","'m talking"]],"why":"Đang nói chuyện lúc này → am talking.","rule":"present-cont"},{"text":"He ___ (live) in Canada.\n**b** **Mum:** ","a":[["lives"]],"why":"Nơi ở lâu dài → hiện tại đơn; he → lives.","rule":"verb-s"},{"text":"___ (you/need) any help?\n**Zoe:** No, thanks. ","a":[["do you need"]],"why":"need là động từ trạng thái → hiện tại đơn; câu hỏi với you → Do you need…?","rule":"stative"},{"text":"I ___ (make) a salad ","a":[["am making","'m making"]],"why":"Đang làm lúc này → am making (make → making).","rule":"present-cont"},{"text":"and Dad ___ (cut) the bread.","a":[["is cutting","'s cutting"]],"why":"Đang làm lúc này; Dad (he) → is cutting (gấp đôi t).","rule":"present-cont"}]},{"n":9,"type":"gap","para":true,"title":"Look at the picture and fill in the gaps with above, in, under, next to, behind or between.","vi":"Nhìn tranh và điền giới từ. Chú ý above (phía trên, không chạm) và behind (phía sau, bị che).","pts":2,"opts":["above","in","under","next to","behind","between"],"scene":"<svg viewBox='0 0 400 220' xmlns='http://www.w3.org/2000/svg' font-family='sans-serif'><rect x='0' y='0' width='400' height='220' fill='var(--scene-bg)'/><rect x='0' y='150' width='400' height='70' fill='var(--scene-grass)'/><ellipse cx='120' cy='160' rx='95' ry='32' fill='var(--scene-water)' stroke='var(--scene-line)' stroke-width='2'/><text x='95' y='168' font-size='24'>🦆<\/text><text x='135' y='172' font-size='20'>🦆<\/text><text x='120' y='205' font-size='10' text-anchor='middle' fill='var(--scene-ink)'>lake<\/text><text x='120' y='70' font-size='28' text-anchor='middle'>🐦<\/text><rect x='240' y='150' width='70' height='9' rx='2' fill='var(--scene-wood)'/><rect x='240' y='140' width='70' height='8' rx='2' fill='var(--scene-wood)'/><rect x='246' y='159' width='6' height='26' fill='var(--scene-wood)'/><rect x='298' y='159' width='6' height='26' fill='var(--scene-wood)'/><text x='275' y='205' font-size='10' text-anchor='middle' fill='var(--scene-ink)'>bench<\/text><text x='275' y='184' font-size='20' text-anchor='middle'>⚽<\/text><text x='340' y='150' font-size='30' text-anchor='middle'>👦<\/text><text x='360' y='150' font-size='70' text-anchor='middle'>🌳<\/text><\/svg>","lead":"This is the park. There are some ducks *in* the lake. ","items":[{"text":"There's a bird ___ the lake, flying high. ","a":[["above"]],"why":"Chim bay cao phía trên hồ, không chạm → above.","rule":"prep-place"},{"text":"A bench is ___ the lake. ","a":[["next to"]],"why":"Ghế dài ở ngay cạnh hồ → next to.","rule":"prep-place"},{"text":"A ball is ___ the bench. ","a":[["under"]],"why":"Quả bóng nằm dưới ghế → under.","rule":"prep-place"},{"text":"A boy is hiding ___ the big tree.","a":[["behind"]],"why":"Cậu bé trốn phía sau cây, bị cây che → behind.","rule":"prep-place"}]},{"n":10,"type":"gap","para":true,"title":"Fill in the gaps with on, in or at.","vi":"Điền on / in / at. Bẫy: at midnight, on 26th December, in January.","pts":2,"opts":["on","in","at"],"lead":"*At* Christmas we visit my grandparents. We arrive ","items":[{"text":"___ the evening ","a":[["in"]],"why":"in + buổi: in the evening.","rule":"prep-time"},{"text":"and open the presents ___ midnight. ","a":[["at"]],"why":"at midnight (giờ cụ thể, cụm cố định).","rule":"prep-time"},{"text":"___ 26th December we go for a long walk. ","a":[["on"]],"why":"on + ngày cụ thể: On 26th December.","rule":"prep-time"},{"text":"We go home ___ January.","a":[["in"]],"why":"in + tháng: in January.","rule":"prep-time"}]}]},{"id":5,"name":"Đề 5","level":"Khó hơn ~40%","levelKey":"hard","exercises":[{"n":1,"type":"rewrite","title":"Write the sentences in the plural.","vi":"Viết lại các câu ở dạng số nhiều (có câu phải đổi cả động từ).","pts":2,"example":{"q":"It's a shelf.","a":"They're shelves."},"items":[{"q":"That's a dictionary.","a":["Those are dictionaries."],"why":"That's → Those are; phụ âm + y → dictionaries.","rule":"plural-s"},{"q":"This is a glass of orange juice.","a":["These are glasses of orange juice."],"why":"This → These; glass → glasses; 'orange juice' không đếm được, giữ nguyên.","rule":"plural-demo"},{"q":"He's a man with a child.","a":["They're men with children."],"why":"He's → They're; man → men; child → children; bỏ cả hai 'a'.","rule":"plural-s"},{"q":"It's a deer.","a":["They're deer."],"why":"It's → They're; deer số nhiều vẫn là deer.","rule":"plural-s"},{"q":"My tooth hurts.","a":["My teeth hurt."],"why":"tooth → teeth; động từ mất -s vì chủ ngữ số nhiều: hurts → hurt. 'My' giữ nguyên.","rule":"plural-demo"}]},{"n":2,"type":"gap","title":"Complete the sentences with the words in the list. Two words are extra.","vi":"Điền từ trong khung. Khung có 2 từ thừa không dùng đến.","pts":2,"bank":["yours","him","mine","them","hers","its","us","her","your"],"example":{"text":"Where's ___ bag, Tom?","a":"your"},"items":[{"text":"I like these shoes. Are they ___?","a":[["yours"]],"why":"Đứng một mình, của bạn → yours.","rule":"poss-pron"},{"text":"Sam can't find his book. Can you help ___?","a":[["him"]],"why":"Tân ngữ sau help, thay cho Sam → him.","rule":"obj-pron"},{"text":"This isn't your pencil. It's ___. My name is on it.","a":[["mine"]],"why":"Đứng một mình, của tôi → mine.","rule":"poss-pron"},{"text":"My grandparents are old, so I often visit ___.","a":[["them"]],"why":"Tân ngữ sau visit, thay cho my grandparents → them.","rule":"obj-pron"},{"text":"That's Lucy's cat. The cat is ___.","a":[["hers"]],"why":"Đứng một mình, của Lucy → hers.","rule":"poss-pron"},{"text":"Our dog is small. ___ name is Max.","a":[["its"]],"why":"Đứng trước danh từ 'name', của con chó → Its.","rule":"poss-adj"}]},{"n":3,"type":"gap","title":"Fill in the gaps with a, an, the or –.","vi":"Điền a / an / the hoặc –. Một câu có 2 chỗ trống (mỗi chỗ 1 điểm).","pts":2,"opts":["a","an","the","–"],"example":{"text":"We have ___ lunch at school.","a":"–"},"items":[{"text":"She's got ___ uniform.","a":[["a"]],"why":"uniform đọc /ju:/ (âm phụ âm) → a uniform.","rule":"art-a-an"},{"text":"___ Amazon is ___ river in South America.","a":[["the"],["a"]],"why":"Tên sông → the Amazon; river bắt đầu bằng phụ âm r → a river.","rule":"art-the"},{"text":"My uncle is ___ engineer.","a":[["an"]],"why":"engineer bắt đầu bằng nguyên âm e → an.","rule":"art-a-an"},{"text":"They live in ___ Greece.","a":[["–"]],"why":"Tên nước không dùng mạo từ → –.","rule":"art-zero"},{"text":"Can you play ___ violin?","a":[["the"]],"why":"Nhạc cụ đi với the: play the violin.","rule":"art-the"}]},{"n":4,"type":"gap","title":"Fill in the gaps with much, many, some or any.","vi":"Điền much / many / some / any (mỗi chỗ trống 1 điểm). Bẫy: furniture, hours.","pts":2,"opts":["much","many","some","any"],"example":{"text":"A: Is there ___ orange juice?  B: Yes, there's ___.","a":"any / some"},"items":[{"text":"A: How ___ furniture is there in the room?\nB: Not ___, just a bed.","a":[["much"],["much"]],"why":"furniture (đồ đạc) không đếm được → much / much.","rule":"much-many"},{"text":"A: Would you like ___ grapes?\nB: Yes, please. How ___ can I have?","a":[["some"],["many"]],"why":"Lời mời → some; grapes đếm được → How many?","rule":"some-any"},{"text":"A: Have you got ___ brothers?\nB: No, I haven't got ___.","a":[["any","many"],["any","many"]],"why":"Câu hỏi / phủ định → any; brothers đếm được nên many cũng đúng.","rule":"some-any"},{"text":"A: How ___ hours do you sleep?\nB: Not ___, about six.","a":[["many"],["many"]],"why":"hours đếm được → How many? Not many.","rule":"much-many"}]},{"n":5,"type":"gap","para":true,"title":"Fill in the gaps with some, any, no or their derivatives.","vi":"Điền some / any / no hoặc các từ ghép.","pts":2,"lead":"*Nothing* is ready for the party! ","items":[{"text":"There isn't ___ to drink ","a":[["anything"]],"why":"Phủ định 'there isn't' + vật → anything.","rule":"no-compounds"},{"text":"and there's ___ in the kitchen to help. ","a":[["no one","nobody"]],"why":"'there's' + không có ai → no one / nobody.","rule":"no-compounds"},{"text":"Is there ___ to buy a cake near here? ","a":[["anywhere"]],"why":"Câu hỏi về nơi chốn → anywhere.","rule":"no-compounds"},{"text":"Yes, I know ___ on Park Street. ","a":[["somewhere"]],"why":"Câu khẳng định về nơi chốn → somewhere.","rule":"no-compounds"},{"text":"Can ___ help me? ","a":[["anyone","anybody","someone","somebody"]],"why":"Câu hỏi về người → anyone / anybody; vì đây là lời nhờ vả nên someone / somebody cũng đúng.","rule":"no-compounds"},{"text":"___ please call Mum!","a":[["someone","somebody"]],"why":"Câu đề nghị (khẳng định) → Someone / Somebody.","rule":"no-compounds"}]},{"n":6,"type":"qa","title":"Look at the table. How often do these people do these things? Write the questions and answers.","vi":"Bảng 3 người, chủ ngữ có 'the twins' (số nhiều). Viết câu hỏi, trả lời ngắn và câu đầy đủ như mẫu.","pts":2,"when":"","table":{"cols":["drive to work","walk the dog","play chess"],"rows":[{"who":"Mr Smith","vals":["always","sometimes","never"]},{"who":"Mrs Smith","vals":["never","always","often"]},{"who":"the twins","vals":["never","sometimes","always"]}]},"example":{"prompt":"Mrs Smith / drive to work","q":"Does Mrs Smith drive to work?","s":"No, she doesn't.","f":"She never drives to work."},"items":[{"prompt":"Mr Smith / walk the dog","subj":"Mr Smith","pron":"he","a":{"q":"Does Mr Smith walk the dog?","s":"Yes, he does.","f":"He sometimes walks the dog."},"why":"Mr Smith = he → Does…? Yes, he does. He sometimes walks (thêm -s).","rule":"verb-s"},{"prompt":"the twins / play chess","subj":"the twins","pron":"they","a":{"q":"Do the twins play chess?","s":"Yes, they do.","f":"They always play chess."},"why":"the twins = they → Do…? Yes, they do. They always play.","rule":"do-does"},{"prompt":"Mrs Smith / walk the dog","subj":"Mrs Smith","pron":"she","a":{"q":"Does Mrs Smith walk the dog?","s":"Yes, she does.","f":"She always walks the dog."},"why":"she → Does…? Yes, she does. She always walks.","rule":"verb-s"},{"prompt":"the twins / drive to work","subj":"the twins","pron":"they","a":{"q":"Do the twins drive to work?","s":"No, they don't.","f":"They never drive to work."},"why":"they → Do…? never → No, they don't. They never drive.","rule":"freq-adv"},{"prompt":"Mr Smith / play chess","subj":"Mr Smith","pron":"he","a":{"q":"Does Mr Smith play chess?","s":"No, he doesn't.","f":"He never plays chess."},"why":"never → No, he doesn't. He never plays (vẫn thêm -s).","rule":"freq-adv"}]},{"n":7,"type":"gap","title":"Put the verbs in brackets into the present simple or the present continuous.","vi":"Chia động từ, có câu hỏi và phủ định ở cả hai thì.","pts":2,"example":{"text":"Listen! Someone ___ (knock) at the door.","a":"is knocking"},"items":[{"text":"My parents ___ (not/like) loud music.","a":[["don't like","do not like"]],"why":"like là động từ trạng thái → hiện tại đơn; my parents = they → don't like.","rule":"stative"},{"text":"___ (it/rain) at the moment?","a":[["is it raining"]],"why":"at the moment → tiếp diễn; câu hỏi đảo be: Is it raining?","rule":"present-cont"},{"text":"Kate ___ (brush) her teeth twice a day.","a":[["brushes"]],"why":"twice a day → thói quen; Kate (she) + brush tận cùng -sh → brushes.","rule":"verb-s"},{"text":"We ___ (not/go) to school on Sundays.","a":[["don't go","do not go"]],"why":"on Sundays → thói quen; phủ định với we → don't go.","rule":"do-does"},{"text":"Why ___ (he/cry) now?","a":[["is he crying"]],"why":"now → tiếp diễn; câu hỏi: Why is he crying?","rule":"present-cont"},{"text":"The train ___ (leave) at 6.15 every morning.","a":[["leaves"]],"why":"every morning → thói quen; the train (it) → leaves.","rule":"verb-s"}]},{"n":8,"type":"gap","para":true,"title":"Put the verbs in brackets into the present simple or the present continuous.","vi":"Chia động từ trong ngoặc (đoạn hội thoại). Có trạng từ tần suất trong ngoặc.","pts":2,"lead":"**a** **Tom:** What *are you looking* (you/look) for?\n**Ann:** My keys. ","items":[{"text":"I ___ (not/remember) where they are.\n**b** **Dad:** ","a":[["don't remember","do not remember"]],"why":"remember là động từ trạng thái → hiện tại đơn: don't remember.","rule":"stative"},{"text":"___ (Ben/do) his homework now?\n**Mum:** ","a":[["is ben doing"]],"why":"now → tiếp diễn; câu hỏi: Is Ben doing…?","rule":"present-cont"},{"text":"No, he ___ (play) computer games. ","a":[["is playing","'s playing"]],"why":"Đang chơi lúc này → is playing.","rule":"present-cont"},{"text":"He ___ (never/do) his homework before dinner. ","a":[["never does"]],"why":"Thói quen; never đứng trước động từ; he → does.","rule":"freq-adv"},{"text":"He ___ (think) it's boring.","a":[["thinks"]],"why":"think (= cho rằng) là động từ trạng thái → hiện tại đơn; he → thinks.","rule":"stative"}]},{"n":9,"type":"gap","para":true,"title":"Look at the picture and fill in the gaps with opposite, between, in front of, behind, next to or on.","vi":"Nhìn tranh và điền giới từ. Có opposite (đối diện, bên kia đường) và behind (bị che).","pts":2,"opts":["opposite","between","in front of","behind","next to","on"],"scene":"<svg viewBox='0 0 400 220' xmlns='http://www.w3.org/2000/svg' font-family='sans-serif'><rect x='0' y='0' width='400' height='220' fill='var(--scene-bg)'/><rect x='30' y='40' width='100' height='70' rx='3' fill='var(--scene-soft)' stroke='var(--scene-line)' stroke-width='2'/><text x='80' y='80' font-size='14' text-anchor='middle' font-weight='bold' fill='var(--scene-ink)'>BANK<\/text><rect x='140' y='40' width='110' height='70' rx='3' fill='var(--scene-soft)' stroke='var(--scene-line)' stroke-width='2'/><text x='195' y='74' font-size='12' text-anchor='middle' font-weight='bold' fill='var(--scene-ink)'>POST<\/text><text x='195' y='90' font-size='12' text-anchor='middle' font-weight='bold' fill='var(--scene-ink)'>OFFICE<\/text><text x='80' y='126' font-size='30' text-anchor='middle'>🚗<\/text><text x='300' y='92' font-size='26' text-anchor='middle'>🎩<\/text><text x='300' y='126' font-size='34' text-anchor='middle'>🚌<\/text><text x='190' y='128' font-size='26' text-anchor='middle'>🚲<\/text><rect x='0' y='134' width='400' height='28' fill='var(--scene-dark)'/><line x1='0' y1='148' x2='400' y2='148' stroke='#fff' stroke-width='2' stroke-dasharray='14 10'/><rect x='30' y='170' width='100' height='44' rx='3' fill='var(--scene-soft)' stroke='var(--scene-line)' stroke-width='2'/><text x='80' y='197' font-size='14' text-anchor='middle' font-weight='bold' fill='var(--scene-ink)'>CINEMA<\/text><\/svg>","lead":"This is High Street. The bank is *next to* the post office. ","items":[{"text":"A red car is ___ the bank. ","a":[["in front of"]],"why":"Ô tô đỗ phía trước ngân hàng → in front of.","rule":"prep-place"},{"text":"A bike is ___ the car and the bus. ","a":[["between"]],"why":"Xe đạp ở giữa ô tô và xe buýt → between.","rule":"prep-place"},{"text":"The cinema is ___ the bank, on the other side of the street. ","a":[["opposite"]],"why":"Rạp chiếu phim ở bên kia đường, đối diện ngân hàng → opposite.","rule":"prep-place"},{"text":"A man is standing ___ the bus, so you can only see his hat.","a":[["behind"]],"why":"Người đàn ông bị xe buýt che, chỉ thấy mũ → behind.","rule":"prep-place"}]},{"n":10,"type":"gap","para":true,"title":"Fill in the gaps with on, in or at.","vi":"Điền on / in / at. Bẫy: at six o'clock in the morning, on the first day, at night.","pts":2,"opts":["on","in","at"],"lead":"*In* summer my family goes to the mountains. We leave home ","items":[{"text":"___ six o'clock ","a":[["at"]],"why":"at + giờ: at six o'clock.","rule":"prep-time"},{"text":"___ the morning. ","a":[["in"]],"why":"in + buổi: in the morning.","rule":"prep-time"},{"text":"___ the first day we walk for hours. ","a":[["on"]],"why":"on + ngày: On the first day.","rule":"prep-time"},{"text":"___ night it is very cold.","a":[["at"]],"why":"at night (cụm cố định).","rule":"prep-time"}]}]}]};
+
+/*__PURE_START__*/
+function norm(s) {
+  s = String(s == null ? '' : s).normalize('NFC').toLowerCase();
+  s = s.replace(/[’‘`´]/g, "'").replace(/[“”]/g, '"').replace(/[–—]/g, '-');
+  s = s.replace(/[.,!?;:"]/g, ' ');
+  s = s.replace(/\s+/g, ' ').trim();
+  s = s.replace(/^'s\b/, 'is').replace(/^'m\b/, 'am').replace(/^'re\b/, 'are');
+  s = s.replace(/\bi'm\b/g, 'i am').replace(/\b(they|we|you)'re\b/g, '$1 are')
+       .replace(/\b(it|he|she|that|there|what|who|where|how)'s\b/g, '$1 is')
+       .replace(/\bisn't\b/g, 'is not').replace(/\baren't\b/g, 'are not')
+       .replace(/\bdon't\b/g, 'do not').replace(/\bdoesn't\b/g, 'does not')
+       .replace(/\bcan't\b/g, 'cannot').replace(/\bhaven't\b/g, 'have not').replace(/\bhasn't\b/g, 'has not')
+       .replace(/\b(i|you|we|they)'ve\b/g, '$1 have');
+  s = s.replace(/\bno-one\b/g, 'no one').replace(/\bnoone\b/g, 'no one');
+  return s.replace(/\s+/g, ' ').trim();
+}
+function matches(user, accepted) {
+  const u = norm(user);
+  if (!u) return false;
+  for (const a0 of accepted) {
+    const a = norm(a0);
+    if (u === a) return true;
+    if (a.indexOf(' ') > 0 && u.endsWith(' ' + a) && u.split(' ').length <= a.split(' ').length + 1) return true;
+  }
+  return false;
+}
+function qaAccepted(ex, it) {
+  const when = ex.when ? ' ' + ex.when : '';
+  const strip = s => when ? s.replace(when, '') : s;
+  const q = [it.a.q, strip(it.a.q)];
+  const s = [it.a.s];
+  const f = [it.a.f, strip(it.a.f)];
+  const pronCap = it.pron.charAt(0).toUpperCase() + it.pron.slice(1) + ' ';
+  if (it.a.f.indexOf(pronCap) === 0) { const g = it.subj + ' ' + it.a.f.slice(pronCap.length); f.push(g, strip(g)); }
+  return { q, s, f };
+}
+function itemFields(ex, it) {
+  if (ex.type === 'rewrite') return [{ k: 0, accepted: it.a, model: it.a[0] }];
+  if (ex.type === 'qa') { const a = qaAccepted(ex, it); return [{ k: 0, accepted: a.q, model: it.a.q, label: 'Câu hỏi' }, { k: 1, accepted: a.s, model: it.a.s, label: 'Trả lời ngắn' }, { k: 2, accepted: a.f, model: it.a.f, label: 'Câu đầy đủ' }]; }
+  return it.a.map((alts, k) => ({ k, accepted: alts, model: alts[0] }));
+}
+function scoreItem(ex, okFlags) {
+  const pts = ex.pts || 2;
+  const n = okFlags.length, ok = okFlags.filter(Boolean).length;
+  return Math.floor(pts * ok / n);
+}
+/*__PURE_END__*/
+
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const md = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\*(.+?)\*/g, '<span class="sample">$1</span>').replace(/\n/g, '<br>');
+const fmtDate = iso => { const d = new Date(iso); return d.toLocaleDateString('vi-VN') + ' ' + d.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }); };
+
+/* ---------- index ---------- */
+const IDX = {};
+for (const t of DATA.tests) for (const ex of t.exercises) ex.items.forEach((it, i) => {
+  const id = t.id + '-' + ex.n + '-' + (i + 1);
+  IDX[id] = { id, t, ex, it, max: ex.pts || 2, fields: itemFields(ex, it) };
+});
+function itemText(id) {
+  const { ex, it } = IDX[id];
+  if (ex.type === 'rewrite') return esc(it.q) + ' → <span class="a">' + esc(it.a[0]) + '</span>';
+  if (ex.type === 'qa') return esc(it.prompt) + ' → <span class="a">' + esc(it.a.q) + ' ' + esc(it.a.s) + ' ' + esc(it.a.f) + '</span>';
+  let k = 0; return md(it.text.replace(/\*\*(.+?)\*\*/g, '')).split('___').map((p, i, arr) => i < arr.length - 1 ? p + '<span class="a">' + esc(it.a[k++][0]) + '</span>' : p).join('');
+}
+
+/* ---------- root / dom helpers ---------- */
+let root = null, opts = {};
+const $ = s => root.querySelector(s);
+const byId = id => root.querySelector('#rv-' + id);
+const all = s => Array.from(root.querySelectorAll(s));
+const MARKUP = '<header class="top"><div class="in-wrap">' +
+  '<div class="brand">Revision Units 1–9 <small>New Round Up 3</small></div>' +
+  '<nav class="rv-nav"><button data-view="home" class="active" type="button">Đề bài</button><button data-view="errors" type="button">Sổ lỗi</button><button data-view="progress" type="button">Tiến bộ</button></nav>' +
+  '<span class="sync" id="rv-sync">Đang kết nối…</span></div></header>' +
+  '<div class="wrap">' +
+  '<section id="rv-view-home" class="view"><h1>Ôn tập Units 1–9</h1>' +
+  '<p class="muted">5 đề theo đúng khung 10 bài của Revision 3 trong sách. Đề 1–2 tương đương sách, đề 3–5 khó hơn khoảng 40%. Gõ câu trả lời rồi bấm <b>Nộp bài</b> ở cuối trang, con sẽ thấy ngay điểm từng bài, câu sai và những điều cần nhớ.</p>' +
+  '<div class="strip" id="rv-strip"></div><div id="rv-remind"></div><div class="tests" id="rv-tests"></div></section>' +
+  '<section id="rv-view-test" class="view" hidden><div id="rv-test-head"></div><div id="rv-result"></div><div id="rv-exercises"></div></section>' +
+  '<section id="rv-view-errors" class="view" hidden><h1>Sổ lỗi</h1><p class="muted">Mọi câu con đã làm sai hoặc đánh dấu <b>⚑ Khó</b>, gom theo quy tắc. Xem lại phần này trước khi làm đề mới.</p><div class="filters" id="rv-log-filters"></div><div id="rv-log"></div></section>' +
+  '<section id="rv-view-progress" class="view" hidden><h1>Tiến bộ</h1><div id="rv-progress"></div></section>' +
+  '</div>' +
+  '<div class="bar" id="rv-bar" hidden><div class="in-wrap" id="rv-bar-in"></div></div>' +
+  '<div class="tip" id="rv-tip" hidden></div>';
+
+/* ---------- storage ---------- */
+const LS = 'rev19.attempts';
+const store = { attempts: [] };
+let db = null, dbStarted = false;
+function loadLocal() { try { const v = JSON.parse(localStorage.getItem(LS) || '[]'); if (Array.isArray(v)) store.attempts = v; } catch (e) {} }
+function saveLocal() { try { localStorage.setItem(LS, JSON.stringify(store.attempts)); } catch (e) {} }
+function mergeAttempts(list) { const have = new Set(store.attempts.map(a => a.id)); for (const a of list) if (a && a.id && !have.has(a.id)) { store.attempts.push(a); have.add(a.id); } store.attempts.sort((a, b) => a.date < b.date ? -1 : 1); }
+function setSync(msg) { const s = root && byId('sync'); if (s) s.textContent = msg; }
+async function initDb() {
+  if (dbStarted) return; dbStarted = true;
+  try { db = (window.claude && window.claude.use) ? await window.claude.use('db') : null; } catch (e) { db = null; }
+  if (!db) { setSync('Lưu trên máy này'); return; }
+  try {
+    const snap = await db.collection('attempts').orderBy('date').limit(1000).get();
+    const remote = snap.docs.map(d => d.data());
+    mergeAttempts(remote); saveLocal(); setSync('Đã đồng bộ'); renderCurrent(); if (opts.onChange) opts.onChange();
+    const ids = new Set(remote.map(r => r.id));
+    for (const a of store.attempts) if (!ids.has(a.id)) { try { await db.collection('attempts').doc(a.id).set(a); } catch (e) {} }
+  } catch (e) { setSync('Không đồng bộ được'); }
+}
+async function saveAttempt(a) {
+  store.attempts.push(a); store.attempts.sort((x, y) => x.date < y.date ? -1 : 1); saveLocal();
+  if (opts.onChange) opts.onChange();
+  if (!db) return;
+  try { await db.collection('attempts').doc(a.id).set(a); setSync('Đã lưu kết quả'); }
+  catch (e) { setSync('Không lưu được lên mạng (đã lưu trên máy)'); }
+}
+const sortedAttempts = () => store.attempts.slice().sort((a, b) => a.date < b.date ? -1 : 1);
+
+/* ---------- views ---------- */
+let view = 'home';
+function show(v) {
+  view = v;
+  for (const s of all('.view')) s.hidden = s.id !== 'rv-view-' + v;
+  for (const b of all('.rv-nav button')) b.classList.toggle('active', b.dataset.view === v);
+  byId('bar').hidden = v !== 'test';
+  if (v === 'home') renderHome(); if (v === 'errors') renderLog(); if (v === 'progress') renderProgress();
+  try { window.scrollTo({ top: 0 }); } catch (e) {}
+}
+function renderCurrent() { if (!root) return; if (view === 'home') renderHome(); else if (view === 'errors') renderLog(); else if (view === 'progress') renderProgress(); }
+
+/* ---------- home ---------- */
+function testStats(id) {
+  const list = sortedAttempts().filter(a => a.test === id);
+  return { n: list.length, best: list.length ? Math.max(...list.map(a => a.score)) : null, last: list.length ? list[list.length - 1].score : null, prev: list.length > 1 ? list[list.length - 2].score : null };
+}
+function recentRules(k) {
+  const list = sortedAttempts().slice(-k); const cnt = {};
+  for (const a of list) for (const [r, c] of Object.entries(a.rules || {})) cnt[r] = (cnt[r] || 0) + c;
+  return Object.entries(cnt).sort((a, b) => b[1] - a[1]);
+}
+function renderHome() {
+  const allA = sortedAttempts();
+  const avg3 = allA.length ? Math.round(allA.slice(-3).reduce((s, a) => s + a.score, 0) / Math.min(3, allA.length)) : null;
+  const best = allA.length ? Math.max(...allA.map(a => a.score)) : null;
+  byId('strip').innerHTML = [
+    ['Số lần đã làm', allA.length], ['Điểm cao nhất', best == null ? '–' : best + '/100'], ['Trung bình 3 lần gần nhất', avg3 == null ? '–' : avg3 + '/100'],
+    ['Lần gần nhất', allA.length ? fmtDate(allA[allA.length - 1].date) : '–']
+  ].map(([l, v]) => '<div class="tile"><div class="v">' + esc(v) + '</div><div class="l">' + esc(l) + '</div></div>').join('');
+  const rr = recentRules(3).slice(0, 3);
+  byId('remind').innerHTML = rr.length ? '<div class="remind"><b>Trước khi làm, nhớ lại 3 lỗi hay gặp gần đây:</b><ul>' + rr.map(([r, c]) => '<li><b>' + esc(DATA.rules[r].name) + '</b> (' + c + ' lỗi) – ' + esc(DATA.rules[r].tip) + '</li>').join('') + '</ul></div>' : '';
+  byId('tests').innerHTML = DATA.tests.map(t => {
+    const s = testStats(t.id);
+    const delta = (s.last != null && s.prev != null) ? s.last - s.prev : null;
+    return '<div class="card test"><div><span class="nm">' + esc(t.name) + '</span> <span class="lvl ' + t.levelKey + '">' + esc(t.level) + '</span></div>' +
+      '<div class="st">' + (s.n ? 'Đã làm <b>' + s.n + '</b> lần · Cao nhất <b>' + s.best + '</b> · Gần nhất <b>' + s.last + '</b>' + (delta == null ? '' : ' <span class="delta ' + (delta >= 0 ? 'up' : 'down') + '">(' + (delta >= 0 ? '+' : '') + delta + ')</span>') : 'Chưa làm') + '</div>' +
+      '<div><button class="btn primary" type="button" data-start="' + t.id + '">' + (s.n ? 'Làm lại' : 'Làm đề') + '</button></div></div>';
+  }).join('');
+  for (const b of all('[data-start]')) b.addEventListener('click', () => startTest(Number(b.dataset.start)));
+}
+
+/* ---------- test ---------- */
+let cur = null;
+function fieldHtml(id, f, kind, opt, inline) {
+  const fid = 'rv-f-' + id + '-' + f.k;
+  if (opt) return '<select class="sel" id="' + fid + '" data-id="' + id + '" data-k="' + f.k + '"><option value="">…</option>' + opt.map(o => '<option value="' + esc(o) + '">' + esc(o) + '</option>').join('') + '</select>';
+  const cls = inline ? 'in gap' : 'in wide';
+  return '<input class="' + cls + '" id="' + fid + '" data-id="' + id + '" data-k="' + f.k + '" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"' + (f.label ? ' aria-label="' + esc(f.label) + '"' : '') + '>';
+}
+function flagBtn(id) { return '<button class="flag" type="button" data-flag="' + id + '" title="Đánh dấu câu này là khó">⚑ Khó</button>'; }
+function gapify(text, id, fields, opt, inline) {
+  const parts = md(text).split('___'); let out = '';
+  parts.forEach((p, i) => { out += p; if (i < parts.length - 1) out += fieldHtml(id, fields[i], 'gap', opt, inline); });
+  return out;
+}
+function renderExample(ex) {
+  const e = ex.example; if (!e) return '';
+  if (ex.type === 'rewrite') return '<div class="eg">' + esc(e.q) + ' <span class="sample">' + esc(e.a) + '</span></div>';
+  if (ex.type === 'qa') return '<div class="eg">' + esc(e.prompt) + '<br><span class="sample">' + esc(e.q) + '<br>' + esc(e.s) + '<br>' + esc(e.f) + '</span></div>';
+  const parts = md(e.text).split('___'); const ans = String(e.a).split(' / ');
+  return '<div class="eg">' + parts.map((p, i) => i < parts.length - 1 ? p + '<span class="sample">' + esc(ans[i] || ans[0]) + '</span>' : p).join('') + '</div>';
+}
+function renderTable(tb) {
+  return '<table class="freq"><tr><th></th>' + tb.cols.map(c => '<th>' + esc(c) + '</th>').join('') + '</tr>' + tb.rows.map(r => '<tr><td class="rh">' + esc(r.who) + '</td>' + r.vals.map(v => '<td>' + esc(v) + '</td>').join('') + '</tr>').join('') + '</table>';
+}
+function renderExercise(t, ex) {
+  const max = ex.items.length * (ex.pts || 2);
+  let h = '<section class="card ex" id="rv-ex-' + ex.n + '"><div class="exh"><span class="num">' + ex.n + '</span><div class="ttl"><b>' + esc(ex.title) + '</b><span class="vi">' + esc(ex.vi) + '</span></div><span class="pts" id="rv-pts-' + ex.n + '">' + max + ' điểm</span></div>';
+  if (ex.table) h += renderTable(ex.table);
+  if (ex.scene) h += '<div class="scene">' + ex.scene + '</div>';
+  if (ex.bank) h += '<div class="bank">' + ex.bank.map(w => '<span>' + esc(w) + '</span>').join('') + '</div>';
+  h += renderExample(ex);
+  if (ex.para) {
+    h += '<div class="para">' + md(ex.lead || '');
+    ex.items.forEach((it, i) => { const id = t.id + '-' + ex.n + '-' + (i + 1); const fields = IDX[id].fields;
+      h += '<span class="gapno">' + (i + 1) + ')</span>' + gapify(it.text, id, fields, ex.opts, true) + ' ' + flagBtn(id) + ' '; });
+    h += '</div><ul class="fblist" id="rv-fbl-' + ex.n + '"></ul>';
+  } else {
+    ex.items.forEach((it, i) => { const id = t.id + '-' + ex.n + '-' + (i + 1); const fields = IDX[id].fields;
+      h += '<div class="item" id="rv-it-' + id + '"><span class="n">' + (i + 1) + '</span><div class="body">';
+      if (ex.type === 'rewrite') h += '<div class="q">' + esc(it.q) + '</div>' + fieldHtml(id, fields[0], 'rewrite');
+      else if (ex.type === 'qa') h += '<div class="q"><b>' + esc(it.prompt) + '</b></div><div class="qa">' + fields.map(f => '<label><span>' + esc(f.label) + '</span>' + fieldHtml(id, f, 'qa') + '</label>').join('') + '</div>';
+      else h += '<span class="line">' + gapify(it.text, id, fields, ex.opts, true) + '</span>';
+      h += '<div class="fb" id="rv-fb-' + id + '"></div></div>' + flagBtn(id) + '</div>';
+    });
+  }
+  return h + '</section>';
+}
+function startTest(id) {
+  const t = DATA.tests.find(x => x.id === id);
+  cur = { t, started: Date.now(), graded: false, flags: new Set() };
+  byId('test-head').innerHTML = '<h1>' + esc(t.name) + ' <span class="lvl ' + t.levelKey + '">' + esc(t.level) + '</span></h1><p class="muted small">10 bài, 100 điểm. Gõ câu trả lời vào từng ô. Bấm <b>⚑ Khó</b> ở câu nào con thấy khó để lưu vào sổ. Xong thì bấm <b>Nộp bài</b> ở thanh dưới.</p>';
+  byId('result').innerHTML = '';
+  byId('exercises').innerHTML = t.exercises.map(ex => renderExercise(t, ex)).join('');
+  for (const b of all('[data-flag]')) b.addEventListener('click', () => { const fid = b.dataset.flag; if (cur.flags.has(fid)) cur.flags.delete(fid); else cur.flags.add(fid); for (const x of all('[data-flag="' + fid + '"]')) x.classList.toggle('on', cur.flags.has(fid)); });
+  for (const el of fieldEls()) { el.addEventListener('input', updateBar); el.addEventListener('change', updateBar); }
+  show('test'); renderBar(); updateBar();
+}
+function fieldEls() { return all('#rv-exercises .in, #rv-exercises .sel'); }
+function renderBar() {
+  byId('bar-in').innerHTML = '<span class="prog" id="rv-prog"></span><span id="rv-bar-actions"><button class="btn primary big" type="button" id="rv-submit">Nộp bài</button></span>';
+  byId('submit').addEventListener('click', onSubmit);
+}
+function updateBar() {
+  if (!cur || cur.graded) return;
+  const els = fieldEls(); const filled = els.filter(e => e.value.trim()).length;
+  const p = byId('prog'); if (p) p.innerHTML = 'Đã điền <b>' + filled + '</b>/' + els.length + ' ô';
+}
+function onSubmit() {
+  const els = fieldEls(); const empty = els.filter(e => !e.value.trim()).length;
+  if (empty > 0 && !byId('confirm')) {
+    const box = document.createElement('div'); box.className = 'confirm'; box.id = 'rv-confirm';
+    box.innerHTML = '<span>Còn <b>' + empty + '</b> ô trống. Nộp luôn?</span><button class="btn primary" type="button" id="rv-yes">Nộp</button><button class="btn" type="button" id="rv-no">Làm tiếp</button>';
+    byId('bar-in').prepend(box);
+    byId('yes').addEventListener('click', () => { box.remove(); grade(); });
+    byId('no').addEventListener('click', () => box.remove());
+    return;
+  }
+  grade();
+}
+function grade() {
+  if (!cur || cur.graded) return;
+  cur.graded = true;
+  const t = cur.t; const res = {}; const wrong = []; const rules = {}; const exScores = [];
+  let total = 0;
+  for (const ex of t.exercises) {
+    let s = 0, m = 0;
+    ex.items.forEach((it, i) => {
+      const id = t.id + '-' + ex.n + '-' + (i + 1); const rec = IDX[id];
+      const vals = rec.fields.map(f => { const el = byId('f-' + id + '-' + f.k); return el ? el.value : ''; });
+      const oks = rec.fields.map((f, k) => matches(vals[k], f.accepted));
+      const sc = scoreItem(ex, oks); res[id] = sc; s += sc; m += rec.max;
+      rec.fields.forEach((f, k) => {
+        const el = byId('f-' + id + '-' + f.k); if (!el) return;
+        el.classList.add(oks[k] ? 'ok' : 'bad'); el.disabled = true;
+        const mk = document.createElement('span'); mk.className = 'mark' + (oks[k] ? '' : ' bad');
+        mk.innerHTML = oks[k] ? '✓' : '✗ <b>' + esc(f.model) + '</b>';
+        if (el.parentElement && el.parentElement.tagName === 'LABEL') el.parentElement.appendChild(mk); else el.insertAdjacentElement('afterend', mk);
+      });
+      if (sc < rec.max) {
+        wrong.push({ id, u: vals.map(v => v.trim() || '(bỏ trống)').join(' | ') });
+        rules[it.rule] = (rules[it.rule] || 0) + 1;
+        const fbHtml = '<b>Vì sao:</b> ' + esc(it.why);
+        if (ex.para) { const li = document.createElement('li'); li.innerHTML = '<b>' + (i + 1) + ')</b> ' + fbHtml; byId('fbl-' + ex.n).appendChild(li); }
+        else { const fb = byId('fb-' + id); if (fb) fb.innerHTML = fbHtml; }
+      }
+    });
+    exScores.push({ n: ex.n, s, m }); total += s;
+    const p = byId('pts-' + ex.n); p.textContent = s + '/' + m + ' điểm'; p.classList.add('done');
+  }
+  const a = { id: 'a' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7), test: t.id, date: new Date().toISOString(), dur: Math.round((Date.now() - cur.started) / 1000), score: total, max: 100, ex: exScores, res, wrong, flags: Array.from(cur.flags), rules };
+  const prevAttempts = sortedAttempts();
+  const prevSame = prevAttempts.filter(x => x.test === t.id);
+  const prevRuleSet = new Set(); for (const x of prevAttempts) for (const r of Object.keys(x.rules || {})) prevRuleSet.add(r);
+  renderResult(a, t, prevSame.length ? prevSame[prevSame.length - 1].score : null, prevRuleSet);
+  saveAttempt(a);
+  byId('bar-in').innerHTML = '<span class="prog">Điểm: <b>' + total + '/100</b></span><span><button class="btn" type="button" id="rv-again">Làm lại đề này</button> <button class="btn primary" type="button" id="rv-back">Về danh sách đề</button></span>';
+  byId('again').addEventListener('click', () => startTest(t.id)); byId('back').addEventListener('click', () => show('home'));
+  try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {}
+}
+function barClass(pct) { return pct >= 80 ? '' : pct >= 50 ? 'mid' : 'low'; }
+function renderResult(a, t, prevScore, prevRuleSet) {
+  const delta = prevScore == null ? null : a.score - prevScore;
+  const ruleList = Object.entries(a.rules).sort((x, y) => y[1] - x[1]);
+  let h = '<div class="card result"><div class="score"><span class="big">' + a.score + '</span><span class="of">/ 100 điểm</span>' +
+    (delta == null ? '' : '<span class="delta ' + (delta >= 0 ? 'up' : 'down') + '">' + (delta >= 0 ? '▲ +' : '▼ ') + delta + ' so với lần trước (' + prevScore + ')</span>') +
+    '<span class="muted small">· ' + Math.round(a.dur / 60) + ' phút</span></div>';
+  h += '<p>' + (a.score >= 90 ? 'Xuất sắc! Con nắm rất chắc.' : a.score >= 80 ? 'Tốt! Đạt mục tiêu 80 điểm. Xem lại vài lỗi bên dưới.' : a.score >= 60 ? 'Khá. Hãy đọc kỹ phần "Nhớ cho lần sau" rồi làm lại.' : 'Còn nhiều lỗi. Đọc kỹ phần "Nhớ cho lần sau", xem Sổ lỗi, rồi làm lại đề này.') + '</p>';
+  h += '<h3>Điểm từng bài</h3><table class="ex"><tr><th>Bài</th><th class="r">Điểm</th><th></th></tr>' + a.ex.map(e => { const pct = Math.round(100 * e.s / e.m); const ex = t.exercises.find(x => x.n === e.n); return '<tr><td>' + e.n + '. ' + esc(ex.vi.split('.')[0]) + '</td><td class="r">' + e.s + '/' + e.m + '</td><td><div class="pbar"><i class="' + barClass(pct) + '" style="width:' + pct + '%"></i></div></td></tr>'; }).join('') + '</table>';
+  if (ruleList.length) {
+    h += '<h3>Nhớ cho lần sau</h3><ul class="rules">' + ruleList.map(([r, c]) => '<li><b>' + esc(DATA.rules[r].name) + ' <span class="chip bad">' + c + ' lỗi</span>' + (prevRuleSet.has(r) ? '<span class="rep">🔁 lặp lại từ lần trước</span>' : '') + '</b>' + esc(DATA.rules[r].tip) + '</li>').join('') + '</ul>';
+    h += '<h3>Câu sai (' + a.wrong.length + ') – đã ghi vào Sổ lỗi</h3><ul class="wrongs">' + a.wrong.map(w => { const r = IDX[w.id]; return '<li><span class="muted small">Bài ' + r.ex.n + ', câu ' + w.id.split('-')[2] + '</span><br>' + itemText(w.id) + '<br><span class="muted small">Con viết:</span> <span class="u">' + esc(w.u) + '</span></li>'; }).join('') + '</ul>';
+  } else h += '<p><b>Không có câu sai nào.</b> Rất giỏi!</p>';
+  if (a.flags.length) h += '<p class="small muted">Con đã đánh dấu ' + a.flags.length + ' câu khó (⚑). Xem trong Sổ lỗi.</p>';
+  h += '</div>';
+  byId('result').innerHTML = h;
+}
+
+/* ---------- error log ---------- */
+let logFilter = 'all';
+function buildLog() {
+  const map = new Map();
+  for (const a of sortedAttempts()) {
+    for (const [id, sc] of Object.entries(a.res || {})) {
+      if (!IDX[id]) continue;
+      const e = map.get(id) || { id, tries: 0, wrong: 0, lastOk: true, lastU: '', flagged: false, lastDate: a.date };
+      e.tries++; const ok = sc >= IDX[id].max; e.lastOk = ok; e.lastDate = a.date;
+      if (!ok) { e.wrong++; const w = (a.wrong || []).find(x => x.id === id); e.lastU = w ? w.u : ''; }
+      map.set(id, e);
+    }
+    for (const id of (a.flags || [])) { if (!IDX[id]) continue; const e = map.get(id) || { id, tries: 0, wrong: 0, lastOk: true, lastU: '', flagged: false, lastDate: a.date }; e.flagged = true; map.set(id, e); }
+  }
+  return Array.from(map.values()).filter(e => e.wrong > 0 || e.flagged);
+}
+function renderLog() {
+  const entries = buildLog();
+  const filters = [['all', 'Tất cả'], ['open', 'Chưa sửa được'], ['fixed', 'Đã làm đúng lại'], ['flag', '⚑ Đánh dấu khó']];
+  byId('log-filters').innerHTML = filters.map(([k, l]) => '<button type="button" data-f="' + k + '" class="' + (logFilter === k ? 'active' : '') + '">' + l + '</button>').join('');
+  for (const b of all('#rv-log-filters button')) b.addEventListener('click', () => { logFilter = b.dataset.f; renderLog(); });
+  const list = entries.filter(e => logFilter === 'all' || (logFilter === 'open' && e.wrong > 0 && !e.lastOk) || (logFilter === 'fixed' && e.wrong > 0 && e.lastOk) || (logFilter === 'flag' && e.flagged));
+  if (!list.length) { byId('log').innerHTML = '<div class="empty">' + (entries.length ? 'Không có câu nào trong mục này.' : 'Chưa có lỗi nào được ghi. Làm một đề để bắt đầu.') + '</div>'; return; }
+  const groups = {};
+  for (const e of list) { const r = IDX[e.id].it.rule; (groups[r] = groups[r] || []).push(e); }
+  const order = Object.entries(groups).sort((a, b) => b[1].reduce((s, e) => s + e.wrong, 0) - a[1].reduce((s, e) => s + e.wrong, 0));
+  byId('log').innerHTML = order.map(([r, es]) => {
+    const tot = es.reduce((s, e) => s + e.wrong, 0);
+    return '<div class="group"><h3>' + esc(DATA.rules[r].name) + ' <span class="chip bad">' + tot + ' lỗi · ' + es.length + ' câu</span></h3><p class="tipline">' + esc(DATA.rules[r].tip) + '</p><ul class="log">' +
+      es.sort((a, b) => b.wrong - a.wrong).map(e => { const r2 = IDX[e.id]; return '<li><div class="meta">' + esc(r2.t.name) + ' · Bài ' + r2.ex.n + ' · câu ' + e.id.split('-')[2] + ' · sai ' + e.wrong + '/' + e.tries + ' lần' +
+        (e.wrong ? (e.lastOk ? ' <span class="chip ok">✓ lần gần nhất đúng</span>' : ' <span class="chip bad">✗ lần gần nhất vẫn sai</span>') : '') + (e.flagged ? ' <span class="chip flag">⚑ khó</span>' : '') + '</div>' + itemText(e.id) +
+        (e.lastU ? '<div class="small">Con viết: <span class="u">' + esc(e.lastU) + '</span></div>' : '') + '<div class="small muted">' + esc(r2.it.why) + '</div></li>'; }).join('') + '</ul></div>';
+  }).join('');
+}
+
+/* ---------- progress ---------- */
+function renderChart(list) {
+  const W = 640, H = 260, L = 38, R = 14, T = 16, B = 40;
+  const n = list.length; const x = i => n === 1 ? (L + (W - L - R) / 2) : L + (W - L - R) * i / (n - 1);
+  const y = v => T + (H - T - B) * (1 - v / 100);
+  let s = '<svg class="chart" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Điểm các lần làm bài">';
+  for (let v = 0; v <= 100; v += 20) s += '<line class="grid" x1="' + L + '" x2="' + (W - R) + '" y1="' + y(v) + '" y2="' + y(v) + '"/><text class="axis" x="' + (L - 6) + '" y="' + (y(v) + 4) + '" text-anchor="end">' + v + '</text>';
+  s += '<line class="target" x1="' + L + '" x2="' + (W - R) + '" y1="' + y(80) + '" y2="' + y(80) + '"/>';
+  const pts = list.map((a, i) => [x(i), y(a.score)]);
+  if (n > 1) { s += '<path class="area" d="M' + pts.map(p => p[0] + ',' + p[1]).join(' L') + ' L' + pts[n - 1][0] + ',' + y(0) + ' L' + pts[0][0] + ',' + y(0) + ' Z"/>'; s += '<path class="ln" d="M' + pts.map(p => p[0] + ',' + p[1]).join(' L') + '"/>'; }
+  list.forEach((a, i) => { const t = DATA.tests.find(x => x.id === a.test); const [px, py] = pts[i];
+    s += '<circle class="pt ' + (t && t.levelKey === 'hard' ? 'hard' : '') + '" cx="' + px + '" cy="' + py + '" r="5"/>';
+    if (n <= 12 || i === n - 1 || i === 0) s += '<text class="lbl" x="' + px + '" y="' + (py - 10) + '" text-anchor="middle">' + a.score + '</text>';
+    s += '<text class="axis" x="' + px + '" y="' + (H - B + 16) + '" text-anchor="middle">Đề ' + a.test + '</text>';
+    if (n <= 8) s += '<text class="axis" x="' + px + '" y="' + (H - B + 30) + '" text-anchor="middle">' + new Date(a.date).toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit' }) + '</text>';
+    s += '<circle class="hit" cx="' + px + '" cy="' + py + '" r="14" data-i="' + i + '"/>';
+  });
+  return s + '</svg>';
+}
+function pct(list, pick) { let s = 0, m = 0; for (const a of list) { const v = pick(a); s += v[0]; m += v[1]; } return m ? Math.round(100 * s / m) : null; }
+function renderProgress() {
+  const allA = sortedAttempts();
+  if (!allA.length) { byId('progress').innerHTML = '<div class="empty">Chưa có dữ liệu. Làm một đề để bắt đầu theo dõi.</div>' + backupCard(); bindBackup(); return; }
+  let h = '<div class="card"><h2 style="margin-top:0">Điểm qua từng lần làm</h2><div class="legend"><span><i></i>đề tương đương</span><span><i class="hard"></i>đề khó hơn</span><span><i class="target"></i>mục tiêu 80</span></div><div style="position:relative" id="rv-chartbox">' + renderChart(allA) + '</div></div>';
+  h += '<h2>Theo đề</h2><div class="card"><table class="ex"><tr><th>Đề</th><th class="r">Số lần</th><th class="r">Cao nhất</th><th class="r">Gần nhất</th><th class="r">So với lần trước</th></tr>' + DATA.tests.map(t => { const s = testStats(t.id); const d = (s.last != null && s.prev != null) ? s.last - s.prev : null; return '<tr><td>' + esc(t.name) + ' <span class="lvl ' + t.levelKey + '">' + esc(t.level) + '</span></td><td class="r">' + s.n + '</td><td class="r">' + (s.best == null ? '–' : s.best) + '</td><td class="r">' + (s.last == null ? '–' : s.last) + '</td><td class="r ' + (d == null ? '' : d >= 0 ? 'trend up' : 'trend down') + '">' + (d == null ? '–' : (d >= 0 ? '+' : '') + d) + '</td></tr>'; }).join('') + '</table></div>';
+  const first = allA.slice(0, 3), last = allA.slice(-3);
+  h += '<h2>Theo dạng bài</h2><p class="muted small">So sánh 3 lần làm đầu tiên với 3 lần gần nhất (tỉ lệ điểm đạt được).</p><div class="card"><table class="ex"><tr><th>Bài</th><th class="r">3 lần đầu</th><th class="r">3 lần gần nhất</th><th></th></tr>' + DATA.tests[0].exercises.map(ex => { const f = pct(first, a => { const e = a.ex.find(x => x.n === ex.n); return e ? [e.s, e.m] : [0, 0]; }); const l = pct(last, a => { const e = a.ex.find(x => x.n === ex.n); return e ? [e.s, e.m] : [0, 0]; }); const d = (f != null && l != null && allA.length > 3) ? l - f : null; return '<tr><td>' + ex.n + '. ' + esc(ex.vi.split('.')[0]) + '</td><td class="r">' + (f == null ? '–' : f + '%') + '</td><td class="r">' + (l == null ? '–' : l + '%') + '</td><td class="' + (d == null ? '' : d > 0 ? 'trend up' : d < 0 ? 'trend down' : '') + '">' + (d == null ? '' : d > 0 ? '▲ +' + d : d < 0 ? '▼ ' + d : '=') + '</td></tr>'; }).join('') + '</table></div>';
+  const rf = {}, rl = {}, rt = {};
+  for (const a of first) for (const [r, c] of Object.entries(a.rules || {})) rf[r] = (rf[r] || 0) + c;
+  for (const a of last) for (const [r, c] of Object.entries(a.rules || {})) rl[r] = (rl[r] || 0) + c;
+  for (const a of allA) for (const [r, c] of Object.entries(a.rules || {})) rt[r] = (rt[r] || 0) + c;
+  const rr = Object.entries(rt).sort((a, b) => b[1] - a[1]);
+  h += '<h2>Theo quy tắc</h2><p class="muted small">Số lỗi theo từng quy tắc. Mũi tên xanh = ít lỗi hơn trước.</p><div class="card">' + (rr.length ? '<table class="ex"><tr><th>Quy tắc</th><th class="r">Tổng lỗi</th><th class="r">3 lần đầu</th><th class="r">3 lần gần nhất</th><th></th></tr>' + rr.map(([r, c]) => { const f = rf[r] || 0, l = rl[r] || 0; const d = allA.length > 3 ? l - f : null; return '<tr><td>' + esc(DATA.rules[r].name) + '</td><td class="r">' + c + '</td><td class="r">' + f + '</td><td class="r">' + l + '</td><td class="' + (d == null ? '' : d < 0 ? 'trend up' : d > 0 ? 'trend down' : '') + '">' + (d == null ? '' : d < 0 ? '▼ ' + d : d > 0 ? '▲ +' + d : '=') + '</td></tr>'; }).join('') + '</table>' : '<p class="muted">Chưa có lỗi nào.</p>') + '</div>';
+  h += '<h2>Lịch sử</h2><div class="card"><table class="ex"><tr><th>Ngày</th><th>Đề</th><th class="r">Điểm</th><th class="r">Phút</th><th class="r">Câu sai</th></tr>' + allA.slice().reverse().map(a => '<tr><td>' + fmtDate(a.date) + '</td><td>Đề ' + a.test + '</td><td class="r"><b>' + a.score + '</b></td><td class="r">' + Math.round(a.dur / 60) + '</td><td class="r">' + (a.wrong || []).length + '</td></tr>').join('') + '</table></div>';
+  h += backupCard();
+  byId('progress').innerHTML = h; bindBackup();
+  let tip = byId('tip'); const box = byId('chartbox');
+  if (!tip) { tip = document.createElement('div'); tip.className = 'tip'; tip.id = 'rv-tip'; tip.hidden = true; }
+  for (const c of box.querySelectorAll('.hit')) {
+    const a = allA[Number(c.dataset.i)];
+    const showTip = ev => { tip.hidden = false; tip.innerHTML = '<b>Đề ' + a.test + ' · ' + a.score + ' điểm</b><br>' + fmtDate(a.date) + '<br>' + (a.wrong || []).length + ' câu sai · ' + Math.round(a.dur / 60) + ' phút'; const r = box.getBoundingClientRect(); tip.style.left = (ev.clientX - r.left + 12) + 'px'; tip.style.top = (ev.clientY - r.top - 10) + 'px'; };
+    c.addEventListener('mousemove', showTip); c.addEventListener('mouseenter', showTip); c.addEventListener('mouseleave', () => tip.hidden = true);
+    c.addEventListener('click', showTip);
+  }
+  box.style.position = 'relative'; box.appendChild(tip);
+}
+
+/* ---------- sao lưu / khôi phục (chỉ ngoài viewer claude.ai: ở đó kết quả đã lưu trên mạng, còn tải file bị chặn) ---------- */
+let inViewer = false;
+function backupCard() {
+  if (inViewer) return '';
+  return '<h2>Sao lưu &amp; khôi phục</h2><div class="card backup"><span class="muted small">Trên trang này kết quả chỉ lưu trong trình duyệt đang dùng. Tải file sao lưu để chuyển sang máy khác, hoặc để giữ lại trước khi xoá dữ liệu trình duyệt.</span>' +
+    '<button class="btn" type="button" id="rv-export">⬇ Tải file sao lưu</button><label class="btn" for="rv-import">⬆ Khôi phục từ file</label><input type="file" id="rv-import" accept="application/json,.json"></div>';
+}
+function bindBackup() {
+  const ex = byId('export'), im = byId('import'); if (!ex || !im) return;
+  ex.addEventListener('click', () => {
+    try {
+      const blob = new Blob([JSON.stringify({ app: 'revision-1-9', v: 1, exported: new Date().toISOString(), attempts: sortedAttempts() }, null, 1)], { type: 'application/json' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'revision-1-9-ket-qua.json';
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+    } catch (e) { setSync('Không tải được file sao lưu'); }
+  });
+  im.addEventListener('change', () => {
+    const f = im.files && im.files[0]; if (!f) return;
+    const r = new FileReader();
+    r.onload = () => {
+      try {
+        const o = JSON.parse(String(r.result)); const list = Array.isArray(o) ? o : (o && o.attempts) || [];
+        const have = new Set(store.attempts.map(a => a.id));
+        const fresh = list.filter(a => a && a.id && typeof a.score === 'number' && !have.has(a.id));
+        mergeAttempts(fresh); saveLocal(); setSync('Đã khôi phục ' + fresh.length + ' lần làm');
+        if (db) for (const a of fresh) db.collection('attempts').doc(a.id).set(a).catch(() => {});
+        renderCurrent(); if (opts.onChange) opts.onChange();
+      } catch (e) { setSync('File sao lưu không hợp lệ'); }
+      im.value = '';
+    };
+    r.readAsText(f);
+  });
+}
+
+/* ---------- mount ---------- */
+function mount(host, o) {
+  opts = o || {};
+  inViewer = !!(window.claude && window.claude.use);
+  if (!root) {
+    root = document.createElement('div'); root.id = 'rv';
+    root.className = opts.standalone ? 'rv-standalone' : 'rv-embedded';
+    root.innerHTML = MARKUP;
+    if (opts.back) { const a = document.createElement('a'); a.className = 'back'; a.href = opts.back.href; a.textContent = opts.back.label; root.querySelector('.top .in-wrap').prepend(a); }
+    for (const b of all('.rv-nav button')) b.addEventListener('click', () => show(b.dataset.view));
+    loadLocal();
+    renderHome();
+    host.appendChild(root);
+    const hash = opts.standalone ? (location.hash || '').replace('#', '') : '';
+    if (['errors', 'progress'].includes(hash)) show(hash);
+    else if (/^t[1-5]$/.test(hash)) startTest(Number(hash.slice(1)));
+    initDb();
+  } else {
+    if (root.parentElement !== host) host.appendChild(root);
+    renderCurrent();
+  }
+  return root;
+}
+function summary() {
+  if (!store.attempts.length) { loadLocal(); }
+  const l = sortedAttempts(); if (!l.length) return '';
+  return ' · ' + l.length + ' lần · ' + l[l.length - 1].score + '/100';
+}
+return { mount, summary, data: DATA, idx: IDX, attempts: sortedAttempts, startTest, show };
+})();
+</script>
+<!--RV:EMBED-END-->
+<div id="rv-host"></div>
+<script>RV19.mount(document.getElementById('rv-host'), { standalone: true, back: { href: './', label: '← Ngữ Pháp Vui 3' } });</script>
+
+</body>
+</html>
