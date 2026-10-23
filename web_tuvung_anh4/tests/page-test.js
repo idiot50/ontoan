@@ -19,7 +19,7 @@ window.__RUN_TEST__ = (async () => {
 
   const firstSpeak = document.querySelector('#list .speak');
   ok('màn Tra từ có nút loa', !!firstSpeak);
-  ok('danh sách render đủ 225 dòng', document.querySelectorAll('#list li.row').length === 225,
+  ok('danh sách render đủ 246 dòng', document.querySelectorAll('#list li.row').length === 246,
      document.querySelectorAll('#list li.row').length);
   ok('Unit 8 phần 1 có 17 mục', DATA.filter(r => String(r[0]) === '8.1').length === 17,
      DATA.filter(r => String(r[0]) === '8.1').length);
@@ -39,6 +39,15 @@ window.__RUN_TEST__ = (async () => {
      ['9','9.1','9.2'].every(v => document.querySelector('[data-unit="'+v+'"]') && document.querySelector('[data-du="'+v+'"]')));
   ok('lọc U9 gộp cả hai phần', DATA.filter(r => unitOk(r,'9')).length === 37,
      DATA.filter(r => unitOk(r,'9')).length);
+  ok('Unit 10 có 21 mục', DATA.filter(r => String(r[0]) === '10').length === 21,
+     DATA.filter(r => String(r[0]) === '10').length);
+  ok('có nút lọc U10 ở cả ba màn',
+     ['unit','du','tu'].every(k => document.querySelector('[data-' + k + '="10"]')));
+  /* Bẫy dễ gặp: lọc "1" không được vớ nhầm sang các mục Unit 10. */
+  ok('lọc U1 không lẫn sang Unit 10', DATA.filter(r => unitOk(r,'1')).length === 17,
+     DATA.filter(r => unitOk(r,'1')).length);
+  ok('lọc U10 chỉ lấy Unit 10', DATA.filter(r => unitOk(r,'10')).length === 21,
+     DATA.filter(r => unitOk(r,'10')).length);
 
   let n0 = spoken.length;
   if (firstSpeak) firstSpeak.click();
