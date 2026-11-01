@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bài học nhanh FaF3</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E💡%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+:root {
+  --bg: #f4f6f3; --surface: #fff; --fg: #1d2924; --muted: #5d6c65; --line: #d7ded8; --line2: #b9c4bd;
+  --accent: #1f6f5c; --accent-ink: #fff; --accent-soft: #e2f1ea;
+  --ok: #2c7a39; --ok-soft: #e4f4e6; --bad: #b9312f; --bad-soft: #fbe7e5; --warn: #9a5b00; --warn-soft: #fff1d6;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #131916; --surface: #1b2420; --fg: #e5ebe6; --muted: #9db0a5; --line: #2c3a33; --line2: #41534a;
+  --accent: #6fcfb0; --accent-ink: #0f1f19; --accent-soft: #1d3a31;
+  --ok: #7bd389; --ok-soft: #1e3525; --bad: #ff8f85; --bad-soft: #3d2321; --warn: #ffc46b; --warn-soft: #3a2c14; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #131916; --surface: #1b2420; --fg: #e5ebe6; --muted: #9db0a5; --line: #2c3a33; --line2: #41534a;
+  --accent: #6fcfb0; --accent-ink: #0f1f19; --accent-soft: #1d3a31;
+  --ok: #7bd389; --ok-soft: #1e3525; --bad: #ff8f85; --bad-soft: #3d2321; --warn: #ffc46b; --warn-soft: #3a2c14; color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--fg); font-family: "Nunito", "Segoe UI", system-ui, sans-serif; font-size: 16px; line-height: 1.55; }
+button, input { font: inherit; }
+.top { position: sticky; top: 0; z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+.top .in { max-width: 820px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 10px; }
+.brand { font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.back { margin-left: auto; flex: 0 0 auto; font-size: .88rem; font-weight: 700; color: var(--accent); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; }
+.wrap { max-width: 820px; margin: 0 auto; padding: 16px 16px 60px; }
+h1 { font-size: 1.4rem; margin: 6px 0; line-height: 1.25; }
+.muted { color: var(--muted); } .small { font-size: .88rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+.chip { border: 1px solid var(--line2); border-radius: 999px; padding: 3px 10px; font-size: .85rem; font-weight: 700; color: var(--muted); text-decoration: none; background: var(--surface); }
+.chip.done { border-color: var(--ok); color: var(--ok); background: var(--ok-soft); }
+details.lesson { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; margin: 12px 0; }
+details.lesson > summary { list-style: none; cursor: pointer; padding: 12px 16px; display: flex; gap: 10px; align-items: center; }
+details.lesson > summary::-webkit-details-marker { display: none; }
+.num { flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.num.done { background: var(--ok); }
+.st { flex: 1; min-width: 0; font-weight: 800; }
+.st small { display: block; font-weight: 600; color: var(--muted); }
+.body { padding: 0 16px 16px; }
+.from { border-left: 4px solid var(--warn); background: var(--warn-soft); padding: 8px 12px; border-radius: 8px; margin: 4px 0 12px; font-size: .95rem; }
+.rule { background: var(--accent-soft); border-radius: 10px; padding: 10px 14px; margin: 10px 0; }
+.rule p { margin: 6px 0; } .rule ul, .rule ol { margin: 6px 0; padding-left: 20px; } .rule li { margin: 3px 0; }
+table.rt { border-collapse: collapse; margin: 6px 0; font-size: .93rem; width: 100%; max-width: 560px; }
+table.rt th, table.rt td { border: 1px solid var(--line2); padding: 4px 8px; text-align: left; vertical-align: top; background: var(--surface); }
+table.rt th { background: var(--bg); }
+.eg { margin: 6px 0; padding-left: 12px; border-left: 3px solid var(--accent); }
+.passage { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 10px 0; white-space: pre-line; }
+h3 { font-size: 1rem; margin: 14px 0 4px; }
+.item { display: grid; grid-template-columns: 1.6em minmax(0, 1fr); gap: 4px; padding: 9px 0; border-top: 1px dashed var(--line); }
+.item .n { font-weight: 800; color: var(--muted); }
+.q { margin-bottom: 6px; }
+.opts { display: flex; flex-wrap: wrap; gap: 6px 8px; }
+.opt { display: inline-flex; align-items: center; gap: 6px; border: 1.5px solid var(--line2); border-radius: 10px; padding: 6px 12px; cursor: pointer; background: var(--surface); }
+.opt input { accent-color: var(--accent); margin: 0; }
+.opt.ok { border-color: var(--ok); background: var(--ok-soft); } .opt.bad { border-color: var(--bad); background: var(--bad-soft); }
+.in-t { padding: 8px 10px; border: 1.5px solid var(--line2); border-radius: 8px; background: var(--surface); color: var(--fg); width: 100%; font-size: 1rem; }
+.in-t.gap { width: 9em; max-width: 100%; display: inline-block; padding: 4px 8px; margin: 2px; }
+.in-t.ok { border-color: var(--ok); background: var(--ok-soft); } .in-t.bad { border-color: var(--bad); background: var(--bad-soft); }
+.words { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+.words span { border: 1px dashed var(--line2); border-radius: 6px; padding: 2px 8px; font-weight: 700; }
+.fb { font-size: .92rem; margin-top: 6px; border-left: 3px solid var(--line2); padding-left: 8px; color: var(--muted); }
+.fb .a { color: var(--ok); font-weight: 800; } .fb .x { color: var(--bad); font-weight: 800; }
+.actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
+.btn { border: 1px solid var(--line2); background: var(--surface); color: var(--fg); border-radius: 10px; padding: 9px 16px; cursor: pointer; font-weight: 700; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn:focus-visible, .in-t:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.score { font-weight: 800; }
+.score.full { color: var(--ok); }
+</style>
+</head>
+<body>
+<div class="top"><div class="in"><span class="brand">💡 Bài học nhanh FaF3</span><a class="back" href="./">← Về trang chính</a></div></div>
+<main class="wrap" id="app"></main>
+<script>
+const DATA = {"pageTitle":"Bài học nhanh FaF3","title":"Bài học nhanh sau bài kiểm tra FaF3 (Units 1–12)","intro":"Mỗi bài chỉ 3–5 phút: đọc quy tắc → xem ví dụ → làm 5–6 câu → bấm «Kiểm tra». Câu nào sai thì đọc giải thích rồi bấm «Làm lại». Mỗi ngày làm 1–2 bài, theo thứ tự từ trên xuống.","storageKey":"faf3-bai-hoc-v1","lessons":[{"id":"L1","minutes":4,"title":"do / does hay am / is / are?","fromTest":"Trong bài kiểm tra con viết: «my brother doesn't wearing a hat now». Lần đầu con cũng chọn «isn't» cho câu hỏi «Does your dad walk to work?» và chọn «Do» cho «___ the flamingos flying?».","rule":"\u003ctable class='rt'>\u003ctr>\u003cth>\u003c/th>\u003cth>Đang làm (có \u003cb>-ing\u003c/b>)\u003c/th>\u003cth>Thói quen (động từ thường)\u003c/th>\u003c/tr>\u003ctr>\u003ctd>Khẳng định\u003c/td>\u003ctd>She \u003cb>is\u003c/b> read\u003cb>ing\u003c/b>.\u003c/td>\u003ctd>She read\u003cb>s\u003c/b>.\u003c/td>\u003c/tr>\u003ctr>\u003ctd>Phủ định\u003c/td>\u003ctd>She \u003cb>isn't\u003c/b> read\u003cb>ing\u003c/b>.\u003c/td>\u003ctd>She \u003cb>doesn't\u003c/b> read.\u003c/td>\u003c/tr>\u003ctr>\u003ctd>Câu hỏi\u003c/td>\u003ctd>\u003cb>Is\u003c/b> she read\u003cb>ing\u003c/b>?\u003c/td>\u003ctd>\u003cb>Does\u003c/b> she read?\u003c/td>\u003c/tr>\u003c/table>\u003cp>\u003cb>Mẹo:\u003c/b> nhìn động từ trước. Có \u003cb>-ing\u003c/b> → dùng \u003cb>am / is / are\u003c/b>. Không có -ing → dùng \u003cb>do / does\u003c/b>.\u003cbr>❌ Không bao giờ viết \u003cb>doesn't + -ing\u003c/b>.\u003c/p>","examples":["My brother \u003cb>isn't wearing\u003c/b> a hat now. (đang — có -ing)","My brother \u003cb>doesn't wear\u003c/b> hats. (thói quen — không -ing)"],"items":[{"type":"mcq","q":"Look! Tim ___ playing football.","options":["is","does","do"],"answer":0,"why":"playing có -ing → is.","trap":{"1":"does đi với động từ thường không -ing: Tim plays football.","2":"do đi với I/you/we/they và động từ không -ing."}},{"type":"mcq","q":"Tim ___ play football on Mondays.","options":["doesn't","isn't","aren't"],"answer":0,"why":"play không có -ing (thói quen) → doesn't play.","trap":{"1":"isn't phải đi với -ing: Tim isn't playing.","2":"aren't dùng cho they/we/you và cũng cần -ing."}},{"type":"mcq","q":"___ your sister like cooking?","options":["Does","Is","Are"],"answer":0,"why":"like là động từ thường (không -ing) → Does.","trap":{"1":"Is đi với -ing: Is your sister cooking?","2":"Are dùng cho they/we/you."}},{"type":"mcq","q":"___ the children swimming now?","options":["Are","Do","Does"],"answer":0,"why":"swimming có -ing, the children = they → Are.","trap":{"1":"Do đi với động từ không -ing: Do the children swim?","2":"Does dùng cho he/she/it và không đi với -ing."}},{"type":"text","q":"My dad ___ (not / sleep) now. He's reading.","accept":["isn't sleeping","is not sleeping"],"why":"now → đang → isn't sleeping.","trap":{"doesn't sleeping":"Không dùng doesn't với -ing. Đang làm → isn't sleeping.","doesn't sleep":"«now» là đang xảy ra → isn't sleeping."}},{"type":"text","q":"Amy ___ (not / like) fishing.","accept":["doesn't like","does not like"],"why":"like là động từ thường → doesn't like.","trap":{"isn't like":"isn't không đi với like. Dùng doesn't like.","doesn't likes":"Sau doesn't động từ giữ nguyên: doesn't like."}}]},{"id":"L2","minutes":4,"title":"He / She / Tom … : động từ thêm -s","fromTest":"Trong bài kiểm tra con viết: «He always watch TV after school» — còn thiếu -es (watches). Lần đầu con cũng chọn «My brother like playing chess».","rule":"\u003cp>Chủ ngữ là \u003cb>he / she / it\u003c/b> hoặc \u003cb>một người\u003c/b> (Tom, my mum, my brother) → động từ thường thêm \u003cb>-s\u003c/b>.\u003c/p>\u003cul>\u003cli>Thêm \u003cb>-es\u003c/b> khi tận cùng là \u003cb>ch, sh, s, x, o\u003c/b>: watch → watch\u003cb>es\u003c/b>, brush → brush\u003cb>es\u003c/b>, go → go\u003cb>es\u003c/b>, do → do\u003cb>es\u003c/b>.\u003c/li>\u003cli>have → \u003cb>has\u003c/b>.\u003c/li>\u003cli>Có always / never / sometimes ở giữa \u003cb>vẫn thêm -s\u003c/b>: She always watch\u003cb>es\u003c/b> TV.\u003c/li>\u003cli>Sau \u003cb>doesn't\u003c/b> thì \u003cb>không\u003c/b> thêm -s: She doesn't watch TV.\u003c/li>\u003c/ul>","examples":["He always \u003cb>watches\u003c/b> TV after school.","My brother \u003cb>likes\u003c/b> playing chess."],"items":[{"type":"text","q":"Leo ___ (watch) cartoons every evening.","accept":["watches"],"why":"Leo = he; watch tận cùng ch → watches.","trap":{"watch":"Leo là một người (he) → phải thêm -es.","watchs":"Tận cùng ch thì thêm -es: watches."}},{"type":"text","q":"My mum ___ (go) to work by bus.","accept":["goes"],"why":"My mum = she; go → goes.","trap":{"go":"My mum = she → goes.","gos":"go thêm -es: goes."}},{"type":"text","q":"Holly ___ (brush) her teeth at seven o'clock.","accept":["brushes"],"why":"brush tận cùng sh → brushes.","trap":{"brush":"Holly = she → thêm -es.","brushs":"Tận cùng sh thì thêm -es: brushes."}},{"type":"text","q":"Max sometimes ___ (play) chess with Dad.","accept":["plays"],"why":"sometimes ở giữa vẫn thêm -s: plays.","trap":{"play":"Có sometimes ở giữa vẫn phải thêm -s: Max sometimes plays."}},{"type":"text","q":"Jim ___ (have) breakfast at six o'clock.","accept":["has"],"why":"have với he/she → has.","trap":{"have":"Jim = he → has.","haves":"have đổi thành has, không thêm -s."}},{"type":"mcq","q":"Amy doesn't ___ TV in the morning.","options":["watch","watches","watching"],"answer":0,"why":"Sau doesn't → động từ giữ nguyên: watch.","trap":{"1":"-es đã nằm trong does rồi, nên sau doesn't không thêm nữa.","2":"Không dùng doesn't với -ing."}}]},{"id":"L3","minutes":4,"title":"Quá khứ: was / were / had / didn't have","fromTest":"Trong bài kiểm tra con viết «There is a cinema … fifty years ago» và «Max doesn't have a computer when he was six». Ở bài nghe quán café con cũng chọn sai «It was a hot day» và «Demetri had a small family».","rule":"\u003cp>Thấy \u003cb>dấu hiệu quá khứ\u003c/b> thì đổi động từ: \u003cb>ago\u003c/b>, \u003cb>yesterday\u003c/b>, \u003cb>last\u003c/b> week / year, \u003cb>when I was\u003c/b> five, \u003cb>then\u003c/b>.\u003c/p>\u003ctable class='rt'>\u003ctr>\u003cth>Hiện tại\u003c/th>\u003cth>Quá khứ\u003c/th>\u003c/tr>\u003ctr>\u003ctd>am / is\u003c/td>\u003ctd>\u003cb>was\u003c/b>\u003c/td>\u003c/tr>\u003ctr>\u003ctd>are\u003c/td>\u003ctd>\u003cb>were\u003c/b>\u003c/td>\u003c/tr>\u003ctr>\u003ctd>have / has\u003c/td>\u003ctd>\u003cb>had\u003c/b>\u003c/td>\u003c/tr>\u003ctr>\u003ctd>don't / doesn't have\u003c/td>\u003ctd>\u003cb>didn't have\u003c/b>\u003c/td>\u003c/tr>\u003ctr>\u003ctd>There is / There are\u003c/td>\u003ctd>There \u003cb>was\u003c/b> / There \u003cb>were\u003c/b>\u003c/td>\u003c/tr>\u003c/table>\u003cp>\u003cb>Mẹo:\u003c/b> đọc hết câu, tìm dấu hiệu thời gian (thường ở \u003cb>cuối câu\u003c/b>) rồi mới viết động từ.\u003c/p>","examples":["There \u003cb>was\u003c/b> a cinema in our town fifty years \u003cb>ago\u003c/b>.","Max \u003cb>didn't have\u003c/b> a computer \u003cb>when he was six\u003c/b>."],"items":[{"type":"text","q":"There ___ (be) a big park here ten years ago.","accept":["was"],"why":"ten years ago + a big park (1 cái) → was.","trap":{"is":"«ago» là quá khứ → was.","were":"a big park là số ít → was."}},{"type":"text","q":"My grandparents ___ (be) young in 1960.","accept":["were"],"why":"in 1960 là quá khứ; grandparents = they → were.","trap":{"are":"in 1960 là quá khứ → were.","was":"grandparents là số nhiều → were."}},{"type":"text","q":"When I was five, I ___ (have) long hair.","accept":["had"],"why":"When I was five → quá khứ → had.","trap":{"have":"«When I was five» là quá khứ → had."}},{"type":"text","q":"Leo ___ (not have) a bike last year.","accept":["didn't have","did not have"],"why":"last year → quá khứ phủ định → didn't have.","trap":{"doesn't have":"«last year» là quá khứ → didn't have.","didn't had":"Sau didn't động từ giữ nguyên: didn't have."}},{"type":"mcq","q":"Yesterday it ___ cold and rainy.","options":["was","is","were"],"answer":0,"why":"Yesterday → quá khứ; it → was.","trap":{"1":"is là hiện tại, nhưng câu nói về hôm qua.","2":"were dùng cho they/we/you."}},{"type":"mcq","q":"There ___ lots of horses in our town a hundred years ago.","options":["was","were","are"],"answer":1,"why":"lots of horses (số nhiều) + ago → were.","trap":{"0":"was dùng với 1 vật; horses là số nhiều.","2":"«ago» là quá khứ → were."}}]},{"id":"L4","minutes":5,"title":"Đọc hiểu: trả lời câu hỏi trong 3 bước","fromTest":"Phần Reading con được 4/15: ở 5 câu hỏi trả lời, con gõ «c» chứ chưa trả lời. Câu «Grandpa is swimming now» con chọn True, nhưng trong bài người đang bơi là chim cánh cụt, còn ông đang chụp ảnh.","rule":"\u003col>\u003cli>\u003cb>Gạch từ khoá\u003c/b> trong câu hỏi: Who? What? Where? What … doing?\u003c/li>\u003cli>\u003cb>Tìm câu trong bài\u003c/b> có từ khoá đó.\u003c/li>\u003cli>\u003cb>Chép phần trả lời.\u003c/b> Được viết ngắn vài từ. Nếu viết cả câu thì đổi \u003cb>I → he/she\u003c/b>, \u003cb>my → his/her\u003c/b>.\u003c/li>\u003c/ol>\u003cp>\u003cb>Câu True/False:\u003c/b> hỏi lại «AI làm việc đó?». Cùng một hành động nhưng khác người làm → False.\u003c/p>","passage":"My name is Ben. I'm nine. I live in a big city with my mum and my sister, Kate. Every Saturday, we go to the park. Kate likes skateboarding, but I like playing football.\nToday we are at the zoo. Kate is eating an ice cream and the lions are sleeping. I'm taking photos!","examples":["Câu hỏi: «Where does Ben live?» → từ khoá \u003cb>live\u003c/b> → câu trong bài: «I \u003cb>live\u003c/b> in a big city» → trả lời: \u003cb>In a big city.\u003c/b>"],"items":[{"type":"tf","q":"Ben is sleeping now.","answer":"False","why":"Đang ngủ là những con sư tử (the lions are sleeping). Ben đang chụp ảnh (I'm taking photos).","trap":{"0":"Tìm câu có «sleeping»: «the lions are sleeping» — người ngủ là sư tử, không phải Ben."}},{"type":"kw","q":"Who is Kate?","kw":[["sister"]],"model":"She's Ben's sister.","why":"«my sister, Kate» → Kate là em/chị gái của Ben."},{"type":"kw","q":"What does Kate like doing?","kw":[["skateboarding"]],"model":"She likes skateboarding.","why":"«Kate likes skateboarding»."},{"type":"kw","q":"Where are Ben and Kate today?","kw":[["zoo"]],"model":"At the zoo.","why":"«Today we are at the zoo»."},{"type":"kw","q":"What is Kate doing now?","kw":[["eating"],["ice cream"]],"model":"She's eating an ice cream.","why":"«Kate is eating an ice cream» — cần viết đủ «eating» và «ice cream»."}]},{"id":"L5","minutes":4,"title":"a / an hay some? (đồ ăn đếm được và không đếm được)","fromTest":"Trong bài kiểm tra con viết «I like a bread, please» — bread không đếm được nên phải là «some bread». Lần đầu con cũng chọn «a cereal».","rule":"\u003ctable class='rt'>\u003ctr>\u003cth>Đếm được\u003c/th>\u003cth>Không đếm được\u003c/th>\u003c/tr>\u003ctr>\u003ctd>\u003cb>a\u003c/b> melon, \u003cb>an\u003c/b> onion, two potatoes, \u003cb>some\u003c/b> peas\u003c/td>\u003ctd>\u003cb>some\u003c/b> bread, pasta, cereal, cheese, butter, meat, milk, juice, salt, pepper\u003c/td>\u003c/tr>\u003c/table>\u003cp>Đồ không đếm được \u003cb>không dùng a / an\u003c/b>, chỉ dùng \u003cb>some\u003c/b>.\u003c/p>\u003cp>\u003cb>I'd like\u003c/b> = I would like = «con muốn», dùng khi xin, gọi món. \u003cb>I like\u003c/b> = «con thích» (nói chung).\u003c/p>","examples":["I'd like \u003cb>some\u003c/b> bread, please.","Would you like \u003cb>some\u003c/b> cereal?","I'd like \u003cb>a\u003c/b> melon and \u003cb>an\u003c/b> onion."],"items":[{"type":"mcq","q":"Would you like ___ cheese?","options":["some","a","an"],"answer":0,"why":"cheese không đếm được → some.","trap":{"1":"a chỉ dùng với đồ đếm được số ít (a melon).","2":"an chỉ dùng với đồ đếm được bắt đầu bằng nguyên âm (an onion)."}},{"type":"mcq","q":"I'd like ___ onion, please.","options":["a","an","some"],"answer":1,"why":"onion đếm được, bắt đầu bằng nguyên âm o → an.","trap":{"0":"onion bắt đầu bằng âm o (nguyên âm) → an.","2":"some + onions (số nhiều). Một củ hành → an onion."}},{"type":"mcq","q":"Can I have ___ melon?","options":["a","an","some"],"answer":0,"why":"melon đếm được, bắt đầu bằng phụ âm m → a.","trap":{"1":"an chỉ dùng trước nguyên âm (a, e, i, o, u).","2":"some + melons (số nhiều)."}},{"type":"mcq","q":"We need ___ butter for the cake.","options":["some","a","an"],"answer":0,"why":"butter không đếm được → some.","trap":{"1":"butter không đếm được → không dùng a."}},{"type":"mcq","q":"At the café: \"___ some orange juice, please.\"","options":["I'd like","I like"],"answer":0,"why":"Đang gọi đồ uống → I'd like (con muốn).","trap":{"1":"I like = con thích (nói chung). Khi gọi món phải nói I'd like."}},{"type":"text","q":"Write the sentence correctly: «I'd like a pasta, please.»","accept":["I'd like some pasta, please","I'd like some pasta","I would like some pasta, please","I would like some pasta"],"why":"pasta không đếm được → some pasta.","trap":{"i would like a pasta please":"Câu chưa sửa: pasta không đếm được → some pasta.","i like some pasta please":"Gọi món dùng I'd like, giữ nguyên I'd."}}]},{"id":"L6","minutes":3,"title":"Của ai? my / your / his / her / our / their","fromTest":"Cả hai lần con đều chọn «your» cho câu «This is Tom and Lucy's house. That's ___ car». Tom và Lucy là «họ» (they) → their.","rule":"\u003ctable class='rt'>\u003ctr>\u003cth>Người\u003c/th>\u003cth>Của …\u003c/th>\u003c/tr>\u003ctr>\u003ctd>I\u003c/td>\u003ctd>\u003cb>my\u003c/b>\u003c/td>\u003c/tr>\u003ctr>\u003ctd>you\u003c/td>\u003ctd>\u003cb>your\u003c/b>\u003c/td>\u003c/tr>\u003ctr>\u003ctd>he (Tom, Leo)\u003c/td>\u003ctd>\u003cb>his\u003c/b>\u003c/td>\u003c/tr>\u003ctr>\u003ctd>she (Lucy, Amy)\u003c/td>\u003ctd>\u003cb>her\u003c/b>\u003c/td>\u003c/tr>\u003ctr>\u003ctd>we (Max and I)\u003c/td>\u003ctd>\u003cb>our\u003c/b>\u003c/td>\u003c/tr>\u003ctr>\u003ctd>they (Tom and Lucy)\u003c/td>\u003ctd>\u003cb>their\u003c/b>\u003c/td>\u003c/tr>\u003c/table>\u003cp>\u003cb>Cách làm:\u003c/b> hỏi «đồ này của AI?» → đổi người đó thành I / he / she / we / they → lấy từ ở cột bên phải.\u003c/p>","examples":["Tom and Lucy → they → \u003cb>their\u003c/b> car.","Max and I → we → \u003cb>our\u003c/b> computer."],"items":[{"type":"mcq","q":"Amy and Leo are from Australia. ___ house is near the beach.","options":["Their","Our","Your"],"answer":0,"why":"Amy and Leo = they → their.","trap":{"1":"our = của chúng tôi — khi người nói là chủ.","2":"your = của bạn — khi nói chuyện với người chủ."}},{"type":"mcq","q":"Max and I love comics. ___ favourite comic is Space Boy.","options":["Our","Their","My"],"answer":0,"why":"Max and I = we → our.","trap":{"1":"their dùng cho người khác (they), nhưng ở đây có «I».","2":"my chỉ của một mình tôi; ở đây là Max và tôi."}},{"type":"mcq","q":"Holly has got a dog. ___ dog is white.","options":["Her","His","Their"],"answer":0,"why":"Holly = she → her.","trap":{"1":"his dùng cho con trai (he).","2":"their dùng cho nhiều người."}},{"type":"mcq","q":"Look at Leo! ___ skateboard is new.","options":["His","Her","Their"],"answer":0,"why":"Leo = he → his.","trap":{"1":"her dùng cho con gái (she).","2":"their dùng cho nhiều người."}},{"type":"mcq","q":"(Con nói với Tim) \"Tim, is this ___ bag?\"","options":["your","his","their"],"answer":0,"why":"Đang nói trực tiếp với Tim → your.","trap":{"1":"his dùng khi nói VỀ Tim với người khác, không phải nói VỚI Tim.","2":"their dùng cho nhiều người."}},{"type":"mcq","q":"The children are in the park with ___ teacher.","options":["their","our","his"],"answer":0,"why":"The children = they → their.","trap":{"1":"our chỉ dùng khi người nói ở trong nhóm (we).","2":"his dùng cho một bạn trai."}}]},{"id":"L7","minutes":3,"title":"like + V-ing","fromTest":"Trong bài kiểm tra con viết «Lucy doesn't like take photos». Sau like phải là V-ing: taking.","rule":"\u003cp>\u003cb>like / love / don't like / doesn't like + V-ing\u003c/b>\u003c/p>\u003cul>\u003cli>Thường: thêm -ing: read → read\u003cb>ing\u003c/b>, play → play\u003cb>ing\u003c/b>\u003c/li>\u003cli>Tận cùng \u003cb>e\u003c/b>: bỏ e rồi thêm -ing: take → tak\u003cb>ing\u003c/b>, ride → rid\u003cb>ing\u003c/b>\u003c/li>\u003cli>Một nguyên âm + một phụ âm: gấp đôi phụ âm: swim → swi\u003cb>mm\u003c/b>ing, run → ru\u003cb>nn\u003c/b>ing, shop → sho\u003cb>pp\u003c/b>ing\u003c/li>\u003c/ul>","examples":["Lucy doesn't like \u003cb>taking\u003c/b> photos.","I love \u003cb>swimming\u003c/b>."],"items":[{"type":"text","q":"I like ___ (read) comics.","accept":["reading"],"why":"like + V-ing → reading.","trap":{"read":"Sau like dùng V-ing: reading."}},{"type":"text","q":"Rosa loves ___ (take) photos.","accept":["taking"],"why":"take → bỏ e → taking.","trap":{"take":"Sau love dùng V-ing: taking.","takeing":"Tận cùng e thì bỏ e: taking."}},{"type":"text","q":"Tom doesn't like ___ (swim).","accept":["swimming"],"why":"swim → gấp đôi m → swimming.","trap":{"swim":"Sau like dùng V-ing: swimming.","swiming":"Gấp đôi m: swimming."}},{"type":"text","q":"Do you like ___ (ride) your bike?","accept":["riding"],"why":"ride → bỏ e → riding.","trap":{"rideing":"Tận cùng e thì bỏ e: riding."}},{"type":"text","q":"Write a sentence: my sister / like / shop","accept":["My sister likes shopping"],"why":"my sister = she → likes; shop → shopping (gấp đôi p).","trap":{"my sister like shopping":"my sister = she → likes.","my sister likes shop":"Sau like dùng V-ing: shopping.","my sister likes shoping":"Gấp đôi p: shopping."}}]},{"id":"L8","minutes":4,"title":"Câu hỏi Wh-: xếp đúng thứ tự","fromTest":"Trong bài kiểm tra con viết «what the mountain is highest in the world?». Câu đúng là «What is the highest mountain in the world?».","rule":"\u003cp>\u003cb>Khuôn câu hỏi:\u003c/b> Từ hỏi + \u003cb>is / are / does / do\u003c/b> + chủ ngữ + phần còn lại?\u003c/p>\u003cul>\u003cli>\u003cb>What is\u003c/b> the highest mountain in the world?\u003c/li>\u003cli>\u003cb>What time does\u003c/b> Tom get up?\u003c/li>\u003cli>\u003cb>Where are\u003c/b> the children?\u003c/li>\u003c/ul>\u003cp>\u003cb>the + tính từ -est + danh từ\u003c/b> luôn đứng liền nhau: the highest mountain, the longest river.\u003c/p>","examples":["What is \u003cb>the longest river\u003c/b> in the world?"],"items":[{"type":"order","words":["is","What","the longest","river","in the world","?"],"accept":["What is the longest river in the world"],"why":"What + is + the longest river + in the world?"},{"type":"order","words":["does","Where","your uncle","live","?"],"accept":["Where does your uncle live"],"why":"Where + does + your uncle + live?"},{"type":"order","words":["are","What","the children","doing","?"],"accept":["What are the children doing"],"why":"What + are + the children + doing?"},{"type":"order","words":["animal","What","the fastest","is","?"],"accept":["What is the fastest animal"],"why":"What + is + the fastest animal?"}]},{"id":"L9","minutes":3,"title":"Soát bài 30 giây + âm cuối ld / lt / nd / nt","fromTest":"Trong bài kiểm tra con viết «Ther were …» (thiếu e) và chép «clabing» thay vì climbing. Câu «chi _ _» (child) cả hai lần con chọn «nd».","rule":"\u003cp>\u003cb>Soát bài 30 giây\u003c/b> sau mỗi câu viết: chỉ tay vào từng từ và đọc lại.\u003c/p>\u003col>\u003cli>Từ đó viết đúng chưa? (There, their, climbing)\u003c/li>\u003cli>Động từ đã đúng chưa? (-s, -ing, was/were)\u003c/li>\u003cli>Khi chép từ đề bài, so lại từng chữ với đề.\u003c/li>\u003c/ol>\u003cp>\u003cb>Âm cuối:\u003c/b> \u003cb>ld\u003c/b>: child, field, shield · \u003cb>lt\u003c/b>: belt, quilt, adult · \u003cb>nd\u003c/b>: sand, pond · \u003cb>nt\u003c/b>: plant, tent.\u003c/p>","examples":["chi\u003cb>ld\u003c/b> — đọc kỹ sẽ nghe có âm \u003cb>l\u003c/b> trước \u003cb>d\u003c/b>."],"items":[{"type":"mcq","q":"chi _ _ (đứa trẻ)","options":["ld","lt","nd"],"answer":0,"why":"child — ld.","trap":{"1":"lt có trong belt, quilt.","2":"nd có trong sand, pond; child có âm l."}},{"type":"mcq","q":"be _ _ (thắt lưng)","options":["lt","ld","nd"],"answer":0,"why":"belt — lt.","trap":{"1":"ld có trong child, field."}},{"type":"mcq","q":"sa _ _ (cát ở bãi biển)","options":["nd","nt","ld"],"answer":0,"why":"sand — nd.","trap":{"1":"nt có trong plant, tent."}},{"type":"mcq","q":"te _ _ (cái lều)","options":["nt","nd","lt"],"answer":0,"why":"tent — nt.","trap":{"1":"nd có trong sand, pond."}},{"type":"text","q":"Find the mistake and write the sentence correctly: «Ther are three bridges in our town.»","accept":["There are three bridges in our town"],"why":"Ther → There (có e ở cuối).","trap":{"ther are three bridges in our town":"Câu chưa sửa: Ther → There."}}]}]};
+// ---- grading helpers (same rules as Revision 1–9: case-insensitive, contractions = full forms)
+function norm(s) {
+  s = String(s == null ? '' : s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); // café = cafe
+  s = s.replace(/[’‘`´ʼ′]/g, "'").replace(/[“”«»]/g, '"').replace(/[–—‐‑]/g, '-');
+  s = s.replace(/[.,!?;:"()]/g, ' ').replace(/\s*-\s*/g, '-').replace(/\s+/g, ' ').trim();
+  s = s.replace(/(^|[^a-z0-9])'+|'+(?=[^a-z]|$)/g, '$1 ').replace(/\s+/g, ' ').trim(); // quotes around a word: 'gets' → gets
+  // "'s got" is always "has got" (never "is got"), for pronouns AND names: Tim's got = Tim has got; "Tim is got" stays wrong.
+  // iPad without apostrophe: "Tims got" / "shes got" = "… has got" (except words that end in s by themselves: has, is, this, his…)
+  s = s.replace(/\b([a-z]+)'s got\b/g, '$1 has got')
+       .replace(/\b([a-z]+)s got\b/g, (m, w) => /s$|^(ha|i|wa|thi|hi|u|ye|doe|goe|her|our|your|their|thu|plu|ga|bu)$/.test(w) ? m : w + ' has got');
+  s = s.replace(/\bi'm\b/g, 'i am').replace(/\b([a-z]+)'re\b/g, '$1 are')
+       .replace(/\b(it|he|she|that|this|there|here|what|who|where|how)'s\b/g, '$1 is')
+       .replace(/\bisn't\b/g, 'is not').replace(/\baren't\b/g, 'are not')
+       .replace(/\bdon't\b/g, 'do not').replace(/\bdoesn't\b/g, 'does not')
+       .replace(/\bcan't\b/g, 'cannot').replace(/\bcan not\b/g, 'cannot')
+       .replace(/\bhaven't\b/g, 'have not').replace(/\bhasn't\b/g, 'has not')
+       .replace(/\b([a-z]+)'ve\b/g, '$1 have').replace(/\b([a-z]+)'ll\b/g, '$1 will')
+       // 'd is ambiguous (he'd = he had / he would): expand only in "'d like/love/prefer", leave other 'd untouched
+       .replace(/\b(i|you|we|they|he|she)'d (like|love|prefer)\b/g, '$1 would $2')
+       .replace(/\b(i|you|we|they)d (like|love|prefer)\b/g, '$1 would $2') // iPad: "Id like"
+       .replace(/\bdidn't\b/g, 'did not').replace(/\bwasn't\b/g, 'was not').replace(/\bweren't\b/g, 'were not')
+       .replace(/\bmustn't\b/g, 'must not').replace(/\bwon't\b/g, 'will not');
+  s = s.replace(/\bim\b/g, 'i am').replace(/\bdont\b/g, 'do not').replace(/\bdoesnt\b/g, 'does not')
+       .replace(/\bisnt\b/g, 'is not').replace(/\barent\b/g, 'are not').replace(/\bcant\b/g, 'cannot')
+       .replace(/\bhavent\b/g, 'have not').replace(/\bhasnt\b/g, 'has not').replace(/\bdidnt\b/g, 'did not')
+       .replace(/\bwasnt\b/g, 'was not').replace(/\bwerent\b/g, 'were not').replace(/\bmustnt\b/g, 'must not')
+       .replace(/\btheyre\b/g, 'they are').replace(/\byoure\b/g, 'you are')
+       .replace(/\bthats\b/g, 'that is').replace(/\btheres\b/g, 'there is').replace(/\bwhats\b/g, 'what is')
+       .replace(/\bhes\b/g, 'he is').replace(/\bshes\b/g, 'she is')
+       .replace(/\b(i|we|you|they)ve\b/g, '$1 have').replace(/\bwouldnt\b/g, 'would not').replace(/\bcouldnt\b/g, 'could not');
+  return s.replace(/\s+/g, ' ').trim();
+}
+// trap feedback: keys in data.json may be written with contractions/capitals/punctuation → compare normalised
+function trapFor(trap, v) {
+  if (!trap) return null; const n = norm(v);
+  for (const k of Object.keys(trap)) if (k !== '*' && norm(k) === n) return trap[k];
+  return null;
+}
+const matches = (u, acc) => { const n = norm(u); return !!n && acc.some(a => norm(a) === n); };
+// kw: every group needs one alternative present as whole words
+const kwOk = (u, groups) => { const s = ' ' + norm(u) + ' '; return norm(u) !== '' && groups.every(g => g.some(a => s.includes(' ' + norm(a) + ' '))); };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+
+
+let store = {};
+try { const v = JSON.parse(localStorage.getItem(DATA.storageKey) || '{}'); if (v && typeof v === 'object' && !Array.isArray(v)) store = v; } catch (e) {}
+const save = () => { try { localStorage.setItem(DATA.storageKey, JSON.stringify(store)); } catch (e) {} };
+const st = id => { const s = store[id]; if (!s || typeof s !== 'object' || !s.answers || typeof s.answers !== 'object') store[id] = { answers: {}, checked: false, best: null }; return store[id]; };
+
+function render() {
+  const app = document.getElementById('app');
+  const openId = (DATA.lessons.find(L => !(store[L.id] && store[L.id].best === L.items.length)) || DATA.lessons[0]).id;
+  let h = `<h1>${esc(DATA.title)}</h1><p class="muted">${esc(DATA.intro)}</p><div class="chips">` +
+    DATA.lessons.map((L, i) => { const s = store[L.id]; const done = s && s.best === L.items.length; return `<a class="chip ${done ? 'done' : ''}" href="#${L.id}">${done ? '✓ ' : ''}Bài ${i + 1}</a>`; }).join('') + `</div>`;
+  DATA.lessons.forEach((L, i) => { h += lessonHtml(L, i, L.id === openId); });
+  app.innerHTML = h;
+  bind();
+}
+function lessonHtml(L, i, open) {
+  const s = st(L.id), done = s.best === L.items.length;
+  let h = `<details class="lesson" id="${L.id}" ${open ? 'open' : ''}><summary><span class="num ${done ? 'done' : ''}">${done ? '✓' : i + 1}</span><span class="st">${esc(L.title)}<small>⏱ khoảng ${L.minutes} phút${s.best != null ? ` · tốt nhất ${s.best}/${L.items.length}` : ''}</small></span></summary><div class="body">`;
+  h += `<div class="from">${esc(L.fromTest)}</div><div class="rule">${L.rule}</div>`;
+  if (L.examples) h += L.examples.map(e => `<div class="eg">${e}</div>`).join('');
+  if (L.passage) h += `<div class="passage">${esc(L.passage)}</div>`;
+  h += `<h3>Luyện tập</h3>`;
+  L.items.forEach((it, k) => { h += itemHtml(L, it, k, s); });
+  const sc = s.checked ? score(L) : null;
+  h += `<div class="actions">${s.checked ? `<span class="score ${sc === L.items.length ? 'full' : ''}">Đúng ${sc} / ${L.items.length}${sc === L.items.length ? ' 🎉' : ''}</span><button class="btn" data-act="retry" data-l="${L.id}">Làm lại</button>` : `<button class="btn primary" data-act="check" data-l="${L.id}">Kiểm tra</button>`}</div>`;
+  return h + `</div></details>`;
+}
+function inputHtml(L, key, v, r, cls = '') {
+  return `<input class="in-t ${cls} ${r == null ? '' : r ? 'ok' : 'bad'}" data-l="${L.id}" data-k="${key}" value="${esc(v || '')}" ${r == null ? '' : 'readonly'} autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Bài ${L.id}, câu ${+key + 1}">`;
+}
+function itemHtml(L, it, k, s) {
+  const v = s.answers[k], r = s.checked ? isOk(it, v) : null;
+  let body = '';
+  if (it.type === 'mcq' || it.type === 'tf') {
+    const opts = it.type === 'tf' ? ['True', 'False'] : it.options, ans = ansIdx(it);
+    body = `<div class="q">${esc(it.q).replace('___', v != null && v !== '' ? `<u><b>${esc(opts[v])}</b></u>` : '_____')}</div><div class="opts" role="radiogroup" aria-label="Bài ${L.id}, câu ${k + 1}">` + opts.map((o, j) => {
+      const cls = s.checked ? (j === ans ? 'ok' : v === j ? 'bad' : '') : '';
+      return `<label class="opt ${cls}"><input type="radio" name="${L.id}-${k}" data-l="${L.id}" data-k="${k}" value="${j}" ${v === j ? 'checked' : ''} ${s.checked ? 'disabled' : ''}><span>${esc(o)}</span></label>`;
+    }).join('') + `</div>`;
+  } else if (it.type === 'order') {
+    body = `<div class="words">${it.words.map(w => `<span>${esc(w)}</span>`).join('')}</div>${inputHtml(L, k, v, r)}`;
+  } else if (/___/.test(it.q)) {
+    const p = esc(it.q).split('___'); body = `<div class="q">${p[0]}${inputHtml(L, k, v, r, 'gap')}${p.slice(1).join('___')}</div>`;
+  } else {
+    body = `<div class="q">${esc(it.q)}</div>${inputHtml(L, k, v, r)}`;
+  }
+  if (s.checked && !r) {
+    const model = it.type === 'mcq' ? it.options[it.answer] : it.type === 'tf' ? it.answer : it.type === 'kw' ? it.model : it.accept[0];
+    let wrongWhy = '';
+    if (it.trap && v != null && v !== '') { const t = (it.type === 'mcq' || it.type === 'tf') ? it.trap[String(v)] : trapFor(it.trap, v); if (t) wrongWhy = `<br><span class="x">Vì sao sai:</span> ${esc(t)}`; }
+    body += `<div class="fb">Đáp án: <span class="a">${esc(model)}</span><br>${esc(it.why)}${wrongWhy}</div>`;
+  }
+  return `<div class="item"><span class="n">${k + 1}.</span><div>${body}</div></div>`;
+}
+const ansIdx = it => it.type === 'tf' ? (it.answer === 'True' ? 0 : 1) : it.answer;
+function isOk(it, v) {
+  if (it.type === 'mcq' || it.type === 'tf') return v === ansIdx(it);
+  if (it.type === 'kw') return kwOk(v, it.kw);
+  return matches(v, it.accept);
+}
+const score = L => { const s = st(L.id); return L.items.filter((it, k) => isOk(it, s.answers[k])).length; };
+function bind() {
+  document.querySelectorAll('input[data-k]').forEach(el => {
+    const s = () => st(el.dataset.l);
+    if (el.type === 'radio') el.addEventListener('change', () => { s().answers[el.dataset.k] = +el.value; save(); rerender(el.dataset.l); });
+    else el.addEventListener('input', () => { s().answers[el.dataset.k] = el.value; save(); });
+  });
+  document.querySelectorAll('button[data-act]').forEach(b => b.addEventListener('click', () => {
+    const L = DATA.lessons.find(x => x.id === b.dataset.l), s = st(L.id);
+    if (b.dataset.act === 'check') { s.checked = true; const sc = score(L); s.best = Math.max(s.best ?? 0, sc); }
+    else { s.checked = false; s.answers = {}; }
+    save(); render(); const d = document.getElementById(L.id); d.open = true; d.querySelector('.actions').scrollIntoView({ block: 'nearest' });
+  }));
+}
+function rerender(id) { // keep other lessons' open state; re-render whole page but restore open lesson
+  const open = [...document.querySelectorAll('details.lesson[open]')].map(d => d.id), y = scrollY;
+  render(); document.querySelectorAll('details.lesson').forEach(d => d.open = open.includes(d.id)); scrollTo(0, y);
+}
+render();
+</script>
+</body>
+</html>
