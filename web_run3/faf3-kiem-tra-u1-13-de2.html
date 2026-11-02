@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kiểm tra FaF3 Units 1–13 · Đề 2</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E📝%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+:root {
+  --bg: #f4f6f3; --surface: #fff; --fg: #1d2924; --muted: #5d6c65; --line: #d7ded8; --line2: #b9c4bd;
+  --accent: #1f6f5c; --accent-ink: #fff; --accent-soft: #e2f1ea;
+  --ok: #2c7a39; --ok-soft: #e4f4e6; --bad: #b9312f; --bad-soft: #fbe7e5; --warn: #9a5b00; --warn-soft: #fff1d6;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #131916; --surface: #1b2420; --fg: #e5ebe6; --muted: #9db0a5; --line: #2c3a33; --line2: #41534a;
+  --accent: #6fcfb0; --accent-ink: #0f1f19; --accent-soft: #1d3a31;
+  --ok: #7bd389; --ok-soft: #1e3525; --bad: #ff8f85; --bad-soft: #3d2321; --warn: #ffc46b; --warn-soft: #3a2c14; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #131916; --surface: #1b2420; --fg: #e5ebe6; --muted: #9db0a5; --line: #2c3a33; --line2: #41534a;
+  --accent: #6fcfb0; --accent-ink: #0f1f19; --accent-soft: #1d3a31;
+  --ok: #7bd389; --ok-soft: #1e3525; --bad: #ff8f85; --bad-soft: #3d2321; --warn: #ffc46b; --warn-soft: #3a2c14; color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--fg); font-family: "Nunito", "Segoe UI", system-ui, sans-serif; font-size: 16px; line-height: 1.5; }
+[hidden] { display: none !important; }
+button, input, select { font: inherit; }
+.top { position: sticky; top: 0; z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+.top .in { max-width: 860px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.brand { font-weight: 800; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.back { white-space: nowrap; }
+.back { margin-left: auto; font-size: .88rem; font-weight: 700; color: var(--accent); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; }
+.wrap { max-width: 860px; margin: 0 auto; padding: 16px 16px 120px; }
+h1 { font-size: 1.45rem; margin: 6px 0 4px; line-height: 1.25; }
+h2.part { font-size: 1.15rem; margin: 28px 0 8px; padding-bottom: 4px; border-bottom: 2px solid var(--accent); }
+.muted { color: var(--muted); } .small { font-size: .88rem; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; margin: 12px 0; }
+.btn { border: 1px solid var(--line2); background: var(--surface); color: var(--fg); border-radius: 10px; padding: 9px 14px; cursor: pointer; font-weight: 700; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn:focus-visible, .in-t:focus-visible, select:focus-visible, .opt input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+.exh { display: flex; gap: 10px; align-items: flex-start; }
+.num { flex: 0 0 auto; min-width: 30px; height: 30px; padding: 0 6px; border-radius: 15px; background: var(--accent); color: var(--accent-ink); font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.ttl { flex: 1; min-width: 0; } .ttl b { font-size: 1.02rem; } .ttl .vi { display: block; color: var(--muted); font-size: .9rem; }
+.pts { flex: 0 0 auto; font-size: .8rem; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+.pts.done { color: var(--fg); font-weight: 800; }
+.audio { margin: 10px 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.audio audio { width: 100%; max-width: 420px; }
+.bank { display: flex; flex-wrap: wrap; gap: 6px 14px; background: var(--accent-soft); padding: 8px 12px; border-radius: 10px; margin: 10px 0; font-weight: 700; }
+.eg { margin: 8px 0 2px; color: var(--muted); font-size: .95rem; }
+.eg b { color: var(--accent); }
+.passage { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 10px 0; white-space: pre-line; line-height: 1.7; }
+.passage h4 { margin: 0 0 4px; }
+.item { display: grid; grid-template-columns: 1.8em minmax(0, 1fr); gap: 4px 6px; padding: 10px 0; border-top: 1px dashed var(--line); }
+.item .n { font-weight: 800; color: var(--muted); padding-top: 2px; }
+.q { margin-bottom: 6px; }
+.opts { display: flex; flex-wrap: wrap; gap: 6px 8px; }
+.opt { display: inline-flex; align-items: center; gap: 6px; border: 1.5px solid var(--line2); border-radius: 10px; padding: 6px 12px; cursor: pointer; background: var(--surface); }
+.opt input { accent-color: var(--accent); margin: 0; }
+.opt.ok { border-color: var(--ok); background: var(--ok-soft); } .opt.bad { border-color: var(--bad); background: var(--bad-soft); }
+.in-t { padding: 8px 10px; border: 1.5px solid var(--line2); border-radius: 8px; background: var(--surface); color: var(--fg); width: 100%; font-size: 1rem; }
+.in-t.gap { width: 9em; display: inline-block; padding: 4px 8px; margin: 2px; }
+select.in-t { width: auto; max-width: 100%; }
+.in-t.ok { border-color: var(--ok); background: var(--ok-soft); } .in-t.bad { border-color: var(--bad); background: var(--bad-soft); }
+.words { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+.blank { display: inline-block; min-width: 4.5em; border-bottom: 2px solid var(--line2); padding: 0 4px; margin: 0 2px; font-weight: 700; color: var(--accent); text-align: center; }
+.words span { border: 1px dashed var(--line2); border-radius: 6px; padding: 2px 8px; font-weight: 700; }
+.fb { font-size: .9rem; color: var(--muted); margin-top: 6px; border-left: 3px solid var(--line2); padding-left: 8px; }
+.fb .a { color: var(--ok); font-weight: 800; } .fb .x { color: var(--bad); font-weight: 800; }
+.bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; background: var(--surface); border-top: 1px solid var(--line); padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); }
+.bar .in { max-width: 860px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.confirm { background: var(--warn-soft); border: 1px solid var(--warn); border-radius: 10px; padding: 8px 12px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.score { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.score .big { font-size: 2.6rem; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.band { font-weight: 800; font-size: 1.1rem; }
+table.t { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: .93rem; }
+table.t th, table.t td { border-bottom: 1px solid var(--line); padding: 5px 6px; text-align: left; }
+table.t td.r, table.t th.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pbar { height: 8px; background: var(--line); border-radius: 999px; overflow: hidden; min-width: 60px; }
+.pbar i { display: block; height: 100%; background: var(--accent); }
+.pbar i.low { background: var(--bad); } .pbar i.mid { background: var(--warn); }
+.speak li { margin: 4px 0; }
+.rub { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0 8px; }
+.hist li { margin: 3px 0; }
+@media (max-width: 480px) { .in-t.gap { width: 7.5em; } .brand { font-size: .9rem; } .back { font-size: .8rem; padding: 3px 9px; } .top .in { padding: 8px 12px; gap: 6px; } }
+</style>
+</head>
+<body>
+<div class="top"><div class="in"><span class="brand">📝 Family and Friends 3 · Units 1–13 · Đề 2</span><a class="back" href="./">← Về trang chính</a></div></div>
+<main class="wrap" id="app"></main>
+<div class="bar" id="bar"><div class="in"><span id="prog" class="muted"></span><span id="barBtns"></span></div></div>
+<script>
+const DATA = {"pageTitle":"Kiểm tra FaF3 Units 1–13 · Đề 2","brand":"Family and Friends 3 · Units 1–13 · Đề 2","storageKey":"faf3-test-u1-13-de2-v1","exportName":"ket-qua-faf3-u1-13-de2.json","audioDir":"faf3-de2","outFile":"faf3-kiem-tra-u1-13-de2.html","title":"Bài kiểm tra Family and Friends 3 · Units 1–13 · Đề 2","subtitle":"Listening · Vocabulary & Phonics · Grammar · Reading · Writing — 100 điểm, khoảng 60 phút","instructions":["Làm lần lượt từ trên xuống. Phần nghe: bấm ▶ để nghe, mỗi bài nghe 2 lần.","Bài viết: chữ hoa hay chữ thường đều được; viết tắt (didn't) hay viết đầy đủ (did not) đều được.","Phần đọc: nhớ trả lời cả các câu hỏi viết — viết ngắn cũng được.","Làm xong bấm «Nộp bài» ở dưới cùng. Bài đang làm được tự lưu trên máy này."],"parts":{"A":"Part A · Listening (25 điểm)","B":"Part B · Vocabulary & Phonics (20 điểm)","C":"Part C · Grammar (28 điểm)","D":"Part D · Reading (15 điểm)","E":"Part E · Writing (12 điểm)"},"unitTitles":{"1":"They're from Australia!","2":"My weekend","3":"My things","4":"We're having fun at the beach!","5":"A naughty monkey!","6":"Jim's day","7":"Places to go!","8":"I'd like a melon!","9":"What's the fastest animal in the world?","10":"In the park!","11":"In the museum","12":"A clever baby!","13":"The Ancient Egyptians"},"bands":[{"min":85,"label":"Giỏi","advice":"Nắm vững kiến thức Units 1–13. Có thể học tiếp Units 14–15."},{"min":70,"label":"Khá","advice":"Nắm được phần lớn kiến thức. Ôn lại các unit có thanh màu cam/đỏ trước khi học tiếp."},{"min":50,"label":"Trung bình","advice":"Còn hổng một số mảng. Ôn lại từng unit yếu (bảng dưới), làm lại bài sau 1 tuần."},{"min":0,"label":"Cần ôn lại","advice":"Cần ôn lại từ vựng và ngữ pháp cơ bản theo từng unit trước khi học tiếp."}],"audioSources":{"t023.mp3":"../../faf/audio/Family and Friends 3 CD1_2/CD_1/Track 23.mp3","t047.mp3":"../../faf/audio/Family and Friends 3 CD1_2/CD_1/Track 47.mp3","t087.mp3":"../../faf/audio/Family and Friends 3 CD1_2/CD_2/Track 40.mp3","t111.mp3":"../../faf/audio/Family and Friends 3 Class CD3/Track 24.mp3"},"exercises":[{"id":"A1","part":"A","type":"mcq","audio":"audio/faf3-de2/t023.mp3","title":"Listen to the children. They are looking at a penfriend website. Choose the correct answer.","vi":"Hai bạn nhỏ xem trang web tìm bạn qua thư (penfriend). Nghe và chọn đáp án đúng.","items":[{"q":"Where is Ivan from?","options":["Russia","Brazil","Spain"],"answer":0,"unit":1,"level":1,"why":"\"This is Ivan. He's from Russia.\""},{"q":"What does May like doing?","options":["fishing","cooking","playing chess"],"answer":1,"unit":2,"level":1,"why":"\"What does she like doing? She likes cooking.\"","trap":{"0":"Fishing là sở thích của Bruno (bạn số 3).","2":"Playing chess là sở thích của Tina (bạn số 4)."}},{"q":"Where is Bruno from?","options":["Australia","Thailand","Brazil"],"answer":2,"unit":1,"level":1,"why":"\"His name is Bruno. He's from Brazil.\"","trap":{"0":"Australia là nước của Tina.","1":"Thailand là nước của May."}},{"q":"Who is from Australia?","options":["May","Tina","Ivan"],"answer":1,"unit":1,"level":1,"why":"\"Her name's Tina. She's from Australia.\""},{"q":"What does Bruno like doing?","options":["playing football","cooking","fishing"],"answer":2,"unit":2,"level":1,"why":"\"What does he like doing? He likes fishing.\"","trap":{"0":"Playing football là sở thích của Ivan (bạn số 1).","1":"Cooking là sở thích của May (bạn số 2)."}},{"q":"Who can be the first child's penfriend?","options":["Ivan","May","Bruno"],"answer":2,"unit":2,"level":3,"why":"Bạn thứ nhất nói \"I don't like playing football\" (không chọn Ivan), \"I don't like cooking\" (không chọn May), rồi \"I like fishing too … He can be my pen friend\" → Bruno.","trap":{"0":"Ivan thích đá bóng, nhưng bạn này nói \"I don't like playing football\".","1":"May thích nấu ăn, nhưng bạn này nói \"Oh, I don't like cooking\"."}},{"q":"The second child likes playing ___.","options":["football","chess","basketball"],"answer":1,"unit":2,"level":2,"why":"\"Do you like playing chess? — Yes, I do. Tina can be my pen friend.\"","trap":{"0":"Football là sở thích của Ivan; bạn thứ hai không nói thích đá bóng.","2":"Bài nghe không nói đến basketball."}}]},{"id":"A2","part":"A","type":"tf","audio":"audio/faf3-de2/t047.mp3","title":"Listen to the story at the zoo. Choose True or False.","vi":"Nghe chuyện con hổ và con khỉ ở sở thú. Chọn True (đúng) hoặc False (sai).","items":[{"q":"At the start, the tiger is eating.","answer":"True","unit":5,"level":1,"why":"Câu đầu: \"Look at the tiger! It's eating!\""},{"q":"The monkey is sleeping.","answer":"False","unit":5,"level":2,"why":"Con đang ngủ là con hổ (\"The tiger is sleeping now!\"). Con khỉ thì leo trèo, ăn chuối rồi chạy."},{"q":"The monkey's banana is falling.","answer":"True","unit":5,"level":1,"why":"\"Look at the banana! It's falling!\""},{"q":"At the end of the story, the tiger is sleeping.","answer":"False","unit":5,"level":2,"why":"\"Oh no! The tiger isn't sleeping now!\" — lúc đầu hổ ngủ, nhưng chuối rơi xuống làm hổ thức dậy."},{"q":"The monkey is angry.","answer":"False","unit":5,"level":3,"why":"Con tức giận là con hổ (\"The tiger is angry\"). Con khỉ thì sợ: \"The monkey is scared. It's running!\""},{"q":"The tiger wants to eat the monkey.","answer":"True","unit":5,"level":2,"why":"\"It's watching the monkey. It wants to eat the monkey.\""}]},{"id":"A3","part":"A","type":"mcq","audio":"audio/faf3-de2/t087.mp3","title":"Listen. Tom is in the library. Choose the correct answer.","vi":"Nghe chuyện Tom ở thư viện. Chọn đáp án đúng.","items":[{"q":"One of the children wants to find a book about ___.","options":["animals","space","Egypt"],"answer":1,"unit":7,"level":1,"why":"\"I want to find a book about space.\""},{"q":"Tom is using his ___ in the library.","options":["camera","mobile phone","MP3 player"],"answer":1,"unit":10,"level":1,"why":"\"What's that? — It's my mobile phone. — Oh, no! You can't use your mobile phone here!\"","trap":{"0":"Bài nghe không nói đến máy ảnh (camera).","2":"Bài nghe không nói đến máy MP3. Tom dùng điện thoại di động (mobile phone) và phải tắt nó đi."}},{"q":"Tom is eating a sandwich in the library because he is ___.","options":["hungry","tired","scared"],"answer":0,"unit":10,"level":1,"why":"\"You mustn't eat in the library. — Oh, but I'm hungry!\""},{"q":"Is Tom reading the books now?","options":["Yes, he is.","No, he isn't.","No, he doesn't."],"answer":1,"unit":5,"level":3,"why":"Tom nói: \"I'm not reading them now!\" → No, he isn't. Hỏi bằng Is → trả lời bằng is/isn't.","trap":{"0":"Sách đang để trên bàn nhưng Tom nói \"I'm not reading them now!\" — Tom không đọc.","2":"doesn't dùng để trả lời câu hỏi bắt đầu bằng Does. Câu hỏi bắt đầu bằng Is → No, he isn't."}},{"q":"Where must Tom put the books?","options":["on the table","on the shelf","in his bag"],"answer":1,"unit":10,"level":3,"why":"\"Well, you must put the books on the shelf!\" (shelf = giá sách)","trap":{"0":"Sách ĐANG ở trên bàn (\"the books are on the table\") — đó là chỗ sai. Tom phải để sách lên giá: on the shelf.","2":"Bài nghe không nói đến cái cặp."}},{"q":"\"Can we go home now?\" — What is the answer?","options":["Yes, we can.","No, we can't.","No, we don't."],"answer":1,"unit":3,"level":2,"why":"\"Can we go home now? — No, we can't.\" Hỏi bằng Can → trả lời bằng can/can't.","trap":{"0":"Bạn ấy trả lời \"No, we can't\" — chưa được về vì sách còn để trên bàn.","2":"don't trả lời câu hỏi bắt đầu bằng Do. Hỏi bằng Can → No, we can't."}}]},{"id":"A4","part":"A","type":"text","audio":"audio/faf3-de2/t111.mp3","title":"Listen to Tom. Write the missing words.","vi":"Nghe Tom kể về một ngày tồi tệ hôm qua. Viết từ còn thiếu (1 từ cho mỗi chỗ trống).","items":[{"q":"In the morning, Tom had a ___ lesson.","accept":["maths","math"],"unit":13,"level":1,"why":"\"I had a maths lesson in the morning.\""},{"q":"The questions were very ___.","accept":["difficult"],"unit":13,"level":2,"why":"\"The questions were very difficult.\" (difficult = khó; ngược nghĩa với easy)"},{"q":"Tom ___ know the answers.","accept":["didn't","did not"],"unit":13,"level":3,"why":"\"… and I didn't know the answers.\" Phủ định ở quá khứ: didn't + động từ nguyên mẫu (know).","trap":{"don't":"don't là hiện tại; Tom kể chuyện hôm qua (yesterday) → didn't.","doesn't":"doesn't là hiện tại; chuyện hôm qua → didn't."}},{"q":"Tom didn't have his homework, so the teacher was ___.","accept":["angry"],"unit":12,"level":2,"why":"\"I didn't have my homework, so the teacher was angry.\" (angry = tức giận)"},{"q":"After school, Tom ___ basketball with his friends in the park.","accept":["played"],"unit":13,"level":3,"why":"\"I played basketball with my friends in the park after school.\" Chuyện hôm qua → play + ed = played.","trap":{"play":"Chuyện hôm qua → quá khứ: played (thêm -ed).","plays":"Chuyện hôm qua → quá khứ: played.","playd":"play thêm -ed: played."}},{"q":"Then it started to rain. Tom was very wet and very ___.","accept":["cold"],"unit":12,"level":2,"why":"\"I was very wet and very cold.\""}]},{"id":"B1","part":"B","type":"mcq","title":"Odd one out. Choose the word that is different.","vi":"Chọn từ KHÁC NHÓM với ba từ còn lại.","items":[{"options":["heavy","soft","hard","laugh"],"answer":3,"unit":13,"level":1,"why":"heavy (nặng), soft (mềm), hard (cứng) là từ chỉ đặc điểm của đồ vật; laugh (cười) là việc làm (động từ).","trap":{"0":"heavy = nặng — từ chỉ đặc điểm, cùng nhóm với soft, hard.","1":"soft = mềm — từ chỉ đặc điểm.","2":"hard = cứng — từ chỉ đặc điểm."}},{"options":["spring","garden","winter","autumn"],"answer":1,"unit":1,"level":1,"why":"spring, winter, autumn là các mùa; garden (khu vườn) là một nơi.","trap":{"0":"spring = mùa xuân.","2":"winter = mùa đông.","3":"autumn = mùa thu."}},{"options":["café","cinema","singer","theatre"],"answer":2,"unit":7,"level":2,"why":"café, cinema, theatre là nơi chốn trong thành phố; singer (ca sĩ) là một người.","trap":{"0":"café (quán cà phê) là một nơi.","1":"cinema (rạp chiếu phim) là một nơi.","3":"theatre (nhà hát) là một nơi."}},{"options":["shy","friendly","tall","generous"],"answer":2,"unit":12,"level":3,"why":"shy (nhút nhát), friendly (thân thiện), generous (hào phóng) nói về TÍNH CÁCH; tall (cao) nói về VẺ NGOÀI.","trap":{"0":"shy = nhút nhát — tính cách.","1":"friendly = thân thiện — tính cách.","3":"generous = hào phóng — tính cách."}},{"options":["tram","bridge","ferry","taxi"],"answer":1,"unit":11,"level":2,"why":"tram (tàu điện), ferry (phà), taxi là phương tiện chở người; bridge (cây cầu) không chạy được.","trap":{"0":"tram = tàu điện — phương tiện.","2":"ferry = phà — phương tiện.","3":"taxi — phương tiện."}},{"options":["shout","chase","grass","cross"],"answer":2,"unit":10,"level":2,"why":"shout (hét), chase (đuổi), cross (băng qua) là việc làm; grass (bãi cỏ) là một vật.","trap":{"0":"shout = hét to — việc làm.","1":"chase = đuổi theo — việc làm.","3":"cross = băng qua (đường) — việc làm."}}]},{"id":"B2","part":"B","type":"text","title":"Complete the sentences with words from the box.","vi":"Điền từ trong khung vào chỗ trống. Có 2 từ thừa.","bank":["heavy","hate","kangaroo","posters","sail","cereal","waterfall","soft","flamingo"],"items":[{"q":"There are six big books in my schoolbag. It's very ___.","accept":["heavy"],"unit":13,"level":2,"why":"Sáu quyển sách to → cặp rất nặng: heavy.","trap":{"soft":"soft = mềm (như cái gối). Cặp có sáu quyển sách to thì nặng: heavy."}},{"q":"I love summer, but I ___ winter. I don't like snow!","accept":["hate"],"unit":13,"level":2,"why":"but (nhưng) → ngược nghĩa với love: hate (ghét). «I don't like snow» cũng cho thấy bạn ấy không thích mùa đông."},{"q":"A ___ can jump very well. It's from Australia.","accept":["kangaroo"],"unit":5,"level":1,"why":"Con vật nhảy giỏi, sống ở Úc: kangaroo (chuột túi).","trap":{"flamingo":"flamingo = chim hồng hạc (màu hồng, hay đứng một chân), không nhảy giỏi."}},{"q":"I've got three ___ of my favourite singer on my bedroom wall.","accept":["posters"],"unit":3,"level":2,"why":"Dán trên tường phòng ngủ: posters (áp phích)."},{"q":"Dad and I ___ our small boat on the lake every summer.","accept":["sail"],"unit":4,"level":2,"why":"Đi thuyền buồm: sail our boat. Dad and I = we → sail (không thêm -s)."},{"q":"I have ___ with milk for breakfast.","accept":["cereal"],"unit":8,"level":1,"why":"Ăn sáng với sữa: cereal (ngũ cốc)."},{"q":"The ___ is very high. The water comes down from the top of the mountain into the river.","accept":["waterfall"],"unit":9,"level":2,"why":"Nước đổ từ trên đỉnh núi xuống sông: waterfall (thác nước).","trap":{"flamingo":"flamingo là con chim, không phải nơi có nước đổ xuống."}}]},{"id":"B3","part":"B","type":"mcq","title":"Phonics. Choose the correct letters or word.","vi":"Chọn chữ cái đúng để hoàn thành từ, hoặc chọn từ có cùng âm.","items":[{"q":"g _ _ t (an animal on a farm)","options":["ow","oa","ar"],"answer":1,"unit":13,"level":1,"why":"goat (con dê) — oa như boat, coat, soap.","trap":{"0":"ow cũng đọc /əʊ/ (snow, elbow), nhưng con dê viết là goat.","2":"ar có trong car, park — đọc khác."}},{"q":"Which word has the same sound as 'snow'?","options":["cow","coat","clown"],"answer":1,"unit":13,"level":3,"why":"snow và coat cùng âm o dài /əʊ/ (ow, oa, o_e: snow, coat, home).","trap":{"0":"cow viết ow giống snow, nhưng đọc /aʊ/ như house — khác âm.","2":"clown viết ow nhưng đọc /aʊ/ như flower — khác âm với snow."}},{"q":"c _ _ n (money)","options":["oy","ow","oi"],"answer":2,"unit":6,"level":2,"why":"coin (đồng xu) — oi như oil, soil.","trap":{"0":"oy đọc giống oi nhưng thường ở cuối từ: boy, toy. Đồng xu viết coin.","1":"ow có trong cow, snow — đọc khác."}},{"q":"fl _ _ er (it's pretty and it grows in the garden)","options":["ou","ow","oa"],"answer":1,"unit":7,"level":2,"why":"flower (bông hoa) — ow như cow, clown.","trap":{"0":"ou đọc giống (house, mouse) nhưng bông hoa viết flower.","2":"oa có trong boat, coat — đọc khác."}},{"q":"qu _ _ n (the wife of a king)","options":["ea","ee","ai"],"answer":1,"unit":11,"level":2,"why":"queen (nữ hoàng) — ee như green.","trap":{"0":"ea đọc giống (dream, ice cream) nhưng nữ hoàng viết queen.","2":"ai có trong rain, train — đọc khác."}},{"q":"Which word has the same sound as 'sky'?","options":["happy","jelly","dry"],"answer":2,"unit":12,"level":3,"why":"sky và dry: chữ y đọc /aɪ/ như night, light.","trap":{"0":"happy cũng có chữ y ở cuối, nhưng y ở đây đọc /i/ như green — khác sky.","1":"jelly có y đọc /i/ như happy — khác sky."}},{"q":"Which word has the same sound as 'cube'?","options":["June","jump","bus"],"answer":0,"unit":2,"level":2,"why":"cube và June cùng u dài (u_e).","trap":{"1":"jump có u ngắn /ʌ/ — khác u_e trong cube.","2":"bus có u ngắn /ʌ/ — khác u_e trong cube."}}]},{"id":"C1","part":"C","type":"mcq","title":"Choose the correct answer.","vi":"Chọn đáp án đúng.","items":[{"q":"\"Where are your aunt and uncle from?\" \"___ from Spain.\"","options":["She's","He's","They're"],"answer":2,"unit":1,"level":1,"why":"your aunt and uncle là hai người → they: They are from Spain = They're from Spain.","trap":{"0":"She dùng cho MỘT phụ nữ (your aunt). Aunt and uncle là hai người → They're.","1":"He dùng cho MỘT người đàn ông (your uncle). Aunt and uncle là hai người → They're."}},{"q":"\"Is this your dog, Leo?\" \"Yes. Amy and I love him. He's ___ dog.\"","options":["their","our","your"],"answer":1,"unit":3,"level":2,"why":"Leo đang nói về mình và Amy: Amy and I = we → our (của chúng tôi).","trap":{"0":"their = của HỌ — dùng khi nói về người khác. Leo nói về chính mình và Amy → our.","2":"your = của BẠN (người nghe). Câu hỏi có «your», nhưng Leo trả lời về mình và Amy → our dog."}},{"q":"\"Is this Leo's bike?\" \"No, it isn't. It's ___ sister's bike. Amy rides it every day.\"","options":["her","his","their"],"answer":1,"unit":3,"level":3,"why":"Chị/em gái của LEO → his sister (Leo là con trai nên dùng his, dù sister là con gái).","trap":{"0":"her = của bạn GÁI. Chủ ở đây là Leo (con trai) → his sister. «her sister» là chị em của một bạn gái khác.","2":"their = của họ (nhiều người); ở đây chỉ nói về Leo."}},{"q":"\"Are you surfing?\" \"No, we ___ surfing. We're kayaking!\"","options":["aren't","don't","isn't"],"answer":0,"unit":4,"level":2,"why":"Hỏi bằng Are, nói việc đang làm (V-ing) → we aren't surfing.","trap":{"1":"don't đi với động từ nguyên mẫu (We don't surf). Có surfing (V-ing) → aren't.","2":"isn't dùng cho he/she/it; we → aren't."}},{"q":"We ___ very miserable yesterday because it rained.","options":["was","were","are"],"answer":1,"unit":12,"level":3,"why":"yesterday → quá khứ; we (nhiều người) → were.","trap":{"0":"was dùng cho I/he/she/it. We → were.","2":"are là hiện tại; yesterday là quá khứ → were."}},{"q":"My aunt ___ the train to work every morning.","options":["catch","catches","is catching"],"answer":1,"unit":6,"level":2,"why":"My aunt = she, every morning (thói quen) → catches (catch tận cùng bằng ch thêm -es).","trap":{"0":"catch không thêm -es dùng cho I/you/we/they; my aunt = she → catches.","2":"is catching = đang bắt xe ngay lúc này; every morning là thói quen → hiện tại đơn."}},{"q":"___ Holly and Max have lunch at school?","options":["Does","Are","Do"],"answer":2,"unit":6,"level":3,"why":"Holly and Max = they (hai người) → câu hỏi hiện tại đơn dùng Do.","trap":{"0":"Does chỉ dùng cho MỘT người (he/she): Does Holly have lunch at school?","1":"Are đi với V-ing (Are they having lunch?), không đi với động từ nguyên mẫu have."}},{"q":"\"Do you ever go to the theatre?\" \"No, I ___ go to the theatre. I don't like plays.\"","options":["never","always","ever"],"answer":0,"unit":7,"level":2,"why":"Trả lời No và «I don't like plays» (không thích xem kịch) → never (không bao giờ).","trap":{"1":"always = luôn luôn. Bạn ấy trả lời No và không thích kịch → never.","2":"ever chỉ dùng trong câu hỏi (Do you ever …?). Câu trả lời dùng always / sometimes / never."}},{"q":"Mum needs ___ butter and ___ lemon.","options":["a … some","some … a","an … an"],"answer":1,"unit":8,"level":3,"why":"butter không đếm được → some butter; lemon đếm được, số ít → a lemon.","trap":{"0":"Đảo ngược: butter không đếm được nên không dùng a; lemon là một quả → a lemon.","2":"an chỉ dùng trước nguyên âm (an onion); butter và lemon đều bắt đầu bằng phụ âm."}},{"q":"\"Would you like some cheese?\" \"___\"","options":["Yes, please.","Yes, I like.","Yes, I am."],"answer":0,"unit":8,"level":1,"why":"Trả lời lời mời Would you like …? → Yes, please. hoặc No, thanks.","trap":{"1":"«Yes, I like» là câu chưa đúng. Lời mời Would you like …? → Yes, please.","2":"«Yes, I am» trả lời câu hỏi bắt đầu bằng Are you …? Lời mời Would you like …? → Yes, please."}},{"q":"A mouse is ___ than a cat.","options":["small","smaller","the smallest"],"answer":1,"unit":9,"level":1,"why":"Có than → so sánh hơn: small + er = smaller.","trap":{"0":"small là tính từ thường; có than thì thêm -er: smaller.","2":"the smallest là so sánh nhất (… in the world); có than thì dùng smaller."}},{"q":"The café is ___ the cinema and the library.","options":["between","inside","through"],"answer":0,"unit":11,"level":1,"why":"between … and … = ở giữa hai nơi.","trap":{"1":"inside = ở bên trong (một nơi). Câu có «the cinema and the library» (hai nơi) → between.","2":"through = đi xuyên qua (through the park). Ở giữa hai nơi → between."}},{"q":"Five thousand years ago, people ___ in flats.","options":["don't live","didn't live","doesn't live"],"answer":1,"unit":13,"level":2,"why":"five thousand years ago → quá khứ: didn't live.","trap":{"0":"don't live là hiện tại; «five thousand years ago» là quá khứ → didn't live.","2":"doesn't là hiện tại và dùng cho he/she; people (số nhiều, quá khứ) → didn't live."}},{"q":"\"Can I use your computer, Max?\" \"No, you ___. I'm using it now.\"","options":["can't","don't","aren't"],"answer":0,"unit":3,"level":1,"why":"Hỏi bằng Can → trả lời bằng can/can't. Max đang dùng máy → No, you can't.","trap":{"1":"don't trả lời câu hỏi bắt đầu bằng Do. Hỏi bằng Can → can't.","2":"aren't trả lời câu hỏi bắt đầu bằng Are. Hỏi bằng Can → can't."}}]},{"id":"C2","part":"C","type":"text","title":"Write the correct form of the verb.","vi":"Viết dạng đúng của từ trong ngoặc.","items":[{"q":"My little sister ___ (brush) her teeth after breakfast every day.","accept":["brushes"],"unit":6,"level":2,"why":"My little sister = she, every day → hiện tại đơn; brush tận cùng bằng sh → thêm -es: brushes.","trap":{"brush":"Thiếu đuôi: she → brushes.","brushs":"Động từ tận cùng bằng sh thêm -es: brushes.","is brushing":"every day là thói quen → hiện tại đơn: brushes."}},{"q":"Where ___ (your uncle / live)?","accept":["does your uncle live","Where does your uncle live?"],"unit":6,"level":3,"why":"Câu hỏi hiện tại đơn với your uncle (= he): Where + does + your uncle + live?","trap":{"your uncle lives":"Câu hỏi phải có does đứng TRƯỚC your uncle: Where does your uncle live?","does your uncle lives":"Sau does động từ giữ nguyên: live (không thêm -s).","do your uncle live":"your uncle là một người (he) → does.","is your uncle live":"live là động từ thường, câu hỏi dùng does, không dùng is.","your uncle does live":"does phải đứng trước your uncle: Where does your uncle live?"}},{"q":"Leo ___ (not swim) now. He's reading a book on the beach.","accept":["isn't swimming","is not swimming"],"unit":4,"level":3,"why":"now → hiện tại tiếp diễn; Leo = he → isn't swimming (swim gấp đôi m).","trap":{"doesn't swim":"doesn't swim nói thói quen. Có now → việc đang (không) xảy ra: isn't swimming.","not swimming":"Thiếu is: Leo isn't swimming.","isn't swim":"Sau is dùng V-ing: swimming.","isn't swiming":"swim gấp đôi m: swimming.","aren't swimming":"Leo là một người → isn't."}},{"q":"My brother is ___ (tall) than my dad.","accept":["taller"],"unit":9,"level":1,"why":"Có than → so sánh hơn: tall + er = taller.","trap":{"tallest":"tallest là so sánh nhất; có than thì dùng taller.","more tall":"Tính từ ngắn thêm -er: taller.","taler":"tall giữ nguyên hai chữ l: taller."}},{"q":"Our lake is very deep. It is the ___ (deep) lake in our country.","accept":["deepest"],"unit":9,"level":2,"why":"the … in our country → so sánh nhất: deepest.","trap":{"deeper":"deeper dùng với than (so sánh 2 thứ); có «the … in our country» → deepest.","most deep":"Tính từ ngắn thêm -est: deepest."}},{"q":"Amy ___ (sometimes / play) the piano after dinner.","accept":["sometimes plays"],"unit":7,"level":3,"why":"sometimes đứng trước động từ thường; Amy = she → plays (thêm -s).","trap":{"sometimes play":"Amy = she → plays (thêm -s).","plays sometimes":"sometimes phải đứng TRƯỚC động từ: sometimes plays.","sometimes playes":"play chỉ thêm -s: plays.","is sometimes playing":"after dinner (thói quen) → hiện tại đơn: sometimes plays."}},{"q":"Ten years ago, there ___ (be) three cafés in our street, but now there aren't any.","accept":["were"],"unit":11,"level":2,"why":"three cafés (số nhiều) + ten years ago → were.","trap":{"was":"was dùng với MỘT vật; three cafés là số nhiều → were.","are":"ten years ago là quá khứ → were.","weren't":"Ngày xưa CÓ ba quán (three cafés), bây giờ mới không còn → were."}},{"q":"There ___ (not be) a playground in this park ten years ago.","accept":["wasn't","was not"],"unit":11,"level":2,"why":"a playground (số ít) + ten years ago → wasn't.","trap":{"weren't":"weren't dùng với danh từ số nhiều; a playground là số ít → wasn't.","isn't":"ten years ago là quá khứ → wasn't.","didn't be":"Phủ định của be ở quá khứ là wasn't/weren't, không dùng didn't."}},{"q":"Last night I ___ (not listen) to music. I watched a film with my dad.","accept":["didn't listen","did not listen"],"unit":13,"level":2,"why":"Last night → quá khứ phủ định: didn't + động từ nguyên mẫu: didn't listen.","trap":{"didn't listened":"Sau didn't động từ giữ nguyên: didn't listen.","don't listen":"don't là hiện tại; last night → didn't listen.","not listened":"Cần didn't: I didn't listen.","wasn't listen":"listen là động từ thường, phủ định quá khứ dùng didn't, không dùng wasn't.","didn't listening":"Sau didn't dùng động từ nguyên mẫu: listen."}}]},{"id":"C3","part":"C","type":"order","title":"Put the words in order. Write the sentence.","vi":"Sắp xếp từ thành câu đúng rồi viết lại cả câu.","items":[{"words":["from","your cousins","Where","are","?"],"accept":["Where are your cousins from"],"unit":1,"level":2,"why":"Câu hỏi: Where + are + your cousins + from?"},{"words":["from","your friend","Is","Thailand","?"],"accept":["Is your friend from Thailand"],"unit":1,"level":2,"why":"Câu hỏi với be: Is + your friend + from + Thailand? (không dùng Does)."},{"words":["like","What","for lunch","would","you","?"],"accept":["What would you like for lunch"],"unit":8,"level":2,"why":"What would you like …? — trả lời: I'd like some …"},{"words":["doing","What","the children","are","?"],"accept":["What are the children doing"],"unit":4,"level":2,"why":"Câu hỏi hiện tại tiếp diễn: What + are + the children + V-ing?"},{"words":["open","Can","the window","you","please","?"],"accept":["Can you open the window please","Can you please open the window","Please can you open the window"],"unit":3,"level":2,"why":"Nhờ ai làm gì: Can you + động từ nguyên mẫu …, please?"}]},{"id":"D1","part":"D","type":"tf","title":"Read the email. Choose True or False.","vi":"Đọc thư của Daisy. Chọn True (đúng) hoặc False (sai).","passageTitle":"An email from Daisy","passage":"Hi Ollie,\n\nI'm writing this email in the car. We're going home after the weekend at my grandma's house. Grandma lives in a small town near a lake. She's got a big dog. His name is Rex. He's bigger than our dog, but he's very friendly!\n\nOn Saturday it was sunny and hot. In the morning, I walked to the lake with Grandma and Rex. There is a sign there: \"You mustn't swim here. The water is very deep and dangerous.\" So we didn't swim. We watched the boats on the lake.\n\nGrandma doesn't like cooking, so on Saturday evening we had dinner at a café. I had pasta with cheese, and Grandma had fish and potatoes.\n\nOn Sunday it rained, so we stayed at home and looked at Grandma's old photos. Fifty years ago, she was a teacher at a small school. There weren't any computers in the school then. Her class was very big, so she was always worried. But now she's always relaxed and cheerful!\n\nMy little brother Sam played with Rex all weekend. Now he's very tired and he's sleeping next to me. Dad is listening to music.\n\nSee you at school on Monday!\n\nLove,\nDaisy","items":[{"q":"Grandma's dog is bigger than Daisy's dog.","answer":"True","unit":9,"level":2,"why":"\"She's got a big dog. His name is Rex. He's bigger than our dog\" — Rex (chó của bà) to hơn chó nhà Daisy."},{"q":"Grandma had pasta with cheese for dinner on Saturday.","answer":"False","unit":8,"level":2,"why":"Người ăn mì với phô mai là Daisy (\"I had pasta with cheese\"). Bà ăn cá và khoai tây (\"Grandma had fish and potatoes\")."},{"q":"Grandma likes cooking.","answer":"False","unit":2,"level":2,"why":"\"Grandma doesn't like cooking\" — vì vậy cả nhà đi ăn tối ở quán."},{"q":"On Saturday, Daisy and Grandma watched the boats on the lake.","answer":"True","unit":13,"level":1,"why":"\"So we didn't swim. We watched the boats on the lake.\""},{"q":"Sam is playing with Rex now.","answer":"False","unit":4,"level":3,"why":"Sam chơi với Rex cả cuối tuần (played — đã xong). BÂY GIỜ (now) Sam đang ngủ: \"Now he's very tired and he's sleeping next to me.\""}]},{"id":"D2","part":"D","type":"kw","pts":2,"title":"Read the email again. Answer the questions.","vi":"Đọc lại thư của Daisy ở trên. Trả lời câu hỏi (viết ngắn vài từ hoặc cả câu đều được).","items":[{"q":"Where was Daisy's family on Saturday evening?","kw":[["café","cafe"]],"model":"They were at a café.","unit":7,"level":1,"why":"\"On Saturday evening we had dinner at a café.\"","trap":{"At home.":"Cả nhà ở nhà vào CHỦ NHẬT (On Sunday … we stayed at home). Tối thứ Bảy họ ăn tối ở quán: at a café."}},{"q":"The sign at the lake says: \"You mustn't swim here.\" Why?","kw":[["deep","dangerous"]],"model":"Because the water is very deep and dangerous.","unit":10,"level":3,"why":"Tấm biển: \"The water is very deep and dangerous.\" Chỉ cần viết deep hoặc dangerous.","trap":{"Because it was sunny and hot.":"Trời nắng nóng không phải lý do. Tấm biển nói nước rất sâu và nguy hiểm: deep and dangerous."}},{"q":"What was Grandma's job fifty years ago?","kw":[["teacher","teach","teaches","teaching"]],"model":"She was a teacher.","unit":11,"level":2,"why":"\"Fifty years ago, she was a teacher at a small school.\""},{"q":"Was Grandma worried or relaxed fifty years ago?","kw":[["worried","not relaxed"]],"model":"She was worried.","unit":12,"level":3,"why":"\"Her class was very big, so she was always worried. But now she's always relaxed and cheerful!\" — relaxed là bà BÂY GIỜ; năm mươi năm trước bà luôn lo lắng (worried).","trap":{"She was relaxed.":"relaxed là bà BÂY GIỜ (now she's always relaxed). Năm mươi năm trước lớp rất đông nên bà luôn lo lắng: worried."}},{"q":"What is Dad doing now?","kw":[["music"]],"model":"He's listening to music.","unit":4,"level":2,"why":"\"Dad is listening to music.\" (Người đang ngủ là Sam.)","trap":{"He's sleeping.":"Người đang ngủ là Sam. Bố đang nghe nhạc: Dad is listening to music."}}]},{"id":"E1","part":"E","type":"text","title":"Find the mistake. Write the sentence correctly.","vi":"Mỗi câu có MỘT lỗi sai. Viết lại cả câu cho đúng.","items":[{"q":"Holly and Max doesn't like skateboarding.","accept":["Holly and Max don't like skateboarding"],"unit":2,"level":2,"why":"Holly and Max = they (hai người) → don't like.","trap":{"holly and max don't likes skateboarding":"Sau don't động từ giữ nguyên: like.","holly and max aren't like skateboarding":"like là động từ thường, phủ định bằng don't, không dùng aren't.","holly and max don't like skateboard":"like + V-ing: like skateboarding.","holly and max doesn't likes skateboarding":"Holly and Max là hai người → don't; sau don't dùng like.","Holly and Max doesn't like skateboarding.":"Câu này chép lại y nguyên, chưa sửa lỗi. Hai người → don't like."}},{"q":"Look at Holly! What does she doing?","accept":["Look at Holly! What is she doing?","What is she doing?"],"unit":5,"level":3,"why":"doing (V-ing) đi với is, không đi với does: What is she doing?","trap":{"look at holly what does she do":"«Look!» → hỏi việc đang xảy ra: What is she doing? (What does she do? là hỏi nghề nghiệp/thói quen.)","look at holly what is she do":"Sau is dùng V-ing: doing.","look at holly what are she doing":"she là một người → is.","Look at Holly! What does she doing?":"Câu này chép lại y nguyên, chưa sửa lỗi. V-ing đi với is: What is she doing?"}},{"q":"There are some potato on the table.","accept":["There are some potatoes on the table"],"unit":8,"level":2,"why":"some + danh từ đếm được → số nhiều: potatoes (potato thêm -es).","trap":{"there are some potatos on the table":"potato số nhiều thêm -es: potatoes.","there is a potato on the table":"Chỉ cần sửa MỘT lỗi: potato → potatoes. Giữ nguyên There are some.","There are some potato on the table.":"Câu này chép lại y nguyên, chưa sửa lỗi. some → potatoes."}},{"q":"My aunt were very pretty when she was young.","accept":["My aunt was very pretty when she was young"],"unit":12,"level":2,"why":"My aunt = she (một người) → was.","trap":{"my aunt is very pretty when she was young":"when she was young là quá khứ → was.","my aunt were very pretty when she were young":"she → was (cả hai chỗ).","My aunt were very pretty when she was young.":"Câu này chép lại y nguyên, chưa sửa lỗi. she → was."}},{"q":"The film start at six o'clock last night.","accept":["The film started at six o'clock last night"],"unit":13,"level":3,"why":"last night → quá khứ: start + ed = started.","trap":{"the film starts at six o'clock last night":"starts là hiện tại; last night là quá khứ → started.","the film startted at six o'clock last night":"start chỉ thêm -ed: started (không gấp đôi t).","the film was start at six o'clock last night":"start là động từ thường: quá khứ thêm -ed → started, không thêm was.","The film start at six o'clock last night.":"Câu này chép lại y nguyên, chưa sửa lỗi. last night → started."}},{"q":"My friends and I always goes to the playground on Saturdays.","accept":["My friends and I always go to the playground on Saturdays"],"unit":7,"level":2,"why":"My friends and I = we → go (không thêm -es).","trap":{"my friends and i goes always to the playground on saturdays":"always đứng TRƯỚC động từ, và we → go.","my friends and i go always to the playground on saturdays":"always phải đứng TRƯỚC động từ: always go.","my friends and i are always going to the playground on saturdays":"on Saturdays là thói quen → hiện tại đơn: always go.","My friends and I always goes to the playground on Saturdays.":"Câu này chép lại y nguyên, chưa sửa lỗi. we → go."}}]},{"id":"E2","part":"E","type":"text","pts":2,"title":"Write sentences. Use the words.","vi":"Dùng các từ gợi ý để viết câu hoàn chỉnh (chia động từ cho đúng, thêm từ nếu cần).","example":"Leo / like / play chess → \u003cb>Leo likes playing chess.\u003c/b>","items":[{"q":"my uncle / wash / his car / every Sunday","accept":["My uncle washes his car every Sunday","Every Sunday my uncle washes his car","Every Sunday, my uncle washes his car"],"unit":6,"level":2,"why":"every Sunday → thói quen, hiện tại đơn; my uncle = he → washes (sh thêm -es).","trap":{"my uncle wash his car every sunday":"My uncle = he → washes.","my uncle washs his car every sunday":"Động từ tận cùng bằng sh thêm -es: washes.","my uncle is washing his car every sunday":"every Sunday là thói quen → hiện tại đơn: washes.","my uncle washed his car every sunday":"every Sunday là thói quen hằng tuần → hiện tại đơn: washes."}},{"q":"the children / not / walk / to school / yesterday","accept":["The children didn't walk to school yesterday","Yesterday the children didn't walk to school","Yesterday, the children didn't walk to school"],"unit":13,"level":3,"why":"yesterday → quá khứ; phủ định: didn't + walk (động từ nguyên mẫu).","trap":{"the children didn't walked to school yesterday":"Sau didn't động từ giữ nguyên: walk.","the children don't walk to school yesterday":"yesterday là quá khứ → didn't walk.","the children weren't walk to school yesterday":"walk là động từ thường, phủ định quá khứ bằng didn't.","the children not walked to school yesterday":"Cần didn't: The children didn't walk …","the children walked to school yesterday":"Đề có «not» → câu phủ định: didn't walk.","the children doesn't walk to school yesterday":"yesterday là quá khứ → didn't; và children là số nhiều."}},{"q":"a train / fast / a bike","accept":["A train is faster than a bike"],"unit":9,"level":2,"why":"So sánh hai thứ: is + tính từ-er + than: A train is faster than a bike.","trap":{"a train is fast than a bike":"Có than → thêm -er: faster.","a train is more fast than a bike":"Tính từ ngắn thêm -er: faster.","a train is fastest than a bike":"fastest là so sánh nhất; so sánh hai thứ dùng faster than.","a train is the fastest than a bike":"So sánh hai thứ dùng faster than, không dùng the fastest.","a train faster than a bike":"Thiếu is: A train is faster than a bike."}}]}],"speaking":{"title":"Part F · Speaking (phụ huynh chấm riêng, không tính vào 100 điểm)","note":"Phụ huynh hỏi bằng tiếng Anh, con trả lời bằng câu đầy đủ. Có 5 nhóm, mỗi nhóm tối đa 2 điểm: 2 = trả lời đúng bằng câu đầy đủ; 1 = trả lời được nhưng chỉ bằng từ đơn hoặc sai ngữ pháp (thiếu -s, nhầm do/does với is/are, quên -ed …); 0 = chưa trả lời được. Cộng 5 nhóm = điểm Speaking (/10).","max":10,"prompts":["Units 1–3: Where is your best friend from? Does your dad like fishing? What does your mum like doing? (She likes …) — Can I use your pencil case, please? Is this your book or your brother's book?","Units 4–5: (Chỉ một bức tranh trong sách/trên điện thoại) What are they doing? Is the boy swimming? (No, he isn't. He's …) Is the monkey eating? (Yes, it is. / No, it isn't. It's …) What is your favourite zoo animal?","Units 6–7: What time does your mum get up? Tell me about your morning (first, then, next, finally). What do you always / sometimes / never do on Sundays?","Units 8–10: What would you like for dinner? (I'd like some … / a / an …) — Which is bigger: a cat or a horse? What's the biggest animal in the world? Tell me one thing you must do and one thing you mustn't do at school.","Units 11–13: Was there a playground at your school when you were six? When you were five, were you shy? — Tell me three things you played, watched or cooked yesterday (I played … / I watched … / I helped …). Tell me one thing you didn't do yesterday (I didn't …)."],"rubric":["Gợi ý xếp loại theo tổng điểm:","9–10: trả lời trôi chảy, câu đầy đủ, hầu như không sai ngữ pháp.","7–8: trả lời được hết, vài lỗi nhỏ (thiếu -s, quên -ed, nhầm was/were).","5–6: trả lời được khoảng một nửa, câu ngắn, nhiều lỗi.","3–4: chỉ trả lời bằng từ đơn lẻ, cần gợi ý nhiều.","0–2: chưa trả lời được."]}};
+const LS = DATA.storageKey;
+
+// ---- grading helpers (same rules as Revision 1–9: case-insensitive, contractions = full forms)
+function norm(s) {
+  s = String(s == null ? '' : s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); // café = cafe
+  s = s.replace(/[’‘`´ʼ′]/g, "'").replace(/[“”«»]/g, '"').replace(/[–—‐‑]/g, '-');
+  s = s.replace(/[.,!?;:"()]/g, ' ').replace(/\s*-\s*/g, '-').replace(/\s+/g, ' ').trim();
+  s = s.replace(/(^|[^a-z0-9])'+|'+(?=[^a-z]|$)/g, '$1 ').replace(/\s+/g, ' ').trim(); // quotes around a word: 'gets' → gets
+  // "'s got" is always "has got" (never "is got"), for pronouns AND names: Tim's got = Tim has got; "Tim is got" stays wrong.
+  // iPad without apostrophe: "Tims got" / "shes got" = "… has got" (except words that end in s by themselves: has, is, this, his…)
+  s = s.replace(/\b([a-z]+)'s got\b/g, '$1 has got')
+       .replace(/\b([a-z]+)s got\b/g, (m, w) => /s$|^(ha|i|wa|thi|hi|u|ye|doe|goe|her|our|your|their|thu|plu|ga|bu)$/.test(w) ? m : w + ' has got');
+  s = s.replace(/\bi'm\b/g, 'i am').replace(/\b([a-z]+)'re\b/g, '$1 are')
+       .replace(/\b(it|he|she|that|this|there|here|what|who|where|how)'s\b/g, '$1 is')
+       .replace(/\bisn't\b/g, 'is not').replace(/\baren't\b/g, 'are not')
+       .replace(/\bdon't\b/g, 'do not').replace(/\bdoesn't\b/g, 'does not')
+       .replace(/\bcan't\b/g, 'cannot').replace(/\bcan not\b/g, 'cannot')
+       .replace(/\bhaven't\b/g, 'have not').replace(/\bhasn't\b/g, 'has not')
+       .replace(/\b([a-z]+)'ve\b/g, '$1 have').replace(/\b([a-z]+)'ll\b/g, '$1 will')
+       // 'd is ambiguous (he'd = he had / he would): expand only in "'d like/love/prefer", leave other 'd untouched
+       .replace(/\b(i|you|we|they|he|she)'d (like|love|prefer)\b/g, '$1 would $2')
+       .replace(/\b(i|you|we|they)d (like|love|prefer)\b/g, '$1 would $2') // iPad: "Id like"
+       .replace(/\bdidn't\b/g, 'did not').replace(/\bwasn't\b/g, 'was not').replace(/\bweren't\b/g, 'were not')
+       .replace(/\bmustn't\b/g, 'must not').replace(/\bwon't\b/g, 'will not');
+  s = s.replace(/\bim\b/g, 'i am').replace(/\bdont\b/g, 'do not').replace(/\bdoesnt\b/g, 'does not')
+       .replace(/\bisnt\b/g, 'is not').replace(/\barent\b/g, 'are not').replace(/\bcant\b/g, 'cannot')
+       .replace(/\bhavent\b/g, 'have not').replace(/\bhasnt\b/g, 'has not').replace(/\bdidnt\b/g, 'did not')
+       .replace(/\bwasnt\b/g, 'was not').replace(/\bwerent\b/g, 'were not').replace(/\bmustnt\b/g, 'must not')
+       .replace(/\btheyre\b/g, 'they are').replace(/\byoure\b/g, 'you are')
+       .replace(/\bthats\b/g, 'that is').replace(/\btheres\b/g, 'there is').replace(/\bwhats\b/g, 'what is')
+       .replace(/\bhes\b/g, 'he is').replace(/\bshes\b/g, 'she is')
+       .replace(/\b(i|we|you|they)ve\b/g, '$1 have').replace(/\bwouldnt\b/g, 'would not').replace(/\bcouldnt\b/g, 'could not');
+  return s.replace(/\s+/g, ' ').trim();
+}
+// trap feedback: keys in data.json may be written with contractions/capitals/punctuation → compare normalised
+function trapFor(trap, v) {
+  if (!trap) return null; const n = norm(v);
+  for (const k of Object.keys(trap)) if (k !== '*' && norm(k) === n) return trap[k];
+  return null;
+}
+const matches = (u, acc) => { const n = norm(u); return !!n && acc.some(a => norm(a) === n); };
+// kw: every group needs one alternative present as whole words
+const kwOk = (u, groups) => { const s = ' ' + norm(u) + ' '; return norm(u) !== '' && groups.every(g => g.some(a => s.includes(' ' + norm(a) + ' '))); };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+// ---- state
+let store = { attempts: [], draft: null };
+const isObj = o => !!o && typeof o === 'object' && !Array.isArray(o);
+try {
+  const v = JSON.parse(localStorage.getItem(LS) || 'null');
+  if (isObj(v) && Array.isArray(v.attempts)) store = {
+    // drop anything malformed (old versions / hand-edited / corrupted values) instead of crashing
+    attempts: v.attempts.filter(a => isObj(a) && typeof a.score === 'number' && !isNaN(new Date(a.date))),
+    draft: isObj(v.draft) ? v.draft : null };
+} catch (e) {}
+const save = () => { try { localStorage.setItem(LS, JSON.stringify(store)); } catch (e) {} };
+let answers = (store.draft && isObj(store.draft.answers)) ? store.draft.answers : {};
+let graded = null; let confirmOpen = false;
+let speak = (store.draft && isObj(store.draft.speak)) ? store.draft.speak : {};
+
+const items = []; DATA.exercises.forEach(ex => ex.items.forEach((it, i) => items.push({ ex, it, key: ex.id + '.' + (i + 1) })));
+const TOTAL = items.reduce((s, x) => s + (x.it.pts || x.ex.pts || 1), 0);
+
+function render() {
+  const app = document.getElementById('app');
+  let h = `<h1>${esc(DATA.title)}</h1><p class="muted">${esc(DATA.subtitle)}</p>`;
+  h += `<div class="card small">${DATA.instructions.map(esc).join('<br>')}</div>`;
+  if (graded) h += resultHtml();
+  let part = null, exNo = 0;
+  for (const ex of DATA.exercises) {
+    if (ex.part !== part) { part = ex.part; h += `<h2 class="part">${esc(DATA.parts[part])}</h2>`; }
+    exNo++;
+    const exPts = ex.items.reduce((s, it) => s + (it.pts || ex.pts || 1), 0);
+    const got = graded ? ex.items.reduce((s, it, i) => s + (graded.res[ex.id + '.' + (i + 1)].pts), 0) : null;
+    h += `<section class="card" id="ex-${ex.id}"><div class="exh"><span class="num">${exNo}</span><div class="ttl"><b>${esc(ex.title)}</b><span class="vi">${esc(ex.vi || '')}</span></div><span class="pts ${graded ? 'done' : ''}">${graded ? got + ' / ' : ''}${exPts} điểm</span></div>`;
+    if (ex.audio) h += `<div class="audio"><audio controls preload="none" src="${esc(ex.audio)}"></audio><span class="small muted">Nghe 2 lần.</span></div>`;
+    if (ex.passage) h += `<div class="passage">${ex.passageTitle ? `<h4>${esc(ex.passageTitle)}</h4>` : ''}${esc(ex.passage)}</div>`;
+    if (ex.bank) h += `<div class="bank">${ex.bank.map(w => `<span>${esc(w)}</span>`).join('')}</div>`;
+    if (ex.example) h += `<p class="eg">Ví dụ: ${ex.example}</p>`;
+    ex.items.forEach((it, i) => { h += itemHtml(ex, it, ex.id + '.' + (i + 1), i + 1); });
+    h += `</section>`;
+  }
+  h += speakingHtml();
+  if (store.attempts.length) h += historyHtml();
+  app.innerHTML = h;
+  bindInputs(); renderBar();
+}
+
+function itemHtml(ex, it, key, n) {
+  const v = answers[key]; const r = graded && graded.res[key];
+  const type = it.type || ex.type;
+  let body = it.q ? `<div class="q">${fmtQ(it.q, key, type, v, r, ex, it)}</div>` : '';
+  if (type === 'mcq' || type === 'tf') {
+    const opts = type === 'tf' ? ['True', 'False'] : (it.options || ex.options);
+    body += `<div class="opts" role="radiogroup">` + opts.map((o, k) => {
+      let cls = ''; if (graded) { if (k === answerIndex(ex, it)) cls = 'ok'; else if (v === k) cls = 'bad'; }
+      return `<label class="opt ${cls}"><input type="radio" name="${key}" value="${k}" ${v === k ? 'checked' : ''} ${graded ? 'disabled' : ''}><span>${esc(o)}</span></label>`;
+    }).join('') + `</div>`;
+  } else if (type === 'select') {
+    if (!/___/.test(it.q || '')) body += selectHtml(ex, key, v, r);
+  } else if (type === 'order') {
+    body = `<div class="words">${it.words.map(w => `<span>${esc(w)}</span>`).join('')}</div>` + `<input class="in-t ${r ? (r.ok ? 'ok' : 'bad') : ''}" data-k="${key}" value="${esc(v || '')}" ${graded ? 'readonly' : ''} autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Viết câu hoàn chỉnh…">`;
+  } else if ((type === 'text' || type === 'kw') && !/___/.test(it.q || '')) {
+    body += `<input class="in-t ${r ? (r.ok ? 'ok' : 'bad') : ''}" data-k="${key}" value="${esc(v || '')}" ${graded ? 'readonly' : ''} autocomplete="off" autocapitalize="off" spellcheck="false">`;
+  }
+  if (r && !r.ok) body += fbHtml(ex, it, v);
+  return `<div class="item"><span class="n">${n}.</span><div>${body}</div></div>`;
+}
+function selectHtml(ex, key, v, r) {
+  const opts = ex.options;
+  return `<select class="in-t ${r ? (r.ok ? 'ok' : 'bad') : ''}" data-k="${key}" ${graded ? 'disabled' : ''}><option value="">— chọn —</option>${opts.map(o => `<option ${v === o ? 'selected' : ''}>${esc(o)}</option>`).join('')}</select>`;
+}
+function fmtQ(q, key, type, v, r, ex, it) {
+  const parts = esc(q).split('___');
+  if (parts.length === 1) return parts[0];
+  // mcq/tf: the gap is NOT an input (answer = the radio); it shows the chosen option
+  if (type === 'mcq' || type === 'tf') {
+    const opts = type === 'tf' ? ['True', 'False'] : (it.options || ex.options);
+    return parts[0] + `<span class="blank" data-b="${key}">${typeof v === 'number' && opts[v] != null ? esc(opts[v]) : '&nbsp;'}</span>` + parts.slice(1).join('___');
+  }
+  const field = type === 'select' ? selectHtml(ex, key, v, r)
+    : `<input class="in-t gap ${r ? (r.ok ? 'ok' : 'bad') : ''}" data-k="${key}" value="${esc(v || '')}" ${graded ? 'readonly' : ''} autocomplete="off" autocapitalize="off" spellcheck="false">`;
+  return parts[0] + field + parts.slice(1).join('___');
+}
+function answerIndex(ex, it) { return typeof it.answer === 'number' ? it.answer : (it.answer === 'True' ? 0 : it.answer === 'False' ? 1 : -1); }
+function modelAnswer(ex, it) {
+  const type = it.type || ex.type;
+  if (type === 'mcq') return (it.options || ex.options)[it.answer];
+  if (type === 'tf') return it.answer;
+  if (type === 'select') return it.answer;
+  if (type === 'kw') return it.model;
+  return it.accept[0];
+}
+function fbHtml(ex, it, v) {
+  const type = it.type || ex.type;
+  let wrongWhy = '';
+  if (it.trap && v != null && v !== '') {
+    // mcq/tf: key = option index ("0","1"…; tf also accepts "True"/"False"); text/select/kw: key = typed text (normalised)
+    const t = (type === 'mcq' || type === 'tf') ? (it.trap[String(v)] || (type === 'tf' && it.trap[['True', 'False'][v]]) || it.trap['*'])
+      : trapFor(it.trap, v) || it.trap['*'];
+    if (t) wrongWhy = `<br><span class="x">Vì sao sai:</span> ${esc(t)}`;
+  }
+  return `<div class="fb">Đáp án: <span class="a">${esc(modelAnswer(ex, it))}</span>${it.why ? `<br>${esc(it.why)}` : ''}${wrongWhy}</div>`;
+}
+
+function speakingHtml() {
+  const s = DATA.speaking; if (!s) return '';
+  let h = `<h2 class="part">${esc(s.title)}</h2><div class="card"><p class="small muted">${esc(s.note)}</p><ol class="speak">${s.prompts.map(p => `<li>${esc(p)}</li>`).join('')}</ol>`;
+  h += `<p class="small"><b>Phụ huynh chấm (0–${s.max}):</b></p><div class="rub" role="radiogroup" aria-label="Điểm Speaking">`;
+  for (let k = 0; k <= s.max; k++) h += `<label class="opt"><input type="radio" name="speak" value="${k}" ${speak.score === k ? 'checked' : ''}><span>${k}</span></label>`;
+  h += `</div><p class="small muted">${s.rubric.map(esc).join('<br>')}</p></div>`;
+  return h;
+}
+
+function bindInputs() {
+  // accessible names: "Bài 3, câu 2" for every input / select / radiogroup
+  document.querySelectorAll('section[id^="ex-"]').forEach(sec => {
+    const exn = sec.querySelector('.num').textContent;
+    sec.querySelectorAll('.item').forEach(row => {
+      const lab = `Bài ${exn}, câu ${row.querySelector('.n').textContent.replace('.', '')}`;
+      row.querySelectorAll('[data-k], [role=radiogroup]').forEach(el => el.setAttribute('aria-label', lab));
+    });
+  });
+  document.querySelectorAll('[data-k]').forEach(el => {
+    const on = () => { answers[el.dataset.k] = el.value; draft(); renderBar(); };
+    el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', on);
+  });
+  document.querySelectorAll('input[type=radio]').forEach(el => el.addEventListener('change', () => {
+    if (el.name === 'speak') { speak.score = +el.value; draft(); if (graded) { graded.speaking = speak.score; persistSpeak(); } return; }
+    answers[el.name] = +el.value; draft(); renderBar();
+    const b = document.querySelector(`.blank[data-b="${CSS.escape(el.name)}"]`); if (b) b.textContent = el.nextElementSibling.textContent;
+  }));
+}
+function draft() { if (!graded) { store.draft = { answers, speak }; save(); } else save(); }
+function persistSpeak() { const a = store.attempts[store.attempts.length - 1]; if (a && a.id === graded.id) { a.speaking = speak.score; save(); } }
+function answeredCount() { return items.filter(x => answers[x.key] !== undefined && answers[x.key] !== '').length; }
+
+// keep the last content clear of the fixed bottom bar (bar grows to 2–3 lines on phones in the confirm state)
+function fitBar() { document.getElementById('app').style.paddingBottom = (document.getElementById('bar').offsetHeight + 28) + 'px'; }
+addEventListener('resize', fitBar);
+function renderBar() { renderBarInner(); fitBar(); }
+function renderBarInner() {
+  const prog = document.getElementById('prog'), btns = document.getElementById('barBtns');
+  if (graded) {
+    prog.innerHTML = `Điểm: <b>${graded.score} / ${TOTAL}</b>`;
+    btns.innerHTML = `<button class="btn" id="bTop">Xem kết quả</button> <button class="btn primary" id="bNew">Làm lại từ đầu</button>`;
+    document.getElementById('bTop').onclick = () => document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('bNew').onclick = () => { if (confirm('Xoá bài đang xem và làm lại từ đầu?')) { answers = {}; speak = {}; graded = null; store.draft = null; save(); render(); scrollTo(0, 0); } };
+    return;
+  }
+  const n = answeredCount();
+  prog.innerHTML = `Đã làm <b>${n}</b> / ${items.length} câu`;
+  if (confirmOpen) {
+    btns.innerHTML = `<span class="confirm">Còn ${items.length - n} câu chưa làm. Vẫn nộp bài? <button class="btn" id="bNo">Làm tiếp</button> <button class="btn primary" id="bYes">Nộp</button></span>`;
+    document.getElementById('bNo').onclick = () => { confirmOpen = false; renderBar(); };
+    document.getElementById('bYes').onclick = () => { confirmOpen = false; grade(); };
+  } else {
+    btns.innerHTML = `<button class="btn primary" id="bGrade">Nộp bài</button>`;
+    document.getElementById('bGrade').onclick = () => { if (answeredCount() < items.length) { confirmOpen = true; renderBar(); } else grade(); };
+  }
+}
+
+function grade() {
+  const res = {}; let score = 0;
+  for (const { ex, it, key } of items) {
+    const type = it.type || ex.type, v = answers[key], pts = it.pts || ex.pts || 1;
+    let ok = false;
+    if (type === 'mcq' || type === 'tf') ok = v === answerIndex(ex, it);
+    else if (type === 'select') ok = v === it.answer;
+    else if (type === 'kw') ok = kwOk(v, it.kw);
+    else ok = matches(v, it.accept);
+    res[key] = { ok, pts: ok ? pts : 0, max: pts };
+    score += res[key].pts;
+  }
+  graded = { id: Date.now(), date: new Date().toISOString(), score, res, speaking: speak.score };
+  store.attempts.push({ id: graded.id, date: graded.date, score, total: TOTAL, speaking: speak.score ?? null,
+    answers: { ...answers }, wrong: items.filter(x => !res[x.key].ok).map(x => x.key),
+    byPart: breakdown('part'), byUnit: breakdown('unit'), byLevel: breakdown('level') });
+  store.draft = null; save();
+  render(); document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+}
+function breakdown(dim) {
+  const m = {};
+  for (const { ex, it, key } of items) {
+    const k = dim === 'part' ? ex.part : dim === 'unit' ? String(it.unit ?? ex.unit) : String(it.level || 2);
+    m[k] = m[k] || { got: 0, max: 0 }; m[k].max += graded.res[key].max; m[k].got += graded.res[key].pts;
+  }
+  return m;
+}
+function band(p) { return DATA.bands.find(b => p >= b.min); }
+function barCell(got, max) { const p = max ? got / max : 0; return `<div class="pbar"><i class="${p < .5 ? 'low' : p < .75 ? 'mid' : ''}" style="width:${Math.round(p * 100)}%"></i></div>`; }
+function resultHtml() {
+  const pct = Math.round(graded.score * 100 / TOTAL), b = band(pct);
+  const bp = breakdown('part'), bu = breakdown('unit');
+  let h = `<section class="card" id="result" style="border:2px solid var(--accent)"><div class="score"><span class="big">${graded.score}</span><span class="muted">/ ${TOTAL} điểm</span><span class="band">${esc(b.label)}</span></div><p>${esc(b.advice)}</p>`;
+  h += `<h3>Theo kỹ năng</h3><table class="t"><tr><th>Phần</th><th class="r">Điểm</th><th style="width:40%"></th></tr>` +
+    Object.keys(DATA.parts).filter(k => bp[k]).map(k => `<tr><td>${esc(DATA.parts[k])}</td><td class="r">${bp[k].got} / ${bp[k].max}</td><td>${barCell(bp[k].got, bp[k].max)}</td></tr>`).join('') + `</table>`;
+  const unitKeys = Object.keys(bu).sort((a, b) => (+a || 0) - (+b || 0));
+  h += `<h3>Theo unit</h3><table class="t"><tr><th>Unit</th><th class="r">Điểm</th><th style="width:40%"></th></tr>` +
+    unitKeys.map(k => `<tr><td>${k === 'mix' ? 'Tổng hợp' : /^[0-9]+$/.test(k) ? 'Unit ' + esc(k) : esc(k)} <span class="small muted">${esc(DATA.unitTitles[k] || '')}</span></td><td class="r">${bu[k].got} / ${bu[k].max}</td><td>${barCell(bu[k].got, bu[k].max)}</td></tr>`).join('') + `</table>`;
+  const weak = unitKeys.filter(k => bu[k].max >= 3 && bu[k].got / bu[k].max < .6);
+  if (weak.length) h += `<p><b>Cần ôn lại:</b> ${weak.map(k => (k === 'mix' ? 'phần tổng hợp' : (/^[0-9]+$/.test(k) ? 'Unit ' : '') + k + ' (' + (DATA.unitTitles[k] || '') + ')')).map(esc).join(', ')}.</p>`;
+  h += `<p class="small muted">Các câu sai được tô đỏ bên dưới, kèm đáp án và giải thích.</p></section>`;
+  return h;
+}
+function historyHtml() {
+  return `<h2 class="part">Các lần làm trước</h2><div class="card"><ul class="hist">${store.attempts.slice().reverse().map(a => `<li>${new Date(a.date).toLocaleString('vi-VN')}: <b>${a.score} / ${a.total}</b>${a.speaking != null ? ` · Speaking ${a.speaking}/${DATA.speaking.max}` : ''}</li>`).join('')}</ul>
+  <button class="btn" id="bExport">Tải kết quả (JSON)</button></div>`;
+}
+document.addEventListener('click', e => {
+  if (e.target.id === 'bExport') {
+    const blob = new Blob([JSON.stringify(store.attempts, null, 1)], { type: 'application/json' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = DATA.exportName; a.click();
+  }
+});
+render();
+</script>
+</body>
+</html>
