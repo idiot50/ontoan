@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bài học nhanh FaF3 · Phần 2</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E💡%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+:root {
+  --bg: #f4f6f3; --surface: #fff; --fg: #1d2924; --muted: #5d6c65; --line: #d7ded8; --line2: #b9c4bd;
+  --accent: #1f6f5c; --accent-ink: #fff; --accent-soft: #e2f1ea;
+  --ok: #2c7a39; --ok-soft: #e4f4e6; --bad: #b9312f; --bad-soft: #fbe7e5; --warn: #9a5b00; --warn-soft: #fff1d6;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #131916; --surface: #1b2420; --fg: #e5ebe6; --muted: #9db0a5; --line: #2c3a33; --line2: #41534a;
+  --accent: #6fcfb0; --accent-ink: #0f1f19; --accent-soft: #1d3a31;
+  --ok: #7bd389; --ok-soft: #1e3525; --bad: #ff8f85; --bad-soft: #3d2321; --warn: #ffc46b; --warn-soft: #3a2c14; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #131916; --surface: #1b2420; --fg: #e5ebe6; --muted: #9db0a5; --line: #2c3a33; --line2: #41534a;
+  --accent: #6fcfb0; --accent-ink: #0f1f19; --accent-soft: #1d3a31;
+  --ok: #7bd389; --ok-soft: #1e3525; --bad: #ff8f85; --bad-soft: #3d2321; --warn: #ffc46b; --warn-soft: #3a2c14; color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--fg); font-family: "Nunito", "Segoe UI", system-ui, sans-serif; font-size: 16px; line-height: 1.55; }
+button, input { font: inherit; }
+.top { position: sticky; top: 0; z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+.top .in { max-width: 820px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 10px; }
+.brand { font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.back { margin-left: auto; flex: 0 0 auto; font-size: .88rem; font-weight: 700; color: var(--accent); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; }
+.wrap { max-width: 820px; margin: 0 auto; padding: 16px 16px 60px; }
+h1 { font-size: 1.4rem; margin: 6px 0; line-height: 1.25; }
+.muted { color: var(--muted); } .small { font-size: .88rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+.chip { border: 1px solid var(--line2); border-radius: 999px; padding: 3px 10px; font-size: .85rem; font-weight: 700; color: var(--muted); text-decoration: none; background: var(--surface); }
+.chip.done { border-color: var(--ok); color: var(--ok); background: var(--ok-soft); }
+details.lesson { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; margin: 12px 0; }
+details.lesson > summary { list-style: none; cursor: pointer; padding: 12px 16px; display: flex; gap: 10px; align-items: center; }
+details.lesson > summary::-webkit-details-marker { display: none; }
+.num { flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.num.done { background: var(--ok); }
+.st { flex: 1; min-width: 0; font-weight: 800; }
+.st small { display: block; font-weight: 600; color: var(--muted); }
+.body { padding: 0 16px 16px; }
+.from { border-left: 4px solid var(--warn); background: var(--warn-soft); padding: 8px 12px; border-radius: 8px; margin: 4px 0 12px; font-size: .95rem; }
+.rule { background: var(--accent-soft); border-radius: 10px; padding: 10px 14px; margin: 10px 0; }
+.rule p { margin: 6px 0; } .rule ul, .rule ol { margin: 6px 0; padding-left: 20px; } .rule li { margin: 3px 0; }
+table.rt { border-collapse: collapse; margin: 6px 0; font-size: .93rem; width: 100%; max-width: 560px; }
+table.rt th, table.rt td { border: 1px solid var(--line2); padding: 4px 8px; text-align: left; vertical-align: top; background: var(--surface); }
+table.rt th { background: var(--bg); }
+.eg { margin: 6px 0; padding-left: 12px; border-left: 3px solid var(--accent); }
+.passage { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 10px 0; white-space: pre-line; }
+h3 { font-size: 1rem; margin: 14px 0 4px; }
+.item { display: grid; grid-template-columns: 1.6em minmax(0, 1fr); gap: 4px; padding: 9px 0; border-top: 1px dashed var(--line); }
+.item .n { font-weight: 800; color: var(--muted); }
+.q { margin-bottom: 6px; }
+.opts { display: flex; flex-wrap: wrap; gap: 6px 8px; }
+.opt { display: inline-flex; align-items: center; gap: 6px; border: 1.5px solid var(--line2); border-radius: 10px; padding: 6px 12px; cursor: pointer; background: var(--surface); }
+.opt input { accent-color: var(--accent); margin: 0; }
+.opt.ok { border-color: var(--ok); background: var(--ok-soft); } .opt.bad { border-color: var(--bad); background: var(--bad-soft); }
+.in-t { padding: 8px 10px; border: 1.5px solid var(--line2); border-radius: 8px; background: var(--surface); color: var(--fg); width: 100%; font-size: 1rem; }
+.in-t.gap { width: 9em; max-width: 100%; display: inline-block; padding: 4px 8px; margin: 2px; }
+.in-t.ok { border-color: var(--ok); background: var(--ok-soft); } .in-t.bad { border-color: var(--bad); background: var(--bad-soft); }
+.words { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+.words span { border: 1px dashed var(--line2); border-radius: 6px; padding: 2px 8px; font-weight: 700; }
+.fb { font-size: .92rem; margin-top: 6px; border-left: 3px solid var(--line2); padding-left: 8px; color: var(--muted); }
+.fb .a { color: var(--ok); font-weight: 800; } .fb .x { color: var(--bad); font-weight: 800; }
+.actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 12px; }
+.btn { border: 1px solid var(--line2); background: var(--surface); color: var(--fg); border-radius: 10px; padding: 9px 16px; cursor: pointer; font-weight: 700; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn:focus-visible, .in-t:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.sayrow { display: flex; gap: 8px; flex-wrap: wrap; margin: 2px 0 6px; }
+.btn.say { padding: 5px 12px; font-size: .95rem; }
+details.pfb { display: none; margin: 0 0 6px; }
+body.novoice details.pfb { display: block; }
+body.novoice .btn.say { display: none; }
+.score { font-weight: 800; }
+.score.full { color: var(--ok); }
+</style>
+</head>
+<body>
+<div class="top"><div class="in"><span class="brand">💡 Bài học nhanh FaF3 · Phần 2</span><a class="back" href="./">← Về trang chính</a></div></div>
+<main class="wrap" id="app"></main>
+<script>
+const DATA = {"pageTitle":"Bài học nhanh FaF3 · Phần 2","outFile":"faf3-bai-hoc-2.html","title":"Bài học nhanh sau Đề 2 (Units 1–13)","intro":"Con đã tiến bộ rất nhiều ở ngữ pháp (Đề 2 được 27/28 điểm phần Grammar)! Phần 2 tập trung vào những chỗ còn hụt: quá khứ của Unit 13, phần Đọc và Nghe. Mỗi bài 3–5 phút: đọc quy tắc → xem ví dụ → làm bài → bấm «Kiểm tra». Câu sai thì đọc giải thích rồi bấm «Làm lại». Mỗi ngày 1–2 bài.","storageKey":"faf3-bai-hoc-2-v1","lessons":[{"id":"M1","minutes":4,"title":"Quá khứ: thêm -ed (Unit 13)","fromTest":"Trong Đề 2 con viết «The film start at six o'clock last night» (đúng: started), và ở bài nghe con viết «Tom plays basketball» (đúng: played — chuyện hôm qua).","rule":"\u003cp>Chuyện \u003cb>đã xảy ra\u003c/b> (yesterday, last night, last week, … ago, when I was …) → động từ thêm \u003cb>-ed\u003c/b>.\u003c/p>\u003ctable class='rt'>\u003ctr>\u003cth>Động từ\u003c/th>\u003cth>Quá khứ\u003c/th>\u003cth>Cách viết\u003c/th>\u003c/tr>\u003ctr>\u003ctd>play, watch, cook, start, finish, help\u003c/td>\u003ctd>play\u003cb>ed\u003c/b>, watch\u003cb>ed\u003c/b>, cook\u003cb>ed\u003c/b>, start\u003cb>ed\u003c/b> …\u003c/td>\u003ctd>thêm \u003cb>-ed\u003c/b>\u003c/td>\u003c/tr>\u003ctr>\u003ctd>live, use, love, hate, dance\u003c/td>\u003ctd>live\u003cb>d\u003c/b>, use\u003cb>d\u003c/b>, love\u003cb>d\u003c/b> …\u003c/td>\u003ctd>tận cùng \u003cb>e\u003c/b> → chỉ thêm \u003cb>-d\u003c/b>\u003c/td>\u003c/tr>\u003c/table>\u003cp>Quá khứ thì \u003cb>không\u003c/b> thêm -s cho he/she: He play\u003cb>ed\u003c/b> (không phải «he playeds»).\u003c/p>\u003cp>\u003cb>Mẹo:\u003c/b> đọc hết câu, thấy chữ \u003cb>yesterday / last / ago\u003c/b> ở cuối câu → quay lại thêm -ed.\u003c/p>","examples":["The film \u003cb>started\u003c/b> at six o'clock \u003cb>last night\u003c/b>.","Tom \u003cb>played\u003c/b> basketball \u003cb>yesterday\u003c/b>."],"items":[{"type":"text","q":"We ___ (watch) a funny film last night.","accept":["watched"],"why":"last night → quá khứ → watched.","trap":{"watch":"«last night» là chuyện đã qua → thêm -ed: watched.","watches":"watches là hiện tại (và we không thêm -es); «last night» → watched."}},{"type":"text","q":"My sister ___ (dance) at the party last Saturday.","accept":["danced"],"why":"last Saturday → quá khứ; dance tận cùng e → chỉ thêm -d: danced.","trap":{"dances":"dances là hiện tại; «last Saturday» → danced.","danceed":"dance tận cùng e → chỉ thêm -d: danced.","dance":"«last Saturday» → thêm -d: danced."}},{"type":"text","q":"Leo ___ (help) his dad in the garden yesterday.","accept":["helped"],"why":"yesterday → helped.","trap":{"helps":"helps là hiện tại; «yesterday» → helped.","help":"«yesterday» → thêm -ed: helped."}},{"type":"text","q":"The children ___ (finish) all the cake at the party yesterday.","accept":["finished"],"why":"yesterday → finished.","trap":{"finishes":"finishes là hiện tại; «yesterday» → finished.","finish":"«yesterday» → thêm -ed: finished."}},{"type":"mcq","q":"Holly ___ the piano every day.","options":["plays","played"],"answer":0,"why":"every day = thói quen ở hiện tại → plays.","trap":{"1":"played dùng cho chuyện đã qua (yesterday, last week). «every day» → plays."}},{"type":"mcq","q":"Holly ___ the piano at the concert last Saturday.","options":["plays","played"],"answer":1,"why":"last Saturday → quá khứ → played.","trap":{"0":"plays là thói quen hiện tại; «last Saturday» → played."}}]},{"id":"M2","minutes":4,"title":"weren't hay didn't?","fromTest":"Trong Đề 2 con viết «The children weren't walk to school yesterday» (đúng: didn't walk), và để trống câu «Tom ___ know the answers» (đúng: didn't).","rule":"\u003cp>Nhìn từ \u003cb>ngay sau chỗ trống\u003c/b>:\u003c/p>\u003ctable class='rt'>\u003ctr>\u003cth>Sau đó là …\u003c/th>\u003cth>Dùng\u003c/th>\u003cth>Ví dụ\u003c/th>\u003c/tr>\u003ctr>\u003ctd>tính từ / nơi chốn (happy, cold, at home)\u003c/td>\u003ctd>\u003cb>wasn't / weren't\u003c/b>\u003c/td>\u003ctd>We \u003cb>weren't\u003c/b> cold. She \u003cb>wasn't\u003c/b> at school.\u003c/td>\u003c/tr>\u003ctr>\u003ctd>động từ (walk, play, know, swim)\u003c/td>\u003ctd>\u003cb>didn't\u003c/b> + động từ giữ nguyên\u003c/td>\u003ctd>We \u003cb>didn't walk\u003c/b>. She \u003cb>didn't know\u003c/b>.\u003c/td>\u003c/tr>\u003c/table>\u003cp>❌ Không viết: \u003cs>weren't walk\u003c/s>, \u003cs>didn't walked\u003c/s>, \u003cs>didn't cold\u003c/s>.\u003c/p>","examples":["The children \u003cb>didn't walk\u003c/b> to school yesterday. (walk là động từ)","The children \u003cb>weren't\u003c/b> at school yesterday. (at school là nơi chốn)"],"items":[{"type":"mcq","q":"We ___ play football yesterday. It rained.","options":["didn't","weren't","wasn't"],"answer":0,"why":"play là động từ → didn't play.","trap":{"1":"weren't đi với tính từ/nơi chốn; sau chỗ trống là động từ play → didn't.","2":"wasn't đi với tính từ/nơi chốn và với I/he/she; ở đây cần didn't."}},{"type":"mcq","q":"We ___ happy because it rained.","options":["didn't","weren't","wasn't"],"answer":1,"why":"happy là tính từ, we → weren't.","trap":{"0":"didn't đi với động từ; happy là tính từ → weren't.","2":"wasn't dùng cho I/he/she/it; we → weren't."}},{"type":"mcq","q":"Max ___ at home last night. He was at the cinema.","options":["wasn't","didn't","weren't"],"answer":0,"why":"at home là nơi chốn, Max = he → wasn't.","trap":{"1":"didn't đi với động từ; at home là nơi chốn → wasn't.","2":"weren't dùng cho we/you/they; Max = he → wasn't."}},{"type":"text","q":"I ___ (not / know) the answer to the last question in the test yesterday.","accept":["didn't know","did not know"],"why":"know là động từ → didn't know.","trap":{"wasn't know":"know là động từ → didn't know.","didn't knew":"Sau didn't động từ giữ nguyên: didn't know.","don't know":"Có «yesterday» → chuyện đã qua → didn't know."}},{"type":"text","q":"Write the sentence correctly: «My friends weren't walk to the park last Sunday.»","accept":["My friends didn't walk to the park last Sunday","My friends did not walk to the park last Sunday"],"why":"walk là động từ → didn't walk.","trap":{"my friends were not walk to the park last sunday":"Câu chưa sửa: walk là động từ → didn't walk.","my friends did not walked to the park last sunday":"Sau didn't động từ giữ nguyên: didn't walk."}},{"type":"text","q":"Rosy ___ (not / cook) dinner last night. Mum cooked it.","accept":["didn't cook","did not cook"],"why":"cook là động từ → didn't cook.","trap":{"wasn't cook":"cook là động từ → didn't cook.","didn't cooked":"Sau didn't động từ giữ nguyên: didn't cook."}}]},{"id":"M3","minutes":3,"title":"Câu hỏi: Do / Does hay Is / Are?","fromTest":"Trong Đề 2 con chọn «Are Holly and Max have lunch at school?» (đúng: Do Holly and Max have lunch …?).","rule":"\u003cp>Nhìn từ đứng sau chủ ngữ:\u003c/p>\u003cul>\u003cli>Động từ thường (have, like, go, play, live) → \u003cb>Do\u003c/b> (I/you/we/they, Holly and Max) / \u003cb>Does\u003c/b> (he/she/it, Holly).\u003c/li>\u003cli>V-ing (đang làm), tính từ (happy), nơi chốn (at home) → \u003cb>Is / Are\u003c/b>.\u003c/li>\u003c/ul>\u003cp>\u003cb>Holly and Max\u003c/b> = they → \u003cb>Do\u003c/b> … have? hoặc \u003cb>Are\u003c/b> … having / happy?\u003c/p>","examples":["\u003cb>Do\u003c/b> Holly and Max \u003cb>have\u003c/b> lunch at school?","\u003cb>Are\u003c/b> Holly and Max \u003cb>having\u003c/b> lunch now?"],"items":[{"type":"mcq","q":"___ your grandparents live near the beach?","options":["Do","Are","Does"],"answer":0,"why":"live là động từ thường; your grandparents = they → Do.","trap":{"1":"Are đi với V-ing/tính từ/nơi chốn, không đi với live.","2":"Does dùng cho he/she/it; grandparents số nhiều → Do."}},{"type":"mcq","q":"___ your grandparents watching TV now?","options":["Do","Are","Does"],"answer":1,"why":"watching (V-ing, đang làm) → Are.","trap":{"0":"Do không đi với V-ing; có -ing → Are.","2":"Does không đi với V-ing."}},{"type":"mcq","q":"___ Leo like taking photos?","options":["Does","Is","Do"],"answer":0,"why":"like là động từ thường; Leo = he → Does.","trap":{"1":"Is đi với V-ing/tính từ; like là động từ thường → Does.","2":"Do dùng cho I/you/we/they; Leo = he → Does."}},{"type":"mcq","q":"___ Amy and Leo tired after the long walk?","options":["Are","Do","Does"],"answer":0,"why":"tired là tính từ → Are.","trap":{"1":"Do đi với động từ thường; tired là tính từ → Are.","2":"Does đi với động từ thường và he/she/it."}},{"type":"mcq","q":"___ the children walk to school every day?","options":["Do","Are","Does"],"answer":0,"why":"walk là động từ thường; the children = they → Do.","trap":{"1":"Are không đi với walk (động từ nguyên mẫu). «Are the children walking…?» mới dùng Are.","2":"Does dùng cho he/she/it; the children số nhiều → Do."}}]},{"id":"M4","minutes":4,"title":"Nghe kỹ đuôi -ed và không bỏ trống","fromTest":"Ở bài nghe Tom (Đề 2) con để trống 2 chỗ (difficult, didn't) và viết «plays» thay vì «played».","rule":"\u003cp>Khi nghe chuyện \u003cb>đã qua\u003c/b>, động từ có đuôi \u003cb>-ed\u003c/b>, đọc theo 3 cách: watch\u003cb>ed\u003c/b> /t/, play\u003cb>ed\u003c/b> /d/, start\u003cb>ed\u003c/b> /ɪd/. Âm /ɪd/ (nghe rõ thêm một tiếng «ịd») chỉ có khi động từ tận cùng là \u003cb>t\u003c/b> hoặc \u003cb>d\u003c/b>: start\u003cb>ed\u003c/b>, want\u003cb>ed\u003c/b>. Đuôi /t/, /d/ rất nhẹ — nghe kỹ cuối từ.\u003c/p>\u003cul>\u003cli>Nghe thấy \u003cb>yesterday / last … / when I was …\u003c/b> → viết động từ \u003cb>-ed\u003c/b>.\u003c/li>\u003cli>Nghe thấy \u003cb>every day / always\u003c/b> → hiện tại, không có -ed.\u003c/li>\u003cli>\u003cb>Không bỏ trống:\u003c/b> nghe không rõ thì đoán theo nghĩa của câu — viết vẫn có cơ hội đúng, để trống chắc chắn mất điểm.\u003c/li>\u003c/ul>\u003cp>Bấm 🔊 để nghe, 🐢 để nghe chậm. Viết \u003cb>một từ\u003c/b> vào chỗ trống.\u003c/p>","examples":["«Yesterday I play\u003cb>ed\u003c/b> tennis.» — nghe /pleɪd/"],"items":[{"type":"text","say":"My dad played tennis with me last weekend.","q":"My dad ___ tennis with me last weekend.","accept":["played"],"why":"Câu nghe: «My dad played tennis…» — last weekend → played.","trap":{"play":"Có «last weekend» → played (nghe âm /d/ ở cuối).","plays":"plays là thói quen hiện tại; «last weekend» → played."}},{"type":"text","say":"We watched the boats on the river last Sunday.","q":"We ___ the boats on the river last Sunday.","accept":["watched"],"why":"Câu nghe: «We watched the boats…» — last Sunday → watched.","trap":{"watch":"«last Sunday» → watched (nghe âm /t/ ở cuối).","watches":"«last Sunday» → watched; we không thêm -es."}},{"type":"text","say":"Mum was very angry with the naughty dog.","q":"Mum was very ___ with the naughty dog.","accept":["angry"],"why":"Câu nghe: «Mum was very angry with the naughty dog.» — angry = tức giận.","trap":{"hungry":"Nghe lại bằng nút 🐢: «angry» (tức giận) bắt đầu bằng «a», không có âm /h/ như hungry (đói). Con chó nghịch ngợm → mẹ tức giận."}},{"type":"text","say":"The children wanted to play outside, but it rained.","q":"The children ___ to play outside, but it rained.","accept":["wanted"],"why":"Câu nghe: «The children wanted to play outside…» — want tận cùng t → wanted, đọc /ɪd/; «it rained» cho biết chuyện đã qua.","trap":{"want":"Câu kể chuyện đã qua (it rained) → wanted, nghe rõ tiếng /ɪd/ ở cuối.","wants":"the children số nhiều, và chuyện đã qua → wanted."}},{"type":"text","say":"Leo didn't play the piano last night.","q":"Leo ___ play the piano last night.","accept":["didn't","did not"],"why":"Câu nghe: «Leo didn't play the piano…» — phủ định quá khứ: didn't + động từ giữ nguyên.","trap":{"doesn't":"«last night» → chuyện đã qua → didn't.","don't":"«last night» → didn't.","wasn't":"Sau chỗ trống là động từ play → didn't, không dùng wasn't."}},{"type":"text","say":"Every day, my mum cooks dinner at seven o'clock.","q":"Every day, my mum ___ dinner at seven o'clock.","accept":["cooks"],"why":"Câu nghe: «Every day, my mum cooks…» — every day là thói quen → cooks (không có -ed).","trap":{"cooked":"«Every day» là thói quen hiện tại → cooks.","cook":"my mum = she → cooks."}}]},{"id":"M5","minutes":5,"title":"Đọc hiểu True/False: soi chữ not và từ chỉ thời gian","fromTest":"Đề 2 phần Đọc con được 2/15. Bài viết «Grandma doesn't like cooking» nhưng con chọn True cho «Grandma likes cooking». Bài viết «Sam played with Rex all weekend. Now he's … sleeping», con chọn True cho «Sam is playing with Rex now».","rule":"\u003col>\u003cli>Tìm câu trong bài có \u003cb>cùng từ khoá\u003c/b> (Grandma, cooking).\u003c/li>\u003cli>Soi chữ \u003cb>not / doesn't / didn't / wasn't / never\u003c/b> — có chữ này thì nghĩa \u003cb>ngược lại\u003c/b>.\u003c/li>\u003cli>Soi \u003cb>từ chỉ thời gian\u003c/b>: now (bây giờ) khác all weekend / yesterday (đã qua).\u003c/li>\u003cli>Câu phải đúng \u003cb>hoàn toàn\u003c/b> mới chọn True.\u003c/li>\u003c/ol>","passage":"My name is Kate and I have got a brother, Tom. He doesn't like football, but he loves basketball.\nLast Saturday it was sports day at our school. Tom played basketball with his class and I danced in a show. It rained in the afternoon, so we didn't have a picnic.\nNow it's Sunday morning. Tom is sleeping and I'm playing with my cat. Dad is washing the car.","examples":["«Tom likes football.» → bài viết «He (Tom) \u003cb>doesn't\u003c/b> like football» → \u003cb>False\u003c/b>."],"items":[{"type":"tf","q":"Tom loves basketball.","answer":"True","why":"«… but he loves basketball» → True.","trap":{"1":"Câu trong bài: «He doesn't like football, but he loves basketball.» (He = Tom) — chữ doesn't đi với football, không phải basketball."}},{"type":"tf","q":"Kate's family had a picnic last Saturday.","answer":"False","why":"«It rained in the afternoon, so we didn't have a picnic.» — có didn't → False.","trap":{"0":"Soi chữ didn't: «so we didn't have a picnic» → họ KHÔNG đi picnic."}},{"type":"tf","q":"Tom played basketball on sports day.","answer":"True","why":"«Tom played basketball with his class» (vào sports day thứ Bảy) → True.","trap":{"1":"Tìm từ khoá basketball trong đoạn 2: «Tom played basketball with his class» — không có chữ not → True."}},{"type":"tf","q":"Tom is playing basketball now.","answer":"False","why":"Tom chơi bóng rổ vào thứ Bảy (đã qua). Bây giờ (now) Tom đang ngủ: «Tom is sleeping».","trap":{"0":"Soi thời gian: played basketball là «Last Saturday»; câu có chữ Now nói «Tom is sleeping» → False."}},{"type":"tf","q":"Kate is playing with her cat now.","answer":"True","why":"«Now it's Sunday morning. … I'm playing with my cat.» → True.","trap":{"1":"Câu «I'm playing with my cat» nằm ngay sau chữ Now; I = Kate → True."}}]},{"id":"M6","minutes":5,"title":"Trả lời câu hỏi: chỉ cần chép 1–3 từ","fromTest":"Ở hai bài kiểm tra, phần câu hỏi trả lời con chỉ gõ một chữ («c», «i») thay vì trả lời — ở Đề 2 cả 5 câu đều là «i». Câu trả lời thường đã CÓ SẴN trong bài — con chỉ cần tìm và chép 1–3 từ.","rule":"\u003col>\u003cli>Đọc câu hỏi, gạch từ hỏi: \u003cb>Where\u003c/b> → nơi chốn · \u003cb>What\u003c/b> → vật/việc · \u003cb>Who\u003c/b> → người · \u003cb>What … doing\u003c/b> → V-ing · \u003cb>Which\u003c/b> → cái nào\u003c/li>\u003cli>Tìm câu trong bài có từ khoá của câu hỏi.\u003c/li>\u003cli>Chép \u003cb>1–3 từ\u003c/b> trả lời. Không cần viết cả câu.\u003c/li>\u003c/ol>\u003ctable class='rt'>\u003ctr>\u003cth>Câu hỏi\u003c/th>\u003cth>Câu trong bài (bài của Kate)\u003c/th>\u003cth>Chép\u003c/th>\u003c/tr>\u003ctr>\u003ctd>What is Dad washing?\u003c/td>\u003ctd>Dad is washing \u003cb>the car\u003c/b>.\u003c/td>\u003ctd>the car\u003c/td>\u003c/tr>\u003c/table>","passage":"Hi! I'm Ben. Yesterday was my birthday. In the morning, I opened my presents. My favourite present was a red kite from my uncle.\nThen we visited the zoo. At the zoo, the penguins were very funny! My sister Lucy loved the monkeys.\nIn the afternoon, my friends played games in our garden. Now it's Monday and I'm at school.","examples":["Where were the penguins? → câu trong bài: «\u003cb>At the zoo\u003c/b>, the penguins were very funny!» → trả lời: \u003cb>at the zoo\u003c/b>."],"items":[{"type":"mcq","q":"Bước 1 — Câu nào trong bài trả lời câu hỏi «Which animals were very funny?»","options":["At the zoo, the penguins were very funny!","My sister Lucy loved the monkeys.","My favourite present was a red kite from my uncle."],"answer":0,"why":"Từ khoá «very funny» → «At the zoo, the penguins were very funny!»","trap":{"1":"Câu này nói Lucy thích con khỉ, không có từ funny.","2":"Câu này nói về quà sinh nhật, không có từ funny."}},{"type":"kw","q":"Bước 2 — Now write: Which animals were very funny?","kw":[["penguins","penguin"]],"model":"The penguins.","why":"«the penguins were very funny» → chép: penguins."},{"type":"kw","q":"Where were Ben's friends in the afternoon?","kw":[["garden"]],"model":"In Ben's garden.","why":"«In the afternoon, my friends played games in our garden.» → in the garden."},{"type":"kw","q":"What was Ben's favourite present?","kw":[["kite"]],"model":"A red kite.","why":"«My favourite present was a red kite from my uncle.» → a red kite."},{"type":"kw","q":"Who loved the monkeys?","kw":[["lucy","sister"]],"model":"His sister Lucy.","why":"«My sister Lucy loved the monkeys.» → Lucy."},{"type":"kw","q":"Where is Ben now?","kw":[["school"]],"model":"He's at school.","why":"«Now it's Monday and I'm at school.» → at school. (Sở thú là chuyện hôm qua.)"}]},{"id":"M7","minutes":3,"title":"Chính tả: potatoes, sandwiches + âm «o» dài","fromTest":"Trong Đề 2 con viết «some potatos» (đúng: potatoes), và chọn «cow» cho từ có cùng âm với «snow» (đúng: coat).","rule":"\u003cp>\u003cb>Danh từ số nhiều:\u003c/b> thường thêm \u003cb>-s\u003c/b> (melons, photos). Thêm \u003cb>-es\u003c/b> khi tận cùng là \u003cb>ch, sh, s, x\u003c/b>: sandwich → sandwich\u003cb>es\u003c/b>, bus → bus\u003cb>es\u003c/b>, box → box\u003cb>es\u003c/b>. Từ \u003cb>potato\u003c/b> cũng thêm -es: potato\u003cb>es\u003c/b> (nhớ riêng — vì photo → photos, piano → pianos chỉ thêm -s).\u003c/p>\u003cp>\u003cb>Âm «o» dài\u003c/b> /əʊ/ (Unit 13) có 3 cách viết: \u003cb>ow\u003c/b> (sn\u003cb>ow\u003c/b>, sh\u003cb>ow\u003c/b>, elb\u003cb>ow\u003c/b>), \u003cb>oa\u003c/b> (c\u003cb>oa\u003c/b>t, b\u003cb>oa\u003c/b>t), \u003cb>o_e\u003c/b> (n\u003cb>o\u003c/b>s\u003cb>e\u003c/b>, st\u003cb>o\u003c/b>n\u003cb>e\u003c/b>, h\u003cb>o\u003c/b>m\u003cb>e\u003c/b>).\u003cbr>⚠️ \u003cb>ow\u003c/b> có 2 cách đọc: snow, show /əʊ/ (o dài) — nhưng cow, clown, flower /aʊ/ (như «ao», Unit 7).\u003c/p>","examples":["four potato\u003cb>es\u003c/b>, three sandwich\u003cb>es\u003c/b>","sn\u003cb>ow\u003c/b> – c\u003cb>oa\u003c/b>t – n\u003cb>o\u003c/b>s\u003cb>e\u003c/b> (cùng âm o dài) · c\u003cb>ow\u003c/b> – cl\u003cb>ow\u003c/b>n (âm «ao», khác)"],"items":[{"type":"text","q":"There are four ___ (potato) in the bag.","accept":["potatoes"],"why":"potato → potatoes (thêm -es).","trap":{"potatos":"potato thêm -es: potatoes.","potato":"four → số nhiều: potatoes."}},{"type":"text","q":"I've got three ___ (sandwich) in my lunch box.","accept":["sandwiches"],"why":"sandwich tận cùng ch → sandwiches.","trap":{"sandwichs":"Tận cùng ch thì thêm -es: sandwiches.","sandwich":"three → số nhiều: sandwiches."}},{"type":"text","q":"There are two ___ (bus) at the bus stop.","accept":["buses"],"why":"bus tận cùng s → buses.","trap":{"buss":"Tận cùng s thì thêm -es: buses.","bus":"two → số nhiều: buses."}},{"type":"mcq","q":"Which word has the same sound as «boat»?","options":["home","cow","hot"],"answer":0,"why":"boat và home cùng âm o dài /əʊ/.","trap":{"1":"cow đọc /aʊ/ (giống «ao»), khác o dài.","2":"hot là o ngắn /ɒ/."}},{"type":"mcq","q":"Which word has the same sound as «nose»?","options":["clown","elbow","dog"],"answer":1,"why":"nose và elbow cùng âm o dài /əʊ/.","trap":{"0":"clown có ow nhưng đọc /aʊ/ như cow.","2":"dog là o ngắn /ɒ/."}},{"type":"mcq","q":"Which word has the same sound as «show»?","options":["clown","bone","flower"],"answer":1,"why":"show và bone cùng âm o dài /əʊ/.","trap":{"0":"clown viết ow giống show nhưng đọc /aʊ/ (như «ao»).","2":"flower viết ow nhưng đọc /aʊ/ như cow."}}]}]};
+// ---- grading helpers (same rules as Revision 1–9: case-insensitive, contractions = full forms)
+function norm(s) {
+  s = String(s == null ? '' : s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); // café = cafe
+  s = s.replace(/[’‘`´ʼ′]/g, "'").replace(/[“”«»]/g, '"').replace(/[–—‐‑]/g, '-');
+  s = s.replace(/[.,!?;:"()]/g, ' ').replace(/\s*-\s*/g, '-').replace(/\s+/g, ' ').trim();
+  s = s.replace(/(^|[^a-z0-9])'+|'+(?=[^a-z]|$)/g, '$1 ').replace(/\s+/g, ' ').trim(); // quotes around a word: 'gets' → gets
+  // "'s got" is always "has got" (never "is got"), for pronouns AND names: Tim's got = Tim has got; "Tim is got" stays wrong.
+  // iPad without apostrophe: "Tims got" / "shes got" = "… has got" (except words that end in s by themselves: has, is, this, his…)
+  s = s.replace(/\b([a-z]+)'s got\b/g, '$1 has got')
+       .replace(/\b([a-z]+)s got\b/g, (m, w) => /s$|^(ha|i|wa|thi|hi|u|ye|doe|goe|her|our|your|their|thu|plu|ga|bu)$/.test(w) ? m : w + ' has got');
+  s = s.replace(/\bi'm\b/g, 'i am').replace(/\b([a-z]+)'re\b/g, '$1 are')
+       .replace(/\b(it|he|she|that|this|there|here|what|who|where|how)'s\b/g, '$1 is')
+       .replace(/\bisn't\b/g, 'is not').replace(/\baren't\b/g, 'are not')
+       .replace(/\bdon't\b/g, 'do not').replace(/\bdoesn't\b/g, 'does not')
+       .replace(/\bcan't\b/g, 'cannot').replace(/\bcan not\b/g, 'cannot')
+       .replace(/\bhaven't\b/g, 'have not').replace(/\bhasn't\b/g, 'has not')
+       .replace(/\b([a-z]+)'ve\b/g, '$1 have').replace(/\b([a-z]+)'ll\b/g, '$1 will')
+       // 'd is ambiguous (he'd = he had / he would): expand only in "'d like/love/prefer", leave other 'd untouched
+       .replace(/\b(i|you|we|they|he|she)'d (like|love|prefer)\b/g, '$1 would $2')
+       .replace(/\b(i|you|we|they)d (like|love|prefer)\b/g, '$1 would $2') // iPad: "Id like"
+       .replace(/\bdidn't\b/g, 'did not').replace(/\bwasn't\b/g, 'was not').replace(/\bweren't\b/g, 'were not')
+       .replace(/\bmustn't\b/g, 'must not').replace(/\bwon't\b/g, 'will not');
+  s = s.replace(/\bim\b/g, 'i am').replace(/\bdont\b/g, 'do not').replace(/\bdoesnt\b/g, 'does not')
+       .replace(/\bisnt\b/g, 'is not').replace(/\barent\b/g, 'are not').replace(/\bcant\b/g, 'cannot')
+       .replace(/\bhavent\b/g, 'have not').replace(/\bhasnt\b/g, 'has not').replace(/\bdidnt\b/g, 'did not')
+       .replace(/\bwasnt\b/g, 'was not').replace(/\bwerent\b/g, 'were not').replace(/\bmustnt\b/g, 'must not')
+       .replace(/\btheyre\b/g, 'they are').replace(/\byoure\b/g, 'you are')
+       .replace(/\bthats\b/g, 'that is').replace(/\btheres\b/g, 'there is').replace(/\bwhats\b/g, 'what is')
+       .replace(/\bhes\b/g, 'he is').replace(/\bshes\b/g, 'she is')
+       .replace(/\b(i|we|you|they)ve\b/g, '$1 have').replace(/\bwouldnt\b/g, 'would not').replace(/\bcouldnt\b/g, 'could not');
+  return s.replace(/\s+/g, ' ').trim();
+}
+// trap feedback: keys in data.json may be written with contractions/capitals/punctuation → compare normalised
+function trapFor(trap, v) {
+  if (!trap) return null; const n = norm(v);
+  for (const k of Object.keys(trap)) if (k !== '*' && norm(k) === n) return trap[k];
+  return null;
+}
+const matches = (u, acc) => { const n = norm(u); return !!n && acc.some(a => norm(a) === n); };
+// kw: every group needs one alternative present as whole words
+const kwOk = (u, groups) => { const s = ' ' + norm(u) + ' '; return norm(u) !== '' && groups.every(g => g.some(a => s.includes(' ' + norm(a) + ' '))); };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+
+
+let store = {};
+try { const v = JSON.parse(localStorage.getItem(DATA.storageKey) || '{}'); if (v && typeof v === 'object' && !Array.isArray(v)) store = v; } catch (e) {}
+const save = () => { try { localStorage.setItem(DATA.storageKey, JSON.stringify(store)); } catch (e) {} };
+const st = id => { const s = store[id]; if (!s || typeof s !== 'object' || !s.answers || typeof s.answers !== 'object') store[id] = { answers: {}, checked: false, best: null }; return store[id]; };
+
+function render() {
+  const app = document.getElementById('app');
+  const openId = (DATA.lessons.find(L => !(store[L.id] && store[L.id].best === L.items.length)) || DATA.lessons[0]).id;
+  let h = `<h1>${esc(DATA.title)}</h1><p class="muted">${esc(DATA.intro)}</p><div class="chips">` +
+    DATA.lessons.map((L, i) => { const s = store[L.id]; const done = s && s.best === L.items.length; return `<a class="chip ${done ? 'done' : ''}" href="#${L.id}">${done ? '✓ ' : ''}Bài ${i + 1}</a>`; }).join('') + `</div>`;
+  DATA.lessons.forEach((L, i) => { h += lessonHtml(L, i, L.id === openId); });
+  app.innerHTML = h;
+  bind();
+}
+function lessonHtml(L, i, open) {
+  const s = st(L.id), done = s.best === L.items.length;
+  let h = `<details class="lesson" id="${L.id}" ${open ? 'open' : ''}><summary><span class="num ${done ? 'done' : ''}">${done ? '✓' : i + 1}</span><span class="st">${esc(L.title)}<small>⏱ khoảng ${L.minutes} phút${s.best != null ? ` · tốt nhất ${s.best}/${L.items.length}` : ''}</small></span></summary><div class="body">`;
+  h += `<div class="from">${esc(L.fromTest)}</div><div class="rule">${L.rule}</div>`;
+  if (L.examples) h += L.examples.map(e => `<div class="eg">${e}</div>`).join('');
+  if (L.passage) h += `<div class="passage">${esc(L.passage)}</div>`;
+  h += `<h3>Luyện tập</h3>`;
+  L.items.forEach((it, k) => { h += itemHtml(L, it, k, s); });
+  const sc = s.checked ? score(L) : null;
+  h += `<div class="actions">${s.checked ? `<span class="score ${sc === L.items.length ? 'full' : ''}">Đúng ${sc} / ${L.items.length}${sc === L.items.length ? ' 🎉' : ''}</span><button class="btn" data-act="retry" data-l="${L.id}">Làm lại</button>` : `<button class="btn primary" data-act="check" data-l="${L.id}">Kiểm tra</button>`}</div>`;
+  return h + `</div></details>`;
+}
+function inputHtml(L, key, v, r, cls = '') {
+  return `<input class="in-t ${cls} ${r == null ? '' : r ? 'ok' : 'bad'}" data-l="${L.id}" data-k="${key}" value="${esc(v || '')}" ${r == null ? '' : 'readonly'} autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Bài ${L.id}, câu ${+key + 1}">`;
+}
+function itemHtml(L, it, k, s) {
+  const v = s.answers[k], r = s.checked ? isOk(it, v) : null;
+  let body = '';
+  if (it.type === 'mcq' || it.type === 'tf') {
+    const opts = it.type === 'tf' ? ['True', 'False'] : it.options, ans = ansIdx(it);
+    body = `<div class="q">${esc(it.q).replace('___', v != null && v !== '' ? `<u><b>${esc(opts[v])}</b></u>` : '_____')}</div><div class="opts" role="radiogroup" aria-label="Bài ${L.id}, câu ${k + 1}">` + opts.map((o, j) => {
+      const cls = s.checked ? (j === ans ? 'ok' : v === j ? 'bad' : '') : '';
+      return `<label class="opt ${cls}"><input type="radio" name="${L.id}-${k}" data-l="${L.id}" data-k="${k}" value="${j}" ${v === j ? 'checked' : ''} ${s.checked ? 'disabled' : ''}><span>${esc(o)}</span></label>`;
+    }).join('') + `</div>`;
+  } else if (it.type === 'order') {
+    body = `<div class="words">${it.words.map(w => `<span>${esc(w)}</span>`).join('')}</div>${inputHtml(L, k, v, r)}`;
+  } else if (/___/.test(it.q)) {
+    const p = esc(it.q).split('___'); body = `<div class="q">${p[0]}${inputHtml(L, k, v, r, 'gap')}${p.slice(1).join('___')}</div>`;
+  } else {
+    body = `<div class="q">${esc(it.q)}</div>${inputHtml(L, k, v, r)}`;
+  }
+  if (it.say) body = sayHtml(it.say, s.checked) + body;
+  if (s.checked && !r) {
+    const model = it.type === 'mcq' ? it.options[it.answer] : it.type === 'tf' ? it.answer : it.type === 'kw' ? it.model : it.accept[0];
+    let wrongWhy = '';
+    if (it.trap && v != null && v !== '') { const t = (it.type === 'mcq' || it.type === 'tf') ? it.trap[String(v)] : trapFor(it.trap, v); if (t) wrongWhy = `<br><span class="x">Vì sao sai:</span> ${esc(t)}`; }
+    body += `<div class="fb">Đáp án: <span class="a">${esc(model)}</span><br>${esc(it.why)}${wrongWhy}</div>`;
+  }
+  return `<div class="item"><span class="n">${k + 1}.</span><div>${body}</div></div>`;
+}
+// Listening items: the browser reads the sentence aloud (Web Speech API). If the device has no
+// English voice, a parent reads it: the sentence is hidden behind a "Phụ huynh" toggle.
+const canSpeak = (() => { try { return 'speechSynthesis' in window && typeof SpeechSynthesisUtterance === 'function'; } catch (e) { return false; } })();
+function sayHtml(text, shown) {
+  const btn = canSpeak ? `<button type="button" class="btn say" data-say="${esc(text)}">🔊 Nghe</button> <button type="button" class="btn say slow" data-say="${esc(text)}" data-rate="0.6">🐢 Nghe chậm</button>` : `<span class="small muted">Máy này không đọc được — nhờ bố mẹ đọc câu cho con nghe.</span>`;
+  const parent = shown ? `<div class="small muted">Câu trong bài nghe: «${esc(text)}»</div>` : `<details class="small pfb"><summary>Máy không phát ra tiếng? Phụ huynh bấm để xem câu và đọc cho con</summary>«${esc(text)}»</details>`;
+  return `<div class="sayrow">${btn}</div>${parent}`;
+}
+function speak(text, rate) {
+  try {
+    const synth = window.speechSynthesis; synth.cancel();
+    const u = new SpeechSynthesisUtterance(text); u.lang = 'en-GB'; u.rate = rate || 0.9;
+    const v = synth.getVoices().find(x => /^en-GB/i.test(x.lang)) || synth.getVoices().find(x => /^en/i.test(x.lang));
+    if (v) u.voice = v;
+    synth.speak(u);
+  } catch (e) {}
+}
+document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('button[data-say]'); if (b) speak(b.dataset.say, +b.dataset.rate || 0.9); });
+// Show the parent fallback only when this device has no English voice (voices load asynchronously).
+function checkVoices() {
+  let ok = false;
+  try { ok = canSpeak && window.speechSynthesis.getVoices().some(v => /^en/i.test(v.lang)); } catch (e) {}
+  document.body.classList.toggle('novoice', !ok);
+}
+if (canSpeak) { try { window.speechSynthesis.addEventListener('voiceschanged', checkVoices); } catch (e) {} setTimeout(checkVoices, 1500); }
+else document.body.classList.add('novoice');
+const ansIdx = it => it.type === 'tf' ? (it.answer === 'True' ? 0 : 1) : it.answer;
+function isOk(it, v) {
+  if (it.type === 'mcq' || it.type === 'tf') return v === ansIdx(it);
+  if (it.type === 'kw') return kwOk(v, it.kw);
+  return matches(v, it.accept);
+}
+const score = L => { const s = st(L.id); return L.items.filter((it, k) => isOk(it, s.answers[k])).length; };
+function bind() {
+  document.querySelectorAll('input[data-k]').forEach(el => {
+    const s = () => st(el.dataset.l);
+    if (el.type === 'radio') el.addEventListener('change', () => { s().answers[el.dataset.k] = +el.value; save(); rerender(el.dataset.l); });
+    else el.addEventListener('input', () => { s().answers[el.dataset.k] = el.value; save(); });
+  });
+  document.querySelectorAll('button[data-act]').forEach(b => b.addEventListener('click', () => {
+    const L = DATA.lessons.find(x => x.id === b.dataset.l), s = st(L.id);
+    if (b.dataset.act === 'check') { s.checked = true; const sc = score(L); s.best = Math.max(s.best ?? 0, sc); }
+    else { s.checked = false; s.answers = {}; }
+    save(); render(); const d = document.getElementById(L.id); d.open = true; d.querySelector('.actions').scrollIntoView({ block: 'nearest' });
+  }));
+}
+function rerender(id) { // keep other lessons' open state; re-render whole page but restore open lesson
+  const open = [...document.querySelectorAll('details.lesson[open]')].map(d => d.id), y = scrollY;
+  render(); document.querySelectorAll('details.lesson').forEach(d => d.open = open.includes(d.id)); scrollTo(0, y);
+}
+render();
+</script>
+</body>
+</html>
