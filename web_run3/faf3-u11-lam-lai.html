@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 11 · Bài làm lại (Đọc – Viết)</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E📝%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+:root {
+  --bg: #f4f6f3; --surface: #fff; --fg: #1d2924; --muted: #5d6c65; --line: #d7ded8; --line2: #b9c4bd;
+  --accent: #1f6f5c; --accent-ink: #fff; --accent-soft: #e2f1ea;
+  --ok: #2c7a39; --ok-soft: #e4f4e6; --bad: #b9312f; --bad-soft: #fbe7e5; --warn: #9a5b00; --warn-soft: #fff1d6;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #131916; --surface: #1b2420; --fg: #e5ebe6; --muted: #9db0a5; --line: #2c3a33; --line2: #41534a;
+  --accent: #6fcfb0; --accent-ink: #0f1f19; --accent-soft: #1d3a31;
+  --ok: #7bd389; --ok-soft: #1e3525; --bad: #ff8f85; --bad-soft: #3d2321; --warn: #ffc46b; --warn-soft: #3a2c14; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #131916; --surface: #1b2420; --fg: #e5ebe6; --muted: #9db0a5; --line: #2c3a33; --line2: #41534a;
+  --accent: #6fcfb0; --accent-ink: #0f1f19; --accent-soft: #1d3a31;
+  --ok: #7bd389; --ok-soft: #1e3525; --bad: #ff8f85; --bad-soft: #3d2321; --warn: #ffc46b; --warn-soft: #3a2c14; color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--fg); font-family: "Nunito", "Segoe UI", system-ui, sans-serif; font-size: 16px; line-height: 1.5; }
+[hidden] { display: none !important; }
+button, input, select { font: inherit; }
+.top { position: sticky; top: 0; z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+.top .in { max-width: 860px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.brand { font-weight: 800; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.back { white-space: nowrap; }
+.back { margin-left: auto; font-size: .88rem; font-weight: 700; color: var(--accent); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; }
+.wrap { max-width: 860px; margin: 0 auto; padding: 16px 16px 120px; }
+h1 { font-size: 1.45rem; margin: 6px 0 4px; line-height: 1.25; }
+h2.part { font-size: 1.15rem; margin: 28px 0 8px; padding-bottom: 4px; border-bottom: 2px solid var(--accent); }
+.muted { color: var(--muted); } .small { font-size: .88rem; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; margin: 12px 0; }
+.btn { border: 1px solid var(--line2); background: var(--surface); color: var(--fg); border-radius: 10px; padding: 9px 14px; cursor: pointer; font-weight: 700; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn:focus-visible, .in-t:focus-visible, select:focus-visible, .opt input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+.exh { display: flex; gap: 10px; align-items: flex-start; }
+.num { flex: 0 0 auto; min-width: 30px; height: 30px; padding: 0 6px; border-radius: 15px; background: var(--accent); color: var(--accent-ink); font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.ttl { flex: 1; min-width: 0; } .ttl b { font-size: 1.02rem; } .ttl .vi { display: block; color: var(--muted); font-size: .9rem; }
+.pts { flex: 0 0 auto; font-size: .8rem; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+.pts.done { color: var(--fg); font-weight: 800; }
+.audio { margin: 10px 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.audio audio { width: 100%; max-width: 420px; }
+.bank { display: flex; flex-wrap: wrap; gap: 6px 14px; background: var(--accent-soft); padding: 8px 12px; border-radius: 10px; margin: 10px 0; font-weight: 700; }
+.eg { margin: 8px 0 2px; color: var(--muted); font-size: .95rem; }
+.eg b { color: var(--accent); }
+.passage { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 10px 0; white-space: pre-line; line-height: 1.7; }
+.passage h4 { margin: 0 0 4px; }
+.item { display: grid; grid-template-columns: 1.8em minmax(0, 1fr); gap: 4px 6px; padding: 10px 0; border-top: 1px dashed var(--line); }
+.item .n { font-weight: 800; color: var(--muted); padding-top: 2px; }
+.q { margin-bottom: 6px; }
+.opts { display: flex; flex-wrap: wrap; gap: 6px 8px; }
+.opt { display: inline-flex; align-items: center; gap: 6px; border: 1.5px solid var(--line2); border-radius: 10px; padding: 6px 12px; cursor: pointer; background: var(--surface); }
+.opt input { accent-color: var(--accent); margin: 0; }
+.opt.ok { border-color: var(--ok); background: var(--ok-soft); } .opt.bad { border-color: var(--bad); background: var(--bad-soft); }
+.in-t { padding: 8px 10px; border: 1.5px solid var(--line2); border-radius: 8px; background: var(--surface); color: var(--fg); width: 100%; font-size: 1rem; }
+.in-t.gap { width: 9em; display: inline-block; padding: 4px 8px; margin: 2px; }
+select.in-t { width: auto; max-width: 100%; }
+.in-t.ok { border-color: var(--ok); background: var(--ok-soft); } .in-t.bad { border-color: var(--bad); background: var(--bad-soft); }
+.words { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+.blank { display: inline-block; min-width: 4.5em; border-bottom: 2px solid var(--line2); padding: 0 4px; margin: 0 2px; font-weight: 700; color: var(--accent); text-align: center; }
+.words span { border: 1px dashed var(--line2); border-radius: 6px; padding: 2px 8px; font-weight: 700; }
+.fb { font-size: .9rem; color: var(--muted); margin-top: 6px; border-left: 3px solid var(--line2); padding-left: 8px; }
+.fb .a { color: var(--ok); font-weight: 800; } .fb .x { color: var(--bad); font-weight: 800; }
+.bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; background: var(--surface); border-top: 1px solid var(--line); padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); }
+.bar .in { max-width: 860px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.confirm { background: var(--warn-soft); border: 1px solid var(--warn); border-radius: 10px; padding: 8px 12px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.score { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.score .big { font-size: 2.6rem; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.band { font-weight: 800; font-size: 1.1rem; }
+table.t { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: .93rem; }
+table.t th, table.t td { border-bottom: 1px solid var(--line); padding: 5px 6px; text-align: left; }
+table.t td.r, table.t th.r { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pbar { height: 8px; background: var(--line); border-radius: 999px; overflow: hidden; min-width: 60px; }
+.pbar i { display: block; height: 100%; background: var(--accent); }
+.pbar i.low { background: var(--bad); } .pbar i.mid { background: var(--warn); }
+.speak li { margin: 4px 0; }
+.rub { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0 8px; }
+.hist li { margin: 3px 0; }
+@media (max-width: 480px) { .in-t.gap { width: 7.5em; } .brand { font-size: .9rem; } .back { font-size: .8rem; padding: 3px 9px; } .top .in { padding: 8px 12px; gap: 6px; } }
+</style>
+</head>
+<body>
+<div class="top"><div class="in"><span class="brand">📝 Family and Friends 3 · Unit 11 · Làm lại</span><a class="back" href="./">← Về trang chính</a></div></div>
+<main class="wrap" id="app"></main>
+<div class="bar" id="bar"><div class="in"><span id="prog" class="muted"></span><span id="barBtns"></span></div></div>
+<script>
+const DATA = {"pageTitle":"Unit 11 · Bài làm lại (Đọc – Viết)","brand":"Family and Friends 3 · Unit 11 · Làm lại","storageKey":"faf3-u11-lam-lai-v1","exportName":"ket-qua-u11-lam-lai.json","audioDir":"u11-lam-lai","outFile":"faf3-u11-lam-lai.html","title":"Unit 11 · Bài làm lại phần Đọc – Viết","subtitle":"Vocabulary · Reading · Writing — 100 điểm, khoảng 40 phút. Cùng dạng bài với bài kiểm tra trên giấy, nhưng bài đọc và câu hỏi đều mới.","instructions":["Làm lần lượt từ trên xuống. Đọc kỹ câu lệnh tiếng Anh và dòng tiếng Việt bên dưới.","Điền từ trong khung: nhìn từ đứng TRƯỚC chỗ trống (can, very, a, to …) để biết cần loại từ gì, rồi đọc lại cả câu.","Bài đọc: tìm câu trong bài nói cùng ý với câu hỏi, rồi CHÉP 1–3 từ trong bài vào chỗ trống.","Chữ hoa hay chữ thường đều được; mustn't hay must not đều được. Làm xong bấm «Nộp bài» ở dưới cùng. Bài đang làm được tự lưu trên máy này."],"parts":{"A":"Part A · Vocabulary (19 điểm)","B":"Part B · Reading (57 điểm)","C":"Part C · Writing (24 điểm)"},"unitTitles":{"7":"Places to go! (ngày trong tuần)","10":"In the park! (must / mustn't)","11":"In the museum (phương tiện, bài đọc quá khứ)"},"bands":[{"min":85,"label":"Giỏi","advice":"Con đã làm chắc phần Đọc – Viết của Unit 11. Có thể học tiếp Unit 12."},{"min":70,"label":"Khá","advice":"Tiến bộ rõ so với bài trên giấy. Xem lại các câu sai (có giải thích) rồi học tiếp."},{"min":50,"label":"Trung bình","advice":"Làm lại bài học nhanh «Ôn tập trước khi làm lại Unit 11» ở các phần có thanh màu cam/đỏ, sau 2–3 ngày làm lại bài này."},{"min":0,"label":"Cần ôn lại","advice":"Ngồi cùng con làm lại từng bài trong trang ôn tập (nhất là bài 1 và bài 2), rồi mới làm lại bài này."}],"audioSources":{},"exercises":[{"id":"A1","part":"A","type":"text","pts":2,"title":"Read the sentences and write the correct names of transport.","vi":"Đọc từng câu tả một phương tiện, viết tên phương tiện trong khung (viết cả «a», ví dụ: a car). Có 1 từ thừa.","bank":["a train","a ferry","a bike","a taxi","a helicopter","a bus","a tram","a plane","a motorbike"],"items":[{"q":"It's a big boat. It takes people and their cars from one side of the water to the other side.","accept":["a ferry","ferry"],"unit":11,"level":1,"why":"Thuyền lớn chở người và ô tô qua sông/biển → a ferry (phà).","trap":{"a bus":"Xe buýt chạy trên đường, không chạy trên nước. Thuyền chở cả ô tô → a ferry.","a fery":"Gần đúng rồi! ferry có HAI chữ r: f-e-r-r-y."}},{"q":"It can fly, but it hasn't got wings. It can stop in the air above one place.","accept":["a helicopter","helicopter"],"unit":11,"level":2,"why":"Bay được, không có cánh như máy bay, đứng yên được trên không → a helicopter (trực thăng).","trap":{"a plane":"Máy bay (plane) CÓ cánh và không đứng yên trên không được. Không có cánh → a helicopter.","a helicoper":"Thiếu chữ t: he-li-cop-t-er (10 chữ cái)."}},{"q":"It runs on tracks in the streets of a city. It is shorter than a train.","accept":["a tram","tram"],"unit":11,"level":2,"why":"Chạy trên đường ray NGAY TRÊN ĐƯỜNG PHỐ trong thành phố, ngắn hơn tàu hoả → a tram (tàu điện).","trap":{"a train":"Câu nói «shorter than a train» (ngắn hơn tàu hoả) → không thể là train. Chạy trên phố → a tram.","a bus":"Xe buýt không chạy trên đường ray (tracks). Có tracks, trên phố → a tram."}},{"q":"It is very long. It goes on tracks from one city to another city.","accept":["a train","train"],"unit":11,"level":1,"why":"Rất dài, chạy trên đường ray, đi từ thành phố này sang thành phố khác → a train (tàu hoả).","trap":{"a tram":"Tram chỉ chạy trong một thành phố và ngắn hơn. Rất dài, đi xa giữa các thành phố → a train."}},{"q":"It has got two wheels and an engine. You must wear a helmet on it.","accept":["a motorbike","motorbike","a motor bike","motor bike"],"unit":11,"level":2,"why":"Hai bánh, CÓ động cơ (engine), phải đội mũ bảo hiểm → a motorbike (xe máy).","trap":{"a bike":"Xe đạp (bike) có hai bánh nhưng KHÔNG có động cơ (engine). Có engine → a motorbike.","a motobike":"Thiếu chữ r: mo-t-o-r-bike (motor + bike)."}},{"q":"It's a car with a driver. You tell the driver where you want to go, and then you pay.","accept":["a taxi","taxi"],"unit":11,"level":1,"why":"Ô tô có tài xế, mình nói chỗ muốn đến rồi trả tiền → a taxi.","trap":{"a bus":"Xe buýt đi theo đường có sẵn, dừng ở trạm; không đưa mình đến đúng chỗ mình muốn. → a taxi."}},{"q":"It has got wings and it flies very high. You get on it at the airport.","accept":["a plane","plane"],"unit":11,"level":1,"why":"Có cánh, bay rất cao, lên ở sân bay (airport) → a plane (máy bay).","trap":{"a helicopter":"Trực thăng không có cánh như máy bay. Có wings, lên ở airport → a plane."}},{"q":"It has got lots of seats, but it doesn't run on tracks. It stops at many stops in the town, and lots of people get on and off.","accept":["a bus","bus"],"unit":11,"level":2,"why":"Nhiều ghế, KHÔNG chạy trên đường ray, dừng ở nhiều trạm trong thị trấn → a bus (xe buýt).","trap":{"a taxi":"Taxi chỉ chở vài người và không dừng ở các trạm. Nhiều người lên xuống ở trạm → a bus.","a tram":"Tàu điện (tram) cũng dừng ở nhiều trạm, nhưng nó chạy trên đường ray. Câu nói «doesn't run on tracks» → a bus."}}]},{"id":"A2","part":"A","type":"text","title":"Read and write the word. The first letter is there to help you.","vi":"Viết cả từ còn thiếu (chữ cái đầu đã cho sẵn; mỗi gạch là một chữ cái).","items":[{"q":"Saturday and Sunday are the w _ _ _ _ _ _ (7 letters).","accept":["weekend","eekend"],"unit":7,"level":2,"why":"Thứ Bảy và Chủ nhật = cuối tuần: week + end = weekend (7 chữ cái).","trap":{"weenday":"Cuối tuần là week (tuần) + end (cuối): weekend.","weekday":"weekday = ngày thường (thứ Hai–thứ Sáu). Thứ Bảy, Chủ nhật = weekend.","weekand":"Phần sau là end (cuối): week-end."}},{"q":"The day after Tuesday is W _ _ _ _ _ _ _ _ (9 letters).","accept":["Wednesday","ednesday"],"unit":7,"level":3,"why":"Sau thứ Ba là thứ Tư: W-e-d-n-e-s-d-a-y (9 chữ, có chữ d câm sau We).","trap":{"wenesday":"Thiếu chữ d: We-d-nes-day (9 chữ).","wendsday":"Thứ tự đúng: Wed-nes-day (9 chữ).","thursday":"Thursday là thứ Năm (sau thứ Tư). Sau Tuesday (thứ Ba) là Wednesday."}},{"q":"The day before Friday is T _ _ _ _ _ _ _ (8 letters).","accept":["Thursday","hursday"],"unit":7,"level":2,"why":"Trước thứ Sáu là thứ Năm: T-h-u-r-s-d-a-y (8 chữ).","trap":{"tuesday":"Tuesday là thứ Ba (7 chữ). Trước Friday là Thursday (8 chữ).","thurday":"Thiếu chữ s: Thur-s-day (8 chữ).","thusday":"Thiếu chữ r: Thu-r-s-day (8 chữ)."}}]},{"id":"B1","part":"B","type":"text","pts":3,"title":"Read and complete the text with the words in the box.","vi":"Đọc bài về phà (ferry). Viết từ trong khung vào chỗ trống (1)–(4). Có 2 từ thừa.","passageTitle":"Ferries","passage":"Ferries are big boats. They can (1) ________ people, cars and even buses over the sea. Do you like ferries?\n\nBefore they get on a ferry, people (2) ________ in a long line with their tickets. Cars drive inside the ferry and stay at the bottom of the boat.\n\nOn a ferry, there are seats and big windows. You can look at the sea and the birds. Some ferries are very (3) ________. They have shops, cafés and even a small cinema!\n\nSome ferries are (4) ________. They go across the water very quickly, but they are smaller.","bank":["carry","swim","big","wait","slow","fast"],"items":[{"q":"(1) They can ___ people, cars and even buses over the sea.","accept":["carry"],"unit":11,"level":1,"why":"Sau can → động từ nguyên mẫu. Phà CHỞ người, ô tô, xe buýt qua biển → carry.","trap":{"wait":"wait (chờ) cũng là động từ, nhưng «chờ người và ô tô qua biển» không đúng nghĩa. Phà CHỞ người → carry.","swim":"Phà không bơi, và «swim people» không có nghĩa. Phà chở người → carry.","big":"Sau can phải là động từ (can + làm gì). big là tính từ → carry.","fast":"Sau can phải là động từ. fast là tính từ → carry.","slow":"Sau can phải là động từ. slow là tính từ → carry."}},{"q":"(2) Before they get on a ferry, people ___ in a long line with their tickets.","accept":["wait"],"unit":11,"level":2,"why":"Sau people (chủ ngữ) → động từ. Mọi người CHỜ thành hàng dài trước khi lên phà → wait.","trap":{"carry":"carry cần có vật được chở ngay sau (carry bags). «carry in a long line» không có nghĩa. Xếp hàng → wait.","swim":"Không ai bơi ở bến phà với vé trên tay. Xếp hàng chờ → wait.","slow":"people + ___ cần động từ; slow là tính từ → wait."}},{"q":"(3) Some ferries are very ___. They have shops, cafés and even a small cinema!","accept":["big"],"unit":11,"level":2,"why":"Sau very → tính từ. Có cả cửa hàng, quán cà phê, rạp chiếu phim → phà rất TO: big.","trap":{"fast":"fast cũng là tính từ, nhưng câu sau nói có shops, cafés, cinema → nói về kích thước: big.","slow":"slow cũng là tính từ, nhưng có cửa hàng và rạp phim → phà rất to: big.","carry":"Sau very cần tính từ (very big). carry là động từ."}},{"q":"(4) Some ferries are ___. They go across the water very quickly, but they are smaller.","accept":["fast"],"unit":11,"level":1,"why":"Sau are → tính từ. «go … very quickly» (đi rất nhanh) → fast.","trap":{"slow":"Câu sau nói «very quickly» = rất nhanh → ngược với slow. Đáp án: fast.","big":"Câu sau nói «they are smaller» (nhỏ hơn) → không phải big. Đi rất nhanh → fast.","swim":"Sau are cần tính từ. swim là động từ → fast."}}]},{"id":"B2","part":"B","type":"text","pts":3,"title":"Read the text about ferries again. Complete the sentences.","vi":"Đọc lại bài «Ferries». Câu hỏi viết KHÁC bài một chút — tìm câu trong bài có cùng ý, rồi chép 1–3 từ trong BÀI (không lấy từ trong khung).","items":[{"q":"People stand in ___ before they get on a ferry.","accept":["a long line","long line","a line","line"],"unit":11,"level":3,"why":"Bài viết: «people wait in a long line». stand in = wait in → chép «a long line».","trap":{"wait":"wait là từ trong khung (đã dùng ở chỗ (2)). Câu này cần chép cụm từ trong bài: a long line.","a ferry":"Câu hỏi đã có «a ferry» ở cuối rồi. Mọi người đứng trong «a long line» (một hàng dài).","tickets":"Mọi người cầm vé (tickets), còn đứng trong «a long line»."}},{"q":"Cars stay at the ___ of the ferry.","accept":["bottom"],"unit":11,"level":2,"why":"Bài viết: «Cars … stay at the bottom of the boat» → bottom (dưới đáy).","trap":{"inside":"Đúng là ô tô ở inside, nhưng chỗ trống nằm giữa «at the ___ of» → bottom.","carry":"carry là từ trong khung, không hợp với «at the ___ of». Chép từ trong bài: bottom.","top":"Bài viết «at the bottom» (ở dưới đáy), không phải top."}},{"q":"On some ferries, you can watch a film in ___.","accept":["a small cinema","a cinema","the cinema","small cinema","cinema"],"unit":11,"level":3,"why":"Xem phim (watch a film) ở rạp chiếu phim. Bài viết: «even a small cinema» → a small cinema.","trap":{"a cafe":"Quán cà phê (café) để ăn uống. Xem phim ở «a small cinema».","shops":"shops là cửa hàng. Xem phim ở «a small cinema».","big":"big là từ trong khung. Câu này cần chép cụm từ trong bài: a small cinema."}}]},{"id":"B3","part":"B","type":"text","pts":3,"title":"Read the story. Choose and write the correct words next to numbers 1–5.","vi":"Đọc chuyện (đã xảy ra rồi). Viết từ trong khung vào chỗ trống. Có 4 từ thừa.","passageTitle":"Our trip to the beach","passage":"Last Saturday, my family went to the beach by train. The sky was blue and it was very (1) ________. On the train, my little brother told funny stories and we all (2) ________.\n\nAt the beach, there was a really (3) ________ shell next to our bags. It was bigger than my hand! Then Dad bought ice creams for everyone.\n\nAt lunchtime, we had a picnic under a tree and ate (4) ________ with cheese and tomatoes. In the afternoon, we saw a boat on the sea.\n\nOn Monday, our teacher asked us to (5) ________ a picture of our weekend. This is my picture!","bank":["sun","laughed","hungry","draw","sunny","sandwiches","laugh","big","drawing"],"items":[{"q":"(1) The sky was blue and it was very ___.","accept":["sunny"],"unit":11,"level":2,"why":"Sau very → tính từ: sunny (có nắng). sun là danh từ (mặt trời).","trap":{"sun":"sun (mặt trời) là danh từ; sau very phải là tính từ → sunny.","hungry":"hungry là tính từ nhưng «it» ở đây là thời tiết — trời không «đói». Trời xanh, nắng → sunny.","big":"«it was very big» — trời không «to». Nói về thời tiết → sunny."}},{"q":"(2) My little brother told funny stories and we all ___.","accept":["laughed"],"unit":11,"level":2,"why":"Chuyện đã xảy ra (told, was) → động từ quá khứ: laughed (đã cười).","trap":{"laugh":"Đây là chuyện đã qua (Last Saturday, told) → thêm -ed: laughed.","drawing":"Trên tàu, em kể chuyện vui → mọi người cười: laughed.","draw":"Nghe chuyện vui thì cười, không vẽ. Chuyện đã qua → laughed."}},{"q":"(3) At the beach, there was a really ___ shell next to our bags.","accept":["big"],"unit":11,"level":1,"why":"Giữa «a really ___ shell» → tính từ. «bigger than my hand» → big.","trap":{"sunny":"sunny (có nắng) nói về thời tiết, không nói về vỏ sò. To hơn bàn tay → big.","hungry":"Vỏ sò không biết «đói». To hơn bàn tay → big.","sandwiches":"Sau a really cần tính từ, không phải danh từ. → big."}},{"q":"(4) We had a picnic under a tree and ate ___ with cheese and tomatoes.","accept":["sandwiches"],"unit":11,"level":2,"why":"Sau ate (đã ăn) → danh từ (món ăn). Bánh mì kẹp phô mai và cà chua → sandwiches.","trap":{"hungry":"hungry là tính từ (đói), không ăn «đói» được. Sau ate cần món ăn → sandwiches.","sun":"Không ai ăn mặt trời! Món ăn có phô mai, cà chua → sandwiches."}},{"q":"(5) On Monday, our teacher asked us to ___ a picture of our weekend.","accept":["draw"],"unit":11,"level":3,"why":"Sau to → động từ nguyên mẫu: to draw a picture (vẽ một bức tranh).","trap":{"drawing":"Sau to dùng động từ nguyên mẫu, không thêm -ing → draw.","laughed":"Sau to không dùng dạng -ed; và «cười một bức tranh» không có nghĩa → draw.","laugh":"«laugh a picture» không có nghĩa. Bức tranh thì vẽ → draw."}}]},{"id":"B4","part":"B","type":"kw","pts":3,"title":"Read. Write 1, 2 or 3 words to complete the sentences about the story.","vi":"Đọc chuyện của Anna. Câu hỏi viết KHÁC bài một chút. Tìm câu cùng ý trong bài, chép 1–3 từ trong bài vào chỗ trống.","passageTitle":"Ben's birthday","passage":"My name's Anna. Last Sunday was my brother Ben's eighth birthday.\n\nIn the morning, Ben opened his presents. Grandpa bought him a kite, and Aunt Lucy got him a book about animals. Mum and Dad got him a new skateboard. He loved it!\n\nIn the afternoon, Dad took us to the park by bus with four of Ben's friends. We played with the kite, but it was very windy and the kite went into a tall tree! Dad climbed the tree and got it back.\n\nWhen we got home, everyone was very hungry. We had pizza and orange juice. Then we ate a big chocolate cake. In the evening, we watched a funny film about a dog.\n\nBen says it was his best birthday. Next year, he would like to have a party at the swimming pool with all the children in his class.","items":[{"q":"Ben got ___ from his grandpa.","kw":[["kite"]],"model":"a kite","unit":11,"level":1,"why":"Bài viết: «Grandpa bought him a kite» → ông mua cho Ben = Ben nhận từ ông: a kite.","trap":{"a book":"Quyển sách về động vật là quà của Aunt Lucy. Quà của ông (Grandpa) là a kite.","a skateboard":"Ván trượt là quà của bố mẹ. Quà của ông là a kite."}},{"q":"Ben's parents bought him ___.","kw":[["skateboard"]],"model":"a new skateboard","unit":11,"level":2,"why":"parents = Mum and Dad. Bài viết: «Mum and Dad got him a new skateboard» (got ở đây = bought).","trap":{"a kite":"Trong bài, từ «bought» đi với Grandpa, nhưng câu hỏi nói về parents (bố mẹ) = Mum and Dad → a new skateboard.","a book":"Quyển sách là của Aunt Lucy. Bố mẹ (Mum and Dad) tặng a new skateboard."}},{"q":"Anna and Ben went to the park with Dad and ___.","kw":[["four","4"],["friends"]],"model":"four friends","unit":11,"level":2,"why":"went = Dad took us. Bài viết: «Dad took us to the park by bus with four of Ben's friends» → four friends (nhớ viết số lượng).","trap":{"Ben's friends":"Gần đúng! Bài nói rõ có mấy bạn: four of Ben's friends → four friends.","bus":"by bus là đi bằng gì; câu hỏi hỏi đi CÙNG AI (with …) → four friends.","family":"Bài viết «with four of Ben's friends» → four friends.","Mum":"Bài không nói Mum đi công viên. Đi cùng Dad và «four of Ben's friends» → four friends."}},{"q":"There was a lot of wind, so the kite went into ___.","kw":[["tree"]],"model":"a tall tree","unit":11,"level":2,"why":"a lot of wind = very windy. Bài viết: «the kite went into a tall tree» → a tall tree.","trap":{"windy":"windy chính là «a lot of wind» ở đầu câu rồi. Con diều đã bay vào đâu? → a tall tree.","the park":"Cả nhà đã ở trong công viên rồi. Diều bay vào cây: a tall tree."}},{"q":"___ went up the tree and got the kite.","kw":[["dad","father"]],"model":"Dad","unit":11,"level":3,"why":"went up the tree = climbed the tree. Bài viết: «Dad climbed the tree and got it back» → Dad.","trap":{"Ben":"Ben không trèo cây. Bài viết «Dad climbed the tree» → Dad.","Grandpa":"Ông chỉ mua diều. Người trèo cây là Dad."}},{"q":"At home, the hungry children ate ___ before the cake.","kw":[["pizza"]],"model":"pizza","unit":11,"level":2,"why":"ate = had. Bài viết: «We had pizza and orange juice. Then we ate a big chocolate cake» → trước bánh là pizza.","trap":{"a big chocolate cake":"Câu hỏi hỏi món ăn TRƯỚC bánh (before the cake). Bánh ăn sau (Then …) → pizza.","chocolate cake":"Câu hỏi hỏi món ăn TRƯỚC bánh (before the cake). Bánh ăn sau (Then …) → pizza.","orange juice":"orange juice là đồ uống. Món ăn trước bánh → pizza."}},{"q":"Next year, Ben wants to have a party at ___.","kw":[["swimming pool","pool"]],"model":"the swimming pool","unit":11,"level":3,"why":"wants = would like. Bài viết: «he would like to have a party at the swimming pool».","trap":{"the park":"Năm nay cả nhà đi công viên. Năm sau Ben muốn tổ chức ở the swimming pool.","his class":"«with all the children in his class» là đi CÙNG AI. Tổ chức Ở ĐÂU → the swimming pool."}}]},{"id":"C1","part":"C","type":"text","pts":3,"title":"Look at the signs in the museum. Write what you must or mustn't do. Use the words.","vi":"Nhìn biển báo trong bảo tàng (🚫 = cấm). Viết cả câu, bắt đầu bằng You must … hoặc You mustn't … và dùng các từ cho sẵn.","example":"🍦🚫 (eat / ice cream) → \u003cb>You mustn't eat ice cream here.\u003c/b>","items":[{"q":"🖐️🚫 (touch / the old things)","accept":["You mustn't touch the old things","You mustn't touch the old things here","You mustn't touch the old things in here","You mustn't touch the old things in the museum","In the museum, you mustn't touch the old things","You mustn't touch old things","You mustn't touch old things here","You mustn't touch old things in here","You mustn't touch old things in the museum","In the museum, you mustn't touch old things"],"unit":10,"level":1,"why":"Biển cấm (🚫) → You mustn't + động từ nguyên mẫu: You mustn't touch the old things (here).","trap":{"You must touch the old things.":"Có 🚫 (cấm) → mustn't, không phải must.","You mustn't touching the old things.":"Sau mustn't dùng động từ nguyên mẫu: touch (không -ing).","You mustn't touch the old things at here.":"Bỏ at: here (ở đây) đứng một mình → You mustn't touch the old things here.","You mustn't to touch the old things.":"Sau mustn't không có to: You mustn't touch …","*":"Kiểm tra lại 3 điều: (1) biển có 🚫 → mustn't, không có 🚫 → must; (2) sau must / mustn't là động từ nguyên mẫu (không to, không -ing); (3) «here» đứng một mình — KHÔNG viết «at here». Nhớ dùng đủ các từ cho sẵn."}},{"q":"🤫 (be / quiet)","accept":["You must be quiet","You must be quiet here","You must be quiet in here","You must be quiet in the museum","In the museum, you must be quiet","You must be very quiet","You must be very quiet here","You must be very quiet in here","You must be very quiet in the museum","In the museum, you must be very quiet"],"unit":10,"level":2,"why":"Biển yêu cầu giữ im lặng → You must be quiet. quiet = yên lặng (q-u-i-e-t).","trap":{"You must be quite.":"quite (khá) khác quiet (yên lặng). Viết: q-u-i-e-t → quiet.","You must be quite here.":"quite (khá) khác quiet (yên lặng). Viết: q-u-i-e-t → You must be quiet here.","You must quiet.":"Thiếu be: You must BE quiet (quiet là tính từ, cần be đứng trước).","You must be quiet at here.":"Bỏ at: here đứng một mình → You must be quiet here.","You mustn't be quiet.":"Biển 🤫 bảo giữ im lặng → must be quiet (mustn't = không được).","*":"Kiểm tra lại 3 điều: (1) biển có 🚫 → mustn't, không có 🚫 → must; (2) sau must / mustn't là động từ nguyên mẫu (không to, không -ing); (3) «here» đứng một mình — KHÔNG viết «at here». Nhớ dùng đủ các từ cho sẵn."}},{"q":"🏃🚫 (run)","accept":["You mustn't run","You mustn't run here","You mustn't run in here","You mustn't run in the museum","In the museum, you mustn't run"],"unit":10,"level":1,"why":"Biển cấm chạy → You mustn't run (here).","trap":{"You must run here.":"Có 🚫 (cấm) → mustn't run.","You mustn't running here.":"Sau mustn't dùng động từ nguyên mẫu: run.","You mustn't run at here.":"Bỏ at: here đứng một mình → You mustn't run here.","You mustn't to run here.":"Sau mustn't không có to: You mustn't run here.","*":"Kiểm tra lại 3 điều: (1) biển có 🚫 → mustn't, không có 🚫 → must; (2) sau must / mustn't là động từ nguyên mẫu (không to, không -ing); (3) «here» đứng một mình — KHÔNG viết «at here». Nhớ dùng đủ các từ cho sẵn."}},{"q":"📵 (turn off / your mobile phone)","accept":["You must turn off your mobile phone","You must turn off your mobile phone here","You must turn off your mobile phone in here","You must turn off your mobile phone in the museum","In the museum, you must turn off your mobile phone","You must turn your mobile phone off","You must turn your mobile phone off here","You must turn your mobile phone off in here","You must turn your mobile phone off in the museum","In the museum, you must turn your mobile phone off","You must turn off your phone","You must turn off your phone here","You must turn off your phone in here","You must turn off your phone in the museum","In the museum, you must turn off your phone","You must turn your phone off","You must turn your phone off here","You must turn your phone off in here","You must turn your phone off in the museum","In the museum, you must turn your phone off","You must turn off your mobile","You must turn off your mobile here","You must turn off your mobile in here","You must turn off your mobile in the museum","In the museum, you must turn off your mobile","You must turn your mobile off","You must turn your mobile off here","You must turn your mobile off in here","You must turn your mobile off in the museum","In the museum, you must turn your mobile off"],"unit":10,"level":3,"why":"Biển điện thoại bị gạch → phải tắt điện thoại: You must turn off your mobile phone. (Từ cho sẵn là turn off, nên câu dùng must.)","trap":{"You mustn't turn off your mobile phone.":"mustn't turn off = KHÔNG được tắt máy — ngược nghĩa! Biển bảo phải tắt → You must turn off …","You must turn on your mobile phone.":"turn on = bật. Biển bảo tắt → turn off.","You must turn off your mobile phone at here.":"Bỏ at: here đứng một mình → … your mobile phone here.","You must to turn off your mobile phone.":"Sau must không có to: You must turn off …","*":"Kiểm tra lại 3 điều: (1) biển có 🚫 → mustn't, không có 🚫 → must; (2) sau must / mustn't là động từ nguyên mẫu (không to, không -ing); (3) «here» đứng một mình — KHÔNG viết «at here». Nhớ dùng đủ các từ cho sẵn."}},{"q":"🗑️ (put / litter / in the bin)","accept":["You must put litter in the bin","You must put litter in the bin in the museum","In the museum, you must put litter in the bin","You must put your litter in the bin","You must put your litter in the bin in the museum","In the museum, you must put your litter in the bin","You must put the litter in the bin","You must put the litter in the bin in the museum","In the museum, you must put the litter in the bin","You must put rubbish in the bin","You must put rubbish in the bin in the museum","In the museum, you must put rubbish in the bin","You must put your rubbish in the bin","You must put your rubbish in the bin in the museum","In the museum, you must put your rubbish in the bin"],"unit":10,"level":3,"why":"Biển thùng rác → phải bỏ rác vào thùng: You must put litter in the bin.","trap":{"You mustn't put litter in the bin.":"mustn't = không được — bảo tàng muốn con BỎ rác vào thùng → must.","You must to put litter in the bin.":"Sau must không có to: You must put …","You must put litter in the bin at here.":"Bỏ at here: «in the bin» đã nói chỗ rồi → You must put litter in the bin.","You must put litter.":"Thiếu chỗ bỏ rác: … in the bin.","*":"Kiểm tra lại 3 điều: (1) biển có 🚫 → mustn't, không có 🚫 → must; (2) sau must / mustn't là động từ nguyên mẫu (không to, không -ing); (3) «here» đứng một mình — KHÔNG viết «at here». Nhớ dùng đủ các từ cho sẵn."}}]},{"id":"C2","part":"C","type":"text","pts":3,"title":"Find the mistake. Write the sentence correctly.","vi":"Mỗi câu có MỘT lỗi sai. Viết lại cả câu cho đúng.","items":[{"q":"You mustn't shout at here.","accept":["You mustn't shout here","You mustn't shout in here","You mustn't shout"],"unit":10,"level":2,"why":"here (ở đây) đứng một mình, không có at: You mustn't shout here.","trap":{"You mustn't shout at here.":"Câu này chưa sửa: bỏ at → You mustn't shout here.","You must shout here.":"Sửa xong câu phải giữ nghĩa «không được la hét» → mustn't shout here.","You mustn't shout at":"Phải bỏ at, giữ here: You mustn't shout here."}},{"q":"In the library, you must be quite.","accept":["In the library, you must be quiet","You must be quiet in the library","In the library you must be quiet"],"unit":10,"level":2,"why":"yên lặng = quiet (q-u-i-e-t). quite nghĩa là «khá» (quite tall = khá cao).","trap":{"In the library, you must be quite.":"Câu này chưa sửa: quite → quiet (yên lặng).","In the library, you mustn't be quiet.":"Trong thư viện phải yên lặng → must be quiet, giữ must.","In the library, you must be quit.":"Thiếu chữ e: q-u-i-e-t."}},{"q":"You must to walk in the museum.","accept":["You must walk in the museum","In the museum you must walk"],"unit":10,"level":3,"why":"Sau must dùng động từ nguyên mẫu, KHÔNG có to: You must walk …","trap":{"You must to walk in the museum.":"Câu này chưa sửa: bỏ to sau must.","You must walking in the museum.":"Sau must dùng động từ nguyên mẫu: walk (không -ing).","You mustn't walk in the museum.":"Câu gốc nói phải đi bộ (không chạy) → giữ must, chỉ bỏ to."}}]}]};
+const LS = DATA.storageKey;
+
+// ---- grading helpers (same rules as Revision 1–9: case-insensitive, contractions = full forms)
+function norm(s) {
+  s = String(s == null ? '' : s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); // café = cafe
+  s = s.replace(/[’‘`´ʼ′]/g, "'").replace(/[“”«»]/g, '"').replace(/[–—‐‑]/g, '-');
+  s = s.replace(/[.,!?;:"()]/g, ' ').replace(/\s*-\s*/g, '-').replace(/\s+/g, ' ').trim();
+  s = s.replace(/(^|[^a-z0-9])'+|'+(?=[^a-z]|$)/g, '$1 ').replace(/\s+/g, ' ').trim(); // quotes around a word: 'gets' → gets
+  // "'s got" is always "has got" (never "is got"), for pronouns AND names: Tim's got = Tim has got; "Tim is got" stays wrong.
+  // iPad without apostrophe: "Tims got" / "shes got" = "… has got" (except words that end in s by themselves: has, is, this, his…)
+  s = s.replace(/\b([a-z]+)'s got\b/g, '$1 has got')
+       .replace(/\b([a-z]+)s got\b/g, (m, w) => /s$|^(ha|i|wa|thi|hi|u|ye|doe|goe|her|our|your|their|thu|plu|ga|bu)$/.test(w) ? m : w + ' has got');
+  s = s.replace(/\bi'm\b/g, 'i am').replace(/\b([a-z]+)'re\b/g, '$1 are')
+       .replace(/\b(it|he|she|that|this|there|here|what|who|where|how)'s\b/g, '$1 is')
+       .replace(/\bisn't\b/g, 'is not').replace(/\baren't\b/g, 'are not')
+       .replace(/\bdon't\b/g, 'do not').replace(/\bdoesn't\b/g, 'does not')
+       .replace(/\bcan't\b/g, 'cannot').replace(/\bcan not\b/g, 'cannot')
+       .replace(/\bhaven't\b/g, 'have not').replace(/\bhasn't\b/g, 'has not')
+       .replace(/\b([a-z]+)'ve\b/g, '$1 have').replace(/\b([a-z]+)'ll\b/g, '$1 will')
+       // 'd is ambiguous (he'd = he had / he would): expand only in "'d like/love/prefer", leave other 'd untouched
+       .replace(/\b(i|you|we|they|he|she)'d (like|love|prefer)\b/g, '$1 would $2')
+       .replace(/\b(i|you|we|they)d (like|love|prefer)\b/g, '$1 would $2') // iPad: "Id like"
+       .replace(/\bdidn't\b/g, 'did not').replace(/\bwasn't\b/g, 'was not').replace(/\bweren't\b/g, 'were not')
+       .replace(/\bmustn't\b/g, 'must not').replace(/\bwon't\b/g, 'will not');
+  s = s.replace(/\bim\b/g, 'i am').replace(/\bdont\b/g, 'do not').replace(/\bdoesnt\b/g, 'does not')
+       .replace(/\bisnt\b/g, 'is not').replace(/\barent\b/g, 'are not').replace(/\bcant\b/g, 'cannot')
+       .replace(/\bhavent\b/g, 'have not').replace(/\bhasnt\b/g, 'has not').replace(/\bdidnt\b/g, 'did not')
+       .replace(/\bwasnt\b/g, 'was not').replace(/\bwerent\b/g, 'were not').replace(/\bmustnt\b/g, 'must not')
+       .replace(/\btheyre\b/g, 'they are').replace(/\byoure\b/g, 'you are')
+       .replace(/\bthats\b/g, 'that is').replace(/\btheres\b/g, 'there is').replace(/\bwhats\b/g, 'what is')
+       .replace(/\bhes\b/g, 'he is').replace(/\bshes\b/g, 'she is')
+       .replace(/\b(i|we|you|they)ve\b/g, '$1 have').replace(/\bwouldnt\b/g, 'would not').replace(/\bcouldnt\b/g, 'could not');
+  return s.replace(/\s+/g, ' ').trim();
+}
+// trap feedback: keys in data.json may be written with contractions/capitals/punctuation → compare normalised
+function trapFor(trap, v) {
+  if (!trap) return null; const n = norm(v);
+  for (const k of Object.keys(trap)) if (k !== '*' && norm(k) === n) return trap[k];
+  return null;
+}
+const matches = (u, acc) => { const n = norm(u); return !!n && acc.some(a => norm(a) === n); };
+// kw: every group needs one alternative present as whole words
+const kwOk = (u, groups) => { const s = ' ' + norm(u) + ' '; return norm(u) !== '' && groups.every(g => g.some(a => s.includes(' ' + norm(a) + ' '))); };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+// ---- state
+let store = { attempts: [], draft: null };
+const isObj = o => !!o && typeof o === 'object' && !Array.isArray(o);
+try {
+  const v = JSON.parse(localStorage.getItem(LS) || 'null');
+  if (isObj(v) && Array.isArray(v.attempts)) store = {
+    // drop anything malformed (old versions / hand-edited / corrupted values) instead of crashing
+    attempts: v.attempts.filter(a => isObj(a) && typeof a.score === 'number' && !isNaN(new Date(a.date))),
+    draft: isObj(v.draft) ? v.draft : null };
+} catch (e) {}
+const save = () => { try { localStorage.setItem(LS, JSON.stringify(store)); } catch (e) {} };
+let answers = (store.draft && isObj(store.draft.answers)) ? store.draft.answers : {};
+let graded = null; let confirmOpen = false;
+let speak = (store.draft && isObj(store.draft.speak)) ? store.draft.speak : {};
+
+const items = []; DATA.exercises.forEach(ex => ex.items.forEach((it, i) => items.push({ ex, it, key: ex.id + '.' + (i + 1) })));
+const TOTAL = items.reduce((s, x) => s + (x.it.pts || x.ex.pts || 1), 0);
+
+function render() {
+  const app = document.getElementById('app');
+  let h = `<h1>${esc(DATA.title)}</h1><p class="muted">${esc(DATA.subtitle)}</p>`;
+  h += `<div class="card small">${DATA.instructions.map(esc).join('<br>')}</div>`;
+  if (graded) h += resultHtml();
+  let part = null, exNo = 0;
+  for (const ex of DATA.exercises) {
+    if (ex.part !== part) { part = ex.part; h += `<h2 class="part">${esc(DATA.parts[part])}</h2>`; }
+    exNo++;
+    const exPts = ex.items.reduce((s, it) => s + (it.pts || ex.pts || 1), 0);
+    const got = graded ? ex.items.reduce((s, it, i) => s + (graded.res[ex.id + '.' + (i + 1)].pts), 0) : null;
+    h += `<section class="card" id="ex-${ex.id}"><div class="exh"><span class="num">${exNo}</span><div class="ttl"><b>${esc(ex.title)}</b><span class="vi">${esc(ex.vi || '')}</span></div><span class="pts ${graded ? 'done' : ''}">${graded ? got + ' / ' : ''}${exPts} điểm</span></div>`;
+    if (ex.audio) h += `<div class="audio"><audio controls preload="none" src="${esc(ex.audio)}"></audio><span class="small muted">Nghe 2 lần.</span></div>`;
+    if (ex.passage) h += `<div class="passage">${ex.passageTitle ? `<h4>${esc(ex.passageTitle)}</h4>` : ''}${esc(ex.passage)}</div>`;
+    if (ex.bank) h += `<div class="bank">${ex.bank.map(w => `<span>${esc(w)}</span>`).join('')}</div>`;
+    if (ex.example) h += `<p class="eg">Ví dụ: ${ex.example}</p>`;
+    ex.items.forEach((it, i) => { h += itemHtml(ex, it, ex.id + '.' + (i + 1), i + 1); });
+    h += `</section>`;
+  }
+  h += speakingHtml();
+  if (store.attempts.length) h += historyHtml();
+  app.innerHTML = h;
+  bindInputs(); renderBar();
+}
+
+function itemHtml(ex, it, key, n) {
+  const v = answers[key]; const r = graded && graded.res[key];
+  const type = it.type || ex.type;
+  let body = it.q ? `<div class="q">${fmtQ(it.q, key, type, v, r, ex, it)}</div>` : '';
+  if (type === 'mcq' || type === 'tf') {
+    const opts = type === 'tf' ? ['True', 'False'] : (it.options || ex.options);
+    body += `<div class="opts" role="radiogroup">` + opts.map((o, k) => {
+      let cls = ''; if (graded) { if (k === answerIndex(ex, it)) cls = 'ok'; else if (v === k) cls = 'bad'; }
+      return `<label class="opt ${cls}"><input type="radio" name="${key}" value="${k}" ${v === k ? 'checked' : ''} ${graded ? 'disabled' : ''}><span>${esc(o)}</span></label>`;
+    }).join('') + `</div>`;
+  } else if (type === 'select') {
+    if (!/___/.test(it.q || '')) body += selectHtml(ex, key, v, r);
+  } else if (type === 'order') {
+    body = `<div class="words">${it.words.map(w => `<span>${esc(w)}</span>`).join('')}</div>` + `<input class="in-t ${r ? (r.ok ? 'ok' : 'bad') : ''}" data-k="${key}" value="${esc(v || '')}" ${graded ? 'readonly' : ''} autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Viết câu hoàn chỉnh…">`;
+  } else if ((type === 'text' || type === 'kw') && !/___/.test(it.q || '')) {
+    body += `<input class="in-t ${r ? (r.ok ? 'ok' : 'bad') : ''}" data-k="${key}" value="${esc(v || '')}" ${graded ? 'readonly' : ''} autocomplete="off" autocapitalize="off" spellcheck="false">`;
+  }
+  if (r && !r.ok) body += fbHtml(ex, it, v);
+  return `<div class="item"><span class="n">${n}.</span><div>${body}</div></div>`;
+}
+function selectHtml(ex, key, v, r) {
+  const opts = ex.options;
+  return `<select class="in-t ${r ? (r.ok ? 'ok' : 'bad') : ''}" data-k="${key}" ${graded ? 'disabled' : ''}><option value="">— chọn —</option>${opts.map(o => `<option ${v === o ? 'selected' : ''}>${esc(o)}</option>`).join('')}</select>`;
+}
+function fmtQ(q, key, type, v, r, ex, it) {
+  const parts = esc(q).split('___');
+  if (parts.length === 1) return parts[0];
+  // mcq/tf: the gap is NOT an input (answer = the radio); it shows the chosen option
+  if (type === 'mcq' || type === 'tf') {
+    const opts = type === 'tf' ? ['True', 'False'] : (it.options || ex.options);
+    return parts[0] + `<span class="blank" data-b="${key}">${typeof v === 'number' && opts[v] != null ? esc(opts[v]) : '&nbsp;'}</span>` + parts.slice(1).join('___');
+  }
+  const field = type === 'select' ? selectHtml(ex, key, v, r)
+    : `<input class="in-t gap ${r ? (r.ok ? 'ok' : 'bad') : ''}" data-k="${key}" value="${esc(v || '')}" ${graded ? 'readonly' : ''} autocomplete="off" autocapitalize="off" spellcheck="false">`;
+  return parts[0] + field + parts.slice(1).join('___');
+}
+function answerIndex(ex, it) { return typeof it.answer === 'number' ? it.answer : (it.answer === 'True' ? 0 : it.answer === 'False' ? 1 : -1); }
+function modelAnswer(ex, it) {
+  const type = it.type || ex.type;
+  if (type === 'mcq') return (it.options || ex.options)[it.answer];
+  if (type === 'tf') return it.answer;
+  if (type === 'select') return it.answer;
+  if (type === 'kw') return it.model;
+  return it.accept[0];
+}
+function fbHtml(ex, it, v) {
+  const type = it.type || ex.type;
+  let wrongWhy = '';
+  if (it.trap && v != null && v !== '') {
+    // mcq/tf: key = option index ("0","1"…; tf also accepts "True"/"False"); text/select/kw: key = typed text (normalised)
+    const t = (type === 'mcq' || type === 'tf') ? (it.trap[String(v)] || (type === 'tf' && it.trap[['True', 'False'][v]]) || it.trap['*'])
+      : trapFor(it.trap, v) || it.trap['*'];
+    if (t) wrongWhy = `<br><span class="x">Vì sao sai:</span> ${esc(t)}`;
+  }
+  return `<div class="fb">Đáp án: <span class="a">${esc(modelAnswer(ex, it))}</span>${it.why ? `<br>${esc(it.why)}` : ''}${wrongWhy}</div>`;
+}
+
+function speakingHtml() {
+  const s = DATA.speaking; if (!s) return '';
+  let h = `<h2 class="part">${esc(s.title)}</h2><div class="card"><p class="small muted">${esc(s.note)}</p><ol class="speak">${s.prompts.map(p => `<li>${esc(p)}</li>`).join('')}</ol>`;
+  h += `<p class="small"><b>Phụ huynh chấm (0–${s.max}):</b></p><div class="rub" role="radiogroup" aria-label="Điểm Speaking">`;
+  for (let k = 0; k <= s.max; k++) h += `<label class="opt"><input type="radio" name="speak" value="${k}" ${speak.score === k ? 'checked' : ''}><span>${k}</span></label>`;
+  h += `</div><p class="small muted">${s.rubric.map(esc).join('<br>')}</p></div>`;
+  return h;
+}
+
+function bindInputs() {
+  // accessible names: "Bài 3, câu 2" for every input / select / radiogroup
+  document.querySelectorAll('section[id^="ex-"]').forEach(sec => {
+    const exn = sec.querySelector('.num').textContent;
+    sec.querySelectorAll('.item').forEach(row => {
+      const lab = `Bài ${exn}, câu ${row.querySelector('.n').textContent.replace('.', '')}`;
+      row.querySelectorAll('[data-k], [role=radiogroup]').forEach(el => el.setAttribute('aria-label', lab));
+    });
+  });
+  document.querySelectorAll('[data-k]').forEach(el => {
+    const on = () => { answers[el.dataset.k] = el.value; draft(); renderBar(); };
+    el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', on);
+  });
+  document.querySelectorAll('input[type=radio]').forEach(el => el.addEventListener('change', () => {
+    if (el.name === 'speak') { speak.score = +el.value; draft(); if (graded) { graded.speaking = speak.score; persistSpeak(); } return; }
+    answers[el.name] = +el.value; draft(); renderBar();
+    const b = document.querySelector(`.blank[data-b="${CSS.escape(el.name)}"]`); if (b) b.textContent = el.nextElementSibling.textContent;
+  }));
+}
+function draft() { if (!graded) { store.draft = { answers, speak }; save(); } else save(); }
+function persistSpeak() { const a = store.attempts[store.attempts.length - 1]; if (a && a.id === graded.id) { a.speaking = speak.score; save(); } }
+function answeredCount() { return items.filter(x => answers[x.key] !== undefined && answers[x.key] !== '').length; }
+
+// keep the last content clear of the fixed bottom bar (bar grows to 2–3 lines on phones in the confirm state)
+function fitBar() { document.getElementById('app').style.paddingBottom = (document.getElementById('bar').offsetHeight + 28) + 'px'; }
+addEventListener('resize', fitBar);
+function renderBar() { renderBarInner(); fitBar(); }
+function renderBarInner() {
+  const prog = document.getElementById('prog'), btns = document.getElementById('barBtns');
+  if (graded) {
+    prog.innerHTML = `Điểm: <b>${graded.score} / ${TOTAL}</b>`;
+    btns.innerHTML = `<button class="btn" id="bTop">Xem kết quả</button> <button class="btn primary" id="bNew">Làm lại từ đầu</button>`;
+    document.getElementById('bTop').onclick = () => document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('bNew').onclick = () => { if (confirm('Xoá bài đang xem và làm lại từ đầu?')) { answers = {}; speak = {}; graded = null; store.draft = null; save(); render(); scrollTo(0, 0); } };
+    return;
+  }
+  const n = answeredCount();
+  prog.innerHTML = `Đã làm <b>${n}</b> / ${items.length} câu`;
+  if (confirmOpen) {
+    btns.innerHTML = `<span class="confirm">Còn ${items.length - n} câu chưa làm. Vẫn nộp bài? <button class="btn" id="bNo">Làm tiếp</button> <button class="btn primary" id="bYes">Nộp</button></span>`;
+    document.getElementById('bNo').onclick = () => { confirmOpen = false; renderBar(); };
+    document.getElementById('bYes').onclick = () => { confirmOpen = false; grade(); };
+  } else {
+    btns.innerHTML = `<button class="btn primary" id="bGrade">Nộp bài</button>`;
+    document.getElementById('bGrade').onclick = () => { if (answeredCount() < items.length) { confirmOpen = true; renderBar(); } else grade(); };
+  }
+}
+
+function grade() {
+  const res = {}; let score = 0;
+  for (const { ex, it, key } of items) {
+    const type = it.type || ex.type, v = answers[key], pts = it.pts || ex.pts || 1;
+    let ok = false;
+    if (type === 'mcq' || type === 'tf') ok = v === answerIndex(ex, it);
+    else if (type === 'select') ok = v === it.answer;
+    else if (type === 'kw') ok = kwOk(v, it.kw);
+    else ok = matches(v, it.accept);
+    res[key] = { ok, pts: ok ? pts : 0, max: pts };
+    score += res[key].pts;
+  }
+  graded = { id: Date.now(), date: new Date().toISOString(), score, res, speaking: speak.score };
+  store.attempts.push({ id: graded.id, date: graded.date, score, total: TOTAL, speaking: speak.score ?? null,
+    answers: { ...answers }, wrong: items.filter(x => !res[x.key].ok).map(x => x.key),
+    byPart: breakdown('part'), byUnit: breakdown('unit'), byLevel: breakdown('level') });
+  store.draft = null; save();
+  render(); document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+}
+function breakdown(dim) {
+  const m = {};
+  for (const { ex, it, key } of items) {
+    const k = dim === 'part' ? ex.part : dim === 'unit' ? String(it.unit ?? ex.unit) : String(it.level || 2);
+    m[k] = m[k] || { got: 0, max: 0 }; m[k].max += graded.res[key].max; m[k].got += graded.res[key].pts;
+  }
+  return m;
+}
+function band(p) { return DATA.bands.find(b => p >= b.min); }
+function barCell(got, max) { const p = max ? got / max : 0; return `<div class="pbar"><i class="${p < .5 ? 'low' : p < .75 ? 'mid' : ''}" style="width:${Math.round(p * 100)}%"></i></div>`; }
+function resultHtml() {
+  const pct = Math.round(graded.score * 100 / TOTAL), b = band(pct);
+  const bp = breakdown('part'), bu = breakdown('unit');
+  let h = `<section class="card" id="result" style="border:2px solid var(--accent)"><div class="score"><span class="big">${graded.score}</span><span class="muted">/ ${TOTAL} điểm</span><span class="band">${esc(b.label)}</span></div><p>${esc(b.advice)}</p>`;
+  h += `<h3>Theo kỹ năng</h3><table class="t"><tr><th>Phần</th><th class="r">Điểm</th><th style="width:40%"></th></tr>` +
+    Object.keys(DATA.parts).filter(k => bp[k]).map(k => `<tr><td>${esc(DATA.parts[k])}</td><td class="r">${bp[k].got} / ${bp[k].max}</td><td>${barCell(bp[k].got, bp[k].max)}</td></tr>`).join('') + `</table>`;
+  const unitKeys = Object.keys(bu).sort((a, b) => (+a || 0) - (+b || 0));
+  h += `<h3>Theo unit</h3><table class="t"><tr><th>Unit</th><th class="r">Điểm</th><th style="width:40%"></th></tr>` +
+    unitKeys.map(k => `<tr><td>${k === 'mix' ? 'Tổng hợp' : /^[0-9]+$/.test(k) ? 'Unit ' + esc(k) : esc(k)} <span class="small muted">${esc(DATA.unitTitles[k] || '')}</span></td><td class="r">${bu[k].got} / ${bu[k].max}</td><td>${barCell(bu[k].got, bu[k].max)}</td></tr>`).join('') + `</table>`;
+  const weak = unitKeys.filter(k => bu[k].max >= 3 && bu[k].got / bu[k].max < .6);
+  if (weak.length) h += `<p><b>Cần ôn lại:</b> ${weak.map(k => (k === 'mix' ? 'phần tổng hợp' : (/^[0-9]+$/.test(k) ? 'Unit ' : '') + k + ' (' + (DATA.unitTitles[k] || '') + ')')).map(esc).join(', ')}.</p>`;
+  h += `<p class="small muted">Các câu sai được tô đỏ bên dưới, kèm đáp án và giải thích.</p></section>`;
+  return h;
+}
+function historyHtml() {
+  return `<h2 class="part">Các lần làm trước</h2><div class="card"><ul class="hist">${store.attempts.slice().reverse().map(a => `<li>${new Date(a.date).toLocaleString('vi-VN')}: <b>${a.score} / ${a.total}</b>${a.speaking != null ? ` · Speaking ${a.speaking}/${DATA.speaking.max}` : ''}</li>`).join('')}</ul>
+  <button class="btn" id="bExport">Tải kết quả (JSON)</button></div>`;
+}
+document.addEventListener('click', e => {
+  if (e.target.id === 'bExport') {
+    const blob = new Blob([JSON.stringify(store.attempts, null, 1)], { type: 'application/json' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = DATA.exportName; a.click();
+  }
+});
+render();
+</script>
+</body>
+</html>
